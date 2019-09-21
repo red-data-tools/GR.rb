@@ -2,6 +2,8 @@
 
 [GR framework](https://github.com/sciapp/gr) for Ruby
 
+[![Build Status](https://travis-ci.com/kojix2/ffi-gr.svg?&branch=master)](https://travis-ci.org/kojix2/ffi-gr)
+
 ## Installation
 Install [GR](https://github.com/sciapp/gr/releases).
 Set environment variable GRDIR.
