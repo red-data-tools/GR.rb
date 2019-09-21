@@ -1,0 +1,24 @@
+PATH
+  remote: .
+  specs:
+    ffi-gr (0.1.0)
+      ffi
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    ffi (1.11.1)
+    minitest (5.11.3)
+    rake (10.5.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bundler (~> 2.0)
+  ffi-gr!
+  minitest
+  rake (~> 10.0)
+
+BUNDLED WITH
+   2.0.2
