@@ -1,7 +1,14 @@
----
-sudo: false
+dist: xenial
 language: ruby
 cache: bundler
 rvm:
   - 2.6.3
-before_install: gem install bundler -v 2.0.2
+before_install:
+  - gem install bundler -v 2.0.2
+  - export GR_VERSION=0.41.2
+  - ./test/ci/install_gr.sh
+  - export GRDIR=$HOME/gr/$GR_VERSION/gr
+cache:
+  directories:
+    - $HOME/gr
+script: bundle exec rake test
