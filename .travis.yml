@@ -6,9 +6,10 @@ rvm:
 before_install:
   - gem install bundler -v 2.0.2
   - export GR_VERSION=0.41.2
+  - chmod +x ./test/ci/install_gr.sh
   - ./test/ci/install_gr.sh
-  - export GRDIR=$HOME/gr/$GR_VERSION/gr
+  - export GRDIR=$HOME/GR/$GR_VERSION/gr
 cache:
   directories:
-    - $HOME/gr
+    - $HOME/GR
 script: bundle exec rake test
