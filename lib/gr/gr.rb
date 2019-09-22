@@ -20,7 +20,6 @@ module GR
 
   # Integrating with Ruby Objects
   class GR < GRBase
-
     def polyline(x, y)
       px = pointer(:double, x)
       py = pointer(:double, y)
@@ -37,9 +36,9 @@ module GR
       pxd = pointer(:double, xd)
       pyd = pointer(:double, yd)
       pzd = pointer(:double, zd)
-      @px  ||= ::FFI::MemoryPointer.new(:double, nx)
-      @py  ||= ::FFI::MemoryPointer.new(:double, ny)
-      @pz  ||= ::FFI::MemoryPointer.new(:double, nx * ny)
+      @px ||= ::FFI::MemoryPointer.new(:double, nx)
+      @py ||= ::FFI::MemoryPointer.new(:double, ny)
+      @pz ||= ::FFI::MemoryPointer.new(:double, nx * ny)
       super(nd, pxd, pyd, pzd, nx, ny, @px, @py, @pz)
     end
 
@@ -53,9 +52,9 @@ module GR
     def contour(nx, ny, h, major_h)
       nh = h.size
       ph = pointer(:double, h)
-      @px  ||= ::FFI::MemoryPointer.new(:double, nx)
-      @py  ||= ::FFI::MemoryPointer.new(:double, ny)
-      @pz  ||= ::FFI::MemoryPointer.new(:double, nx * ny)
+      @px ||= ::FFI::MemoryPointer.new(:double, nx)
+      @py ||= ::FFI::MemoryPointer.new(:double, ny)
+      @pz ||= ::FFI::MemoryPointer.new(:double, nx * ny)
       super(nx, ny, nh, @px, @py, ph, @pz, major_h)
     end
 
@@ -66,9 +65,7 @@ module GR
     private
 
     def pointer(dtype, data)
-      if narray?(data)
-        data = data.to_a
-      end
+      data = data.to_a if narray?(data)
       case dtype
       when :int, :double
         pt = ::FFI::MemoryPointer.new(dtype, data.size)

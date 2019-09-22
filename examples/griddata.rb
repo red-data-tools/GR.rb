@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # https://github.com/sciapp/gr/blob/master/examples/griddata.c
 
 require 'gr'
@@ -9,7 +11,7 @@ xd = -2 + DFloat.new(100).rand * 4
 yd = -2 + DFloat.new(100).rand * 4
 zd = xd * Numo::NMath.exp(-xd * xd - yd * yd)
 
-h  = -0.5 + DFloat.new(20).seq / 19.0
+h = -0.5 + DFloat.new(20).seq / 19.0
 
 gr = GR::GR.new
 
@@ -23,8 +25,8 @@ gr.settextalign(2, 0)
 gr.settextfontprec(3, 0)
 
 gr.gridit(100, xd, yd, zd, 200, 200)
-gr.surface(200,200,5)
-gr.contour(200,200,h,0)
+gr.surface(200, 200, 5)
+gr.contour(200, 200, h, 0)
 gr.polymarker(100, xd, yd)
 gr.axes(0.25, 0.25, -2, -2, 2, 2, 0.01)
 

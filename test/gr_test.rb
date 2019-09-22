@@ -14,5 +14,4 @@ class GRTest < Minitest::Test
   def test_gr_version
     assert_instance_of String, @g.version
   end
-
 end
