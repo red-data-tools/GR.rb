@@ -23,6 +23,7 @@ module GR
     def polyline(x, y)
       size = x.size
       raise if y.size != size
+
       px = pointer(:double, x)
       py = pointer(:double, y)
       super(size, px, py)
@@ -31,6 +32,7 @@ module GR
     def polymarker(x, y)
       size = x.size
       raise if y.size != size
+
       px = pointer(:double, x)
       py = pointer(:double, y)
       super(size, px, py)
