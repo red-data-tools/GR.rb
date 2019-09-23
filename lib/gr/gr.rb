@@ -38,30 +38,33 @@ module GR
       super(size, px, py)
     end
 
-    def gridit(nd, xd, yd, zd, nx, ny)
+    def gridit(xd, yd, zd, nx, ny)
+      size = xd.size
+      raise if (yd.size != size) || (zd.size != size)
+
       pxd = pointer(:double, xd)
       pyd = pointer(:double, yd)
       pzd = pointer(:double, zd)
-      @px ||= ::FFI::MemoryPointer.new(:double, nx)
-      @py ||= ::FFI::MemoryPointer.new(:double, ny)
-      @pz ||= ::FFI::MemoryPointer.new(:double, nx * ny)
-      super(nd, pxd, pyd, pzd, nx, ny, @px, @py, @pz)
+      px = ::FFI::MemoryPointer.new(:double, nx)
+      py = ::FFI::MemoryPointer.new(:double, ny)
+      pz = ::FFI::MemoryPointer.new(:double, nx * ny)
+      super(size, pxd, pyd, pzd, nx, ny, px, py, pz)
+      [px, py, pz]
     end
 
-    def surface(nx, ny, option)
-      @px  ||= ::FFI::MemoryPointer.new(:double, nx)
-      @py  ||= ::FFI::MemoryPointer.new(:double, ny)
-      @pz  ||= ::FFI::MemoryPointer.new(:double, nx * ny)
-      super(nx, ny, @px, @py, @pz, option)
+    def surface(px, py, pz, option)
+      nx = length(px, :double)
+      ny = length(py, :double)
+      super(nx, ny, px, py, pz, option)
     end
 
-    def contour(nx, ny, h, major_h)
+    def contour(px, py, h, pz, major_h)
+      nx = length(px, :double)
+      ny = length(py, :double)
+      nz = length(pz, :double)
       nh = h.size
       ph = pointer(:double, h)
-      @px ||= ::FFI::MemoryPointer.new(:double, nx)
-      @py ||= ::FFI::MemoryPointer.new(:double, ny)
-      @pz ||= ::FFI::MemoryPointer.new(:double, nx * ny)
-      super(nx, ny, nh, @px, @py, ph, @pz, major_h)
+      super(nx, ny, nh, px, py, ph, pz, major_h)
     end
 
     def version
@@ -69,6 +72,17 @@ module GR
     end
 
     private
+
+    def length(pt, dtype)
+      case dtype
+      when :int
+        pt.size / ::FFI::Type::INT.size
+      when :double
+        pt.size / ::FFI::Type::DOUBLE.size
+      else
+        raise "Unknown type: #{dtype}"
+      end
+    end
 
     def pointer(dtype, data)
       data = data.to_a if narray?(data)
