@@ -27,7 +27,7 @@ gr.settextfontprec(3, 0)
 gr.gridit(100, xd, yd, zd, 200, 200)
 gr.surface(200, 200, 5)
 gr.contour(200, 200, h, 0)
-gr.polymarker(100, xd, yd)
+gr.polymarker(xd, yd)
 gr.axes(0.25, 0.25, -2, -2, 2, 2, 0.01)
 
 gr.updatews
