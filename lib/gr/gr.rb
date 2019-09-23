@@ -21,15 +21,19 @@ module GR
   # Integrating with Ruby Objects
   class GR < GRBase
     def polyline(x, y)
+      size = x.size
+      raise if y.size != size
       px = pointer(:double, x)
       py = pointer(:double, y)
       super(size, px, py)
     end
 
-    def polymarker(n, x, y)
+    def polymarker(x, y)
+      size = x.size
+      raise if y.size != size
       px = pointer(:double, x)
       py = pointer(:double, y)
-      super(n, px, py)
+      super(size, px, py)
     end
 
     def gridit(nd, xd, yd, zd, nx, ny)
