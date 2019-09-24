@@ -7,6 +7,10 @@ class GRTest < Minitest::Test
     assert_instance_of String, GR::VERSION
   end
 
+  def test_gr_ffi_lib
+    assert_instance_of String, GR::GR.gr_ffi_lib
+  end
+
   def setup
     @g = GR::GR.new
   end
