@@ -7,7 +7,7 @@ module GR
     module FFI
       extend ::FFI::Library
 
-      ffi_lib GR.gr_ffi_lib
+      ffi_lib GR.ffi_lib
 
       # https://github.com/sciapp/gr/blob/master/lib/gr/gr.c
 
