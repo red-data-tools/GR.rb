@@ -1,25 +1,32 @@
 # frozen_string_literal: true
 
+require 'ffi'
+
 module GR
-  # Define GR::FFI methods dynamically
-  # GRBase is a private class.
-  class GRBase
-    gr_methods = FFI.public_methods.select do |gr_method|
-      gr_method.to_s.start_with? 'gr_'
+  class GR
+    class << self
+      attr_reader :gr_ffi_lib
     end
 
-    # define method
-    gr_methods.each do |gr_method|
-      ruby_method = gr_method.to_s.delete_prefix('gr_')
-      define_method(ruby_method) do |*args|
-        FFI.send(gr_method, *args)
-      end
+    gr_lib_name = "libGR.#{::FFI::Platform::LIBSUFFIX}"
+    if ENV['GRDIR']
+      gr_lib = File.expand_path("lib/#{gr_lib_name}", ENV['GRDIR'])
+      ENV['GKS_FONTPATH'] ||= ENV['GRDIR']
+      @gr_ffi_lib = gr_lib
+    else
+      raise 'Please set env variable GRDIR'
     end
   end
-  private_constant :GRBase
+end
 
+require 'gr/gr/ffi'
+require 'gr/gr/grmodule'
+
+module GR
   # Integrating with Ruby Objects
-  class GR < GRBase
+  class GR
+    include GRModule
+
     def polyline(x, y)
       size = x.size
       raise if y.size != size
