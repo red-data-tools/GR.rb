@@ -19,7 +19,7 @@ module GR
             when Array
               pointer(:double, arg)
             when ->(x) { narray? x }
-              pointer(:double, arg.to_a)
+              pointer(:double, arg)
             else
               arg
             end
@@ -44,6 +44,7 @@ module GR
     end
 
     def pointer(dtype, data)
+      data = data.to_a
       case dtype
       when :int, :double
         pt = ::FFI::MemoryPointer.new(dtype, data.size)

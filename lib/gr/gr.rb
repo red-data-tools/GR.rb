@@ -41,6 +41,18 @@ module GR
       super(n, x, y)
     end
 
+    def fillarea(x, y)
+      n = x.size
+      raise if y.size != n
+
+      super(n, x, y)
+    end
+
+    def cellarray(xmin, xmax, ymin, ymax, dimx, dimy, _scol, _srow, _ncol, _nrow, color)
+      pcolor = pointer(:int, color)
+      super(xmin, xmax, ymin, ymax, dimx, dimy, 1, 1, dimx, dimy, pcolor)
+    end
+
     def gridit(xd, yd, zd, nx, ny)
       nd = xd.size
       raise if (yd.size != nd) || (zd.size != nd)

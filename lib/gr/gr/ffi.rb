@@ -32,7 +32,7 @@ module GR
       attach_function :gr_text, %i[double double string], :void
       # attach_function :gr_inqtext, %i[double double string pointer pointer], :void
       attach_function :gr_fillarea, %i[int pointer pointer], :void
-      # attach_function :gr_cellarray, %i[double double double double int int int int int int pointer], :void
+      attach_function :gr_cellarray, %i[double double double double int int int int int int pointer], :void
       # attach_function :gr_nonuniformcellarray, %i[pointer pointer int int int int int int pointer], :void
       # attach_function :gr_polarcellarray, %i[double double double double double double int int int int int int pointer]
       # attach_function :gr_gdp, %i[int pointer pointer int int pointer], :void
