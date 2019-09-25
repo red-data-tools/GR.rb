@@ -19,7 +19,7 @@ module GR
       # attach_function :gr_inqdspsize, %i[pointer pointer pointer pointer], :void
 
       # ws - workstation
-      # attach_function :gr_openws, %i[int pointer int], :void
+      attach_function :gr_openws, %i[int string int], :void
       attach_function :gr_closews, %i[int], :void
       attach_function :gr_activatews, %i[int], :void
       attach_function :gr_deactivatews, %i[int], :void
@@ -31,7 +31,7 @@ module GR
       attach_function :gr_polymarker, %i[int pointer pointer], :void
       attach_function :gr_text, %i[double double string], :void
       # attach_function :gr_inqtext, %i[double double string pointer pointer], :void
-      # attach_function :gr_fillarea, %i[int pointer pointer], :void
+      attach_function :gr_fillarea, %i[int pointer pointer], :void
       # attach_function :gr_cellarray, %i[double double double double int int int int int int pointer], :void
       # attach_function :gr_nonuniformcellarray, %i[pointer pointer int int int int int int pointer], :void
       # attach_function :gr_polarcellarray, %i[double double double double double double int int int int int int pointer]

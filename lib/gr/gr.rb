@@ -28,34 +28,27 @@ module GR
     include GRModule
 
     def polyline(x, y)
-      size = x.size
-      raise if y.size != size
+      n = x.size
+      raise if y.size != n
 
-      px = pointer(:double, x)
-      py = pointer(:double, y)
-      super(size, px, py)
+      super(n, x, y)
     end
 
     def polymarker(x, y)
-      size = x.size
-      raise if y.size != size
+      n = x.size
+      raise if y.size != n
 
-      px = pointer(:double, x)
-      py = pointer(:double, y)
-      super(size, px, py)
+      super(n, x, y)
     end
 
     def gridit(xd, yd, zd, nx, ny)
-      size = xd.size
-      raise if (yd.size != size) || (zd.size != size)
+      nd = xd.size
+      raise if (yd.size != nd) || (zd.size != nd)
 
-      pxd = pointer(:double, xd)
-      pyd = pointer(:double, yd)
-      pzd = pointer(:double, zd)
       px = ::FFI::MemoryPointer.new(:double, nx)
       py = ::FFI::MemoryPointer.new(:double, ny)
       pz = ::FFI::MemoryPointer.new(:double, nx * ny)
-      super(size, pxd, pyd, pzd, nx, ny, px, py, pz)
+      super(nd, xd, yd, zd, nx, ny, px, py, pz)
       [px, py, pz]
     end
 
@@ -70,21 +63,20 @@ module GR
       ny = length(py, :double)
       nz = length(pz, :double)
       nh = h.size
-      ph = pointer(:double, h)
-      super(nx, ny, nh, px, py, ph, pz, major_h)
+      super(nx, ny, nh, px, py, h, pz, major_h)
     end
 
     def version
       super.read_string
     end
 
-    #For IRuby Notebook
+    # For IRuby Notebook
     def initialize
       if defined? IRuby
-      require 'tempfile'
-      ENV["GKSwstype"] = "svg"
-      @tempfile_svg = Tempfile.open(['plot','.svg'])
-      ENV["GKS_FILEPATH"] = @tempfile_svg.path
+        require 'tempfile'
+        ENV['GKSwstype'] = 'svg'
+        @tempfile_svg = Tempfile.open(['plot', '.svg'])
+        ENV['GKS_FILEPATH'] = @tempfile_svg.path
       end
     end
 
@@ -93,37 +85,9 @@ module GR
         emergencyclosegks
         sleep 1
         svg = File.read(@tempfile_svg.path)
-        IRuby.display(svg, mime: "image/svg+xml")
+        IRuby.display(svg, mime: 'image/svg+xml')
         self
       end
-    end
-
-    private
-
-    def length(pt, dtype)
-      case dtype
-      when :int
-        pt.size / ::FFI::Type::INT.size
-      when :double
-        pt.size / ::FFI::Type::DOUBLE.size
-      else
-        raise "Unknown type: #{dtype}"
-      end
-    end
-
-    def pointer(dtype, data)
-      data = data.to_a if narray?(data)
-      case dtype
-      when :int, :double
-        pt = ::FFI::MemoryPointer.new(dtype, data.size)
-        pt.send("write_array_of_#{dtype}", data)
-      else
-        raise "Unknown type: #{dtype}"
-      end
-    end
-
-    def narray?(data)
-      defined?(Numo::NArray) && data.is_a?(Numo::NArray)
     end
   end
 end

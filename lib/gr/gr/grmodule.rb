@@ -12,11 +12,49 @@ module GR
       # define method
       gr_methods.each do |gr_method|
         ruby_method = gr_method.to_s.delete_prefix('gr_')
+
         define_method(ruby_method) do |*args|
+          args.map! do |arg|
+            case arg
+            when Array
+              pointer(:double, arg)
+            when ->(x) { narray? x }
+              pointer(:double, arg.to_a)
+            else
+              arg
+            end
+          end
           FFI.send(gr_method, *args)
         end
       end
     end
     private_constant :GRModule
+
+    private
+
+    def length(pt, dtype)
+      case dtype
+      when :int
+        pt.size / ::FFI::Type::INT.size
+      when :double
+        pt.size / ::FFI::Type::DOUBLE.size
+      else
+        raise "Unknown type: #{dtype}"
+      end
+    end
+
+    def pointer(dtype, data)
+      case dtype
+      when :int, :double
+        pt = ::FFI::MemoryPointer.new(dtype, data.size)
+        pt.send("write_array_of_#{dtype}", data)
+      else
+        raise "Unknown type: #{dtype}"
+      end
+    end
+
+    def narray?(data)
+      defined?(Numo::NArray) && data.is_a?(Numo::NArray)
+    end
   end
 end
