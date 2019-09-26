@@ -27,6 +27,15 @@ module GR
   class GR
     include GRModule
 
+    def inqdspsize
+      mwidth  = ::FFI::MemoryPointer.new(:double)
+      mheight = ::FFI::MemoryPointer.new(:double)
+      width   = ::FFI::MemoryPointer.new(:int)
+      height  = ::FFI::MemoryPointer.new(:int)
+      super(mwidth, mheight, width, height)
+      [mwidth.read_double, mheight.read_double, width.read_int, height.read_int]
+    end
+
     def polyline(x, y)
       n = x.size
       raise if y.size != n

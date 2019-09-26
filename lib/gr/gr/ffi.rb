@@ -16,7 +16,7 @@ module GR
       # gks - graphical kernel system
       attach_function :gr_opengks, %i[], :void
       attach_function :gr_closegks, %i[], :void
-      # attach_function :gr_inqdspsize, %i[pointer pointer pointer pointer], :void
+      attach_function :gr_inqdspsize, %i[pointer pointer pointer pointer], :void
 
       # ws - workstation
       attach_function :gr_openws, %i[int string int], :void

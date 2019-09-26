@@ -5,9 +5,9 @@ require 'gr'
 
 gr = GR::GR.new
 
-z = Array.new(100){|i| i / 100.0}
-x = Array.new(100){|i| i * Math.sin(i * Math::PI/10.0) / 100.0}
-y = Array.new(100){|i| i * Math.cos(i * Math::PI/10.0) / 100.0}
+z = Array.new(100) { |i| i / 100.0 }
+x = Array.new(100) { |i| i * Math.sin(i * Math::PI / 10.0) / 100.0 }
+y = Array.new(100) { |i| i * Math.cos(i * Math::PI / 10.0) / 100.0 }
 
 gr.clearws
 gr.setwindow(-1, 1, -1, 1)

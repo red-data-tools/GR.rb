@@ -36,7 +36,7 @@ module GR
       case pt
       when Array
         pt.size
-      when ->(x) {narray? x}
+      when ->(x) { narray? x }
         pt.size
       when ::FFI::MemoryPointer
         case dtype
