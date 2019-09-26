@@ -74,6 +74,16 @@ module GR
       super(n, px, py, e1, e2)
     end
 
+    def polyline3d(px, py, pz)
+      n = length(px, :double)
+      super(n, px, py, pz)
+    end
+
+    def polymarker3d(px, py, pz)
+      n = length(px, :double)
+      super(n, px, py, pz)
+    end
+
     def surface(px, py, pz, option)
       nx = length(px, :double)
       ny = length(py, :double)

@@ -99,8 +99,8 @@ module GR
       attach_function :gr_verrorbars, %i[int pointer pointer pointer pointer], :void
       attach_function :gr_herrorbars, %i[int pointer pointer pointer pointer], :void
 
-      # attach_function :gr_polyline3d, %i[int pointer pointer pointer], :void
-      # attach_function :gr_polymarker3d, %i[int pointer pointer pointer], :void
+      attach_function :gr_polyline3d, %i[int pointer pointer pointer], :void
+      attach_function :gr_polymarker3d, %i[int pointer pointer pointer], :void
       attach_function :gr_axes3d, %i[double double double double double double int int int double], :void
       attach_function :gr_titles3d, %i[string string string], :void
       attach_function :gr_surface, %i[int int pointer pointer pointer int], :void
