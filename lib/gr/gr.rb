@@ -64,6 +64,16 @@ module GR
       [px, py, pz]
     end
 
+    def verrorbars(px, py, e1, e2)
+      n = length(px, :double)
+      super(n, px, py, e1, e2)
+    end
+
+    def herrorbars(px, py, e1, e2)
+      n = length(px, :double)
+      super(n, px, py, e1, e2)
+    end
+
     def surface(px, py, pz, option)
       nx = length(px, :double)
       ny = length(py, :double)
