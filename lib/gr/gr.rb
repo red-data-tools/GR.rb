@@ -48,7 +48,7 @@ module GR
       super(n, x, y)
     end
 
-    def cellarray(xmin, xmax, ymin, ymax, dimx, dimy, _scol, _srow, _ncol, _nrow, color)
+    def cellarray(xmin, xmax, ymin, ymax, dimx, dimy, color)
       pcolor = pointer(:int, color)
       super(xmin, xmax, ymin, ymax, dimx, dimy, 1, 1, dimx, dimy, pcolor)
     end
@@ -64,6 +64,16 @@ module GR
       [px, py, pz]
     end
 
+    def verrorbars(px, py, e1, e2)
+      n = length(px, :double)
+      super(n, px, py, e1, e2)
+    end
+
+    def herrorbars(px, py, e1, e2)
+      n = length(px, :double)
+      super(n, px, py, e1, e2)
+    end
+
     def surface(px, py, pz, option)
       nx = length(px, :double)
       ny = length(py, :double)
@@ -73,7 +83,6 @@ module GR
     def contour(px, py, h, pz, major_h)
       nx = length(px, :double)
       ny = length(py, :double)
-      nz = length(pz, :double)
       nh = h.size
       super(nx, ny, nh, px, py, h, pz, major_h)
     end

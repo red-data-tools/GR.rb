@@ -33,13 +33,22 @@ module GR
     private
 
     def length(pt, dtype)
-      case dtype
-      when :int
-        pt.size / ::FFI::Type::INT.size
-      when :double
-        pt.size / ::FFI::Type::DOUBLE.size
+      case pt
+      when Array
+        pt.size
+      when ->(x) {narray? x}
+        pt.size
+      when ::FFI::MemoryPointer
+        case dtype
+        when :int
+          pt.size / ::FFI::Type::INT.size
+        when :double
+          pt.size / ::FFI::Type::DOUBLE.size
+        else
+          raise "Unknown type: #{dtype}"
+        end
       else
-        raise "Unknown type: #{dtype}"
+        raise
       end
     end
 
