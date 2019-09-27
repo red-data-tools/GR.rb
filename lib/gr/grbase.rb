@@ -1,35 +1,35 @@
 # frozen_string_literal: true
 
 module GR
-  class GR
-    # Define GR::FFI methods dynamically
-    # GRBase is a private class.
-    module GRModule
-      gr_methods = FFI.public_methods.select do |gr_method|
-        gr_method.to_s.start_with? 'gr_'
-      end
+  # Define GR::FFI methods dynamically
+  # GRBase is a private class.
+  module GRBase
+    gr_methods = FFI.public_methods.select do |gr_method|
+      gr_method.to_s.start_with? 'gr_'
+    end
 
-      # define method
-      gr_methods.each do |gr_method|
-        ruby_method = gr_method.to_s.delete_prefix('gr_')
+    # define method
+    gr_methods.each do |gr_method|
+      ruby_method = gr_method.to_s.delete_prefix('gr_')
 
-        define_method(ruby_method) do |*args|
-          args.map! do |arg|
-            case arg
-            when Array
-              pointer(:double, arg)
-            when ->(x) { narray? x }
-              pointer(:double, arg)
-            else
-              arg
-            end
+      define_method(ruby_method) do |*args|
+        args.map! do |arg|
+          case arg
+          when Array
+            pointer(:double, arg)
+          when ->(x) { narray? x }
+            pointer(:double, arg)
+          else
+            arg
           end
-          FFI.send(gr_method, *args)
         end
+        FFI.send(gr_method, *args)
       end
     end
-    private_constant :GRModule
+  end
+  private_constant :GRBase
 
+  class << self
     private
 
     def length(pt, dtype)

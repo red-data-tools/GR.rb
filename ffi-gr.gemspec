@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
-require_relative 'lib/gr/version'
-
 Gem::Specification.new do |spec|
   spec.name          = 'ffi-gr'
-  spec.version       = GR::VERSION
+  spec.version       = '0.1.0'
   spec.authors       = 'kojix2'
   spec.email         = '2xijok@gmail.com'
 
