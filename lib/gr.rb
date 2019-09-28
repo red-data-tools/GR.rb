@@ -25,12 +25,9 @@ module GR
 
   class << self
     def inqdspsize
-      mwidth  = ::FFI::MemoryPointer.new(:double)
-      mheight = ::FFI::MemoryPointer.new(:double)
-      width   = ::FFI::MemoryPointer.new(:int)
-      height  = ::FFI::MemoryPointer.new(:int)
-      super(mwidth, mheight, width, height)
-      [mwidth.read_double, mheight.read_double, width.read_int, height.read_int]
+      inq_ %i[double double int int] do |*pts|
+        super(*pts)
+      end
     end
 
     def polyline(x, y)
@@ -121,21 +118,15 @@ module GR
     end
 
     def inqwindow
-      xmin = ::FFI::MemoryPointer.new(:double)
-      xmax = ::FFI::MemoryPointer.new(:double)
-      ymin = ::FFI::MemoryPointer.new(:double)
-      ymax = ::FFI::MemoryPointer.new(:double)
-      super(xmin, xmax, ymin, ymax)
-      [xmin.read_double, xmax.read_double, ymin.read_double, ymax.read_double]
+      inq_ %i[double double double double] do |*pts|
+        super(*pts)
+      end
     end
 
     def inqspace
-      zmin = ::FFI::MemoryPointer.new(:double)
-      zmax = ::FFI::MemoryPointer.new(:double)
-      rotation = ::FFI::MemoryPointer.new(:int)
-      tilt = ::FFI::MemoryPointer.new(:int)
-      super(zmin, zmax, rotation, tilt)
-      [zmin.read_double, zmax.read_double, rotation.read_int, tilt.read_int]
+      inq_ %i[double double int int] do |*pts|
+        super(*pts)
+      end
     end
 
     def verrorbars(px, py, e1, e2)
@@ -198,17 +189,21 @@ module GR
     private
 
     def inq_int(&block)
-      inq_(:int, &block)
+      inq_([:int], &block)[0]
     end
 
     def inq_double(&block)
-      inq_(:double, &block)
+      inq_([:double], &block)[0]
     end
 
-    def inq_(type)
-      v = ::FFI::MemoryPointer.new(type)
-      yield(v)
-      v.send("read_#{type}")
+    def inq_(types)
+      pts = types.map do |type|
+        ::FFI::MemoryPointer.new(type)
+      end
+      yield(*pts)
+      pts.zip(types).map do |pt, type|
+        pt.send("read_#{type}")
+      end
     end
   end
 end
