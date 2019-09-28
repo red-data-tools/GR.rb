@@ -63,6 +63,11 @@ module GR
       super(xmin, xmax, ymin, ymax, dimx, dimy, 1, 1, dimx, dimy, pcolor)
     end
 
+    def polarcellarray(x_org, y_org, phimin, phimax, rmin, rmax, dimphi, dimr, color)
+      pcolor = pointer(:int, color)
+      super(x_org, y_org, phimin, phimax, rmin, rmax, dimphi, dimr, 1, 1, dimphi, dimr, pcolor)
+    end
+
     def gridit(xd, yd, zd, nx, ny)
       nd = xd.size
       raise if (yd.size != nd) || (zd.size != nd)
