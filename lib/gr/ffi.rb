@@ -113,10 +113,12 @@ module GR
     # attach_function :gr_tricontour, %i[int pointer pointer pointer int pointer], :void
     # attach_function :gr_hexbin, %i[int pointer pointer int], :void
     attach_function :gr_setcolormap, %i[int], :void
-    # attach_function :gr_inqcolormap, %i[pointer], :void
+    attach_function :gr_inqcolormap, %i[pointer], :void
     # attach_function :gr_setcolormapfromrgb, %i[int pointer pointer pointer pointer], :void
     attach_function :gr_colorbar, %i[], :void
-    # attach_function :gr_hsvtorgb, %i[double double double pointer pointer pointer], :void
+    attach_function :gr_inqcolor, %i[int pointer], :void
+    attach_function :gr_inqcolorfromrgb, %i[double double double], :void
+    attach_function :gr_hsvtorgb, %i[double double double pointer pointer pointer], :void
     attach_function :gr_tick, %i[double double], :double
 
     attach_function :gr_validaterange, %i[double double], :int

@@ -45,10 +45,9 @@ module GR
     end
 
     def inqtext(x, y, string)
-      tbx = ::FFI::MemoryPointer.new(:double, 4)
-      tby = ::FFI::MemoryPointer.new(:double, 4)
-      super(x, y, string, tbx, tby)
-      [tbx.read_array_of_double(4), tby.read_array_of_double(4)]
+      inq_ [{double: 4}, {double, 4}] do |tbx, tby|
+        super(x, y, string, tbx, tby)
+      end
     end
 
     def fillarea(x, y)
@@ -72,11 +71,11 @@ module GR
       nd = xd.size
       raise if (yd.size != nd) || (zd.size != nd)
 
-      px = ::FFI::MemoryPointer.new(:double, nx)
-      py = ::FFI::MemoryPointer.new(:double, ny)
-      pz = ::FFI::MemoryPointer.new(:double, nx * ny)
-      super(nd, xd, yd, zd, nx, ny, px, py, pz)
-      [px, py, pz]
+      inq_ %i[{double: nx}, {double: ny}, {double: nx * ny}] do |px, py, pz|
+        super(nd, xd, yd, zd, nx, ny, px, py, pz)
+        # NOTE: this method return an Array of FFI::MemoryPointer itself!
+        return [px, py, pz]
+      end
     end
 
     def inqlinetype
@@ -116,10 +115,9 @@ module GR
     end
 
     def inqtextext(x, y, string)
-      tbx = ::FFI::MemoryPointer.new(:double, 4)
-      tby = ::FFI::MemoryPointer.new(:double, 4)
-      super(x, y, string, tbx, tby)
-      [tbx.read_array_of_double(4), tby.read_array_of_double(4)]
+      inq_ [{double: 4}, {double: 4}] do |tbx, tby|
+        super(x, y, string, tbx, tby)
+      end
     end
 
     def inqwindow
@@ -167,32 +165,56 @@ module GR
       super(nx, ny, nh, px, py, h, pz, major_h)
     end
 
+    def inqcolormap
+      inq_int { |pt| super(pt) }
+    end
+
+    def inqcolor(color)
+      inq_int do |rgb|
+        super(color, rgb)
+      end
+    end
+
+    def hsvtorgb(h, s, v)
+      inq_ %i[double double double] do |r, g, b|
+        super(h, s, v, r, g, b)
+      end
+    end
+
     def ndctowc(x, y)
-      px = ::FFI::MemoryPointer.new(:double).write_double(x)
-      py = ::FFI::MemoryPointer.new(:double).write_double(y)
-      super(px, py)
-      [px.read_double, py.read_double]
+      inq_ %i[double double] do |px, py|
+        px.write_double x
+        py.write_double y
+        super(px, py)
+      end
     end
 
     def wctondc(x, y)
-      px = ::FFI::MemoryPointer.new(:double).write_double(x)
-      py = ::FFI::MemoryPointer.new(:double).write_double(y)
-      super(px, py)
-      [px.read_double, py.read_double]
+      inq_ %i[double double] do |px, py|
+        px.write_double x
+        py.write_double y
+        super(px, py)
+      end
     end
 
     def wc3towc(x, y, z)
-      px = ::FFI::MemoryPointer.new(:double).write_double(x)
-      py = ::FFI::MemoryPointer.new(:double).write_double(y)
-      pz = ::FFI::MemoryPointer.new(:double).write_double(z)
-      super(px, py, pz)
-      [px.read_double, py.read_double, pz.read_double]
+      inq_ %i[double double double] do |px, py, pz|
+        px.write_double x
+        py.write_double y
+        pz.write_double z
+        super(px, py, pz)
+      end
     end
 
     def inqbbox
       inq_ %i[double double double double] do |*pts|
         super(*pts)
       end
+    end
+
+    def adjustlimits(amin, amax)
+
+
     end
 
     def version
@@ -231,11 +253,25 @@ module GR
 
     def inq_(types)
       pts = types.map do |type|
-        ::FFI::MemoryPointer.new(type)
+        case type
+        when Hash
+          typ = type.keys[0]
+          len = type.values[0]
+          ::FFI::MemoryPointer.new(typ, len)
+        else
+          ::FFI::MemoryPointer.new(type)
+        end
       end
       yield(*pts)
       pts.zip(types).map do |pt, type|
-        pt.send("read_#{type}")
+        case type
+        when Hash
+          typ = type.keys[0]
+          len = type.values[0]
+          pt.send("read_array_of_#{typ}", len)
+        else
+          pt.send("read_#{type}")
+        end
       end
     end
   end
