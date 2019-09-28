@@ -29,7 +29,7 @@ module GR
     attach_function :gr_polyline, %i[int pointer pointer], :void
     attach_function :gr_polymarker, %i[int pointer pointer], :void
     attach_function :gr_text, %i[double double string], :void
-    # attach_function :gr_inqtext, %i[double double string pointer pointer], :void
+    attach_function :gr_inqtext, %i[double double string pointer pointer], :void
     attach_function :gr_fillarea, %i[int pointer pointer], :void
     attach_function :gr_cellarray, %i[double double double double int int int int int int pointer], :void
     # attach_function :gr_nonuniformcellarray, %i[pointer pointer int int int int int int pointer], :void
@@ -38,17 +38,19 @@ module GR
     # attach_function :gr_spline, %i[int pointer pointer int int], :void
     attach_function :gr_gridit, %i[int pointer pointer pointer int int pointer pointer pointer], :void
 
+    # inq - inquiry
     attach_function :gr_setlinetype, %i[int], :void
-    # attach_function :gr_inqlinetype, %i[pointer], :void
+    attach_function :gr_inqlinetype, %i[pointer], :void
     attach_function :gr_setlinewidth, %i[double], :void
-    # attach_function :gr_inqlinewidth, %i[double], :void
+    attach_function :gr_inqlinewidth, %i[pointer], :void
     attach_function :gr_setlinecolorind, %i[int], :void
-    # attach_function :gr_inqlinecolorind, %i[pointer], :void
-    #
+    attach_function :gr_inqlinecolorind, %i[pointer], :void
     attach_function :gr_setmarkertype, %i[int], :void
+    attach_function :gr_inqmarkertype, %i[pointer], :void
     attach_function :gr_setmarkersize, %i[double], :void
+    # gr_inqmarkersize is not implemented
     attach_function :gr_setmarkercolorind, %i[int], :void
-    # attach_function :gr_inqmarkercolorind, %i[pointer], :void
+    attach_function :gr_inqmarkercolorind, %i[pointer], :void
 
     attach_function :gr_settextfontprec, %i[int int], :void
     attach_function :gr_setcharexpan, %i[double], :void
@@ -60,18 +62,18 @@ module GR
     attach_function :gr_settextalign, %i[int int], :void
 
     attach_function :gr_setfillintstyle, %i[int], :void
-    # attach_function :gr_inqfillintstyle, %i[pointer], :void
+    attach_function :gr_inqfillintstyle, %i[pointer], :void
     attach_function :gr_setfillstyle, %i[int], :void
-    # attach_function :gr_inqfillstyle, %i[pointer], :void
+    attach_function :gr_inqfillstyle, %i[pointer], :void
     attach_function :gr_setfillcolorind, %i[int], :void
-    # attach_function :gr_inqfillcolorind, %i[pointer], :void
+    attach_function :gr_inqfillcolorind, %i[pointer], :void
 
     attach_function :gr_setcolorrep, %i[int double double double], :void
     attach_function :gr_setscale, %i[int], :int
-    # attach_function :gr_inqscale, %i[pointer], :void
+    attach_function :gr_inqscale, %i[pointer], :void
 
     attach_function :gr_setwindow, %i[double double double double], :void
-    # attach_function :gr_inqwindow, %i[pointer pointer pointer pointer], :void
+    attach_function :gr_inqwindow, %i[pointer pointer pointer pointer], :void
     attach_function :gr_setviewport, %i[double double double double], :void
     attach_function :gr_inqviewport, %i[pointer pointer pointer pointer], :void
     attach_function :gr_selntran, %i[int], :void
@@ -87,9 +89,9 @@ module GR
     attach_function :gr_emergencyclosegks, %i[], :void
     attach_function :gr_updategks, %i[], :void
     attach_function :gr_setspace, %i[double double int int], :void
-    # attach_function :gr_inqspace, %i[pointer pointer pointer pointer], :void
+    attach_function :gr_inqspace, %i[pointer pointer pointer pointer], :void
     attach_function :gr_textext, %i[double double string], :int
-    # attach_function :gr_inqtextext, %i[double double string pointer pointer], :void
+    attach_function :gr_inqtextext, %i[double double string pointer pointer], :void
 
     # attach_function :gr_axeslbl
     attach_function :gr_axes, %i[double double double double int int double], :void

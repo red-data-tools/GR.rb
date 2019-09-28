@@ -47,6 +47,13 @@ module GR
       super(n, x, y)
     end
 
+    def inqtext(x, y, string)
+      tbx = ::FFI::MemoryPointer.new(:double, 4)
+      tby = ::FFI::MemoryPointer.new(:double, 4)
+      super(x, y, string, tbx, tby)
+      [tbx.read_array_of_double(4), tby.read_array_of_double(4)]
+    end
+
     def fillarea(x, y)
       n = x.size
       raise if y.size != n
@@ -68,6 +75,67 @@ module GR
       pz = ::FFI::MemoryPointer.new(:double, nx * ny)
       super(nd, xd, yd, zd, nx, ny, px, py, pz)
       [px, py, pz]
+    end
+
+    def inqlinetype
+      inq_int { |pt| super(pt) }
+    end
+
+    def inqlinewidth
+      inq_double { |pt| super(pt) }
+    end
+
+    def inqlinecolorind
+      inq_int { |pt| super(pt) }
+    end
+
+    def inqmarkertype
+      inq_int { |pt| super(pt) }
+    end
+
+    def inqmarkercolorind
+      inq_int { |pt| super(pt) }
+    end
+
+    def inqfillintstyle
+      inq_int { |pt| super(pt) }
+    end
+
+    def inqfillstyle
+      inq_int { |pt| super(pt) }
+    end
+
+    def inqfillcolorind
+      inq_int { |pt| super(pt) }
+    end
+
+    def inqscale
+      inq_int { |pt| super(pt) }
+    end
+
+    def inqtextext(x, y, string)
+      tbx = ::FFI::MemoryPointer.new(:double, 4)
+      tby = ::FFI::MemoryPointer.new(:double, 4)
+      super(x, y, string, tbx, tby)
+      [tbx.read_array_of_double(4), tby.read_array_of_double(4)]
+    end
+
+    def inqwindow
+      xmin = ::FFI::MemoryPointer.new(:double)
+      xmax = ::FFI::MemoryPointer.new(:double)
+      ymin = ::FFI::MemoryPointer.new(:double)
+      ymax = ::FFI::MemoryPointer.new(:double)
+      super(xmin, xmax, ymin, ymax)
+      [xmin.read_double, xmax.read_double, ymin.read_double, ymax.read_double]
+    end
+
+    def inqspace
+      zmin = ::FFI::MemoryPointer.new(:double)
+      zmax = ::FFI::MemoryPointer.new(:double)
+      rotation = ::FFI::MemoryPointer.new(:int)
+      tilt = ::FFI::MemoryPointer.new(:int)
+      super(zmin, zmax, rotation, tilt)
+      [zmin.read_double, zmax.read_double, rotation.read_int, tilt.read_int]
     end
 
     def verrorbars(px, py, e1, e2)
@@ -125,6 +193,22 @@ module GR
         IRuby.display(svg, mime: 'image/svg+xml')
         self
       end
+    end
+
+    private
+
+    def inq_int(&block)
+      inq_(:int, &block)
+    end
+
+    def inq_double(&block)
+      inq_(:double, &block)
+    end
+
+    def inq_(type)
+      v = ::FFI::MemoryPointer.new(type)
+      yield(v)
+      v.send("read_#{type}")
     end
   end
 end
