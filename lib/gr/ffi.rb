@@ -124,8 +124,8 @@ module GR
     attach_function :gr_beginprint, %i[string], :void
     attach_function :gr_beginprintext, %i[string string string string], :void
     attach_function :gr_endprint, %i[], :void
-    # attach_function :gr_ndctowc, %i[pointer pointer], :void
-    # attach_function :gr_wctondc, %i[pointer pointer], :void
+    attach_function :gr_ndctowc, %i[pointer pointer], :void
+    attach_function :gr_wctondc, %i[pointer pointer], :void
     attach_function :gr_wc3towc, %i[pointer pointer pointer], :void
     attach_function :gr_drawrect, %i[double double double double], :void
     attach_function :gr_fillrect, %i[double double double double], :void
@@ -147,7 +147,7 @@ module GR
     attach_function :gr_endselection, %i[], :void
     attach_function :gr_moveselection, %i[double double], :void
     attach_function :gr_resizeselection, %i[int double double], :void
-    # attach_function :gr_inqbbox, %i[pointer pointer pointer pointer], :void
+    attach_function :gr_inqbbox, %i[pointer pointer pointer pointer], :void
     attach_function :gr_precision, %i[], :void
     attach_function :gr_setregenflags, %i[int], :void
     attach_function :gr_inqregenflags, %i[], :void

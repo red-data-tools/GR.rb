@@ -167,6 +167,34 @@ module GR
       super(nx, ny, nh, px, py, h, pz, major_h)
     end
 
+    def ndctowc(x, y)
+      px = ::FFI::MemoryPointer.new(:double).write_double(x)
+      py = ::FFI::MemoryPointer.new(:double).write_double(y)
+      super(px, py)
+      [px.read_double, py.read_double]
+    end
+
+    def wctondc(x, y)
+      px = ::FFI::MemoryPointer.new(:double).write_double(x)
+      py = ::FFI::MemoryPointer.new(:double).write_double(y)
+      super(px, py)
+      [px.read_double, py.read_double]
+    end
+
+    def wc3towc(x, y, z)
+      px = ::FFI::MemoryPointer.new(:double).write_double(x)
+      py = ::FFI::MemoryPointer.new(:double).write_double(y)
+      pz = ::FFI::MemoryPointer.new(:double).write_double(z)
+      super(px, py, pz)
+      [px.read_double, py.read_double, pz.read_double]
+    end
+
+    def inqbbox
+      inq_ %i[double double double double] do |*pts|
+        super(*pts)
+      end
+    end
+
     def version
       super.read_string
     end
