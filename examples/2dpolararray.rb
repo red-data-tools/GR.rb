@@ -20,4 +20,4 @@ require 'numo/narray'
   GR.colorbar
   GR.updatews
   sleep 1
-ends
+end

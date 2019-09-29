@@ -45,7 +45,7 @@ module GR
     end
 
     def inqtext(x, y, string)
-      inq_ [{double: 4}, {double: 4}] do |tbx, tby|
+      inq_ [{ double: 4 }, { double: 4 }] do |tbx, tby|
         super(x, y, string, tbx, tby)
       end
     end
@@ -71,7 +71,7 @@ module GR
       nd = xd.size
       raise if (yd.size != nd) || (zd.size != nd)
 
-      inq_ [{double: nx}, {double: ny}, {double: nx * ny}] do |px, py, pz|
+      inq_ [{ double: nx }, { double: ny }, { double: nx * ny }] do |px, py, pz|
         super(nd, xd, yd, zd, nx, ny, px, py, pz)
         # NOTE: this method return an Array of FFI::MemoryPointer itself!
         return [px, py, pz]
@@ -115,7 +115,7 @@ module GR
     end
 
     def inqtextext(x, y, string)
-      inq_ [{double: 4}, {double: 4}] do |tbx, tby|
+      inq_ [{ double: 4 }, { double: 4 }] do |tbx, tby|
         super(x, y, string, tbx, tby)
       end
     end
@@ -165,6 +165,11 @@ module GR
       super(nx, ny, nh, px, py, h, pz, major_h)
     end
 
+    def hexbin(x, y, nbins)
+      n = length(x, :double)
+      super(n, x, y, nbins)
+    end
+
     def inqcolormap
       inq_int { |pt| super(pt) }
     end
@@ -206,7 +211,7 @@ module GR
       end
     end
 
-    def drawimage(xmin, xmax, ymin, ymax, width, height, data, model=0)
+    def drawimage(xmin, xmax, ymin, ymax, width, height, data, model = 0)
       pdata = pointer(:int, data)
       super(xmin, xmax, ymin, ymax, width, height, pdata, model)
     end
@@ -217,7 +222,7 @@ module GR
       end
     end
 
-    def adjustlimits(amin, amax)
+    def adjustlimits(_amin, _amax)
       inq_ %i[double double] do |*pts|
         super(*pts)
       end

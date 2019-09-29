@@ -111,7 +111,7 @@ module GR
     attach_function :gr_contour, %i[int int int pointer pointer pointer pointer int], :void
     # attach_function :gr_contourf, %i[int int int pointer pointer pointer pointer int], :void
     # attach_function :gr_tricontour, %i[int pointer pointer pointer int pointer], :void
-    # attach_function :gr_hexbin, %i[int pointer pointer int], :void
+    attach_function :gr_hexbin, %i[int pointer pointer int], :int
     attach_function :gr_setcolormap, %i[int], :void
     attach_function :gr_inqcolormap, %i[pointer], :void
     # attach_function :gr_setcolormapfromrgb, %i[int pointer pointer pointer pointer], :void
