@@ -206,6 +206,11 @@ module GR
       end
     end
 
+    def drawimage(xmin, xmax, ymin, ymax, width, height, data, model=0)
+      pdata = pointer(:int, data)
+      super(xmin, xmax, ymin, ymax, width, height, pdata, model)
+    end
+
     def inqbbox
       inq_ %i[double double double double] do |*pts|
         super(*pts)
@@ -213,8 +218,9 @@ module GR
     end
 
     def adjustlimits(amin, amax)
-
-
+      inq_ %i[double double] do |*pts|
+        super(*pts)
+      end
     end
 
     def version
