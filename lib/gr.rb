@@ -33,6 +33,8 @@ require 'gr/grbase'
 module GR
   extend GRBase
 
+  # 1. double is the default type
+  # 2. don't check size (for now)
   class << self
     def inqdspsize
       inq_ %i[double double int int] do |*pts|
@@ -42,15 +44,11 @@ module GR
 
     def polyline(x, y)
       n = x.size
-      raise if y.size != n
-
       super(n, x, y)
     end
 
     def polymarker(x, y)
       n = x.size
-      raise if y.size != n
-
       super(n, x, y)
     end
 
@@ -62,8 +60,6 @@ module GR
 
     def fillarea(x, y)
       n = x.size
-      raise if y.size != n
-
       super(n, x, y)
     end
 
@@ -81,8 +77,6 @@ module GR
 
     def gridit(xd, yd, zd, nx, ny)
       nd = xd.size
-      raise if (yd.size != nd) || (zd.size != nd)
-
       inq_ [{ double: nx }, { double: ny }, { double: nx * ny }] do |px, py, pz|
         super(nd, xd, yd, zd, nx, ny, px, py, pz)
         # NOTE: this method return an Array of FFI::MemoryPointer itself!
