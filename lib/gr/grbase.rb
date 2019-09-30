@@ -17,9 +17,9 @@ module GR
         args.map! do |arg|
           case arg
           when Array
-            pointer(:double, arg)
+            double(arg)
           when ->(x) { narray? x }
-            pointer(:double, arg)
+            double(arg)
           else
             arg
           end
@@ -57,6 +57,12 @@ module GR
       data = data.to_a # .flatten
       pt = ::FFI::MemoryPointer.new(:int, data.size)
       pt.write_array_of_int data
+    end
+
+    def double(data)
+      data = data.to_a # .flatten
+      pt = ::FFI::MemoryPointer.new(:double, data.size)
+      pt.write_array_of_double data
     end
 
     def narray?(data)
