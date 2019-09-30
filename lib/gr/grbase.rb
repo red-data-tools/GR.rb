@@ -33,7 +33,7 @@ module GR
   class << self
     private
 
-    def length(pt, dtype)
+    def length(pt, dtype = :double)
       case pt
       when Array
         pt.size

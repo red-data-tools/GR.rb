@@ -145,40 +145,40 @@ module GR
     end
 
     def verrorbars(px, py, e1, e2)
-      n = length(px, :double)
+      n = length(px)
       super(n, px, py, e1, e2)
     end
 
     def herrorbars(px, py, e1, e2)
-      n = length(px, :double)
+      n = length(px)
       super(n, px, py, e1, e2)
     end
 
     def polyline3d(px, py, pz)
-      n = length(px, :double)
+      n = length(px)
       super(n, px, py, pz)
     end
 
     def polymarker3d(px, py, pz)
-      n = length(px, :double)
+      n = length(px)
       super(n, px, py, pz)
     end
 
     def surface(px, py, pz, option)
-      nx = length(px, :double)
-      ny = length(py, :double)
+      nx = length(px)
+      ny = length(py)
       super(nx, ny, px, py, pz, option)
     end
 
     def contour(px, py, h, pz, major_h)
-      nx = length(px, :double)
-      ny = length(py, :double)
+      nx = length(px)
+      ny = length(py)
       nh = h.size
       super(nx, ny, nh, px, py, h, pz, major_h)
     end
 
     def hexbin(x, y, nbins)
-      n = length(x, :double)
+      n = length(x)
       super(n, x, y, nbins)
     end
 
@@ -224,8 +224,7 @@ module GR
     end
 
     def drawimage(xmin, xmax, ymin, ymax, width, height, data, model = 0)
-      pdata = int(data)
-      super(xmin, xmax, ymin, ymax, width, height, pdata, model)
+      super(xmin, xmax, ymin, ymax, width, height, int(data), model)
     end
 
     def inqbbox
