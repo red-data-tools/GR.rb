@@ -7,9 +7,19 @@ module GR
     attr_reader :ffi_lib
   end
 
-  gr_lib_name = "libGR.#{::FFI::Platform::LIBSUFFIX}"
+  # Platforms |  path
+  # Windows   |  bin/libgr.dll
+  # MacOSX    |  lib/libGR.so (NOT .dylib)
+  # Ubuntu    |  lib/libGR.so
+
+  gr_lib_name = case RbConfig::CONFIG['host_os']
+                when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
+                  'bin/libGR.dll'
+                else
+                  'lib/libGR.so'
+                end
   if ENV['GRDIR']
-    gr_lib = File.expand_path("lib/#{gr_lib_name}", ENV['GRDIR'])
+    gr_lib = File.expand_path(gr_lib_name, ENV['GRDIR'])
     ENV['GKS_FONTPATH'] ||= ENV['GRDIR']
     @ffi_lib = gr_lib
   else

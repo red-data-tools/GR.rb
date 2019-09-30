@@ -10,7 +10,8 @@ module GR
 
     # define method
     gr_methods.each do |gr_method|
-      ruby_method = gr_method.to_s.delete_prefix('gr_')
+      # delete_prefix (Ruby >= 2.5)
+      ruby_method = gr_method.to_s.sub(/^gr_/, '')
 
       define_method(ruby_method) do |*args|
         args.map! do |arg|
