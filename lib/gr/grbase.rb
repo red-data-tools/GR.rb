@@ -53,15 +53,10 @@ module GR
       end
     end
 
-    def pointer(dtype, data)
-      data = data.to_a
-      case dtype
-      when :int, :double
-        pt = ::FFI::MemoryPointer.new(dtype, data.size)
-        pt.send("write_array_of_#{dtype}", data)
-      else
-        raise "Unknown type: #{dtype}"
-      end
+    def int(data)
+      data = data.to_a # .flatten
+      pt = ::FFI::MemoryPointer.new(:int, data.size)
+      pt.write_array_of_int data
     end
 
     def narray?(data)

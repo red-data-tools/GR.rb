@@ -68,13 +68,15 @@ module GR
     end
 
     def cellarray(xmin, xmax, ymin, ymax, dimx, dimy, color)
-      pcolor = pointer(:int, color)
-      super(xmin, xmax, ymin, ymax, dimx, dimy, 1, 1, dimx, dimy, pcolor)
+      super(xmin, xmax, ymin, ymax, dimx, dimy, 1, 1, dimx, dimy, int(color))
+    end
+
+    def nonuniformcellarray(x, y, dimx, dimy, color)
+      super(x, y, dimx, dimy, 1, 1, dimx, dimy, int(color))
     end
 
     def polarcellarray(x_org, y_org, phimin, phimax, rmin, rmax, dimphi, dimr, color)
-      pcolor = pointer(:int, color)
-      super(x_org, y_org, phimin, phimax, rmin, rmax, dimphi, dimr, 1, 1, dimphi, dimr, pcolor)
+      super(x_org, y_org, phimin, phimax, rmin, rmax, dimphi, dimr, 1, 1, dimphi, dimr, int(color))
     end
 
     def gridit(xd, yd, zd, nx, ny)
@@ -222,7 +224,7 @@ module GR
     end
 
     def drawimage(xmin, xmax, ymin, ymax, width, height, data, model = 0)
-      pdata = pointer(:int, data)
+      pdata = int(data)
       super(xmin, xmax, ymin, ymax, width, height, pdata, model)
     end
 
