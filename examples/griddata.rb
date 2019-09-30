@@ -14,7 +14,7 @@ zd = xd * Numo::NMath.exp(-xd * xd - yd * yd)
 h = -0.5 + DFloat.new(20).seq / 19.0
 
 GR.setviewport(0.1, 0.95, 0.1, 0.95)
-GR.setwindow(-5.0, 5.0, -5.0, 5.0)
+GR.setwindow(-2.0, 2.0, -2.0, 2.0)
 GR.setspace(-0.5, 0.5, 0, 90)
 GR.setmarkersize(1.0)
 GR.setmarkertype(-1)
