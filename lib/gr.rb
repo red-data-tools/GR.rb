@@ -75,6 +75,12 @@ module GR
       super(x_org, y_org, phimin, phimax, rmin, rmax, dimphi, dimr, 1, 1, dimphi, dimr, int(color))
     end
 
+    def gdp(x, y, primid, datrec)
+      n = length(x)
+      ldr = length(datrec, :int)
+      super(n, x, y, primid, ldr, datrec)
+    end
+
     def spline(px, py, m, method)
       n = length(px)
       super(n, px, py, m, method)
