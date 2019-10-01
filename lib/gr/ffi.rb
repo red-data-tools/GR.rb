@@ -35,7 +35,7 @@ module GR
     # attach_function :gr_nonuniformcellarray, %i[pointer pointer int int int int int int pointer], :void
     attach_function :gr_polarcellarray, %i[double double double double double double int int int int int int pointer], :void
     # attach_function :gr_gdp, %i[int pointer pointer int int pointer], :void
-    # attach_function :gr_spline, %i[int pointer pointer int int], :void
+    attach_function :gr_spline, %i[int pointer pointer int int], :void
     attach_function :gr_gridit, %i[int pointer pointer pointer int int pointer pointer pointer], :void
 
     # inq - inquiry
@@ -105,11 +105,11 @@ module GR
     attach_function :gr_axes3d, %i[double double double double double double int int int double], :void
     attach_function :gr_titles3d, %i[string string string], :void
     attach_function :gr_surface, %i[int int pointer pointer pointer int], :void
-    # attach_function :gr_trisurface, %i[int pointer pointer pointer], :void
-    # attach_function :gr_gradient, %i[int int pointer pointer pointer pointer pointer], :void
-    # attach_function :gr_quiver, %i[int int pointer pointer pointer pointer int], :void
+    attach_function :gr_trisurface, %i[int pointer pointer pointer], :void
+    ## attach_function :gr_gradient, %i[int int pointer pointer pointer pointer pointer], :void
+    attach_function :gr_quiver, %i[int int pointer pointer pointer pointer int], :void
     attach_function :gr_contour, %i[int int int pointer pointer pointer pointer int], :void
-    # attach_function :gr_contourf, %i[int int int pointer pointer pointer pointer int], :void
+    attach_function :gr_contourf, %i[int int int pointer pointer pointer pointer int], :void
     # attach_function :gr_tricontour, %i[int pointer pointer pointer int pointer], :void
     attach_function :gr_hexbin, %i[int pointer pointer int], :int
     attach_function :gr_setcolormap, %i[int], :void
@@ -122,7 +122,7 @@ module GR
     attach_function :gr_tick, %i[double double], :double
 
     attach_function :gr_validaterange, %i[double double], :int
-    # attach_function :gr_adjustrange, %i[pointer pointer], :void
+    attach_function :gr_adjustrange, %i[pointer pointer], :void
     attach_function :gr_beginprint, %i[string], :void
     attach_function :gr_beginprintext, %i[string string string string], :void
     attach_function :gr_endprint, %i[], :void

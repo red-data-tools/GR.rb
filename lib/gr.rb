@@ -67,6 +67,11 @@ module GR
       super(x_org, y_org, phimin, phimax, rmin, rmax, dimphi, dimr, 1, 1, dimphi, dimr, pcolor)
     end
 
+    def spline(px, py, m, method)
+      n = length(px)
+      super(n, px, py, m, method)
+    end
+
     def gridit(xd, yd, zd, nx, ny)
       nd = xd.size
       raise if (yd.size != nd) || (zd.size != nd)
@@ -156,6 +161,16 @@ module GR
       nx = length(px, :double)
       ny = length(py, :double)
       super(nx, ny, px, py, pz, option)
+    end
+
+    def trisurface(px, py, pz)
+      n = [length(px), length(py), length(pz)].min
+      super(n, px, py, pz)
+    end
+
+    def quiver(nx, ny, x, y, u, v, color)
+      # follow python-gr API different from GR.jl API
+      super(nx, ny, x, y, u, v, (color ? 1 : 0))
     end
 
     def contour(px, py, h, pz, major_h)
