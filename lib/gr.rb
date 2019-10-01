@@ -7,9 +7,19 @@ module GR
     attr_reader :ffi_lib
   end
 
-  gr_lib_name = "libGR.#{::FFI::Platform::LIBSUFFIX}"
+  # Platforms |  path
+  # Windows   |  bin/libgr.dll
+  # MacOSX    |  lib/libGR.so (NOT .dylib)
+  # Ubuntu    |  lib/libGR.so
+
+  gr_lib_name = case RbConfig::CONFIG['host_os']
+                when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
+                  'bin/libGR.dll'
+                else
+                  'lib/libGR.so'
+                end
   if ENV['GRDIR']
-    gr_lib = File.expand_path("lib/#{gr_lib_name}", ENV['GRDIR'])
+    gr_lib = File.expand_path(gr_lib_name, ENV['GRDIR'])
     ENV['GKS_FONTPATH'] ||= ENV['GRDIR']
     @ffi_lib = gr_lib
   else
@@ -23,6 +33,8 @@ require 'gr/grbase'
 module GR
   extend GRBase
 
+  # 1. double is the default type
+  # 2. don't check size (for now)
   class << self
     def inqdspsize
       inq_ %i[double double int int] do |*pts|
@@ -32,15 +44,11 @@ module GR
 
     def polyline(x, y)
       n = x.size
-      raise if y.size != n
-
       super(n, x, y)
     end
 
     def polymarker(x, y)
       n = x.size
-      raise if y.size != n
-
       super(n, x, y)
     end
 
@@ -52,19 +60,19 @@ module GR
 
     def fillarea(x, y)
       n = x.size
-      raise if y.size != n
-
       super(n, x, y)
     end
 
     def cellarray(xmin, xmax, ymin, ymax, dimx, dimy, color)
-      pcolor = pointer(:int, color)
-      super(xmin, xmax, ymin, ymax, dimx, dimy, 1, 1, dimx, dimy, pcolor)
+      super(xmin, xmax, ymin, ymax, dimx, dimy, 1, 1, dimx, dimy, int(color))
+    end
+
+    def nonuniformcellarray(x, y, dimx, dimy, color)
+      super(x, y, dimx, dimy, 1, 1, dimx, dimy, int(color))
     end
 
     def polarcellarray(x_org, y_org, phimin, phimax, rmin, rmax, dimphi, dimr, color)
-      pcolor = pointer(:int, color)
-      super(x_org, y_org, phimin, phimax, rmin, rmax, dimphi, dimr, 1, 1, dimphi, dimr, pcolor)
+      super(x_org, y_org, phimin, phimax, rmin, rmax, dimphi, dimr, 1, 1, dimphi, dimr, int(color))
     end
 
     def spline(px, py, m, method)
@@ -74,8 +82,6 @@ module GR
 
     def gridit(xd, yd, zd, nx, ny)
       nd = xd.size
-      raise if (yd.size != nd) || (zd.size != nd)
-
       inq_ [{ double: nx }, { double: ny }, { double: nx * ny }] do |px, py, pz|
         super(nd, xd, yd, zd, nx, ny, px, py, pz)
         # NOTE: this method return an Array of FFI::MemoryPointer itself!
@@ -138,28 +144,28 @@ module GR
     end
 
     def verrorbars(px, py, e1, e2)
-      n = length(px, :double)
+      n = length(px)
       super(n, px, py, e1, e2)
     end
 
     def herrorbars(px, py, e1, e2)
-      n = length(px, :double)
+      n = length(px)
       super(n, px, py, e1, e2)
     end
 
     def polyline3d(px, py, pz)
-      n = length(px, :double)
+      n = length(px)
       super(n, px, py, pz)
     end
 
     def polymarker3d(px, py, pz)
-      n = length(px, :double)
+      n = length(px)
       super(n, px, py, pz)
     end
 
     def surface(px, py, pz, option)
-      nx = length(px, :double)
-      ny = length(py, :double)
+      nx = length(px)
+      ny = length(py)
       super(nx, ny, px, py, pz, option)
     end
 
@@ -174,14 +180,14 @@ module GR
     end
 
     def contour(px, py, h, pz, major_h)
-      nx = length(px, :double)
-      ny = length(py, :double)
+      nx = length(px)
+      ny = length(py)
       nh = h.size
       super(nx, ny, nh, px, py, h, pz, major_h)
     end
 
     def hexbin(x, y, nbins)
-      n = length(x, :double)
+      n = length(x)
       super(n, x, y, nbins)
     end
 
@@ -227,8 +233,7 @@ module GR
     end
 
     def drawimage(xmin, xmax, ymin, ymax, width, height, data, model = 0)
-      pdata = pointer(:int, data)
-      super(xmin, xmax, ymin, ymax, width, height, pdata, model)
+      super(xmin, xmax, ymin, ymax, width, height, int(data), model)
     end
 
     def inqbbox

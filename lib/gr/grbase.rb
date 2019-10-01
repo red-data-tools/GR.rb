@@ -10,15 +10,16 @@ module GR
 
     # define method
     gr_methods.each do |gr_method|
-      ruby_method = gr_method.to_s.delete_prefix('gr_')
+      # delete_prefix (Ruby >= 2.5)
+      ruby_method = gr_method.to_s.sub(/^gr_/, '')
 
       define_method(ruby_method) do |*args|
         args.map! do |arg|
           case arg
           when Array
-            pointer(:double, arg)
+            double(arg)
           when ->(x) { narray? x }
-            pointer(:double, arg)
+            double(arg)
           else
             arg
           end
@@ -32,7 +33,7 @@ module GR
   class << self
     private
 
-    def length(pt, dtype)
+    def length(pt, dtype = :double)
       case pt
       when Array
         pt.size
@@ -52,15 +53,16 @@ module GR
       end
     end
 
-    def pointer(dtype, data)
-      data = data.to_a
-      case dtype
-      when :int, :double
-        pt = ::FFI::MemoryPointer.new(dtype, data.size)
-        pt.send("write_array_of_#{dtype}", data)
-      else
-        raise "Unknown type: #{dtype}"
-      end
+    def int(data)
+      data = data.to_a # .flatten
+      pt = ::FFI::MemoryPointer.new(:int, data.size)
+      pt.write_array_of_int data
+    end
+
+    def double(data)
+      data = data.to_a # .flatten
+      pt = ::FFI::MemoryPointer.new(:double, data.size)
+      pt.write_array_of_double data
     end
 
     def narray?(data)
