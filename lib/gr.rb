@@ -37,7 +37,7 @@ module GR
   # 2. don't check size (for now)
   class << self
     def inqdspsize
-      inq_ %i[double double int int] do |*pts|
+      inquiry %i[double double int int] do |*pts|
         super(*pts)
       end
     end
@@ -53,7 +53,7 @@ module GR
     end
 
     def inqtext(x, y, string)
-      inq_ [{ double: 4 }, { double: 4 }] do |tbx, tby|
+      inquiry [{ double: 4 }, { double: 4 }] do |tbx, tby|
         super(x, y, string, tbx, tby)
       end
     end
@@ -88,7 +88,7 @@ module GR
 
     def gridit(xd, yd, zd, nx, ny)
       nd = xd.size
-      inq_ [{ double: nx }, { double: ny }, { double: nx * ny }] do |px, py, pz|
+      inquiry [{ double: nx }, { double: ny }, { double: nx * ny }] do |px, py, pz|
         super(nd, xd, yd, zd, nx, ny, px, py, pz)
         # NOTE: this method return an Array of FFI::MemoryPointer itself!
         return [px, py, pz]
@@ -96,55 +96,55 @@ module GR
     end
 
     def inqlinetype
-      inq_int { |pt| super(pt) }
+      inquiry_int { |pt| super(pt) }
     end
 
     def inqlinewidth
-      inq_double { |pt| super(pt) }
+      inquiry_double { |pt| super(pt) }
     end
 
     def inqlinecolorind
-      inq_int { |pt| super(pt) }
+      inquiry_int { |pt| super(pt) }
     end
 
     def inqmarkertype
-      inq_int { |pt| super(pt) }
+      inquiry_int { |pt| super(pt) }
     end
 
     def inqmarkercolorind
-      inq_int { |pt| super(pt) }
+      inquiry_int { |pt| super(pt) }
     end
 
     def inqfillintstyle
-      inq_int { |pt| super(pt) }
+      inquiry_int { |pt| super(pt) }
     end
 
     def inqfillstyle
-      inq_int { |pt| super(pt) }
+      inquiry_int { |pt| super(pt) }
     end
 
     def inqfillcolorind
-      inq_int { |pt| super(pt) }
+      inquiry_int { |pt| super(pt) }
     end
 
     def inqscale
-      inq_int { |pt| super(pt) }
+      inquiry_int { |pt| super(pt) }
     end
 
     def inqtextext(x, y, string)
-      inq_ [{ double: 4 }, { double: 4 }] do |tbx, tby|
+      inquiry [{ double: 4 }, { double: 4 }] do |tbx, tby|
         super(x, y, string, tbx, tby)
       end
     end
 
     def inqwindow
-      inq_ %i[double double double double] do |*pts|
+      inquiry %i[double double double double] do |*pts|
         super(*pts)
       end
     end
 
     def inqspace
-      inq_ %i[double double int int] do |*pts|
+      inquiry %i[double double int int] do |*pts|
         super(*pts)
       end
     end
@@ -198,23 +198,23 @@ module GR
     end
 
     def inqcolormap
-      inq_int { |pt| super(pt) }
+      inquiry_int { |pt| super(pt) }
     end
 
     def inqcolor(color)
-      inq_int do |rgb|
+      inquiry_int do |rgb|
         super(color, rgb)
       end
     end
 
     def hsvtorgb(h, s, v)
-      inq_ %i[double double double] do |r, g, b|
+      inquiry %i[double double double] do |r, g, b|
         super(h, s, v, r, g, b)
       end
     end
 
     def ndctowc(x, y)
-      inq_ %i[double double] do |px, py|
+      inquiry %i[double double] do |px, py|
         px.write_double x
         py.write_double y
         super(px, py)
@@ -222,7 +222,7 @@ module GR
     end
 
     def wctondc(x, y)
-      inq_ %i[double double] do |px, py|
+      inquiry %i[double double] do |px, py|
         px.write_double x
         py.write_double y
         super(px, py)
@@ -230,7 +230,7 @@ module GR
     end
 
     def wc3towc(x, y, z)
-      inq_ %i[double double double] do |px, py, pz|
+      inquiry %i[double double double] do |px, py, pz|
         px.write_double x
         py.write_double y
         pz.write_double z
@@ -243,13 +243,13 @@ module GR
     end
 
     def inqbbox
-      inq_ %i[double double double double] do |*pts|
+      inquiry %i[double double double double] do |*pts|
         super(*pts)
       end
     end
 
     def adjustlimits(_amin, _amax)
-      inq_ %i[double double] do |*pts|
+      inquiry %i[double double] do |*pts|
         super(*pts)
       end
     end
@@ -280,15 +280,15 @@ module GR
 
     private
 
-    def inq_int(&block)
-      inq_([:int], &block)[0]
+    def inquiry_int(&block)
+      inquiry([:int], &block)[0]
     end
 
-    def inq_double(&block)
-      inq_([:double], &block)[0]
+    def inquiry_double(&block)
+      inquiry([:double], &block)[0]
     end
 
-    def inq_(types)
+    def inquiry(types)
       pts = types.map do |type|
         case type
         when Hash
