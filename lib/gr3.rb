@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'ffi'
+require_relative 'gr_commons'
 
 module GR3
   class << self
@@ -17,6 +18,7 @@ module GR3
   end
 end
 
+require_relative 'gr_commons'
 require 'gr3/ffi'
 require 'gr3/gr3base'
 

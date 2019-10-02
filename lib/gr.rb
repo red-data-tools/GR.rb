@@ -25,20 +25,14 @@ module GR
   else
     raise 'Please set env variable GRDIR'
   end
-
-  # For IRuby Notebook
-  if defined? IRuby
-    require 'tempfile'
-    ENV['GKSwstype'] = 'svg'
-    @tempfile_svg = Tempfile.open(['plot', '.svg'])
-    ENV['GKS_FILEPATH'] = @tempfile_svg.path
-  end
 end
 
+require_relative 'gr_commons'
 require 'gr/ffi'
 require 'gr/grbase'
 
 module GR
+  include GRCommons::SupportIRuby
   extend GRBase
 
   # 1. double is the default type
@@ -264,17 +258,6 @@ module GR
 
     def version
       super.read_string
-    end
-
-    # For IRuby Notebook
-    if defined? IRuby
-      def show
-        emergencyclosegks
-        sleep 0.5
-        svg = File.read(@tempfile_svg.path)
-        IRuby.display(svg, mime: 'image/svg+xml')
-        nil
-      end
     end
 
     private

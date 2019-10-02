@@ -8,6 +8,8 @@ module GR
 
     ffi_lib GR.ffi_lib
 
+    extend GRCommons::RegisterMethods
+
     # https://github.com/sciapp/gr/blob/master/lib/gr/gr.c
 
     attach_function :gr_initgr, %i[], :void
