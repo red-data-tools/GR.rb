@@ -25,6 +25,14 @@ module GR
   else
     raise 'Please set env variable GRDIR'
   end
+
+  # For IRuby Notebook
+  if defined? IRuby
+    require 'tempfile'
+    ENV['GKSwstype'] = 'svg'
+    @tempfile_svg = Tempfile.open(['plot', '.svg'])
+    ENV['GKS_FILEPATH'] = @tempfile_svg.path
+  end
 end
 
 require 'gr/ffi'
@@ -259,22 +267,13 @@ module GR
     end
 
     # For IRuby Notebook
-    def initialize
-      if defined? IRuby
-        require 'tempfile'
-        ENV['GKSwstype'] = 'svg'
-        @tempfile_svg = Tempfile.open(['plot', '.svg'])
-        ENV['GKS_FILEPATH'] = @tempfile_svg.path
-      end
-    end
-
     if defined? IRuby
       def show
         emergencyclosegks
-        sleep 1
+        sleep 0.5
         svg = File.read(@tempfile_svg.path)
         IRuby.display(svg, mime: 'image/svg+xml')
-        self
+        nil
       end
     end
 
