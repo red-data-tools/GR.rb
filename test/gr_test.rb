@@ -2,7 +2,6 @@
 
 require_relative 'test_helper'
 require 'gr'
-require 'gr3'
 
 class GRTest < Minitest::Test
   def test_gr_ffi_lib
@@ -20,11 +19,5 @@ class GRTest < Minitest::Test
 
   def teardown
     GR.clearws
-  end
-end
-
-class GR3Test < Minitest::Test
-  def test_gr3_ffi_lib
-    assert_instance_of String, GR3.ffi_lib
   end
 end

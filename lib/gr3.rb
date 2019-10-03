@@ -17,7 +17,7 @@ module GR3
                    'bin/libGR3.dll'
                  else
                    'lib/libGR3.so'
-                end
+                 end
   if ENV['GRDIR']
     gr3_lib = File.expand_path(gr3_lib_name, ENV['GRDIR'])
     ENV['GKS_FONTPATH'] ||= ENV['GRDIR']
