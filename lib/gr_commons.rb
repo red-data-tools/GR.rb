@@ -12,6 +12,8 @@ module GRCommons
   end
 
   module DefineMethods
+    private
+
     def define_ffi_methods(ffi_class)
       ffi_class.ffi_methods.each do |method|
         # delete_prefix (Ruby >= 2.5)
