@@ -11,17 +11,15 @@ module GR
   # Windows   |  bin/libgr.dll
   # MacOSX    |  lib/libGR.so (NOT .dylib)
   # Ubuntu    |  lib/libGR.so
-
-  gr_lib_name = case RbConfig::CONFIG['host_os']
-                when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
-                  'bin/libGR.dll'
-                else
-                  'lib/libGR.so'
-                end
   if ENV['GRDIR']
-    gr_lib = File.expand_path(gr_lib_name, ENV['GRDIR'])
     ENV['GKS_FONTPATH'] ||= ENV['GRDIR']
-    @ffi_lib = gr_lib
+    @ffi_lib = case RbConfig::CONFIG['host_os']
+               when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
+                 File.expand_path('bin/libgr.dll', ENV['GRDIR'])
+                     .gsub('/', '\\') # windows backslash
+               else
+                 File.expand_path('lib/libGR.so', ENV['GRDIR'])
+    end
   else
     raise 'Please set env variable GRDIR'
   end
