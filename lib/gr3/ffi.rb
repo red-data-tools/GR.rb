@@ -10,6 +10,6 @@ module GR3
 
     extend GRCommons::RegisterMethods
 
-    attach_function :gr3_clear, %i[], :void
+    attach_function :gr3_clear, %i[], :int
   end
 end
