@@ -11,17 +11,15 @@ module GR3
   # Windows   |  bin/libgr3.dll
   # MacOSX    |  lib/libGR3.so (NOT .dylib)
   # Ubuntu    |  lib/libGR3.so
-
-  gr3_lib_name = case RbConfig::CONFIG['host_os']
-                 when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
-                   'bin/libGR3.dll'
-                 else
-                   'lib/libGR3.so'
-                 end
   if ENV['GRDIR']
-    gr3_lib = File.expand_path(gr3_lib_name, ENV['GRDIR'])
     ENV['GKS_FONTPATH'] ||= ENV['GRDIR']
-    @ffi_lib = gr3_lib
+    @ffi_lib = case RbConfig::CONFIG['host_os']
+               when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
+                 File.expand_path('bin/libgr3.dll', ENV['GRDIR'])
+                     .gsub('/', '\\') # windows backslash
+               else
+                 File.expand_path('lib/libGR3.so', ENV['GRDIR'])
+    end
   else
     raise 'Please set env variable GRDIR'
   end
