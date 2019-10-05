@@ -3,7 +3,7 @@
 module GR
   module GRBase
     extend GRCommons::DefineMethods
-    define_ffi_methods(FFI, "gr_")
+    define_ffi_methods(FFI, 'gr_')
   end
   private_constant :GRBase
 
