@@ -14,10 +14,10 @@ module GRCommons
   module DefineMethods
     private
 
-    def define_ffi_methods(ffi_class)
+    def define_ffi_methods(ffi_class, prefix)
       ffi_class.ffi_methods.each do |method|
         # delete_prefix (Ruby >= 2.5)
-        method_name = method.to_s.sub(/^gr_/, '')
+        method_name = method.to_s.sub(/^#{prefix}/, '')
 
         define_method(method_name) do |*args|
           args.map! do |arg|

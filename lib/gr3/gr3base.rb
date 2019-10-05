@@ -2,7 +2,8 @@
 
 module GR3
   module GR3Base
-    include GRCommons::DefineMethods
+    extend GRCommons::DefineMethods
+    define_ffi_methods(FFI, "gr3_")
   end
   private_constant :GR3Base
 

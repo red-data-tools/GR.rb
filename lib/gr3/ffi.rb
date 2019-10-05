@@ -9,5 +9,7 @@ module GR3
     ffi_lib GR3.ffi_lib
 
     extend GRCommons::RegisterMethods
+
+    attach_function :gr3_clear, %i[], :void
   end
 end
