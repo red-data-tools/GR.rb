@@ -60,13 +60,13 @@ module GRCommons
     end
 
     def int(data)
-      data = data.to_a # .flatten
+      data = data.to_a.flatten
       pt = ::FFI::MemoryPointer.new(:int, data.size)
       pt.write_array_of_int data
     end
 
     def double(data)
-      data = data.to_a # .flatten
+      data = data.to_a.flatten
       pt = ::FFI::MemoryPointer.new(:double, data.size)
       pt.write_array_of_double data
     end
