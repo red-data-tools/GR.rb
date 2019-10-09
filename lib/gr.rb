@@ -30,7 +30,7 @@ require 'gr/ffi'
 require 'gr/grbase'
 
 module GR
-  include GRCommons::SupportIRuby
+  include GRCommons::JupyterSupport
   extend GRBase
 
   # 1. double is the default type

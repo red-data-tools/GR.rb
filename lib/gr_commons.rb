@@ -76,7 +76,7 @@ module GRCommons
     end
   end
 
-  module SupportIRuby
+  module JupyterSupport
     # For IRuby Notebook
     if defined? IRuby
       require 'tempfile'
