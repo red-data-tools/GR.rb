@@ -19,7 +19,7 @@ module GR3
                      .gsub('/', '\\') # windows backslash
                else
                  File.expand_path('lib/libGR3.so', ENV['GRDIR'])
-    end
+               end
   else
     raise 'Please set env variable GRDIR'
   end

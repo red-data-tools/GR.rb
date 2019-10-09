@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # https://github.com/jheinen/GR.jl/blob/master/examples/colormaps.jl
 
 require 'gr'
