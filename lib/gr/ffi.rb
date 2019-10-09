@@ -8,7 +8,7 @@ module GR
 
     ffi_lib GR.ffi_lib
 
-    extend GRCommons::RegisterMethods
+    extend GRCommons::AttachFunction
 
     # https://github.com/sciapp/gr/blob/master/lib/gr/gr.c
 

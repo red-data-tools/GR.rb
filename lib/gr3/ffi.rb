@@ -8,7 +8,7 @@ module GR3
 
     ffi_lib GR3.ffi_lib
 
-    extend GRCommons::RegisterMethods
+    extend GRCommons::AttachFunction
 
     # TODO: Error
     attach_function :gr3_init, %i[int], :int

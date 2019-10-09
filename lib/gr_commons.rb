@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module GRCommons
-  module RegisterMethods
+  module AttachFunction
     def attach_function(name, *args)
       @ffi_methods ||= []
       @ffi_methods << name
