@@ -192,6 +192,13 @@ module GR
       super(nx, ny, nh, px, py, h, pz, major_h)
     end
 
+    def contourf(px, py, h, pz, major_h)
+      nx = length(px)
+      ny = length(py)
+      nh = h.size
+      super(nx, ny, nh, px, py, h, pz, major_h)
+    end
+
     def hexbin(x, y, nbins)
       n = length(x)
       super(n, x, y, nbins)
