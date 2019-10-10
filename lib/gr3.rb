@@ -30,7 +30,7 @@ require 'gr3/ffi'
 require 'gr3/gr3base'
 
 module GR3
-  include GRCommons::JupyterSupport
+  extend GRCommons::JupyterSupport
   extend GR3Base
 
   # 1. double is the default type
