@@ -42,5 +42,17 @@ module GR3
     # attach_function :gr3_setviewmatrix
     attach_function :gr3_getprojectiontype, %i[], :int
     attach_function :gr3_setprojectiontype, %i[int], :void
+
+    # gr3_convenience.c
+
+    # attach_function :gr3_drawcubemesh, %i[int pointer pointer pointer pointer pointer], :void
+    attach_function :gr3_drawcylindermesh, %i[int pointer pointer pointer pointer pointer], :void
+    # attach_function gr3_drawconemesh, %i[int pointer pointer pointer pointer pointer], :void
+    attach_function :gr3_drawspheremesh, %i[int pointer pointer pointer], :void
+    # attach_function gr3_drawheightmap, %i[pointer int int pointer pointer], :void
+    # attach_function gr3_createheightmapmesh, %i[pointer int int], :void
+    # attach_function gr3_createisosurfacemesh
+    # attach_function gr3_drawspins, %i[int pointer pointer pointer float float float float], :void
+    # attach_function gr3_drawmolecule
   end
 end
