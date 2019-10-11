@@ -4,7 +4,7 @@ module GRCommons
   module DefineMethods
     private
 
-    def define_ffi_methods(ffi_class, prefix)
+    def define_ffi_methods(ffi_class, prefix: '', default_type: :double)
       ffi_class.ffi_methods.each do |method|
         # delete_prefix (Ruby >= 2.5)
         method_name = method.to_s.sub(/^#{prefix}/, '')
@@ -13,9 +13,9 @@ module GRCommons
           args.map! do |arg|
             case arg
             when Array
-              double(arg)
+              send(default_type, arg)
             when ->(x) { narray? x }
-              double(arg)
+              send(default_type, arg)
             else
               arg
             end

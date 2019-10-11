@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module GRCommons
-  module GRCommonRule
+  module GRCommonUtils
     private
 
     def length(pt, dtype = :double)
@@ -34,6 +34,12 @@ module GRCommons
       data = data.to_a.flatten
       pt = ::FFI::MemoryPointer.new(:double, data.size)
       pt.write_array_of_double data
+    end
+
+    def float(data)
+      data = data.to_a.flatten
+      pt = ::FFI::MemoryPointer.new(:float, data.size)
+      pt.write_array_of_float data
     end
 
     def narray?(data)
