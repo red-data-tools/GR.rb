@@ -19,9 +19,7 @@ def rk4(x, h, y, f)
   [x + h, y + (k1 + 2 * (k2 + k3) + k4) / 6.0]
 end
 
-def double_pendulum(theta, length, _mass)
-  GR.clearws
-  GR.setviewport(0, 1, 0, 1)
+def double_pendulum(theta, length, mass)
 
   direction = DFloat.zeros(3, 2)
   position = DFloat.zeros(3, 3)
@@ -30,17 +28,21 @@ def double_pendulum(theta, length, _mass)
                           - cos(theta[i]) * length[i] * 2, 0]
     position[true, i + 1] = position[true, i] + direction[true, i]
   end
+  
+  # For QtTerms ...
+  GR.clearws
+  GR.setviewport(0, 1, 0, 1)
 
   GR3.clear
   # draw pivot point
   GR3.drawcylindermesh(1, [0, 0.2, 0], [0, 1, 0], [0.4, 0.4, 0.4], [0.4], [0.05])
-  # GR3.drawcylindermesh(1, [0, 0.2, 0], [0, -1, 0], [0.4, 0.4, 0.4], [0.05], [0.2])
-  # GR3.drawspheremesh(1, [0, 0, 0], [0.4, 0.4, 0.4], [0.05])
+  GR3.drawcylindermesh(1, [0, 0.2, 0], [0, -1, 0], [0.4, 0.4, 0.4], [0.05], [0.2])
+  GR3.drawspheremesh(1, [0, 0, 0], [0.4, 0.4, 0.4], [0.05])
   # draw rods
-  # GR3.drawcylindermesh(2, position.to_a, direction.to_a,
-  #                     [0.6] * 6, [0.05, 0.05], length * 2)
+  GR3.drawcylindermesh(2, position.transpose, direction.transpose,
+                       [0.6] * 6, [0.05, 0.05], length.map{|i| i * 2})
   # draw bobs
-  # GR3.drawspheremesh(2, position[true, 1..2].to_a, [1] * 6, mass * 0.2)
+  GR3.drawspheremesh(2, position[true, 1..2].transpose, [1] * 6, mass.map{|i| i * 0.2})
 
   GR3.drawimage(0, 1, 0, 1, 500, 500, GR3::DRAWABLE_GKS)
   GR.updatews
@@ -78,14 +80,15 @@ def main
   GR3.setbackgroundcolor(1, 1, 1, 1)
   GR3.setlightdirection(1, 1, 10)
 
+
   start = Time.now
 
-  while t < 5
+  while t < 30
     t, state = rk4(t, dt, state, derivs)
     t1, w1, t2, w2 = state.to_a
     double_pendulum([t1, t2], [l1, l2], [m1, m2])
 
-    now = (Time.now - start) / 1_000_000_000
+    now = (Time.now - start)
     sleep(t - now) if t > now
   end
 end
