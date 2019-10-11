@@ -149,6 +149,8 @@ module GR
       end
     end
 
+    alias axes2d axes
+
     def verrorbars(px, py, e1, e2)
       n = length(px)
       super(n, px, py, e1, e2)
