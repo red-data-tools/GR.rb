@@ -265,13 +265,13 @@ module GR
       super.read_string
     end
 
-    def shadepoints(x, y, dims = [1200, 1200], xform = 1)
+    def shadepoints(x, y, dims: [1200, 1200], xform: 1)
       n = length(x)
       w, h = dims
       super(n, x, y, xform, w, h)
     end
 
-    def shadelines(x, y, dims = [1200, 1200], xform = 1)
+    def shadelines(x, y, dims: [1200, 1200], xform: 1)
       n = length(x)
       w, h = dims
       super(n, x, y, xform, w, h)

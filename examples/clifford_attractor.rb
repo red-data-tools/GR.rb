@@ -26,6 +26,6 @@ end
 GR.setviewport(0, 1, 0, 1)
 GR.setwindow(-3, 3, -3, 3)
 GR.setcolormap(8)
-GR.shadepoints(x, y, [480, 480], 5)
+GR.shadepoints(x, y, dims: [480, 480], xform: 5)
 GR.updatews
 gets
