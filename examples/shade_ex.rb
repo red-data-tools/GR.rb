@@ -16,7 +16,7 @@ y = []
  [-2, 2, 1.0],
  [0, 0, 3.0]].each do |x_, y_, σ|
   x.concat DFloat.new(n).rand_norm(x_, σ).to_a
-  y.condat DFloat.new(n).rand_norm(y_, σ).to_a
+  y.concat DFloat.new(n).rand_norm(y_, σ).to_a
 end
 
 puts "#{x.length} of points: "
