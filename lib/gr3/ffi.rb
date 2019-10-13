@@ -12,6 +12,7 @@ module GR3
 
     # TODO: Error
     attach_function :gr3_init, %i[int], :int
+    attach_function :gr3_geterror, %i[int pointer pointer], :int
     attach_function :gr3_terminate, %i[], :void
     attach_function :gr3_clear, %i[], :int
     attach_function :gr3_usecurrentframebuffer, %i[], :void
@@ -34,7 +35,7 @@ module GR3
     attach_function :gr3_export, %i[pointer int int], :int
     attach_function :gr3_free, %i[pointer], :void
     # attach_function :gr3_setlogcallback
-    # gr3_geterrorstring
+    attach_function :gr3_geterrorstring, %i[int], :string
     # gr3_getrenderpathstring
     attach_function :gr3_setobjectid, %i[int], :void
     attach_function :gr3_selectid, %i[int int int int pointer], :int

@@ -35,6 +35,20 @@ module GR3
 
   # 1. double is the default type
   # 2. don't check size (for now)
+
+  module CheckError
+    FFI.ffi_methods.each do |method|
+      method_name = method.to_s.sub(/^gr3_/, '')
+      next if method_name == "geterror"
+      define_method(method_name) do |*args|
+        values = super(*args)
+        GR3Base.check_error
+        values
+      end
+    end
+  end
+  extend CheckError
+
   class << self
     private
 

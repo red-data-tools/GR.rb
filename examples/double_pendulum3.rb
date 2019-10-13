@@ -20,7 +20,6 @@ def rk4(x, h, y, f)
 end
 
 def double_pendulum(theta, length, mass)
-
   direction = DFloat.zeros(3, 2)
   position = DFloat.zeros(3, 3)
   (0..1).each do |i|
@@ -28,7 +27,7 @@ def double_pendulum(theta, length, mass)
                           - cos(theta[i]) * length[i] * 2, 0]
     position[true, i + 1] = position[true, i] + direction[true, i]
   end
-  
+
   # For QtTerms ...
   GR.clearws
   GR.setviewport(0, 1, 0, 1)
@@ -40,9 +39,9 @@ def double_pendulum(theta, length, mass)
   GR3.drawspheremesh(1, [0, 0, 0], [0.4, 0.4, 0.4], [0.05])
   # draw rods
   GR3.drawcylindermesh(2, position.transpose, direction.transpose,
-                       [0.6] * 6, [0.05, 0.05], length.map{|i| i * 2})
+                       [0.6] * 6, [0.05, 0.05], length.map { |i| i * 2 })
   # draw bobs
-  GR3.drawspheremesh(2, position[true, 1..2].transpose, [1] * 6, mass.map{|i| i * 0.2})
+  GR3.drawspheremesh(2, position[true, 1..2].transpose, [1] * 6, mass.map { |i| i * 0.2 })
 
   GR3.drawimage(0, 1, 0, 1, 500, 500, GR3::DRAWABLE_GKS)
   GR.updatews
@@ -79,7 +78,6 @@ def main
   GR3.cameralookat(6, -2, 4, 0, -2, 0, 0, 1, 0)
   GR3.setbackgroundcolor(1, 1, 1, 1)
   GR3.setlightdirection(1, 1, 10)
-
 
   start = Time.now
 
