@@ -39,7 +39,8 @@ module GR3
   module CheckError
     FFI.ffi_methods.each do |method|
       method_name = method.to_s.sub(/^gr3_/, '')
-      next if method_name == "geterror"
+      next if method_name == 'geterror'
+
       define_method(method_name) do |*args|
         values = super(*args)
         GR3Base.check_error
