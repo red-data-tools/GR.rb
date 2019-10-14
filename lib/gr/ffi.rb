@@ -108,7 +108,7 @@ module GR
     attach_function :gr_titles3d, %i[string string string], :void
     attach_function :gr_surface, %i[int int pointer pointer pointer int], :void
     attach_function :gr_trisurface, %i[int pointer pointer pointer], :void
-    ## attach_function :gr_gradient, %i[int int pointer pointer pointer pointer pointer], :void
+    attach_function :gr_gradient, %i[int int pointer pointer pointer pointer pointer], :void
     attach_function :gr_quiver, %i[int int pointer pointer pointer pointer int], :void
     attach_function :gr_contour, %i[int int int pointer pointer pointer pointer int], :void
     attach_function :gr_contourf, %i[int int int pointer pointer pointer pointer int], :void
@@ -146,7 +146,7 @@ module GR
     attach_function :gr_begingraphics, %i[string], :void
     attach_function :gr_endgraphics, %i[], :void
     attach_function :gr_mathtex, %i[double double string], :void
-    # attach_function :gr_inqmathtex, %i[double double string pointer pointer], :void
+    attach_function :gr_inqmathtex, %i[double double string pointer pointer], :void
     attach_function :gr_beginselection, %i[int int], :void
     attach_function :gr_endselection, %i[], :void
     attach_function :gr_moveselection, %i[double double], :void

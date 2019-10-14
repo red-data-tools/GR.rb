@@ -4,6 +4,15 @@ module GRCommons
   module GRCommonUtils
     private
 
+    def equal_length(*args)
+      lengths = args.map { |arg|  length(arg) }
+      if lengths.all? { |l| l == lengths[0]}
+        lengths[0]
+      else
+        raise ArgumentError, "Sequences must have same length."
+      end
+    end
+
     def length(pt, dtype = :double)
       case pt
       when Array

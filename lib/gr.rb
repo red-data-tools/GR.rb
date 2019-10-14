@@ -43,12 +43,12 @@ module GR
     end
 
     def polyline(x, y)
-      n = x.size
+      n = equal_length(x, y)
       super(n, x, y)
     end
 
     def polymarker(x, y)
-      n = x.size
+      n = equal_length(x, y)
       super(n, x, y)
     end
 
@@ -59,7 +59,7 @@ module GR
     end
 
     def fillarea(x, y)
-      n = x.size
+      n = equal_length(x, y)
       super(n, x, y)
     end
 
@@ -68,6 +68,7 @@ module GR
     end
 
     def nonuniformcellarray(x, y, dimx, dimy, color)
+      raise ArgumentError unless length(x) == dimx + 1 && length(y) == dimy + 1
       super(x, y, dimx, dimy, 1, 1, dimx, dimy, int(color))
     end
 
@@ -76,22 +77,22 @@ module GR
     end
 
     def gdp(x, y, primid, datrec)
-      n = length(x)
+      n = equal_length(x, y)
       ldr = length(datrec, :int)
       super(n, x, y, primid, ldr, datrec)
     end
 
     def spline(px, py, m, method)
-      n = length(px)
+      n = equal_length(px, py)
       super(n, px, py, m, method)
     end
 
     def gridit(xd, yd, zd, nx, ny)
-      nd = xd.size
+      nd = equal_length(xd, yd, zd)
       inquiry [{ double: nx }, { double: ny }, { double: nx * ny }] do |px, py, pz|
         super(nd, xd, yd, zd, nx, ny, px, py, pz)
         # NOTE: this method return an Array of FFI::MemoryPointer itself!
-        return [px, py, pz]
+        return px, py, pz # Stop inquiry
       end
     end
 
@@ -158,26 +159,27 @@ module GR
     alias axes2d axes
 
     def verrorbars(px, py, e1, e2)
-      n = length(px)
+      n = equal_length(px, py, e1, e2)
       super(n, px, py, e1, e2)
     end
 
     def herrorbars(px, py, e1, e2)
-      n = length(px)
+      n = equal_length(px, py, e1, e2)
       super(n, px, py, e1, e2)
     end
 
     def polyline3d(px, py, pz)
-      n = length(px)
+      n = equal_length(px, py, pz)
       super(n, px, py, pz)
     end
 
     def polymarker3d(px, py, pz)
-      n = length(px)
+      n = equal_length(px, py, pz)
       super(n, px, py, pz)
     end
 
     def surface(px, py, pz, option)
+      # TODO: check: Arrays have incorrect length or dimension.
       nx = length(px)
       ny = length(py)
       super(nx, ny, px, py, pz, option)
@@ -194,8 +196,7 @@ module GR
       ny = length(y)
       inquiry [{ double: nx * ny }, { double: nx * ny }] do |pu, pv|
         super(nx, ny, x, y, z, pu, pv)
-        # NOTE: this method return an Array of FFI::MemoryPointer itself!
-        return [pu, pv]
+        # return pu pv
       end
     end
 
@@ -207,6 +208,7 @@ module GR
     end
 
     def contour(px, py, h, pz, major_h)
+      # TODO: check: Arrays have incorrect length or dimension.
       nx = length(px)
       ny = length(py)
       nh = h.size
@@ -214,6 +216,7 @@ module GR
     end
 
     def contourf(px, py, h, pz, major_h)
+      # TODO: check: Arrays have incorrect length or dimension.
       nx = length(px)
       ny = length(py)
       nh = h.size
