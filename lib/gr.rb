@@ -143,6 +143,12 @@ module GR
       end
     end
 
+    def inqviewport
+      inquiry %i[double double double double] do |*pts|
+        super(*pts)
+      end
+    end
+
     def inqspace
       inquiry %i[double double int int] do |*pts|
         super(*pts)
