@@ -270,6 +270,12 @@ module GR
       super(xmin, xmax, ymin, ymax, width, height, int(data), model)
     end
 
+    def inqmathtex(x, y, string)
+      inquiry [{ double: 4 }, { double: 4 }] do |tbx, tby|
+        super(x, y, string, tbx, tby)
+      end
+    end
+
     def inqbbox
       inquiry %i[double double double double] do |*pts|
         super(*pts)
