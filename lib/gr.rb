@@ -69,6 +69,7 @@ module GR
 
     def nonuniformcellarray(x, y, dimx, dimy, color)
       raise ArgumentError unless length(x) == dimx + 1 && length(y) == dimy + 1
+
       super(x, y, dimx, dimy, 1, 1, dimx, dimy, int(color))
     end
 
