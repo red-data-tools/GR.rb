@@ -188,8 +188,21 @@ module GR
       super(n, px, py, pz)
     end
 
-    def quiver(nx, ny, x, y, u, v, color)
-      # follow python-gr API different from GR.jl API
+    def gradient(x, y, z)
+      # TODO: check: Arrays have incorrect length or dimension.
+      nx = length(x)
+      ny = length(y)
+      inquiry [{ double: nx * ny }, { double: nx * ny }] do |pu, pv|
+        super(nx, ny, x, y, z, pu, pv)
+        # NOTE: this method return an Array of FFI::MemoryPointer itself!
+        return [pu, pv]
+      end
+    end
+
+    def quiver(x, y, u, v, color)
+      # TODO: check: Arrays have incorrect length or dimension.
+      nx = length(x)
+      ny = length(y)
       super(nx, ny, x, y, u, v, (color ? 1 : 0))
     end
 
