@@ -6,9 +6,9 @@ module GRCommons
 
     def equal_length(*args)
       lengths = args.map { |arg| length(arg) }
-      unless lengths.all? { |l| l == lengths[0] }
-        raise ArgumentError, 'Sequences must have same length.' 
-      end
+      raise ArgumentError, 'Sequences must have same length.' unless lengths.all? { |l| l == lengths[0] }
+
+      lengths[0]
     end
 
     def length(pt, dtype = :double)
