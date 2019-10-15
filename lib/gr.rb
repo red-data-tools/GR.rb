@@ -222,6 +222,12 @@ module GR
       super(nx, ny, nh, px, py, h, pz, major_h)
     end
 
+    def tricontour(x, y, z, levels)
+      npoints = length(x) # equal_length ?
+      nlevels = length(levels)
+      super(npoints, x, y, z, nlevels, levels)
+    end
+
     def hexbin(x, y, nbins)
       n = length(x)
       super(n, x, y, nbins)
