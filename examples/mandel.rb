@@ -11,7 +11,7 @@ def mandel(c, iters)
     output[notdone] = i
     z[notdone] = z[notdone]**2 + c[notdone]
   end
-  output[output.eq (iters - 1)] = 0
+  output[output.eq(iters - 1)] = 0
   output
 end
 

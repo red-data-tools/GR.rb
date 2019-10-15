@@ -83,7 +83,7 @@ def main
 
   while t < 30
     t, state = rk4(t, dt, state, derivs)
-    t1, w1, t2, w2 = state.to_a
+    t1, _w1, t2, _w2 = state.to_a
     double_pendulum([t1, t2], [l1, l2], [m1, m2])
 
     now = (Time.now - start)
