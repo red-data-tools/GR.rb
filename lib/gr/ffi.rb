@@ -116,7 +116,7 @@ module GR
     attach_function :gr_hexbin, %i[int pointer pointer int], :int
     attach_function :gr_setcolormap, %i[int], :void
     attach_function :gr_inqcolormap, %i[pointer], :void
-    # attach_function :gr_setcolormapfromrgb, %i[int pointer pointer pointer pointer], :void
+    attach_function :gr_setcolormapfromrgb, %i[int pointer pointer pointer pointer], :void
     attach_function :gr_colorbar, %i[], :void
     attach_function :gr_inqcolor, %i[int pointer], :void
     attach_function :gr_inqcolorfromrgb, %i[double double double], :int

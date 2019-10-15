@@ -237,6 +237,16 @@ module GR
       inquiry_int { |pt| super(pt) }
     end
 
+    def setcolormapfromrgb(r, g, b, positions: nil)
+      n = equal_length(r, g, b)
+      if positions.nil?
+        positions = ::FFI::Pointer::NULL
+      else
+        raise if length(positions) != n
+      end
+      super(n, r, g, b, positions)
+    end
+
     def inqcolor(color)
       inquiry_int do |rgb|
         super(color, rgb)
