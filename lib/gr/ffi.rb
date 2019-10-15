@@ -142,7 +142,7 @@ module GR
     attach_function :gr_drawimage, %i[double double double double int int pointer int], :void
     attach_function :gr_setshadow, %i[double double double], :void
     attach_function :gr_settransparency, %i[double], :void
-    # attach_function :gr_setcoordxform
+    attach_function :gr_setcoordxform, %i[pointer], :void
     attach_function :gr_begingraphics, %i[string], :void
     attach_function :gr_endgraphics, %i[], :void
     attach_function :gr_mathtex, %i[double double string], :void

@@ -288,6 +288,12 @@ module GR
       super(xmin, xmax, ymin, ymax, width, height, int(data), model)
     end
 
+    def setcoordxform(mat)
+      raise if mat.size != 6
+
+      super(mat)
+    end
+
     def inqmathtex(x, y, string)
       inquiry [{ double: 4 }, { double: 4 }] do |tbx, tby|
         super(x, y, string, tbx, tby)
