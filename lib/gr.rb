@@ -284,6 +284,11 @@ module GR
       end
     end
 
+    def drawpath(points, codes, fill)
+      len = length(codes)
+      super(len, points, uint8(codes), fill)
+    end
+
     def drawimage(xmin, xmax, ymin, ymax, width, height, data, model = 0)
       super(xmin, xmax, ymin, ymax, width, height, int(data), model)
     end

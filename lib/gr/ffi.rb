@@ -135,7 +135,7 @@ module GR
     attach_function :gr_fillrect, %i[double double double double], :void
     attach_function :gr_drawarc, %i[double double double double double double], :void
     attach_function :gr_fillarc, %i[double double double double double double], :void
-    # attach_function :gr_drawpath,
+    attach_function :gr_drawpath, %i[int pointer pointer int], :void
     attach_function :gr_setarrowstyle, %i[int], :void
     attach_function :gr_setarrowsize, %i[double], :void
     attach_function :gr_drawarrow, %i[double double double double], :void
