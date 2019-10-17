@@ -195,7 +195,6 @@ module GR
       ny = length(y)
       inquiry [{ double: nx * ny }, { double: nx * ny }] do |pu, pv|
         super(nx, ny, x, y, z, pu, pv)
-        # return pu pv
       end
     end
 
@@ -319,6 +318,14 @@ module GR
 
     def version
       super.read_string
+    end
+
+    def reducepoints(xd, yd, n)
+      nd = equal_length(xd, yd)
+      inquiry [{double: n}, {double: n}] do |x, y|
+        # Different from Julia. x, y are initialized zero.
+        super(nd, xd, yd, n, x, y)
+      end
     end
 
     def shadepoints(x, y, dims: [1200, 1200], xform: 1)

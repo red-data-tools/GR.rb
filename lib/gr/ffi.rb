@@ -163,7 +163,7 @@ module GR
     attach_function :gr_adjustlimits, %i[pointer pointer], :void
     attach_function :gr_version, %i[], :pointer
 
-    # attach_function :gr_reducepoints
+    attach_function :gr_reducepoints, %i[int pointer pointer int pointer pointer], :void
     attach_function :gr_shadepoints, %i[int pointer pointer int int int], :void
     attach_function :gr_shadelines, %i[int pointer pointer int int int], :void
     attach_function :gr_panzoom, %i[double double double double pointer pointer pointer pointer], :void
