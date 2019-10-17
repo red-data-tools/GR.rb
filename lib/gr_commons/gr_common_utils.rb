@@ -31,6 +31,12 @@ module GRCommons
       end
     end
 
+    def uint8(data)
+      data = data.to_a.flatten
+      pt = ::FFI::MemoryPointer.new(:uint8, data.size)
+      pt.write_array_of_uint8 data
+    end
+
     def int(data)
       data = data.to_a.flatten
       pt = ::FFI::MemoryPointer.new(:int, data.size)
