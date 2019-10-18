@@ -7,8 +7,8 @@ Gem::Specification.new do |spec|
   spec.email         = '2xijok@gmail.com'
 
   spec.summary       = 'GR for Ruby'
-  spec.description   = 'GR for Ruby'
-  spec.homepage      = 'https://github.com/kojix2/ffi-gr'
+  spec.description   = 'GR framework - the graphics library for visualisation - for Ruby'
+  spec.homepage      = 'https://github.com/kojix2/GR.rb'
   spec.license       = 'MIT'
 
   spec.files         = Dir['*.{md,txt}', '{lib}/**/*']
