@@ -26,10 +26,10 @@ class GRAppWindow < Gtk::ApplicationWindow
   def expose(_widget, cr)
     ENV['GKS_WSTYPE'] = '142'
     ENV['GKSconid'] = cr.to_ptr.address.to_s
-    
+
     cr.move_to(15, 45)
     cr.set_font_size(30)
-    cr.show_text("Contour Plot using Gtk ...")
+    cr.show_text('Contour Plot using Gtk ...')
 
     xd = -2 + DFloat.new(100).rand * 4
     yd = -2 + DFloat.new(100).rand * 4

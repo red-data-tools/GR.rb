@@ -322,7 +322,7 @@ module GR
 
     def reducepoints(xd, yd, n)
       nd = equal_length(xd, yd)
-      inquiry [{double: n}, {double: n}] do |x, y|
+      inquiry [{ double: n }, { double: n }] do |x, y|
         # Different from Julia. x, y are initialized zero.
         super(nd, xd, yd, n, x, y)
       end
