@@ -58,5 +58,50 @@ module GRCommons
     def narray?(data)
       defined?(Numo::NArray) && data.is_a?(Numo::NArray)
     end
+
+    def inquiry_int(&block)
+      inquiry(:int, &block)
+    end
+
+    def inquiry_double(&block)
+      inquiry(:double, &block)
+    end
+
+    def inquiry(types)
+      case types
+      when Hash, Symbol
+        pt = create_ffi_pointer(type)
+        yield(pt)
+        read_ffi_pointer(pt, type)
+      when Array
+        pts = types.map { |type| create_ffi_pointer(type) }
+        yield(*pts)
+        pts.zip(types).map { |pt, type| read_ffi_pointer(pt, type) }
+      else
+        raise ArgumentError
+      end
+    end
+
+    def create_ffi_pointer(type)
+      case type
+      when Hash
+        typ = type.keys[0]
+        len = type.values[0]
+        ::FFI::MemoryPointer.new(typ, len)
+      else
+        ::FFI::MemoryPointer.new(type)
+      end
+    end
+
+    def read_ffi_pointer(pt, type)
+      case type
+      when Hash
+        typ = type.keys[0]
+        len = type.values[0]
+        pt.send("read_array_of_#{typ}", len)
+      else
+        pt.send("read_#{type}")
+      end
+    end
   end
 end

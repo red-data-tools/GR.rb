@@ -345,40 +345,6 @@ module GR
         super(x, y, zoom, zoom, xmin, xmax, ymin, ymax)
       end
     end
-
-    private
-
-    def inquiry_int(&block)
-      inquiry([:int], &block)[0]
-    end
-
-    def inquiry_double(&block)
-      inquiry([:double], &block)[0]
-    end
-
-    def inquiry(types)
-      pts = types.map do |type|
-        case type
-        when Hash
-          typ = type.keys[0]
-          len = type.values[0]
-          ::FFI::MemoryPointer.new(typ, len)
-        else
-          ::FFI::MemoryPointer.new(type)
-        end
-      end
-      yield(*pts)
-      pts.zip(types).map do |pt, type|
-        case type
-        when Hash
-          typ = type.keys[0]
-          len = type.values[0]
-          pt.send("read_array_of_#{typ}", len)
-        else
-          pt.send("read_#{type}")
-        end
-      end
-    end
   end
 
   # Constants
