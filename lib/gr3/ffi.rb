@@ -10,7 +10,8 @@ module GR3
 
     extend GRCommons::AttachFunction
 
-    # TODO: Error
+    # gr3.c
+
     attach_function :gr3_init, %i[int], :int
     attach_function :gr3_geterror, %i[int pointer pointer], :int
     attach_function :gr3_terminate, %i[], :void
@@ -44,6 +45,15 @@ module GR3
     attach_function :gr3_getprojectiontype, %i[], :int
     attach_function :gr3_setprojectiontype, %i[int], :void
 
+    # gr3_gr.c
+
+    attach_function :gr3_createsurfacemesh, %i[pointer int int pointer pointer pointer int], :int
+    # attach_function gr3_drawmesh_grlike
+    # attach_function gr3_drawsurface
+    # attach_function gr3_surface
+    # attach_function gr3_drawtrianglesurface
+    # attach_function gr_volume
+
     # gr3_convenience.c
 
     attach_function :gr3_drawcubemesh, %i[int pointer pointer pointer pointer pointer], :void
@@ -51,10 +61,24 @@ module GR3
     attach_function :gr3_drawconemesh, %i[int pointer pointer pointer pointer pointer], :void
     attach_function :gr3_drawspheremesh, %i[int pointer pointer pointer], :void
     attach_function :gr3_drawheightmap, %i[pointer int int pointer pointer], :void
-    # attach_function gr3_createheightmapmesh, %i[pointer int int], :void
-    # attach_function gr3_createisosurfacemesh
+    attach_function :gr3_createheightmapmesh, %i[pointer int int], :void
+    #attach_function :gr3_createisosurfacemesh
     attach_function :gr3_drawtubemesh, %i[int pointer pointer pointer int int], :int
     # attach_function gr3_drawspins, %i[int pointer pointer pointer float float float float], :void
     # attach_function gr3_drawmolecule
+
+    # gr3_slices.c
+
+    # attach_function gr3_createxslicemesh
+    # attach_function gr3_createyslicemesh
+    # attach_function gr3_createzslicemesh
+    # attach_function gr3_drawxslicemesh
+    # attach_function gr3_drawyslicemesh
+    # attach_function gr3_drawzslicemesh
+
+    # gr3_mc.c
+
+    # attach_function gr3_triangulateindexed
+    # attach_function gr3_triangulate
   end
 end

@@ -80,6 +80,16 @@ module GR3
       end
     end
 
+    # gr3_gr
+
+    def createsurfacemesh(nx, ny, px, py, pz, option=0)
+      inquiry_int do |mesh|
+        super(mesh, nx, ny, px, py, pz, option)
+      end
+    end
+
+    # gr3_convenience
+
     def drawtubemesh(n, points, colors, radii, num_steps = 10, num_segments = 20)
       super(n, points, colors, radii, num_steps, num_segments)
     end
