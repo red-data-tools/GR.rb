@@ -90,8 +90,6 @@ module GR
       nd = equal_length(xd, yd, zd)
       inquiry [{ double: nx }, { double: ny }, { double: nx * ny }] do |px, py, pz|
         super(nd, xd, yd, zd, nx, ny, px, py, pz)
-        # NOTE: this method return an Array of FFI::MemoryPointer itself!
-        return px, py, pz # Stop inquiry
       end
     end
 
