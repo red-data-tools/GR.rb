@@ -48,8 +48,8 @@ module GR3
     # gr3_gr.c
 
     attach_function :gr3_createsurfacemesh, %i[pointer int int pointer pointer pointer int], :int
-    # attach_function gr3_drawmesh_grlike
-    # attach_function gr3_drawsurface
+    attach_function :gr3_drawmesh_grlike, %i[int int pointer pointer pointer pointer pointer], :void
+    attach_function :gr3_drawsurface, %i[int], :void
     # attach_function gr3_surface
     # attach_function gr3_drawtrianglesurface
     # attach_function gr_volume
