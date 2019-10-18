@@ -49,6 +49,13 @@ module GR3
   extend CheckError
 
   class << self
+    def getimage(width, height, use_alpha = true)
+      bpp = use_alpha ? 4 : 3
+      inquiry [{ uint8: width * height * bpp }] do |bitmap|
+        super(width, height, (use_alpha ? 1 : 0), bitmap)
+      end
+    end
+    
     def drawtubemesh(n, points, colors, radii, num_steps = 10, num_segments = 20)
       super(n, points, colors, radii, num_steps, num_segments)
     end
