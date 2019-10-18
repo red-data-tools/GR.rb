@@ -17,6 +17,19 @@ class GRTest < Minitest::Test
     assert_equal GR.inqlinetype, 3
   end
 
+  def test_hsvtorgb
+    assert_equal GR.hsvtorgb(0.2, 0.3, 0.5), [0.47, 0.5, 0.35]
+  end
+
+  def test_reducepoints
+    assert_equal GR.reducepoints([10, 4, 7, 1], [2, 6, 10, 14], 2),
+                 [[10.0, 7.0], [2.0, 10.0]]
+  end
+
+  def test_COLORMAP_MAGMA
+    assert_equal GR::COLORMAP_MAGMA, 47 
+  end 
+
   def teardown
     GR.clearws
   end
