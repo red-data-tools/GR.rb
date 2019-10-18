@@ -55,7 +55,7 @@ module GR3
         super(width, height, (use_alpha ? 1 : 0), bitmap)
       end
     end
-    
+
     def drawtubemesh(n, points, colors, radii, num_steps = 10, num_segments = 20)
       super(n, points, colors, radii, num_steps, num_segments)
     end
