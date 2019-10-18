@@ -62,7 +62,7 @@ module GR3
     attach_function :gr3_drawspheremesh, %i[int pointer pointer pointer], :void
     attach_function :gr3_drawheightmap, %i[pointer int int pointer pointer], :void
     attach_function :gr3_createheightmapmesh, %i[pointer int int], :void
-    #attach_function :gr3_createisosurfacemesh
+    # attach_function :gr3_createisosurfacemesh
     attach_function :gr3_drawtubemesh, %i[int pointer pointer pointer int int], :int
     # attach_function gr3_drawspins, %i[int pointer pointer pointer float float float float], :void
     # attach_function gr3_drawmolecule

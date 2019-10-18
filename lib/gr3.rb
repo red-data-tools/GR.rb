@@ -82,7 +82,7 @@ module GR3
 
     # gr3_gr
 
-    def createsurfacemesh(nx, ny, px, py, pz, option=0)
+    def createsurfacemesh(nx, ny, px, py, pz, option = 0)
       inquiry_int do |mesh|
         super(mesh, nx, ny, px, py, pz, option)
       end

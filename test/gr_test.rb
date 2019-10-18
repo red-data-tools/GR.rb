@@ -27,8 +27,8 @@ class GRTest < Minitest::Test
   end
 
   def test_COLORMAP_MAGMA
-    assert_equal GR::COLORMAP_MAGMA, 47 
-  end 
+    assert_equal GR::COLORMAP_MAGMA, 47
+  end
 
   def teardown
     GR.clearws
