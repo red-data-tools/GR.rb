@@ -1,8 +1,11 @@
-# GR
+# GR module for Ruby
 
-[GR framework](https://github.com/sciapp/gr) for Ruby
-
+[![The MIT License](https://img.shields.io/badge/license-MIT-orange.svg)](LICENSE.md)
 [![Build Status](https://travis-ci.com/kojix2/ffi-gr.svg?&branch=master)](https://travis-ci.org/kojix2/ffi-gr)
+
+[GR framework](https://github.com/sciapp/gr) - the graphics library for visualisation - for Ruby
+
+:construction: Under construction.
 
 ## Installation
 Install [GR](https://github.com/sciapp/gr/releases).
@@ -16,6 +19,20 @@ Add this line to your application's Gemfile:
 
 ```sh
 gem 'ffi-gr'
+```
+
+## Quick Start
+
+```ruby
+require 'gr'
+
+x = [0, 0.2, 0.4, 0.6, 0.8, 1.0]
+y = [0.3, 0.5, 0.4, 0.2, 0.6, 0.7]
+
+GR.polyline(x, y)
+tick = GR.tick(0, 1)
+GR.axes(tick, tick, 0, 0, 1, 1, -0.001)
+GR.updatews
 ```
 
 ## Contributing
