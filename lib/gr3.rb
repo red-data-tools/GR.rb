@@ -49,6 +49,30 @@ module GR3
   extend CheckError
 
   class << self
+    def createmesh_nocopy(_n, vertices, normals, colors)
+      inquiry_int do |mesh|
+        super(mesh, vertices, normals, colors)
+      end
+    end
+
+    def createmesh(_n, vertices, normals, colors)
+      inquiry_int do |mesh|
+        super(mesh, vertices, normals, colors)
+      end
+    end
+
+    def createindexedmesh_nocopy(num_vertices, vertices, normals, colors, num_indices, indices)
+      inquiry_int do |mesh|
+        super(mesh, num_vertices, vertices, normals, colors, num_indices, indices)
+      end
+    end
+
+    def createindexedmesh(num_vertices, vertices, normals, colors, num_indices, indices)
+      inquiry_int do |mesh|
+        super(mesh, num_vertices, vertices, normals, colors, num_indices, indices)
+      end
+    end
+
     def getimage(width, height, use_alpha = true)
       bpp = use_alpha ? 4 : 3
       inquiry(uint8: width * height * bpp) do |bitmap|
