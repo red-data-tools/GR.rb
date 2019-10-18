@@ -92,3 +92,4 @@ def main
 end
 
 main
+GR3.terminate

@@ -29,4 +29,4 @@ GR3.setbackgroundcolor(1, 1, 1, 1)
   GR3.drawimage(0, 1, 0, 1, 500, 500, GR3::DRAWABLE_GKS)
   GR.updatews
 end
-gets
+GR3.terminate
