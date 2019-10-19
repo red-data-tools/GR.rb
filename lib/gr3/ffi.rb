@@ -35,13 +35,14 @@ module GR3
     attach_function :gr3_getimage, %i[int int int pointer], :int
     attach_function :gr3_export, %i[pointer int int], :int
     attach_function :gr3_free, %i[pointer], :void
-    # attach_function :gr3_setlogcallback
+    # callback :gr3_log_func, %i[string], :void
+    # attach_function :gr3_setlogcallback, %i[:gr3_log_func], :void
     attach_function :gr3_geterrorstring, %i[int], :string
     attach_function :gr3_getrenderpathstring, %i[], :string
     attach_function :gr3_setobjectid, %i[int], :void
     attach_function :gr3_selectid, %i[int int int int pointer], :int
     attach_function :gr3_getviewmatrix, %i[pointer], :void
-    # attach_function :gr3_setviewmatrix
+    # attach_function :gr3_setviewmatrix, %i[pointer], :void
     attach_function :gr3_getprojectiontype, %i[], :int
     attach_function :gr3_setprojectiontype, %i[int], :void
 
@@ -50,9 +51,9 @@ module GR3
     attach_function :gr3_createsurfacemesh, %i[pointer int int pointer pointer pointer int], :int
     attach_function :gr3_drawmesh_grlike, %i[int int pointer pointer pointer pointer pointer], :void
     attach_function :gr3_drawsurface, %i[int], :void
-    # attach_function gr3_surface
-    # attach_function gr3_drawtrianglesurface
-    # attach_function gr_volume
+    # attach_function gr3_surface, %i[int int pointer pointer pointer int], :void
+    # attach_function gr3_drawtrianglesurface, %i[int pointer], :void
+    # attach_function gr_volume, %i[int int int pointer int pointer pointer], :void
 
     # gr3_convenience.c
 
@@ -62,23 +63,33 @@ module GR3
     attach_function :gr3_drawspheremesh, %i[int pointer pointer pointer], :void
     attach_function :gr3_drawheightmap, %i[pointer int int pointer pointer], :void
     attach_function :gr3_createheightmapmesh, %i[pointer int int], :void
-    # attach_function :gr3_createisosurfacemesh
+    # attach_function :gr3_createisosurfacemesh,
+    # %i[pointer pointer ushort uint uint uint uint uint uint double double double double double double], :int
     attach_function :gr3_drawtubemesh, %i[int pointer pointer pointer int int], :int
     # attach_function gr3_drawspins, %i[int pointer pointer pointer float float float float], :void
-    # attach_function gr3_drawmolecule
+    # attach_function gr3_drawmolecule, %i[int pointer pointer pointer float pointer float], :void
 
     # gr3_slices.c
 
-    # attach_function gr3_createxslicemesh
+    # attach_function gr3_createxslicemesh,
+    # %i[pointer pointer uint uint uint uint uint uint uint double double double double double double], :void
     # attach_function gr3_createyslicemesh
+    # %i[pointer pointer uint uint uint uint uint uint uint double double double double double double], :void
     # attach_function gr3_createzslicemesh
+    # %i[pointer pointer uint uint uint uint uint uint uint double double double double double double], :void
     # attach_function gr3_drawxslicemesh
+    # %i[pointer uint uint uint uint uint uint uint double double double double double double], :void
     # attach_function gr3_drawyslicemesh
+    # %i[pointer uint uint uint uint uint uint uint double double double double double double], :void
     # attach_function gr3_drawzslicemesh
+    # %i[pointer uint uint uint uint uint uint uint double double double double double double], :void
+
 
     # gr3_mc.c
 
     # attach_function gr3_triangulateindexed
+    # %i[pointer ushort uint uint uint uint uint uint double double double double double double pointer pointer pointer pointer poiter], :void
     # attach_function gr3_triangulate
+    # %i[pointer ushort uint uint uint uint uint uint double double double double double double pointer], :void
   end
 end
