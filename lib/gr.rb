@@ -3,6 +3,8 @@
 require 'ffi'
 
 module GR
+  class Error < StandardError; end
+
   class << self
     attr_reader :ffi_lib
   end
@@ -11,7 +13,7 @@ module GR
   # Windows   |  bin/libgr.dll
   # MacOSX    |  lib/libGR.so (NOT .dylib)
   # Ubuntu    |  lib/libGR.so
-  raise 'Please set env variable GRDIR' unless ENV['GRDIR']
+  raise Error, 'Please set env variable GRDIR' unless ENV['GRDIR']
 
   ENV['GKS_FONTPATH'] ||= ENV['GRDIR']
   @ffi_lib = case RbConfig::CONFIG['host_os']
@@ -29,8 +31,10 @@ module GR
   extend GRCommons::JupyterSupport
   extend GRBase
 
-  # 1. double is the default type
-  # 2. don't check size (for now)
+  # `double` is the default type in GR
+  # A Ruby array or NArray passed to GR method is automatically converted to
+  # a FFI::MemoryPointer in the GRBase class.
+
   class << self
     def inqdspsize
       inquiry %i[double double int int] do |*pts|
@@ -343,7 +347,7 @@ module GR
     end
   end
 
-  # Constants
+  # Constants - imported from GR.jl
 
   ASF_BUNDLED = 0
   ASF_INDIVIDUAL = 1

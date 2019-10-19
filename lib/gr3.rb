@@ -13,7 +13,7 @@ module GR3
   # Windows   |  bin/libgr3.dll
   # MacOSX    |  lib/libGR3.so (NOT .dylib)
   # Ubuntu    |  lib/libGR3.so
-  raise 'Please set env variable GRDIR' unless ENV['GRDIR']
+  raise Error, 'Please set env variable GRDIR' unless ENV['GRDIR']
 
   ENV['GKS_FONTPATH'] ||= ENV['GRDIR']
   @ffi_lib = case RbConfig::CONFIG['host_os']
@@ -31,8 +31,9 @@ module GR3
   extend GRCommons::JupyterSupport
   extend GR3Base
 
-  # 1. double is the default type
-  # 2. don't check size (for now)
+  # `float` is the default type in GR3
+  # A Ruby array or NArray passed to GR3 method is automatically converted to
+  # a FFI::MemoryPointer in the GR3Base class.
 
   module CheckError
     FFI.ffi_methods.each do |method|
@@ -94,6 +95,8 @@ module GR3
       super(n, points, colors, radii, num_steps, num_segments)
     end
   end
+
+  # Constants - imported from GR.jl
 
   IA_END_OF_LIST = 0
   IA_FRAMEBUFFER_WIDTH = 1

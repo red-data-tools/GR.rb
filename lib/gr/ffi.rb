@@ -14,7 +14,7 @@ module GR
 
     extend GRCommons::AttachFunction
 
-    # https://github.com/sciapp/gr/blob/master/lib/gr/gr.h 
+    # https://github.com/sciapp/gr/blob/master/lib/gr/gr.h
 
     attach_function :gr_initgr, %i[], :void
     attach_function :gr_opengks, %i[], :void
