@@ -6,7 +6,11 @@ module GR
   module FFI
     extend ::FFI::Library
 
-    ffi_lib GR.ffi_lib
+    begin
+      ffi_lib GR.ffi_lib
+    rescue LoadError => e
+      raise LoadError, "Could not find GR Framework"
+    end
 
     extend GRCommons::AttachFunction
 
