@@ -21,13 +21,11 @@ module GR
              else
                File.expand_path('lib/libGR.so', ENV['GRDIR'])
              end
-end
 
-require_relative 'gr_commons'
-require 'gr/ffi'
-require 'gr/grbase'
+  require_relative 'gr_commons'
+  require_relative 'gr/ffi'
+  require_relative 'gr/grbase'
 
-module GR
   extend GRCommons::JupyterSupport
   extend GRBase
 

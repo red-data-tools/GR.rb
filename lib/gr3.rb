@@ -3,6 +3,8 @@
 require 'ffi'
 
 module GR3
+  class Error < StandardError; end
+
   class << self
     attr_reader :ffi_lib
   end
@@ -21,13 +23,11 @@ module GR3
              else
                File.expand_path('lib/libGR3.so', ENV['GRDIR'])
              end
-end
 
-require_relative 'gr_commons'
-require 'gr3/ffi'
-require 'gr3/gr3base'
+  require_relative 'gr_commons'
+  require_relative 'gr3/ffi'
+  require_relative 'gr3/gr3base'
 
-module GR3
   extend GRCommons::JupyterSupport
   extend GR3Base
 
