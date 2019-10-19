@@ -2,6 +2,8 @@
 
 [![The MIT License](https://img.shields.io/badge/license-MIT-orange.svg)](LICENSE.md)
 [![Build Status](https://travis-ci.com/kojix2/GR.rb.svg?&branch=master)](https://travis-ci.org/kojix2/GR.rb)
+[![Gem Version](https://badge.fury.io/rb/ruby-gr.svg)](https://badge.fury.io/rb/ruby-gr)
+[![Gitter chat](https://badges.gitter.im/kojix2/GR.rb.svg)](https://gitter.im/kojix2/GR.rb)
 
 [GR framework](https://github.com/sciapp/gr) - the graphics library for visualisation - for Ruby
 
@@ -38,7 +40,3 @@ GR.updatews
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/kojix2/GR.rb.
-
-## License
-
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
