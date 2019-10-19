@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 Gem::Specification.new do |spec|
-  spec.name          = 'ffi-gr'
-  spec.version       = '0.1.0'
+  spec.name          = 'ruby-gr'
+  spec.version       = '0.0.0'
   spec.authors       = 'kojix2'
   spec.email         = '2xijok@gmail.com'
 

@@ -2,5 +2,5 @@
 
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in ffi-gr.gemspec
+# Specify your gem's dependencies in ruby-gr.gemspec
 gemspec

@@ -1,7 +1,7 @@
 # GR module for Ruby
 
 [![The MIT License](https://img.shields.io/badge/license-MIT-orange.svg)](LICENSE.md)
-[![Build Status](https://travis-ci.com/kojix2/ffi-gr.svg?&branch=master)](https://travis-ci.org/kojix2/ffi-gr)
+[![Build Status](https://travis-ci.com/kojix2/GR.rb.svg?&branch=master)](https://travis-ci.org/kojix2/GR.rb)
 
 [GR framework](https://github.com/sciapp/gr) - the graphics library for visualisation - for Ruby
 
@@ -18,7 +18,7 @@ export GRDIR="/your/path/to/gr"
 Add this line to your application's Gemfile:
 
 ```sh
-gem 'ffi-gr'
+gem 'ruby-gr'
 ```
 
 ## Quick Start
