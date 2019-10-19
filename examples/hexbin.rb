@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# https://gr-framework.org/c.html
 require 'gr'
 require 'numo/narray'
 
