@@ -84,7 +84,6 @@ module GR3
     # attach_function gr3_drawzslicemesh
     # %i[pointer uint uint uint uint uint uint uint double double double double double double], :void
 
-
     # gr3_mc.c
 
     # attach_function gr3_triangulateindexed

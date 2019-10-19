@@ -37,7 +37,7 @@ GR.updatews
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/kojix2/ffi-gr.
+Bug reports and pull requests are welcome on GitHub at https://github.com/kojix2/GR.rb.
 
 ## License
 
