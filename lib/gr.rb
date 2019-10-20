@@ -293,11 +293,11 @@ module GR
         # data is a pointer of a pointer
         super(path, width, height, data)
       end
-      return w, h, d.read_array_of_int(w * h)
+      return w, h, d.read_array_of_uint(w * h)
     end
 
     def drawimage(xmin, xmax, ymin, ymax, width, height, data, model = 0)
-      super(xmin, xmax, ymin, ymax, width, height, int(data), model)
+      super(xmin, xmax, ymin, ymax, width, height, uint(data), model)
     end
 
     def setcoordxform(mat)
