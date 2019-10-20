@@ -288,6 +288,14 @@ module GR
       super(len, points, uint8(codes), fill)
     end
 
+    def readimage(path)
+      w, h, d = inquiry [:int, :int, :pointer] do |width, height, data|
+        # data is a pointer of a pointer
+        super(path, width, height, data)
+      end
+      return w, h, d.read_array_of_int(w * h)
+    end
+
     def drawimage(xmin, xmax, ymin, ymax, width, height, data, model = 0)
       super(xmin, xmax, ymin, ymax, width, height, int(data), model)
     end

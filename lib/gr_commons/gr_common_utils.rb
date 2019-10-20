@@ -43,6 +43,12 @@ module GRCommons
       pt.write_array_of_int data
     end
 
+    def uint(data)
+      data = data.to_a.flatten
+      pt = ::FFI::MemoryPointer.new(:uint, data.size)
+      pt.write_array_of_uint data
+    end
+
     def double(data)
       data = data.to_a.flatten
       pt = ::FFI::MemoryPointer.new(:double, data.size)

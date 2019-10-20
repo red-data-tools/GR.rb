@@ -126,7 +126,7 @@ module GR
     attach_function :gr_setarrowstyle, %i[int], :void
     attach_function :gr_setarrowsize, %i[double], :void
     attach_function :gr_drawarrow, %i[double double double double], :void
-    # attach_function :gr_readimage, %i[pointer pointer pointer pointer], :int
+    attach_function :gr_readimage, %i[string pointer pointer pointer], :int
     attach_function :gr_drawimage, %i[double double double double int int pointer int], :void
     # attach_function :gr_importgraphics, %i[string], :int
     attach_function :gr_setshadow, %i[double double double], :void
