@@ -2,7 +2,9 @@ dist: xenial
 language: ruby
 cache: bundler
 rvm:
-  - 2.6.3
+  - 2.6
+  - 2.5
+  - 2.4
 before_install:
   - gem install bundler -v 2.0.2
   - export GR_VERSION=0.41.5
