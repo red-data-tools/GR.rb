@@ -128,14 +128,14 @@ module GR
     attach_function :gr_drawarrow, %i[double double double double], :void
     attach_function :gr_readimage, %i[string pointer pointer pointer], :int
     attach_function :gr_drawimage, %i[double double double double int int pointer int], :void
-    # attach_function :gr_importgraphics, %i[string], :int
+    attach_function :gr_importgraphics, %i[string], :int
     attach_function :gr_setshadow, %i[double double double], :void
     attach_function :gr_settransparency, %i[double], :void
     attach_function :gr_setcoordxform, %i[pointer], :void
     attach_function :gr_begingraphics, %i[string], :void
     attach_function :gr_endgraphics, %i[], :void
-    # attach_function :gr_getgraphics
-    # attach_function :gr_drawgraphics
+    attach_function :gr_getgraphics, %i[], :string
+    attach_function :gr_drawgraphics, %i[string], :int
     attach_function :gr_mathtex, %i[double double string], :void
     attach_function :gr_inqmathtex, %i[double double string pointer pointer], :void
     attach_function :gr_beginselection, %i[int int], :void
@@ -151,14 +151,14 @@ module GR
     attach_function :gr_selectcontext, %i[int], :void
     attach_function :gr_destroycontext, %i[int], :void
     attach_function :gr_uselinespec, %i[string], :void
-    # attach_function :gr_delaunay
+    # attach_function :gr_delaunay, %i[int pointer pointer pointer pointer], :void
     attach_function :gr_reducepoints, %i[int pointer pointer int pointer pointer], :void
     attach_function :gr_trisurface, %i[int pointer pointer pointer], :void
     attach_function :gr_gradient, %i[int int pointer pointer pointer pointer pointer], :void
     attach_function :gr_quiver, %i[int int pointer pointer pointer pointer int], :void
-    # attach_function :gr_interp2
+    attach_function :gr_interp2, %i[int int pointer pointer pointer int int pointer pointer pointer int double], :void
 
-    # gr_newmeta
+    # attach_function :gr_newmeta
     # attach_function :gr_deletemeta
     # attach_function :gr_finalizemeta
     # attach_function :gr_meta_args_push
@@ -185,6 +185,7 @@ module GR
     # attach_function :gr_meta_max_plotid
     # attach_function :gr_dumpmeta
     # attach_function :gr_dumpmeta_json
+
     attach_function :gr_version, %i[], :pointer
     attach_function :gr_shadepoints, %i[int pointer pointer int int int], :void
     attach_function :gr_shadelines, %i[int pointer pointer int int int], :void

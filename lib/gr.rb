@@ -318,9 +318,14 @@ module GR
       end
     end
 
-    def adjustlimits(_amin, _amax)
-      inquiry %i[double double] do |*pts|
-        super(*pts)
+    def interp2(x, y, z, xq, yq, method, extrapval) # flatten
+      nx = length(x)
+      ny = length(y)
+      nz = length(z)
+      nxq = length(xq)
+      nyq = length(yq)
+      inquiry(double: nxq * nyq) do |zq|
+        super(nx, ny, x, y, z, nxq, nyq, xq, yq, zq, method, extrapval)
       end
     end
 
