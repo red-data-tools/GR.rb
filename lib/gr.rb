@@ -293,7 +293,7 @@ module GR
         # data is a pointer of a pointer
         super(path, width, height, data)
       end
-      return w, h, d.read_array_of_uint(w * h)
+      [w, h, d.read_array_of_uint(w * h)]
     end
 
     def drawimage(xmin, xmax, ymin, ymax, width, height, data, model = 0)
