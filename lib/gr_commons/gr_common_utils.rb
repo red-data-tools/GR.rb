@@ -69,6 +69,10 @@ module GRCommons
       inquiry(:int, &block)
     end
 
+    def inquiry_uint(&block)
+      inquiry(:uint, &block)
+    end
+
     def inquiry_double(&block)
       inquiry(:double, &block)
     end

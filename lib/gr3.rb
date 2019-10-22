@@ -81,18 +81,35 @@ module GR3
       end
     end
 
-    # gr3_gr
-
     def createsurfacemesh(nx, ny, px, py, pz, option = 0)
       inquiry_int do |mesh|
         super(mesh, nx, ny, px, py, pz, option)
       end
     end
 
-    # gr3_convenience
+    def surface(px, py, pz, _option)
+      nx = length(px)
+      ny = length(py)
+      # TODO: Check out_of_bounds
+      super(nx, ny, px, py, pz, ption)
+    end
 
     def drawtubemesh(n, points, colors, radii, num_steps = 10, num_segments = 20)
       super(n, points, colors, radii, num_steps, num_segments)
+    end
+
+    def createtubemesh(n, points, colors, radii, num_steps = 10, num_segments = 20)
+      inquiry_uint do |mesh| # mesh should be Int?
+        super(mesh, n, points, colors, radii, num_steps, num_segments)
+      end
+    end
+
+    def drawspins(positions, directions, colors = nil,
+                  cone_radius = 0.4, cylinder_radius = 0.2,
+                  cone_height = 1.0, cylinder_height = 1.0)
+      n = length(positions)
+      colors = [1] * n * 3 if colors.nil?
+      super(n, positions, directions, colors, cone_radius, cylinder_radius, cone_height, cylinder_height)
     end
   end
 

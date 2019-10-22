@@ -64,10 +64,10 @@ module GR3
     attach_function :gr3_createsurfacemesh, %i[pointer int int pointer pointer pointer int], :int
     attach_function :gr3_drawmesh_grlike, %i[int int pointer pointer pointer pointer pointer], :void
     attach_function :gr3_drawsurface, %i[int], :void
-    # attach_function gr3_surface, %i[int int pointer pointer pointer int], :void
+    attach_function :gr3_surface, %i[int int pointer pointer pointer int], :void
     attach_function :gr3_drawtubemesh, %i[int pointer pointer pointer int int], :int
-    # attach_function :gr3_createtubemesh, %i[pointer int pointer pointer pointer int int], :int
-    # attach_function gr3_drawspins, %i[int pointer pointer pointer float float float float], :void
+    attach_function :gr3_createtubemesh, %i[pointer int pointer pointer pointer int int], :int
+    attach_function :gr3_drawspins, %i[int pointer pointer pointer float float float float], :void
     # attach_function gr3_drawmolecule, %i[int pointer pointer pointer float pointer float], :void
     # attach_function gr3_createxslicemesh,
     # %i[pointer pointer uint uint uint uint uint uint uint double double double double double double], :void
