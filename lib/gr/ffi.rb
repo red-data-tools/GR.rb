@@ -47,7 +47,7 @@ module GR
     attach_function :gr_setmarkertype, %i[int], :void
     attach_function :gr_inqmarkertype, %i[pointer], :void
     attach_function :gr_setmarkersize, %i[double], :void
-    # gr_inqmarkersize is not implemented.
+    attach_function :gr_inqmarkersize, %i[pointer], :void
     attach_function :gr_setmarkercolorind, %i[int], :void
     attach_function :gr_inqmarkercolorind, %i[pointer], :void
     attach_function :gr_settextfontprec, %i[int int], :void

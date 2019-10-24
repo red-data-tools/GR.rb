@@ -111,6 +111,10 @@ module GR
       inquiry_int { |pt| super(pt) }
     end
 
+    def inqmarkersize
+      inquiry_double { |pt| super(pt) }
+    end
+
     def inqmarkercolorind
       inquiry_int { |pt| super(pt) }
     end
