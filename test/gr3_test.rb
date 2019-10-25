@@ -8,9 +8,13 @@ class GR3Test < Minitest::Test
     assert_instance_of String, GR3.ffi_lib
   end
 
+  def test_version
+    assert_instance_of String, GR3::VERSION
+  end
+
   def test_getimage
-    assert_equal GR3.getimage(2, 2, true),
-                 [0, 0, 0, 255, 0, 0, 0, 255, 0, 0, 0, 255, 0, 0, 0, 255]
+    assert_equal [0, 0, 0, 255, 0, 0, 0, 255, 0, 0, 0, 255, 0, 0, 0, 255],
+                 GR3.getimage(2, 2, true)
   end
 
   def teardown

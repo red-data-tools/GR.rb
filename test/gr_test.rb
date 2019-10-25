@@ -8,6 +8,10 @@ class GRTest < Minitest::Test
     assert_instance_of String, GR.ffi_lib
   end
 
+  def test_version
+    assert_instance_of String, GR::VERSION
+  end
+
   def test_gr_version
     assert_instance_of String, GR.version
   end
@@ -18,16 +22,16 @@ class GRTest < Minitest::Test
   end
 
   def test_hsvtorgb
-    assert_equal GR.hsvtorgb(0.2, 0.3, 0.5), [0.47, 0.5, 0.35]
+    assert_equal [0.47, 0.5, 0.35], GR.hsvtorgb(0.2, 0.3, 0.5)
   end
 
   def test_reducepoints
-    assert_equal GR.reducepoints([10, 4, 7, 1], [2, 6, 10, 14], 2),
-                 [[10.0, 7.0], [2.0, 10.0]]
+    assert_equal [[10.0, 7.0], [2.0, 10.0]],
+                 GR.reducepoints([10, 4, 7, 1], [2, 6, 10, 14], 2)
   end
 
   def test_COLORMAP_MAGMA
-    assert_equal GR::COLORMAP_MAGMA, 47
+    assert_equal 47, GR::COLORMAP_MAGMA
   end
 
   def teardown

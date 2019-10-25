@@ -2,3 +2,5 @@
 
 require 'minitest/autorun'
 require 'minitest/pride'
+
+require 'numo/narray'
