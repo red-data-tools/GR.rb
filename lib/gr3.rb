@@ -25,6 +25,7 @@ module GR3
              end
 
   require_relative 'gr_commons'
+  require_relative 'gr3/version'
   require_relative 'gr3/ffi'
   require_relative 'gr3/gr3base'
 

@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
+require_relative 'lib/gr_commons/version'
+
 Gem::Specification.new do |spec|
   spec.name          = 'ruby-gr'
-  spec.version       = '0.0.2'
+  spec.version       = GRCommons::VERSION
   spec.authors       = 'kojix2'
   spec.email         = '2xijok@gmail.com'
 
