@@ -115,7 +115,11 @@ module GR3
     def drawmolecule(positions, colors = nil, radii = nil, spins = nil,
                      bond_radius = nil, bond_color = nil, bond_delta = nil,
                      set_camera = true, rotation = 0, tilt = 0)
+      # Should `drawmolecule` take keyword arguments?
+      # Setting default values later for now.
 
+      # Should it be RubyArray instead of Narray?
+      # If NArray is required, add no NArray error.
       positions = Numo::SFloat.cast(positions)
       n = positions.shape[0]
 
@@ -137,7 +141,7 @@ module GR3
       bond_radius ||= 0.1
 
       if set_camera
-        deg2rad = ->(degree) { degree * Math::PI / 180 }
+        deg2rad = ->(degree) { degree * Math::PI / 180 } # room for improvement
         cx, cy, cz = *positions.mean(axis: 0)
         dx, dy, dz = *positions.ptp(axis: 0)
         d = [dx, dy].max / 2 / 0.4142 + 3
