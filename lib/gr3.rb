@@ -50,30 +50,18 @@ module GR3
   extend CheckError
 
   class << self
-    def createmesh_nocopy(_n, vertices, normals, colors)
-      inquiry_int do |mesh|
-        super(mesh, vertices, normals, colors)
-      end
-    end
+    # @!method gr3_init
+    # @!method free
+    # @!method terminate
+    # @!method geterror
+    # @!method getrenderpathstring
+    # @!method geterrorstring
+    # @!method clear
+    # @!method usecurrentframebuffer
+    # @!method useframebuffer
+    # @!method setquality
 
-    def createmesh(_n, vertices, normals, colors)
-      inquiry_int do |mesh|
-        super(mesh, vertices, normals, colors)
-      end
-    end
-
-    def createindexedmesh_nocopy(num_vertices, vertices, normals, colors, num_indices, indices)
-      inquiry_int do |mesh|
-        super(mesh, num_vertices, vertices, normals, colors, num_indices, indices)
-      end
-    end
-
-    def createindexedmesh(num_vertices, vertices, normals, colors, num_indices, indices)
-      inquiry_int do |mesh|
-        super(mesh, num_vertices, vertices, normals, colors, num_indices, indices)
-      end
-    end
-
+    # getimage
     def getimage(width, height, use_alpha = true)
       bpp = use_alpha ? 4 : 3
       inquiry(uint8: width * height * bpp) do |bitmap|
@@ -81,12 +69,68 @@ module GR3
       end
     end
 
+    # @!method export
+    # @!method drawimage
+
+    # createmesh_nocopy
+    def createmesh_nocopy(_n, vertices, normals, colors)
+      inquiry_int do |mesh|
+        super(mesh, vertices, normals, colors)
+      end
+    end
+
+    # createmesh
+    def createmesh(_n, vertices, normals, colors)
+      inquiry_int do |mesh|
+        super(mesh, vertices, normals, colors)
+      end
+    end
+
+    # createindexedmesh_nocopy
+    def createindexedmesh_nocopy(num_vertices, vertices, normals, colors, num_indices, indices)
+      inquiry_int do |mesh|
+        super(mesh, num_vertices, vertices, normals, colors, num_indices, indices)
+      end
+    end
+
+    # createindexedmesh
+    def createindexedmesh(num_vertices, vertices, normals, colors, num_indices, indices)
+      inquiry_int do |mesh|
+        super(mesh, num_vertices, vertices, normals, colors, num_indices, indices)
+      end
+    end
+
+    # @!method drawmesh
+    # @!method deletemesh
+    # @!method cameralookat
+    # @!method setcameraprojectionparameters
+    # @!method getcameraprojectionparameters
+    # @!method setlightdirection
+    # @!method setbackgroundcolor
+    # @!method createheightmapmesh
+    # @!method drawheightmap
+    # @!method drawconemesh
+    # @!method drawcylindermesh
+    # @!method drawspheremesh
+    # @!method drawcubemesh
+    # @!method setobjectid
+    # @!method selectid
+    # @!method getviewmatrix
+    # @!method setviewmatrix
+    # @!method getprojectiontype
+    # @!method setprojectiontype
+
+    # createsurfacemesh
     def createsurfacemesh(nx, ny, px, py, pz, option = 0)
       inquiry_int do |mesh|
         super(mesh, nx, ny, px, py, pz, option)
       end
     end
 
+    # @!method drawmesh_grlike
+    # @!method drawsurface
+
+    # surface
     def surface(px, py, pz, _option)
       nx = length(px)
       ny = length(py)
@@ -94,16 +138,19 @@ module GR3
       super(nx, ny, px, py, pz, ption)
     end
 
+    # drawtubemesh
     def drawtubemesh(n, points, colors, radii, num_steps = 10, num_segments = 20)
       super(n, points, colors, radii, num_steps, num_segments)
     end
 
+    # createtubemesh
     def createtubemesh(n, points, colors, radii, num_steps = 10, num_segments = 20)
       inquiry_uint do |mesh| # mesh should be Int?
         super(mesh, n, points, colors, radii, num_steps, num_segments)
       end
     end
 
+    # drawspins
     def drawspins(positions, directions, colors = nil,
                   cone_radius = 0.4, cylinder_radius = 0.2,
                   cone_height = 1.0, cylinder_height = 1.0)
@@ -112,6 +159,7 @@ module GR3
       super(n, positions, directions, colors, cone_radius, cylinder_radius, cone_height, cylinder_height)
     end
 
+    # drawmolecule
     def drawmolecule(positions, colors = nil, radii = nil, spins = nil,
                      bond_radius = nil, bond_color = nil, bond_delta = nil,
                      set_camera = true, rotation = 0, tilt = 0)
