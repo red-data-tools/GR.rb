@@ -246,7 +246,7 @@ module GR3
                  [255, 0, 255], [255, 0, 255], [255, 0, 255],
                  [255, 0, 255]].map! { |i| i.map! { |j| j / 255.0 } }
 
-  ATOM_NUMBERS = { H: 1, HE: 2, LI: 3, BE: 4, B: 5, C: 6, N: 7,
+  ATOM_NUMBERS = { H: 1, HE: 2, LI: 3, BE: 4, B: 5, C: 6, N: 7, # should keys be string?
                    O: 8, F: 9, NE: 10, NA: 11, MG: 12, AL: 13,
                    SI: 14, P: 15, S: 16, CL: 17, AR: 18, K: 19,
                    CA: 20, SC: 21, TI: 22, V: 23, CR: 24, MN: 25,

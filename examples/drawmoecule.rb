@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+# https://github.com/sciapp/python-gr/blob/master/examples/drawmolecule.py
 
 require 'gr'
 require 'gr3'
@@ -25,3 +26,4 @@ GR.setviewport(0, 1, 0, 1)
   GR.text(0.5, 1, 'DNA rendered using GR3.drawmolecule')
   GR.updatews
 end
+GR3.terminate
