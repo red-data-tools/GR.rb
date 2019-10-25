@@ -36,7 +36,6 @@ module GR
   # a FFI::MemoryPointer in the GRBase class.
 
   class << self
-
     # @!method initgr
     # @!method opengks
     # @!method closegks
@@ -56,14 +55,14 @@ module GR
     # @!method clearws
     # @!method updatews
 
-    # Draw a polyline using the current line attributes, 
+    # Draw a polyline using the current line attributes,
     # starting from the first data point and ending at the last data point.
     def polyline(x, y)
       n = equal_length(x, y)
       super(n, x, y)
     end
 
-    # Draw marker symbols centered at the given data points. 
+    # Draw marker symbols centered at the given data points.
     def polymarker(x, y)
       n = equal_length(x, y)
       super(n, x, y)
@@ -84,8 +83,8 @@ module GR
       super(n, x, y)
     end
 
-    # Display rasterlike images in a device-independent manner. 
-    # The cell array function partitions a rectangle given by two corner points into DIMX X DIMY cells, 
+    # Display rasterlike images in a device-independent manner.
+    # The cell array function partitions a rectangle given by two corner points into DIMX X DIMY cells,
     # each of them colored individually by the corresponding color index of the given cell array.
     def cellarray(xmin, xmax, ymin, ymax, dimx, dimy, color)
       super(xmin, xmax, ymin, ymax, dimx, dimy, 1, 1, dimx, dimy, int(color))
@@ -103,7 +102,7 @@ module GR
       super(x_org, y_org, phimin, phimax, rmin, rmax, dimphi, dimr, 1, 1, dimphi, dimr, int(color))
     end
 
-    # Generates a generalized drawing primitive (GDP) of the type you specify, 
+    # Generates a generalized drawing primitive (GDP) of the type you specify,
     # using specified points and any additional information contained in a data record.
     def gdp(x, y, primid, datrec)
       n = equal_length(x, y)
@@ -111,7 +110,7 @@ module GR
       super(n, x, y, primid, ldr, datrec)
     end
 
-    # Generate a cubic spline-fit, 
+    # Generate a cubic spline-fit,
     # starting from the first data point and ending at the last data point.
     def spline(px, py, m, method)
       n = equal_length(px, py)
@@ -252,7 +251,6 @@ module GR
       end
     end
 
-
     # @!method axes
 
     alias axes2d axes
@@ -272,7 +270,7 @@ module GR
       super(n, px, py, e1, e2)
     end
 
-    # Draw a 3D curve using the current line attributes, 
+    # Draw a 3D curve using the current line attributes,
     # starting from the first data point and ending at the last data point.
     def polyline3d(px, py, pz)
       n = equal_length(px, py, pz)
@@ -296,8 +294,8 @@ module GR
       super(nx, ny, px, py, pz, option)
     end
 
-    # Draw contours of a three-dimensional data set 
-    # whose values are specified over a rectangular mesh. 
+    # Draw contours of a three-dimensional data set
+    # whose values are specified over a rectangular mesh.
     # Contour lines may optionally be labeled.
     def contour(px, py, h, pz, major_h)
       # TODO: check: Arrays have incorrect length or dimension.
@@ -475,7 +473,7 @@ module GR
     # @!method selectcontext
     # @!method destroycontext
     # @!method uselinespec
-    
+
     # Reduces the number of points of the x and y array.
     def reducepoints(xd, yd, n)
       nd = equal_length(xd, yd)
@@ -508,7 +506,7 @@ module GR
       ny = length(y)
       super(nx, ny, x, y, u, v, (color ? 1 : 0))
     end
-  
+
     # interp2
     def interp2(x, y, z, xq, yq, method, extrapval) # flatten
       nx = length(x)
