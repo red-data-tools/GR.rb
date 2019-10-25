@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module GRCommons
+  # Jupyter Notebook and Jpyter Lab.
   module JupyterSupport
-    # For IRuby Notebook
 
     if defined? IRuby
       def self.extended(_obj)

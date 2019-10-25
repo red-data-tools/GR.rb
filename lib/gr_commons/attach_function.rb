@@ -2,6 +2,7 @@
 
 module GRCommons
   module AttachFunction
+    # Remember added method name
     def attach_function(name, *args)
       @ffi_methods ||= []
       @ffi_methods << name

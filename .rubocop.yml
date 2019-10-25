@@ -6,3 +6,6 @@ Metrics/LineLength:
 
 Naming/UncommunicativeMethodParamName:
   MinNameLength: 1
+
+Metrics/ParameterLists:
+  Max: 10
