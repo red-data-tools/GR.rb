@@ -3,7 +3,6 @@
 module GRCommons
   # Jupyter Notebook and Jpyter Lab.
   module JupyterSupport
-
     if defined? IRuby
       def self.extended(_obj)
         require 'tempfile'
