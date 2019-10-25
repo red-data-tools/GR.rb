@@ -9,7 +9,7 @@ Theta = 70.0   # initial angle
 Gamma = 0.1    # damping coefficient
 L = 0.2        # wire length
 
-w, h, Ball = GR.readimage(File.expand_path('ball.png', __dir__))
+_w, _h, Ball = GR.readimage(File.expand_path('ball.png', __dir__))
 
 def rk4(x, h, y, f)
   k1 = h * f.call(x, y)
@@ -54,7 +54,7 @@ def main
 
   while t < 30
     t, state = rk4(t, dt, state, deriv)
-    theta, omega = state.to_a
+    theta, _omega = state.to_a
 
     if Time.now - refresh > 0.02 # 20ms
       draw_cradle(theta)

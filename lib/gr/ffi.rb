@@ -8,7 +8,7 @@ module GR
 
     begin
       ffi_lib GR.ffi_lib
-    rescue LoadError => e
+    rescue LoadError
       raise LoadError, 'Could not find GR Framework'
     end
 

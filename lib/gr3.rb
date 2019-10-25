@@ -126,7 +126,7 @@ module GR3
       colors = if colors.nil?
                  Numo::SFloat.ones(n, 3)
                else
-                 hoge = Numo::SFloat.cast(colors).reshape(n, 3)
+                 Numo::SFloat.cast(colors).reshape(n, 3)
                end
 
       radii = if radii.nil?

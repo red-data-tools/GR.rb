@@ -511,7 +511,7 @@ module GR
     def interp2(x, y, z, xq, yq, method, extrapval) # flatten
       nx = length(x)
       ny = length(y)
-      nz = length(z)
+      # nz = length(z)
       nxq = length(xq)
       nyq = length(yq)
       inquiry(double: nxq * nyq) do |zq|

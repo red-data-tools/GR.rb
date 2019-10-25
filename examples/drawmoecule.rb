@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # https://github.com/sciapp/python-gr/blob/master/examples/drawmolecule.py
 
 require 'gr'
