@@ -52,12 +52,25 @@ module GR3
 
   class << self
     # @!method gr3_init
+    # This method initializes the gr3 context.
+
     # @!method free
+
     # @!method terminate
+    # This function terminates the gr3 context. 
+
     # @!method geterror
+    # This function returns information on the most recent GR3 error. 
+
     # @!method getrenderpathstring
+    # This function allows the user to find out how his commands are rendered. 
+
     # @!method geterrorstring
+    # This function returns a string representation of a given error code. 
+
     # @!method clear
+    # This function clears the draw list.
+
     # @!method usecurrentframebuffer
     # @!method useframebuffer
     # @!method setquality
@@ -80,21 +93,21 @@ module GR3
       end
     end
 
-    # createmesh
+    # This function creates a int from vertex position, normal and color data. 
     def createmesh(_n, vertices, normals, colors)
       inquiry_int do |mesh|
         super(mesh, vertices, normals, colors)
       end
     end
 
-    # createindexedmesh_nocopy
+    # This function creates a mesh from vertex position, normal and color data. 
     def createindexedmesh_nocopy(num_vertices, vertices, normals, colors, num_indices, indices)
       inquiry_int do |mesh|
         super(mesh, num_vertices, vertices, normals, colors, num_indices, indices)
       end
     end
 
-    # createindexedmesh
+    # This function creates a int from vertex position, normal and color data. 
     def createindexedmesh(num_vertices, vertices, normals, colors, num_indices, indices)
       inquiry_int do |mesh|
         super(mesh, num_vertices, vertices, normals, colors, num_indices, indices)
@@ -102,12 +115,28 @@ module GR3
     end
 
     # @!method drawmesh
+    # This function adds a mesh to the draw list, so it will be drawn when the user calls gr3_getpixmap. 
+
     # @!method deletemesh
+    # This function marks a mesh for deletion and removes the user’s reference from the mesh’s referenc counter, 
+    # so a user must not use the mesh after calling this function. 
+
     # @!method cameralookat
+    # This function sets the view matrix by getting the position of the camera, 
+    # the position of the center of focus and the direction which should point up.
+
     # @!method setcameraprojectionparameters
+    # This function sets the projection parameters.
+
     # @!method getcameraprojectionparameters
+    # Get the projection parameters.
+
     # @!method setlightdirection
+    # This function sets the direction of light.
+    
     # @!method setbackgroundcolor
+    # This function sets the background color. 
+
     # @!method createheightmapmesh
     # @!method drawheightmap
     # @!method drawconemesh
@@ -121,7 +150,7 @@ module GR3
     # @!method getprojectiontype
     # @!method setprojectiontype
 
-    # createsurfacemesh
+    # Create a mesh of a surface plot similar to gr_surface. 
     def createsurfacemesh(nx, ny, px, py, pz, option = 0)
       inquiry_int do |mesh|
         super(mesh, nx, ny, px, py, pz, option)
@@ -129,9 +158,12 @@ module GR3
     end
 
     # @!method drawmesh_grlike
-    # @!method drawsurface
+    # Draw a mesh with the projection of gr. 
 
-    # surface
+    # @!method drawsurface
+    # Convenience function for drawing a surfacemesh. 
+
+    # Create a surface plot with gr3 and draw it with gks as cellarray. 
     def surface(px, py, pz, _option)
       nx = length(px)
       ny = length(py)
