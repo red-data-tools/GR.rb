@@ -17,6 +17,12 @@ module GRCommons
       pt.write_array_of_uint8 data
     end
 
+    def uint16(data)
+      data = data.to_a.flatten
+      pt = ::FFI::MemoryPointer.new(:uint16, data.size)
+      pt.write_array_of_uint16 data
+    end
+
     def int(data)
       data = data.to_a.flatten
       pt = ::FFI::MemoryPointer.new(:int, data.size)
@@ -92,6 +98,15 @@ module GRCommons
       else
         pt.send("read_#{type}")
       end
+    end
+  end
+end
+
+# Ruby 2.4.0 introduces Comparable#clamp
+if RUBY_VERSION.to_f <= 2.3
+  class Numeric
+    def clamp(min, max)
+      [[self, max].min, min].max
     end
   end
 end

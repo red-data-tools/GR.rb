@@ -150,6 +150,23 @@ module GR3
     # @!method getprojectiontype
     # @!method setprojectiontype
 
+    # This function creates an isosurface from voxel data using the
+    # marching cubes algorithm.
+    # Returns a mesh.
+    def createisosurfacemesh(grid, step, offset, isolevel)
+      dim_x, dim_y, dim_z = grid.shape
+      step_x, step_y, step_z = step
+      offset_x, offset_y, offset_z = offset
+      # NArray does not have the strides method
+      stride_x = 2 * dim_y * dim_z
+      stride_y = 2 * dim_z
+      stride_z = 2
+      inquiry_int do |mesh|
+        super(mesh, uint16(grid), isolevel, dim_x, dim_y, dim_z,
+        stride_x, stride_y, stride_z, step_x, step_y, step_z, offset_x, offset_y, offset_z)
+      end
+    end
+
     # Create a mesh of a surface plot similar to gr_surface.
     def createsurfacemesh(nx, ny, px, py, pz, option = 0)
       inquiry_int do |mesh|
@@ -268,8 +285,8 @@ module GR3
       else
         raise ArgumentError, 'grid must be three dimensional array of Real numbers'
       end
-      scaling_factor = Numo::UInt16.max / input_max.to_f
-      grid = (grid.cast_to(Numo::UInt64) * scaling_factor).cast_to(:Numo::UInt16) # room for improvement
+      scaling_factor = Numo::UInt16::MAX / input_max.to_f
+      grid = (grid.cast_to(Numo::UInt64) * scaling_factor).cast_to(Numo::UInt16) # room for improvement
       nx, ny, nz = grid.shape
       if step.nil? && offset.nil?
         step = [2.0 / (nx - 1), 2.0 / (ny - 1), 2.0 / (nz - 1)]
@@ -286,40 +303,40 @@ module GR3
       stride_x = 1
       stride_y = nx
       stride_z = nx * ny
-      dim_x, dim_y, dim_z = grid.shape.map { |i| uint(i) }
+      dim_x, dim_y, dim_z = grid.shape
       step_x, step_y, step_z = *step
-      offset_x, offset_y, offset_z = offset.map { |i| double(i) }
+      offset_x, offset_y, offset_z = offset
 
       _mesh_x = if x
-                  x = Numo::UInt16.cast(x.clip(0, 1) * nx)
+                  x = (x.clamp(0, 1) * nx).floor
                   inquiry_int do |mesh|
-                    superclass.createxslicemesh(mesh, grid, uint(x),
-                                                dim_x, dim_y, dim_z,
-                                                stride_x, stride_y, stride_z,
-                                                step_x, step_y, step_z,
-                                                offset_x, offset_y, offset_z)
+                    createxslicemesh(nil, supercall: [mesh, grid, x,
+                                                      dim_x, dim_y, dim_z,
+                                                      stride_x, stride_y, stride_z,
+                                                      step_x, step_y, step_z,
+                                                      offset_x, offset_y, offset_z])
                   end
                 end
 
       _mesh_y = if y
-                  y = Numo::UInt16.cast(y.clip(0, 1) * ny)
+                  y = (y.clamp(0, 1) * ny).floor
                   inquiry_int do |mesh|
-                    superclass.createyslicemesh(mesh, grid, uint(y),
-                                                dim_x, dim_y, dim_z,
-                                                stride_x, stride_y, stride_z,
-                                                step_x, step_y, step_z,
-                                                offset_x, offset_y, offset_z)
+                    createyslicemesh(nil, supercall: [mesh, grid, y,
+                                                      dim_x, dim_y, dim_z,
+                                                      stride_x, stride_y, stride_z,
+                                                      step_x, step_y, step_z,
+                                                      offset_x, offset_y, offset_z])
                   end
                 end
 
       _mesh_z = if z
-                  z = Numo::UInt16.cast(z.clip(0, 1) * nz)
+                  z = (z.clamp(0, 1) * nz).floor
                   inquiry_int do |mesh|
-                    superclass.createzslicemesh(mesh, grid, uint(z),
-                                                dim_x, dim_y, dim_z,
-                                                stride_x, stride_y, stride_z,
-                                                step_x, step_y, step_z,
-                                                offset_x, offset_y, offset_z)
+                    createzslicemesh(nil, supercall: [mesh, grid, z,
+                                                      dim_x, dim_y, dim_z,
+                                                      stride_x, stride_y, stride_z,
+                                                      step_x, step_y, step_z,
+                                                      offset_x, offset_y, offset_z])
                   end
                 end
       [_mesh_x, _mesh_y, _mesh_z]
@@ -329,24 +346,36 @@ module GR3
     # using the current GR colormap. Use the x parameter to set the position of
     # the yz-slice.
     # Returns a mesh for the yz-slice.
-    def createxslicemeshes(grid, x = 0.5, step = nil, offset = nil)
-      createslicemeshes(grid, x, nil, nil, step, offset)
+    def createxslicemesh(grid, x = 0.5, step = nil, offset = nil, supercall: nil)
+      if supercall
+        super(*supercall)
+      else
+        createslicemeshes(grid, x, nil, nil, step, offset)
+      end
     end
 
     # Creates a meshes for a slices through the xz-plane of the given data,
     # using the current GR colormap. Use the y parameter to set the position of
     # the xz-slice.
     # Returns a mesh for the xz-slice.
-    def createyslicemeshes(grid, y = 0.5, step = nil, offset = nil)
-      createslicemeshes(grid, nil, y, nil, step, offset)
+    def createyslicemesh(grid, y = 0.5, step = nil, offset = nil, supercall: nil)
+      if supercall
+        super(*supercall)
+      else
+        createslicemeshes(grid, nil, y, nil, step, offset)
+      end
     end
 
     # Creates a meshes for a slices through the xy-plane of the given data,
     # using the current GR colormap. Use the z parameter to set the position of
     # the xy-slice.
     # Returns a mesh for the xy-slice.
-    def createzslicemeshes(grid, z = 0.5, step = nil, offset = nil)
-      createslicemeshes(grid, nil, nil, z, step, offset)
+    def createzslicemesh(grid, z = 0.5, step = nil, offset = nil, supercall: nil)
+      if supercall
+        super(*supercall)
+      else
+        createslicemeshes(grid, nil, nil, z, step, offset)
+      end
     end
 
     # Draw a yz-slice through the given data, using the current GR colormap.

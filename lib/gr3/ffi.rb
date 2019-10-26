@@ -59,9 +59,9 @@ module GR3
     # %i[pointer ushort uint uint uint uint uint uint double double double double double double pointer], :void
     # attach_function gr3_triangulateindexed
     # %i[pointer ushort uint uint uint uint uint uint double double double double double double pointer pointer pointer pointer poiter], :void
-    # attach_function :gr3_createisosurfacemesh,
-    #                 %i[pointer pointer ushort uint uint uint uint uint uint double double double double double double],
-    #                 :int
+    attach_function :gr3_createisosurfacemesh,
+                    %i[pointer pointer ushort uint uint uint uint uint uint double double double double double double],
+                    :int
     attach_function :gr3_createsurfacemesh, %i[pointer int int pointer pointer pointer int], :int
     attach_function :gr3_drawmesh_grlike, %i[int int pointer pointer pointer pointer pointer], :void
     attach_function :gr3_drawsurface, %i[int], :void
