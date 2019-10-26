@@ -165,8 +165,8 @@ module GR3
 
     # Create a surface plot with gr3 and draw it with gks as cellarray.
     def surface(px, py, pz, _option)
-      nx = length(px)
-      ny = length(py)
+      nx = px.length
+      ny = py.length
       # TODO: Check out_of_bounds
       super(nx, ny, px, py, pz, ption)
     end
@@ -187,7 +187,7 @@ module GR3
     def drawspins(positions, directions, colors = nil,
                   cone_radius = 0.4, cylinder_radius = 0.2,
                   cone_height = 1.0, cylinder_height = 1.0)
-      n = length(positions)
+      n = positions.length
       colors = [1] * n * 3 if colors.nil?
       super(n, positions, directions, colors, cone_radius, cylinder_radius, cone_height, cylinder_height)
     end

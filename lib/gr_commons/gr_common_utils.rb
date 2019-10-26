@@ -5,30 +5,10 @@ module GRCommons
     private
 
     def equal_length(*args)
-      lengths = args.map { |arg| length(arg) }
+      lengths = args.map(&:length)
       raise ArgumentError, 'Sequences must have same length.' unless lengths.all? { |l| l == lengths[0] }
 
       lengths[0]
-    end
-
-    def length(pt, dtype = :double)
-      case pt
-      when Array
-        pt.size
-      when ->(x) { narray? x }
-        pt.size
-      when ::FFI::MemoryPointer
-        case dtype
-        when :int
-          pt.size / ::FFI::Type::INT.size
-        when :double
-          pt.size / ::FFI::Type::DOUBLE.size
-        else
-          raise "Unknown type: #{dtype}"
-        end
-      else
-        raise
-      end
     end
 
     def uint8(data)

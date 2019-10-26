@@ -93,7 +93,7 @@ module GR
 
     # Display a two dimensional color index array with nonuniform cell sizes.
     def nonuniformcellarray(x, y, dimx, dimy, color)
-      raise ArgumentError unless length(x) == dimx + 1 && length(y) == dimy + 1
+      raise ArgumentError unless x.length == dimx + 1 && y.length == dimy + 1
 
       super(x, y, dimx, dimy, 1, 1, dimx, dimy, int(color))
     end
@@ -107,7 +107,7 @@ module GR
     # using specified points and any additional information contained in a data record.
     def gdp(x, y, primid, datrec)
       n = equal_length(x, y)
-      ldr = length(datrec, :int)
+      ldr = datrec.length
       super(n, x, y, primid, ldr, datrec)
     end
 
@@ -290,8 +290,8 @@ module GR
     # Draw a three-dimensional surface plot for the given data points.
     def surface(px, py, pz, option)
       # TODO: check: Arrays have incorrect length or dimension.
-      nx = length(px)
-      ny = length(py)
+      nx = px.length
+      ny = py.length
       super(nx, ny, px, py, pz, option)
     end
 
@@ -300,9 +300,9 @@ module GR
     # Contour lines may optionally be labeled.
     def contour(px, py, h, pz, major_h)
       # TODO: check: Arrays have incorrect length or dimension.
-      nx = length(px)
-      ny = length(py)
-      nh = h.size
+      nx = px.length
+      ny = py.length
+      nh = h.length
       super(nx, ny, nh, px, py, h, pz, major_h)
     end
 
@@ -310,22 +310,22 @@ module GR
     # whose values are specified over a rectangular mesh.
     def contourf(px, py, h, pz, major_h)
       # TODO: check: Arrays have incorrect length or dimension.
-      nx = length(px)
-      ny = length(py)
-      nh = h.size
+      nx = px.length
+      ny = py.length
+      nh = h.length
       super(nx, ny, nh, px, py, h, pz, major_h)
     end
 
     # Draw a contour plot for the given triangle mesh.
     def tricontour(x, y, z, levels)
-      npoints = length(x) # equal_length ?
-      nlevels = length(levels)
+      npoints = x.length # equal_length ?
+      nlevels = levels.length
       super(npoints, x, y, z, nlevels, levels)
     end
 
     # hexbin
     def hexbin(x, y, nbins)
-      n = length(x)
+      n = x.length
       super(n, x, y, nbins)
     end
 
@@ -342,7 +342,7 @@ module GR
       if positions.nil?
         positions = ::FFI::Pointer::NULL
       else
-        raise if length(positions) != n
+        raise if positions.length != n
       end
       super(n, r, g, b, positions)
     end
@@ -408,7 +408,7 @@ module GR
 
     # Draw simple and compound outlines consisting of line segments and bezier curves.
     def drawpath(points, codes, fill)
-      len = length(codes)
+      len = codes.length
       super(len, points, uint8(codes), fill)
     end
 
@@ -486,15 +486,15 @@ module GR
 
     # Draw a triangular surface plot for the given data points.
     def trisurface(px, py, pz)
-      n = [length(px), length(py), length(pz)].min
+      n = [px, py, pz].map(&:length).min
       super(n, px, py, pz)
     end
 
     # gradient
     def gradient(x, y, z)
       # TODO: check: Arrays have incorrect length or dimension.
-      nx = length(x)
-      ny = length(y)
+      nx = x.length
+      ny = y.length
       inquiry [{ double: nx * ny }, { double: nx * ny }] do |pu, pv|
         super(nx, ny, x, y, z, pu, pv)
       end
@@ -503,18 +503,18 @@ module GR
     # quiver
     def quiver(x, y, u, v, color)
       # TODO: check: Arrays have incorrect length or dimension.
-      nx = length(x)
-      ny = length(y)
+      nx = x.length
+      ny = y.length
       super(nx, ny, x, y, u, v, (color ? 1 : 0))
     end
 
     # interp2
     def interp2(x, y, z, xq, yq, method, extrapval) # flatten
-      nx = length(x)
-      ny = length(y)
-      # nz = length(z)
-      nxq = length(xq)
-      nyq = length(yq)
+      nx = x.length
+      ny = y.length
+      # nz = z.length
+      nxq = xq.length
+      nyq = yq.length
       inquiry(double: nxq * nyq) do |zq|
         super(nx, ny, x, y, z, nxq, nyq, xq, yq, zq, method, extrapval)
       end
@@ -527,14 +527,14 @@ module GR
 
     # Display a point set as a aggregated and rasterized image.
     def shadepoints(x, y, dims: [1200, 1200], xform: 1)
-      n = length(x)
+      n = x.length
       w, h = dims
       super(n, x, y, xform, w, h)
     end
 
     # Display a line set as an aggregated and rasterized image.
     def shadelines(x, y, dims: [1200, 1200], xform: 1)
-      n = length(x)
+      n = x.length
       w, h = dims
       super(n, x, y, xform, w, h)
     end
