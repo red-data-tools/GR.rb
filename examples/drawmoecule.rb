@@ -6,14 +6,14 @@ require 'gr'
 require 'gr3'
 require 'numo/narray'
 
-dna = File.readlines(File.expand_path('dna.xyz', __dir__))
-dna = dna[2..-2]
-dna.map! { |row| row.split(' ') }
+data = File.readlines(File.expand_path('dna.xyz', __dir__))
+data = data[2..-2]
+data.map! { |row| row.split(' ') }
 
-positions = dna.map { |row| row[1..3].map(&:to_f) }
-atoms = dna.map { |row| row[0] }.map { |a| GR3::ATOM_NUMBERS[a.to_sym] }
-colors = atoms.map { |a| GR3::ATOM_COLORS[a] }
-radii = atoms.map { |a| GR3::ATOM_RADII[a] }
+positions = data.map { |row| row[1..3].map(&:to_f) }
+atoms     = data.map { |row| row[0] }.map { |a| GR3::ATOM_NUMBERS[a] }
+colors    = atoms.map { |a| GR3::ATOM_COLORS[a] }
+radii     = atoms.map { |a| GR3::ATOM_RADII[a] }
 
 GR.setviewport(0, 1, 0, 1)
 
