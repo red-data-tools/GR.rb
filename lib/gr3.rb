@@ -245,6 +245,110 @@ module GR3
       end
     end
 
+    # Creates meshes for slices through the given data, using the current GR
+    # colormap. Use the parameters x, y or z to specify what slices should be
+    # drawn and at which positions they should go through the data. If neither
+    # x nor y nor z are set, 0.5 will be used for all three.
+    # Returns meshes for the yz-slice, the xz-slice and the xy-slice.
+    def createslicemeshes(grid, x = nil, y = nil, z = nil, step: nil, offset: nil)
+      if [x, y, z].all?(&:nil?)
+        x = 0.5
+        y = 0.5
+        z = 0.5
+      end
+      # TODO: raise error when grid is not narray
+      case grid.class::MAX
+      when Integer
+        input_max = grid.class::MAX
+      when Float
+        # floating point values are expected to be in range [0, 1]
+        # Complex narrays are not taken into account
+        input_max = 1
+        grid[grid > 1] = 1
+      else
+        raise ArgumentError, 'grid must be three dimensional array of Real numbers'
+      end
+      scaling_factor = Numo::UInt16.max / input_max.to_f
+      grid = (grid.cast_to(Numo::UInt64) * scaling_factor).cast_to(:Numo::UInt16) # room for improvement
+      nx, ny, nz = grid.shape
+      if step.nil? && offset.nil?
+        step = [2.0 / (nx - 1), 2.0 / (ny - 1), 2.0 / (nz - 1)]
+        offset = [-1.0, -1.0, -1.0]
+      elsif offset.nil?
+        offset = [-step[0] * (nx - 1) / 2.0,
+                  -step[1] * (ny - 1) / 2.0,
+                  -step[2] * (nz - 1) / 2.0]
+      elsif step.nil?
+        step = [-offset[0] * 2.0 / (nx - 1),
+                -offset[1] * 2.0 / (ny - 1),
+                -offset[2] * 2.0 / (nz - 1)]
+      end
+      stride_x = 1
+      stride_y = nx
+      stride_z = nx * ny
+      dim_x, dim_y, dim_z = grid.shape.map { |i| uint(i) }
+      step_x, step_y, step_z = *step
+      offset_x, offset_y, offset_z = offset.map { |i| double(i) }
+
+      _mesh_x = if x
+        x = Numo::UInt16.cast(x.clip(0, 1) * nx)
+                  inquiry_int do |mesh|
+                    superclass.createxslicemesh(mesh, grid, uint(x),
+                                                dim_x, dim_y, dim_z,
+                                                stride_x, stride_y, stride_z,
+                                                step_x, step_y, step_z,
+                                                offset_x, offset_y, offset_z)
+                  end
+                end
+
+      _mesh_y = if y
+        y = Numo::UInt16.cast(y.clip(0, 1) * ny)
+                  inquiry_int do |mesh|
+                    superclass.createyslicemesh(mesh, grid, uint(y),
+                                                dim_x, dim_y, dim_z,
+                                                stride_x, stride_y, stride_z,
+                                                step_x, step_y, step_z,
+                                                offset_x, offset_y, offset_z)
+                  end
+                end
+
+      _mesh_z = if z
+        z = Numo::UInt16.cast(z.clip(0, 1) * nz)
+                  inquiry_int do |mesh|
+                    superclass.createzslicemesh(mesh, grid, uint(z),
+                                                dim_x, dim_y, dim_z,
+                                                stride_x, stride_y, stride_z,
+                                                step_x, step_y, step_z,
+                                                offset_x, offset_y, offset_z)
+                  end
+                end
+      [_mesh_x, _mesh_y, _mesh_z]
+    end
+
+    # Creates a meshes for a slices through the yz-plane of the given data,
+    # using the current GR colormap. Use the x parameter to set the position of
+    # the yz-slice.
+    # Returns a mesh for the yz-slice.
+    def createxslicemeshes(grid, x = 0.5, step = nil, offset = nil)
+      createslicemeshes(grid, x, nil, nil, step, offset)
+    end
+
+    # Creates a meshes for a slices through the xz-plane of the given data,
+    # using the current GR colormap. Use the y parameter to set the position of
+    # the xz-slice.
+    # Returns a mesh for the xz-slice.
+    def createyslicemeshes(grid, y = 0.5, step = nil, offset = nil)
+      createslicemeshes(grid, nil, y, nil, step, offset)
+    end
+
+    # Creates a meshes for a slices through the xy-plane of the given data,
+    # using the current GR colormap. Use the z parameter to set the position of
+    # the xy-slice.
+    # Returns a mesh for the xy-slice.
+    def createzslicemeshes(grid, z = 0.5, step = nil, offset = nil)
+      createslicemeshes(grid, nil, nil, z, step, offset)
+    end
+
     def volume(data, algorithm)
       inquiry %i[double double] do |dmin, dmax|
         dmin.write_double(-1)

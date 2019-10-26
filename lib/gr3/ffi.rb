@@ -69,12 +69,15 @@ module GR3
     attach_function :gr3_createtubemesh, %i[pointer int pointer pointer pointer int int], :int
     attach_function :gr3_drawspins, %i[int pointer pointer pointer float float float float], :void
     attach_function :gr3_drawmolecule, %i[int pointer pointer pointer float pointer float], :void
-    # attach_function gr3_createxslicemesh,
-    # %i[pointer pointer uint uint uint uint uint uint uint double double double double double double], :void
-    # attach_function gr3_createyslicemesh
-    # %i[pointer pointer uint uint uint uint uint uint uint double double double double double double], :void
-    # attach_function gr3_createzslicemesh
-    # %i[pointer pointer uint uint uint uint uint uint uint double double double double double double], :void
+    attach_function :gr3_createxslicemesh,
+                    %i[pointer pointer uint uint uint uint uint uint uint double double double double double double],
+                    :void
+    attach_function :gr3_createyslicemesh,
+                    %i[pointer pointer uint uint uint uint uint uint uint double double double double double double],
+                    :void
+    attach_function :gr3_createzslicemesh,
+                    %i[pointer pointer uint uint uint uint uint uint uint double double double double double double],
+                    :void
     # attach_function gr3_drawxslicemesh
     # %i[pointer uint uint uint uint uint uint uint double double double double double double], :void
     # attach_function gr3_drawyslicemesh
@@ -82,6 +85,6 @@ module GR3
     # attach_function gr3_drawzslicemesh
     # %i[pointer uint uint uint uint uint uint uint double double double double double double], :void
     # attach_function gr3_drawtrianglesurface, %i[int pointer], :void
-    attach_function gr_volume, %i[int int int pointer int pointer pointer], :void
+    attach_function :gr_volume, %i[int int int pointer int pointer pointer], :void
   end
 end
