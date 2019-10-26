@@ -250,7 +250,7 @@ module GR3
     # drawn and at which positions they should go through the data. If neither
     # x nor y nor z are set, 0.5 will be used for all three.
     # Returns meshes for the yz-slice, the xz-slice and the xy-slice.
-    def createslicemeshes(grid, x = nil, y = nil, z = nil, step: nil, offset: nil)
+    def createslicemeshes(grid, x = nil, y = nil, z = nil, step = nil, offset = nil)
       if [x, y, z].all?(&:nil?)
         x = 0.5
         y = 0.5
