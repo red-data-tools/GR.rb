@@ -82,6 +82,6 @@ module GR3
     # attach_function gr3_drawzslicemesh
     # %i[pointer uint uint uint uint uint uint uint double double double double double double], :void
     # attach_function gr3_drawtrianglesurface, %i[int pointer], :void
-    # attach_function gr_volume, %i[int int int pointer int pointer pointer], :void
+    attach_function gr_volume, %i[int int int pointer int pointer pointer], :void
   end
 end
