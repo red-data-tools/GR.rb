@@ -291,7 +291,7 @@ module GR3
       offset_x, offset_y, offset_z = offset.map { |i| double(i) }
 
       _mesh_x = if x
-        x = Numo::UInt16.cast(x.clip(0, 1) * nx)
+                  x = Numo::UInt16.cast(x.clip(0, 1) * nx)
                   inquiry_int do |mesh|
                     superclass.createxslicemesh(mesh, grid, uint(x),
                                                 dim_x, dim_y, dim_z,
@@ -302,7 +302,7 @@ module GR3
                 end
 
       _mesh_y = if y
-        y = Numo::UInt16.cast(y.clip(0, 1) * ny)
+                  y = Numo::UInt16.cast(y.clip(0, 1) * ny)
                   inquiry_int do |mesh|
                     superclass.createyslicemesh(mesh, grid, uint(y),
                                                 dim_x, dim_y, dim_z,
@@ -313,7 +313,7 @@ module GR3
                 end
 
       _mesh_z = if z
-        z = Numo::UInt16.cast(z.clip(0, 1) * nz)
+                  z = Numo::UInt16.cast(z.clip(0, 1) * nz)
                   inquiry_int do |mesh|
                     superclass.createzslicemesh(mesh, grid, uint(z),
                                                 dim_x, dim_y, dim_z,
@@ -347,6 +347,49 @@ module GR3
     # Returns a mesh for the xy-slice.
     def createzslicemeshes(grid, z = 0.5, step = nil, offset = nil)
       createslicemeshes(grid, nil, nil, z, step, offset)
+    end
+
+    # Draw a yz-slice through the given data, using the current GR colormap.
+    def drawxslicemesh(grid, x = 0.5, step = nil, offset = nil,
+                       position = [0, 0, 0], direction = [0, 0, 1], up = [0, 1, 0],
+                       color = [1, 1, 1], scale = [1, 1, 1])
+      mesh = createxslicemesh(grid, x, step, offset)
+      drawmesh(mesh, 1, position, direction, up, color, scale)
+      deletemesh(mesh)
+    end
+
+    # Draw a xz-slice through the given data, using the current GR colormap.
+    def drawyslicemesh(grid, y = 0.5, step = nil, offset = nil,
+                       position = [0, 0, 0], direction = [0, 0, 1], up = [0, 1, 0],
+                       color = [1, 1, 1], scale = [1, 1, 1])
+      mesh = createyslicemesh(grid, y, step, offset)
+      drawmesh(mesh, 1, position, direction, up, color, scale)
+      deletemesh(mesh)
+    end
+
+    # Draw a xy-slice through the given data, using the current GR colormap.
+    def drawzslicemesh(grid, z = 0.5, step = nil, offset = nil,
+                       position = [0, 0, 0], direction = [0, 0, 1], up = [0, 1, 0],
+                       color = [1, 1, 1], scale = [1, 1, 1])
+      mesh = createzslicemesh(grid, z, step, offset)
+      drawmesh(mesh, 1, position, direction, up, color, scale)
+      deletemesh(mesh)
+    end
+
+    # raw slices through the given data, using the current GR colormap.
+    # Use the parameters x, y or z to specify what slices should be drawn and at
+    # which positions they should go through the data. If neither x nor y nor
+    # z are set, 0.5 will be used for all three.
+    def drawslicemeshes(grid, x = nil, y = nil, z = nil, step = nil,
+                        offset = nil, position = [0, 0, 0], direction = [0, 0, 1], up = [0, 1, 0],
+                        color = [1, 1, 1], scale = [1, 1, 1])
+      meshes = createslicemeshes(grid, x, y, z, step, offset)
+      meshes.each do |mesh|
+        if mesh
+          drawmesh(mesh, 1, position, direction, up, color, scale)
+          deletemesh(mesh)
+        end
+      end
     end
 
     def volume(data, algorithm)

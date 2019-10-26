@@ -60,7 +60,8 @@ module GR3
     # attach_function gr3_triangulateindexed
     # %i[pointer ushort uint uint uint uint uint uint double double double double double double pointer pointer pointer pointer poiter], :void
     # attach_function :gr3_createisosurfacemesh,
-    # %i[pointer pointer ushort uint uint uint uint uint uint double double double double double double], :int
+    #                 %i[pointer pointer ushort uint uint uint uint uint uint double double double double double double],
+    #                 :int
     attach_function :gr3_createsurfacemesh, %i[pointer int int pointer pointer pointer int], :int
     attach_function :gr3_drawmesh_grlike, %i[int int pointer pointer pointer pointer pointer], :void
     attach_function :gr3_drawsurface, %i[int], :void
@@ -78,12 +79,15 @@ module GR3
     attach_function :gr3_createzslicemesh,
                     %i[pointer pointer uint uint uint uint uint uint uint double double double double double double],
                     :void
-    # attach_function gr3_drawxslicemesh
-    # %i[pointer uint uint uint uint uint uint uint double double double double double double], :void
-    # attach_function gr3_drawyslicemesh
-    # %i[pointer uint uint uint uint uint uint uint double double double double double double], :void
-    # attach_function gr3_drawzslicemesh
-    # %i[pointer uint uint uint uint uint uint uint double double double double double double], :void
+    attach_function :gr3_drawxslicemesh,
+                    %i[pointer uint uint uint uint uint uint uint double double double double double double],
+                    :void
+    attach_function :gr3_drawyslicemesh,
+                    %i[pointer uint uint uint uint uint uint uint double double double double double double],
+                    :void
+    attach_function :gr3_drawzslicemesh,
+                    %i[pointer uint uint uint uint uint uint uint double double double double double double],
+                    :void
     # attach_function gr3_drawtrianglesurface, %i[int pointer], :void
     attach_function :gr_volume, %i[int int int pointer int pointer pointer], :void
   end
