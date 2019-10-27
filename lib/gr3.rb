@@ -153,14 +153,15 @@ module GR3
     # This function creates an isosurface from voxel data using the
     # marching cubes algorithm.
     # Returns a mesh.
-    def createisosurfacemesh(grid, step, offset, isolevel)
+    def createisosurfacemesh(grid, stride, step, offset, isolevel)
       dim_x, dim_y, dim_z = grid.shape
       step_x, step_y, step_z = step
       offset_x, offset_y, offset_z = offset
       # NArray does not have the strides method
-      stride_x = 2 * dim_y * dim_z
-      stride_y = 2 * dim_z
-      stride_z = 2
+      # stride_x =  2 * dim_y * dim_z
+      # stride_y =  2 * dim_z
+      # stride_z =  2
+      stride_x, stride_y, stride_z = stride
       inquiry_int do |mesh|
         super(mesh, uint16(grid), isolevel, dim_x, dim_y, dim_z,
         stride_x, stride_y, stride_z, step_x, step_y, step_z, offset_x, offset_y, offset_z)
