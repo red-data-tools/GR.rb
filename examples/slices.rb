@@ -6,11 +6,11 @@ require 'gr'
 require 'gr3'
 require 'numo/narray'
 
-# data = open(stream -> read!(stream, Array{UInt16}(undef, 93, 64, 64)), "mri.raw")
 data = Numo::UInt16.from_string(File.binread(File.expand_path('mri.raw', __dir__)))
                    .reshape(64, 64, 93)
 data[data > 2000] = 2000
-data = (data / 2000.0 * Numo::UInt16::MAX) - 10
+data = Numo::UInt16.cast((data / 2000.0 * Numo::UInt16::MAX).floor)
+data = data.transpose(2, 1, 0)
 
 def draw(mesh, x: nil, y: nil, z: nil, d: nil)
   GR3.clear
@@ -24,7 +24,7 @@ end
 GR.setviewport(0, 1, 0, 1)
 GR3.cameralookat(-3, 2, -2, 0, 0, 0, 0, 0, -1)
 
-mesh = GR3.createisosurfacemesh(data, [2.0 / 63, 2.0 / 63, 2.0 / 92], [-1.0, -1.0, -1.0], 40_000)
+mesh = GR3.createisosurfacemesh(data, [1, 64, 4096], [2.0 / 63, 2.0 / 63, 2.0 / 92], [-1.0, -1.0, -1.0], 40_000)
 
 GR.setcolormap(1)
 
