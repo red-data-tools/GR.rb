@@ -38,7 +38,7 @@ wave.each_buffer(SAMPLES) do |buffer|
 
   GR.polyline([*1..SAMPLES], amplitudes)
   GR.updatews
-  waiting_time = ((SAMPLES / SAMPLING_RATE) * count - (Time.now - start_time))
+  waiting_time = ((SAMPLES / SAMPLING_RATE.to_f) * count - (Time.now - start_time))
   sleep(waiting_time) if waiting_time > 0
   count += 1
 end
