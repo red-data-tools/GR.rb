@@ -153,7 +153,7 @@ module GR3
     # This function creates an isosurface from voxel data using the
     # marching cubes algorithm.
     # Returns a mesh.
-    def createisosurfacemesh(grid, _stride, step, offset, isolevel)
+    def createisosurfacemesh(grid, step, offset, isolevel)
       dim_x, dim_y, dim_z = grid.shape
       step_x, step_y, step_z = step
       offset_x, offset_y, offset_z = offset
