@@ -55,9 +55,9 @@ module GR3
     attach_function :gr3_setviewmatrix, %i[pointer], :void
     attach_function :gr3_getprojectiontype, %i[], :int
     attach_function :gr3_setprojectiontype, %i[int], :void
-    # attach_function gr3_triangulate
+    # attach_function :gr3_triangulate,
     # %i[pointer ushort uint uint uint uint uint uint double double double double double double pointer], :void
-    # attach_function gr3_triangulateindexed
+    # attach_function :gr3_triangulateindexed,
     # %i[pointer ushort uint uint uint uint uint uint double double double double double double pointer pointer pointer pointer poiter], :void
     attach_function :gr3_createisosurfacemesh,
                     %i[pointer pointer ushort uint uint uint uint uint uint double double double double double double],
@@ -88,7 +88,7 @@ module GR3
     attach_function :gr3_drawzslicemesh,
                     %i[pointer uint uint uint uint uint uint uint double double double double double double],
                     :void
-    # attach_function gr3_drawtrianglesurface, %i[int pointer], :void
+    #attach_function :gr3_drawtrianglesurface, %i[int pointer], :void
     attach_function :gr_volume, %i[int int int pointer int pointer pointer], :void
   end
 end
