@@ -37,9 +37,17 @@ module GR
   # a FFI::MemoryPointer in the GRBase class.
 
   class << self
-    # @!method initgr
-    # @!method opengks
-    # @!method closegks
+    def initgr(*)
+      super
+    end
+
+    def opengks(*)
+      super
+    end
+
+    def closegks(*)
+      super
+    end
 
     # inqdspsize
     def inqdspsize
@@ -48,13 +56,33 @@ module GR
       end
     end
 
-    # @!method openws
-    # @!method closews
-    # @!method activatews
-    # @!method deactivatews
-    # @!method configurews
-    # @!method clearws
-    # @!method updatews
+    def openws(*)
+      super
+    end
+
+    def closews(*)
+      super
+    end
+
+    def activatews(*)
+      super
+    end
+
+    def deactivatews(*)
+      super
+    end
+
+    def configurews(*)
+      super
+    end
+
+    def clearws(*)
+      super
+    end
+
+    def updatews(*)
+      super
+    end
 
     # Draw a polyline using the current line attributes,
     # starting from the first data point and ending at the last data point.
@@ -69,7 +97,9 @@ module GR
       super(n, x, y)
     end
 
-    # @!method text
+    def text(*)
+      super
+    end
 
     # inqtext
     def inqtext(x, y, string)
@@ -126,86 +156,135 @@ module GR
       end
     end
 
-    # @!method setlinetype
+    def setlinetype(*)
+      super
+    end
 
     # inqlinetype
     def inqlinetype
       inquiry_int { |pt| super(pt) }
     end
 
-    # @!method setlinewidth
+    def setlinewidth(*)
+      super
+    end
 
     # inqlinewidth
     def inqlinewidth
       inquiry_double { |pt| super(pt) }
     end
 
-    # @!method setlinecolorind
+    def setlinecolorind(*)
+      super
+    end
 
     # inqlinecolorind
     def inqlinecolorind
       inquiry_int { |pt| super(pt) }
     end
 
-    # @!method setmarkertype
+    def setmarkertype(*)
+      super
+    end
 
     # inqmarkertype
     def inqmarkertype
       inquiry_int { |pt| super(pt) }
     end
 
-    # @!method setmarkersize
+    def setmarkersize(*)
+      super
+    end
 
     # inqmarkersize
     def inqmarkersize
       inquiry_double { |pt| super(pt) }
     end
 
-    # @!method setmarkercolorind
+    def setmarkercolorind(*)
+      super
+    end
 
     # inqmarkercolorind
     def inqmarkercolorind
       inquiry_int { |pt| super(pt) }
     end
 
-    # @!method settextfontprec
-    # @!method setcharexpan
-    # @!method setcharspace
-    # @!method settextcolorind
-    # @!method setcharheight
-    # @!method setcharup
-    # @!method settextpath
-    # @!method settextalign
-    # @!method setfillintstyle
+    def settextfontprec(*)
+      super
+    end
+
+    def setcharexpan(*)
+      super
+    end
+
+    def setcharspace(*)
+      super
+    end
+
+    def settextcolorind(*)
+      super
+    end
+
+    def setcharheight(*)
+      super
+    end
+
+    def setcharup(*)
+      super
+    end
+
+    def settextpath(*)
+      super
+    end
+
+    def settextalign(*)
+      super
+    end
+
+    def setfillintstyle(*)
+      super
+    end
 
     # inqfillintstyle
     def inqfillintstyle
       inquiry_int { |pt| super(pt) }
     end
 
-    # @!method setfillstyle
+    def setfillstyle(*)
+      super
+    end
 
     # inqfillstyle
     def inqfillstyle
       inquiry_int { |pt| super(pt) }
     end
 
-    # @!method setfillcolorind
+    def setfillcolorind(*)
+      super
+    end
 
     # inqfillcolorind
     def inqfillcolorind
       inquiry_int { |pt| super(pt) }
     end
 
-    # @!method setcolorrep
-    # @!method setscale
+    def setcolorrep(*)
+      super
+    end
+
+    def setscale(*)
+      super
+    end
 
     # inqscale
     def inqscale
       inquiry_int { |pt| super(pt) }
     end
 
-    # @!method setwindow
+    def setwindow(*)
+      super
+    end
 
     # inqwindow
     def inqwindow
@@ -214,7 +293,9 @@ module GR
       end
     end
 
-    # @!method setviewport
+    def setviewport(*)
+      super
+    end
 
     # inqviewport
     def inqviewport
@@ -223,18 +304,53 @@ module GR
       end
     end
 
-    # @!method selntran
-    # @!method setclip
-    # @!method setwswindow
-    # @!method setwsviewport
-    # @!method createseg
-    # @!method copysegws
-    # @!method redrawsegws
-    # @!method setsegtran
-    # @!method closeseg
-    # @!method emergencyclosegks
-    # @!method updategks
-    # @!method setspace
+    def selntran(*)
+      super
+    end
+
+    def setclip(*)
+      super
+    end
+
+    def setwswindow(*)
+      super
+    end
+
+    def setwsviewport(*)
+      super
+    end
+
+    def createseg(*)
+      super
+    end
+
+    def copysegws(*)
+      super
+    end
+
+    def redrawsegws(*)
+      super
+    end
+
+    def setsegtran(*)
+      super
+    end
+
+    def closeseg(*)
+      super
+    end
+
+    def emergencyclosegks(*)
+      super
+    end
+
+    def updategks(*)
+      super
+    end
+
+    def setspace(*)
+      super
+    end
 
     # inqspace
     def inqspace
@@ -243,7 +359,9 @@ module GR
       end
     end
 
-    # @!method textext
+    def textext(*)
+      super
+    end
 
     # inqtextext
     def inqtextext(x, y, string)
@@ -252,12 +370,19 @@ module GR
       end
     end
 
-    # @!method axes
+    def axes(*)
+      super
+    end
 
     alias axes2d axes
 
-    # @!method grid
-    # @!method grid3d
+    def grid(*)
+      super
+    end
+
+    def grid3d(*)
+      super
+    end
 
     # Draw a standard vertical error bar graph.
     def verrorbars(px, py, e1, e2)
@@ -284,8 +409,13 @@ module GR
       super(n, px, py, pz)
     end
 
-    # @!method axes3d
-    # @!method titles3d
+    def axes3d(*)
+      super
+    end
+
+    def titles3d(*)
+      super
+    end
 
     # Draw a three-dimensional surface plot for the given data points.
     def surface(px, py, pz, option)
@@ -329,7 +459,9 @@ module GR
       super(n, x, y, nbins)
     end
 
-    # @!method setcolormap
+    def setcolormap(*)
+      super
+    end
 
     # inqcolormap
     def inqcolormap
@@ -347,7 +479,9 @@ module GR
       super(n, r, g, b, positions)
     end
 
-    # @!method colorbar
+    def colorbar(*)
+      super
+    end
 
     # inqcolor
     def inqcolor(color)
@@ -356,7 +490,9 @@ module GR
       end
     end
 
-    # @!method inqcolorfromrgb
+    def inqcolorfromrgb(*)
+      super
+    end
 
     # hsvtorgb
     def hsvtorgb(h, s, v)
@@ -365,13 +501,33 @@ module GR
       end
     end
 
-    # @!method tick
-    # @!method validaterange
-    # @!method adjustlimits
-    # @!method adjustrange
-    # @!method beginprint
-    # @!method beginprintext
-    # @!method endprint
+    def tick(*)
+      super
+    end
+
+    def validaterange(*)
+      super
+    end
+
+    def adjustlimits(*)
+      super
+    end
+
+    def adjustrange(*)
+      super
+    end
+
+    def beginprint(*)
+      super
+    end
+
+    def beginprintext(*)
+      super
+    end
+
+    def endprint(*)
+      super
+    end
 
     # ndctowc
     def ndctowc(x, y)
@@ -401,10 +557,21 @@ module GR
       end
     end
 
-    # @!method drawrect
-    # @!method fillrect
-    # @!method drawarc
-    # @!method fillarc
+    def drawrect(*)
+      super
+    end
+
+    def fillrect(*)
+      super
+    end
+
+    def drawarc(*)
+      super
+    end
+
+    def fillarc(*)
+      super
+    end
 
     # Draw simple and compound outlines consisting of line segments and bezier curves.
     def drawpath(points, codes, fill)
@@ -412,9 +579,17 @@ module GR
       super(len, points, uint8(codes), fill)
     end
 
-    # @!method setarrowstyle
-    # @!method setarrowsize
-    # @!method drawarrow
+    def setarrowstyle(*)
+      super
+    end
+
+    def setarrowsize(*)
+      super
+    end
+
+    def drawarrow(*)
+      super
+    end
 
     # readimage
     def readimage(path)
@@ -430,9 +605,17 @@ module GR
       super(xmin, xmax, ymin, ymax, width, height, uint(data), model)
     end
 
-    # @!method importgraphics
-    # @!method setshadow
-    # @!method settransparency
+    def importgraphics(*)
+      super
+    end
+
+    def setshadow(*)
+      super
+    end
+
+    def settransparency(*)
+      super
+    end
 
     # Change the coordinate transformation according to the given matrix.
     def setcoordxform(mat)
@@ -441,11 +624,25 @@ module GR
       super(mat)
     end
 
-    # @!method begingraphics
-    # @!method endgraphics
-    # @!method getgraphics
-    # @!method drawgraphics
-    # @!method mathtex
+    def begingraphics(*)
+      super
+    end
+
+    def endgraphics(*)
+      super
+    end
+
+    def getgraphics(*)
+      super
+    end
+
+    def drawgraphics(*)
+      super
+    end
+
+    def mathtex(*)
+      super
+    end
 
     # inqmathtex
     def inqmathtex(x, y, string)
@@ -454,10 +651,21 @@ module GR
       end
     end
 
-    # @!method beginselection
-    # @!method endselection
-    # @!method moveselection
-    # @!method resizeselection
+    def beginselection(*)
+      super
+    end
+
+    def endselection(*)
+      super
+    end
+
+    def moveselection(*)
+      super
+    end
+
+    def resizeselection(*)
+      super
+    end
 
     # inqbbox
     def inqbbox
@@ -466,14 +674,37 @@ module GR
       end
     end
 
-    # @!method precision
-    # @!method setregenflags
-    # @!method inqregenflags
-    # @!method savestate
-    # @!method restorestate
-    # @!method selectcontext
-    # @!method destroycontext
-    # @!method uselinespec
+    def precision(*)
+      super
+    end
+
+    def setregenflags(*)
+      super
+    end
+
+    def inqregenflags(*)
+      super
+    end
+
+    def savestate(*)
+      super
+    end
+
+    def restorestate(*)
+      super
+    end
+
+    def selectcontext(*)
+      super
+    end
+
+    def destroycontext(*)
+      super
+    end
+
+    def uselinespec(*)
+      super
+    end
 
     # Reduces the number of points of the x and y array.
     def reducepoints(xd, yd, n)
@@ -539,7 +770,9 @@ module GR
       super(n, x, y, xform, w, h)
     end
 
-    # @!method panzoom
+    def panzoom(*)
+      super
+    end
 
     # panzoom
     def panzoom(x, y, zoom)
