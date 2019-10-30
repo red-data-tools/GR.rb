@@ -56,21 +56,26 @@ module GR
       end
     end
 
+    # Open a graphical workstation.
     def openws(*)
       super
     end
 
+    # Close the specified workstation.
     def closews(*)
       super
     end
 
+    # Activate the specified workstation.
     def activatews(*)
       super
     end
 
+    # Deactivate the specified workstation.
     def deactivatews(*)
       super
     end
+
 
     def configurews(*)
       super
@@ -97,11 +102,11 @@ module GR
       super(n, x, y)
     end
 
+    # Draw a text at position `x`, `y` using the current text attributes.
     def text(*)
       super
     end
 
-    # inqtext
     def inqtext(x, y, string)
       inquiry [{ double: 4 }, { double: 4 }] do |tbx, tby|
         super(x, y, string, tbx, tby)
@@ -114,9 +119,10 @@ module GR
       super(n, x, y)
     end
 
-    # Display rasterlike images in a device-independent manner.
-    # The cell array function partitions a rectangle given by two corner points into DIMX X DIMY cells,
-    # each of them colored individually by the corresponding color index of the given cell array.
+    # Display rasterlike images in a device-independent manner. The cell array
+    # function partitions a rectangle given by two corner points into DIMX X DIMY
+    # cells, each of them colored individually by the corresponding color index
+    # of the given cell array.
     def cellarray(xmin, xmax, ymin, ymax, dimx, dimy, color)
       super(xmin, xmax, ymin, ymax, dimx, dimy, 1, 1, dimx, dimy, int(color))
     end
@@ -128,7 +134,8 @@ module GR
       super(x, y, dimx, dimy, 1, 1, dimx, dimy, int(color))
     end
 
-    # Display a two dimensional color index array mapped to a disk using polar coordinates.
+    # Display a two dimensional color index array mapped to a disk using polar
+    # coordinates.
     def polarcellarray(x_org, y_org, phimin, phimax, rmin, rmax, dimphi, dimr, color)
       super(x_org, y_org, phimin, phimax, rmin, rmax, dimphi, dimr, 1, 1, dimphi, dimr, int(color))
     end
@@ -148,7 +155,6 @@ module GR
       super(n, px, py, m, method)
     end
 
-    # gridit
     def gridit(xd, yd, zd, nx, ny)
       nd = equal_length(xd, yd, zd)
       inquiry [{ double: nx }, { double: ny }, { double: nx * ny }] do |px, py, pz|
@@ -156,24 +162,25 @@ module GR
       end
     end
 
+    # Specify the line style for polylines.
     def setlinetype(*)
       super
     end
 
-    # inqlinetype
     def inqlinetype
       inquiry_int { |pt| super(pt) }
     end
 
+    # Define the line width of subsequent polyline output primitives.
     def setlinewidth(*)
       super
     end
 
-    # inqlinewidth
     def inqlinewidth
       inquiry_double { |pt| super(pt) }
     end
 
+    # Define the color of subsequent polyline output primitives.
     def setlinecolorind(*)
       super
     end
@@ -183,37 +190,40 @@ module GR
       inquiry_int { |pt| super(pt) }
     end
 
+    # Specifiy the marker type for polymarkers.
     def setmarkertype(*)
       super
     end
 
-    # inqmarkertype
     def inqmarkertype
       inquiry_int { |pt| super(pt) }
     end
 
+    # Specify the marker size for polymarkers.
     def setmarkersize(*)
       super
     end
 
-    # inqmarkersize
+    # Inquire the marker size for polymarkers.
     def inqmarkersize
       inquiry_double { |pt| super(pt) }
     end
 
+    # Define the color of subsequent polymarker output primitives.
     def setmarkercolorind(*)
       super
     end
 
-    # inqmarkercolorind
     def inqmarkercolorind
       inquiry_int { |pt| super(pt) }
     end
 
+    # Specify the text font and precision for subsequent text output primitives.
     def settextfontprec(*)
       super
     end
 
+    # Set the current character expansion factor (width to height ratio).
     def setcharexpan(*)
       super
     end
@@ -222,57 +232,69 @@ module GR
       super
     end
 
+    # Sets the current text color index.
     def settextcolorind(*)
       super
     end
 
+    # Set the current character height.
     def setcharheight(*)
       super
     end
 
+    # Set the current character text angle up vector.
     def setcharup(*)
       super
     end
 
+    # Define the current direction in which subsequent text will be drawn.
     def settextpath(*)
       super
     end
 
+    # Set the current horizontal and vertical alignment for text.
     def settextalign(*)
       super
     end
 
+    # Set the fill area interior style to be used for fill areas.
     def setfillintstyle(*)
       super
     end
 
-    # inqfillintstyle
+    # Returns the fill area interior style to be used for fill areas.
     def inqfillintstyle
       inquiry_int { |pt| super(pt) }
     end
 
+    # Sets the fill style to be used for subsequent fill areas.
     def setfillstyle(*)
       super
     end
 
-    # inqfillstyle
+    # Returns the current fill area color index.
     def inqfillstyle
       inquiry_int { |pt| super(pt) }
     end
 
+    # Sets the current fill area color index.
     def setfillcolorind(*)
       super
     end
 
-    # inqfillcolorind
+    # Returns the current fill area color index.
     def inqfillcolorind
       inquiry_int { |pt| super(pt) }
     end
 
+    # `setcolorrep` allows to redefine an existing color index representation by specifying
+    # an RGB color triplet.
     def setcolorrep(*)
       super
     end
 
+    # `setscale` sets the type of transformation to be used for subsequent GR output
+    # primitives.
     def setscale(*)
       super
     end
@@ -282,6 +304,8 @@ module GR
       inquiry_int { |pt| super(pt) }
     end
 
+    # `setwindow` establishes a window, or rectangular subspace, of world coordinates to be
+    # plotted. If you desire log scaling or mirror-imaging of axes, use the SETSCALE function.
     def setwindow(*)
       super
     end
@@ -293,6 +317,7 @@ module GR
       end
     end
 
+    # `setviewport` establishes a rectangular subspace of normalized device coordinates.
     def setviewport(*)
       super
     end
@@ -304,18 +329,23 @@ module GR
       end
     end
 
+    # `selntran` selects a predefined transformation from world coordinates to normalized
+    # device coordinates.
     def selntran(*)
       super
     end
 
+    # Set the clipping indicator.
     def setclip(*)
       super
     end
 
+    # Set the area of the NDC viewport that is to be drawn in the workstation window.
     def setwswindow(*)
       super
     end
 
+    # Define the size of the workstation graphics window in meters.
     def setwsviewport(*)
       super
     end
@@ -348,17 +378,20 @@ module GR
       super
     end
 
+    # Set the abstract Z-space used for mapping three-dimensional output primitives into
+    # the current world coordinate space.
     def setspace(*)
       super
     end
 
-    # inqspace
     def inqspace
       inquiry %i[double double int int] do |*pts|
         super(*pts)
       end
     end
 
+    # Draw a text at position `x`, `y` using the current text attributes. Strings can be
+    # defined to create basic mathematical expressions and Greek letters.
     def textext(*)
       super
     end
@@ -370,16 +403,19 @@ module GR
       end
     end
 
+    # Draw X and Y coordinate axes with linearly and/or logarithmically spaced tick marks.
     def axes(*)
       super
     end
 
     alias axes2d axes
 
+    # Draw a linear and/or logarithmic grid.
     def grid(*)
       super
     end
 
+    # Draw a linear and/or logarithmic grid.
     def grid3d(*)
       super
     end
@@ -409,10 +445,13 @@ module GR
       super(n, px, py, pz)
     end
 
+    # Draw X, Y and Z coordinate axes with linearly and/or logarithmically
+    # spaced tick marks.
     def axes3d(*)
       super
     end
 
+    # Display axis titles just outside of their respective axes.
     def titles3d(*)
       super
     end
@@ -453,7 +492,6 @@ module GR
       super(npoints, x, y, z, nlevels, levels)
     end
 
-    # hexbin
     def hexbin(x, y, nbins)
       n = x.length
       super(n, x, y, nbins)
@@ -494,7 +532,6 @@ module GR
       super
     end
 
-    # hsvtorgb
     def hsvtorgb(h, s, v)
       inquiry %i[double double double] do |r, g, b|
         super(h, s, v, r, g, b)
@@ -517,10 +554,12 @@ module GR
       super
     end
 
+    # Open and activate a print device.
     def beginprint(*)
       super
     end
 
+    # Open and activate a print device with the given layout attributes.
     def beginprintext(*)
       super
     end
@@ -529,7 +568,6 @@ module GR
       super
     end
 
-    # ndctowc
     def ndctowc(x, y)
       inquiry %i[double double] do |px, py|
         px.write_double x
@@ -538,7 +576,6 @@ module GR
       end
     end
 
-    # wctondc
     def wctondc(x, y)
       inquiry %i[double double] do |px, py|
         px.write_double x
@@ -547,7 +584,6 @@ module GR
       end
     end
 
-    # wc3towc
     def wc3towc(x, y, z)
       inquiry %i[double double double] do |px, py, pz|
         px.write_double x
@@ -557,18 +593,22 @@ module GR
       end
     end
 
+    # Draw a rectangle using the current line attributes.
     def drawrect(*)
       super
     end
 
+    # Draw a filled rectangle using the current fill attributes.
     def fillrect(*)
       super
     end
 
+    # Draw a circular or elliptical arc covering the specified rectangle.
     def drawarc(*)
       super
     end
 
+    # Fill a circular or elliptical arc covering the specified rectangle.
     def fillarc(*)
       super
     end
@@ -579,14 +619,17 @@ module GR
       super(len, points, uint8(codes), fill)
     end
 
+    # Set the arrow style to be used for subsequent arrow commands.
     def setarrowstyle(*)
       super
     end
 
+    # Set the arrow size to be used for subsequent arrow commands.
     def setarrowsize(*)
       super
     end
 
+    # Draw an arrow between two points.
     def drawarrow(*)
       super
     end
@@ -609,10 +652,14 @@ module GR
       super
     end
 
+    # `setshadow` allows drawing of shadows, realized by images painted underneath,
+    # and offset from, graphics objects such that the shadow mimics the effect of a light
+    # source cast on the graphics objects.
     def setshadow(*)
       super
     end
 
+    # Set the value of the alpha component associated with GR colors.
     def settransparency(*)
       super
     end
@@ -624,6 +671,7 @@ module GR
       super(mat)
     end
 
+    # Open a file for graphics output.
     def begingraphics(*)
       super
     end
@@ -640,6 +688,8 @@ module GR
       super
     end
 
+    # Generate a character string starting at the given location. Strings can be defined
+    # to create mathematical symbols and Greek letters using LaTeX syntax.
     def mathtex(*)
       super
     end
@@ -667,7 +717,6 @@ module GR
       super
     end
 
-    # inqbbox
     def inqbbox
       inquiry %i[double double double double] do |*pts|
         super(*pts)
@@ -731,7 +780,7 @@ module GR
       end
     end
 
-    # quiver
+    # Draw a quiver plot on a grid of nx*ny points.
     def quiver(x, y, u, v, color)
       # TODO: check: Arrays have incorrect length or dimension.
       nx = x.length
@@ -739,7 +788,10 @@ module GR
       super(nx, ny, x, y, u, v, (color ? 1 : 0))
     end
 
-    # interp2
+    # Interpolation in two dimensions using one of four different methods. The
+    # input points are located on a grid, described by `x`, `y` and `z`.
+    # The target grid ist described by `xq` and `yq`.
+    # Returns an array containing the resulting z-values.
     def interp2(x, y, z, xq, yq, method, extrapval) # flatten
       nx = x.length
       ny = y.length
@@ -751,7 +803,7 @@ module GR
       end
     end
 
-    # version
+    # Returns the combined version strings of the GR runtime.
     def version
       super.read_string
     end
