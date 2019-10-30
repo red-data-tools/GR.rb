@@ -3,7 +3,7 @@
 module GRCommons
   # Jupyter Notebook and Jpyter Lab.
   module JupyterSupport
-    if defined? IRuby && IRuby.respond_to?(:display)
+    if defined?(IRuby) && IRuby.respond_to?(:display)
       def self.extended(_obj)
         require 'tmpdir'
         ENV['GKSwstype'] = 'svg'

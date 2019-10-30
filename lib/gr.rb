@@ -76,7 +76,6 @@ module GR
       super
     end
 
-
     def configurews(*)
       super
     end
