@@ -52,21 +52,50 @@ module GR3
 
   class << self
     # This method initializes the gr3 context.
-    def gr3_init super end
-    def free super end
+    def gr3_init(*)
+      super
+    end
+
+    def free(*)
+      super
+    end
+
     # This function terminates the gr3 context.
-    def terminate super end
+    def terminate(*)
+      super
+    end
+
     # This function returns information on the most recent GR3 error.
-    def geterror super end
+    def geterror(*)
+      super
+    end
+
     # This function allows the user to find out how his commands are rendered.
-    def getrenderpathstring super end
+    def getrenderpathstring(*)
+      super
+    end
+
     # This function returns a string representation of a given error code.
-    def geterrorstring super end
+    def geterrorstring(*)
+      super
+    end
+
     # This function clears the draw list.
-    def clear super end
-    def usecurrentframebuffer super end
-    def useframebuffer super end
-    def setquality super end
+    def clear(*)
+      super
+    end
+
+    def usecurrentframebuffer(*)
+      super
+    end
+
+    def useframebuffer(*)
+      super
+    end
+
+    def setquality(*)
+      super
+    end
 
     # getimage
     def getimage(width, height, use_alpha = true)
@@ -76,8 +105,13 @@ module GR3
       end
     end
 
-    def export super end
-    def drawimage super end
+    def export(*)
+      super
+    end
+
+    def drawimage(*)
+      super
+    end
 
     # createmesh_nocopy
     def createmesh_nocopy(_n, vertices, normals, colors)
@@ -108,41 +142,89 @@ module GR3
     end
 
     # This function adds a mesh to the draw list, so it will be drawn when the user calls gr3_getpixmap.
-    def drawmesh super end
-    
+    def drawmesh(*)
+      super
+    end
+
     # This function marks a mesh for deletion and removes the user’s reference from the mesh’s referenc counter,
     # so a user must not use the mesh after calling this function.
-    def deletemesh super end
+    def deletemesh(*)
+      super
+    end
 
     # This function sets the view matrix by getting the position of the camera,
     # the position of the center of focus and the direction which should point up.
-    def cameralookat super end
+    def cameralookat(*)
+      super
+    end
 
     # This function sets the projection parameters.
-    def setcameraprojectionparameters super end
+    def setcameraprojectionparameters(*)
+      super
+    end
 
     # Get the projection parameters.
-    def getcameraprojectionparameters super end
+    def getcameraprojectionparameters(*)
+      super
+    end
 
     # This function sets the direction of light.
-    def setlightdirection super end
+    def setlightdirection(*)
+      super
+    end
 
     # This function sets the background color.
-    def setbackgroundcolor super end
+    def setbackgroundcolor(*)
+      super
+    end
 
+    def createheightmapmesh(*)
+      super
+    end
 
-    def createheightmapmesh super end
-    def drawheightmap super end
-    def drawconemesh super end
-    def drawcylindermesh super end
-    def drawspheremesh super end
-    def drawcubemesh super end
-    def setobjectid super end
-    def selectid super end
-    def getviewmatrix super end
-    def setviewmatrix super end
-    def getprojectiontype super end
-    def setprojectiontype super end
+    def drawheightmap(*)
+      super
+    end
+
+    def drawconemesh(*)
+      super
+    end
+
+    def drawcylindermesh(*)
+      super
+    end
+
+    def drawspheremesh(*)
+      super
+    end
+
+    def drawcubemesh(*)
+      super
+    end
+
+    def setobjectid(*)
+      super
+    end
+
+    def selectid(*)
+      super
+    end
+
+    def getviewmatrix(*)
+      super
+    end
+
+    def setviewmatrix(*)
+      super
+    end
+
+    def getprojectiontype(*)
+      super
+    end
+
+    def setprojectiontype(*)
+      super
+    end
 
     # This function creates an isosurface from voxel data using the
     # marching cubes algorithm.
@@ -169,13 +251,16 @@ module GR3
         super(mesh, nx, ny, px, py, pz, option)
       end
     end
-    
+
     # Draw a mesh with the projection of gr.
-    def drawmesh_grlike super end
+    def drawmesh_grlike(*)
+      super
+    end
 
     # Convenience function for drawing a surfacemesh.
-    def drawsurface super end
-
+    def drawsurface(*)
+      super
+    end
 
     # Create a surface plot with gr3 and draw it with gks as cellarray.
     def surface(px, py, pz, _option)
