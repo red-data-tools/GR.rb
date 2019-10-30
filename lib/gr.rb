@@ -770,10 +770,6 @@ module GR
       super(n, x, y, xform, w, h)
     end
 
-    def panzoom(*)
-      super
-    end
-
     # panzoom
     def panzoom(x, y, zoom)
       inquiry %i[double double double double] do |xmin, xmax, ymin, ymax|
