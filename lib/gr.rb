@@ -776,6 +776,18 @@ module GR
         super(x, y, zoom, zoom, xmin, xmax, ymin, ymax)
       end
     end
+
+    # Set the resample method used for gr.drawimage().
+    def setresamplemethod(*)
+      super
+    end
+
+    # Inquire the resample method used for gr.drawimage().
+    def inqresamplemethod
+      inquiry_uint do |resample_method|
+        super(resample_method)
+      end
+    end
   end
 
   # Constants - imported from GR.jl

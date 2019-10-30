@@ -191,5 +191,7 @@ module GR
     attach_function :gr_shadelines, %i[int pointer pointer int int int], :void
     attach_function :gr_panzoom, %i[double double double double pointer pointer pointer pointer], :void
     # attach_function :gr_findboundary
+    attach_function :gr_setresamplemethod, %i[uint], :void
+    attach_function :gr_inqresamplemethod, %i[pointer], :void
   end
 end
