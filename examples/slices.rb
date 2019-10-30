@@ -2,6 +2,10 @@
 
 # https://github.com/jheinen/GR.jl/blob/master/examples/slices.jl
 
+# Caution
+# This sample no longer works correctly.
+# The GR3 bindings are buggy and incomplete
+
 require 'gr'
 require 'gr3'
 require 'numo/narray'
@@ -24,7 +28,7 @@ end
 GR.setviewport(0, 1, 0, 1)
 GR3.cameralookat(-3, 2, -2, 0, 0, 0, 0, 0, -1)
 
-mesh = GR3.createisosurfacemesh(data, [2.0 / 63, 2.0 / 63, 2.0 / 92], [-1.0, -1.0, -1.0], 40_000)
+mesh = GR3.createisosurfacemesh(data, [2.0 / 63, 2.0 / 63, 2.0 / 92], [-1.0, -1.0, -1.0], 5000)
 
 GR.setcolormap(1)
 
