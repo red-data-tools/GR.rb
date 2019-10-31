@@ -255,29 +255,29 @@ module GR
     # Specify the line style for polylines.
     # @param style [Integer] The polyline line style
     #  * 1  : LINETYPE_SOLID
-    #    * Solid line
+    #    *    Solid line
     #  * 2  : LINETYPE_DASHED
-    #    * Dashed line
+    #    *    Dashed line
     #  * 3  : LINETYPE_DOTTED
-    #    * Dotted line
+    #    *    Dotted line
     #  * 4  : LINETYPE_DASHED_DOTTED
-    #    * Dashed-dotted line
+    #    *    Dashed-dotted line
     #  * -1 : LINETYPE_DASH_2_DOT
-    #    * Sequence of one dash followed by two dots
+    #    *    Sequence of one dash followed by two dots
     #  * -2 : LINETYPE_DASH_3_DOT
-    #    * Sequence of one dash followed by three dots
+    #    *    Sequence of one dash followed by three dots
     #  * -3 : LINETYPE_LONG_DASH
-    #    * Sequence of long dashes
+    #    *    Sequence of long dashes
     #  * -4 : LINETYPE_LONG_SHORT_DASH
-    #    * Sequence of a long dash followed by a short dash
+    #    *    Sequence of a long dash followed by a short dash
     #  * -5 : LINETYPE_SPACED_DASH
-    #    * Sequence of dashes double spaced
+    #    *    Sequence of dashes double spaced
     #  * -6 : LINETYPE_SPACED_DOT
-    #    * Sequence of dots double spaced
+    #    *    Sequence of dots double spaced
     #  * -7 : LINETYPE_DOUBLE_DOT
-    #    * Sequence of pairs of dots
+    #    *    Sequence of pairs of dots
     #  * -8 : LINETYPE_TRIPLE_DOT
-    #    * Sequence of groups of three dots
+    #    *    Sequence of groups of three dots
     def setlinetype(*)
       super
     end
@@ -312,6 +312,82 @@ module GR
     end
 
     # Specifiy the marker type for polymarkers.
+    # @param style [Integer] The polymarker marker type
+    #  * 1   : MARKERTYPE_DOT
+    #    *     Smallest displayable dot
+    #  * 2   : MARKERTYPE_PLUS
+    #    *     Plus sign
+    #  * 3   : MARKERTYPE_ASTERISK
+    #    *     Asterisk
+    #  * 4   : MARKERTYPE_CIRCLE
+    #    *     Hollow circle
+    #  * 5   : MARKERTYPE_DIAGONAL_CROSS
+    #    *     Diagonal cross
+    #  * -1  : MARKERTYPE_SOLID_CIRCLE
+    #    *     Filled circle
+    #  * -2  : MARKERTYPE_TRIANGLE_UP
+    #    *     Hollow triangle pointing upward
+    #  * -3  : MARKERTYPE_SOLID_TRI_UP
+    #    *     Filled triangle pointing upward
+    #  * -4  : MARKERTYPE_TRIANGLE_DOWN
+    #    *     Hollow triangle pointing downward
+    #  * -5  : MARKERTYPE_SOLID_TRI_DOWN
+    #    *     Filled triangle pointing downward
+    #  * -6  : MARKERTYPE_SQUARE
+    #    *     Hollow square
+    #  * -7  : MARKERTYPE_SOLID_SQUARE
+    #    *     Filled square
+    #  * -8  : MARKERTYPE_BOWTIE
+    #    *     Hollow bowtie
+    #  * -9  : MARKERTYPE_SOLID_BOWTIE
+    #    *     Filled bowtie
+    #  * -10 : MARKERTYPE_HGLASS
+    #    *     Hollow hourglass
+    #  * -11 : MARKERTYPE_SOLID_HGLASS
+    #    *     Filled hourglass
+    #  * -12 : MARKERTYPE_DIAMOND
+    #    *     Hollow diamond
+    #  * -13 : MARKERTYPE_SOLID_DIAMOND
+    #    *     Filled Diamond
+    #  * -14 : MARKERTYPE_STAR
+    #    *     Hollow star
+    #  * -15 : MARKERTYPE_SOLID_STAR
+    #    *     Filled Star
+    #  * -16 : MARKERTYPE_TRI_UP_DOWN
+    #    *     Hollow triangles pointing up and down overlaid
+    #  * -17 : MARKERTYPE_SOLID_TRI_RIGHT
+    #    *     Filled triangle point right
+    #  * -18 : MARKERTYPE_SOLID_TRI_LEFT
+    #    *     Filled triangle pointing left
+    #  * -19 : MARKERTYPE_HOLLOW PLUS
+    #    *     Hollow plus sign
+    #  * -20 : MARKERTYPE_SOLID PLUS
+    #    *     Solid plus sign
+    #  * -21 : MARKERTYPE_PENTAGON
+    #    *     Pentagon
+    #  * -22 : MARKERTYPE_HEXAGON
+    #    *     Hexagon
+    #  * -23 : MARKERTYPE_HEPTAGON
+    #    *     Heptagon
+    #  * -24 : MARKERTYPE_OCTAGON
+    #    *     Octagon
+    #  * -25 : MARKERTYPE_STAR_4
+    #    *     4-pointed star
+    #  * -26 : MARKERTYPE_STAR_5
+    #    *     5-pointed star (pentagram)
+    #  * -27 : MARKERTYPE_STAR_6
+    #    *     6-pointed star (hexagram)
+    #  * -28 : MARKERTYPE_STAR_7
+    #    *     7-pointed star (heptagram)
+    #  * -29 : MARKERTYPE_STAR_8
+    #    *     8-pointed star (octagram)
+    #  * -30 : MARKERTYPE_VLINE
+    #    *     verical line
+    #  * -31 : MARKERTYPE_HLINE
+    #    *     horizontal line
+    #  * -32 : MARKERTYPE_OMARK
+    #    *     o-mark
+    # Polymarkers appear centered over their specified coordinates.
     def setmarkertype(*)
       super
     end
@@ -321,6 +397,9 @@ module GR
     end
 
     # Specify the marker size for polymarkers.
+    # @param size [Numeric] Scale factor applied to the nominal marker size
+    # The polymarker size is calculated as the nominal size generated on the graphics device
+    # multiplied by the marker size scale factor.
     def setmarkersize(*)
       super
     end
@@ -331,6 +410,7 @@ module GR
     end
 
     # Define the color of subsequent polymarker output primitives.
+    # @param color [Integer] The polymarker color index (COLOR < 1256)
     def setmarkercolorind(*)
       super
     end
