@@ -848,8 +848,8 @@ module GR
     end
 
     # Draw X and Y coordinate axes with linearly and/or logarithmically spaced tick marks.
-    # @param x_tick [Numeric] The interval between minor tick marks on X axis.
-    # @param y_tick [Numeric] The interval between minor tick marks on Y axis.
+    # @param x_tick [Numeric] The interval between minor tick marks on the X axis.
+    # @param y_tick [Numeric] The interval between minor tick marks on the Y axis.
     # @param x_org [Numeric] The world coordinates of the origin (point of intersection) of the X axis.
     # @param y_org [Numeric] The world coordinates of the origin (point of intersection) of the Y axis.
     # @param major_x [Integer]
@@ -891,17 +891,44 @@ module GR
     end
 
     # Draw a linear and/or logarithmic grid.
+    # @param x_tick [Numeric] The length in world coordinates of the interval between minor grid lines.
+    # @param y_tick [Numeric] The length in world coordinates of the interval between minor grid lines.
+    # @param z_tick [Numeric] The length in world coordinates of the interval between minor grid lines.
+    # @param x_org [Numeric] The world coordinates of the origin (point of intersection) of the grid.
+    # @param y_org [Numeric] The world coordinates of the origin (point of intersection) of the grid.
+    # @param z_org [Numeric] The world coordinates of the origin (point of intersection) of the grid.
+    # @param major_x [Integer]
+    #   Unitless integer values specifying the number of minor grid lines
+    #   between major grid lines. Values of 0 or 1 imply no grid lines.
+    # @param major_y [Integer]
+    #   Unitless integer values specifying the number of minor grid lines
+    #   between major grid lines. Values of 0 or 1 imply no grid lines.
+    # @param major_z [Integer]
+    #   Unitless integer values specifying the number of minor grid lines
+    #   between major grid lines. Values of 0 or 1 imply no grid lines.
+    #
+    # Major grid lines correspond to the axes origin and major tick marks whether visible
+    # or not. Minor grid lines are drawn at points equal to minor tick marks. Major grid
+    # lines are drawn using black lines and minor grid lines are drawn using gray lines.
     def grid3d(*)
       super
     end
 
     # Draw a standard vertical error bar graph.
+    # @param x [Array, NArray] A list of length N containing the X coordinates
+    # @param y [Array, NArray] A list of length N containing the Y coordinates
+    # @param e1 [Array, NArray] The absolute values of the lower error bar data
+    # @param e2 [Array, NArray] The absolute values of the lower error bar data
     def verrorbars(px, py, e1, e2)
       n = equal_length(px, py, e1, e2)
       super(n, px, py, e1, e2)
     end
 
     # Draw a standard horizontal error bar graph.
+    # @param x [Array, NArray] A list of length N containing the X coordinates
+    # @param y [Array, NArray] A list of length N containing the Y coordinates
+    # @param e1 [Array, NArray] The absolute values of the lower error bar data
+    # @param e2 [Array, NArray] The absolute values of the lower error bar data
     def herrorbars(px, py, e1, e2)
       n = equal_length(px, py, e1, e2)
       super(n, px, py, e1, e2)
@@ -909,12 +936,24 @@ module GR
 
     # Draw a 3D curve using the current line attributes,
     # starting from the first data point and ending at the last data point.
+    # @param x [Array, NArray] A list of length N containing the X coordinates
+    # @param y [Array, NArray] A list of length N containing the Y coordinates
+    # @param z [Array, NArray] A list of length N containing the Z coordinates
+    # The values for `x`, `y` and `z` are in world coordinates. The attributes that
+    # control the appearance of a polyline are linetype, linewidth and color
+    # index.
     def polyline3d(px, py, pz)
       n = equal_length(px, py, pz)
       super(n, px, py, pz)
     end
 
     # Draw marker symbols centered at the given 3D data points.
+    # @param x [Array, NArray] A list of length N containing the X coordinates
+    # @param y [Array, NArray] A list of length N containing the Y coordinates
+    # @param z [Array, NArray] A list of length N containing the Z coordinates
+    # The values for `x`, `y` and `z` are in world coordinates. The attributes
+    # that control the appearance of a polymarker are marker type, marker size
+    # scale factor and color index.
     def polymarker3d(px, py, pz)
       n = equal_length(px, py, pz)
       super(n, px, py, pz)
@@ -922,16 +961,71 @@ module GR
 
     # Draw X, Y and Z coordinate axes with linearly and/or logarithmically
     # spaced tick marks.
+    # @param x_tick [Numeric] The interval between minor tick marks on the X axis.
+    # @param y_tick [Numeric] The interval between minor tick marks on the Y axis.
+    # @param z_tick [Numeric] The interval between minor tick marks on the Z axis.
+    # @param x_org [Numeric] The world coordinates of the origin (point of intersection) of the X axes.
+    # @param y_org [Numeric] The world coordinates of the origin (point of intersection) of the Y axes.
+    # @param z_org [Numeric] The world coordinates of the origin (point of intersection) of the Z axes.
+    # @param major_x [Integer]
+    #   Unitless integer values specifying the number of minor tick intervals
+    #   between major tick marks. Values of 0 or 1 imply no minor ticks.
+    #   Negative values specify no labels will be drawn for the associated axis.
+    # @param major_y [Integer]
+    #   Unitless integer values specifying the number of minor tick intervals
+    #   between major tick marks. Values of 0 or 1 imply no minor ticks.
+    #   Negative values specify no labels will be drawn for the associated axis.
+    # @param major_z [Integer]
+    #   Unitless integer values specifying the number of minor tick intervals
+    #   between major tick marks. Values of 0 or 1 imply no minor ticks.
+    #   Negative values specify no labels will be drawn for the associated axis.
+    # @param [Numeric] tick_size
+    #   The length of minor tick marks specified in a normalized device
+    #   coordinate unit. Major tick marks are twice as long as minor tick marks.
+    #   A negative value reverses the tick marks on the axes from inward facing
+    #   to outward facing (or vice versa).
+    # Tick marks are positioned along each axis so that major tick marks fall on the axes
+    # origin (whether visible or not). Major tick marks are labeled with the corresponding
+    # data values. Axes are drawn according to the scale of the window. Axes and tick marks
+    # are drawn using solid lines; line color and width can be modified using the
+    # `setlinetype` and `setlinewidth` functions. Axes are drawn according to
+    # the linear or logarithmic transformation established by the `setscale` function.
     def axes3d(*)
       super
     end
 
     # Display axis titles just outside of their respective axes.
+    # @param x_title [String] The text to be displayed on the X axis
+    # @param x_title [String] The text to be displayed on the Y axis
+    # @param x_title [String] The text to be displayed on the Z axis
     def titles3d(*)
       super
     end
 
     # Draw a three-dimensional surface plot for the given data points.
+    # @param x [Array, NArray] A list containing the X coordinates
+    # @param y [Array, NArray] A list containing the Y coordinates
+    # @param z [Array, NArray]
+    #   A list of length `len(x)` * `len(y)` or an appropriately dimensioned
+    #   array containing the Z coordinates
+    # @param option [Integer] Surface display option
+    #  * 0 LINES
+    #    * Use X Y polylines to denote the surface
+    #  * 1 MESH
+    #    * Use a wire grid to denote the surface
+    #  * 2 FILLED_MESH
+    #    * Applies an opaque grid to the surface
+    #  * 3 Z_SHADED_MESH
+    #    * Applies Z-value shading to the surface
+    #  * 4 COLORED_MESH
+    #    * Applies a colored grid to the surface
+    #  * 5 CELL_ARRAY
+    #    * Applies a grid of individually-colored cells to the surface
+    #  * 6 SHADED_MESH
+    #    * Applies light source shading to the 3-D surface
+    # `x` and `y` define a grid. `z` is a singly dimensioned array containing at least
+    # `nx` * `ny` data points. Z describes the surface height at each point on the grid.
+    # Data is ordered as shown in the table:
     def surface(px, py, pz, option)
       # TODO: check: Arrays have incorrect length or dimension.
       nx = px.length
@@ -942,6 +1036,18 @@ module GR
     # Draw contours of a three-dimensional data set
     # whose values are specified over a rectangular mesh.
     # Contour lines may optionally be labeled.
+    # @param x [Array, NArray] A list containing the X coordinates
+    # @param y [Array, NArray] A list containing the Y coordinates
+    # @param h [Array, NArray] A list containing the Z coordinate for the height values
+    # @param z [Array, NArray]
+    #   A list containing the Z coordinate for the height values
+    #   A list of length `len(x)` * `len(y)` or an appropriately dimensioned
+    #   array containing the Z coordinates
+    # @param major_h [Integer]
+    #   Directs GR to label contour lines. For example, a value of 3 would label
+    #   every third line. A value of 1 will label every line. A value of 0
+    #   produces no labels. To produce colored contour lines, add an offset
+    #   of 1000 to `major_h`.
     def contour(px, py, h, pz, major_h)
       # TODO: check: Arrays have incorrect length or dimension.
       nx = px.length
@@ -952,6 +1058,15 @@ module GR
 
     # Draw filled contours of a three-dimensional data set
     # whose values are specified over a rectangular mesh.
+    # @param x [Array, NArray] A list containing the X coordinates
+    # @param y [Array, NArray] A list containing the Y coordinates
+    # @param h [Array, NArray]
+    #   A list containing the Z coordinate for the height values or the number
+    #   of contour lines which will be evenly distributed between minimum and
+    #   maximum Z value
+    # @param z [Array, NArray]
+    #   A list of length `len(x)` * `len(y)` or an appropriately dimensioned
+    #   array containing the Z coordinates
     def contourf(px, py, h, pz, major_h)
       # TODO: check: Arrays have incorrect length or dimension.
       nx = px.length
@@ -981,7 +1096,7 @@ module GR
       inquiry_int { |pt| super(pt) }
     end
 
-    # Define a linear interpolated colormap by a list of RGB colors.
+    # TODO: GR.jl python-gr different API
     def setcolormapfromrgb(r, g, b, positions: nil)
       n = equal_length(r, g, b)
       if positions.nil?
@@ -996,7 +1111,6 @@ module GR
       super
     end
 
-    # inqcolor
     def inqcolor(color)
       inquiry_int do |rgb|
         super(color, rgb)
@@ -1030,11 +1144,59 @@ module GR
     end
 
     # Open and activate a print device.
+    # @param pathname [String] Filename for the print device.
+    #  The following file types are supported:
+    #  * .ps, .eps : PostScript
+    #  * .pdf : Portable Document Format
+    #  * .bmp : Windows Bitmap (BMP)
+    #  * .jpeg, .jpg : JPEG image file
+    #  * .png : Portable Network Graphics file (PNG)
+    #  * .tiff, .tif : Tagged Image File Format (TIFF)
+    #  * .fig : Xfig vector graphics file
+    #  * .svg : Scalable Vector Graphics
+    #  * .wmf : Windows Metafile
+    # `beginprint` opens an additional graphics output device. The device type is obtained
+    # from the given file extension.
     def beginprint(*)
       super
     end
 
     # Open and activate a print device with the given layout attributes.
+    # @param pathname [String] Filename for the print device.
+    # @param mode [String] Output mode (Color, GrayScale)
+    # @param fmt [String] Output format
+    #  The available formats are:
+    #  * A4 : 0.210 x 0.297
+    #  * B5 : 0.176 x 0.250
+    #  * Letter : 0.216 x 0.279
+    #  * Legal : 0.216 x 0.356
+    #  * Executive : 0.191 x 0.254
+    #  * A0 : 0.841 x 1.189
+    #  * A1 : 0.594 x 0.841
+    #  * A2 : 0.420 x 0.594
+    #  * A3 : 0.297 x 0.420
+    #  * A5 : 0.148 x 0.210
+    #  * A6 : 0.105 x 0.148
+    #  * A7 : 0.074 x 0.105
+    #  * A8 : 0.052 x 0.074
+    #  * A9 : 0.037 x 0.052
+    #  * B0 : 1.000 x 1.414
+    #  * B1 : 0.500 x 0.707
+    #  * B10 : 0.031 x 0.044
+    #  * B2 : 0.500 x 0.707
+    #  * B3 : 0.353 x 0.500
+    #  * B4 : 0.250 x 0.353
+    #  * B6 : 0.125 x 0.176
+    #  * B7 : 0.088 x 0.125
+    #  * B8 : 0.062 x 0.088
+    #  * B9 : 0.044 x 0.062
+    #  * C5E : 0.163 x 0.229
+    #  * Comm10E : 0.105 x 0.241
+    #  * DLE : 0.110 x 0.220
+    #  * Folio : 0.210 x 0.330
+    #  * Ledger : 0.432 x 0.279
+    #  * Tabloid : 0.279 x 0.432
+    # @param orientation [String] Page orientation (Landscape, Portait)
     def beginprintext(*)
       super
     end
@@ -1069,32 +1231,88 @@ module GR
     end
 
     # Draw a rectangle using the current line attributes.
+    # @param xmin [Numeric] Lower left edge of the rectangle
+    # @param xmax [Numeric] Lower right edge of the rectangle
+    # @param ymin [Numeric] Upper left edge of the rectangle
+    # @param ymax [Numeric] Upper right edge of the rectangle
     def drawrect(*)
       super
     end
 
     # Draw a filled rectangle using the current fill attributes.
+    # @param xmin [Numeric] Lower left edge of the rectangle
+    # @param xmax [Numeric] Lower right edge of the rectangle
+    # @param ymin [Numeric] Upper left edge of the rectangle
+    # @param ymax [Numeric] Upper right edge of the rectangle
     def fillrect(*)
       super
     end
 
     # Draw a circular or elliptical arc covering the specified rectangle.
+    # @param xmin [Numeric] Lower left edge of the rectangle
+    # @param xmax [Numeric] Lower right edge of the rectangle
+    # @param ymin [Numeric] Upper left edge of the rectangle
+    # @param ymax [Numeric] Upper right edge of the rectangle
+    # @param a1 [Numeric] The start angle
+    # @param a2 [Numeric] The end angle
+    # The resulting arc begins at `a1` and ends at `a2` degrees. Angles are interpreted
+    # such that 0 degrees is at the 3 o'clock position. The center of the arc is the center
+    # of the given rectangle.
     def drawarc(*)
       super
     end
 
     # Fill a circular or elliptical arc covering the specified rectangle.
+    # @param xmin [Numeric] Lower left edge of the rectangle
+    # @param xmax [Numeric] Lower right edge of the rectangle
+    # @param ymin [Numeric] Upper left edge of the rectangle
+    # @param ymax [Numeric] Upper right edge of the rectangle
+    # @param a1 [Numeric] The start angle
+    # @param a2 [Numeric] The end angle
+    # The resulting arc begins at `a1` and ends at `a2` degrees. Angles are interpreted
+    # such that 0 degrees is at the 3 o'clock position. The center of the arc is the center
+    # of the given rectangle.
     def fillarc(*)
       super
     end
 
     # Draw simple and compound outlines consisting of line segments and bezier curves.
+    # @param points [Array, NArray] (N, 2) array of (x, y) vertices
+    # @parm codes [Array, NArray] N-length array of path codes
+    #  *  STOP : end the entire path
+    #  *  MOVETO : move to the given vertex
+    #  *  LINETO : draw a line from the current position to the given vertex
+    #  *  CURVE3 : draw a quadratic Bézier curve
+    #  *  CURVE4 : draw a cubic Bézier curve
+    #  *  CLOSEPOLY : draw a line segment to the start point of the current path
+    # @parm fill [Integer] A flag indication whether resulting path is to be filled or not
     def drawpath(points, codes, fill)
       len = codes.length
       super(len, points, uint8(codes), fill)
     end
 
     # Set the arrow style to be used for subsequent arrow commands.
+    # @param style [Integer] The arrow style to be used
+    #  The default arrow style is 1.
+    #  * 1  : simple, single-ended
+    #  * 2  : simple, single-ended, acute head
+    #  * 3  : hollow, single-ended
+    #  * 4  : filled, single-ended
+    #  * 5  : triangle, single-ended
+    #  * 6  : filled triangle, single-ended
+    #  * 7  : kite, single-ended
+    #  * 8  : filled kite, single-ended
+    #  * 9  : simple, double-ended
+    #  * 10 : simple, double-ended, acute head
+    #  * 11 : hollow, double-ended
+    #  * 12 : filled, double-ended
+    #  * 13 : triangle, double-ended
+    #  * 14 : filled triangle, double-ended
+    #  * 15 : kite, double-ended
+    #  * 16 : filled kite, double-ended
+    #  * 17 : double line, single-ended
+    #  * 18 : double line, double-ended
+    # `setarrowstyle` defines the arrow style for subsequent arrow primitives.
     def setarrowstyle(*)
       super
     end
