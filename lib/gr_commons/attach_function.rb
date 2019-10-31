@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module GRCommons
+  # This module modifies the behavior of the attach_function method.
   module AttachFunction
     # Remember added method name
     def attach_function(name, *args)

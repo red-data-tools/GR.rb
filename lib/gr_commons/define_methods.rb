@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module GRCommons
+  # This module adds methods to the GRBase and GR3Base modules.
   module DefineMethods
     private
 

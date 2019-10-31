@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module GRCommons
+  # This module provides functionality common to GR and GR3.
   module GRCommonUtils
     private
 
