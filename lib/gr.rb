@@ -170,11 +170,25 @@ module GR
     # function partitions a rectangle given by two corner points into DIMX X DIMY
     # cells, each of them colored individually by the corresponding color index
     # of the given cell array.
+    # @param xmin [Numeric] Lower left point of the rectangle
+    # @param ymin [Numeric] Lower left point of the rectangle
+    # @param xmax [Numeric] Upper right point of the rectangle
+    # @param ymax [Numeric] Upper right point of the rectangle
+    # @param dimx [Integer] X dimension of the color index array
+    # @param dimy [Integer] Y dimension of the color index array
+    # @param color [Array, NArray] Color index array
+    #
+    # The values for `xmin`, `xmax`, `ymin` and `ymax` are in world coordinates.
     def cellarray(xmin, xmax, ymin, ymax, dimx, dimy, color)
       super(xmin, xmax, ymin, ymax, dimx, dimy, 1, 1, dimx, dimy, int(color))
     end
 
     # Display a two dimensional color index array with nonuniform cell sizes.
+    # @param x [Array, NArray] X coordinates of the cell edges
+    # @param y [Array, NArray] Y coordinates of the cell edges
+    # @param dimx [Integer] X dimension of the color index array
+    # @param dimy [Integer] Y dimension of the color index array
+    # @param color [Array, NArray] Color index array
     def nonuniformcellarray(x, y, dimx, dimy, color)
       raise ArgumentError unless x.length == dimx + 1 && y.length == dimy + 1
 
@@ -183,12 +197,31 @@ module GR
 
     # Display a two dimensional color index array mapped to a disk using polar
     # coordinates.
+    # @param xorg [Numeric] X coordinate of the disk center in world coordinates
+    # @param yorg [Numeric] Y coordinate of the disk center in world coordinates
+    # @param phimin [Numeric] start angle of the disk sector in degrees
+    # @param phimax [Numeric] end angle of the disk sector in degrees
+    # @param rmin [Numeric] inner radius of the punctured disk in world coordinates
+    # @param rmax [Numeric] outer radius of the punctured disk in world coordinates
+    # @param dimiphi [Integer] Phi (X) dimension of the color index array
+    # @param dimr [Integer] iR (Y) dimension of the color index array
+    # @param color [Array, NArray] Color index array
+    #
+    # The two dimensional color index array is mapped to the resulting image by
+    # interpreting the X-axis of the array as the angle and the Y-axis as the raidus.
+    # The center point of the resulting disk is located at `xorg`, `yorg` and the
+    # radius of the disk is `rmax`.
     def polarcellarray(x_org, y_org, phimin, phimax, rmin, rmax, dimphi, dimr, color)
       super(x_org, y_org, phimin, phimax, rmin, rmax, dimphi, dimr, 1, 1, dimphi, dimr, int(color))
     end
 
     # Generates a generalized drawing primitive (GDP) of the type you specify,
-    # using specified points and any additional information contained in a data record.
+    # using specified points and any additional information contained in a data
+    # record.
+    # @param x [Array, NArray] A list containing the X coordinates
+    # @param y [Array, NArray] A list containing the Y coordinates
+    # @param primid [Integer] Primitive identifier
+    # @param datrec [Array, NArray] Primitive data record
     def gdp(x, y, primid, datrec)
       n = equal_length(x, y)
       ldr = datrec.length
