@@ -453,12 +453,12 @@ module GR
     #  * 130 : FONT_ZAPFCHANCERY_MEDIUMITALIC
     #  * 131 : FONT_ZAPFDINGBATS
     # @param precision [Integer] Text precision
-    #  * 0 TEXT_PRECISION_STRING
-    #    * String precision (higher quality)
-    #  * 1 TEXT_PRECISION_CHAR
-    #    * Character precision (medium quality)
-    #  * 2 TEXT_PRECISION_STROKE
-    #    * Stroke precision (lower quality)
+    #  * 0 : TEXT_PRECISION_STRING
+    #    *   String precision (higher quality)
+    #  * 1 : TEXT_PRECISION_CHAR
+    #    *   Character precision (medium quality)
+    #  * 2 : TEXT_PRECISION_STROKE
+    #    *   Stroke precision (lower quality)
     # The appearance of a font depends on the text precision value specified.
     # STRING, CHARACTER or STROKE precision allows for a greater or lesser
     # realization of the text primitives, for efficiency. STRING is the default
@@ -483,7 +483,7 @@ module GR
     # Sets the current text color index.
     # @param color [Integer] The text color index (COLOR < 1256)
     # `settextcolorind` defines the color of subsequent text output primitives.
-    GR uses the default foreground color (black=1) for the default text color index.
+    # GR uses the default foreground color (black=1) for the default text color index.
     def settextcolorind(*)
       super
     end
@@ -508,14 +508,14 @@ module GR
 
     # Define the current direction in which subsequent text will be drawn.
     # @param path [Integer] Text path
-    #  * 0 TEXT_PATH_RIGHT 
-    #    * left-to-right
-    #  * 1 TEXT_PATH_LEFT 
-    #    * right-to-left
-    #  * 2 TEXT_PATH_UP
-    #    * downside-up
-    #  * 3 TEXT_PATH_DOWN 
-    #    * upside-down
+    #  * 0 : TEXT_PATH_RIGHT
+    #    *   left-to-right
+    #  * 1 : TEXT_PATH_LEFT
+    #    *   right-to-left
+    #  * 2 : TEXT_PATH_UP
+    #    *   downside-up
+    #  * 3 : TEXT_PATH_DOWN
+    #    *   upside-down
     def settextpath(*)
       super
     end
