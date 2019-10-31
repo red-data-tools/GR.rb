@@ -19,11 +19,11 @@ GR.setfillcolorind(208)
 
 case RbConfig::CONFIG['host_os']
 when /mswin|msys|mingw|cygwin|bccwin|wince|emc/ # Windows
-  fork { `powershell -c (New-Object Media.SoundPlayer #{filepath}).PlaySync();` }
+  spawn("powershell -c (New-Object Media.SoundPlayer #{filepath}).PlaySync();")
 when /darwin|mac os/ # Mac
-  fork { `afplay #{filepath}` }
+  spawn("afplay #{filepath}")
 when /linux/ # Linux
-  fork { `aplay #{filepath}` }
+  spawn("aplay #{filepath}")
 end
 
 count = 1
