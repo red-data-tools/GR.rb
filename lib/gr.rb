@@ -521,11 +521,45 @@ module GR
     end
 
     # Set the current horizontal and vertical alignment for text.
+    # @param horizontal [Integer] Horizontal text alignment
+    #  * 0 : TEXT_HALIGN_NORMAL
+    #  * 1 : TEXT_HALIGN_LEFT
+    #    *   Left justify
+    #  * 2 : TEXT_HALIGN_CENTER
+    #    *   Center justify
+    #  * 3 : TEXT_HALIGN_RIGHT
+    #    *   Right justify
+    # @param vertical [Integer] Vertical text alignment
+    #  * 0 : TEXT_VALIGN_NORMAL   
+    #  * 1 : TEXT_VALIGN_TOP
+    #    *   Align with the top of the characters
+    #  * 2 : TEXT_VALIGN_CAP
+    #    *   Aligned with the cap of the characters
+    #  * 3 : TEXT_VALIGN_HALF
+    #    *   Aligned with the half line of the characters
+    #  * 4 : TEXT_VALIGN_BASE
+    #    *   Aligned with the base line of the characters
+    #  * 5 : TEXT_VALIGN_BOTTOM
+    #    *   Aligned with the bottom line of the characters
+    # `settextalign` specifies how the characters in a text primitive will be aligned
+    # in horizontal and vertical space. The default text alignment indicates horizontal left
+    # alignment and vertical baseline alignment.
     def settextalign(*)
       super
     end
 
     # Set the fill area interior style to be used for fill areas.
+    # @param style [Integer] The style of fill to be used
+    #  * 0 : HOLLOW
+    #    *   No filling. Just draw the bounding polyline
+    #  * 1 : SOLID
+    #    *   Fill the interior of the polygon using the fill color index
+    #  * 2 : PATTERN
+    #    *   Fill the interior of the polygon using the style index as a pattern index
+    #  * 3 : HATCH
+    #    *   Fill the interior of the polygon using the style index as a cross-hatched style
+    # `setfillintstyle` defines the interior style  for subsequent fill area output
+    # primitives. The default interior style is HOLLOW.
     def setfillintstyle(*)
       super
     end
@@ -536,6 +570,12 @@ module GR
     end
 
     # Sets the fill style to be used for subsequent fill areas.
+    # @param index [Integer] The fill style index to be used
+    # `setfillstyle` specifies an index when PATTERN fill or HATCH fill is requested by the
+    # `setfillintstyle` function. If the interior style is set to PATTERN, the fill style
+    # index points to a device-independent pattern table. If interior style is set to HATCH
+    # the fill style index indicates different hatch styles. If HOLLOW or SOLID is specified
+    # for the interior style, the fill style index is unused.
     def setfillstyle(*)
       super
     end
@@ -546,6 +586,9 @@ module GR
     end
 
     # Sets the current fill area color index.
+    # @param color [Integer] The text color index (COLOR < 1256)
+    # `setfillcolorind` defines the color of subsequent fill area output primitives.
+    # GR uses the default foreground color (black=1) for the default fill area color index.
     def setfillcolorind(*)
       super
     end
@@ -557,12 +600,37 @@ module GR
 
     # `setcolorrep` allows to redefine an existing color index representation by specifying
     # an RGB color triplet.
+    # @param index [Integer] Color index in the range 0 to 1256
+    # @param red [Numeric] Red intensity in the range 0.0 to 1.0
+    # @param green [Numeric] Green intensity in the range 0.0 to 1.0
+    # @param blue [Numeric] Blue intensity in the range 0.0 to 1.0
     def setcolorrep(*)
       super
     end
 
     # `setscale` sets the type of transformation to be used for subsequent GR output
     # primitives.
+    # @param options [Integer] Scale specification
+    #  * 1 :  OPTION_X_LOG
+    #    *    Logarithmic X-axis
+    #  * 2 :  OPTION_Y_LOG
+    #    *    Logarithmic Y-axis
+    #  * 4 :  OPTION_Z_LOG
+    #    *    Logarithmic Z-axis
+    #  * 8 :  OPTION_FLIP_X
+    #    *    Flip X-axis
+    #  * 16 : OPTION_FLIP_Y
+    #    *    Flip Y-axis
+    #  * 32 : OPTION_FLIP_Z
+    #    *    Flip Z-axis
+    # `setscale` defines the current transformation according to the given scale
+    # specification which may be or'ed together using any of the above options. GR uses
+    # these options for all subsequent output primitives until another value is provided.
+    # The scale options are used to transform points from an abstract logarithmic or
+    # semi-logarithmic coordinate system, which may be flipped along each axis, into the
+    # world coordinate system.
+    # Note: When applying a logarithmic transformation to a specific axis, the system
+    # assumes that the axes limits are greater than zero.
     def setscale(*)
       super
     end
@@ -574,6 +642,17 @@ module GR
 
     # `setwindow` establishes a window, or rectangular subspace, of world coordinates to be
     # plotted. If you desire log scaling or mirror-imaging of axes, use the SETSCALE function.
+    # @param xmin [Numeric] The left horizontal coordinate of the window (`xmin` < `xmax`).
+    # @param xmax [Numeric] The right horizontal coordinate of the window.
+    # @param ymin [Numeric] The bottom vertical coordinate of the window (`ymin` < `ymax`).
+    # @param ymax [Numeric] The top vertical coordinate of the window.
+    # `setwindow` defines the rectangular portion of the World Coordinate space (WC) to be
+    # associated with the specified normalization transformation. The WC window and the
+    # Normalized Device Coordinates (NDC) viewport define the normalization transformation
+    # through which all output primitives are mapped. The WC window is mapped onto the
+    # rectangular NDC viewport which is, in turn, mapped onto the display surface of the
+    # open and active workstation, in device coordinates. By default, GR uses the range
+    # \[0,1] x [0,1], in world coordinates, as the normalization transformation window.
     def setwindow(*)
       super
     end
@@ -586,6 +665,16 @@ module GR
     end
 
     # `setviewport` establishes a rectangular subspace of normalized device coordinates.
+    # @param xmin [Numeric] The left horizontal coordinate of the viewport.
+    # @param xmax [Numeric] The right horizontal coordinate of the viewport (0 <= `xmin` < `xmax` <= 1).
+    # @param ymin [Numeric] The bottom vertical coordinate of the viewport.
+    # @param ymax [Numeric] The top vertical coordinate of the viewport (0 <= `ymin` < `ymax` <= 1).
+    # `setviewport` defines the rectangular portion of the Normalized Device Coordinate
+    # (NDC) space to be associated with the specified normalization transformation. The
+    # NDC viewport and World Coordinate (WC) window define the normalization transformation
+    # through which all output primitives pass. The WC window is mapped onto the rectangular
+    # NDC viewport which is, in turn, mapped onto the display surface of the open and active
+    # workstation, in device coordinates.
     def setviewport(*)
       super
     end
@@ -599,6 +688,9 @@ module GR
 
     # `selntran` selects a predefined transformation from world coordinates to normalized
     # device coordinates.
+    # @param transform [Integer] A normalization transformation number.
+    #  * 0    : Selects the identity transformation in which both the window and viewport have the range of 0 to 1
+    #  * >= 1 : Selects a normalization transformation as defined by `setwindow` and `setviewport`
     def selntran(*)
       super
     end
