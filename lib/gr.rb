@@ -696,16 +696,41 @@ module GR
     end
 
     # Set the clipping indicator.
+    # @params indicator [Integer] An indicator specifying whether clipping is on or off.
+    # * 0 : Clipping is off. Data outside of the window will be drawn.
+    # * 1 : Clipping is on. Data outside of the window will not be drawn.
+    # `setclip` enables or disables clipping of the image drawn in the current window.
+    # Clipping is defined as the removal of those portions of the graph that lie outside of
+    # the defined viewport. If clipping is on, GR does not draw generated output primitives
+    # past the viewport boundaries. If clipping is off, primitives may exceed the viewport
+    # boundaries, and they will be drawn to the edge of the workstation window.
+    # By default, clipping is on.
     def setclip(*)
       super
     end
 
     # Set the area of the NDC viewport that is to be drawn in the workstation window.
+    # @param xmin [Numeric] The left horizontal coordinate of the workstation window.
+    # @param xmax [Numeric] The right horizontal coordinate of the workstation window (0 <= `xmin` < `xmax` <= 1).
+    # @param ymin [Numeric] The bottom vertical coordinate of the workstation window.
+    # @param ymax [Numeric] The top vertical coordinate of the workstation window (0 <= `ymin` < `ymax` <= 1).
+    # `setwswindow` defines the rectangular area of the Normalized Device Coordinate space
+    # to be output to the device. By default, the workstation transformation will map the
+    # range [0,1] x [0,1] in NDC onto the largest square on the workstation’s display
+    # surface. The aspect ratio of the workstation window is maintained at 1 to 1.
     def setwswindow(*)
       super
     end
 
     # Define the size of the workstation graphics window in meters.
+    # @param xmin [Numeric] The left horizontal coordinate of the workstation viewport.
+    # @param xmax [Numeric] The right horizontal coordinate of the workstation viewport.
+    # @param ymin [Numeric] The bottom vertical coordinate of the workstation viewport.
+    # @param ymax [Numeric] The top vertical coordinate of the workstation viewport.
+    # `setwsviewport` places a workstation window on the display of the specified size in
+    # meters. This command allows the workstation window to be accurately sized for a
+    # display or hardcopy device, and is often useful for sizing graphs for desktop
+    # publishing applications.
     def setwsviewport(*)
       super
     end
@@ -740,6 +765,16 @@ module GR
 
     # Set the abstract Z-space used for mapping three-dimensional output primitives into
     # the current world coordinate space.
+    # @param zmin [Numeric] Minimum value for the Z-axis.
+    # @param zmax [Numeric] Maximum value for the Z-axis.
+    # @param rotation [Integer] Angle for the rotation of the X axis, in degrees.
+    # @param tilt [integer] Viewing angle of the Z axis in degrees.
+    # `setspace` establishes the limits of an abstract Z-axis and defines the angles for
+    # rotation and for the viewing angle (tilt) of a simulated three-dimensional graph,
+    # used for mapping corresponding output primitives into the current window.
+    # These settings are used for all subsequent three-dimensional output primitives until
+    # other values are specified. Angles of rotation and viewing angle must be specified
+    # between 0° and 90°.
     def setspace(*)
       super
     end
@@ -752,6 +787,55 @@ module GR
 
     # Draw a text at position `x`, `y` using the current text attributes. Strings can be
     # defined to create basic mathematical expressions and Greek letters.
+    # @param x [Numeric] The X coordinate of starting position of the text string
+    # @param y [Numeric] The Y coordinate of starting position of the text string
+    # @param string [String] The text to be drawn
+    #
+    # The values for X and Y are in normalized device coordinates.
+    # The attributes that control the appearance of text are text font and precision,
+    # character expansion factor, character spacing, text color index, character
+    # height, character up vector, text path and text alignment.
+    #
+    # The character string is interpreted to be a simple mathematical formula.
+    # The following notations apply:
+    #
+    # Subscripts and superscripts: These are indicated by carets ('^') and underscores
+    # \('_'). If the sub/superscript contains more than one character, it must be enclosed
+    # in curly braces ('{}').
+    #
+    # Fractions are typeset with A '/' B, where A stands for the numerator and B for the
+    # denominator.
+    #
+    # To include a Greek letter you must specify the corresponding keyword after a
+    # backslash ('\') character. The text translator produces uppercase or lowercase
+    # Greek letters depending on the case of the keyword.
+    #  * Α α - alpha
+    #  * Β β - beta
+    #  * Γ γ - gamma
+    #  * Δ δ - delta
+    #  * Ε ε - epsilon
+    #  * Ζ ζ - zeta
+    #  * Η η - eta
+    #  * Θ θ - theta
+    #  * Ι ι - iota
+    #  * Κ κ - kappa
+    #  * Λ λ - lambda
+    #  * Μ μ - mu
+    #  * Ν ν - Nu / v
+    #  * Ξ ξ - xi
+    #  * Ο ο - omicron
+    #  * Π π - pi
+    #  * Ρ ρ - rho
+    #  * Σ σ - sigma
+    #  * Τ τ - tau
+    #  * Υ υ - upsilon
+    #  * Φ φ - phi
+    #  * Χ χ - chi
+    #  * Ψ ψ - psi
+    #  * Ω ω - omega
+    # Note: `\v` is a replacement for `\nu` which would conflict with `\n` (newline)
+    # For more sophisticated mathematical formulas, you should use the `gr.mathtex`
+    # function.
     def textext(*)
       super
     end
@@ -764,6 +848,23 @@ module GR
     end
 
     # Draw X and Y coordinate axes with linearly and/or logarithmically spaced tick marks.
+    # @param x_tick [Numeric] The interval between minor tick marks on X axis.
+    # @param y_tick [Numeric] The interval between minor tick marks on Y axis.
+    # @param x_org [Numeric] The world coordinates of the origin (point of intersection) of the X axis.
+    # @param y_org [Numeric] The world coordinates of the origin (point of intersection) of the Y axis.
+    # @param major_x [Integer]
+    #   Unitless integer values specifying the number of minor tick intervals
+    #   between major tick marks. Values of 0 or 1 imply no minor ticks.
+    #   Negative values specify no labels will be drawn for the associated axis.
+    # @param major_y [Integer]
+    #   Unitless integer values specifying the number of minor tick intervals
+    #   between major tick marks. Values of 0 or 1 imply no minor ticks.
+    #   Negative values specify no labels will be drawn for the associated axis.
+    # @param tick_size [Numeric]
+    #   The length of minor tick marks specified in a normalized device
+    #   coordinate unit. Major tick marks are twice as long as minor tick marks.
+    #   A negative value reverses the tick marks on the axes from inward facing
+    #   to outward facing (or vice versa).
     def axes(*)
       super
     end
@@ -771,6 +872,20 @@ module GR
     alias axes2d axes
 
     # Draw a linear and/or logarithmic grid.
+    # @param x_tick [Numeric] The length in world coordinates of the interval between minor grid lines.
+    # @param y_tick [Numeric] The length in world coordinates of the interval between minor grid lines.
+    # @param x_org [Numeric] The world coordinates of the origin (point of intersection) of the grid.
+    # @param y_org [Numeric] The world coordinates of the origin (point of intersection) of the grid.
+    # @param major_x [Integer]
+    #   Unitless integer values specifying the number of minor grid lines
+    #   between major grid lines. Values of 0 or 1 imply no grid lines.
+    # @param major_y [Integer]
+    #   Unitless integer values specifying the number of minor grid lines
+    #   between major grid lines. Values of 0 or 1 imply no grid lines.
+    #
+    # Major grid lines correspond to the axes origin and major tick marks whether visible
+    # or not. Minor grid lines are drawn at points equal to minor tick marks. Major grid
+    # lines are drawn using black lines and minor grid lines are drawn using gray lines.
     def grid(*)
       super
     end
