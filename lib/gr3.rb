@@ -355,10 +355,10 @@ module GR3
         y = 0.5
         z = 0.5
       end
-      _mesh_x = (createxslicemesh(grid, x, step, offset) if x)
-      _mesh_y = (createyslicemesh(grid, y, step, offset) if y)
-      _mesh_z = (createzslicemesh(grid, z, step, offset) if z)
-      [_mesh_x, _mesh_y, _mesh_z]
+      mesh_x = (createxslicemesh(grid, x, step, offset) if x)
+      mesh_y = (createyslicemesh(grid, y, step, offset) if y)
+      mesh_z = (createzslicemesh(grid, z, step, offset) if z)
+      [mesh_x, mesh_y, mesh_z]
     end
 
     def preprocess_createslicemesh(grid, step, offset)
