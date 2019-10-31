@@ -420,11 +420,58 @@ module GR
     end
 
     # Specify the text font and precision for subsequent text output primitives.
+    # @param font [Integer] Text font
+    #  * 101 : FONT_TIMES_ROMAN
+    #  * 102 : FONT_TIMES_ITALIC
+    #  * 103 : FONT_TIMES_BOLD
+    #  * 104 : FONT_TIMES_BOLDITALIC
+    #  * 105 : FONT_HELVETICA
+    #  * 106 : FONT_HELVETICA_OBLIQUE
+    #  * 107 : FONT_HELVETICA_BOLD
+    #  * 108 : FONT_HELVETICA_BOLDOBLIQUE
+    #  * 109 : FONT_COURIER
+    #  * 110 : FONT_COURIER_OBLIQUE
+    #  * 111 : FONT_COURIER_BOLD
+    #  * 112 : FONT_COURIER_BOLDOBLIQUE
+    #  * 113 : FONT_SYMBOL
+    #  * 114 : FONT_BOOKMAN_LIGHT
+    #  * 115 : FONT_BOOKMAN_LIGHTITALIC
+    #  * 116 : FONT_BOOKMAN_DEMI
+    #  * 117 : FONT_BOOKMAN_DEMIITALIC
+    #  * 118 : FONT_NEWCENTURYSCHLBK_ROMAN
+    #  * 119 : FONT_NEWCENTURYSCHLBK_ITALIC
+    #  * 120 : FONT_NEWCENTURYSCHLBK_BOLD
+    #  * 121 : FONT_NEWCENTURYSCHLBK_BOLDITALIC
+    #  * 122 : FONT_AVANTGARDE_BOOK
+    #  * 123 : FONT_AVANTGARDE_BOOKOBLIQUE
+    #  * 124 : FONT_AVANTGARDE_DEMI
+    #  * 125 : FONT_AVANTGARDE_DEMIOBLIQUE
+    #  * 126 : FONT_PALATINO_ROMAN
+    #  * 127 : FONT_PALATINO_ITALIC
+    #  * 128 : FONT_PALATINO_BOLD
+    #  * 129 : FONT_PALATINO_BOLDITALIC
+    #  * 130 : FONT_ZAPFCHANCERY_MEDIUMITALIC
+    #  * 131 : FONT_ZAPFDINGBATS
+    # @param precision [Integer] Text precision
+    #  * 0 TEXT_PRECISION_STRING
+    #    * String precision (higher quality)
+    #  * 1 TEXT_PRECISION_CHAR
+    #    * Character precision (medium quality)
+    #  * 2 TEXT_PRECISION_STROKE
+    #    * Stroke precision (lower quality)
+    # The appearance of a font depends on the text precision value specified.
+    # STRING, CHARACTER or STROKE precision allows for a greater or lesser
+    # realization of the text primitives, for efficiency. STRING is the default
+    # precision for GR and produces the highest quality output.
     def settextfontprec(*)
       super
     end
 
     # Set the current character expansion factor (width to height ratio).
+    # @param factor [Numeric] Text expansion factor applied to the nominal text width-to-height ratio
+    # `setcharexpan` defines the width of subsequent text output primitives. The expansion
+    # factor alters the width of the generated characters, but not their height. The default
+    # text expansion factor is 1, or one times the normal width-to-height ratio of the text.
     def setcharexpan(*)
       super
     end
@@ -434,21 +481,41 @@ module GR
     end
 
     # Sets the current text color index.
+    # @param color [Integer] The text color index (COLOR < 1256)
+    # `settextcolorind` defines the color of subsequent text output primitives.
+    GR uses the default foreground color (black=1) for the default text color index.
     def settextcolorind(*)
       super
     end
 
     # Set the current character height.
+    # @param height [Numeric] Text height value
+    # `setcharheight` defines the height of subsequent text output primitives. Text height
+    # is defined as a percentage of the default window. GR uses the default text height of
+    # 0.027 (2.7% of the height of the default window).
     def setcharheight(*)
       super
     end
 
     # Set the current character text angle up vector.
+    # @param ux [Numeric] Text up vector
+    # @param uy [Numeric] Text up vector
+    # `setcharup` defines the vertical rotation of subsequent text output primitives.
+    # The text up vector is initially set to (0, 1), horizontal to the baseline.
     def setcharup(*)
       super
     end
 
     # Define the current direction in which subsequent text will be drawn.
+    # @param path [Integer] Text path
+    #  * 0 TEXT_PATH_RIGHT 
+    #    * left-to-right
+    #  * 1 TEXT_PATH_LEFT 
+    #    * right-to-left
+    #  * 2 TEXT_PATH_UP
+    #    * downside-up
+    #  * 3 TEXT_PATH_DOWN 
+    #    * upside-down
     def settextpath(*)
       super
     end
