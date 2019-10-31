@@ -57,21 +57,52 @@ module GR
     end
 
     # Open a graphical workstation.
+    # @param workstation_id [Integer] A workstation identifier.
+    # @param connection [String] A connection identifier.
+    # @param workstation_type [Integer] The desired workstation type.
+    #  * 5         : Workstation Independent Segment Storage
+    #  * 7, 8      : Computer Graphics Metafile (CGM binary, clear text)
+    #  * 41        : Windows GDI
+    #  * 51        : Mac Quickdraw
+    #  * 61 - 64   : PostScript (b/w, color)
+    #  * 101, 102  : Portable Document Format (plain, compressed)
+    #  * 210 - 213 : X Windows
+    #  * 214       : Sun Raster file (RF)
+    #  * 215, 218  : Graphics Interchange Format (GIF87, GIF89)
+    #  * 216       : Motif User Interface Language (UIL)
+    #  * 320       : Windows Bitmap (BMP)
+    #  * 321       : JPEG image file
+    #  * 322       : Portable Network Graphics file (PNG)
+    #  * 323       : Tagged Image File Format (TIFF)
+    #  * 370       : Xfig vector graphics file
+    #  * 371       : Gtk
+    #  * 380       : wxWidgets
+    #  * 381       : Qt4
+    #  * 382       : Scaleable Vector Graphics (SVG)
+    #  * 390       : Windows Metafile
+    #  * 400       : Quartz
+    #  * 410       : Socket driver
+    #  * 415       : 0MQ driver
+    #  * 420       : OpenGL
+    #  * 430       : HTML5 Canvas
     def openws(*)
       super
     end
 
     # Close the specified workstation.
+    # @param workstation_id [Integer] A workstation identifier.
     def closews(*)
       super
     end
 
     # Activate the specified workstation.
+    # @param workstation_id [Integer] A workstation identifier.
     def activatews(*)
       super
     end
 
     # Deactivate the specified workstation.
+    # @param workstation_id [Integer] A workstation identifier.
     def deactivatews(*)
       super
     end
@@ -90,18 +121,30 @@ module GR
 
     # Draw a polyline using the current line attributes,
     # starting from the first data point and ending at the last data point.
+    # @param x [Array, NArray] A list containing the X coordinates
+    # @param y [Array, NArray] A list containing the Y coordinates
     def polyline(x, y)
       n = equal_length(x, y)
       super(n, x, y)
     end
 
     # Draw marker symbols centered at the given data points.
+    # @param x [Array, NArray] A list containing the X coordinates
+    # @param y [Array, NArray] A list containing the Y coordinates
     def polymarker(x, y)
       n = equal_length(x, y)
       super(n, x, y)
     end
 
     # Draw a text at position `x`, `y` using the current text attributes.
+    # @param x [Numeric] The X coordinate of starting position of the text string
+    # @param y [Numeric] The Y coordinate of starting position of the text string
+    # @param string [String] The text to be drawn
+    #
+    # The values for `x` and `y` are in normalized device coordinates.
+    # The attributes that control the appearance of text are text font and precision,
+    # character expansion factor, character spacing, text color index, character
+    # height, character up vector, text path and text alignment.
     def text(*)
       super
     end
@@ -113,6 +156,11 @@ module GR
     end
 
     # Allows you to specify a polygonal shape of an area to be filled.
+    # @param x [Array, NArray] A list containing the X coordinates
+    # @param y [Array, NArray] A list containing the Y coordinates
+    #
+    # The attributes that control the appearance of fill areas are fill area interior
+    # style, fill area style index and fill area color index.
     def fillarea(x, y)
       n = equal_length(x, y)
       super(n, x, y)
