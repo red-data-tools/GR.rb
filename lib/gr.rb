@@ -230,6 +230,16 @@ module GR
 
     # Generate a cubic spline-fit,
     # starting from the first data point and ending at the last data point.
+    # @param x [Array, NArray] A list containing the X coordinates
+    # @param y [Array, NArray] A list containing the Y coordinates
+    # @param m [Integer] The number of points in the polygon to be drawn (`m` > len(`x`))
+    # @param method [Integer] The smoothing method
+    #  * If `method` is > 0, then a generalized cross-validated smoothing spline is calculated.
+    #  * If `method` is 0, then an interpolating natural cubic spline is calculated.
+    #  * If `method` is < -1, then a cubic B-spline is calculated.
+    # The values for `x` and `y` are in world coordinates. The attributes that
+    # control the appearance of a spline-fit are linetype, linewidth and color
+    # index.
     def spline(px, py, m, method)
       n = equal_length(px, py)
       super(n, px, py, m, method)
@@ -243,6 +253,31 @@ module GR
     end
 
     # Specify the line style for polylines.
+    # @param style [Integer] The polyline line style
+    #  * 1  : LINETYPE_SOLID
+    #    * Solid line
+    #  * 2  : LINETYPE_DASHED
+    #    * Dashed line
+    #  * 3  : LINETYPE_DOTTED
+    #    * Dotted line
+    #  * 4  : LINETYPE_DASHED_DOTTED
+    #    * Dashed-dotted line
+    #  * -1 : LINETYPE_DASH_2_DOT
+    #    * Sequence of one dash followed by two dots
+    #  * -2 : LINETYPE_DASH_3_DOT
+    #    * Sequence of one dash followed by three dots
+    #  * -3 : LINETYPE_LONG_DASH
+    #    * Sequence of long dashes
+    #  * -4 : LINETYPE_LONG_SHORT_DASH
+    #    * Sequence of a long dash followed by a short dash
+    #  * -5 : LINETYPE_SPACED_DASH
+    #    * Sequence of dashes double spaced
+    #  * -6 : LINETYPE_SPACED_DOT
+    #    * Sequence of dots double spaced
+    #  * -7 : LINETYPE_DOUBLE_DOT
+    #    * Sequence of pairs of dots
+    #  * -8 : LINETYPE_TRIPLE_DOT
+    #    * Sequence of groups of three dots
     def setlinetype(*)
       super
     end
@@ -252,6 +287,11 @@ module GR
     end
 
     # Define the line width of subsequent polyline output primitives.
+    # @param width [Numeric] The polyline line width scale factor
+    # The line width is calculated as the nominal line width generated
+    # on the workstation multiplied by the line width scale factor.
+    # This value is mapped by the workstation to the nearest available line width.
+    # The default line width is 1.0, or 1 times the line width generated on the graphics device.
     def setlinewidth(*)
       super
     end
@@ -261,6 +301,7 @@ module GR
     end
 
     # Define the color of subsequent polyline output primitives.
+    # @param color [Integer] The polyline color index (COLOR < 1256)
     def setlinecolorind(*)
       super
     end
