@@ -1688,8 +1688,6 @@ module GR
     end
   end
 
-  # Constants - imported from GR.jl
-
   ASF_BUNDLED = 0
   ASF_INDIVIDUAL = 1
 

@@ -484,45 +484,6 @@ module GR3
       [mesh_x, mesh_y, mesh_z]
     end
 
-    def _preprocess_createslicemesh(grid, step, offset)
-      # TODO: raise error when grid is not narray
-      # grid
-      case grid.class::MAX
-      when Integer
-        input_max = grid.class::MAX
-      when Float
-        # floating point values are expected to be in range [0, 1]
-        # Complex narrays are not taken into account
-        input_max = 1
-        grid[grid > 1] = 1
-      else
-        raise ArgumentError, 'grid must be three dimensional array of Real numbers'
-      end
-      scaling_factor = Numo::UInt16::MAX / input_max.to_f
-      grid = (grid.cast_to(Numo::UInt64) * scaling_factor).cast_to(Numo::UInt16) # room for improvement
-
-      # step & offset
-      nx, ny, nz = grid.shape
-      if step.nil? && offset.nil?
-        step = [2.0 / (nx - 1), 2.0 / (ny - 1), 2.0 / (nz - 1)]
-        offset = [-1.0, -1.0, -1.0]
-      elsif offset.nil?
-        offset = [-step[0] * (nx - 1) / 2.0,
-                  -step[1] * (ny - 1) / 2.0,
-                  -step[2] * (nz - 1) / 2.0]
-      elsif step.nil?
-        step = [-offset[0] * 2.0 / (nx - 1),
-                -offset[1] * 2.0 / (ny - 1),
-                -offset[2] * 2.0 / (nz - 1)]
-      end
-
-      step_x, step_y, step_z = step
-      offset_x, offset_y, offset_z = offset
-
-      [grid, nx, ny, nz, step_x, step_y, step_z, offset_x, offset_y, offset_z]
-    end
-    private_class_method(:_preprocess_createslicemesh)
-
     # Creates a meshes for a slices through the yz-plane of the given data,
     # using the current GR colormap. Use the x parameter to set the position of
     # the yz-slice.
@@ -674,9 +635,46 @@ module GR3
         super(nx, ny, nz, data, algorithm, dmin, dmax)
       end
     end
-  end
 
-  # Constants - imported from GR.jl
+    private
+    def _preprocess_createslicemesh(grid, step, offset)
+      # TODO: raise error when grid is not narray
+      # grid
+      case grid.class::MAX
+      when Integer
+        input_max = grid.class::MAX
+      when Float
+        # floating point values are expected to be in range [0, 1]
+        # Complex narrays are not taken into account
+        input_max = 1
+        grid[grid > 1] = 1
+      else
+        raise ArgumentError, 'grid must be three dimensional array of Real numbers'
+      end
+      scaling_factor = Numo::UInt16::MAX / input_max.to_f
+      grid = (grid.cast_to(Numo::UInt64) * scaling_factor).cast_to(Numo::UInt16) # room for improvement
+
+      # step & offset
+      nx, ny, nz = grid.shape
+      if step.nil? && offset.nil?
+        step = [2.0 / (nx - 1), 2.0 / (ny - 1), 2.0 / (nz - 1)]
+        offset = [-1.0, -1.0, -1.0]
+      elsif offset.nil?
+        offset = [-step[0] * (nx - 1) / 2.0,
+                  -step[1] * (ny - 1) / 2.0,
+                  -step[2] * (nz - 1) / 2.0]
+      elsif step.nil?
+        step = [-offset[0] * 2.0 / (nx - 1),
+                -offset[1] * 2.0 / (ny - 1),
+                -offset[2] * 2.0 / (nz - 1)]
+      end
+
+      step_x, step_y, step_z = step
+      offset_x, offset_y, offset_z = offset
+
+      [grid, nx, ny, nz, step_x, step_y, step_z, offset_x, offset_y, offset_z]
+    end
+  end
 
   # InitAttribute
   IA_END_OF_LIST = 0
