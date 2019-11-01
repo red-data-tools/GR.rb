@@ -1318,11 +1318,21 @@ module GR
     end
 
     # Set the arrow size to be used for subsequent arrow commands.
+    # @param size [Numeric] The arrow size to be used
+    # `setarrowsize` defines the arrow size for subsequent arrow primitives.
+    # The default arrow size is 1.
     def setarrowsize(*)
       super
     end
 
     # Draw an arrow between two points.
+    # @param x1 [Numeric] Starting point of the arrow (tail)
+    # @param y1 [Numeric] Starting point of the arrow (tail)
+    # @param x2 [Numeric] Head of the arrow
+    # @param y2 [Numeric] Head of the arrow
+    # Different arrow styles (angles between arrow tail and wing, optionally filled
+    # heads, double headed arrows) are available and can be set with the `setarrowstyle`
+    # function.
     def drawarrow(*)
       super
     end
@@ -1337,6 +1347,23 @@ module GR
     end
 
     # Draw an image into a given rectangular area.
+    # @param xmin [Numeric] First corner point of the rectangle
+    # @param ymin [Numeric] First corner point of the rectangle
+    # @param xmax [Numeric] Second corner point of the rectangle
+    # @param ymax [Numeric] Second corner point of the rectangle
+    # @param width [Integer] The width and the height of the image
+    # @param height [Integer] The width and the height of the image
+    # @param data [Array, NArray] An array of color values dimensioned `width` by `height`
+    # @param model [Integer] Color model ( default = 0 )
+    #  The available color models are:
+    #  * 0 : MODEL_RGB
+    #    *   AABBGGRR
+    #  * 1 : MODEL_HSV
+    #    *   AAVVSSHH
+    # The points (`xmin`, `ymin`) and (`xmax`, `ymax`) are world coordinates defining
+    # diagonally opposite corner points of a rectangle. This rectangle is divided into
+    # `width` by `height` cells. The two-dimensional array `data` specifies colors
+    # for each cell.
     def drawimage(xmin, xmax, ymin, ymax, width, height, data, model = 0)
       super(xmin, xmax, ymin, ymax, width, height, uint(data), model)
     end
@@ -1348,16 +1375,26 @@ module GR
     # `setshadow` allows drawing of shadows, realized by images painted underneath,
     # and offset from, graphics objects such that the shadow mimics the effect of a light
     # source cast on the graphics objects.
+    # @param offsetx [Numeric]
+    #   An x-offset, which specifies how far in the horizontal direction the
+    #   shadow is offset from the object
+    # @param offsety [Numeric]
+    #   A y-offset, which specifies how far in the vertical direction the shadow
+    #   is offset from the object
+    # @param blur [Numeric]
+    #   A blur value, which specifies whether the object has a hard or a diffuse edge
     def setshadow(*)
       super
     end
 
     # Set the value of the alpha component associated with GR colors.
+    # @param alpha [Numeric] An alpha value (0.0 - 1.0)
     def settransparency(*)
       super
     end
 
     # Change the coordinate transformation according to the given matrix.
+    # @param mat [Array, NArray] 2D transformation matrix
     def setcoordxform(mat)
       raise if mat.size != 6
 
@@ -1365,6 +1402,10 @@ module GR
     end
 
     # Open a file for graphics output.
+    # @param path [String] Filename for the graphics file.
+    # `begingraphics` allows to write all graphics output into a XML-formatted file until
+    # the `endgraphics` functions is called. The resulting file may later be imported with
+    # the `importgraphics` function.
     def begingraphics(*)
       super
     end
@@ -1383,6 +1424,9 @@ module GR
 
     # Generate a character string starting at the given location. Strings can be defined
     # to create mathematical symbols and Greek letters using LaTeX syntax.
+    # @param x [Numeric] Position of the text string specified in world coordinates
+    # @param y [Numeric] Position of the text string specified in world coordinates
+    # @param string [String] The text string to be drawn
     def mathtex(*)
       super
     end
@@ -1458,12 +1502,15 @@ module GR
     end
 
     # Draw a triangular surface plot for the given data points.
+    # @param x [Array, NArray] A list containing the X coordinates
+    # @param y [Array, NArray] A list containing the Y coordinates
+    # @param z [Array, NArray] A list containing the Z coordinates
     def trisurface(px, py, pz)
       n = [px, py, pz].map(&:length).min
       super(n, px, py, pz)
     end
 
-    # gradient
+    # @deprecated
     def gradient(x, y, z)
       # TODO: check: Arrays have incorrect length or dimension.
       nx = x.length
@@ -1474,6 +1521,16 @@ module GR
     end
 
     # Draw a quiver plot on a grid of nx*ny points.
+    # @param nx [Integer] The number of points along the x-axis of the grid
+    # @param ny [Integer] The number of points along the y-axis of the grid
+    # @param x [Array, NArray] A list containing the X coordinates
+    # @param y [Array, NArray] A list containing the Y coordinates
+    # @param u [Array, NArray] A list containing the U component for each point on the grid
+    # @param v [Array, NArray] A list containing the V component for each point on the grid
+    # @param color [Integer]
+    #   A bool to indicate whether or not the arrows should be colored using
+    #   the current colormap
+    # The values for `x` and `y` are in world coordinates.
     def quiver(x, y, u, v, color)
       # TODO: check: Arrays have incorrect length or dimension.
       nx = x.length
@@ -1485,6 +1542,22 @@ module GR
     # input points are located on a grid, described by `x`, `y` and `z`.
     # The target grid ist described by `xq` and `yq`.
     # Returns an array containing the resulting z-values.
+    # @param x [Array, NArray] Array containing the input grid's x-values
+    # @param y [Array, NArray] Array containing the input grid's y-values
+    # @param z [Array, NArray] Array containing the input grid's z-values (number of values: nx * ny)
+    # @param xq [Array, NArray] Array containing the target grid's x-values
+    # @param yq [Array, NArray] Array containing the target grid's y-values
+    # @param method [Integer] Used method for interpolation
+    #  The available methods for interpolation are the following:
+    #  * 0 : INTERP2_NEAREST
+    #    *   Nearest neighbour interpolation
+    #  * 1 : INTERP2_LINEAR
+    #    *   Linear interpolation
+    #  * 2 : INTERP_2_SPLINE
+    #    *   Interpolation using natural cubic splines
+    #  * 3 : INTERP2_CUBIC
+    #    *   Cubic interpolation
+    # @param extrapval [Numeric] The extrapolation value
     def interp2(x, y, z, xq, yq, method, extrapval) # flatten
       nx = x.length
       ny = y.length
@@ -1502,6 +1575,24 @@ module GR
     end
 
     # Display a point set as a aggregated and rasterized image.
+    # @param x [Array, NArray] A pointer to the X coordinates
+    # @param y [Array, NArray] A pointer to the Y coordinates
+    # @param dims [Array, NArray] The size of the grid used for rasterization
+    # @param xform [Integer] The transformation type used for color mapping
+    #  The available transformation types are:
+    #  * 0 : XFORM_BOOLEAN
+    #    *   boolean
+    #  * 1 : XFORM_LINEAR
+    #    *   linear
+    #  * 2 : XFORM_LOG
+    #    *   logarithmic
+    #  * 3 : XFORM_LOGLOG
+    #    *   double logarithmic
+    #  * 4 : XFORM_CUBIC
+    #    *   cubic
+    #  * 5 : XFORM_EQUALIZED
+    #    *   histogram equalized
+    # The values for `x` and `y` are in world coordinates.
     def shadepoints(x, y, dims: [1200, 1200], xform: 1)
       n = x.length
       w, h = dims
@@ -1509,6 +1600,25 @@ module GR
     end
 
     # Display a line set as an aggregated and rasterized image.
+    # @param x [Array, NArray] A pointer to the X coordinates
+    # @param y [Array, NArray] A pointer to the Y coordinates
+    # @param dims [Array, NArray] The size of the grid used for rasterization
+    # @param xform [Integer] The transformation type used for color mapping
+    #  The available transformation types are:
+    #  * 0 : XFORM_BOOLEAN
+    #    *   boolean
+    #  * 1 : XFORM_LINEAR
+    #    *   linear
+    #  * 2 : XFORM_LOG
+    #    *   logarithmic
+    #  * 3 : XFORM_LOGLOG
+    #    *   double logarithmic
+    #  * 4 : XFORM_CUBIC
+    #    *   cubic
+    #  * 5 : XFORM_EQUALIZED
+    #    *   histogram equalized
+    # The values for `x` and `y` are in world coordinates.
+    # NaN values can be used to separate the point set into line segments.
     def shadelines(x, y, dims: [1200, 1200], xform: 1)
       n = x.length
       w, h = dims
