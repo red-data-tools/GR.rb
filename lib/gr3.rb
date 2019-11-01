@@ -532,7 +532,7 @@ module GR3
     # @param step [Array] voxel sizes in each direction
     # @param offset [Array] coordinate origin in each direction
     def createxslicemesh(grid, x = 0.5, step = nil, offset = nil)
-      grid, nx, ny, nz, step_x, step_y, step_z, offset_x, offset_y, offset_z = preprocess_createslicemesh(grid, step, offset)
+      grid, nx, ny, nz, step_x, step_y, step_z, offset_x, offset_y, offset_z = _preprocess_createslicemesh(grid, step, offset)
       x = (x.clamp(0, 1) * nx).floor
       stride_x = 1
       stride_y = ny
@@ -552,7 +552,7 @@ module GR3
     # @param step [Array] voxel sizes in each direction
     # @param offset [Array] coordinate origin in each direction
     def createyslicemesh(grid, y = 0.5, step = nil, offset = nil)
-      grid, nx, ny, nz, step_x, step_y, step_z, offset_x, offset_y, offset_z = preprocess_createslicemesh(grid, step, offset)
+      grid, nx, ny, nz, step_x, step_y, step_z, offset_x, offset_y, offset_z = _preprocess_createslicemesh(grid, step, offset)
       y = (y.clamp(0, 1) * ny).floor
       stride_x = nx
       stride_y = 1
@@ -572,7 +572,7 @@ module GR3
     # @param step [Array] voxel sizes in each direction
     # @param offset [Array] coordinate origin in each direction
     def createzslicemesh(grid, z = 0.5, step = nil, offset = nil)
-      grid, nx, ny, nz, step_x, step_y, step_z, offset_x, offset_y, offset_z = preprocess_createslicemesh(grid, step, offset)
+      grid, nx, ny, nz, step_x, step_y, step_z, offset_x, offset_y, offset_z = _preprocess_createslicemesh(grid, step, offset)
       z = (z.clamp(0, 1) * nz).floor
       stride_x = ny * nz
       stride_y = ny
