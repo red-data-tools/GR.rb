@@ -334,17 +334,35 @@ module GR3
       end
     end
 
-    # Draw a mesh with the projection of gr.
+    # Draw a mesh with the projection of gr. It uses the current
+    # projection parameters (rotation, tilt) of gr.
+    # This function alters the projection type, the projection parameters,
+    # the viewmatrix and the light direction. If necessary, the user has to
+    # save them before the call to this function and restore them after
+    # the call to gr3_drawimage.
+    # @param mesh [Integer] the mesh to be drawn
+    # @param n [Integer] the number of meshes to be drawn
+    # @param positions [Array, NArray] the positions where the meshes should be drawn
+    # @param directions [Array, NArray] the forward directions the meshes should be facing at
+    # @param ups [Array, NArray] the up directions
+    # @param colors [Array, NArray] the colors the meshes should be drawn in, it will be multiplied with each vertex color
+    # @param scales [Array, NArray] the scaling factors
     def drawmesh_grlike(*)
       super
     end
 
     # Convenience function for drawing a surfacemesh.
+    # @param mesh [Integer] the mesh to be drawn
     def drawsurface(*)
       super
     end
 
     # Create a surface plot with gr3 and draw it with gks as cellarray.
+    # @param px [Array, NArray] an array containing the x-coordinates
+    # @param py [Array, NArray] an array containing the y-coordinates
+    # @param pz [Array, NArray] an array of length nx * ny containing the z-coordinates
+    # @param option [Integer] see the option parameter of gr_surface.
+    #  OPTION_COLORED_MESH and OPTION_Z_SHADED_MESH are supported.
     def surface(px, py, pz, _option)
       nx = px.length
       ny = py.length
@@ -353,11 +371,28 @@ module GR3
     end
 
     # drawtubemesh
+    # Draw a tube following a path given by a list of points. The colors and
+    # radii arrays specify the color and radius at each point.
+    # @param n [Integer] the number of points given
+    # @param points [Array, NArray] the points the tube should go through
+    # @param colors [Array, NArray] the color at each point
+    # @param radii [Array, NArray]  the desired tube radius at each point
+    # @param num_steps [Integer] the number of steps between each point, allowing for a more smooth tube
+    # @param num_segments [Integer] the number of segments each ring of the tube consists of,
+    #  e.g. 3 would yield a triangular tube
     def drawtubemesh(n, points, colors, radii, num_steps = 10, num_segments = 20)
       super(n, points, colors, radii, num_steps, num_segments)
     end
 
-    # createtubemesh
+    # Create a mesh object in the shape of a tube following a path given by a
+    # list of points. The colors and radii arrays specify the color and radius at
+    # each point.
+    # @param n [Integer] the number of points given
+    # @param points [Array, NArray] the points the tube should go through
+    # @param colors [Array, NArray] the color at each point
+    # @param radii [Array, NArray] the desired tube radius at each point
+    # @param num_steps [Integer] the number of steps between each point, allowing for a more smooth tube
+    # @param num_segments [Integer] the number of segments each ring of the tube consists of, e.g. 3 would yield a triangular tube
     def createtubemesh(n, points, colors, radii, num_steps = 10, num_segments = 20)
       inquiry_uint do |mesh| # mesh should be Int?
         super(mesh, n, points, colors, radii, num_steps, num_segments)
@@ -431,6 +466,12 @@ module GR3
     # drawn and at which positions they should go through the data. If neither
     # x nor y nor z are set, 0.5 will be used for all three.
     # Returns meshes for the yz-slice, the xz-slice and the xy-slice.
+    # @param grid [NArray] 3D numpy array containing the voxel data
+    # @param x [Numeric] the position of the slice through the xz-plane (0 to 1)
+    # @param y [Numeric] the position of the slice through the xz-plane (0 to 1)
+    # @param z [Numeric] the position of the slice through the xz-plane (0 to 1)
+    # @param step [Array] voxel sizes in each direction
+    # @param offset [Array] coordinate origin in each direction
     def createslicemeshes(grid, x = nil, y = nil, z = nil, step = nil, offset = nil)
       if [x, y, z].all?(&:nil?)
         x = 0.5
@@ -443,7 +484,7 @@ module GR3
       [mesh_x, mesh_y, mesh_z]
     end
 
-    def preprocess_createslicemesh(grid, step, offset)
+    def _preprocess_createslicemesh(grid, step, offset)
       # TODO: raise error when grid is not narray
       # grid
       case grid.class::MAX
@@ -480,11 +521,16 @@ module GR3
 
       [grid, nx, ny, nz, step_x, step_y, step_z, offset_x, offset_y, offset_z]
     end
+    private_class_method(:_preprocess_createslicemesh)
 
     # Creates a meshes for a slices through the yz-plane of the given data,
     # using the current GR colormap. Use the x parameter to set the position of
     # the yz-slice.
     # Returns a mesh for the yz-slice.
+    # @param grid [NArray] 3D numpy array containing the voxel data
+    # @param x [Numeric] the position of the slice through the xz-plane (0 to 1)
+    # @param step [Array] voxel sizes in each direction
+    # @param offset [Array] coordinate origin in each direction
     def createxslicemesh(grid, x = 0.5, step = nil, offset = nil)
       grid, nx, ny, nz, step_x, step_y, step_z, offset_x, offset_y, offset_z = preprocess_createslicemesh(grid, step, offset)
       x = (x.clamp(0, 1) * nx).floor
@@ -501,6 +547,10 @@ module GR3
     # using the current GR colormap. Use the y parameter to set the position of
     # the xz-slice.
     # Returns a mesh for the xz-slice.
+    # @param grid [NArray] 3D numpy array containing the voxel data
+    # @param y [Numeric] the position of the slice through the xz-plane (0 to 1)
+    # @param step [Array] voxel sizes in each direction
+    # @param offset [Array] coordinate origin in each direction
     def createyslicemesh(grid, y = 0.5, step = nil, offset = nil)
       grid, nx, ny, nz, step_x, step_y, step_z, offset_x, offset_y, offset_z = preprocess_createslicemesh(grid, step, offset)
       y = (y.clamp(0, 1) * ny).floor
@@ -517,6 +567,10 @@ module GR3
     # using the current GR colormap. Use the z parameter to set the position of
     # the xy-slice.
     # Returns a mesh for the xy-slice.
+    # @param grid [NArray] 3D numpy array containing the voxel data
+    # @param z [Numeric] the position of the slice through the xz-plane (0 to 1)
+    # @param step [Array] voxel sizes in each direction
+    # @param offset [Array] coordinate origin in each direction
     def createzslicemesh(grid, z = 0.5, step = nil, offset = nil)
       grid, nx, ny, nz, step_x, step_y, step_z, offset_x, offset_y, offset_z = preprocess_createslicemesh(grid, step, offset)
       z = (z.clamp(0, 1) * nz).floor
@@ -530,6 +584,15 @@ module GR3
     end
 
     # Draw a yz-slice through the given data, using the current GR colormap.
+    # @param grid [NArray] 3D numpy array containing the voxel data
+    # @param x [Numeric] the position of the slice through the yz-plane (0 to 1)
+    # @param step [Array] voxel sizes in each direction
+    # @param offset [Array] coordinate origin in each direction
+    # @param position [Array] the positions where the meshes should be drawn
+    # @param direction [Array] the forward directions the meshes should be facing at
+    # @param up [Array] the up directions
+    # @param color [Array] the colors the meshes should be drawn in, it will be multiplied with each vertex color
+    # @param scale [Array] the scaling factors
     def drawxslicemesh(grid, x = 0.5, step = nil, offset = nil,
                        position = [0, 0, 0], direction = [0, 0, 1], up = [0, 1, 0],
                        color = [1, 1, 1], scale = [1, 1, 1])
@@ -539,6 +602,15 @@ module GR3
     end
 
     # Draw a xz-slice through the given data, using the current GR colormap.
+    # @param grid [NArray] 3D numpy array containing the voxel data
+    # @param y [Numeric] the position of the slice through the xz-plane (0 to 1)
+    # @param step [Array] voxel sizes in each direction
+    # @param offset [Array] coordinate origin in each direction
+    # @param position [Array] the positions where the meshes should be drawn
+    # @param direction [Array] the forward directions the meshes should be facing at
+    # @param up [Array] the up directions
+    # @param color [Array] the colors the meshes should be drawn in, it will be multiplied with each vertex color
+    # @param scale [Array] the scaling factors
     def drawyslicemesh(grid, y = 0.5, step = nil, offset = nil,
                        position = [0, 0, 0], direction = [0, 0, 1], up = [0, 1, 0],
                        color = [1, 1, 1], scale = [1, 1, 1])
@@ -548,6 +620,15 @@ module GR3
     end
 
     # Draw a xy-slice through the given data, using the current GR colormap.
+    # @param grid [NArray] 3D numpy array containing the voxel data
+    # @param z [Numeric] the position of the slice through the xy-plane (0 to 1)
+    # @param step [Array] voxel sizes in each direction
+    # @param offset [Array] coordinate origin in each direction
+    # @param position [Array] the positions where the meshes should be drawn
+    # @param direction [Array] the forward directions the meshes should be facing at
+    # @param up [Array] the up directions
+    # @param color [Array] the colors the meshes should be drawn in, it will be multiplied with each vertex color
+    # @param scale [Array] the scaling factors
     def drawzslicemesh(grid, z = 0.5, step = nil, offset = nil,
                        position = [0, 0, 0], direction = [0, 0, 1], up = [0, 1, 0],
                        color = [1, 1, 1], scale = [1, 1, 1])
@@ -560,6 +641,17 @@ module GR3
     # Use the parameters x, y or z to specify what slices should be drawn and at
     # which positions they should go through the data. If neither x nor y nor
     # z are set, 0.5 will be used for all three.
+    # @param grid [NArray] 3D numpy array containing the voxel data
+    # @param x [Numeric] the position of the slice through the yz-plane (0 to 1)
+    # @param y [Numeric] the position of the slice through the xz-plane (0 to 1)
+    # @param z [Numeric] the position of the slice through the xy-plane (0 to 1)
+    # @param step [Array] voxel sizes in each direction
+    # @param offset [Array] coordinate origin in each direction
+    # @param position [Array] the positions where the meshes should be drawn
+    # @param direction [Array] the forward directions the meshes should be facing at
+    # @param up [Array] the up directions
+    # @param color [Array] the colors the meshes should be drawn in, it will be multiplied with each vertex color
+    # @param scale [Array] the scaling factors
     def drawslicemeshes(grid, x = nil, y = nil, z = nil, step = nil,
                         offset = nil, position = [0, 0, 0], direction = [0, 0, 1], up = [0, 1, 0],
                         color = [1, 1, 1], scale = [1, 1, 1])
@@ -586,10 +678,12 @@ module GR3
 
   # Constants - imported from GR.jl
 
+  # InitAttribute
   IA_END_OF_LIST = 0
   IA_FRAMEBUFFER_WIDTH = 1
   IA_FRAMEBUFFER_HEIGHT = 2
 
+  # Error
   ERROR_NONE = 0
   ERROR_INVALID_VALUE = 1
   ERROR_INVALID_ATTRIBUTE = 2
@@ -602,6 +696,7 @@ module GR3
   ERROR_CANNOT_OPEN_FILE = 9
   ERROR_EXPORT = 10
 
+  # Quality
   QUALITY_OPENGL_NO_SSAA  = 0
   QUALITY_OPENGL_2X_SSAA  = 2
   QUALITY_OPENGL_4X_SSAA  = 4
@@ -613,9 +708,11 @@ module GR3
   QUALITY_POVRAY_8X_SSAA  = 8 + 1
   QUALITY_POVRAY_16X_SSAA = 16 + 1
 
+  # Drawable
   DRAWABLE_OPENGL = 1
   DRAWABLE_GKS = 2
 
+  # SurfaceOption
   SURFACE_DEFAULT     =  0
   SURFACE_NORMALS     =  1
   SURFACE_FLAT        =  2
