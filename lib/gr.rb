@@ -1633,6 +1633,49 @@ module GR
     end
 
     # Set the resample method used for gr.drawimage().
+    # @param resample_method [Integer] the new resample method.
+    #  The available options are:
+    #  * 0x00000000 : RESAMPLE_DEFAULT
+    #    *            default
+    #  * 0x01010101 : RESAMPLE_NEAREST
+    #    *            nearest neighbour
+    #  * 0x02020202 : RESAMPLE_LINEAR
+    #    *            linear
+    #  * 0x03030303 : RESAMPLE_LANCZOS
+    #    *            Lanczos
+    #  Alternatively, combinations of these methods can be selected for horizontal or vertical upsampling or downsampling:
+    #  * 0x00000000 : UPSAMPLE_VERTICAL_DEFAULT
+    #    *            default for vertical upsampling
+    #  * 0x00000000 : UPSAMPLE_HORIZONTAL_DEFAULT
+    #    *            default for horizontal upsampling
+    #  * 0x00000000 : DOWNSAMPLE_VERTICAL_DEFAULT
+    #    *            default for vertical downsampling
+    #  * 0x00000000 : DOWNSAMPLE_HORIZONTAL_DEFAULT
+    #    *            default for horizontal downsampling
+    #  * 0x00000001 : UPSAMPLE_VERTICAL_NEAREST
+    #    *            nearest neighbor for vertical upsampling
+    #  * 0x00000100 : UPSAMPLE_HORIZONTAL_NEAREST
+    #    *            nearest neighbor for horizontal upsampling
+    #  * 0x00010000 : DOWNSAMPLE_VERTICAL_NEAREST
+    #    *            nearest neighbor for vertical downsampling
+    #  * 0x01000000 : DOWNSAMPLE_HORIZONTAL_NEAREST
+    #    *            nearest neighbor for horizontal downsampling
+    #  * 0x00000002 : UPSAMPLE_VERTICAL_LINEAR
+    #    *            linear for vertical upsampling
+    #  * 0x00000200 : UPSAMPLE_HORIZONTAL_LINEAR
+    #    *            linear for horizontal upsampling
+    #  * 0x00020000 : DOWNSAMPLE_VERTICAL_LINEAR
+    #    *            linear for vertical downsampling
+    #  * 0x02000000 : DOWNSAMPLE_HORIZONTAL_LINEAR
+    #    *            linear for horizontal downsampling
+    #  * 0x00000003 : UPSAMPLE_VERTICAL_LANCZOS
+    #    *            lanczos for vertical upsampling
+    #  * 0x00000300 : UPSAMPLE_HORIZONTAL_LANCZOS
+    #    *            lanczos for horizontal upsampling
+    #  * 0x00030000 : DOWNSAMPLE_VERTICAL_LANCZOS
+    #    *            lanczos for vertical downsampling
+    #  * 0x03000000 : DOWNSAMPLE_HORIZONTAL_LANCZOS
+    #    *            lanczos for horizontal downsampling
     def setresamplemethod(*)
       super
     end
