@@ -287,7 +287,7 @@ module GR3
     # This function creates an isosurface from voxel data using the
     # marching cubes algorithm.
     # Returns a mesh.
-    # @param grid [NArray] 3D numpy array containing the voxel data
+    # @param grid [NArray] 3D narray array containing the voxel data
     # @param step [Array] voxel sizes in each direction
     # @param offset [Array] coordinate origin in each direction
     # @param isolevel [Integer] isovalue at which the surface will be created
@@ -466,7 +466,7 @@ module GR3
     # drawn and at which positions they should go through the data. If neither
     # x nor y nor z are set, 0.5 will be used for all three.
     # Returns meshes for the yz-slice, the xz-slice and the xy-slice.
-    # @param grid [NArray] 3D numpy array containing the voxel data
+    # @param grid [NArray] 3D narray array containing the voxel data
     # @param x [Numeric] the position of the slice through the xz-plane (0 to 1)
     # @param y [Numeric] the position of the slice through the xz-plane (0 to 1)
     # @param z [Numeric] the position of the slice through the xz-plane (0 to 1)
@@ -527,7 +527,7 @@ module GR3
     # using the current GR colormap. Use the x parameter to set the position of
     # the yz-slice.
     # Returns a mesh for the yz-slice.
-    # @param grid [NArray] 3D numpy array containing the voxel data
+    # @param grid [NArray] 3D narray array containing the voxel data
     # @param x [Numeric] the position of the slice through the xz-plane (0 to 1)
     # @param step [Array] voxel sizes in each direction
     # @param offset [Array] coordinate origin in each direction
@@ -547,7 +547,7 @@ module GR3
     # using the current GR colormap. Use the y parameter to set the position of
     # the xz-slice.
     # Returns a mesh for the xz-slice.
-    # @param grid [NArray] 3D numpy array containing the voxel data
+    # @param grid [NArray] 3D narray array containing the voxel data
     # @param y [Numeric] the position of the slice through the xz-plane (0 to 1)
     # @param step [Array] voxel sizes in each direction
     # @param offset [Array] coordinate origin in each direction
@@ -567,7 +567,7 @@ module GR3
     # using the current GR colormap. Use the z parameter to set the position of
     # the xy-slice.
     # Returns a mesh for the xy-slice.
-    # @param grid [NArray] 3D numpy array containing the voxel data
+    # @param grid [NArray] 3D narray array containing the voxel data
     # @param z [Numeric] the position of the slice through the xz-plane (0 to 1)
     # @param step [Array] voxel sizes in each direction
     # @param offset [Array] coordinate origin in each direction
@@ -584,7 +584,7 @@ module GR3
     end
 
     # Draw a yz-slice through the given data, using the current GR colormap.
-    # @param grid [NArray] 3D numpy array containing the voxel data
+    # @param grid [NArray] 3D narray array containing the voxel data
     # @param x [Numeric] the position of the slice through the yz-plane (0 to 1)
     # @param step [Array] voxel sizes in each direction
     # @param offset [Array] coordinate origin in each direction
@@ -602,7 +602,7 @@ module GR3
     end
 
     # Draw a xz-slice through the given data, using the current GR colormap.
-    # @param grid [NArray] 3D numpy array containing the voxel data
+    # @param grid [NArray] 3D narray array containing the voxel data
     # @param y [Numeric] the position of the slice through the xz-plane (0 to 1)
     # @param step [Array] voxel sizes in each direction
     # @param offset [Array] coordinate origin in each direction
@@ -620,7 +620,7 @@ module GR3
     end
 
     # Draw a xy-slice through the given data, using the current GR colormap.
-    # @param grid [NArray] 3D numpy array containing the voxel data
+    # @param grid [NArray] 3D narray array containing the voxel data
     # @param z [Numeric] the position of the slice through the xy-plane (0 to 1)
     # @param step [Array] voxel sizes in each direction
     # @param offset [Array] coordinate origin in each direction
@@ -641,7 +641,7 @@ module GR3
     # Use the parameters x, y or z to specify what slices should be drawn and at
     # which positions they should go through the data. If neither x nor y nor
     # z are set, 0.5 will be used for all three.
-    # @param grid [NArray] 3D numpy array containing the voxel data
+    # @param grid [NArray] 3D narray array containing the voxel data
     # @param x [Numeric] the position of the slice through the yz-plane (0 to 1)
     # @param y [Numeric] the position of the slice through the xz-plane (0 to 1)
     # @param z [Numeric] the position of the slice through the xy-plane (0 to 1)
