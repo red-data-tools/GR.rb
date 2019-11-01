@@ -71,6 +71,11 @@ module GR3
     end
 
     # This function allows the user to find out how his commands are rendered.
+    # If gr3 is initialized, a string in the format:
+    # `"gr3 - " + window toolkit + " - " + framebuffer extension + " - " + OpenGL version + " - " + OpenGL renderer string`.
+    # For example `"gr3 - GLX - GL_ARB_framebuffer_object - 2.1 Mesa 7.10.2 - Software Rasterizer"`
+    # might be returned on a Linux system (using GLX) with an available GL_ARB_framebuffer_object implementation.
+    # If gr3 is not initialized `"Not initialized"` is returned.
     def getrenderpathstring(*)
       super
     end
@@ -85,14 +90,20 @@ module GR3
       super
     end
 
+    # Use the currently bound framebuffer as the framebuffer used for drawing to OpenGL (using gr3.drawimage).
+    # This function is only needed when you do not want to render to 0, the default framebuffer.
     def usecurrentframebuffer(*)
       super
     end
 
+    # Set the framebuffer used for drawing to OpenGL (using gr3.drawimage).
+    # This function is only needed when you do not want to render to 0, the default framebuffer.
     def useframebuffer(*)
       super
     end
 
+    # Set rendering quality
+    # @param quality [] The quality to set
     def setquality(*)
       super
     end
@@ -121,9 +132,15 @@ module GR3
     end
 
     # This function creates a int from vertex position, normal and color data.
-    def createmesh(_n, vertices, normals, colors)
+    # Returns a mesh.
+    # @param n [Integer] the number of vertices in the mesh
+    # @param vertices [Array, NArray] the vertex positions
+    # @param normals [Array, NArray] the vertex normals
+    # @param colors [Array, NArray] the vertex colors,
+    #  they should be white (1,1,1) if you want to change the color for each drawn mesh
+    def createmesh(n, vertices, normals, colors)
       inquiry_int do |mesh|
-        super(mesh, vertices, normals, colors)
+        super(mesh, n, vertices, normals, colors)
       end
     end
 
@@ -134,31 +151,63 @@ module GR3
       end
     end
 
-    # This function creates a int from vertex position, normal and color data.
+    # This function creates an indexed mesh from vertex information (position,
+    # normal and color) and triangle information (indices).
+    # Returns a mesh.
+    # @param num_vertices [Integer] the number of vertices in the mesh
+    # @param vertices [Array, NArray] the vertex positions
+    # @param normals [Array, NArray] the vertex normals
+    # @param colors [Array, NArray] the vertex colors,
+    #  they should be white (1,1,1) if you want to change the color for each drawn mesh
+    # @param num_indices [Integer] the number of indices in the mesh (three times the number of triangles)
+    # @param indices [Array, NArray] the index array (vertex indices for each triangle)
     def createindexedmesh(num_vertices, vertices, normals, colors, num_indices, indices)
       inquiry_int do |mesh|
         super(mesh, num_vertices, vertices, normals, colors, num_indices, indices)
       end
     end
 
-    # This function adds a mesh to the draw list, so it will be drawn when the user calls gr3_getpixmap.
+    # This function adds a mesh to the draw list, so it will be drawn when the user calls getpixmap.
+    # The given data stays owned by the user, a copy will be saved in the draw list and the mesh reference counter will be increased.
+    # @param mesh [Integer] The mesh to be drawn
+    # @param n [Integer] The number of meshes to be drawn
+    # @param positions [Array, NArray] The positions where the meshes should be drawn
+    # @param directions [Array, NArray] The forward directions the meshes should be facing at
+    # @param ups [Array, NArray] The up directions
+    # @param colors [Array, NArray] The colors the meshes should be drawn in, it will be multiplied with each vertex color
+    # @param scales [Array, NArray] The scaling factors
     def drawmesh(*)
       super
     end
 
     # This function marks a mesh for deletion and removes the user’s reference from the mesh’s referenc counter,
     # so a user must not use the mesh after calling this function.
+    # @param mesh [Integer] The mesh that should be marked for deletion
     def deletemesh(*)
       super
     end
 
     # This function sets the view matrix by getting the position of the camera,
     # the position of the center of focus and the direction which should point up.
+    # @param  camera_x [Array, NArray] The x-coordinate of the camera
+    # @param  camera_y [Array, NArray] The y-coordinate of the camera
+    # @param  camera_z [Array, NArray] The z-coordinate of the camera
+    # @param  center_x [Array, NArray] The x-coordinate of the center of focus
+    # @param  center_y [Array, NArray] The y-coordinate of the center of focus
+    # @param  center_z [Array, NArray] The z-coordinate of the center of focus
+    # @param  up_x [Array, NArray] The x-component of the up direction
+    # @param  up_y [Array, NArray] The y-component of the up direction
+    # @param  up_z [Array, NArray] The z-component of the up direction
     def cameralookat(*)
       super
     end
 
     # This function sets the projection parameters.
+    # This function takes effect when the next image is created.
+    # @param vertical_field_of_view [Numeric] This parameter is the vertical field of view in degrees.
+    #  It must be greater than 0 and less than 180.
+    # @param zNear [Numeric] The distance to the near clipping plane.
+    # @param zFar [Numeric] The distance to the far clipping plane.
     def setcameraprojectionparameters(*)
       super
     end
@@ -169,6 +218,10 @@ module GR3
     end
 
     # This function sets the direction of light.
+    # If it is called with (0, 0, 0), the light is always pointing into the same direction as the camera.
+    # @param x [Numeric] The x-component of the light's direction
+    # @param y [Numeric] The y-component of the light's direction
+    # @param z [Numeric] The z-component of the light's direction
     def setlightdirection(*)
       super
     end
@@ -186,14 +239,17 @@ module GR3
       super
     end
 
+    # This function allows drawing a cylinder without requiring a mesh.
     def drawconemesh(*)
       super
     end
 
+    # This function allows drawing a cylinder without requiring a mesh.
     def drawcylindermesh(*)
       super
     end
 
+    # This function allows drawing a sphere without requiring a mesh.
     def drawspheremesh(*)
       super
     end
@@ -218,10 +274,12 @@ module GR3
       super
     end
 
+    # the current projection type: GR3_PROJECTION_PERSPECTIVE or GR3_PROJECTION_PARALLEL
     def getprojectiontype(*)
       super
     end
 
+    # @param type [Integer] the new projection type: GR3_PROJECTION_PERSPECTIVE or GR3_PROJECTION_PARALLEL
     def setprojectiontype(*)
       super
     end
@@ -229,6 +287,10 @@ module GR3
     # This function creates an isosurface from voxel data using the
     # marching cubes algorithm.
     # Returns a mesh.
+    # @param grid [NArray] 3D numpy array containing the voxel data
+    # @param step [Array] voxel sizes in each direction
+    # @param offset [Array] coordinate origin in each direction
+    # @param isolevel [Integer] isovalue at which the surface will be created
     def createisosurfacemesh(grid, step, offset, isolevel)
       dim_x, dim_y, dim_z = grid.shape
       step_x, step_y, step_z = step
@@ -246,6 +308,26 @@ module GR3
     end
 
     # Create a mesh of a surface plot similar to gr_surface.
+    # Uses the current colormap. To apply changes of the colormap
+    # a new mesh has to be created.
+    # @param nx [Integer] number of points in x-direction
+    # @param ny [Integer] number of points in y-direction
+    # @param px [Array, NArray] an array containing the x-coordinates
+    # @param py [Array, NArray] an array containing the y-coordinates
+    # @param pz [Array, NArray] an array of length nx * ny containing the z-coordinates
+    # @param option [Integer] option for the surface mesh; the GR3_SURFACE constants can be combined with bitwise or. See the table below.
+    #  * 0  : GR3_SURFACE_DEFAULT
+    #    *    default behavior
+    #  * 1  : GR3_SURFACE_NORMALS
+    #    *    interpolate the vertex normals from the gradient
+    #  * 2  : GR3_SURFACE_FLAT
+    #    *    set all z-coordinates to zero
+    #  * 4  : GR3_SURFACE_GRTRANSFORM
+    #    *    use gr_inqwindow, gr_inqspace and gr_inqscale to transform the data to NDC coordinates
+    #  * 8  : GR3_SURFACE_GRCOLOR
+    #    *    color the surface according to the current gr colormap
+    #  * 16 : GR3_SURFACE_GRZSHADED
+    #    *    like GR3_SURFACE_GRCOLOR, but use the z-value directly as color index
     def createsurfacemesh(nx, ny, px, py, pz, option = 0)
       inquiry_int do |mesh|
         super(mesh, nx, ny, px, py, pz, option)
