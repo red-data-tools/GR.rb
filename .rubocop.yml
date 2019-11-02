@@ -4,8 +4,14 @@ AllCops:
 Metrics/LineLength:
   Max: 130
 
+Naming/AsciiIdentifiers:
+  Enabled: false
+
 Naming/UncommunicativeMethodParamName:
   MinNameLength: 1
 
 Metrics/ParameterLists:
   Max: 10
+
+Style/AsciiComments:
+  Enabled: false
