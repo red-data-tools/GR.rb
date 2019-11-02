@@ -42,15 +42,15 @@ end
 def main
   t = 0.0
   dt = 0.01
-  state = Numo::DFloat[Theta * Math::PI / 180, 0]
-
-  start = Time.now
-  refresh = start.clone
-
   deriv = lambda { |_t, state|
     theta, omega = state.to_a
     Numo::DFloat[omega, -Gamma * omega - 9.81 / L * Math.sin(theta)]
   }
+
+  state = Numo::DFloat[Theta * Math::PI / 180, 0]
+
+  start = Time.now
+  refresh = start.clone
 
   while t < 30
     t, state = rk4(t, dt, state, deriv)

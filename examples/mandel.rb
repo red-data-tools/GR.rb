@@ -36,7 +36,7 @@ f = 0.5
   pixels = create_fractal(x - f, x + f, y - f, y + f, image, 400)
   dt = Time.now - start
 
-  puts 'Mandelbrot created in %f s' % dt
+  puts "Mandelbrot created in #{dt} s"
   ca = 1000.0 + pixels
   GR.clearws
   GR.setviewport(0, 1, 0, 1)

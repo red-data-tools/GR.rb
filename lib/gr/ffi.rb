@@ -3,6 +3,7 @@
 require 'ffi'
 
 module GR
+  # FFI Wrapper module for GR
   module FFI
     extend ::FFI::Library
 
