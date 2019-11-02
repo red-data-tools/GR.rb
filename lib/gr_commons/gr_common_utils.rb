@@ -48,10 +48,6 @@ module GRCommons
       pt.write_array_of_float data
     end
 
-    def narray?(data)
-      defined?(Numo::NArray) && data.is_a?(Numo::NArray)
-    end
-
     def inquiry_int(&block)
       inquiry(:int, &block)
     end
@@ -99,6 +95,10 @@ module GRCommons
       else
         pt.send("read_#{type}")
       end
+    end
+
+    def narray?(data)
+      defined?(Numo::NArray) && data.is_a?(Numo::NArray)
     end
   end
 end
