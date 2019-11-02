@@ -51,6 +51,7 @@ module GR3
 
   class << self
     # This method initializes the gr3 context.
+    # @return [Integer]
     def gr3_init(*)
       super
     end
@@ -65,6 +66,7 @@ module GR3
     end
 
     # This function returns information on the most recent GR3 error.
+    # @return [Integer]
     def geterror(*)
       super
     end
@@ -75,16 +77,19 @@ module GR3
     # For example `"gr3 - GLX - GL_ARB_framebuffer_object - 2.1 Mesa 7.10.2 - Software Rasterizer"`
     # might be returned on a Linux system (using GLX) with an available GL_ARB_framebuffer_object implementation.
     # If gr3 is not initialized `"Not initialized"` is returned.
+    # @return [String]
     def getrenderpathstring(*)
       super
     end
 
     # This function returns a string representation of a given error code.
+    # @return [String]
     def geterrorstring(*)
       super
     end
 
     # This function clears the draw list.
+    # @return [Integer]
     def clear(*)
       super
     end
@@ -103,11 +108,12 @@ module GR3
 
     # Set rendering quality
     # @param quality [] The quality to set
+    # @return [Integer]
     def setquality(*)
       super
     end
 
-    # getimage
+    # @return [Integer]
     def getimage(width, height, use_alpha = true)
       bpp = use_alpha ? 4 : 3
       inquiry(uint8: width * height * bpp) do |bitmap|
@@ -115,15 +121,18 @@ module GR3
       end
     end
 
+    # @return [Integer]
     def export(*)
       super
     end
 
+    # @return [Integer]
     def drawimage(*)
       super
     end
 
     # createmesh_nocopy
+    # @return [Integer]
     def createmesh_nocopy(_n, vertices, normals, colors)
       inquiry_int do |mesh|
         super(mesh, vertices, normals, colors)
@@ -137,6 +146,7 @@ module GR3
     # @param normals [Array, NArray] the vertex normals
     # @param colors [Array, NArray] the vertex colors,
     #  they should be white (1,1,1) if you want to change the color for each drawn mesh
+    # @return [Integer]
     def createmesh(n, vertices, normals, colors)
       inquiry_int do |mesh|
         super(mesh, n, vertices, normals, colors)
@@ -144,6 +154,7 @@ module GR3
     end
 
     # This function creates a mesh from vertex position, normal and color data.
+    # @return [Integer] 
     def createindexedmesh_nocopy(num_vertices, vertices, normals, colors, num_indices, indices)
       inquiry_int do |mesh|
         super(mesh, num_vertices, vertices, normals, colors, num_indices, indices)
@@ -160,6 +171,7 @@ module GR3
     #  they should be white (1,1,1) if you want to change the color for each drawn mesh
     # @param num_indices [Integer] the number of indices in the mesh (three times the number of triangles)
     # @param indices [Array, NArray] the index array (vertex indices for each triangle)
+    # @return [Integer]
     def createindexedmesh(num_vertices, vertices, normals, colors, num_indices, indices)
       inquiry_int do |mesh|
         super(mesh, num_vertices, vertices, normals, colors, num_indices, indices)
@@ -207,11 +219,13 @@ module GR3
     #  It must be greater than 0 and less than 180.
     # @param zNear [Numeric] The distance to the near clipping plane.
     # @param zFar [Numeric] The distance to the far clipping plane.
+    # @return [Integer]
     def setcameraprojectionparameters(*)
       super
     end
 
     # Get the projection parameters.
+    # @return [Integer]
     def getcameraprojectionparameters(*)
       super
     end
@@ -230,6 +244,7 @@ module GR3
       super
     end
 
+    # @return [Integer]
     def createheightmapmesh(*)
       super
     end
@@ -261,6 +276,7 @@ module GR3
       super
     end
 
+    # @return [Integer]
     def selectid(*)
       super
     end
@@ -274,6 +290,7 @@ module GR3
     end
 
     # the current projection type: GR3_PROJECTION_PERSPECTIVE or GR3_PROJECTION_PARALLEL
+    # @return [Integer]
     def getprojectiontype(*)
       super
     end
@@ -290,6 +307,7 @@ module GR3
     # @param step [Array] voxel sizes in each direction
     # @param offset [Array] coordinate origin in each direction
     # @param isolevel [Integer] isovalue at which the surface will be created
+    # @return [Integer]
     def createisosurfacemesh(grid, step, offset, isolevel)
       args = _preprocess_createslicemesh(grid, step, offset)
       grid = args.shift
@@ -319,6 +337,7 @@ module GR3
     #    *    color the surface according to the current gr colormap
     #  * 16 : GR3_SURFACE_GRZSHADED
     #    *    like GR3_SURFACE_GRCOLOR, but use the z-value directly as color index
+    # @return [Integer]
     def createsurfacemesh(nx, ny, px, py, pz, option = 0)
       inquiry_int do |mesh|
         super(mesh, nx, ny, px, py, pz, option)
@@ -371,6 +390,7 @@ module GR3
     # @param num_steps [Integer] the number of steps between each point, allowing for a more smooth tube
     # @param num_segments [Integer] the number of segments each ring of the tube consists of,
     #  e.g. 3 would yield a triangular tube
+    # @return [Integer]
     def drawtubemesh(n, points, colors, radii, num_steps = 10, num_segments = 20)
       super(n, points, colors, radii, num_steps, num_segments)
     end
@@ -384,6 +404,7 @@ module GR3
     # @param radii [Array, NArray] the desired tube radius at each point
     # @param num_steps [Integer] the number of steps between each point, allowing for a more smooth tube
     # @param num_segments [Integer] the number of segments each ring of the tube consists of, e.g. 3 would yield a triangular tube
+    # @return [Integer]
     def createtubemesh(n, points, colors, radii, num_steps = 10, num_segments = 20)
       inquiry_uint do |mesh| # mesh should be Int?
         super(mesh, n, points, colors, radii, num_steps, num_segments)
