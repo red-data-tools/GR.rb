@@ -292,16 +292,10 @@ module GR3
     # @param offset [Array] coordinate origin in each direction
     # @param isolevel [Integer] isovalue at which the surface will be created
     def createisosurfacemesh(grid, step, offset, isolevel)
-      grid, dim_x, dim_y, dim_z, step_x, step_y, step_z, offset_x, offset_y, offset_z = _preprocess_createslicemesh(grid, step, offset)
-      # NArray does not have the strides method
-      bytesize = grid.class.byte_size
-      stride_x = dim_y * dim_z
-      stride_y = dim_z
-      stride_z = 1
-      # stride_x, stride_y, stride_z = stride
+      args = _preprocess_createslicemesh(grid, step, offset)
+      grid = args.shift
       inquiry_int do |mesh|
-        super(mesh, uint16(grid), isolevel, dim_x, dim_y, dim_z,
-        stride_x, stride_y, stride_z, step_x, step_y, step_z, offset_x, offset_y, offset_z)
+        super(mesh, uint16(grid), isolevel, *args)
       end
     end
 
@@ -491,14 +485,11 @@ module GR3
     # @param step [Array] voxel sizes in each direction
     # @param offset [Array] coordinate origin in each direction
     def createxslicemesh(grid, x = 0.5, step = nil, offset = nil)
-      grid, nx, ny, nz, step_x, step_y, step_z, offset_x, offset_y, offset_z = _preprocess_createslicemesh(grid, step, offset)
-      x = (x.clamp(0, 1) * nx).floor
-      stride_x = 1
-      stride_y = ny
-      stride_z = ny * nz
+      args = _preprocess_createslicemesh(grid, step, offset)
+      grid = args.shift
+      x = (x.clamp(0, 1) * args[0]).floor
       inquiry_int do |mesh|
-        super(mesh, grid, x, nx, ny, nz, stride_x, stride_y, stride_z,
-              step_x, step_y, step_z, offset_x, offset_y, offset_z)
+        super(mesh, uint16(grid), x, *args)
       end
     end
 
@@ -511,14 +502,11 @@ module GR3
     # @param step [Array] voxel sizes in each direction
     # @param offset [Array] coordinate origin in each direction
     def createyslicemesh(grid, y = 0.5, step = nil, offset = nil)
-      grid, nx, ny, nz, step_x, step_y, step_z, offset_x, offset_y, offset_z = _preprocess_createslicemesh(grid, step, offset)
-      y = (y.clamp(0, 1) * ny).floor
-      stride_x = nx
-      stride_y = 1
-      stride_z = nx * nz
+      args = _preprocess_createslicemesh(grid, step, offset)
+      grid = args.shift
+      y = (y.clamp(0, 1) * args[1]).floor
       inquiry_int do |mesh|
-        super(mesh, grid, y, nx, ny, nz, stride_x, stride_y, stride_z,
-              step_x, step_y, step_z, offset_x, offset_y, offset_z)
+        super(mesh, uint16(grid), y, *args)
       end
     end
 
@@ -531,14 +519,11 @@ module GR3
     # @param step [Array] voxel sizes in each direction
     # @param offset [Array] coordinate origin in each direction
     def createzslicemesh(grid, z = 0.5, step = nil, offset = nil)
-      grid, nx, ny, nz, step_x, step_y, step_z, offset_x, offset_y, offset_z = _preprocess_createslicemesh(grid, step, offset)
-      z = (z.clamp(0, 1) * nz).floor
-      stride_x = ny * nz
-      stride_y = ny
-      stride_z = 1
+      args = _preprocess_createslicemesh(grid, step, offset)
+      grid = args.shift
+      z = (z.clamp(0, 1) * args[2]).floor
       inquiry_int do |mesh|
-        super(mesh, grid, z, nx, ny, nz, stride_x, stride_y, stride_z,
-              step_x, step_y, step_z, offset_x, offset_y, offset_z)
+        super(mesh, uint16(grid), z, *args)
       end
     end
 
@@ -671,7 +656,12 @@ module GR3
       step_x, step_y, step_z = step
       offset_x, offset_y, offset_z = offset
 
-      [grid, nx, ny, nz, step_x, step_y, step_z, offset_x, offset_y, offset_z]
+      # strides
+      stride_x = ny * nz
+      stride_y = nz
+      stride_z = 1
+
+      [grid, nx, ny, nz, stride_x, stride_y, stride_z, step_x, step_y, step_z, offset_x, offset_y, offset_z]
     end
   end
 
