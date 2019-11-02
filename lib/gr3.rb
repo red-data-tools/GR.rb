@@ -154,7 +154,7 @@ module GR3
     end
 
     # This function creates a mesh from vertex position, normal and color data.
-    # @return [Integer] 
+    # @return [Integer]
     def createindexedmesh_nocopy(num_vertices, vertices, normals, colors, num_indices, indices)
       inquiry_int do |mesh|
         super(mesh, num_vertices, vertices, normals, colors, num_indices, indices)
