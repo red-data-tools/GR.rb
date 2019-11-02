@@ -292,14 +292,12 @@ module GR3
     # @param offset [Array] coordinate origin in each direction
     # @param isolevel [Integer] isovalue at which the surface will be created
     def createisosurfacemesh(grid, step, offset, isolevel)
-      dim_x, dim_y, dim_z = grid.shape
-      step_x, step_y, step_z = step
-      offset_x, offset_y, offset_z = offset
+      grid, dim_x, dim_y, dim_z, step_x, step_y, step_z, offset_x, offset_y, offset_z = _preprocess_createslicemesh(grid, step, offset)
       # NArray does not have the strides method
       bytesize = grid.class.byte_size
-      stride_x =  1
-      stride_y =  dim_y
-      stride_z =  dim_y * dim_z
+      stride_x = dim_y * dim_z
+      stride_y = dim_z
+      stride_z = 1
       # stride_x, stride_y, stride_z = stride
       inquiry_int do |mesh|
         super(mesh, uint16(grid), isolevel, dim_x, dim_y, dim_z,
@@ -637,6 +635,7 @@ module GR3
     end
 
     private
+
     def _preprocess_createslicemesh(grid, step, offset)
       # TODO: raise error when grid is not narray
       # grid
