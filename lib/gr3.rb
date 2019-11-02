@@ -29,7 +29,6 @@ module GR3
   require_relative 'gr3/ffi'
   require_relative 'gr3/gr3base'
 
-  extend GRCommons::JupyterSupport
   extend GR3Base
 
   # `float` is the default type in GR3

@@ -4,13 +4,15 @@ module GRCommons
   # Jupyter Notebook and Jpyter Lab.
   module JupyterSupport
     if defined?(IRuby) && IRuby.respond_to?(:display)
+
+      # Sets the environment variable when the module is extended.
       def self.extended(_obj)
         require 'tmpdir'
         ENV['GKSwstype'] = 'svg'
-        # May be extended to both GR3 and GR
         ENV['GKS_FILEPATH'] = Dir::Tmpname.create('plot-') {}
       end
 
+      # Display your plot in Jupyter Notebook / Lab
       def show
         emergencyclosegks
         sleep 0.5
