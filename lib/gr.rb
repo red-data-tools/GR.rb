@@ -623,6 +623,7 @@ module GR
     #    *    Flip Y-axis
     #  * 32 : OPTION_FLIP_Z
     #    *    Flip Z-axis
+    # @return [Integer]
     # `setscale` defines the current transformation according to the given scale
     # specification which may be or'ed together using any of the above options. GR uses
     # these options for all subsequent output primitives until another value is provided.
@@ -769,6 +770,7 @@ module GR
     # @param zmax [Numeric] Maximum value for the Z-axis.
     # @param rotation [Integer] Angle for the rotation of the X axis, in degrees.
     # @param tilt [integer] Viewing angle of the Z axis in degrees.
+    # @return [Integer]
     # `setspace` establishes the limits of an abstract Z-axis and defines the angles for
     # rotation and for the viewing angle (tilt) of a simulated three-dimensional graph,
     # used for mapping corresponding output primitives into the current window.
@@ -790,6 +792,7 @@ module GR
     # @param x [Numeric] The X coordinate of starting position of the text string
     # @param y [Numeric] The Y coordinate of starting position of the text string
     # @param string [String] The text to be drawn
+    # @return [Integer]
     #
     # The values for X and Y are in normalized device coordinates.
     # The attributes that control the appearance of text are text font and precision,
@@ -1082,6 +1085,7 @@ module GR
       super(npoints, x, y, z, nlevels, levels)
     end
 
+    # @return [Integer]
     def hexbin(x, y, nbins)
       n = x.length
       super(n, x, y, nbins)
@@ -1117,6 +1121,7 @@ module GR
       end
     end
 
+    # @return [Integer]
     def inqcolorfromrgb(*)
       super
     end
@@ -1127,10 +1132,12 @@ module GR
       end
     end
 
+    # @return [Numeric]
     def tick(*)
       super
     end
 
+    # @return [Integer]
     def validaterange(*)
       super
     end
@@ -1337,7 +1344,7 @@ module GR
       super
     end
 
-    # readimage
+    # @return [Integer]
     def readimage(path)
       w, h, d = inquiry [:int, :int, :pointer] do |width, height, data|
         # data is a pointer of a pointer
@@ -1368,6 +1375,7 @@ module GR
       super(xmin, xmax, ymin, ymax, width, height, uint(data), model)
     end
 
+    # @return [Integer]
     def importgraphics(*)
       super
     end
@@ -1414,10 +1422,12 @@ module GR
       super
     end
 
+    # @return [String]
     def getgraphics(*)
       super
     end
 
+    # @return [Integer]
     def drawgraphics(*)
       super
     end
@@ -1460,6 +1470,7 @@ module GR
       end
     end
 
+    # @return [Numeric]
     def precision(*)
       super
     end
@@ -1468,6 +1479,7 @@ module GR
       super
     end
 
+    # @return [Integer]
     def inqregenflags(*)
       super
     end
@@ -1488,6 +1500,7 @@ module GR
       super
     end
 
+    # @return [Integer]
     def uselinespec(*)
       super
     end
@@ -1570,6 +1583,7 @@ module GR
     end
 
     # Returns the combined version strings of the GR runtime.
+    # @return [String]
     def version
       super.read_string
     end
