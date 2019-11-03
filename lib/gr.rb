@@ -30,11 +30,11 @@ module GR
   require_relative 'gr/grbase'
 
   extend GRCommons::JupyterSupport
-  extend GRBase
 
   # `double` is the default type in GR
   # A Ruby array or NArray passed to GR method is automatically converted to
   # a FFI::MemoryPointer in the GRBase class.
+  extend GRBase
 
   class << self
     def initgr(*)

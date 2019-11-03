@@ -29,21 +29,29 @@ module GR3
   require_relative 'gr3/ffi'
   require_relative 'gr3/gr3base'
 
-  extend GR3Base
-
   # `float` is the default type in GR3
   # A Ruby array or NArray passed to GR3 method is automatically converted to
   # a FFI::MemoryPointer in the GR3Base class.
+  extend GR3Base
 
+  # This module is for adding error checking to all methods in GR3
   module CheckError
+    def geterror
+      line = ::FFI::MemoryPointer.new(:int)
+      file = ::FFI::MemoryPointer.new(:string, 100)
+      super(1, line, file)
+    end
+
     FFI.ffi_methods.each do |method|
       method_name = method.to_s.sub(/^gr3_/, '')
       next if method_name == 'geterror'
 
       define_method(method_name) do |*args|
         values = super(*args)
-        GR3Base.check_error
-        values
+        if geterror != 0
+          mesg = FFI.gr3_geterrorstring(e)
+          raise "GR3 error #{file} #{line} #{mesg}"
+        end
       end
     end
   end
@@ -65,11 +73,11 @@ module GR3
       super
     end
 
+    # @!method geterror
     # This function returns information on the most recent GR3 error.
     # @return [Integer]
-    def geterror(*)
-      super
-    end
+    # @note This method is defined in the CheckError module.
+
 
     # This function allows the user to find out how his commands are rendered.
     # If gr3 is initialized, a string in the format:

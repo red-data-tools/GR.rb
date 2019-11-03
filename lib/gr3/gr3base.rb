@@ -6,16 +6,6 @@ module GR3
     define_ffi_methods(FFI,
                        prefix: 'gr3_',
                        default_type: :float)
-
-    def self.check_error
-      line = ::FFI::MemoryPointer.new(:int)
-      file = ::FFI::MemoryPointer.new(:string, 100)
-      e = FFI.gr3_geterror(1, line, file)
-      return if e == 0
-
-      mesg = FFI.gr3_geterrorstring(e)
-      raise "GR3 error #{file} #{line} #{mesg}"
-    end
   end
   private_constant :GR3Base
 
