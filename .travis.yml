@@ -1,4 +1,6 @@
 dist: xenial
+services:
+  - xvfb
 language: ruby
 cache: bundler
 rvm:
