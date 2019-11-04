@@ -70,8 +70,12 @@ module GR3
   module CheckError
     def geterror
       line = ::FFI::MemoryPointer.new(:int)
-      file = ::FFI::MemoryPointer.new(:string, 100)
-      super(1, line, file)
+      file = ::FFI::MemoryPointer.new(:pointer)
+      e = super(1, line, file)
+      return [0, nil, nil] if e == 0
+      line = line.read_int
+      file = file.read_pointer.read_string
+      [e, line, file]
     end
 
     FFI.ffi_methods.each do |method|
@@ -80,9 +84,9 @@ module GR3
 
       define_method(method_name) do |*args|
         values = super(*args)
-        error_num = geterror
-        if error_num != 0
-          mesg = FFI.gr3_geterrorstring(error_num)
+        e, line, file = geterror
+        if e != 0
+          mesg = FFI.gr3_geterrorstring(e)
           raise "GR3 error #{file} #{line} #{mesg}"
         end
       end
