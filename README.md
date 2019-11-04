@@ -38,9 +38,10 @@ GR.updatews
 ```
 
 ## Examples
-Have a look in the `examples` directory for some simple examples. 
+Have a look in the [`examples`](https://github.com/kojix2/GR.rb/tree/master/examples) directory for some simple examples. 
 
 griddata.rb
+
 <p align="center">
   <img src="https://user-images.githubusercontent.com/5798442/68080405-1b3e3580-fe3e-11e9-9f71-592ca2826bcb.png">
 </p>
