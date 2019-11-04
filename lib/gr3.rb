@@ -80,8 +80,9 @@ module GR3
 
       define_method(method_name) do |*args|
         values = super(*args)
-        if geterror != 0
-          mesg = FFI.gr3_geterrorstring(e)
+        error_num = geterror
+        if error_num != 0
+          mesg = FFI.gr3_geterrorstring(error_num)
           raise "GR3 error #{file} #{line} #{mesg}"
         end
       end
