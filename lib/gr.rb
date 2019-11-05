@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # OverView of GR.rb
-# 
+#
 #                        +--------------------+
 # +-------------------+  | GR3 module         |
 # | GR module         |  | +----------------+ |

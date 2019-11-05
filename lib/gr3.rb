@@ -73,6 +73,7 @@ module GR3
       file = ::FFI::MemoryPointer.new(:pointer)
       e = super(1, line, file)
       return [0, nil, nil] if e == 0
+
       line = line.read_int
       file = file.read_pointer.read_string
       [e, line, file]
@@ -114,7 +115,6 @@ module GR3
     # This function returns information on the most recent GR3 error.
     # @return [Integer]
     # @note This method is defined in the CheckError module.
-
 
     # This function allows the user to find out how his commands are rendered.
     # If gr3 is initialized, a string in the format:
