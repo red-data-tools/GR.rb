@@ -16,14 +16,16 @@ module GRCommons
       def show
         emergencyclosegks
         sleep 0.5
-        case ENV['GKSwstype']
+        type = ENV['GKSwstype']
+        case type
         when 'svg'
           data = File.read(ENV['GKS_FILEPATH'] + '.svg')
           IRuby.display(data, mime: 'image/svg+xml')
-        when 'mov', 'mp4', 'webm'
+        when 'webm', 'ogg', 'mp4', 'mov'
           require 'base64'
-          data = File.binread(ENV['GKS_FILEPATH'] + '.' + ENV['GKSwstype'])
-          IRuby.display("<video controls autoplay type=\"video/mp4\" src=\"data:video/mp4;base64,#{Base64.encode64(data)}\">", mime: 'text/html')
+          data = File.binread(ENV['GKS_FILEPATH'] + '.' + type)
+          IRuby.display("<video controls autoplay type=\"video/#{type}\" src=\"data:video/#{type};base64,#{Base64.encode64(data)}\">",
+                        mime: 'text/html')
         end
         nil
       end
