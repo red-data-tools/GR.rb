@@ -1,6 +1,15 @@
 # frozen_string_literal: true
 
 module GR
+
+  # object oriented way
+  class PlotBase
+  end
+
+  class Line < PlotBase
+  end
+
+  # functional way
   class << self
     def set_viewport; end
 
