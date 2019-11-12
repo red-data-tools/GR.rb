@@ -141,7 +141,7 @@ module GR
       else
         xtick = majorx = 1
       end
-      xorg = if (scale & GR.OPTION_FLIP_X) == 0
+      xorg = if (scale & GR::OPTION_FLIP_X) == 0
                [xmin, xmax]
              else
                [xmax, xmin]
@@ -150,7 +150,7 @@ module GR
 
       ymin, ymax = kvs[:yrange]
       if kind == :hist && kvs.key?(:ylim)
-        ymin = (scale & GR.OPTION_Y_LOG) == 0 ? 0 : 1
+        ymin = (scale & GR::OPTION_Y_LOG) == 0 ? 0 : 1
       end
       if (scale & GR::OPTION_Y_LOG) == 0
         ymin, ymax = GR.adjustlimits(ymin, ymax) unless kvs.key?(:ylim) || kvs.key?(:panzoom)
@@ -217,19 +217,19 @@ module GR
       xtick = 10 if kvs[:scale] & GR::OPTION_X_LOG != 0
       ytick = 10 if kvs[:scale] & GR::OPTION_Y_LOG != 0
       GR.setlinecolorind(1)
-      diag = sqrt((viewport[2] - viewport[1]) ^ 2 + (viewport[4] - viewport[3]) ^ 2)
+      diag = Math.sqrt((viewport[1] - viewport[0])**2 + (viewport[3] - viewport[2])**2)
       GR.setlinewidth(1)
-      charheight = max(0.018 * diag, 0.012)
+      charheight = [0.018 * diag, 0.012].max
       GR.setcharheight(charheight)
       ticksize = 0.0075 * diag
       if %i[wireframe surface plot3 scatter3 trisurf volume].include?(kind)
         ztick, zorg, majorz = kvs[:zaxis]
         if pass == 1 && drawgrid
-          GR.grid3d(xtick, 0, ztick, xorg[1], yorg[2], zorg[1], 2, 0, 2)
-          GR.grid3d(0, ytick, 0, xorg[1], yorg[2], zorg[1], 0, 2, 0)
+          GR.grid3d(xtick, 0, ztick, xorg[0], yorg[1], zorg[0], 2, 0, 2)
+          GR.grid3d(0, ytick, 0, xorg[0], yorg[1], zorg[0], 0, 2, 0)
         else
-          GR.axes3d(xtick, 0, ztick, xorg[1], yorg[1], zorg[1], majorx, 0, majorz, -ticksize)
-          GR.axes3d(0, ytick, 0, xorg[2], yorg[1], zorg[1], 0, majory, 0, ticksize)
+          GR.axes3d(xtick, 0, ztick, xorg[0], yorg[0], zorg[0], majorx, 0, majorz, -ticksize)
+          GR.axes3d(0, ytick, 0, xorg[1], yorg[0], zorg[0], 0, majory, 0, ticksize)
         end
       else
         if %i[heatmap nonuniformheatmap shade].include?(kind)
@@ -242,15 +242,15 @@ module GR
         #    fy = get(plt.kvs, :yticklabels, identity) |> ticklabel_fun
         #    GR.axeslbl(xtick, ytick, xorg[1], yorg[1], majorx, majory, ticksize, fx, fy)
         # else
-        GR.axes(xtick, ytick, xorg[1], yorg[1], majorx, majory, ticksize)
+        GR.axes(xtick, ytick, xorg[0], yorg[0], majorx, majory, ticksize)
         # end
-        GR.axes(xtick, ytick, xorg[2], yorg[2], -majorx, -majory, -ticksize)
+        GR.axes(xtick, ytick, xorg[1], yorg[1], -majorx, -majory, -ticksize)
       end
 
       if kvs.key?(:title)
         GR.savestate
         GR.settextalign(GR::TEXT_HALIGN_CENTER, GR::TEXT_VALIGN_TOP)
-        text(0.5 * (viewport[1] + viewport[2]), vp[4], kvs[:title])
+        text(0.5 * (viewport[0] + viewport[1]), vp[3], kvs[:title])
         GR.restorestate
       end
       if %i[wireframe surface plot3 scatter3 trisurf volume].include?(kind)
@@ -262,14 +262,14 @@ module GR
         if kvs.key?(:xlabel)
           GR.savestate
           GR.settextalign(GR::TEXT_HALIGN_CENTER, GR::TEXT_VALIGN_BOTTOM)
-          text(0.5 * (viewport[1] + viewport[2]), vp[3] + 0.5 * charheight, kvs[:xlabel])
+          text(0.5 * (viewport[0] + viewport[1]), vp[2] + 0.5 * charheight, kvs[:xlabel])
           GR.restorestate
         end
         if kvs.key?(:ylabel)
           GR.savestate
           GR.settextalign(GR::TEXT_HALIGN_CENTER, GR::TEXT_VALIGN_TOP)
           GR.setcharup(-1, 0)
-          text(vp[1] + 0.5 * charheight, 0.5 * (viewport[3] + viewport[4]), plt.kvs[:ylabel])
+          text(vp[0] + 0.5 * charheight, 0.5 * (viewport[2] + viewport[3]), plt.kvs[:ylabel])
           GR.restorestate
         end
       end
@@ -301,7 +301,7 @@ module GR
         set_window(kind)
         if %i[polar polarhist].include?(kind)
           draw_polar_axes
-        elsif %i[imshow isosurface polarheatmap].include?(kind)
+        elsif !%i[imshow isosurface polarheatmap].include?(kind)
           draw_axes(kind)
         end
       end
@@ -309,7 +309,7 @@ module GR
       if kvs.key?(:colormap)
         GR.setcolormap(plt.kvs[:colormap])
       else
-        GR.setcolormap(GR::COLORMAP_VIR)
+        GR.setcolormap(GR::COLORMAP_VIRIDIS)
       end
 
       GR.uselinespec(' ')
@@ -318,13 +318,9 @@ module GR
         GR.settransparency(kvs[:alpha]) if kvs.key?(:alpha)
         case kind
         when :line
-          mask = GR.uselinespec(spec)
-          if [0, 1, 3, 4, 5].include?(mask)
-            GR.polyplot(x, y)
-          end
-          if (mask & 2) != 0
-            GR.polymarker(x, y)
-          end
+          mask = GR.uselinespec(spec = '')
+          GR.polyplot(x, y) if [0, 1, 3, 4, 5].include?(mask)
+          GR.polymarker(x, y) if (mask & 2) != 0
         when :step
         when :scatter
         when :stem
