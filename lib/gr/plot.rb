@@ -320,7 +320,7 @@ module GR
         case kind
         when :line
           mask = GR.uselinespec(spec = '')
-          GR.polyplot(x, y) if [0, 1, 3, 4, 5].include?(mask)
+          GR.polyline(x, y) if [0, 1, 3, 4, 5].include?(mask)
           GR.polymarker(x, y) if (mask & 2) != 0
         when :step
         when :scatter
