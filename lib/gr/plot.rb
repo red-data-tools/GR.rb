@@ -3,15 +3,18 @@
 module GR
   # object oriented way
   class Plot # should be Figure ?
-    def initialize(*args, kvs)
-      # what if kvs is nil?
-      @args = args
-      @kvs = kvs
-      kvs[:size] = [600, 450]
-      kvs[:ax] = false
-      kvs[:subplot] = [0, 1, 0, 1]
-      kvs[:clear] = true
-      kvs[:update] = true
+    def initialize(*args)
+      @kvs = if args[-1].is_a? Hash
+               args.pop
+             else
+               {}
+             end
+      @args = plot_args(args) # method name is the same as Julia/Python
+      @kvs[:size] ||= [600, 450]
+      @kvs[:ax] ||= false
+      @kvs[:subplot] ||= [0, 1, 0, 1]
+      @kvs[:clear] ||= true
+      @kvs[:update] ||= true
       @scheme = 0
       @background = 0xffffff
       @handle = nil
@@ -33,7 +36,6 @@ module GR
       end
       viewport = [0, 0, 0, 0]
       vp = subplot.clone
-      p vp
       if w > h
         ratio = h / w.to_f
         msize = mwidth * w / width
@@ -115,7 +117,7 @@ module GR
         scale |= GR::OPTION_FLIP_Y if kvs[:yflip]
         scale |= GR::OPTION_FLIP_Z if kvs[:zflip]
       end
-      if kvs[:panzoom]
+      if kvs.key?(:panzoom)
         xmin, xmax, ymin, ymax = GR.panzoom(*kvs[:panzoom])
         kvs[:xrange] = [xmin, xmax]
         kvs[:yrange] = [ymin, ymax]
@@ -288,7 +290,6 @@ module GR
       #   return
       # end
 
-      p kvs
       kind = kvs[:kind] || :line
       GR.clearws if kvs[:clear]
 
@@ -313,7 +314,7 @@ module GR
       end
 
       GR.uselinespec(' ')
-      args.each do |x, y, z, c, spec|
+      args.each do |x, y, _z, _c, _spec|
         GR.savestate
         GR.settransparency(kvs[:alpha]) if kvs.key?(:alpha)
         case kind
@@ -363,6 +364,12 @@ module GR
     def draw_legend; end
 
     private
+
+    def plot_args(args, _fmt = :xys)
+      # :construction:
+      x, y, z, c = args
+      [[x, y, z, c]]
+    end
 
     def text(x, y, s)
       if s.length >= 2 && s[0] == '$' && s[-1] == '$'
