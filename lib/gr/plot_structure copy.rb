@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 module GR
-
   # object oriented way
   class PlotBase
   end
