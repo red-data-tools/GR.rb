@@ -2,7 +2,7 @@
 
 module GR
   # object oriented way
-  class Plot
+  class Plot # should be Figure ?
     def initialize(*args, kvs)
       # what if kvs is nil?
       @args = args
@@ -58,7 +58,7 @@ module GR
       end
 
       if %i[line step scatter stem].include?(kind) && kvs[:labels]
-        location = kvs[:location] # location may be array?
+        location = kvs[:location] || 1
         if [11, 12, 13].include?(location)
           w, h = legend_size
           viewport[2] -= w + 0.1
@@ -96,7 +96,267 @@ module GR
       end
     end
 
+    def set_window(kind)
+      scale = 0
+      unless %i[polar polarhist polarheatmap].include?(kind)
+        scale |= GR::OPTION_X_LOG if kvs[:xlog]
+        scale |= GR::OPTION_Y_LOG if kvs[:ylog]
+        scale |= GR::OPTION_Z_LOG if kvs[:zlog]
+        scale |= GR::OPTION_FLIP_X if kvs[:xflip]
+        scale |= GR::OPTION_FLIP_Y if kvs[:yflip]
+        scale |= GR::OPTION_FLIP_Z if kvs[:zflip]
+      end
+      if kvs[:panzoom]
+        xmin, xmax, ymin, ymax = GR.panzoom(*kvs[:panzoom])
+        kvs[:xrange] = [xmin, xmax]
+        kvs[:yrange] = [ymin, ymax]
+      else
+        minmax
+      end
+
+      major_count = if %i[wireframe surface plot3 scatter3 polar polarhist polarheatmap trisurf volume].include?(kind)
+                      2
+                    else
+                      5
+                    end
+
+      xmin, xmax = kvs[:xrange]
+      if (scale & GR::OPTION_X_LOG) == 0
+        xmin, xmax = GR.adjustlimits(xmin, xmax) unless kvs.key?(:xlim) || kvs.key?(:panzoom)
+        if kvs.key?(:xticks)
+          xtick, majorx = kvs[:xticks]
+        else
+          majorx = major_count
+          xtick = GR.tick(xmin, xmax) / majorx
+        end
+      else
+        xtick = majorx = 1
+      end
+      xorg = if (scale & GR.OPTION_FLIP_X) == 0
+               [xmin, xmax]
+             else
+               [xmax, xmin]
+             end
+      kvs[:xaxis] = xtick, xorg, majorx
+
+      ymin, ymax = kvs[:yrange]
+      if kind == :hist && kvs.key?(:ylim)
+        ymin = (scale & GR.OPTION_Y_LOG) == 0 ? 0 : 1
+      end
+      if (scale & GR::OPTION_Y_LOG) == 0
+        ymin, ymax = GR.adjustlimits(ymin, ymax) unless kvs.key?(:ylim) || kvs.key?(:panzoom)
+        if kvs.key?(:yticks)
+          ytick, majory = kvs[:yticks]
+        else
+          majory = major_count
+          ytick = GR.tick(ymin, ymax) / majory
+        end
+      else
+        ytick = majory = 1
+      end
+      yorg = if (scale & GR::OPTION_FLIP_Y) == 0
+               [ymin, ymax]
+             else
+               [ymax, ymin]
+             end
+      kvs[:yaxis] = ytick, yorg, majory
+
+      if %i[wireframe surface plot3 scatter3 trisurf volume].include?(kind)
+        zmin, zmax = kvs[:zrange]
+        if (scale & GR::OPTION_Z_LOG) == 0
+          zmin, zmax = GR.adjustlimits(zmin, zmax) if kvs.key?(:zlim)
+          if kvs.key?(:zticks)
+            ztick, majorz = kvs[:zticks]
+          else
+            majorz = major_count
+            ztick = GR.tick(zmin, zmax) / majorz
+          end
+        else
+          ztick = majorz = 1
+        end
+        zorg = if (scale & GR::OPTION_FLIP_Z) == 0
+                 [zmin, zmax]
+               else
+                 [zmax, zmin]
+               end
+        kvs[:zaxis] = ztick, zorg, majorz
+      end
+
+      kvs[:window] = xmin, xmax, ymin, ymax
+      if %i[polar polarhist polarheatmap].include?(kind)
+        GR.setwindow(xmin, xmax, ymin, ymax)
+      else
+        GR.setwindow(-1, 1, -1, 1)
+      end
+      if %i[wireframe surface plot3 scatter3 trisurf volume].include?(kind)
+        rotation = kvs[:rotation] || 40
+        tilt = kvs[:tilt] || 70
+        GR.setspace(zmin, zmax, rotation, tilt)
+      end
+
+      kvs[:scale] = scale
+      GR.setscale(scale)
+    end
+
+    def draw_axes(kind, pass = 1)
+      viewport = kvs[:viewport]
+      vp = kvs[:vp]
+      ratio = kvs[:ratio]
+      xtick, xorg, majorx = kvs[:xaxis]
+      ytick, yorg, majory = kvs[:yaxis]
+      drawgrid = kvs[:grid] || true
+      xtick = 10 if kvs[:scale] & GR::OPTION_X_LOG != 0
+      ytick = 10 if kvs[:scale] & GR::OPTION_Y_LOG != 0
+      GR.setlinecolorind(1)
+      diag = sqrt((viewport[2] - viewport[1]) ^ 2 + (viewport[4] - viewport[3]) ^ 2)
+      GR.setlinewidth(1)
+      charheight = max(0.018 * diag, 0.012)
+      GR.setcharheight(charheight)
+      ticksize = 0.0075 * diag
+      if %i[wireframe surface plot3 scatter3 trisurf volume].include?(kind)
+        ztick, zorg, majorz = kvs[:zaxis]
+        if pass == 1 && drawgrid
+          GR.grid3d(xtick, 0, ztick, xorg[1], yorg[2], zorg[1], 2, 0, 2)
+          GR.grid3d(0, ytick, 0, xorg[1], yorg[2], zorg[1], 0, 2, 0)
+        else
+          GR.axes3d(xtick, 0, ztick, xorg[1], yorg[1], zorg[1], majorx, 0, majorz, -ticksize)
+          GR.axes3d(0, ytick, 0, xorg[2], yorg[1], zorg[1], 0, majory, 0, ticksize)
+        end
+      else
+        if %i[heatmap nonuniformheatmap shade].include?(kind)
+          ticksize = -ticksize
+        else
+          drawgrid && GR.grid(xtick, ytick, 0, 0, majorx, majory)
+        end
+        # if kvs.key?(:xticklabels) || kvs.key?(:yticklabels)
+        #    fx = get(plt.kvs, :xticklabels, identity) |> ticklabel_fun
+        #    fy = get(plt.kvs, :yticklabels, identity) |> ticklabel_fun
+        #    GR.axeslbl(xtick, ytick, xorg[1], yorg[1], majorx, majory, ticksize, fx, fy)
+        # else
+        GR.axes(xtick, ytick, xorg[1], yorg[1], majorx, majory, ticksize)
+        # end
+        GR.axes(xtick, ytick, xorg[2], yorg[2], -majorx, -majory, -ticksize)
+      end
+
+      if kvs.key?(:title)
+        GR.savestate
+        GR.settextalign(GR::TEXT_HALIGN_CENTER, GR::TEXT_VALIGN_TOP)
+        text(0.5 * (viewport[1] + viewport[2]), vp[4], kvs[:title])
+        GR.restorestate
+      end
+      if %i[wireframe surface plot3 scatter3 trisurf volume].include?(kind)
+        xlabel = kvs[:xlabel] || ''
+        ylabel = kvs[:ylabel] || ''
+        zlabel = kvs[:zlabel] || ''
+        GR.titles3d(xlabel, ylabel, zlabel)
+      else
+        if kvs.key?(:xlabel)
+          GR.savestate
+          GR.settextalign(GR::TEXT_HALIGN_CENTER, GR::TEXT_VALIGN_BOTTOM)
+          text(0.5 * (viewport[1] + viewport[2]), vp[3] + 0.5 * charheight, kvs[:xlabel])
+          GR.restorestate
+        end
+        if kvs.key?(:ylabel)
+          GR.savestate
+          GR.settextalign(GR::TEXT_HALIGN_CENTER, GR::TEXT_VALIGN_TOP)
+          GR.setcharup(-1, 0)
+          text(vp[1] + 0.5 * charheight, 0.5 * (viewport[3] + viewport[4]), plt.kvs[:ylabel])
+          GR.restorestate
+        end
+      end
+    end
+
     private
+
+    def text(x, y, s)
+      if s.length >= 2 && s[0] == '$' && s[-1] == '$'
+        GR.mathtex(x, y, s[1..-2])
+      elsif s.include('\\') || s.include?('_') || s.include?('^')
+        GR.textext(x, y, s)
+      else
+        GR.text(x, y, s)
+      end
+    end
+
+    def fix_minmax(a, b)
+      if a == b
+        a -= a != 0 ? 0.1 * a : 0.1
+        b += b != 0 ? 0.1 * b : 0.1
+      end
+      [a, b]
+    end
+
+    def minmax
+      xmin = ymin = zmin = cmin = Float::INFINITY
+      xmax = ymax = zmax = cmax = -Float::INFINITY
+
+      args.each do |x, y, z, c|
+        if x
+          x0, x1 = x.minmax
+          xmin = [x0, xmin].min
+          xmax = [x1, xmax].max
+        else
+          xmin = 0
+          xmax = 1
+        end
+        if y
+          y0, y1 = y.minmax
+          ymin = [y0, ymin].min
+          ymax = [y1, ymax].max
+        else
+          ymin = 0
+          ymax = 1
+        end
+        if z
+          z0, z1 = z.minmax
+          zmin = [z0, zmin].min
+          zmax = [z1, zmax].max
+        end
+        if c
+          c0, c1 = c.minmax
+          cmin = [c0, cmin].min
+          cmax = [c1, cmax].max
+        elsif z
+          cmin = [c0, cmin].min
+          cmax = [c1, cmax].max
+        end
+      end
+      xmin, xmax = fix_minmax(xmin, xmax)
+      ymin, ymax = fix_minmax(ymin, ymax)
+      zmin, zmax = fix_minmax(zmin, zmax)
+      if kvs.key?(:xlim)
+        x0, x1 = kvs[:xlim]
+        x0 ||= xmin
+        x1 ||= xmax
+        kvs[:xrange] = [x0, x1]
+      else
+        kvs[:xrange] = [xmin, xmax]
+      end
+      if kvs.key?(:ylim)
+        y0, y1 = kvs[:ylim]
+        y0 ||= ymin
+        y1 ||= ymax
+        kvs[:yrange] = [y0, y1]
+      else
+        kvs[:yrange] = [ymin, ymax]
+      end
+      if kvs.key?(:zlim)
+        z0, z1 = kvs[:zlim]
+        z0 ||= zmin
+        z1 ||= zmax
+        kvs[:zrange] = [z0, z1]
+      else
+        kvs[:zrange] = [zmin, zmax]
+      end
+      if kvs.key?(:clim)
+        c0, c1 = kvs[:clim]
+        c0 ||= cmin
+        c1 ||= cmax
+        kvs[:crange] = [c0, c1]
+      else
+        kvs[:crange] = [cmin, cmax]
+      end
+    end
 
     def legend_size
       scale = GR.inqscale
