@@ -195,9 +195,9 @@ module GR
 
       kvs[:window] = xmin, xmax, ymin, ymax
       if %i[polar polarhist polarheatmap].include?(kind)
-        GR.setwindow(xmin, xmax, ymin, ymax)
-      else
         GR.setwindow(-1, 1, -1, 1)
+      else
+        GR.setwindow(xmin, xmax, ymin, ymax)
       end
       if %i[wireframe surface plot3 scatter3 trisurf volume].include?(kind)
         rotation = kvs[:rotation] || 40
