@@ -1174,12 +1174,20 @@ module GR
       super
     end
 
-    def adjustlimits(*)
-      super
+    def adjustlimits(amin, amax)
+      inquiry %i[double double] do |pamin, pamax|
+        pamin.write_double amin
+        pamax.write_double amax
+        super(pamin, pamax)
+      end
     end
 
-    def adjustrange(*)
-      super
+    def adjustrange(amin, amax)
+      inquiry %i[double double] do |pamin, pamax|
+        pamin.write_double amin
+        pamax.write_double amax
+        super(pamin, pamax)
+      end
     end
 
     # Open and activate a print device.
