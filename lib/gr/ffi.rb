@@ -83,7 +83,7 @@ module GR
     attach_function :gr_closeseg, %i[], :void
     attach_function :gr_emergencyclosegks, %i[], :void
     attach_function :gr_updategks, %i[], :void
-    attach_function :gr_setspace, %i[double double int int], :void
+    attach_function :gr_setspace, %i[double double int int], :int
     attach_function :gr_inqspace, %i[pointer pointer pointer pointer], :void
     attach_function :gr_textext, %i[double double string], :int
     attach_function :gr_inqtextext, %i[double double string pointer pointer], :void
@@ -144,14 +144,14 @@ module GR
     attach_function :gr_moveselection, %i[double double], :void
     attach_function :gr_resizeselection, %i[int double double], :void
     attach_function :gr_inqbbox, %i[pointer pointer pointer pointer], :void
-    attach_function :gr_precision, %i[], :void
+    attach_function :gr_precision, %i[], :double
     attach_function :gr_setregenflags, %i[int], :void
-    attach_function :gr_inqregenflags, %i[], :void
+    attach_function :gr_inqregenflags, %i[], :int
     attach_function :gr_savestate, %i[], :void
     attach_function :gr_restorestate, %i[], :void
     attach_function :gr_selectcontext, %i[int], :void
     attach_function :gr_destroycontext, %i[int], :void
-    attach_function :gr_uselinespec, %i[string], :void
+    attach_function :gr_uselinespec, %i[string], :int
     # attach_function :gr_delaunay, %i[int pointer pointer pointer pointer], :void
     attach_function :gr_reducepoints, %i[int pointer pointer int pointer pointer], :void
     attach_function :gr_trisurface, %i[int pointer pointer pointer], :void
