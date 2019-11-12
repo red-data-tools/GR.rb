@@ -7,8 +7,16 @@ module GR
       # what if kvs is nil?
       @args = args
       @kvs = kvs
+      kvs[:size] = [600, 450]
+      kvs[:ax] = false
+      kvs[:subplot] = [0, 1, 0, 1]
+      kvs[:clear] = true
+      kvs[:update] = true
+      @scheme = 0
+      @background = 0xffffff
+      @handle = nil
     end
-    attr_accessor :args, :kvs
+    attr_accessor :args, :kvs, :scheme
 
     def set_viewport(kind, subplot)
       mwidth, mheight, width, height = GR.inqdspsize
@@ -25,47 +33,48 @@ module GR
       end
       viewport = [0, 0, 0, 0]
       vp = subplot.clone
+      p vp
       if w > h
         ratio = h / w.to_f
         msize = mwidth * w / width
         GR.setwsviewport(0, msize, 0, msize * ratio)
         GR.setwswindow(0, 1, 0, ratio)
+        vp[2] *= ratio
         vp[3] *= ratio
-        vp[4] *= ratio
       else
         ratio = w / h.to_f
         msize = mheight * h / height
         GR.setwsviewport(0, msize * ratio, 0, msize)
         GR.setwswindow(0, ratio, 0, 1)
+        vp[0] *= ratio
         vp[1] *= ratio
-        vp[2] *= ratio
       end
       if %i[wireframe surface plot3 scatter3 trisurf volume].include?(kind)
-        extent = [vp[2] - vp[1], vp[4] - vp[3]].min
-        vp1 = 0.5 * (vp[1] + vp[2] - extent)
-        vp2 = 0.5 * (vp[1] + vp[2] + extent)
-        vp3 = 0.5 * (vp[3] + vp[4] - extent)
-        vp4 = 0.5 * (vp[3] + vp[4] + extent)
+        extent = [vp[1] - vp[0], vp[3] - vp[2]].min
+        vp1 = 0.5 * (vp[0] + vp[1] - extent)
+        vp2 = 0.5 * (vp[0] + vp[1] + extent)
+        vp3 = 0.5 * (vp[2] + vp[3] - extent)
+        vp4 = 0.5 * (vp[2] + vp[3] + extent)
       else
         vp1, vp2, vp3, vp4 = vp
       end
-      viewport[1] = vp1 + 0.125 * (vp2 - vp1)
-      viewport[2] = vp1 + 0.925 * (vp2 - vp1)
-      viewport[3] = vp3 + 0.125 * (vp4 - vp3)
-      viewport[4] = vp3 + 0.925 * (vp4 - vp3)
+      viewport[0] = vp1 + 0.125 * (vp2 - vp1)
+      viewport[1] = vp1 + 0.925 * (vp2 - vp1)
+      viewport[2] = vp3 + 0.125 * (vp4 - vp3)
+      viewport[3] = vp3 + 0.925 * (vp4 - vp3)
       if %i[contour contourf hexbin heatmap nonuniformheatmap polarheatmap surface trisurf volume].include?(kind)
-        viewport[2] -= 0.1
+        viewport[1] -= 0.1
       end
 
       if %i[line step scatter stem].include?(kind) && kvs[:labels]
         location = kvs[:location] || 1
         if [11, 12, 13].include?(location)
           w, h = legend_size
-          viewport[2] -= w + 0.1
+          viewport[1] -= w + 0.1
         end
       end
 
-      GR.setviewport(viewport[1], viewport[2], viewport[3], viewport[4])
+      GR.setviewport(viewport[0], viewport[1], viewport[2], viewport[3])
 
       kvs[:viewport] = viewport
       kvs[:vp] = vp
@@ -77,11 +86,11 @@ module GR
         GR.setfillintstyle(GR::INTSTYLE_SOLID)
         GR.setfillcolorind(kvs[:backgroundcolor])
         if w > h
-          GR.fillrect(subplot[1], subplot[2],
-                      ratio * subplot[3], ratio * subplot[4])
+          GR.fillrect(subplot[0], subplot[1],
+                      ratio * subplot[2], ratio * subplot[3])
         else
-          GR.fillrect(ratio * subplot[1], ratio * subplot[2],
-                      subplot[3], subplot[4])
+          GR.fillrect(ratio * subplot[0], ratio * subplot[1],
+                      subplot[2], subplot[3])
         end
         GR.selntran(1)
         GR.restorestate
@@ -266,6 +275,97 @@ module GR
       end
     end
 
+    def plot_data(_figure = true)
+      # GR.init
+
+      # target = GR.displayname
+      # if flag && target != None
+      #   if target == "js" || target == "meta"
+      #       send_meta(0)
+      #   else
+      #       send_serialized(target)
+      #   end
+      #   return
+      # end
+
+      p kvs
+      kind = kvs[:kind] || :line
+      GR.clearws if kvs[:clear]
+
+      if scheme != 0
+        # Not yet.
+      end
+
+      set_viewport(kind, kvs[:subplot])
+      unless kvs[:ax]
+        set_window(kind)
+        if %i[polar polarhist].include?(kind)
+          draw_polar_axes
+        elsif %i[imshow isosurface polarheatmap].include?(kind)
+          draw_axes(kind)
+        end
+      end
+
+      if kvs.key?(:colormap)
+        GR.setcolormap(plt.kvs[:colormap])
+      else
+        GR.setcolormap(GR::COLORMAP_VIR)
+      end
+
+      GR.uselinespec(' ')
+      args.each do |x, y, z, c, spec|
+        GR.savestate
+        GR.settransparency(kvs[:alpha]) if kvs.key?(:alpha)
+        case kind
+        when :line
+          mask = GR.uselinespec(spec)
+          if [0, 1, 3, 4, 5].include?(mask)
+            GR.polyplot(x, y)
+          end
+          if (mask & 2) != 0
+            GR.polymarker(x, y)
+          end
+        when :step
+        when :scatter
+        when :stem
+        when :hist
+        when :polarhist
+        when :polarheatmap
+        when :contour
+        when :contourf
+        when :hexbin
+        when :heatmap, :nonuniformheatmap
+        when :wireframe
+        when :surface
+        when :volume
+        when :plot3
+        when :scatter3
+        when :imshow
+        when :isosurface
+        when :polar
+        when :trisurf
+        when :tricont
+        when :shade
+        when :bar
+        end
+        GR.restorestate
+      end
+
+      draw_legend if %i[line step scatter stem].include?(kind) && kvs.key?(:labels)
+
+      if kvs.key?(:update)
+        GR.updatews
+        # if GR.isinline()
+        #  restore_context()
+        #  return GR.show()
+        # end
+      end
+
+      # flag && restore_context()
+    end
+
+    def draw_legend; end
+
     private
 
     def text(x, y, s)
@@ -374,4 +474,11 @@ module GR
       [w, h]
     end
   end # Plot
+
+  class << self
+    def lineplot(*args, kv)
+      plt = GR::Plot.new(*args, kv)
+      plt.plot_data
+    end
+  end
 end
