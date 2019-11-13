@@ -314,7 +314,7 @@ module GR
       end
 
       GR.uselinespec(' ')
-      args.each do |x, y, _z, _c, _spec|
+      args.each do |x, y, z, c, _spec|
         GR.savestate
         GR.settransparency(kvs[:alpha]) if kvs.key?(:alpha)
         case kind
@@ -324,7 +324,33 @@ module GR
           GR.polymarker(x, y) if (mask & 2) != 0
         when :step
         when :scatter
+          GR.setmarkertype(GR::MARKERTYPE_SOLID_CIRCLE)
+          if z || c
+            if c
+              cmin, cmax = kvs[:crange]
+              c = c.to_a if narray?(c)
+              c.map! { |x| normalize_color(x, cmin, cmax) }
+              cind = c.map { |i| (1000 + i * 255).round }
+            end
+            x.length.times do |i|
+              GR.setmarkersize(z[i] / 100.0) if z
+              GR.setmarkercolorind(cind[i]) if c
+              GR.polymarker([x[i]], [y[i]])
+            end
+          else
+            GR.polymarker(x, y)
+          end
         when :stem
+          GR.setlinecolorind(1)
+          GR.polyline(kvs[:window][0..1], [0, 0])
+          GR.setmarkertype(GR::MARKERTYPE_SOLID_CIRCLE)
+          GR.uselinespec(spec = '')
+          x = x.to_a if narray?(x)
+          y = y.to_a if narray?(y)
+          x.zip(y).each do |xi, yi|
+            GR.polyline([xi, xi], [0, yi])
+          end
+          GR.polymarker(x, y)
         when :hist
         when :polarhist
         when :polarheatmap
@@ -369,6 +395,14 @@ module GR
       # :construction:
       x, y, z, c = args
       [[x, y, z, c]]
+    end
+
+    # Normalize a color c with the range [cmin, cmax]
+    #   0 <= normalize_color(c, cmin, cmax) <= 1
+    def normalize_color(c, cmin, cmax)
+      c = c.clamp(cmin, cmax) - cmin
+      c /= (cmax - cmin) if cmin != cmax
+      c
     end
 
     def text(x, y, s)
@@ -420,8 +454,9 @@ module GR
           cmin = [c0, cmin].min
           cmax = [c1, cmax].max
         elsif z
-          cmin = [c0, cmin].min
-          cmax = [c1, cmax].max
+          z0, z1 = z.minmax
+          cmin = [z0, zmin].min
+          cmax = [z1, zmax].max
         end
       end
       xmin, xmax = fix_minmax(xmin, xmax)
@@ -476,11 +511,27 @@ module GR
       GR.selntran(1)
       [w, h]
     end
+
+    def narray?(data)
+      defined?(Numo::NArray) && data.is_a?(Numo::NArray)
+    end
   end # Plot
 
   class << self
     def lineplot(*args, kv)
       plt = GR::Plot.new(*args, kv)
+      plt.plot_data
+    end
+
+    def scatterplot(*args, kv)
+      plt = GR::Plot.new(*args, kv)
+      plt.kvs[:kind] = :scatter
+      plt.plot_data
+    end
+
+    def stemplot(*args, kv)
+      plt = GR::Plot.new(*args, kv)
+      plt.kvs[:kind] = :stem
       plt.plot_data
     end
   end
