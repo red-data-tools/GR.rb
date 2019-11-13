@@ -352,6 +352,15 @@ module GR
           end
           GR.polymarker(x, y)
         when :hist
+          ymin = kvs[:window][2]
+          y.length.times do |i|
+            GR.setfillcolorind(989)
+            GR.setfillintstyle(GR::INTSTYLE_SOLID)
+            GR.fillrect(x[i], x[i + 1], ymin, y[i])
+            GR.setfillcolorind(1)
+            GR.setfillintstyle(GR::INTSTYLE_HOLLOW)
+            GR.fillrect(x[i], x[i + 1], ymin, y[i])
+          end
         when :polarhist
         when :polarheatmap
         when :contour
@@ -390,6 +399,11 @@ module GR
     def draw_legend; end
 
     private
+
+    # https://gist.github.com/rysk-t/8d1aef0fb67abde1d259#gistcomment-1925021
+    def linspace(low, high, num)
+      [*0..(num - 1)].collect { |i| low + i.to_f * (high - low) / (num - 1) }
+    end
 
     def plot_args(args, _fmt = :xys)
       # :construction:
@@ -518,21 +532,40 @@ module GR
   end # Plot
 
   class << self
-    def lineplot(*args, kv)
-      plt = GR::Plot.new(*args, kv)
+    def lineplot(*args)
+      plt = GR::Plot.new(*args)
       plt.plot_data
     end
 
-    def scatterplot(*args, kv)
-      plt = GR::Plot.new(*args, kv)
+    def scatterplot(*args)
+      plt = GR::Plot.new(*args)
       plt.kvs[:kind] = :scatter
       plt.plot_data
     end
 
-    def stemplot(*args, kv)
-      plt = GR::Plot.new(*args, kv)
+    def stemplot(*args)
+      plt = GR::Plot.new(*args)
       plt.kvs[:kind] = :stem
       plt.plot_data
+    end
+
+    def histogram(x, kv={})
+      plt = GR::Plot.new(x, kv)
+      plt.kvs[:kind] = :hist
+      nbins = plt.kvs[:nbins] || 0
+      x, y = hist(x, nbins)
+      plt.args = [[x, y, nil, nil, '']]
+      plt.plot_data
+    end
+
+    private
+    def hist(x, nbins = 0)
+      nbins = (3.3 * Math.log10(x.length)).round + 1 if nbins <= 1
+      require 'histogram/array' # dependency
+      x = x.to_a if narray?(x)
+      x, y = x.histogram(nbins, bin_boundary: :min)
+      x.unshift(x.min)
+      [x, y]
     end
   end
 end

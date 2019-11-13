@@ -24,3 +24,6 @@ gets
 
 GR.stemplot(x, y)
 gets
+
+GR.histogram(Numo::DFloat.new(10000).rand_norm)
+gets
