@@ -25,5 +25,10 @@ gets
 GR.stemplot(x, y)
 gets
 
-GR.histogram(Numo::DFloat.new(10000).rand_norm)
+GR.histogram(DFloat.new(10_000).rand_norm)
+gets
+
+x = DFloat.new(10_000).rand_norm
+y = DFloat.new(10_000).rand_norm
+GR.hexbinplot(x, y)
 gets

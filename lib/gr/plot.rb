@@ -277,6 +277,41 @@ module GR
       end
     end
 
+    def colorbar(off = 0, colors = 256)
+      GR.savestate
+      viewport = kvs[:viewport]
+      zmin, zmax = kvs[:zrange]
+      mask = (GR::OPTION_Z_LOG | GR::OPTION_FLIP_Y | GR::OPTION_FLIP_Z)
+      if kvs.key?(:zflip)
+        options = (GR.inqscale | GR::OPTION_FLIP_Y)
+        GR.setscale(options & mask)
+      elsif kvs.key?(:yflip)
+        options = GR.inqscale & ~GR::OPTION_FLIP_Y
+        GR.setscale(options & mask)
+      else
+        options = GR.inqscale
+        GR.setscale(options & mask)
+      end
+      h = 0.5 * (zmax - zmin) / (colors - 1)
+      GR.setwindow(0, 1, zmin, zmax)
+      GR.setviewport(viewport[1] + 0.02 + off, viewport[1] + 0.05 + off,
+                     viewport[2], viewport[3])
+      l = linspace(1000, 1255, colors).map(&:round)
+      GR.cellarray(0, 1, zmax + h, zmin - h, 1, colors, l)
+      GR.setlinecolorind(1)
+      diag = Math.sqrt((viewport[1] - viewport[0])**2 + (viewport[3] - viewport[2])**2)
+      charheight = [0.016 * diag, 0.012].max
+      GR.setcharheight(charheight)
+      if kvs[:scale] & GR::OPTION_Z_LOG == 0
+        ztick = 0.5 * GR.tick(zmin, zmax)
+        GR.axes(0, ztick, 1, zmin, 0, 1, 0.005)
+      else
+        GR.setscale(GR::OPTION_Y_LOG)
+        GR.axes(0, 2, 1, zmin, 0, 1, 0.005)
+      end
+      GR.restorestate
+    end
+
     def plot_data(_figure = true)
       # GR.init
 
@@ -366,6 +401,12 @@ module GR
         when :contour
         when :contourf
         when :hexbin
+          nbins = kvs[:nbins] || 40
+          cntmax = GR.hexbin(x, y, nbins)
+          if cntmax > 0
+            kvs[:zrange] = [0, cntmax]
+            colorbar
+          end
         when :heatmap, :nonuniformheatmap
         when :wireframe
         when :surface
@@ -549,7 +590,7 @@ module GR
       plt.plot_data
     end
 
-    def histogram(x, kv={})
+    def histogram(x, kv = {})
       plt = GR::Plot.new(x, kv)
       plt.kvs[:kind] = :hist
       nbins = plt.kvs[:nbins] || 0
@@ -558,7 +599,14 @@ module GR
       plt.plot_data
     end
 
+    def hexbinplot(*args)
+      plt = GR::Plot.new(*args)
+      plt.kvs[:kind] = :hexbin
+      plt.plot_data
+    end
+
     private
+
     def hist(x, nbins = 0)
       nbins = (3.3 * Math.log10(x.length)).round + 1 if nbins <= 1
       require 'histogram/array' # dependency
