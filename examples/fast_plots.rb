@@ -26,6 +26,22 @@ gets
 GR.stemplot(x, y)
 gets
 
+x = DFloat.linspace(0, 30, 1000)
+y = NMath.cos(x) * x
+z = NMath.sin(x) * x
+GR.lineplot3(x, y, z)
+gets
+
+x = 2 * DFloat.new(100).rand - 1
+y = 2 * DFloat.new(100).rand - 1
+z = 2 * DFloat.new(100).rand - 1
+GR.scatterplot3(x, y, z)
+gets
+
+c = 999 * DFloat.new(100).rand + 1
+GR.scatterplot3(x, y, z, c)
+gets
+
 GR.histogram(DFloat.new(10_000).rand_norm)
 gets
 
@@ -101,4 +117,14 @@ x = _x.expand_dims(0) * DFloat.ones(_y.size, 1)
 y = _y.expand_dims(1) * DFloat.ones(1, _x.size)
 z = NMath.sin(x) + NMath.cos(y)
 GR.wireframe(x, y, z)
+
+
+GR.volumeplot(DFloat.new(50, 50, 50).rand_norm)
+gets
+
+n = 1_000_000
+x = DFloat.new(n).rand_norm
+y = DFloat.new(n).rand_norm
+GR.shade(x, y)
+GR3.terminate
 gets

@@ -441,9 +441,7 @@ module GR
           end
         when :heatmap, :nonuniformheatmap
         when :wireframe
-          if x.length == y.length && y.length == z.length
-            x, y, z = GR.gridit(x, y, z, 50, 50)
-          end
+          x, y, z = GR.gridit(x, y, z, 50, 50) if x.length == y.length && y.length == z.length
           GR.setfillcolorind(0)
           GR.surface(x, y, z, GR::OPTION_FILLED_MESH)
           draw_axes(kind, 2)
@@ -459,8 +457,30 @@ module GR
           draw_axes(kind, 2)
           colorbar(0.05)
         when :volume
+          algorithm = kvs[:algorithm] || 0
+          require 'gr3'
+          GR3.clear
+          dmin, dmax = GR3.volume(z, algorithm)
+          draw_axes(kind, 2)
+          kvs[:zrange] = [dmin, dmax]
+          colorbar(0.05)
         when :plot3
+          GR.polyline3d(x, y, z)
+          draw_axes(kind, 2)
         when :scatter3
+          GR.setmarkertype(GR::MARKERTYPE_SOLID_CIRCLE)
+          if c
+            cmin, cmax = kvs[:crange]
+            c = c.map { |x| normalize_color(x, cmin, cmax) } # NArray -> Array
+            cind = c.map { |i| (1000 + i * 255).round }
+            x.length.times do |i|
+              GR.setmarkercolorind(cind[i])
+              GR.polymarker3d([x[i]], [y[i]], [z[i]])
+            end
+          else
+            GR.polymarker3d(x, y, z)
+          end
+          draw_axes(kind, 2)
         when :imshow
         when :isosurface
         when :polar
@@ -473,6 +493,13 @@ module GR
           levels = linspace(zmin, zmax, 20)
           GR.tricontour(x, y, z, levels)
         when :shade
+          xform = kvs[:xform] || 5
+          if x.to_a.include? Float::NAN # FIXME: Ruby is different from Julia?
+            # How to check NArray?
+            GR.shadelines(x, y, xform: xform)
+          else
+            GR.shadepoints(x, y, xform: xform)
+          end
         when :bar
         end
         GR.restorestate
@@ -638,6 +665,12 @@ module GR
       plt.plot_data
     end
 
+    def scatterplot3(*args)
+      plt = GR::Plot.new(*args)
+      plt.kvs[:kind] = :scatter3
+      plt.plot_data
+    end
+
     def stemplot(*args)
       plt = GR::Plot.new(*args)
       plt.kvs[:kind] = :stem
@@ -701,7 +734,26 @@ module GR
     def wireframe(*args)
       plt = GR::Plot.new(*args)
       plt.kvs[:kind] = :wireframe
-      plt.plot_data   
+      plt.plot_data
+    end
+
+    def lineplot3(*args)
+      plt = GR::Plot.new(*args)
+      plt.kvs[:kind] = :plot3
+      plt.plot_data
+    end
+
+    def shade(*args)
+      plt = GR::Plot.new(*args)
+      plt.kvs[:kind] = :shade
+      plt.plot_data
+    end
+
+    def volumeplot(v, kv = {})
+      plt = GR::Plot.new(v, kv)
+      plt.kvs[:kind] = :volume
+      plt.args = [[nil, nil, v, nil, '']]
+      plt.plot_data
     end
 
     private
