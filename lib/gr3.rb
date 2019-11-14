@@ -418,11 +418,11 @@ module GR3
     # @param pz [Array, NArray] an array of length nx * ny containing the z-coordinates
     # @param option [Integer] see the option parameter of gr_surface.
     #  OPTION_COLORED_MESH and OPTION_Z_SHADED_MESH are supported.
-    def surface(px, py, pz, _option)
+    def surface(px, py, pz, option)
       nx = px.length
       ny = py.length
       # TODO: Check out_of_bounds
-      super(nx, ny, px, py, pz, ption)
+      super(nx, ny, px, py, pz, option)
     end
 
     # drawtubemesh
