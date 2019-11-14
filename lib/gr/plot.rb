@@ -29,7 +29,7 @@ module GR
       else
         dpi = width / mwidth * 0.0254
         if dpi > 200
-          w. h = kvs[:size].map { |x| x * dp1 / 100 }
+          w, h = kvs[:size].map { |x| x * dpi / 100 }
         else
           w, h = kvs[:size]
         end
