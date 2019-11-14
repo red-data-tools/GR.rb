@@ -441,6 +441,12 @@ module GR
           end
         when :heatmap, :nonuniformheatmap
         when :wireframe
+          if x.length == y.length && y.length == z.length
+            x, y, z = GR.gridit(x, y, z, 50, 50)
+          end
+          GR.setfillcolorind(0)
+          GR.surface(x, y, z, GR::OPTION_FILLED_MESH)
+          draw_axes(kind, 2)
         when :surface
           x, y, z = GR.gridit(x, y, z, 200, 200) if x.length == y.length || y.length == z.length
           if kvs[:accelerate] == false
@@ -459,6 +465,9 @@ module GR
         when :isosurface
         when :polar
         when :trisurf
+          GR.trisurface(x, y, z)
+          draw_axes(kind, 2)
+          colorbar(0.05)
         when :tricont
           zmin, zmax = kvs[:zrange]
           levels = linspace(zmin, zmax, 20)
@@ -681,6 +690,18 @@ module GR
       plt = GR::Plot.new(*args)
       plt.kvs[:kind] = :surface
       plt.plot_data
+    end
+
+    def trisurfaceplot(*args)
+      plt = GR::Plot.new(*args)
+      plt.kvs[:kind] = :trisurf
+      plt.plot_data
+    end
+
+    def wireframe(*args)
+      plt = GR::Plot.new(*args)
+      plt.kvs[:kind] = :wireframe
+      plt.plot_data   
     end
 
     private
