@@ -399,7 +399,39 @@ module GR
         when :polarhist
         when :polarheatmap
         when :contour
+          zmin, zmax = kvs[:zrange]
+          if x.length == y.length && y.length == z.length
+            x, y, z = GR.gridit(x, y, z, 200, 200)
+            zmin, zmax = kvs[:zlim] || z.compact.minmax # compact : removed nil
+          end
+          GR.setspace(zmin, zmax, 0, 90)
+          levels = kvs[:levels] || 0
+          clabels = kvs[:clabels] || false
+          if levels.is_a? Integer
+            hmin, hmax = GR.adjustrange(zmin, zmax)
+            h = linspace(hmin, hmax, levels == 0 ? 21 : levels + 1)
+          else
+            h = levels
+          end
+          GR.contour(x, y, h, z, clabels ? 1 : 1000)
+          colorbar(0, h.length)
         when :contourf
+          zmin, zmax = kvs[:zrange]
+          if x.length == y.length && y.length == z.length
+            x, y, z = GR.gridit(x, y, z, 200, 200)
+            zmin, zmax = kvs[:zlim] || z.compact.minmax # compact : removed nil
+          end
+          GR.setspace(zmin, zmax, 0, 90)
+          levels = kvs[:levels] || 0
+          clabels = kvs[:clabels] || false
+          if levels.is_a? Integer
+            hmin, hmax = GR.adjustrange(zmin, zmax)
+            h = linspace(hmin, hmax, levels == 0 ? 21 : levels + 1)
+          else
+            h = levels
+          end
+          GR.contourf(x, y, h, z, clabels ? 1 : 0)
+          colorbar(0, h.length)
         when :hexbin
           nbins = kvs[:nbins] || 40
           cntmax = GR.hexbin(x, y, nbins)
@@ -410,6 +442,16 @@ module GR
         when :heatmap, :nonuniformheatmap
         when :wireframe
         when :surface
+          x, y, z = GR.gridit(x, y, z, 200, 200) if x.length == y.length || y.length == z.length
+          if kvs[:accelerate] == false
+            GR.surface(x, y, z, GR::OPTION_COLORED_MESH)
+          else
+            require 'gr3'
+            GR3.clear
+            GR3.surface(x, y, z, GR::OPTION_COLORED_MESH)
+          end
+          draw_axes(kind, 2)
+          colorbar(0.05)
         when :volume
         when :plot3
         when :scatter3
@@ -418,6 +460,9 @@ module GR
         when :polar
         when :trisurf
         when :tricont
+          zmin, zmax = kvs[:zrange]
+          levels = linspace(zmin, zmax, 20)
+          GR.tricontour(x, y, z, levels)
         when :shade
         when :bar
         end
@@ -599,9 +644,42 @@ module GR
       plt.plot_data
     end
 
+    # def polarhistogram(x, kv = {})
+    #   plt = GR::Plot.new(x, kv)
+    #   plt.kvs[:kind] = :polarhist
+    #   nbins = plt.kvs[:nbins] || 0
+    #   x, y = hist(x, nbins)
+    #   plt.args = [[x, y, nil, nil, '']]
+    #   plt.plot_data
+    # end
+
+    def contourplot(*args)
+      plt = GR::Plot.new(*args)
+      plt.kvs[:kind] = :contour
+      plt.plot_data
+    end
+
+    def contourfplot(*args)
+      plt = GR::Plot.new(*args)
+      plt.kvs[:kind] = :contourf
+      plt.plot_data
+    end
+
     def hexbinplot(*args)
       plt = GR::Plot.new(*args)
       plt.kvs[:kind] = :hexbin
+      plt.plot_data
+    end
+
+    def tricontourplot(*args)
+      plt = GR::Plot.new(*args)
+      plt.kvs[:kind] = :tricont
+      plt.plot_data
+    end
+
+    def surfaceplot(*args)
+      plt = GR::Plot.new(*args)
+      plt.kvs[:kind] = :surface
       plt.plot_data
     end
 
