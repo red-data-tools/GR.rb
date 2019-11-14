@@ -675,10 +675,10 @@ module GR3
 
     def volume(data, algorithm)
       inquiry %i[double double] do |dmin, dmax|
-        amin.write_double(-1)
+        dmin.write_double(-1)
         dmax.write_double(-1)
         # TODO: raise error when no NArray
-        data = Numo::DFloat.cast(data) if data.is_a Array
+        data = Numo::DFloat.cast(data) if data.is_a? Array
         nx, ny, nz = data.shape
         super(nx, ny, nz, data, algorithm, dmin, dmax)
       end

@@ -6,6 +6,10 @@ module GR3
     define_ffi_methods(FFI,
                        prefix: 'gr3_',
                        default_type: :float)
+    # workaround for `gr_volume`
+    define_ffi_methods(FFI,
+                       prefix: 'gr_',
+                       default_type: :double)
   end
   private_constant :GR3Base
 
