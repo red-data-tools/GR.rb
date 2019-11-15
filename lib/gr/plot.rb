@@ -262,7 +262,8 @@ module GR
                end
           GR.axeslbl(xtick, ytick, xorg[0], yorg[0], majorx, majory, ticksize, fx, fy)
         else
-          GR.axes(xtick, ytick, xorg[1], yorg[1], majorx, majory, ticksize)
+          p xorg
+          GR.axes(xtick, ytick, xorg[0], yorg[0], majorx, majory, ticksize)
         end
         GR.axes(xtick, ytick, xorg[1], yorg[1], -majorx, -majory, -ticksize)
       end
