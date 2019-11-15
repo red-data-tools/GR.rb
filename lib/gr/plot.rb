@@ -239,13 +239,31 @@ module GR
         else
           drawgrid && GR.grid(xtick, ytick, 0, 0, majorx, majory)
         end
-        # if kvs.key?(:xticklabels) || kvs.key?(:yticklabels)
-        #    fx = get(plt.kvs, :xticklabels, identity) |> ticklabel_fun
-        #    fy = get(plt.kvs, :yticklabels, identity) |> ticklabel_fun
-        #    GR.axeslbl(xtick, ytick, xorg[1], yorg[1], majorx, majory, ticksize, fx, fy)
-        # else
-        GR.axes(xtick, ytick, xorg[0], yorg[0], majorx, majory, ticksize)
-        # end
+        if kvs.key?(:xticklabels) || kvs.key?(:yticklabels)
+          fx = if kvs.key?(:xticklabels)
+                 ::FFI::Function.new(:void, %i[double double string double]) do |x, y, _svalue, value|
+                   label = value < 0 ? '' : kvs[:xticklabels][value] || ''
+                   GR.textext(x, y, label)
+                 end
+               else
+                 ::FFI::Function.new(:void, %i[double double string double]) do |x, y, _svalue, value|
+                   GR.textext(x, y, value.to_s)
+                 end
+               end
+          fy = if kvs.key?(:yticklabels)
+                 ::FFI::Function.new(:void, %i[double double string double]) do |x, y, _svalue, value|
+                   label = value < 0 ? '' : kvs[:yticklabels][value] || ''
+                   GR.textext(x, y, label)
+                 end
+               else
+                 ::FFI::Function.new(:void, %i[double double string double]) do |x, y, _svalue, value|
+                   GR.textext(x, y, value.to_s)
+                 end
+               end
+          GR.axeslbl(xtick, ytick, xorg[0], yorg[0], majorx, majory, ticksize, fx, fy)
+        else
+          GR.axes(xtick, ytick, xorg[1], yorg[1], majorx, majory, ticksize)
+        end
         GR.axes(xtick, ytick, xorg[1], yorg[1], -majorx, -majory, -ticksize)
       end
 
@@ -440,6 +458,31 @@ module GR
             colorbar
           end
         when :heatmap, :nonuniformheatmap
+          case z
+          when Array
+            if z.all? { |zi| zi.size = z[0].size }
+              w = z.size
+              h = z[0].size
+            else
+              raise
+            end
+          when ->(x) { narray?(x) }
+            w, h = z.shape
+          else
+            raise
+          end
+          cmap = colormap
+          cmin, cmax = kvs[:crange]
+          levels = kvs[:levels] || 256
+          data = z.flatten.to_a.map { |i| normalize_color(i, cmin, cmax) } # NArray -> Array
+          if kind == :heatmap
+            rgba = data.map { |v| to_rgba(v, cmap) }
+            GR.drawimage(0.5, w + 0.5, h + 0.5, 0.5, w, h, rgba)
+          else
+            colors = data.map { |i| (1000 + i * 255).round }
+            GR.nonuniformcellarray(x, y, w, h, colors)
+          end
+          colorbar(0, levels)
         when :wireframe
           x, y, z = GR.gridit(x, y, z, 50, 50) if x.length == y.length && y.length == z.length
           GR.setfillcolorind(0)
@@ -501,6 +544,14 @@ module GR
             GR.shadepoints(x, y, xform: xform)
           end
         when :bar
+          0.step(x.length - 1, 2) do |i|
+            GR.setfillcolorind(989)
+            GR.setfillintstyle(GR::INTSTYLE_SOLID)
+            GR.fillrect(x[i], x[i + 1], y[i], y[i + 1])
+            GR.setfillcolorind(1)
+            GR.setfillintstyle(GR::INTSTYLE_HOLLOW)
+            GR.fillrect(x[i], x[i + 1], y[i], y[i + 1])
+          end
         end
         GR.restorestate
       end
@@ -521,6 +572,30 @@ module GR
     def draw_legend; end
 
     private
+
+    def colormap
+      # rgb
+      Array.new(256) do |colorind|
+        color = GR.inqcolor(1000 + colorind)
+        [(color & 0xff)         / 255.0,
+         ((color >> 8)  & 0xff) / 255.0,
+         ((color >> 16) & 0xff) / 255.0]
+      end
+    end
+
+    def to_rgba(value, cmap)
+      begin
+        r, g, b = cmap[(value * 255).round]
+        a = 1.0
+      rescue StandardError # nil
+        r = 0
+        g = 0
+        b = 0
+        a = 0
+      end
+
+      ((a * 255).round << 24) + ((b * 255).round << 16) + ((g * 255).round << 8) + (r * 255).round
+    end
 
     # https://gist.github.com/rysk-t/8d1aef0fb67abde1d259#gistcomment-1925021
     def linspace(low, high, num)
@@ -544,7 +619,7 @@ module GR
     def text(x, y, s)
       if s.length >= 2 && s[0] == '$' && s[-1] == '$'
         GR.mathtex(x, y, s[1..-2])
-      elsif s.include('\\') || s.include?('_') || s.include?('^')
+      elsif s.include?('\\') || s.include?('_') || s.include?('^')
         GR.textext(x, y, s)
       else
         GR.text(x, y, s)
@@ -695,6 +770,22 @@ module GR
     #   plt.plot_data
     # end
 
+    def heatmap(*args)
+      plt = GR::Plot.new(*args)
+      plt.kvs[:kind] = :heatmap
+      # FIXME
+      if narray?(args.first)
+        z = args.first
+        width, height = z.shape
+        plt.kvs[:xlim] ||= [0.5, width + 0.5]
+        plt.kvs[:ylim] ||= [0.5, height + 0.5]
+        plt.args = [[[*1..width], [*1..height], z, nil, '']]
+      else
+        raise 'not implemented'
+      end
+      plt.plot_data
+    end
+
     def contourplot(*args)
       plt = GR::Plot.new(*args)
       plt.kvs[:kind] = :contour
@@ -756,6 +847,23 @@ module GR
       plt.plot_data
     end
 
+    def barplot(labels, heights, kv = {})
+      wc, hc = barcoordinates(heights)
+      horizontal = kv[:horizontal] || false
+      plt = GR::Plot.new(labels, heights, kv)
+      plt.kvs[:kind] = :bar
+      if horizontal
+        plt.args = [[hc, wc, nil, nil, '']]
+        plt.kvs[:yticks] = [1, 1]
+        plt.kvs[:yticklabels] = labels
+      else
+        plt.args = [[wc, hc, nil, nil, '']]
+        plt.kvs[:xticks] = [1, 1]
+        plt.kvs[:xticklabels] = labels
+      end
+      plt.plot_data
+    end
+
     private
 
     def hist(x, nbins = 0)
@@ -765,6 +873,19 @@ module GR
       x, y = x.histogram(nbins, bin_boundary: :min)
       x.unshift(x.min)
       [x, y]
+    end
+
+    def barcoordinates(heights, barwidth = 0.8, baseline = 0.0)
+      halfw = barwidth / 2.0
+      wc = []
+      hc = []
+      heights.each_with_index do |value, i|
+        wc << i - halfw
+        wc << i + halfw
+        hc << baseline
+        hc << value
+      end
+      [wc, hc]
     end
   end
 end

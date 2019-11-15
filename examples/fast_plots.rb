@@ -118,7 +118,6 @@ y = _y.expand_dims(1) * DFloat.ones(1, _x.size)
 z = NMath.sin(x) + NMath.cos(y)
 GR.wireframe(x, y, z)
 
-
 GR.volumeplot(DFloat.new(50, 50, 50).rand_norm)
 gets
 
