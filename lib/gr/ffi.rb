@@ -88,7 +88,9 @@ module GR
     attach_function :gr_textext, %i[double double string], :int
     attach_function :gr_inqtextext, %i[double double string pointer pointer], :void
     attach_function :gr_axes, %i[double double double double int int double], :void
-    # attach_function :gr_axeslbl
+    callback :fx, %i[double double string double], :void
+    callback :fy, %i[double double string double], :void
+    attach_function :gr_axeslbl, %i[double double double double int int double fx fy], :void
     attach_function :gr_grid, %i[double double double double int int], :void
     attach_function :gr_grid3d, %i[double double double double double double int int int], :void
     attach_function :gr_verrorbars, %i[int pointer pointer pointer pointer], :void
