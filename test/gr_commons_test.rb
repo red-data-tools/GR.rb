@@ -6,6 +6,7 @@ require 'gr_commons'
 class GRCommonsTest < Minitest::Test
   def setup
     @utils = Module.new { extend GRCommons::GRCommonUtils }
+    @supportedtypes = GRCommons::GRCommonUtils::SupportedTypes
   end
 
   def test_version
@@ -44,18 +45,27 @@ class GRCommonsTest < Minitest::Test
     assert_equal 'Sequences must have same length.', e.message
   end
 
-  def test_int_array
+  def test_convert_array_into_ffi_pointer
     a = [1, 2, 3, 4, 5]
-    b = @utils.send(:int, a)
-    c = @utils.send(:read_ffi_pointer, b, int: 5)
-    assert_equal(a, c)
+    @supportedtypes.each do |type|
+      b = @utils.send(type, a)
+      c = @utils.send(:read_ffi_pointer, b, type => 5)
+      assert_equal(a, c)
+    end
   end
 
-  def test_int_narray
-    a = Numo::Int32[1, 2, 3, 4, 5]
-    b = @utils.send(:int, a)
-    c = @utils.send(:read_ffi_pointer, b, int: 5)
-    assert_equal(a, c)
+  def test_convert_narray_into_ffi_pointer
+    [Numo::Int32[1, 2, 3, 4, 5],
+     Numo::UInt8[1, 2, 3, 4, 5],
+     Numo::Int64[1, 2, 3, 4, 5],
+     Numo::SFloat[1, 2, 3, 4, 5],
+     Numo::DFloat[1, 2, 3, 4, 5]].each do |a|
+      @supportedtypes.each do |_type|
+        b = @utils.send(:int, a)
+        c = @utils.send(:read_ffi_pointer, b, int: 5)
+        assert_equal(a.to_a, c)
+      end
+    end
   end
 
   def test_inquiry_int
@@ -63,5 +73,38 @@ class GRCommonsTest < Minitest::Test
       pt.write_int 3
     end
     assert_equal(a, 3)
+  end
+
+  def test_inquiry_double
+    a = @utils.send(:inquiry_double) do |pt|
+      pt.write_double 3.3
+    end
+    assert_equal(a, 3.3)
+  end
+
+  def test_inquiry_hash_int
+    a = [1, 2, 3]
+    b = @utils.send(:inquiry, int: 3) do |pt|
+      pt.write_array_of_int(a)
+    end
+    assert_equal(a, b)
+  end
+
+  def test_inquiry_hash_double
+    a = [1.1, 2.2, 3.3]
+    b = @utils.send(:inquiry, double: 3) do |pt|
+      pt.write_array_of_double(a)
+    end
+    assert_equal(a, b)
+  end
+
+  def test_inquiry_hash_int_and_double
+    a = [1, 2, 3]
+    b = [1.1, 2.2, 3.3, 4.4]
+    c = @utils.send(:inquiry, [{ int: 3 }, { double: 4 }]) do |pa, pb|
+      pa.write_array_of_int(a)
+      pb.write_array_of_double(b)
+    end
+    assert_equal([a, b], c)
   end
 end

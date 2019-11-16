@@ -12,49 +12,16 @@ module GRCommons
       lengths[0]
     end
 
+    SupportedTypes = %i[uint8 uint16 int uint double float].freeze
+
     # NOTE: The following method converts an RubyArray or an NArray into an FFI pointer.
     # They do not convert Integers or Floats to FFI pointers.
-
-    # Convert a Ruby Array/NArray to an FFI Pointer
-    def uint8(data)
-      data = data.to_a.flatten
-      pt = create_ffi_pointer(uint8: data.size)
-      pt.write_array_of_uint8 data
-    end
-
-    # Convert a Ruby Array/NArray to an FFI Pointer
-    def uint16(data)
-      data = data.to_a.flatten
-      pt = create_ffi_pointer(uint16: data.size)
-      pt.write_array_of_uint16 data
-    end
-
-    # Convert a Ruby Array/NArray to an FFI Pointer
-    def int(data)
-      data = data.to_a.flatten
-      pt = create_ffi_pointer(int: data.size)
-      pt.write_array_of_int data
-    end
-
-    # Convert a Ruby Array/NArray to an FFI Pointer
-    def uint(data)
-      data = data.to_a.flatten
-      pt = create_ffi_pointer(uint: data.size)
-      pt.write_array_of_uint data
-    end
-
-    # Convert a Ruby Array/NArray to an FFI Pointer
-    def double(data)
-      data = data.to_a.flatten
-      pt = create_ffi_pointer(double: data.size)
-      pt.write_array_of_double data
-    end
-
-    # Convert a Ruby Array/NArray to an FFI Pointer
-    def float(data)
-      data = data.to_a.flatten
-      pt = create_ffi_pointer(float: data.size)
-      pt.write_array_of_float data
+    SupportedTypes.each do |type|
+      define_method(type) do |data|
+        data = data.to_a.flatten
+        pt = create_ffi_pointer(type => data.size)
+        pt.send("write_array_of_#{type}", data)
+      end
     end
 
     def inquiry_int(&block)
