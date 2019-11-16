@@ -43,4 +43,25 @@ class GRCommonsTest < Minitest::Test
 
     assert_equal 'Sequences must have same length.', e.message
   end
+
+  def test_int_array
+    a = [1, 2, 3, 4, 5]
+    b = @utils.send(:int, a)
+    c = @utils.send(:read_ffi_pointer, b, int: 5)
+    assert_equal(a, c)
+  end
+
+  def test_int_narray
+    a = Numo::Int32[1, 2, 3, 4, 5]
+    b = @utils.send(:int, a)
+    c = @utils.send(:read_ffi_pointer, b, int: 5)
+    assert_equal(a, c)
+  end
+
+  def test_inquiry_int
+    a = @utils.send(:inquiry_int) do |pt|
+      pt.write_int 3
+    end
+    assert_equal(a, 3)
+  end
 end
