@@ -473,13 +473,23 @@ module Fiddley
     end
 
     # added
-    define_method('read_array_of_double') do |_num|
-      read_string.unpack('d*')
+    define_method('get_array_of_double') do |offset, num|
+      @ptr[offset, 8 * num].unpack('d' + '*')
     end
 
     # added
-    define_method('read_array_of_float') do |_num|
-      read_string.unpack('f*')
+    define_method('get_array_of_float') do |offset, num|
+      @ptr[offset, 4 * num].unpack('f' + '*')
+    end
+
+    # added
+    define_method('read_array_of_double') do |num|
+      __send__('get_array_of_double', 0, num)
+    end
+
+    # added
+    define_method('read_array_of_float') do |num|
+      __send__('get_array_of_float', 0, num)
     end
 
     def put_bytes(offset, str, idx = 0, len = str.bytesize - idx)
