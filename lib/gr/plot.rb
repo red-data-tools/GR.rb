@@ -241,22 +241,22 @@ module GR
         end
         if kvs.key?(:xticklabels) || kvs.key?(:yticklabels)
           fx = if kvs.key?(:xticklabels)
-                 ::FFI::Function.new(:void, %i[double double string double]) do |x, y, _svalue, value|
+                 Fiddley::Function.new(:void, %i[double double string double]) do |x, y, _svalue, value|
                    label = value < 0 ? '' : kvs[:xticklabels][value] || ''
                    GR.textext(x, y, label)
                  end
                else
-                 ::FFI::Function.new(:void, %i[double double string double]) do |x, y, _svalue, value|
+                 Fiddley::Function.new(:void, %i[double double string double]) do |x, y, _svalue, value|
                    GR.textext(x, y, value.to_s)
                  end
                end
           fy = if kvs.key?(:yticklabels)
-                 ::FFI::Function.new(:void, %i[double double string double]) do |x, y, _svalue, value|
+                 Fiddley::Function.new(:void, %i[double double string double]) do |x, y, _svalue, value|
                    label = value < 0 ? '' : kvs[:yticklabels][value] || ''
                    GR.textext(x, y, label)
                  end
                else
-                 ::FFI::Function.new(:void, %i[double double string double]) do |x, y, _svalue, value|
+                 Fiddley::Function.new(:void, %i[double double string double]) do |x, y, _svalue, value|
                    GR.textext(x, y, value.to_s)
                  end
                end
