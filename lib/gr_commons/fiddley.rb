@@ -534,6 +534,12 @@ module Fiddley
       get_string(0, len)
     end
 
+    # added
+    # NOTE: Return Fiddle::Pointer. Not MemoryPointer.
+    def read_pointer
+      to_ptr.ptr
+    end
+
     alias put_int put_int32
     alias write_int write_int32
     alias get_int get_int32

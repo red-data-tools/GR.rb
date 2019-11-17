@@ -73,7 +73,8 @@ module GR3
       return [0, nil, nil] if e == 0
 
       line = line.read_int
-      file = file.read_pointer.read_string
+      # to_ptr: Fiddley::MemoryPointer -> Fiddle::Pointer
+      file = file.to_ptr.ptr.to_s
       [e, line, file]
     end
 
