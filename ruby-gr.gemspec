@@ -18,9 +18,8 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = '>= 2.3'
 
-  spec.add_dependency 'ffi'
-
   spec.add_development_dependency 'bundler', '~> 2.0'
+  spec.add_development_dependency 'histogram'
   spec.add_development_dependency 'minitest'
   spec.add_development_dependency 'numo-narray'
   spec.add_development_dependency 'pry'

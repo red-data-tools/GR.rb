@@ -49,7 +49,7 @@ class GRCommonsTest < Minitest::Test
     a = [1, 2, 3, 4, 5]
     @supportedtypes.each do |type|
       b = @utils.send(type, a)
-      c = @utils.send(:read_ffi_pointer, b, type => 5)
+      c = Fiddley::Utils.str2array(type, b)
       assert_equal(a, c)
     end
   end
@@ -60,9 +60,9 @@ class GRCommonsTest < Minitest::Test
      Numo::Int64[1, 2, 3, 4, 5],
      Numo::SFloat[1, 2, 3, 4, 5],
      Numo::DFloat[1, 2, 3, 4, 5]].each do |a|
-      @supportedtypes.each do |_type|
-        b = @utils.send(:int, a)
-        c = @utils.send(:read_ffi_pointer, b, int: 5)
+      @supportedtypes.each do |type|
+        b = @utils.send(type, a)
+        c = Fiddley::Utils.str2array(type, b)
         assert_equal(a.to_a, c)
       end
     end

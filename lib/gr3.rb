@@ -32,8 +32,6 @@
 #            | +--------------+ |
 #            +------------------+
 
-require 'ffi'
-
 module GR3
   class Error < StandardError; end
 
@@ -69,8 +67,8 @@ module GR3
   # This module is for adding error checking to all methods in GR3
   module CheckError
     def geterror
-      line = ::FFI::MemoryPointer.new(:int)
-      file = ::FFI::MemoryPointer.new(:pointer)
+      line = Fiddley::MemoryPointer.new(:int)
+      file = Fiddley::MemoryPointer.new(:pointer)
       e = super(1, line, file)
       return [0, nil, nil] if e == 0
 
