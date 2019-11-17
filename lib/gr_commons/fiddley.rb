@@ -1,8 +1,13 @@
 # frozen_string_literal: true
 
+# Fiddley v0.0.8
 # https://github.com/unak/fiddley
-# unak/fiddley
+# 
 # Copyright (c) 2017 NAKAMURA Usaku usa@garbagecollect.jp
+#
+# Released under the 2-Clause BSD License.
+
+# NOTE: kojix2 added several methods to original code.
 
 require 'fiddle/import'
 
@@ -116,6 +121,7 @@ module Fiddley
       end
     end
 
+    # added
     module_function def str2array(type, str)
       case type
       when :char, :int8
@@ -198,7 +204,7 @@ module Fiddley
       end
     end
 
-    # add
+    # added
     module_function def array2str(type, arr)
       case type
       when :char, :int8
