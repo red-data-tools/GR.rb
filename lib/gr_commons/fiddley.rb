@@ -2,7 +2,7 @@
 
 # Fiddley v0.0.8
 # https://github.com/unak/fiddley
-# 
+#
 # Copyright (c) 2017 NAKAMURA Usaku usa@garbagecollect.jp
 #
 # Released under the 2-Clause BSD License.
