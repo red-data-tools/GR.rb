@@ -45,6 +45,12 @@ gets
 GR.histogram(DFloat.new(10_000).rand_norm)
 gets
 
+GR.barplot(%w[a b c d e], [1, 2, 3, 4, 5])
+gets
+
+GR.barplot(%w[a b c d e], [1, 2, 3, 4, 5], horizontal: true)
+gets
+
 x = DFloat.new(10_000).rand_norm
 y = DFloat.new(10_000).rand_norm
 GR.hexbinplot(x, y)
@@ -117,6 +123,7 @@ x = _x.expand_dims(0) * DFloat.ones(_y.size, 1)
 y = _y.expand_dims(1) * DFloat.ones(1, _x.size)
 z = NMath.sin(x) + NMath.cos(y)
 GR.wireframe(x, y, z)
+gets
 
 GR.volumeplot(DFloat.new(50, 50, 50).rand_norm)
 gets
