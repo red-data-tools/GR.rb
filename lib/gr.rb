@@ -1623,7 +1623,7 @@ module GR
     # Returns the combined version strings of the GR runtime.
     # @return [String]
     def version
-      super.read_string
+      super.to_s
     end
 
     # Display a point set as a aggregated and rasterized image.
