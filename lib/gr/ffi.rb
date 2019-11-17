@@ -1,200 +1,198 @@
 # frozen_string_literal: true
 
-require 'ffi'
+require 'fiddle/import'
 
 module GR
   # FFI Wrapper module for GR
   module FFI
-    extend ::FFI::Library
+    extend Fiddle::Importer
 
     begin
-      ffi_lib GR.ffi_lib
+      dlload GR.ffi_lib
     rescue LoadError
       raise LoadError, 'Could not find GR Framework'
     end
 
-    extend GRCommons::AttachFunction
+    extend GRCommons::Extern
 
     # https://github.com/sciapp/gr/blob/master/lib/gr/gr.h
 
-    attach_function :gr_initgr, %i[], :void
-    attach_function :gr_opengks, %i[], :void
-    attach_function :gr_closegks, %i[], :void
-    attach_function :gr_inqdspsize, %i[pointer pointer pointer pointer], :void
-    attach_function :gr_openws, %i[int string int], :void
-    attach_function :gr_closews, %i[int], :void
-    attach_function :gr_activatews, %i[int], :void
-    attach_function :gr_deactivatews, %i[int], :void
-    attach_function :gr_configurews, %i[], :void
-    attach_function :gr_clearws, %i[], :void
-    attach_function :gr_updatews, %i[], :void
-    attach_function :gr_polyline, %i[int pointer pointer], :void
-    attach_function :gr_polymarker, %i[int pointer pointer], :void
-    attach_function :gr_text, %i[double double string], :void
-    attach_function :gr_inqtext, %i[double double string pointer pointer], :void
-    attach_function :gr_fillarea, %i[int pointer pointer], :void
-    attach_function :gr_cellarray, %i[double double double double int int int int int int pointer], :void
-    attach_function :gr_nonuniformcellarray, %i[pointer pointer int int int int int int pointer], :void
-    attach_function :gr_polarcellarray, %i[double double double double double double int int int int int int pointer], :void
-    attach_function :gr_gdp, %i[int pointer pointer int int pointer], :void
-    attach_function :gr_spline, %i[int pointer pointer int int], :void
-    attach_function :gr_gridit, %i[int pointer pointer pointer int int pointer pointer pointer], :void
-    attach_function :gr_setlinetype, %i[int], :void
-    attach_function :gr_inqlinetype, %i[pointer], :void
-    attach_function :gr_setlinewidth, %i[double], :void
-    attach_function :gr_inqlinewidth, %i[pointer], :void
-    attach_function :gr_setlinecolorind, %i[int], :void
-    attach_function :gr_inqlinecolorind, %i[pointer], :void
-    attach_function :gr_setmarkertype, %i[int], :void
-    attach_function :gr_inqmarkertype, %i[pointer], :void
-    attach_function :gr_setmarkersize, %i[double], :void
-    attach_function :gr_inqmarkersize, %i[pointer], :void
-    attach_function :gr_setmarkercolorind, %i[int], :void
-    attach_function :gr_inqmarkercolorind, %i[pointer], :void
-    attach_function :gr_settextfontprec, %i[int int], :void
-    attach_function :gr_setcharexpan, %i[double], :void
-    attach_function :gr_setcharspace, %i[double], :void
-    attach_function :gr_settextcolorind, %i[int], :void
-    attach_function :gr_setcharheight, %i[double], :void
-    attach_function :gr_setcharup, %i[double double], :void
-    attach_function :gr_settextpath, %i[int], :void
-    attach_function :gr_settextalign, %i[int int], :void
-    attach_function :gr_setfillintstyle, %i[int], :void
-    attach_function :gr_inqfillintstyle, %i[pointer], :void
-    attach_function :gr_setfillstyle, %i[int], :void
-    attach_function :gr_inqfillstyle, %i[pointer], :void
-    attach_function :gr_setfillcolorind, %i[int], :void
-    attach_function :gr_inqfillcolorind, %i[pointer], :void
-    attach_function :gr_setcolorrep, %i[int double double double], :void
-    attach_function :gr_setscale, %i[int], :int
-    attach_function :gr_inqscale, %i[pointer], :void
-    attach_function :gr_setwindow, %i[double double double double], :void
-    attach_function :gr_inqwindow, %i[pointer pointer pointer pointer], :void
-    attach_function :gr_setviewport, %i[double double double double], :void
-    attach_function :gr_inqviewport, %i[pointer pointer pointer pointer], :void
-    attach_function :gr_selntran, %i[int], :void
-    attach_function :gr_setclip, %i[int], :void
-    attach_function :gr_setwswindow, %i[double double double double], :void
-    attach_function :gr_setwsviewport, %i[double double double double], :void
-    attach_function :gr_createseg, %i[int], :void
-    attach_function :gr_copysegws, %i[int], :void
-    attach_function :gr_redrawsegws, %i[], :void
-    attach_function :gr_setsegtran, %i[int double double double double double double double], :void
-    attach_function :gr_closeseg, %i[], :void
-    attach_function :gr_emergencyclosegks, %i[], :void
-    attach_function :gr_updategks, %i[], :void
-    attach_function :gr_setspace, %i[double double int int], :int
-    attach_function :gr_inqspace, %i[pointer pointer pointer pointer], :void
-    attach_function :gr_textext, %i[double double string], :int
-    attach_function :gr_inqtextext, %i[double double string pointer pointer], :void
-    attach_function :gr_axes, %i[double double double double int int double], :void
-    callback :fx, %i[double double string double], :void
-    callback :fy, %i[double double string double], :void
-    attach_function :gr_axeslbl, %i[double double double double int int double fx fy], :void
-    attach_function :gr_grid, %i[double double double double int int], :void
-    attach_function :gr_grid3d, %i[double double double double double double int int int], :void
-    attach_function :gr_verrorbars, %i[int pointer pointer pointer pointer], :void
-    attach_function :gr_herrorbars, %i[int pointer pointer pointer pointer], :void
-    attach_function :gr_polyline3d, %i[int pointer pointer pointer], :void
-    attach_function :gr_polymarker3d, %i[int pointer pointer pointer], :void
-    attach_function :gr_axes3d, %i[double double double double double double int int int double], :void
-    attach_function :gr_titles3d, %i[string string string], :void
-    attach_function :gr_surface, %i[int int pointer pointer pointer int], :void
-    attach_function :gr_contour, %i[int int int pointer pointer pointer pointer int], :void
-    attach_function :gr_contourf, %i[int int int pointer pointer pointer pointer int], :void
-    attach_function :gr_tricontour, %i[int pointer pointer pointer int pointer], :void
-    attach_function :gr_hexbin, %i[int pointer pointer int], :int
-    attach_function :gr_setcolormap, %i[int], :void
-    attach_function :gr_inqcolormap, %i[pointer], :void
-    attach_function :gr_setcolormapfromrgb, %i[int pointer pointer pointer pointer], :void
-    attach_function :gr_colorbar, %i[], :void
-    attach_function :gr_inqcolor, %i[int pointer], :void
-    attach_function :gr_inqcolorfromrgb, %i[double double double], :int
-    attach_function :gr_hsvtorgb, %i[double double double pointer pointer pointer], :void
-    attach_function :gr_tick, %i[double double], :double
-    attach_function :gr_validaterange, %i[double double], :int
-    attach_function :gr_adjustlimits, %i[pointer pointer], :void
-    attach_function :gr_adjustrange, %i[pointer pointer], :void
-    attach_function :gr_beginprint, %i[string], :void
-    attach_function :gr_beginprintext, %i[string string string string], :void
-    attach_function :gr_endprint, %i[], :void
-    attach_function :gr_ndctowc, %i[pointer pointer], :void
-    attach_function :gr_wctondc, %i[pointer pointer], :void
-    attach_function :gr_wc3towc, %i[pointer pointer pointer], :void
-    attach_function :gr_drawrect, %i[double double double double], :void
-    attach_function :gr_fillrect, %i[double double double double], :void
-    attach_function :gr_drawarc, %i[double double double double double double], :void
-    attach_function :gr_fillarc, %i[double double double double double double], :void
-    attach_function :gr_drawpath, %i[int pointer pointer int], :void
-    attach_function :gr_setarrowstyle, %i[int], :void
-    attach_function :gr_setarrowsize, %i[double], :void
-    attach_function :gr_drawarrow, %i[double double double double], :void
-    attach_function :gr_readimage, %i[string pointer pointer pointer], :int
-    attach_function :gr_drawimage, %i[double double double double int int pointer int], :void
-    attach_function :gr_importgraphics, %i[string], :int
-    attach_function :gr_setshadow, %i[double double double], :void
-    attach_function :gr_settransparency, %i[double], :void
-    attach_function :gr_setcoordxform, %i[pointer], :void
-    attach_function :gr_begingraphics, %i[string], :void
-    attach_function :gr_endgraphics, %i[], :void
-    attach_function :gr_getgraphics, %i[], :string
-    attach_function :gr_drawgraphics, %i[string], :int
-    attach_function :gr_mathtex, %i[double double string], :void
-    attach_function :gr_inqmathtex, %i[double double string pointer pointer], :void
-    attach_function :gr_beginselection, %i[int int], :void
-    attach_function :gr_endselection, %i[], :void
-    attach_function :gr_moveselection, %i[double double], :void
-    attach_function :gr_resizeselection, %i[int double double], :void
-    attach_function :gr_inqbbox, %i[pointer pointer pointer pointer], :void
-    attach_function :gr_precision, %i[], :double
-    attach_function :gr_setregenflags, %i[int], :void
-    attach_function :gr_inqregenflags, %i[], :int
-    attach_function :gr_savestate, %i[], :void
-    attach_function :gr_restorestate, %i[], :void
-    attach_function :gr_selectcontext, %i[int], :void
-    attach_function :gr_destroycontext, %i[int], :void
-    attach_function :gr_uselinespec, %i[string], :int
-    # attach_function :gr_delaunay, %i[int pointer pointer pointer pointer], :void
-    attach_function :gr_reducepoints, %i[int pointer pointer int pointer pointer], :void
-    attach_function :gr_trisurface, %i[int pointer pointer pointer], :void
-    attach_function :gr_gradient, %i[int int pointer pointer pointer pointer pointer], :void
-    attach_function :gr_quiver, %i[int int pointer pointer pointer pointer int], :void
-    attach_function :gr_interp2, %i[int int pointer pointer pointer int int pointer pointer pointer int double], :void
+    extern 'void gr_initgr(void)'
+    extern 'void gr_opengks(void)'
+    extern 'void gr_closegks(void)'
+    extern 'void gr_inqdspsize(double *, double *, int *, int *)'
+    extern 'void gr_openws(int, char *, int)'
+    extern 'void gr_closews(int)'
+    extern 'void gr_activatews(int)'
+    extern 'void gr_deactivatews(int)'
+    extern 'void gr_configurews(void)'
+    extern 'void gr_clearws(void)'
+    extern 'void gr_updatews(void)'
+    extern 'void gr_polyline(int, double *, double *)'
+    extern 'void gr_polymarker(int, double *, double *)'
+    extern 'void gr_text(double, double, char *)'
+    extern 'void gr_inqtext(double, double, char *, double *, double *)'
+    extern 'void gr_fillarea(int, double *, double *)'
+    extern 'void gr_cellarray(double, double, double, double, int, int, int, int, int, int, int *)'
+    extern 'void gr_nonuniformcellarray(double *, double *, int, int, int, int, int, int, int *)'
+    extern 'void gr_polarcellarray(double, double, double, double, double, double, int, int, int, int, int, int, int *)'
+    extern 'void gr_gdp(int, double *, double *, int, int, int *)'
+    extern 'void gr_spline(int, double *, double *, int, int)'
+    extern 'void gr_gridit(int, double *, double *, double *, int, int, double *, double *, double *)'
+    extern 'void gr_setlinetype(int)'
+    extern 'void gr_inqlinetype(int *)'
+    extern 'void gr_setlinewidth(double)'
+    extern 'void gr_inqlinewidth(double *)'
+    extern 'void gr_setlinecolorind(int)'
+    extern 'void gr_inqlinecolorind(int *)'
+    extern 'void gr_setmarkertype(int)'
+    extern 'void gr_inqmarkertype(int *)'
+    extern 'void gr_setmarkersize(double)'
+    extern 'void gr_inqmarkersize(double *)'
+    extern 'void gr_setmarkercolorind(int)'
+    extern 'void gr_inqmarkercolorind(int *)'
+    extern 'void gr_settextfontprec(int, int)'
+    extern 'void gr_setcharexpan(double)'
+    extern 'void gr_setcharspace(double)'
+    extern 'void gr_settextcolorind(int)'
+    extern 'void gr_setcharheight(double)'
+    extern 'void gr_setcharup(double, double)'
+    extern 'void gr_settextpath(int)'
+    extern 'void gr_settextalign(int, int)'
+    extern 'void gr_setfillintstyle(int)'
+    extern 'void gr_inqfillintstyle(int *)'
+    extern 'void gr_setfillstyle(int)'
+    extern 'void gr_inqfillstyle(int *)'
+    extern 'void gr_setfillcolorind(int)'
+    extern 'void gr_inqfillcolorind(int *)'
+    extern 'void gr_setcolorrep(int, double, double, double)'
+    extern 'void gr_setwindow(double, double, double, double)'
+    extern 'void gr_inqwindow(double *, double *, double *, double *)'
+    extern 'void gr_setviewport(double, double, double, double)'
+    extern 'void gr_inqviewport(double *, double *, double *, double *)'
+    extern 'void gr_selntran(int)'
+    extern 'void gr_setclip(int)'
+    extern 'void gr_setwswindow(double, double, double, double)'
+    extern 'void gr_setwsviewport(double, double, double, double)'
+    extern 'void gr_createseg(int)'
+    extern 'void gr_copysegws(int)'
+    extern 'void gr_redrawsegws(void)'
+    extern 'void gr_setsegtran(int, double, double, double, double, double, double, double)'
+    extern 'void gr_closeseg(void)'
+    extern 'void gr_emergencyclosegks(void)'
+    extern 'void gr_updategks(void)'
+    extern 'int gr_setspace(double, double, int, int)'
+    extern 'void gr_inqspace(double *, double *, int *, int *)'
+    extern 'int gr_setscale(int)'
+    extern 'void gr_inqscale(int *)'
+    extern 'int gr_textext(double, double, char *)'
+    extern 'void gr_inqtextext(double, double, char *, double *, double *)'
+    extern 'void gr_axes(double, double, double, double, int, int, double)'
+    extern 'void gr_axeslbl(double, double, double, double, int, int, double, void (*)(double, double, const char *, double), void (*)(double, double, const char *, double))'
+    extern 'void gr_grid(double, double, double, double, int, int)'
+    extern 'void gr_grid3d(double, double, double, double, double, double, int, int, int)'
+    extern 'void gr_verrorbars(int, double *, double *, double *, double *)'
+    extern 'void gr_herrorbars(int, double *, double *, double *, double *)'
+    extern 'void gr_polyline3d(int, double *, double *, double *)'
+    extern 'void gr_polymarker3d(int, double *, double *, double *)'
+    extern 'void gr_axes3d(double, double, double, double, double, double, int, int, int, double)'
+    extern 'void gr_titles3d(char *, char *, char *)'
+    extern 'void gr_surface(int, int, double *, double *, double *, int)'
+    extern 'void gr_contour(int, int, int, double *, double *, double *, double *, int)'
+    extern 'void gr_contourf(int, int, int, double *, double *, double *, double *, int)'
+    extern 'void gr_tricontour(int, double *, double *, double *, int, double *)'
+    extern 'int gr_hexbin(int, double *, double *, int)'
+    extern 'void gr_setcolormap(int)'
+    extern 'void gr_inqcolormap(int *)'
+    extern 'void gr_setcolormapfromrgb(int n, double *r, double *g, double *b, double *x)'
+    extern 'void gr_colorbar(void)'
+    extern 'void gr_inqcolor(int, int *)'
+    extern 'int gr_inqcolorfromrgb(double, double, double)'
+    extern 'void gr_hsvtorgb(double h, double s, double v, double *r, double *g, double *b)'
+    extern 'double gr_tick(double, double)'
+    extern 'int gr_validaterange(double, double)'
+    extern 'void gr_adjustlimits(double *, double *)'
+    extern 'void gr_adjustrange(double *, double *)'
+    extern 'void gr_beginprint(char *)'
+    extern 'void gr_beginprintext(char *, char *, char *, char *)'
+    extern 'void gr_endprint(void)'
+    extern 'void gr_ndctowc(double *, double *)'
+    extern 'void gr_wctondc(double *, double *)'
+    extern 'void gr_wc3towc(double *, double *, double *)'
+    extern 'void gr_drawrect(double, double, double, double)'
+    extern 'void gr_fillrect(double, double, double, double)'
+    extern 'void gr_drawarc(double, double, double, double, double, double)'
+    extern 'void gr_fillarc(double, double, double, double, double, double)'
+    extern 'void gr_drawpath(int, vertex_t *, unsigned char *, int)'
+    extern 'void gr_setarrowstyle(int)'
+    extern 'void gr_setarrowsize(double)'
+    extern 'void gr_drawarrow(double, double, double, double)'
+    extern 'int gr_readimage(char *, int *, int *, int **)'
+    extern 'void gr_drawimage(double, double, double, double, int, int, int *, int)'
+    extern 'int gr_importgraphics(char *)'
+    extern 'void gr_setshadow(double, double, double)'
+    extern 'void gr_settransparency(double)'
+    extern 'void gr_setcoordxform(double[3][2])'
+    extern 'void gr_begingraphics(char *)'
+    extern 'void gr_endgraphics(void)'
+    extern 'char *gr_getgraphics(void)'
+    extern 'int gr_drawgraphics(char *)'
+    extern 'void gr_mathtex(double, double, char *)'
+    extern 'void gr_inqmathtex(double, double, char *, double *, double *)'
+    extern 'void gr_beginselection(int, int)'
+    extern 'void gr_endselection(void)'
+    extern 'void gr_moveselection(double, double)'
+    extern 'void gr_resizeselection(int, double, double)'
+    extern 'void gr_inqbbox(double *, double *, double *, double *)'
+    extern 'double gr_precision(void)'
+    extern 'void gr_setregenflags(int)'
+    extern 'int gr_inqregenflags(void)'
+    extern 'void gr_savestate(void)'
+    extern 'void gr_restorestate(void)'
+    extern 'void gr_selectcontext(int)'
+    extern 'void gr_destroycontext(int)'
+    extern 'int gr_uselinespec(char *)'
+    # extern 'void gr_delaunay(int, const double *, const double *, int *, int **)'
+    extern 'void gr_reducepoints(int, const double *, const double *, int, double *, double *)'
+    extern 'void gr_trisurface(int, double *, double *, double *)'
+    extern 'void gr_gradient(int, int, double *, double *, double *, double *, double *)'
+    extern 'void gr_quiver(int, int, double *, double *, double *, double *, int)'
+    extern 'void gr_interp2(int nx, int ny, const double *x, const double *y, const double *z, int nxq, int nyq, const double *xq, const double *yq, double *zq, int method, double extrapval)'
+    # extern :gr_newmeta
+    # extern :gr_deletemeta
+    # extern :gr_finalizemeta
+    # extern :gr_meta_args_push
+    # extern :gr_meta_args_push_buf
+    # extern :gr_meta_args_contains
+    # extern :gr_meta_args_clear
+    # extern :gr_meta_args_remove
+    # extern :gr_meta_get_box
+    # extern :gr_openmeta
+    # extern :gr_recvmeta
+    # extern :gr_sendmeta
+    # extern :gr_sendmeta_buf
+    # extern :gr_sendmeta_ref
+    # extern :gr_sendmeta_args
+    # extern :gr_closemeta
+    # extern :gr_clearmeta
+    # extern :gr_inputmeta
+    # extern :gr_mergemeta
+    # extern :gr_plotmeta
+    # extern :gr_readmeta
+    # extern :gr_switchmeta
+    # extern :gr_registermeta
+    # extern :gr_unregistermeta
+    # extern :gr_meta_max_plotid
+    # extern :gr_dumpmeta
+    # extern :gr_dumpmeta_json
 
-    # attach_function :gr_newmeta
-    # attach_function :gr_deletemeta
-    # attach_function :gr_finalizemeta
-    # attach_function :gr_meta_args_push
-    # attach_function :gr_meta_args_push_buf
-    # attach_function :gr_meta_args_contains
-    # attach_function :gr_meta_args_clear
-    # attach_function :gr_meta_args_remove
-    # attach_function :gr_meta_get_box
-    # attach_function :gr_openmeta
-    # attach_function :gr_recvmeta
-    # attach_function :gr_sendmeta
-    # attach_function :gr_sendmeta_buf
-    # attach_function :gr_sendmeta_ref
-    # attach_function :gr_sendmeta_args
-    # attach_function :gr_closemeta
-    # attach_function :gr_clearmeta
-    # attach_function :gr_inputmeta
-    # attach_function :gr_mergemeta
-    # attach_function :gr_plotmeta
-    # attach_function :gr_readmeta
-    # attach_function :gr_switchmeta
-    # attach_function :gr_registermeta
-    # attach_function :gr_unregistermeta
-    # attach_function :gr_meta_max_plotid
-    # attach_function :gr_dumpmeta
-    # attach_function :gr_dumpmeta_json
-
-    attach_function :gr_version, %i[], :pointer
-    attach_function :gr_shadepoints, %i[int pointer pointer int int int], :void
-    attach_function :gr_shadelines, %i[int pointer pointer int int int], :void
-    attach_function :gr_panzoom, %i[double double double double pointer pointer pointer pointer], :void
-    # attach_function :gr_findboundary
-    attach_function :gr_setresamplemethod, %i[uint], :void
-    attach_function :gr_inqresamplemethod, %i[pointer], :void
+    extern 'const char *gr_version(void)'
+    extern 'void gr_shade(int, double *, double *, int, int, double *, int, int, int *)'
+    extern 'void gr_shadepoints(int, double *, double *, int, int, int)'
+    extern 'void gr_shadelines(int, double *, double *, int, int, int)'
+    extern 'void gr_panzoom(double, double, double, double, double *, double *, double *, double *)'
+    # extern 'int gr_findboundary(int, double *, double *, double, double (*)(double, double), int, int *)'
+    extern 'void gr_setresamplemethod(unsigned int flag)'
+    extern 'void gr_inqresamplemethod(unsigned int *flag)'
   end
 end

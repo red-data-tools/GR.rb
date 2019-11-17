@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative 'fiddley'
+
 module GRCommons
   # This module provides functionality common to GR and GR3.
   module GRCommonUtils
@@ -14,13 +16,12 @@ module GRCommons
 
     SupportedTypes = %i[uint8 uint16 int uint double float].freeze
 
-    # NOTE: The following method converts an RubyArray or an NArray into an FFI pointer.
-    # They do not convert Integers or Floats to FFI pointers.
+    # NOTE: The following method converts Ruby Array or NArray into packed string.
     SupportedTypes.each do |type|
       define_method(type) do |data|
+        # FIXME: Use NArray#to_string
         data = data.to_a.flatten
-        pt = create_ffi_pointer(type => data.size)
-        pt.send("write_array_of_#{type}", data)
+        Fiddley::Utils.array2str(type, data)
       end
     end
 
@@ -56,9 +57,9 @@ module GRCommons
       when Hash
         typ = type.keys[0]
         len = type.values[0]
-        ::FFI::MemoryPointer.new(typ, len)
+        Fiddley::MemoryPointer.new(typ, len)
       else
-        ::FFI::MemoryPointer.new(type)
+        Fiddley::MemoryPointer.new(type)
       end
     end
 

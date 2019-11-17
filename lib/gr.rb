@@ -32,8 +32,6 @@
 #            | +--------------+ |
 #            +------------------+
 
-require 'ffi'
-
 module GR
   class Error < StandardError; end
 
