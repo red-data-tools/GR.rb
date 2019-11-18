@@ -866,13 +866,53 @@ module GR
     end
 
     def contourplot(*args)
-      plt = GR::Plot.new(*args)
+      kv = if args[-1].is_a? Hash
+             args.pop
+           else
+             {}
+           end
+      if args.size == 1
+        if args[0].is_a? Array
+          z = Numo::DFloat.cast(args[0])
+          xsize, ysize = z.shape
+        elsif narray?(args[0])
+          z = args[0]
+          xsize, ysize = z.shape
+        end
+        x = (1..xsize).to_a
+        y = (1..ysize).to_a
+      elsif args.size == 3
+        x, y, z = args
+      else
+        raise
+      end
+      plt = GR::Plot.new(x, y, z, kv)
       plt.kvs[:kind] = :contour
       plt.plot_data
     end
 
     def contourfplot(*args)
-      plt = GR::Plot.new(*args)
+      kv = if args[-1].is_a? Hash
+             args.pop
+           else
+             {}
+           end
+      if args.size == 1
+        if args[0].is_a? Array
+          z = Numo::DFloat.cast(args[0])
+          xsize, ysize = z.shape
+        elsif narray?(args[0])
+          z = args[0]
+          xsize, ysize = z.shape
+        end
+        x = (1..xsize).to_a
+        y = (1..ysize).to_a
+      elsif args.size == 3
+        x, y, z = args
+      else
+        raise
+      end
+      plt = GR::Plot.new(x, y, z, kv)
       plt.kvs[:kind] = :contourf
       plt.plot_data
     end
@@ -890,7 +930,27 @@ module GR
     end
 
     def surfaceplot(*args)
-      plt = GR::Plot.new(*args)
+      kv = if args[-1].is_a? Hash
+             args.pop
+           else
+             {}
+           end
+      if args.size == 1
+        if args[0].is_a? Array
+          z = Numo::DFloat.cast(args[0])
+          xsize, ysize = z.shape
+        elsif narray?(args[0])
+          z = args[0]
+          xsize, ysize = z.shape
+        end
+        x = ([(1..xsize).to_a] * ysize).flatten
+        y = ((1..ysize).to_a.map { |i| [i] * xsize }).flatten
+      elsif args.size == 3
+        x, y, z = args
+      else
+        raise
+      end
+      plt = GR::Plot.new(x, y, z, kv)
       plt.kvs[:kind] = :surface
       plt.plot_data
     end
@@ -944,7 +1004,6 @@ module GR
     end
 
     private
-
 
     def hist(x, nbins = 0)
       nbins = (3.3 * Math.log10(x.length)).round + 1 if nbins <= 1
