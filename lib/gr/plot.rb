@@ -289,7 +289,7 @@ module GR
           GR.savestate
           GR.settextalign(GR::TEXT_HALIGN_CENTER, GR::TEXT_VALIGN_TOP)
           GR.setcharup(-1, 0)
-          text(vp[0] + 0.5 * charheight, 0.5 * (viewport[2] + viewport[3]), plt.kvs[:ylabel])
+          text(vp[0] + 0.5 * charheight, 0.5 * (viewport[2] + viewport[3]), kvs[:ylabel])
           GR.restorestate
         end
       end
@@ -361,7 +361,7 @@ module GR
       end
 
       if kvs.key?(:colormap)
-        GR.setcolormap(plt.kvs[:colormap])
+        GR.setcolormap(kvs[:colormap])
       else
         GR.setcolormap(GR::COLORMAP_VIRIDIS)
       end
