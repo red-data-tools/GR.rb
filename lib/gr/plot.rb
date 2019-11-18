@@ -373,8 +373,8 @@ module GR
         case kind
         when :line
           mask = GR.uselinespec(spec = '')
-          GR.polyline(x, y) if [0, 1, 3, 4, 5].include?(mask)
-          GR.polymarker(x, y) if (mask & 2) != 0
+          GR.polyline(x, y) if hasline(mask)
+          GR.polymarker(x, y) if hasmarker(mask)
         when :step
         when :scatter
           GR.setmarkertype(GR::MARKERTYPE_SOLID_CIRCLE)
@@ -569,9 +569,78 @@ module GR
       # flag && restore_context()
     end
 
-    def draw_legend; end
+    def draw_legend
+      w, h = legend_size
+      viewport = kvs[:viewport]
+      location = kvs[:location] || 1
+      num_labels = kvs[:labels].length
+      GR.savestate
+      GR.selntran 0
+      GR.setscale 0
+      px = case location
+           when 11, 12, 13
+             viewport[1] + 0.11
+           when 8, 9, 10
+             0.5 * (viewport[0] + viewport[1] - w + 0.05)
+           when 2, 3, 6
+             viewport[0] + 0.11
+           else
+             viewport[1] - 0.05 - w
+           end
+      py = case location
+           when 5, 6, 7, 10, 12
+             0.5 * (viewport[2] + viewport[3] + h - 0.03)
+           when 13
+             viewport[2] + h
+           when 3, 4, 8
+             viewport[2] + h + 0.03
+           when 11
+             viewport[3] - 0.03
+           else
+             viewport[3] - 0.06
+           end
+      GR.setfillintstyle(GR::INTSTYLE_SOLID)
+      GR.setfillcolorind(0)
+      GR.fillrect(px - 0.08, px + w + 0.02, py + 0.03, py - h)
+      GR.setlinetype(GR::LINETYPE_SOLID)
+      GR.setlinecolorind(1)
+      GR.setlinewidth(1)
+      GR.drawrect(px - 0.08, px + w + 0.02, py + 0.03, py - h)
+      i = 0
+      GR.uselinespec(' ')
+      args.each do |_x, _y, _z, _c, spec|
+        if i < num_labels
+          label = kvs[:labels][i]
+          tbx, tby = inqtext(0, 0, label)
+          dy = [(tby[2] - tby[0]) - 0.03, 0].max
+          py -= 0.5 * dy
+        end
+        GR.savestate
+        mask = GR.uselinespec(spec || '')
+        GR.polyline([px - 0.07, px - 0.01], [py, py]) if hasline(mask)
+        GR.polymarker([px - 0.06, px - 0.02], [py, py]) if hasmarker(mask)
+        GR.restorestate
+        GR.settextalign(GR::TEXT_HALIGN_LEFT, GR::TEXT_VALIGN_HALF)
+        if i < num_labels
+          GR.text(px, py, label)
+          py -= 0.5 * dy
+          i += 1
+        end
+        py -= 0.03
+        GR.selntran(1)
+        GR.restorestate
+      end
+    end
 
     private
+
+    def hasline(mask)
+      mask == 0x00 || (mask & 0x01 != 0)
+    end
+
+    def hasmarker(mask)
+      mask & 0x02 != 0
+    end
 
     def colormap
       # rgb
@@ -614,6 +683,16 @@ module GR
       c = c.clamp(cmin, cmax) - cmin
       c /= (cmax - cmin) if cmin != cmax
       c
+    end
+
+    def inqtext(x, y, s)
+      if s.length >= 2 && s[0] == '$' && s[-1] == '$'
+        GR.inqmathtex(x, y, s[1..-2])
+      elsif s.include?('\\') || s.include?('_') || s.include?('^')
+        GR.inqtextext(x, y, s)
+      else
+        GR.inqtext(x, y, s)
+      end
     end
 
     def text(x, y, s)
@@ -715,8 +794,8 @@ module GR
       h = 0
       kvs[:labels].each do |label|
         tbx, tby = inqtext(0, 0, label)
-        w = [w, tbx[3]].max
-        h += [tby[3] - tby[1], 0.03].max
+        w = [w, tbx[2]].max
+        h += [tby[2] - tby[0], 0.03].max
       end
       GR.setscale(scale)
       GR.selntran(1)
@@ -865,6 +944,7 @@ module GR
     end
 
     private
+
 
     def hist(x, nbins = 0)
       nbins = (3.3 * Math.log10(x.length)).round + 1 if nbins <= 1
