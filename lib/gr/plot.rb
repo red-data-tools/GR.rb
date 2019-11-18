@@ -82,7 +82,7 @@ module GR
       kvs[:vp] = vp
       kvs[:ratio] = ratio
 
-      if kvs[:backgroudcolor]
+      if kvs[:backgroundcolor]
         GR.savestate
         GR.selntran(0)
         GR.setfillintstyle(GR::INTSTYLE_SOLID)
