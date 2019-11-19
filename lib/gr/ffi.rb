@@ -33,12 +33,16 @@ module GR
     extern 'void gr_text(double, double, char *)'
     extern 'void gr_inqtext(double, double, char *, double *, double *)'
     extern 'void gr_fillarea(int, double *, double *)'
-    extern 'void gr_cellarray(double, double, double, double, int, int, int, int, int, int, int *)'
-    extern 'void gr_nonuniformcellarray(double *, double *, int, int, int, int, int, int, int *)'
-    extern 'void gr_polarcellarray(double, double, double, double, double, double, int, int, int, int, int, int, int *)'
+    extern 'void gr_cellarray(double, double, double, double, ' \
+           'int, int, int, int, int, int, int *)'
+    extern 'void gr_nonuniformcellarray(double *, double *, ' \
+           'int, int, int, int, int, int, int *)'
+    extern 'void gr_polarcellarray(double, double, double, double, double, double, ' \
+           'int, int, int, int, int, int, int *)'
     extern 'void gr_gdp(int, double *, double *, int, int, int *)'
     extern 'void gr_spline(int, double *, double *, int, int)'
-    extern 'void gr_gridit(int, double *, double *, double *, int, int, double *, double *, double *)'
+    extern 'void gr_gridit(int, double *, double *, double *, int, int, ' \
+           'double *, double *, double *)'
     extern 'void gr_setlinetype(int)'
     extern 'void gr_inqlinetype(int *)'
     extern 'void gr_setlinewidth(double)'
@@ -88,7 +92,9 @@ module GR
     extern 'int gr_textext(double, double, char *)'
     extern 'void gr_inqtextext(double, double, char *, double *, double *)'
     extern 'void gr_axes(double, double, double, double, int, int, double)'
-    extern 'void gr_axeslbl(double, double, double, double, int, int, double, void (*)(double, double, const char *, double), void (*)(double, double, const char *, double))'
+    extern 'void gr_axeslbl(double, double, double, double, int, int, double,' \
+           'void (*)(double, double, const char *, double),' \
+           'void (*)(double, double, const char *, double))'
     extern 'void gr_grid(double, double, double, double, int, int)'
     extern 'void gr_grid3d(double, double, double, double, double, double, int, int, int)'
     extern 'void gr_verrorbars(int, double *, double *, double *, double *)'
@@ -157,7 +163,8 @@ module GR
     extern 'void gr_trisurface(int, double *, double *, double *)'
     extern 'void gr_gradient(int, int, double *, double *, double *, double *, double *)'
     extern 'void gr_quiver(int, int, double *, double *, double *, double *, int)'
-    extern 'void gr_interp2(int nx, int ny, const double *x, const double *y, const double *z, int nxq, int nyq, const double *xq, const double *yq, double *zq, int method, double extrapval)'
+    extern 'void gr_interp2(int nx, int ny, const double *x, const double *y, const double *z,' \
+           'int nxq, int nyq, const double *xq, const double *yq, double *zq, int method, double extrapval)'
     # extern :gr_newmeta
     # extern :gr_deletemeta
     # extern :gr_finalizemeta
