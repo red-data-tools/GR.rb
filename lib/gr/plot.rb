@@ -64,7 +64,8 @@ module GR
       viewport[1] = vp1 + 0.925 * (vp2 - vp1)
       viewport[2] = vp3 + 0.125 * (vp4 - vp3)
       viewport[3] = vp3 + 0.925 * (vp4 - vp3)
-      if %i[contour contourf hexbin heatmap nonuniformheatmap polarheatmap surface trisurf volume].include?(kind)
+      if %i[contour contourf hexbin heatmap nonuniformheatmap polarheatmap
+            surface trisurf volume].include?(kind)
         viewport[1] -= 0.1
       end
 
@@ -125,7 +126,8 @@ module GR
         minmax
       end
 
-      major_count = if %i[wireframe surface plot3 scatter3 polar polarhist polarheatmap trisurf volume].include?(kind)
+      major_count = if %i[wireframe surface plot3 scatter3 polar polarhist
+                          polarheatmap trisurf volume].include?(kind)
                       2
                     else
                       5
@@ -241,22 +243,30 @@ module GR
         end
         if kvs.key?(:xticklabels) || kvs.key?(:yticklabels)
           fx = if kvs.key?(:xticklabels)
-                 Fiddley::Function.new(:void, %i[double double string double]) do |x, y, _svalue, value|
+                 Fiddley::Function.new(
+                   :void, %i[double doublestring double]
+                 ) do |x, y, _svalue, value|
                    label = value < 0 ? '' : kvs[:xticklabels][value] || ''
                    GR.textext(x, y, label)
                  end
                else
-                 Fiddley::Function.new(:void, %i[double double string double]) do |x, y, _svalue, value|
+                 Fiddley::Function.new(
+                   :void, %i[double double string double]
+                 ) do |x, y, _svalue, value|
                    GR.textext(x, y, value.to_s)
                  end
                end
           fy = if kvs.key?(:yticklabels)
-                 Fiddley::Function.new(:void, %i[double double string double]) do |x, y, _svalue, value|
+                 Fiddley::Function.new(
+                   :void, %i[double double string double]
+                 ) do |x, y, _svalue, value|
                    label = value < 0 ? '' : kvs[:yticklabels][value] || ''
                    GR.textext(x, y, label)
                  end
                else
-                 Fiddley::Function.new(:void, %i[double double string double]) do |x, y, _svalue, value|
+                 Fiddley::Function.new(
+                   :void, %i[double double string double]
+                 ) do |x, y, _svalue, value|
                    GR.textext(x, y, value.to_s)
                  end
                end
@@ -484,12 +494,12 @@ module GR
           end
           colorbar(0, levels)
         when :wireframe
-          x, y, z = GR.gridit(x, y, z, 50, 50) if x.length == y.length && y.length == z.length
+          x, y, z = GR.gridit(x, y, z, 50, 50) if equal_length(x, y, z)
           GR.setfillcolorind(0)
           GR.surface(x, y, z, GR::OPTION_FILLED_MESH)
           draw_axes(kind, 2)
         when :surface
-          x, y, z = GR.gridit(x, y, z, 200, 200) if x.length == y.length || y.length == z.length
+          x, y, z = GR.gridit(x, y, z, 200, 200) if equal_length(x, y, z)
           if kvs[:accelerate] == false
             GR.surface(x, y, z, GR::OPTION_COLORED_MESH)
           else
@@ -663,7 +673,8 @@ module GR
         a = 0
       end
 
-      ((a * 255).round << 24) + ((b * 255).round << 16) + ((g * 255).round << 8) + (r * 255).round
+      ((a * 255).round << 24) + ((b * 255).round << 16) +
+        ((g * 255).round << 8) + (r * 255).round
     end
 
     # https://gist.github.com/rysk-t/8d1aef0fb67abde1d259#gistcomment-1925021

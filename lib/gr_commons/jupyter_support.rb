@@ -24,8 +24,11 @@ module GRCommons
         when 'webm', 'ogg', 'mp4', 'mov'
           require 'base64'
           data = File.binread(ENV['GKS_FILEPATH'] + '.' + type)
-          IRuby.display("<video controls autoplay type=\"video/#{type}\" src=\"data:video/#{type};base64,#{Base64.encode64(data)}\">",
-                        mime: 'text/html')
+          IRuby.display(
+            "<video controls autoplay type=\"video/#{type}\" " \
+            "src=\"data:video/#{type};base64,#{Base64.encode64(data)}\">",
+            mime: 'text/html'
+          )
         end
         nil
       end
