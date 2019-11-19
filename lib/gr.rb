@@ -270,9 +270,9 @@ module GR
     # The values for `x` and `y` are in world coordinates. The attributes that
     # control the appearance of a spline-fit are linetype, linewidth and color
     # index.
-    def spline(px, py, m, method)
-      n = equal_length(px, py)
-      super(n, px, py, m, method)
+    def spline(x, y, m, method)
+      n = equal_length(x, y)
+      super(n, x, y, m, method)
     end
 
     def gridit(xd, yd, zd, nx, ny)
@@ -952,9 +952,9 @@ module GR
     # @param y [Array, NArray] A list of length N containing the Y coordinates
     # @param e1 [Array, NArray] The absolute values of the lower error bar data
     # @param e2 [Array, NArray] The absolute values of the lower error bar data
-    def verrorbars(px, py, e1, e2)
-      n = equal_length(px, py, e1, e2)
-      super(n, px, py, e1, e2)
+    def verrorbars(x, y, e1, e2)
+      n = equal_length(x, y, e1, e2)
+      super(n, x, y, e1, e2)
     end
 
     # Draw a standard horizontal error bar graph.
@@ -962,9 +962,9 @@ module GR
     # @param y [Array, NArray] A list of length N containing the Y coordinates
     # @param e1 [Array, NArray] The absolute values of the lower error bar data
     # @param e2 [Array, NArray] The absolute values of the lower error bar data
-    def herrorbars(px, py, e1, e2)
-      n = equal_length(px, py, e1, e2)
-      super(n, px, py, e1, e2)
+    def herrorbars(x, y, e1, e2)
+      n = equal_length(x, y, e1, e2)
+      super(n, x, y, e1, e2)
     end
 
     # Draw a 3D curve using the current line attributes,
@@ -975,9 +975,9 @@ module GR
     # The values for `x`, `y` and `z` are in world coordinates. The attributes that
     # control the appearance of a polyline are linetype, linewidth and color
     # index.
-    def polyline3d(px, py, pz)
-      n = equal_length(px, py, pz)
-      super(n, px, py, pz)
+    def polyline3d(x, y, z)
+      n = equal_length(x, y, z)
+      super(n, x, y, z)
     end
 
     # Draw marker symbols centered at the given 3D data points.
@@ -987,9 +987,9 @@ module GR
     # The values for `x`, `y` and `z` are in world coordinates. The attributes
     # that control the appearance of a polymarker are marker type, marker size
     # scale factor and color index.
-    def polymarker3d(px, py, pz)
-      n = equal_length(px, py, pz)
-      super(n, px, py, pz)
+    def polymarker3d(x, y, z)
+      n = equal_length(x, y, z)
+      super(n, x, y, z)
     end
 
     # Draw X, Y and Z coordinate axes with linearly and/or logarithmically
@@ -1059,11 +1059,11 @@ module GR
     # `x` and `y` define a grid. `z` is a singly dimensioned array containing at least
     # `nx` * `ny` data points. Z describes the surface height at each point on the grid.
     # Data is ordered as shown in the table:
-    def surface(px, py, pz, option)
+    def surface(x, y, z, option)
       # TODO: check: Arrays have incorrect length or dimension.
-      nx = px.length
-      ny = py.length
-      super(nx, ny, px, py, pz, option)
+      nx = x.length
+      ny = y.length
+      super(nx, ny, x, y, z, option)
     end
 
     # Draw contours of a three-dimensional data set
@@ -1081,12 +1081,12 @@ module GR
     #   every third line. A value of 1 will label every line. A value of 0
     #   produces no labels. To produce colored contour lines, add an offset
     #   of 1000 to `major_h`.
-    def contour(px, py, h, pz, major_h)
+    def contour(x, y, h, z, major_h)
       # TODO: check: Arrays have incorrect length or dimension.
-      nx = px.length
-      ny = py.length
+      nx = x.length
+      ny = y.length
       nh = h.length
-      super(nx, ny, nh, px, py, h, pz, major_h)
+      super(nx, ny, nh, x, y, h, z, major_h)
     end
 
     # Draw filled contours of a three-dimensional data set
@@ -1100,12 +1100,12 @@ module GR
     # @param z [Array, NArray]
     #   A list of length `len(x)` * `len(y)` or an appropriately dimensioned
     #   array containing the Z coordinates
-    def contourf(px, py, h, pz, major_h)
+    def contourf(x, y, h, z, major_h)
       # TODO: check: Arrays have incorrect length or dimension.
-      nx = px.length
-      ny = py.length
+      nx = x.length
+      ny = y.length
       nh = h.length
-      super(nx, ny, nh, px, py, h, pz, major_h)
+      super(nx, ny, nh, x, y, h, z, major_h)
     end
 
     # Draw a contour plot for the given triangle mesh.
@@ -1556,9 +1556,9 @@ module GR
     # @param x [Array, NArray] A list containing the X coordinates
     # @param y [Array, NArray] A list containing the Y coordinates
     # @param z [Array, NArray] A list containing the Z coordinates
-    def trisurface(px, py, pz)
-      n = [px, py, pz].map(&:length).min
-      super(n, px, py, pz)
+    def trisurface(x, y, z)
+      n = [x, y, z].map(&:length).min
+      super(n, x, y, z)
     end
 
     # @deprecated

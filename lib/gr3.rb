@@ -365,9 +365,9 @@ module GR3
     # a new mesh has to be created.
     # @param nx [Integer] number of points in x-direction
     # @param ny [Integer] number of points in y-direction
-    # @param px [Array, NArray] an array containing the x-coordinates
-    # @param py [Array, NArray] an array containing the y-coordinates
-    # @param pz [Array, NArray] an array of length nx * ny containing the z-coordinates
+    # @param x [Array, NArray] an array containing the x-coordinates
+    # @param y [Array, NArray] an array containing the y-coordinates
+    # @param z  [Array, NArray] an array of length nx * ny containing the z-coordinates
     # @param option [Integer] option for the surface mesh; the GR3_SURFACE constants can be combined with bitwise or. See the table below.
     #  * 0  : GR3_SURFACE_DEFAULT
     #    *    default behavior
@@ -382,9 +382,9 @@ module GR3
     #  * 16 : GR3_SURFACE_GRZSHADED
     #    *    like GR3_SURFACE_GRCOLOR, but use the z-value directly as color index
     # @return [Integer]
-    def createsurfacemesh(nx, ny, px, py, pz, option = 0)
+    def createsurfacemesh(nx, ny, x, y, z, option = 0)
       inquiry_int do |mesh|
-        super(mesh, nx, ny, px, py, pz, option)
+        super(mesh, nx, ny, x, y, z, option)
       end
     end
 
@@ -412,16 +412,16 @@ module GR3
     end
 
     # Create a surface plot with gr3 and draw it with gks as cellarray.
-    # @param px [Array, NArray] an array containing the x-coordinates
-    # @param py [Array, NArray] an array containing the y-coordinates
-    # @param pz [Array, NArray] an array of length nx * ny containing the z-coordinates
+    # @param x [Array, NArray] an array containing the x-coordinates
+    # @param y [Array, NArray] an array containing the y-coordinates
+    # @param z  [Array, NArray] an array of length nx * ny containing the z-coordinates
     # @param option [Integer] see the option parameter of gr_surface.
     #  OPTION_COLORED_MESH and OPTION_Z_SHADED_MESH are supported.
-    def surface(px, py, pz, option)
-      nx = px.length
-      ny = py.length
+    def surface(x, y, z, option)
+      nx = x.length
+      ny = y.length
       # TODO: Check out_of_bounds
-      super(nx, ny, px, py, pz, option)
+      super(nx, ny, x, y, z, option)
     end
 
     # drawtubemesh
