@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 require 'gr'
-# To get the ffi pointer, you must load ffi before loading rcairo.
+require 'ffi' # To get the ffi pointer, you must load ffi before loading rcairo.
+# See https://github.com/rcairo/rcairo/pull/59
 require 'gtk3'
 require 'numo/narray'
 
