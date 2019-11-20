@@ -244,7 +244,7 @@ module GR
         if kvs.key?(:xticklabels) || kvs.key?(:yticklabels)
           fx = if kvs.key?(:xticklabels)
                  GRCommons::Fiddley::Function.new(
-                   :void, %i[double doublestring double]
+                   :void, %i[double double string double]
                  ) do |x, y, _svalue, value|
                    label = value < 0 ? '' : kvs[:xticklabels][value] || ''
                    GR.textext(x, y, label)
