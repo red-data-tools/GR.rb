@@ -1384,11 +1384,13 @@ module GR
 
     # @return [Integer]
     def readimage(path)
-      w, h, d = inquiry [:int, :int, :pointer] do |width, height, data|
+      data = Fiddle::Pointer.malloc(Fiddle::SIZEOF_INTPTR_T)
+      w, h = inquiry [:int, :int] do |width, height|
         # data is a pointer of a pointer
-        super(path, width, height, data)
+        super(path, width, height, data.ref)
       end
-      [w, h, d.read_array_of_uint(w * h)]
+      d = data.to_str(w * h * 8).unpack('L*') # UINT8
+      [w, h, d]
     end
 
     # Draw an image into a given rectangular area.
