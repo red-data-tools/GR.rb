@@ -67,8 +67,8 @@ module GR3
   # This module is for adding error checking to all methods in GR3
   module CheckError
     def geterror
-      line = Fiddley::MemoryPointer.new(:int)
-      file = Fiddley::MemoryPointer.new(:pointer)
+      line = GRCommons::Fiddley::MemoryPointer.new(:int)
+      file = GRCommons::Fiddley::MemoryPointer.new(:pointer)
       e = super(1, line, file)
       return [0, nil, nil] if e == 0
 

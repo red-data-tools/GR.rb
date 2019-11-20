@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'fiddley'
+require 'gr_commons/fiddley'
 
 module GRCommons
   # This module provides functionality common to GR and GR3.
