@@ -7,7 +7,7 @@
 #
 # Released under the 2-Clause BSD License.
 
-# NOTE: kojix2 added several methods to original code.
+# NOTE: kojix2 added, removed, and modified several methods.
 
 require 'fiddle/import'
 
@@ -31,7 +31,9 @@ module GRCommons
       SIZET_FORMAT = Fiddle::SIZEOF_VOIDP == Fiddle::SIZEOF_LONG ? 'l!' : 'q'
       SIZET_TYPE = Fiddle::SIZEOF_VOIDP == Fiddle::SIZEOF_LONG ? 'unsigned long' : 'unsigned long long'
 
-      module_function def type2size(type)
+      module_function
+
+      def type2size(type)
         case type
         when :char, :uchar, :int8, :uint8
           Fiddle::SIZEOF_CHAR
@@ -56,7 +58,7 @@ module GRCommons
         end
       end
 
-      module_function def type2offset_size(type)
+      def type2offset_size(type)
         case type
         when :char, :uchar, :int8, :uint8
           Fiddle::ALIGN_CHAR
@@ -81,49 +83,10 @@ module GRCommons
         end
       end
 
-      module_function def str2value(type, str)
-        case type
-        when :char, :int8
-          str.unpack1('c')
-        when :uchar, :uint8
-          str.unpack1('C')
-        when :short, :int16
-          str.unpack1('s')
-        when :ushort, :uint16
-          str.unpack1('S')
-        when :int32
-          str.unpack1('l')
-        when :uint32
-          str.unpack1('L')
-        when :int
-          str.unpack1('i!')
-        when :uint
-          str.unpack1('I!')
-        when :bool
-          str.unpack1('i!') != 0
-        when :long
-          str.unpack1('l!')
-        when :ulong
-          str.unpack1('L!')
-        when :long_long, :int64
-          str.unpack1('q')
-        when :ulong_long, :uint64
-          str.unpack1('Q')
-        when :size_t
-          str.unpack1(SIZET_FORMAT)
-        when :float
-          str.unpack1('f')
-        when :double
-          str.unpack1('d')
-        when :string, :pointer
-          str.unpack1('p')
-        else
-          raise "unknown type #{type}"
-        end
-      end
+      # `str2value` is not used in GR.rb, so deleted.
 
       # added
-      module_function def str2array(type, str)
+      def str2array(type, str)
         case type
         when :char, :int8
           str.unpack('c*')
@@ -162,51 +125,12 @@ module GRCommons
         else
           raise "unknown type #{type}"
         end
-    end
-
-      module_function def value2str(type, value)
-        case type
-        when :char, :int8
-          [value].pack('c')
-        when :uchar, :uint8
-          [value].pack('C')
-        when :short, :int16
-          [value].pack('s')
-        when :ushort, :uint16
-          [value].pack('S')
-        when :int32
-          [value].pack('l')
-        when :uint32
-          [value].pack('L')
-        when :int
-          [value].pack('i!')
-        when :uint
-          [value].pack('I!')
-        when :bool
-          [value ? 1 : 0].pack('i!')
-        when :long
-          [value].pack('l!')
-        when :ulong
-          [value].pack('L!')
-        when :long_long, :int64
-          [value].pack('q')
-        when :ulong_long, :uint64
-          [value].pack('Q')
-        when :size_t
-          [value].pack(SIZET_FORMAT)
-        when :float
-          [value].pack('f')
-        when :double
-          [value].pack('d')
-        when :string, :pointer
-          [value].pack('p')
-        else
-          raise "unknown type #{type}"
-        end
       end
 
+      # `value2str` is not used in GR.rb, so deleted.
+
       # added
-      module_function def array2str(type, arr)
+      def array2str(type, arr)
         case type
         when :char, :int8
           arr.pack('c*')
@@ -245,9 +169,9 @@ module GRCommons
         else
           raise "unknown type #{type}"
         end
-    end
+      end
 
-      module_function def type2str(type)
+      def type2str(type)
         case type
         when :char, :int8
           'char'
@@ -280,7 +204,7 @@ module GRCommons
         when :string, :pointer
           'void *'
         else
-          if @enums && @enums.find { |e| type == e.tag }
+          if @enums&.find { |e| type == e.tag }
             'int'
           else
             type.to_s
@@ -288,7 +212,7 @@ module GRCommons
         end
       end
 
-      module_function def type2type(type)
+      def type2type(type)
         case type
         when :char, :int8
           Fiddle::TYPE_CHAR

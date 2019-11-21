@@ -69,17 +69,35 @@ class GRCommonsTest < Minitest::Test
   end
 
   def test_inquiry_int
-    a = @utils.send(:inquiry_int) do |pt|
-      pt.write_int 3
+    a = 3
+    b = @utils.send(:inquiry_int) do |pt|
+      pt.write_int a
     end
-    assert_equal(a, 3)
+    assert_equal(a, b)
+  end
+
+  def test_inquiry_int_overflow
+    a = 2_147_483_648
+    b = @utils.send(:inquiry_int) do |pt|
+      pt.write_int a
+    end
+    assert_equal(-2_147_483_648, b)
   end
 
   def test_inquiry_double
-    a = @utils.send(:inquiry_double) do |pt|
-      pt.write_double 3.3
+    a = 3.3
+    b = @utils.send(:inquiry_double) do |pt|
+      pt.write_double a
     end
-    assert_equal(a, 3.3)
+    assert_equal(a, b)
+  end
+
+  def test_inquiry_uint
+    a = 2_147_483_648
+    b = @utils.send(:inquiry_uint) do |pt|
+      pt.write_uint a
+    end
+    assert_equal(a, b)
   end
 
   def test_inquiry_hash_int
