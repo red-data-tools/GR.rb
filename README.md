@@ -1,6 +1,6 @@
 # GR module for Ruby
 
-[![The MIT License](https://img.shields.io/badge/license-MIT-orange.svg)](LICENSE.md)
+[![The MIT License](https://img.shields.io/badge/license-MIT-orange.svg)](LICENSE.txt)
 [![Build Status](https://travis-ci.com/kojix2/GR.rb.svg?&branch=master)](https://travis-ci.org/kojix2/GR.rb)
 [![Gem Version](https://badge.fury.io/rb/ruby-gr.svg)](https://badge.fury.io/rb/ruby-gr)
 [![Gitter Chat](https://badges.gitter.im/kojix2/GR.rb.svg)](https://gitter.im/kojix2/GR.rb)
