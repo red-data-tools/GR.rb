@@ -1,9 +1,9 @@
 # GR module for Ruby
 
 [![The MIT License](https://img.shields.io/badge/license-MIT-orange.svg)](LICENSE.txt)
-[![Build Status](https://travis-ci.com/kojix2/GR.rb.svg?&branch=master)](https://travis-ci.org/kojix2/GR.rb)
+[![Build Status](https://travis-ci.com/red-data-tools/GR.rb.svg?&branch=master)](https://travis-ci.org/red-data-tools/GR.rb)
 [![Gem Version](https://badge.fury.io/rb/ruby-gr.svg)](https://badge.fury.io/rb/ruby-gr)
-[![Gitter Chat](https://badges.gitter.im/kojix2/GR.rb.svg)](https://gitter.im/kojix2/GR.rb)
+[![Gitter Chat](https://badges.gitter.im/red-data-tools/GR.rb.svg)](https://gitter.im/red-data-tools/GR.rb)
 [![Docs Latest](https://img.shields.io/badge/docs-latest-blue.svg)](https://rubydoc.info/gems/ruby-gr)
 
 [GR framework](https://github.com/sciapp/gr) - the graphics library for visualisation - for Ruby
@@ -39,7 +39,7 @@ GR.updatews
 ```
 
 ## Examples
-Have a look in the [`examples`](https://github.com/kojix2/GR.rb/tree/master/examples) directory for some simple examples. 
+Have a look in the [`examples`](https://github.com/red-data-tools/GR.rb/tree/master/examples) directory for some simple examples. 
 
 griddata.rb
 
@@ -116,4 +116,4 @@ GR.updatews
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/kojix2/GR.rb.
+Bug reports and pull requests are welcome on GitHub at https://github.com/red-data-tools/GR.rb.

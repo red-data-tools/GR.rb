@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = 'GR for Ruby'
   spec.description   = 'GR framework - the graphics library for visualisation - for Ruby'
-  spec.homepage      = 'https://github.com/kojix2/GR.rb'
+  spec.homepage      = 'https://github.com/red-data-tools/GR.rb'
   spec.license       = 'MIT'
 
   spec.files         = Dir['*.{md,txt}', '{lib}/**/*']
