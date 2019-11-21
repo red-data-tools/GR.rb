@@ -12,6 +12,11 @@ y = NMath.sin(x)
 GR.lineplot(x, y)
 gets
 
+x = DFloat.linspace(0, 10, 11)
+y = NMath.sin(x)
+GR.stepplot(x, y)
+gets
+
 x = DFloat.linspace(0, 1, 51)
 y = x - x**2
 z = x.clone * 200

@@ -386,6 +386,38 @@ module GR
           GR.polyline(x, y) if hasline(mask)
           GR.polymarker(x, y) if hasmarker(mask)
         when :step
+          mask = GR.uselinespec(spec = '')
+          if hasline(mask)
+            where = kvs[:where] || 'mid'
+            n = x.length
+            case where
+            when 'pre'
+              xs = [x[0]]
+              ys = [y[0]]
+              (n - 1).times do |i|
+                xs << x[i]     << x[i + 1]
+                ys << y[i + 1] << y[i + 1]
+              end
+            when 'post'
+              xs = [x[0]]
+              ys = [y[0]]
+              (n - 1).times do |i|
+                xs << x[i + 1] << x[i + 1]
+                ys << y[i]     << y[i + 1]
+              end
+            else
+              xs = [x[0]]
+              ys = []
+              (n - 1).times do |i|
+                xs << 0.5 * (x[i] + x[i + 1]) << 0.5 * (x[i] + x[i + 1])
+                ys << y[i] << y[i]
+              end
+              xs << x[n - 1]
+              ys << y[n - 1] << y[n - 1]
+            end
+            GR.polyline(xs, ys)
+          end
+          GR.polymarker(x, y) if hasmarker(mask)
         when :scatter
           GR.setmarkertype(GR::MARKERTYPE_SOLID_CIRCLE)
           if z || c
@@ -836,9 +868,14 @@ module GR
       plt.plot_data
     end
 
+    def stepplot(*args)
+      plt = GR::Plot.new(*args)
+      plt.kvs[:kind] = :step
+      plt.plot_data
+    end
+
     def scatterplot(*args)
       plt = GR::Plot.new(*args)
-      plt.kvs[:kind] = :scatter
       plt.plot_data
     end
 
