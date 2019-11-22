@@ -931,6 +931,7 @@ module GR
 
     def scatterplot(*args)
       plt = GR::Plot.new(*args)
+      plt.kvs[:kind] = :scatter
       plt.plot_data
     end
 
