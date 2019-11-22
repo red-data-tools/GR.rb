@@ -513,6 +513,17 @@ module GR
         #                 [0, ρ[i] * Math.sin(θ[i]), ρ[i] * Math.sin(θ[i + 1])])
         #   end
         when :polarheatmap
+          w, h = z.shape
+          cmap = colormap
+          cmin, cmax = kvs[:zrange]
+          data = z.map { |i| normalize_color(i, cmin, cmax) }
+          colors = data.map { |i| 1000 + i * 255 }
+          # if kvs[:xflip]
+          # if kvs[;yflip]
+          GR.polarcellarray(0, 0, 0, 360, 0, 1, w, h, colors)
+          draw_polar_axes
+          kvs[:zrange] = [cmin, cmax]
+          colorbar
         when :contour
           zmin, zmax = kvs[:zrange]
           if x.length == y.length && y.length == z.length
@@ -978,6 +989,21 @@ module GR
       else
         raise 'not implemented'
       end
+      plt.plot_data
+    end
+
+    def polarheatmap(*args)
+      d = args.shift
+      # FIXME
+      z = Numo::DFloat.cast(d)
+      raise 'expected 2-D array' unless z.ndim == 2
+
+      plt = GR::Plot.new(*args)
+      plt.kvs[:kind] = :polarheatmap
+      width, height = z.shape
+      plt.kvs[:xlim] ||= [0.5, width + 0.5]
+      plt.kvs[:ylim] ||= [0.5, height + 0.5]
+      plt.args = [[(1..width).to_a, (1..height).to_a, z, nil, '']]
       plt.plot_data
     end
 
