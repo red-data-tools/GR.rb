@@ -416,16 +416,18 @@ module GR
       end
 
       GR.uselinespec(' ')
-      args.each do |x, y, z, c, _spec|
+      args.each do |x, y, z, c, spec|
+        # FIXME
+        spec ||= ''
         GR.savestate
         GR.settransparency(kvs[:alpha]) if kvs.key?(:alpha)
         case kind
         when :line
-          mask = GR.uselinespec(spec = '')
+          mask = GR.uselinespec(spec)
           GR.polyline(x, y) if hasline(mask)
           GR.polymarker(x, y) if hasmarker(mask)
         when :step
-          mask = GR.uselinespec(spec = '')
+          mask = GR.uselinespec(spec)
           if hasline(mask)
             where = kvs[:where] || 'mid'
             n = x.length
@@ -463,7 +465,7 @@ module GR
             if c
               cmin, cmax = kvs[:crange]
               c = c.to_a if narray?(c)
-              c.map! { |x| normalize_color(x, cmin, cmax) }
+              c.map! { |i| normalize_color(i, cmin, cmax) }
               cind = c.map { |i| (1000 + i * 255).round }
             end
             x.length.times do |i|
@@ -478,7 +480,7 @@ module GR
           GR.setlinecolorind(1)
           GR.polyline(kvs[:window][0..1], [0, 0])
           GR.setmarkertype(GR::MARKERTYPE_SOLID_CIRCLE)
-          GR.uselinespec(spec = '')
+          GR.uselinespec(spec)
           x = x.to_a if narray?(x)
           y = y.to_a if narray?(y)
           x.zip(y).each do |xi, yi|
@@ -561,7 +563,7 @@ module GR
             else
               raise
             end
-          when ->(x) { narray?(x) }
+          when ->(obj) { narray?(obj) }
             w, h = z.shape
           else
             raise

@@ -15,3 +15,7 @@ Metrics/ParameterLists:
 
 Style/AsciiComments:
   Enabled: false
+
+Style/NumericPredicate:
+  Enabled: false
+  
