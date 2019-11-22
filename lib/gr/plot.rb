@@ -305,6 +305,45 @@ module GR
       end
     end
 
+    def draw_polar_axes
+      viewport = kvs[:viewport]
+      diag = Math.sqrt((viewport[1] - viewport[0])**2 + (viewport[3] - viewport[2])**2)
+      charheight = [0.018 * diag, 0.012].max
+
+      window = kvs[:window]
+      rmin = window[2]
+      rmax = window[3]
+
+      GR.savestate
+      GR.setcharheight(charheight)
+      GR.setlinetype(GR::LINETYPE_SOLID)
+
+      tick = 0.5 * GR.tick(rmin, rmax)
+      n = ((rmax - rmin) / tick + 0.5).round
+      (n + 1).times do |i|
+        r = i.to_f / n
+        if i.even?
+          GR.setlinecolorind(88)
+          GR.drawarc(-r, r, -r, r, 0, 359) if i > 0
+          GR.settextalign(GR::TEXT_HALIGN_LEFT, GR::TEXT_VALIGN_HALF)
+          x, y = GR.wctondc(0.05, r)
+          GR.text(x, y, (rmin + i * tick).to_s) # FIXME: round. significant digits.
+        else
+          GR.setlinecolorind(90)
+          GR.drawarc(-r, r, -r, r, 0, 359)
+        end
+      end
+      linspace(0, 315, 8).each do |alpha|
+        sinf = Math.sin(alpha * Math::PI / 180)
+        cosf = Math.cos(alpha * Math::PI / 180)
+        GR.polyline([cosf, 0], [sinf, 0])
+        GR.settextalign(GR::TEXT_HALIGN_CENTER, GR::TEXT_VALIGN_HALF)
+        x, y = GR.wctondc(1.1 * cosf, 1.1 * sinf)
+        GR.textext(x, y, "%g\xb0" % alpha)
+      end
+      GR.restorestate
+    end
+
     def colorbar(off = 0, colors = 256)
       GR.savestate
       viewport = kvs[:viewport]
@@ -456,7 +495,21 @@ module GR
             GR.setfillintstyle(GR::INTSTYLE_HOLLOW)
             GR.fillrect(x[i], x[i + 1], ymin, y[i])
           end
-        when :polarhist
+        # when :polarhist
+        #   xmin, xmax = x.minmax
+        #   ymax = kvs[:window][3]
+        #   ρ = y.map { |i| 2 * (i.to_f / ymax - 0.5) }
+        #   θ = x.map { |i| 2 * Math::PI * (i.to_f - xmin) / (xmax - xmin) }
+        #   ρ.length.times do |i|
+        #     GR.setfillcolorind(989)
+        #     GR.setfillintstyle(GR::INTSTYLE_SOLID)
+        #     GR.fillarea([0, ρ[i] * Math.cos(θ[i]), ρ[i] * Math.cos(θ[i + 1])],
+        #                 [0, ρ[i] * Math.sin(θ[i]), ρ[i] * Math.sin(θ[i + 1])])
+        #     GR.setfillcolorind(1)
+        #     GR.setfillintstyle(GR::INTSTYLE_HOLLOW)
+        #     GR.fillarea([0, ρ[i] * Math.cos(θ[i]), ρ[i] * Math.cos(θ[i + 1])],
+        #                 [0, ρ[i] * Math.sin(θ[i]), ρ[i] * Math.sin(θ[i + 1])])
+        #   end
         when :polarheatmap
         when :contour
           zmin, zmax = kvs[:zrange]
