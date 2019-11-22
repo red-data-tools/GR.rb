@@ -347,6 +347,22 @@ module GR
       GR.restorestate
     end
 
+    def plot_polar(θ, ρ)
+      ρ = Numo::DFloat.cast(ρ) if ρ.is_a? Array
+      window = kvs[:window]
+      rmin = window[2]
+      rmax = window[3]
+      ρ = (ρ - rmin) / (rmax - rmin)
+      n = ρ.length
+      x = []
+      y = []
+      n.times do |i|
+        x << ρ[i] * Math.cos(θ[i])
+        y << ρ[i] * Math.sin(θ[i])
+      end
+      GR.polyline(x, y)
+    end
+
     def plot_img(img)
       viewport = kvs[:vp].clone
       viewport[3] -= 0.05 if kvs.key?(:title)
@@ -732,6 +748,8 @@ module GR
         when :isosurface
           plot_iso(z)
         when :polar
+          GR.uselinespec(spec)
+          plot_polar(x, y)
         when :trisurf
           GR.trisurface(x, y, z)
           draw_axes(kind, 2)
@@ -1191,6 +1209,12 @@ module GR
       end
       plt = GR::Plot.new(x, y, z, kv)
       plt.kvs[:kind] = :surface
+      plt.plot_data
+    end
+
+    def polarplot(*args)
+      plt = GR::Plot.new(*args)
+      plt.kvs[:kind] = :polar
       plt.plot_data
     end
 
