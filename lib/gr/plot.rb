@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require 'gr' # require 'gr/plot' or require 'gr' ??
+require 'numo/narray' # FIXME
+
 module GR
   # object oriented way
   class Plot # should be Figure ?
@@ -344,6 +347,57 @@ module GR
       GR.restorestate
     end
 
+    def plot_img(img)
+      viewport = kvs[:vp].clone
+      viewport[3] -= 0.05 if kvs.key?(:title)
+      vp = kvs[:vp]
+
+      if img.is_a? String
+        width, height, data = GR.readimage(img)
+      else
+        width, height = img.shape
+        cmin, cmax = kvs[:crange]
+        data = img.map { |i| normalize_color(i, cmin, cmax) }
+        data = data.map { |i| (1000 + i * 255).round }
+      end
+
+      if width * (viewport[3] - viewport[2]) < height * (viewport[1] - viewport[0])
+        w = width.to_f / height * (viewport[3] - viewport[2])
+        xmin = [0.5 * (viewport[0] + viewport[1] - w), viewport[0]].max
+        xmax = [0.5 * (viewport[0] + viewport[1] + w), viewport[1]].min
+        ymin = viewport[2]
+        ymax = viewport[3]
+      else
+        h = height.to_f / width * (viewport[1] - viewport[0])
+        xmin = viewport[0]
+        xmax = viewport[1]
+        ymin = [0.5 * (viewport[3] + viewport[2] - h), viewport[2]].max
+        ymax = [0.5 * (viewport[3] + viewport[2] + h), viewport[3]].min
+      end
+
+      GR.selntran(0)
+      GR.setscale(0)
+      if kvs.key?(:xflip)
+        tmp = xmax; xmax = xmin; xmin = tmp
+      end
+      if kvs.key?(:yflip)
+        tmp = ymax; ymax = ymin; ymin = tmp
+      end
+      if img.is_a? String
+        GR.drawimage(xmin, xmax, ymin, ymax, width, height, data)
+      else
+        GR.cellarray(xmin, xmax, ymin, ymax, width, height, data)
+      end
+
+      if kvs.key?(:title)
+        GR.savestate
+        GR.settextalign(GR::TEXT_HALIGN_CENTER, GR::TEXT_VALIGN_TOP)
+        text(0.5 * (viewport[0] + viewport[1]), vp[3], kvs[:title])
+        GR.restorestate
+      end
+      GR.selntran(1)
+    end
+
     def colorbar(off = 0, colors = 256)
       GR.savestate
       viewport = kvs[:viewport]
@@ -633,6 +687,7 @@ module GR
           end
           draw_axes(kind, 2)
         when :imshow
+          plot_img(z)
         when :isosurface
         when :polar
         when :trisurf
@@ -1142,6 +1197,14 @@ module GR
         plt.kvs[:xticks] = [1, 1]
         plt.kvs[:xticklabels] = labels
       end
+      plt.plot_data
+    end
+
+    def imshow(img, kv = {})
+      img = Numo::DFloat.cast(img) # Umm...
+      plt = GR::Plot.new(kv)
+      plt.kvs[:kind] = :imshow
+      plt.args = [[nil, nil, img, nil, '']]
       plt.plot_data
     end
 
