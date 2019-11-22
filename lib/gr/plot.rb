@@ -398,6 +398,47 @@ module GR
       GR.selntran(1)
     end
 
+    def plot_iso(v)
+      viewport = kvs[:viewport]
+
+      if viewport[3] - viewport[2] < viewport[1] - viewport[0]
+        width = viewport[3] - viewport[2]
+        centerx = 0.5 * (viewport[0] + viewport[1])
+        xmin = [centerx - 0.5 * width, viewport[0]].max
+        xmax = [centerx + 0.5 * width, viewport[1]].min
+        ymin = viewport[2]
+        ymax = viewport[3]
+      else
+        height = viewport[1] - viewport[0]
+        centery = 0.5 * (viewport[2] + viewport[3])
+        xmin = viewport[0]
+        xmax = viewport[1]
+        ymin = [centery - 0.5 * height, viewport[2]].max
+        ymax = [centery + 0.5 * height, viewport[3]].min
+      end
+
+      GR.selntran(0)
+      values = ((v - v.min) / (v.max - v.min) * (2 ^ 16 - 1)).round
+      nx, ny, nz = v.shape
+      isovalue = ((kvs[:isovalue] || 0.5) - v.min) / (v.max - v.min)
+      rotation = ((kvs[:rotation] || 40) * Math::PI / 180.0)
+      tilt = ((kvs[:tilt] || 70) * Math::PI / 180.0)
+      r = 2.5
+      GR3.clear
+      mesh = GR3.createisosurfacemesh(values, [2.0 / (nx - 1), 2.0 / (ny - 1), 2.0 / (nz - 1)],
+                                      [-1, -1, -1],
+                                      (isovalue * (2 ^ 16 - 1)).round)
+      color = kvs[:color] || [0.0, 0.5, 0.8]
+      GR3.setbackgroundcolor(1, 1, 1, 0)
+      GR3.drawmesh(mesh, 1, [0, 0, 0], [0, 0, 1], [0, 1, 0], color, [1, 1, 1])
+      GR3.cameralookat(r * Math.sin(tilt) * Math.sin(rotation),
+                       r * Math.cos(tilt), r * Math.sin(tilt) * Math.cos(rotation),
+                       0, 0, 0, 0, 1, 0)
+      GR3.drawimage(xmin, xmax, ymin, ymax, 500, 500, GR3::DRAWABLE_GKS)
+      GR3.deletemesh(mesh)
+      GR.selntran(1)
+    end
+
     def colorbar(off = 0, colors = 256)
       GR.savestate
       viewport = kvs[:viewport]
@@ -689,6 +730,7 @@ module GR
         when :imshow
           plot_img(z)
         when :isosurface
+          plot_iso(z)
         when :polar
         when :trisurf
           GR.trisurface(x, y, z)
@@ -1205,6 +1247,14 @@ module GR
       plt = GR::Plot.new(kv)
       plt.kvs[:kind] = :imshow
       plt.args = [[nil, nil, img, nil, '']]
+      plt.plot_data
+    end
+
+    def isosurface(v, kv = {})
+      v = Numo::DFloat.cast(v) # Umm...
+      plt = GR::Plot.new(kv)
+      plt.kvs[:kind] = :isosurface
+      plt.args = [[nil, nil, v, nil, '']]
       plt.plot_data
     end
 
