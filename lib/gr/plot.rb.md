@@ -1,4 +1,6 @@
-# frozen_string_literal: true
+This is a memo to think about the structure of Plot/Figure. 
+
+````ruby
 
 module GR
   # object oriented way
@@ -201,3 +203,5 @@ module GR
     # a = GR::Bar.plot() ?
   end
 end
+
+```
