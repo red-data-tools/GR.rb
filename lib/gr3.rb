@@ -48,8 +48,17 @@ module GR3
   ENV['GKS_FONTPATH'] ||= ENV['GRDIR']
   @ffi_lib = case RbConfig::CONFIG['host_os']
              when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
+               require 'fiddle/import'
+               require 'fiddle/types'
+               module WinAPI
+                 extend Fiddle::Importer
+                 dlload 'kernel32.dll'
+                 include Fiddle::Win32Types
+                 extern 'int SetDllDirectory(LPCSTR)'
+               end
+               WinAPI.SetDllDirectory(File.expand_path('bin', ENV['GRDIR']))
+               remove_const :WinAPI
                File.expand_path('bin/libgr3.dll', ENV['GRDIR'])
-                   .gsub('/', '\\') # windows backslash
              else
                File.expand_path('lib/libGR3.so', ENV['GRDIR'])
              end
