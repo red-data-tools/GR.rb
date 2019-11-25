@@ -1,0 +1,43 @@
+name: Windows
+on:
+  - push
+  - pull_request
+jobs:
+  test:
+    name: Test
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby-version:
+          - "2.4"
+          - "2.5"
+          - "2.6"
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-ruby@master
+        with:
+          ruby-version: ${{ matrix.ruby-version }}
+      - name: Install GR framework
+        run: |
+          $gr_version = "0.43.0"
+          $gr_architecture = "x86_64"
+          $gr_base_name = "gr-${gr_version}-Windows-${gr_architecture}"
+          $gr_tar_name = "${gr_base_name}.tar"
+          $gr_tar_gz_name = "${gr_tar_name}.gz"
+          Invoke-WebRequest `
+            -Uri "https://github.com/sciapp/gr/releases/download/v${gr_version}/${gr_tar_gz_name}" `
+            -OutFile ${gr_tar_gz_name}
+          choco install 7zip
+          7z x ${gr_tar_gz_name}
+          7z x ${gr_tar_name}
+      - name: Install Bundler
+        run: |
+          gem install bundler
+      - name: Install dependencies
+        run: |
+          bundle install
+      - name: Test
+        run: |
+          $Env:GRDIR = "$(Get-Location)\gr"
+          bundle exec rake test
