@@ -46,22 +46,12 @@ module GR
   raise Error, 'Please set env variable GRDIR' unless ENV['GRDIR']
 
   ENV['GKS_FONTPATH'] ||= ENV['GRDIR']
-  @ffi_lib = case RbConfig::CONFIG['host_os']
-             when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
-               require 'fiddle/import'
-               require 'fiddle/types'
-               module WinAPI
-                 extend Fiddle::Importer
-                 dlload 'kernel32.dll'
-                 include Fiddle::Win32Types
-                 extern 'int SetDllDirectory(LPCSTR)'
-               end
-               WinAPI.SetDllDirectory(File.expand_path('bin', ENV['GRDIR']))
-               remove_const :WinAPI
-               File.expand_path('bin/libgr.dll', ENV['GRDIR'])
-             else
-               File.expand_path('lib/libGR.so', ENV['GRDIR'])
-             end
+  if Object.const_defined?(:RubyInstaller)
+    @ffi_lib = File.expand_path('bin/libgr.dll', ENV['GRDIR'])
+    RubyInstaller::Runtime.add_dll_directory(File.dirname(@ffi_lib))
+  else
+    @ffi_lib = File.expand_path('lib/libGR.so', ENV['GRDIR'])
+  end
 
   require_relative 'gr_commons'
   require_relative 'gr/version'
