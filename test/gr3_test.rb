@@ -4,6 +4,14 @@ require_relative 'test_helper'
 require 'gr3'
 
 class GR3Test < Minitest::Test
+  def setup
+    begin
+      GR3.init(nil)
+    rescue => error
+      skip "GR3 isn't available: #{error.message}"
+    end
+  end
+
   def test_gr3_ffi_lib
     assert_instance_of String, GR3.ffi_lib
   end
