@@ -23,7 +23,7 @@ class GR3Test < Minitest::Test
   end
 
   def test_getstringmethod
-    assert_equal "GR3_ERROR_INVALID_VALUE", GR3.geterrorstring(1)
+    assert_equal 'GR3_ERROR_INVALID_VALUE', GR3.geterrorstring(1)
     assert_instance_of String, GR3.getrenderpathstring
   end
 

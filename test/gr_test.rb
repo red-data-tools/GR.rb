@@ -60,8 +60,8 @@ class GRTest < Minitest::Test
     assert_equal 0, GR.setspace(0.1, 0.9, 40, 50)
     assert_equal [0.1, 0.9, 40, 50], GR.inqspace
 
-    assert_instance_of Array, GR.inqtextext(0,0,"Ruby")
-    
+    assert_instance_of Array, GR.inqtextext(0, 0, 'Ruby')
+
     assert_nil GR.setcolormap(3)
     assert_equal 3, GR.inqcolormap
 
