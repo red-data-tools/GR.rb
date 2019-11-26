@@ -123,13 +123,13 @@ module GR3
     # If gr3 is not initialized `"Not initialized"` is returned.
     # @return [String]
     def getrenderpathstring(*)
-      super
+      super.to_s
     end
 
     # This function returns a string representation of a given error code.
     # @return [String]
     def geterrorstring(*)
-      super
+      super.to_s
     end
 
     # This function clears the draw list.
