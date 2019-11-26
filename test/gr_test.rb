@@ -4,6 +4,10 @@ require_relative 'test_helper'
 require 'gr'
 
 class GRTest < Minitest::Test
+  def setup
+    GR.initgr
+  end
+
   def test_gr_ffi_lib
     assert_instance_of String, GR.ffi_lib
   end
@@ -16,9 +20,58 @@ class GRTest < Minitest::Test
     assert_instance_of String, GR.version
   end
 
-  def test_inqlinetype
-    GR.setlinetype 3
-    assert_equal GR.inqlinetype, 3
+  def test_setinq_methods
+    assert_instance_of Array, GR.inqdspsize
+    assert_instance_of Array, GR.inqtext(0, 0, 'Ruby')
+    # gridit
+    assert_nil GR.setlinetype(3)
+    assert_equal 3, GR.inqlinetype
+
+    assert_nil GR.setlinewidth(3)
+    assert_equal 3, GR.inqlinewidth
+
+    assert_nil GR.setlinecolorind(3)
+    assert_equal 3, GR.inqlinecolorind
+
+    assert_nil GR.setmarkertype(3)
+    assert_equal 3, GR.inqmarkertype
+
+    assert_nil GR.setmarkercolorind(3)
+    assert_equal 3, GR.inqmarkercolorind
+
+    assert_nil GR.setfillintstyle(3)
+    assert_equal 3, GR.inqfillintstyle
+
+    assert_nil GR.setfillstyle(3)
+    assert_equal 3, GR.inqfillstyle
+
+    assert_nil GR.setfillcolorind(3)
+    assert_equal 3, GR.inqfillcolorind
+
+    assert_equal 0, GR.setscale(8)
+    assert_equal 8, GR.inqscale
+
+    assert_nil GR.setwindow(0.1, 0.9, 0.11, 0.99)
+    assert_equal [0.1, 0.9, 0.11, 0.99], GR.inqwindow
+
+    assert_nil GR.setviewport(0.1, 0.9, 0.11, 0.99)
+    assert_equal [0.1, 0.9, 0.11, 0.99], GR.inqviewport
+
+    assert_equal 0, GR.setspace(0.1, 0.9, 40, 50)
+    assert_equal [0.1, 0.9, 40, 50], GR.inqspace
+
+    assert_instance_of Array, GR.inqtextext(0,0,"Ruby")
+    
+    assert_nil GR.setcolormap(3)
+    assert_equal 3, GR.inqcolormap
+
+    assert_equal 0, GR.inqcolor(1)
+
+    # assert_instance_of Array, GR.inqmathtex(0,0,"Ruby")
+    assert_instance_of Array, GR.inqbbox
+
+    assert_nil GR.setresamplemethod(3)
+    assert_equal 3, GR.inqresamplemethod
   end
 
   def test_hsvtorgb
