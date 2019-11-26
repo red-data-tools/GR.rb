@@ -1463,7 +1463,7 @@ module GR
 
     # @return [String]
     def getgraphics(*)
-      super
+      super.to_s
     end
 
     # @return [Integer]
