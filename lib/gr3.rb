@@ -88,6 +88,7 @@ module GR3
           mesg = FFI.gr3_geterrorstring(e)
           raise "GR3 error #{file} #{line} #{mesg}"
         end
+        values
       end
     end
   end
