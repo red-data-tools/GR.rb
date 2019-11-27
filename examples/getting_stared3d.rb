@@ -8,7 +8,7 @@ require 'gr/plot'
   x = Array.new(i + 1) { |j| j**2 * Math.sin(j * Math::PI / 10.0) / 100.0 }
   y = Array.new(i + 1) { |j| j**2 * Math.cos(j * Math::PI / 10.0) / 100.0 }
 
-  GR.lineplot3(x, y, z, title: "i = #{i}") # method name might be changed in the future. 
+  GR.lineplot3(x, y, z, title: "i = #{i}") # method name might be changed in the future.
   GR.updatews
   sleep 0.005
 end

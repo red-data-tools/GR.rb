@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# NOTE: This example may not work on Windows or Mac.
+
 require 'gr'
 require 'ffi' # To get the ffi pointer, you must load ffi before loading rcairo.
 # See https://github.com/rcairo/rcairo/pull/59
