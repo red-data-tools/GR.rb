@@ -7,14 +7,20 @@ require 'numo/narray' # FIXME
 module GR
   # object oriented way
   class Plot # should be Figure ?
+    PLOT_KIND = %i[line step scatter stem hist contour contourf hexbin heatmap
+                   nonuniformheatmap wireframe surface plot3 scatter3 imshow
+                   isosurface polar polarhist polarheatmap trisurf tricont shade
+                   volume].freeze # the name might be changed in the future.
+
+    KW_ARGS = %i[accelerate algorithm alpha backgroundcolor barwidth baseline
+                 clabels color colormap figsize isovalue labels levels location
+                 nbins rotation size tilt title where xflip xform xlabel xlim
+                 xlog yflip ylabel ylim ylog zflip zlabel zlim zlog clim
+                 subplot].freeze
+
     def initialize(*args)
       # Keyword options conform to GR.jl.
       # It should be a constant?
-      @kw_args = %i[accelerate algorithm alpha backgroundcolor barwidth baseline
-                    clabels color colormap figsize isovalue labels levels
-                    location nbins rotation size tilt title where xflip xform
-                    xlabel xlim xlog yflip ylabel ylim ylog zflip zlabel zlim
-                    zlog clim subplot].freeze
 
       @kvs = if args[-1].is_a? Hash
                args.pop
@@ -1245,6 +1251,7 @@ module GR
       plt.plot_data
     end
 
+    # Note: GR.shade exists
     def shade(*args)
       plt = GR::Plot.new(*args)
       plt.kvs[:kind] = :shade
