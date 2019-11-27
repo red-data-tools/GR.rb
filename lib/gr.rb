@@ -637,39 +637,6 @@ module GR
       super
     end
 
-    # `setscale` sets the type of transformation to be used for subsequent GR output
-    # primitives.
-    # @param options [Integer] Scale specification
-    #  * 1 :  OPTION_X_LOG
-    #    *    Logarithmic X-axis
-    #  * 2 :  OPTION_Y_LOG
-    #    *    Logarithmic Y-axis
-    #  * 4 :  OPTION_Z_LOG
-    #    *    Logarithmic Z-axis
-    #  * 8 :  OPTION_FLIP_X
-    #    *    Flip X-axis
-    #  * 16 : OPTION_FLIP_Y
-    #    *    Flip Y-axis
-    #  * 32 : OPTION_FLIP_Z
-    #    *    Flip Z-axis
-    # @return [Integer]
-    # `setscale` defines the current transformation according to the given scale
-    # specification which may be or'ed together using any of the above options. GR uses
-    # these options for all subsequent output primitives until another value is provided.
-    # The scale options are used to transform points from an abstract logarithmic or
-    # semi-logarithmic coordinate system, which may be flipped along each axis, into the
-    # world coordinate system.
-    # Note: When applying a logarithmic transformation to a specific axis, the system
-    # assumes that the axes limits are greater than zero.
-    def setscale(*)
-      super
-    end
-
-    # inqscale
-    def inqscale
-      inquiry_int { |pt| super(pt) }
-    end
-
     # `setwindow` establishes a window, or rectangular subspace, of world coordinates to be
     # plotted. If you desire log scaling or mirror-imaging of axes, use the SETSCALE function.
     # @param xmin [Numeric] The left horizontal coordinate of the window (`xmin` < `xmax`).
@@ -816,6 +783,39 @@ module GR
       end
     end
 
+    # `setscale` sets the type of transformation to be used for subsequent GR output
+    # primitives.
+    # @param options [Integer] Scale specification
+    #  * 1 :  OPTION_X_LOG
+    #    *    Logarithmic X-axis
+    #  * 2 :  OPTION_Y_LOG
+    #    *    Logarithmic Y-axis
+    #  * 4 :  OPTION_Z_LOG
+    #    *    Logarithmic Z-axis
+    #  * 8 :  OPTION_FLIP_X
+    #    *    Flip X-axis
+    #  * 16 : OPTION_FLIP_Y
+    #    *    Flip Y-axis
+    #  * 32 : OPTION_FLIP_Z
+    #    *    Flip Z-axis
+    # @return [Integer]
+    # `setscale` defines the current transformation according to the given scale
+    # specification which may be or'ed together using any of the above options. GR uses
+    # these options for all subsequent output primitives until another value is provided.
+    # The scale options are used to transform points from an abstract logarithmic or
+    # semi-logarithmic coordinate system, which may be flipped along each axis, into the
+    # world coordinate system.
+    # Note: When applying a logarithmic transformation to a specific axis, the system
+    # assumes that the axes limits are greater than zero.
+    def setscale(*)
+      super
+    end
+
+    # inqscale
+    def inqscale
+      inquiry_int { |pt| super(pt) }
+    end
+
     # Draw a text at position `x`, `y` using the current text attributes. Strings can be
     # defined to create basic mathematical expressions and Greek letters.
     # @param x [Numeric] The X coordinate of starting position of the text string
@@ -902,6 +902,10 @@ module GR
     end
 
     alias axes2d axes
+
+    def axeslbl(*)
+      super
+    end
 
     # Draw a linear and/or logarithmic grid.
     # @param x_tick [Numeric] The length in world coordinates of the interval between minor grid lines.
@@ -1625,6 +1629,10 @@ module GR
     # @return [String]
     def version
       super.to_s
+    end
+
+    def shade(*)
+      super
     end
 
     # Display a point set as a aggregated and rasterized image.
