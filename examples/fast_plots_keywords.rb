@@ -55,5 +55,11 @@ end
   s
 end
 
-# xlog
-# ylog
+data = File.readlines(File.expand_path('fecr.dat', __dir__)).map(&:to_f)
+z = Numo::DFloat.cast(data).reshape(200, 200)
+GR.contourfplot(z)
+s
+GR.contourfplot(z, xlog: true, labels: ['xlog: true'])
+s
+GR.contourfplot(z, ylog: true, labels: ['ylog: true'])
+s
