@@ -7,6 +7,14 @@ module GR
   # object oriented way
   class Plot # should be Figure ?
     def initialize(*args)
+      # Keyword options conform to GR.jl.
+      # It should be a constant?
+      @kw_args = %i[accelerate algorithm alpha backgroundcolor barwidth baseline
+                    clabels color colormap figsize isovalue labels levels
+                    location nbins rotation size tilt title where xflip xform
+                    xlabel xlim xlog yflip ylabel ylim ylog zflip zlabel zlim
+                    zlog clim subplot].freeze
+
       @kvs = if args[-1].is_a? Hash
                args.pop
              else
