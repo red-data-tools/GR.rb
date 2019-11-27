@@ -67,7 +67,7 @@ module GR
 
   # Now you can see a lot of methods just calling super here.
   # Why? Do they really need?
-  # Yes. They are written to help the yard generate the documentation. 
+  # Yes. They are written to help the yard generate the documentation.
   class << self
     def initgr(*)
       super
