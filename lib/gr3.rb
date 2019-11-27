@@ -32,6 +32,10 @@
 #            | +--------------+ |
 #            +------------------+
 
+# Why not GR::GR3?
+# * kojix2 doesn't want to force gr3 to be loaded when gr is loaded.
+# * kojix2 dosen't want to write `GR3 = GR::GR3` or something.
+
 module GR3
   class Error < StandardError; end
 
