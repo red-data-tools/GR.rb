@@ -94,6 +94,9 @@ module GR3
   end
   extend CheckError
 
+  # Now you can see a lot of methods just calling super here.
+  # Why? Do they really need?
+  # Yes. They are written to help the yard generate the documentation.
   class << self
     # This method initializes the gr3 context.
     # @return [Integer]
