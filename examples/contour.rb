@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 # https://github.com/sciapp/python-gr/blob/master/examples/contour.py
-require 'gr'
 require 'gr/plot'
 require 'numo/narray'
 

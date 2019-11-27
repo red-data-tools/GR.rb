@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-require 'gr'
-require 'gr/plot' # will be removed
+require 'gr/plot'
 
 require 'numo/narray'
 DFloat = Numo::DFloat

@@ -2,7 +2,6 @@
 
 # https://github.com/sciapp/python-gr/blob/master/examples/kws2.py
 
-require 'gr'
 require 'gr/plot'
 require 'numo/narray'
 

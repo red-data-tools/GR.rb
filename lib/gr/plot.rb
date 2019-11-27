@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'gr' # require 'gr/plot' or require 'gr' ??
+autoload :GR3, 'gr3'
 require 'numo/narray' # FIXME
 
 module GR
