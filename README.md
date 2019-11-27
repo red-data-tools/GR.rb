@@ -26,16 +26,17 @@ gem 'ruby-gr'
 
 ## Quick Start
 
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/5798442/69689128-74cb1480-110b-11ea-9097-29e878a19e8f.png">
+</p>
+
 ```ruby
-require 'gr'
+require 'gr/plot'
 
 x = [0, 0.2, 0.4, 0.6, 0.8, 1.0]
 y = [0.3, 0.5, 0.4, 0.2, 0.6, 0.7]
 
-GR.polyline(x, y)
-tick = GR.tick(0, 1)
-GR.axes(tick, tick, 0, 0, 1, 1, -0.001)
-GR.updatews
+GR.lineplot(x, y)
 ```
 
 ## Examples
