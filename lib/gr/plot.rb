@@ -5,13 +5,32 @@ autoload :GR3, 'gr3'
 require 'numo/narray' # FIXME
 
 module GR
-  # object oriented way
   class Plot # should be Figure ?
+    # Why is the Plot class NOT object-oriented?
+    #
+    # Because the code here is mainly ported from GR.jl.
+    # https://github.com/jheinen/GR.jl/blob/master/src/jlgr.jl
+    #
+    # The Python implementation is also Julia compliant.
+    #
+    # Julia is not an object-oriented language (at least in 2019).
+    # So, you will see many if branches here.
+    # This is not the Ruby code style. But it WORKS.
+    #
+    # I want to thank the Josef Heinen(@jheinen), the creator of GR.jl 
+    # and Florian Rhiem(@FlorianRhiem), the creator of python-gr.
+    #
+    # If you are interested in an object-oriented implementation,
+    # See rubyplot.
+    # https://github.com/SciRuby/rubyplot
+
+    # Plot kinds conform to GR.jl
     PLOT_KIND = %i[line step scatter stem hist contour contourf hexbin heatmap
                    nonuniformheatmap wireframe surface plot3 scatter3 imshow
                    isosurface polar polarhist polarheatmap trisurf tricont shade
                    volume].freeze # the name might be changed in the future.
 
+    # Keyword options conform to GR.jl.
     KW_ARGS = %i[accelerate algorithm alpha backgroundcolor barwidth baseline
                  clabels color colormap figsize isovalue labels levels location
                  nbins rotation size tilt title where xflip xform xlabel xlim
@@ -19,9 +38,6 @@ module GR
                  subplot].freeze
 
     def initialize(*args)
-      # Keyword options conform to GR.jl.
-      # It should be a constant?
-
       @kvs = if args[-1].is_a? Hash
                args.pop
              else
