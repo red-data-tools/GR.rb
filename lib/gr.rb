@@ -1750,6 +1750,36 @@ module GR
         super(resample_method)
       end
     end
+
+    # Draw paths using given vertices and path codes.
+    # @param x [Array, NArray] A list containing the X coordinates
+    # @param y [Array, NArray] A list containing the Y coordinates
+    # @param codes [String] Path codes
+    #  The following path codes are recognized:
+    #  * M, m
+    #    * moveto           x, y
+    #  * L, l
+    #    * lineto           x, y
+    #  * Q, q
+    #    * quadratic Bézier x1, y1  x2, y2
+    #  * C, c
+    #    * cubic Bézier     x1, y1  x2, y2  x3, y3
+    #  * R, r
+    #    * rectangle        w, h
+    #  * A, a
+    #    * arc              w, h  a1, a2
+    #  * Z
+    #    * closepath        -
+    #  * s
+    #    * stroke           -
+    #  * f
+    #    * fill             -
+    # The values for `x` and `y` are in normalized device coordinates.
+    # The `codes` describe several patch primitives that can be used to create compound paths.
+    def path(x, y, codes)
+      n = equal_length(x, y)
+      super(n, x, y, codes)
+    end
   end
 
   ASF_BUNDLED    = 0

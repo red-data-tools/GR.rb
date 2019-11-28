@@ -201,5 +201,6 @@ module GR
     # extern 'int gr_findboundary(int, double *, double *, double, double (*)(double, double), int, int *)'
     extern 'void gr_setresamplemethod(unsigned int flag)'
     extern 'void gr_inqresamplemethod(unsigned int *flag)'
+    extern 'void gr_path(int, double *, double *, char *)'
   end
 end
