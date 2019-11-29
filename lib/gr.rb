@@ -34,6 +34,8 @@
 #             +----+JupyterSupport| |
 #                | +--------------+ |
 #                +------------------+
+#
+# The GR module works without Numo::Narrray.
 
 module GR
   class Error < StandardError; end

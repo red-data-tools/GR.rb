@@ -36,9 +36,16 @@
 #                +------------------+
 #
 # Why not GR::GR3?
-# * kojix2 doesn't want to force gr3 to be loaded when gr is loaded.
-# * kojix2 dosen't want to write `GR3 = GR::GR3` or something.
-
+# * kojix2 did not want to force gr3 to be loaded when gr is loaded.
+# * kojix2 did not want to write `GR3 = GR::GR3` or something.
+# * This is a opinion of kojix2 and may be changed in the future.
+#
+# GR3 uses Numo::Narrray.
+# * It is difficult to write GR3 modules with only Ruby arrays.
+# * Numo:: Narray has better performance and is easier to read.
+# * Numo:: Narray does not work with JRuby.
+#          https://github.com/ruby-numo/numo-narray/issues/147
+#
 module GR3
   class Error < StandardError; end
 

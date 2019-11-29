@@ -2,7 +2,10 @@
 
 require 'gr'
 autoload :GR3, 'gr3'
-require 'numo/narray' # FIXME
+
+# FIXME: 
+# Plot should not depend on Numo::Narrray unless the GR3 module is required
+require 'numo/narray'
 
 module GR
   class Plot # should be Figure ?
