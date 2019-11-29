@@ -148,46 +148,7 @@ module GRCommons
         end
       end
 
-      def type2str(type)
-        case type
-        when :char, :int8
-          'char'
-        when :uchar, :uint8
-          'unsigned char'
-        when :short, :int16
-          'short'
-        when :ushort, :uint16
-          'unsigned short'
-        when :int, :int32
-          'int'
-        when :uint, :uint32
-          'unsigned int'
-        when :bool
-          'int'
-        when :long
-          'long'
-        when :ulong
-          'unsigned long'
-        when :long_long, :int64
-          'long long'
-        when :ulong_long, :uint64
-          'unsigned long long'
-        when :size_t
-          SIZET_TYPE
-        when :float
-          'float'
-        when :double
-          'double'
-        when :string, :pointer
-          'void *'
-        else
-          if @enums&.find { |e| type == e.tag }
-            'int'
-          else
-            type.to_s
-          end
-        end
-      end
+      # `type2str` is not used in GR.rb, so deleted.
 
       def type2type(type)
         case type
