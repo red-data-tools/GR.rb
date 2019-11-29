@@ -42,9 +42,9 @@
 #
 # GR3 uses Numo::Narrray.
 # * It is difficult to write GR3 modules with only Ruby arrays.
-# * Numo:: Narray has better performance and is easier to read.
-# * Numo:: Narray does not work with JRuby.
-#          https://github.com/ruby-numo/numo-narray/issues/147
+# * Numo::Narray has better performance and is easier to read.
+# * Numo::Narray does not work with JRuby.
+#   * https://github.com/ruby-numo/numo-narray/issues/147
 #
 module GR3
   class Error < StandardError; end
