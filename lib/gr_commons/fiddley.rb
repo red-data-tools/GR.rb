@@ -58,30 +58,7 @@ module GRCommons
         end
       end
 
-      def type2offset_size(type)
-        case type
-        when :char, :uchar, :int8, :uint8
-          Fiddle::ALIGN_CHAR
-        when :short, :ushort, :int16, :uint16
-          Fiddle::ALIGN_SHORT
-        when :int, :uint, :int32, :uint32, :bool
-          Fiddle::ALIGN_INT
-        when :long, :ulong
-          Fiddle::ALIGN_LONG
-        when :int64, :uint64, :long_long, :ulong_long
-          Fiddle::ALIGN_LONG_LONG
-        when :float
-          Fiddle::ALIGN_FLOAT
-        when :double
-          Fiddle::ALIGN_DOUBLE
-        when :size_t
-          Fiddle::ALIGN_SIZE_T
-        when :string, :pointer
-          Fiddle::ALIGN_VOIDP
-        else
-          raise "unknown type #{type}"
-        end
-      end
+      # `type2offset_size` is not used in GR.rb, so deleted.
 
       # `str2value` is not used in GR.rb, so deleted.
 
