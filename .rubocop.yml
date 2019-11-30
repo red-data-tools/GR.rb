@@ -7,7 +7,7 @@ Metrics/LineLength:
 Naming/AsciiIdentifiers:
   Enabled: false
 
-Naming/UncommunicativeMethodParamName:
+Naming/MethodParameterName:
   MinNameLength: 1
 
 Metrics/MethodLength:
