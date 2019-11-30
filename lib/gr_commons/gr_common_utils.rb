@@ -43,9 +43,9 @@ module GRCommons
     def inquiry(types)
       case types
       when Hash, Symbol
-        pt = create_ffi_pointer(types)
-        yield(pt)
-        read_ffi_pointer(pt, types)
+        ptr = create_ffi_pointer(types)
+        yield(ptr)
+        read_ffi_pointer(ptr, types)
       when Array
         pts = types.map { |type| create_ffi_pointer(type) }
         yield(*pts)

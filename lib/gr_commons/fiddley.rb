@@ -12,6 +12,7 @@
 require 'fiddle/import'
 
 module GRCommons
+  # Ruby-FFI compatible API layer for Fiddle.
   module Fiddley
     # unpack1 Ruby 2.4
     unless ''.respond_to?(:unpack1)
@@ -211,7 +212,7 @@ module GRCommons
         @ptr
       end
 
-      { 8 => 'c', 16 => 's', 32 => 'l', 64 => 'q' }.each_pair do |bits, form|
+      { 8 => 'c', 16 => 's', 32 => 'l', 64 => 'q' }.each do |bits, form|
         bytes = bits / 8
 
         define_method("put_int#{bits}") do |offset, val|

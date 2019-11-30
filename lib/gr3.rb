@@ -46,6 +46,8 @@
 # * Numo::Narray does not work with JRuby.
 #   * https://github.com/ruby-numo/numo-narray/issues/147
 #
+# This is a procedural interface to the GR3 in GR plotting library,
+# https://github.com/sciapp/gr
 module GR3
   class Error < StandardError; end
 

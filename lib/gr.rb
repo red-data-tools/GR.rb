@@ -37,6 +37,8 @@
 #
 # The GR module works without Numo::Narrray.
 
+# This is a procedural interface to the GR plotting library,
+# https://github.com/sciapp/gr
 module GR
   class Error < StandardError; end
 
@@ -1146,8 +1148,8 @@ module GR
       n = equal_length(r, g, b)
       if positions.nil?
         positions = ::FFI::Pointer::NULL
-      else
-        raise if positions.length != n
+      elsif positions.length != n
+        raise
       end
       super(n, r, g, b, positions)
     end

@@ -3,8 +3,7 @@
 require 'gr'
 autoload :GR3, 'gr3'
 
-# FIXME: 
-# Plot should not depend on Numo::Narrray unless the GR3 module is required
+# FIXME: Plot should not depend on Numo::Narrray unless the GR3 module is required.
 require 'numo/narray'
 
 module GR
@@ -377,7 +376,7 @@ module GR
         GR.polyline([cosf, 0], [sinf, 0])
         GR.settextalign(GR::TEXT_HALIGN_CENTER, GR::TEXT_VALIGN_HALF)
         x, y = GR.wctondc(1.1 * cosf, 1.1 * sinf)
-        GR.textext(x, y, "%g\xb0" % alpha)
+        GR.textext(x, y, "%<alpha>g\xb0")
       end
       GR.restorestate
     end
@@ -429,10 +428,14 @@ module GR
       GR.selntran(0)
       GR.setscale(0)
       if kvs.key?(:xflip)
-        tmp = xmax; xmax = xmin; xmin = tmp
+        tmp = xmax
+        xmax = xmin
+        xmin = tmp
       end
       if kvs.key?(:yflip)
-        tmp = ymax; ymax = ymin; ymin = tmp
+        tmp = ymax
+        ymax = ymin
+        ymin = tmp
       end
       if img.is_a? String
         GR.drawimage(xmin, xmax, ymin, ymax, width, height, data)
@@ -495,16 +498,14 @@ module GR
       viewport = kvs[:viewport]
       zmin, zmax = kvs[:zrange]
       mask = (GR::OPTION_Z_LOG | GR::OPTION_FLIP_Y | GR::OPTION_FLIP_Z)
-      if kvs.key?(:zflip)
-        options = (GR.inqscale | GR::OPTION_FLIP_Y)
-        GR.setscale(options & mask)
-      elsif kvs.key?(:yflip)
-        options = GR.inqscale & ~GR::OPTION_FLIP_Y
-        GR.setscale(options & mask)
-      else
-        options = GR.inqscale
-        GR.setscale(options & mask)
-      end
+      options = if kvs.key?(:zflip)
+                  (GR.inqscale | GR::OPTION_FLIP_Y)
+                elsif kvs.key?(:yflip)
+                  GR.inqscale & ~GR::OPTION_FLIP_Y
+                else
+                  GR.inqscale
+                end
+      GR.setscale(options & mask)
       h = 0.5 * (zmax - zmin) / (colors - 1)
       GR.setwindow(0, 1, zmin, zmax)
       GR.setviewport(viewport[1] + 0.02 + off, viewport[1] + 0.05 + off,
@@ -577,23 +578,21 @@ module GR
           if hasline(mask)
             where = kvs[:where] || 'mid'
             n = x.length
+            xs = [x[0]]
             case where
             when 'pre'
-              xs = [x[0]]
               ys = [y[0]]
               (n - 1).times do |i|
                 xs << x[i]     << x[i + 1]
                 ys << y[i + 1] << y[i + 1]
               end
             when 'post'
-              xs = [x[0]]
               ys = [y[0]]
               (n - 1).times do |i|
                 xs << x[i + 1] << x[i + 1]
                 ys << y[i]     << y[i + 1]
               end
             else
-              xs = [x[0]]
               ys = []
               (n - 1).times do |i|
                 xs << 0.5 * (x[i] + x[i + 1]) << 0.5 * (x[i] + x[i + 1])
@@ -768,7 +767,7 @@ module GR
           GR.setmarkertype(GR::MARKERTYPE_SOLID_CIRCLE)
           if c
             cmin, cmax = kvs[:crange]
-            c = c.map { |x| normalize_color(x, cmin, cmax) } # NArray -> Array
+            c = c.map { |i| normalize_color(i, cmin, cmax) } # NArray -> Array
             cind = c.map { |i| (1000 + i * 255).round }
             x.length.times do |i|
               GR.setmarkercolorind(cind[i])
@@ -1076,7 +1075,7 @@ module GR
     def narray?(data)
       defined?(Numo::NArray) && data.is_a?(Numo::NArray)
     end
-  end # Plot
+  end
 
   class << self
     def lineplot(*args)

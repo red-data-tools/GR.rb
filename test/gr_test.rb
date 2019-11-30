@@ -83,7 +83,7 @@ class GRTest < Minitest::Test
                  GR.reducepoints([10, 4, 7, 1], [2, 6, 10, 14], 2)
   end
 
-  def test_COLORMAP_MAGMA
+  def test_constant
     assert_equal 47, GR::COLORMAP_MAGMA
   end
 

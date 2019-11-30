@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module GR3
+  # This module automatically converts Ruby arrays and Numo::Narray into pointers.
   module GR3Base
     extend GRCommons::DefineMethods
     define_ffi_methods(FFI,
