@@ -1147,7 +1147,7 @@ module GR
     def setcolormapfromrgb(r, g, b, positions: nil)
       n = equal_length(r, g, b)
       if positions.nil?
-        positions = ::FFI::Pointer::NULL
+        positions = Fiddle::NULL
       elsif positions.length != n
         raise
       end
