@@ -8,7 +8,7 @@ class GR3Test < Test::Unit::TestCase
     def startup
       GR3.init(nil)
     rescue StandardError => e
-      skip "GR3 isn't available: #{e.message}"
+      omit "GR3 isn't available: #{e.message}"
     end
 
     def shutdown
