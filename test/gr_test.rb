@@ -3,26 +3,32 @@
 require_relative 'test_helper'
 require 'gr'
 
-class GRTest < Minitest::Test
-  def setup
-    GR.initgr
+class GRTest < Test::Unit::TestCase
+  class << self
+    def startup
+      GR.initgr
+    end
+  end
+
+  def teardown
+    GR.clearws
   end
 
   def test_gr_ffi_lib
-    assert_instance_of String, GR.ffi_lib
+    assert_kind_of String, GR.ffi_lib
   end
 
   def test_version
-    assert_instance_of String, GR::VERSION
+    assert_kind_of String, GR::VERSION
   end
 
   def test_gr_version
-    assert_instance_of String, GR.version
+    assert_kind_of String, GR.version
   end
 
   def test_setinq_methods
-    assert_instance_of Array, GR.inqdspsize
-    assert_instance_of Array, GR.inqtext(0, 0, 'Ruby')
+    assert_kind_of Array, GR.inqdspsize
+    assert_kind_of Array, GR.inqtext(0, 0, 'Ruby')
     # gridit
     assert_nil GR.setlinetype(3)
     assert_equal 3, GR.inqlinetype
@@ -60,15 +66,15 @@ class GRTest < Minitest::Test
     assert_equal 0, GR.setspace(0.1, 0.9, 40, 50)
     assert_equal [0.1, 0.9, 40, 50], GR.inqspace
 
-    assert_instance_of Array, GR.inqtextext(0, 0, 'Ruby')
+    assert_kind_of Array, GR.inqtextext(0, 0, 'Ruby')
 
     assert_nil GR.setcolormap(3)
     assert_equal 3, GR.inqcolormap
 
     assert_equal 0, GR.inqcolor(1)
 
-    # assert_instance_of Array, GR.inqmathtex(0,0,"Ruby")
-    assert_instance_of Array, GR.inqbbox
+    # assert_kind_of Array, GR.inqmathtex(0,0,"Ruby")
+    assert_kind_of Array, GR.inqbbox
 
     assert_nil GR.setresamplemethod(3)
     assert_equal 3, GR.inqresamplemethod
@@ -85,9 +91,5 @@ class GRTest < Minitest::Test
 
   def test_constant
     assert_equal 47, GR::COLORMAP_MAGMA
-  end
-
-  def teardown
-    GR.clearws
   end
 end

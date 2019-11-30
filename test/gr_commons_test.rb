@@ -3,14 +3,14 @@
 require_relative 'test_helper'
 require 'gr_commons'
 
-class GRCommonsTest < Minitest::Test
+class GRCommonsTest < Test::Unit::TestCase
   def setup
     @utils = Module.new { extend GRCommons::GRCommonUtils }
     @supportedtypes = GRCommons::GRCommonUtils::SUPPORTED_TYPES
   end
 
   def test_version
-    assert_instance_of String, GRCommons::VERSION
+    assert_kind_of String, GRCommons::VERSION
   end
 
   def test_equal_length_array
