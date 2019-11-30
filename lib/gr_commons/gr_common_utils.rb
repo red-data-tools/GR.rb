@@ -82,12 +82,3 @@ module GRCommons
     end
   end
 end
-
-# Ruby 2.4.0 introduces Comparable#clamp
-if RUBY_VERSION.to_f <= 2.3
-  class Numeric
-    def clamp(min, max)
-      [[self, max].min, min].max
-    end
-  end
-end

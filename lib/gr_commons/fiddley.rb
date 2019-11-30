@@ -14,18 +14,7 @@ require 'fiddle/import'
 module GRCommons
   # Ruby-FFI compatible API layer for Fiddle.
   module Fiddley
-    # unpack1 Ruby 2.4
-    unless ''.respond_to?(:unpack1)
-      module RefineStringUnpack1
-        refine String do
-          def unpack1(arg)
-            unpack(arg).first
-          end
-        end
-      end
-
-      using RefineStringUnpack1
-    end
+    # NOTE: GR.rb supports 2.4 +. Unpack 1 does not work under 2.3.
 
     module Utils
       # assumes short = 16bit, int = 32bit, long long = 64bit
