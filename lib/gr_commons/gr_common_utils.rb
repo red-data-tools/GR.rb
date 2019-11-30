@@ -17,10 +17,10 @@ module GRCommons
       lengths[0]
     end
 
-    SupportedTypes = %i[uint8 uint16 int uint double float].freeze
+    SUPPORTED_TYPES = %i[uint8 uint16 int uint double float].freeze
 
     # NOTE: The following method converts Ruby Array or NArray into packed string.
-    SupportedTypes.each do |type|
+    SUPPORTED_TYPES.each do |type|
       define_method(type) do |data|
         # FIXME: Use NArray#to_string
         data = data.to_a.flatten

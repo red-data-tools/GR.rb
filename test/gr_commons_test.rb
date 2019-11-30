@@ -6,7 +6,7 @@ require 'gr_commons'
 class GRCommonsTest < Minitest::Test
   def setup
     @utils = Module.new { extend GRCommons::GRCommonUtils }
-    @supportedtypes = GRCommons::GRCommonUtils::SupportedTypes
+    @supportedtypes = GRCommons::GRCommonUtils::SUPPORTED_TYPES
   end
 
   def test_version
