@@ -4,16 +4,14 @@ require_relative 'test_helper'
 require 'gr3'
 
 class GR3Test < Test::Unit::TestCase
-  class << self
-    def startup
-      GR3.init(nil)
-    rescue StandardError => e
-      omit "GR3 isn't available: #{e.message}"
-    end
+  def setup
+    GR3.init(nil)
+  rescue StandardError => e
+    omit "GR3 isn't available: #{e.message}"
+  end
 
-    def shutdown
-      GR3.terminate
-    end
+  def teardown
+    GR3.terminate
   end
 
   def test_gr3_ffi_lib
