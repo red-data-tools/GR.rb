@@ -10,12 +10,14 @@ module GRCommons
         # delete_prefix (Ruby >= 2.5)
         method_name = method.to_s.sub(/^#{prefix}/, '')
 
+        # FIXME: Refactoring required
+
         define_method(method_name) do |*args|
           args.map! do |arg|
             case arg
             when Array
               send(default_type, arg)
-            when ->(x) { narray? x }
+            when ->(x) { defined?(Numo::NArray) && x.is_a?(Numo::NArray) }
               send(default_type, arg)
             else
               arg
