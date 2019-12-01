@@ -669,7 +669,7 @@ module GR
           draw_polar_axes
           kvs[:zrange] = [cmin, cmax]
           colorbar
-        when :contour
+        when :contour, :contourf
           zmin, zmax = kvs[:zrange]
           if x.length == y.length && y.length == z.length
             x, y, z = GR.gridit(x, y, z, 200, 200)
@@ -684,24 +684,11 @@ module GR
           else
             h = levels
           end
-          GR.contour(x, y, h, z, clabels ? 1 : 1000)
-          colorbar(0, h.length)
-        when :contourf
-          zmin, zmax = kvs[:zrange]
-          if x.length == y.length && y.length == z.length
-            x, y, z = GR.gridit(x, y, z, 200, 200)
-            zmin, zmax = kvs[:zlim] || z.compact.minmax # compact : removed nil
+          if kind == :contour
+            GR.contour(x, y, h, z, clabels ? 1 : 1000)
+          elsif kind == :contourf
+            GR.contourf(x, y, h, z, clabels ? 1 : 0)
           end
-          GR.setspace(zmin, zmax, 0, 90)
-          levels = kvs[:levels] || 0
-          clabels = kvs[:clabels] || false
-          if levels.is_a? Integer
-            hmin, hmax = GR.adjustrange(zmin, zmax)
-            h = linspace(hmin, hmax, levels == 0 ? 21 : levels + 1)
-          else
-            h = levels
-          end
-          GR.contourf(x, y, h, z, clabels ? 1 : 0)
           colorbar(0, h.length)
         when :hexbin
           nbins = kvs[:nbins] || 40
@@ -1170,8 +1157,8 @@ module GR
           z = args[0]
           xsize, ysize = z.shape
         end
-        x = (1..xsize).to_a
-        y = (1..ysize).to_a
+        x = ((1..xsize).to_a.map { |i| [i] * ysize }).flatten
+        y = ((1..ysize).to_a * xsize).flatten
       elsif args.size == 3
         x, y, z = args
       else
@@ -1196,8 +1183,8 @@ module GR
           z = args[0]
           xsize, ysize = z.shape
         end
-        x = (1..xsize).to_a
-        y = (1..ysize).to_a
+        x = ((1..xsize).to_a.map { |i| [i] * ysize }).flatten
+        y = ((1..ysize).to_a * xsize).flatten
       elsif args.size == 3
         x, y, z = args
       else
