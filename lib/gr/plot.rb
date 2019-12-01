@@ -1234,8 +1234,8 @@ module GR
           z = args[0]
           xsize, ysize = z.shape
         end
-        x = ([(1..xsize).to_a] * ysize).flatten
-        y = ((1..ysize).to_a.map { |i| [i] * xsize }).flatten
+        x = ((1..xsize).to_a.map { |i| [i] * ysize }).flatten
+        y = ((1..ysize).to_a * xsize).flatten
       elsif args.size == 3
         x, y, z = args
       else
