@@ -190,7 +190,7 @@ module GR
       kvs[:xaxis] = xtick, xorg, majorx
 
       ymin, ymax = kvs[:yrange]
-      if kind == :hist && kvs.key?(:ylim)
+      if kind == :hist && !kvs.key?(:ylim)
         ymin = (scale & GR::OPTION_Y_LOG) == 0 ? 0 : 1
       end
       if (scale & GR::OPTION_Y_LOG) == 0
@@ -1324,7 +1324,7 @@ module GR
       require 'histogram/array' # dependency
       x = x.to_a if narray?(x)
       x, y = x.histogram(nbins, bin_boundary: :min)
-      x.unshift(x.min)
+      x.push(x[-1] + x[1] - x[0])
       [x, y]
     end
 
