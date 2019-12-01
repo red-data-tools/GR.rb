@@ -4,9 +4,9 @@ require_relative 'test_helper'
 require 'gr'
 
 class GRTest < Test::Unit::TestCase
-    def setup
-      GR.initgr
-    end
+  def setup
+    GR.initgr
+  end
 
   def teardown
     GR.clearws
