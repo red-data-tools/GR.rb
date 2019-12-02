@@ -2,11 +2,9 @@
 
 require 'gr/plot'
 require 'numo/narray'
-DFloat = Numo::DFloat
-NMath = Numo::NMath
 
-x = DFloat.linspace(0, 10, 1001)
-y = NMath.sin(x)
+x = Numo::DFloat.linspace(0, 10, 1001)
+y = Numo::NMath.sin(x)
 
 def s
   sleep 0.5
@@ -36,7 +34,7 @@ s
 14.times do |loc|
   GR.lineplot(x, y, title: 'SIN WAVE',
                     xlabel: 'X Label', ylabel: 'Y Label',
-                    labels: ["Sine wave #{loc}"],
+                    labels: ["location #{loc}"],
                     location: loc)
   s
 end
@@ -52,6 +50,16 @@ end
   GR.lineplot(x, y, title: 'Sine wave',
                     ylim: [-9 + 2 * i, 9 - 2 * i],
                     labels: ["ylim: [#{-9 + 2 * i}, #{9 - 2 * i}]"])
+  s
+end
+
+x = Numo::DFloat.linspace(0, 10, 11)
+y = Numo::NMath.sin(x)
+
+GR.stepplot(x, y, title: 'STEP')
+s
+%w[pre mid post].each do |w|
+  GR.stepplot(x, y, title: 'STEP', where: w, labels: [w])
   s
 end
 
