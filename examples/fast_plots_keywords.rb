@@ -6,9 +6,11 @@ require 'numo/narray'
 x = Numo::DFloat.linspace(0, 10, 1001)
 y = Numo::NMath.sin(x)
 
-def s
-  sleep 0.5
+def s(t = 0.4)
+  sleep t
 end
+
+### LINE PLOT ###
 
 GR.lineplot(x, y)
 s
@@ -53,6 +55,8 @@ end
   s
 end
 
+### STEP PLOT ###
+
 x = Numo::DFloat.linspace(0, 10, 11)
 y = Numo::NMath.sin(x)
 
@@ -62,6 +66,29 @@ s
   GR.stepplot(x, y, title: 'STEP', where: w, labels: [w])
   s
 end
+
+### HISTOGRAM ###
+
+x = Numo::DFloat.new(10_000).rand_norm(10, 5)
+s
+50.times do |i|
+  GR.histogram(x, title: "nbins: #{i}", nbins: i)
+  s 0.2
+end
+
+### HEXBIN PLOT ###
+
+x = Numo::DFloat.new(5000).rand_norm(20, 5)
+y = Numo::DFloat.new(5000).rand_norm(10, 5)
+50.times do |i|
+  i += 3
+  GR.hexbinplot(x, y, title: "nbins: #{i}", nbins: i, colormap: i)
+  s
+end
+
+exit
+
+### CONTOURF PLOT ###
 
 data = File.readlines(File.expand_path('fecr.dat', __dir__)).map(&:to_f)
 z = Numo::DFloat.cast(data).reshape(200, 200)
