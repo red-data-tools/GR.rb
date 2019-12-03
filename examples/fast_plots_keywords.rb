@@ -35,23 +35,23 @@ s
 
 14.times do |loc|
   GR.plot(x, y, title: 'SIN WAVE',
-                    xlabel: 'X Label', ylabel: 'Y Label',
-                    labels: ["location #{loc}"],
-                    location: loc)
+                xlabel: 'X Label', ylabel: 'Y Label',
+                labels: ["location #{loc}"],
+                location: loc)
   s
 end
 
 10.times do |i|
   GR.plot(x, y, title: 'Sine wave',
-                    xlim: [i, i + 1],
-                    labels: ["xlim: [#{i}, #{i + 1}]"])
+                xlim: [i, i + 1],
+                labels: ["xlim: [#{i}, #{i + 1}]"])
   s
 end
 
 5.times do |i|
   GR.plot(x, y, title: 'Sine wave',
-                    ylim: [-9 + 2 * i, 9 - 2 * i],
-                    labels: ["ylim: [#{-9 + 2 * i}, #{9 - 2 * i}]"])
+                ylim: [-9 + 2 * i, 9 - 2 * i],
+                labels: ["ylim: [#{-9 + 2 * i}, #{9 - 2 * i}]"])
   s
 end
 
