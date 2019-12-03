@@ -685,14 +685,14 @@ module GR
             h = levels
           end
           if kind == :contour
-            GR.contour(x, y, h, z, clabels ? 1 : 1000)
+            GR._contour_(x, y, h, z, clabels ? 1 : 1000)
           elsif kind == :contourf
-            GR.contourf(x, y, h, z, clabels ? 1 : 0)
+            GR._contourf_(x, y, h, z, clabels ? 1 : 0)
           end
           colorbar(0, h.length)
         when :hexbin
           nbins = kvs[:nbins] || 40
-          cntmax = GR.hexbin(x, y, nbins)
+          cntmax = GR._hexbin_(x, y, nbins)
           if cntmax > 0
             kvs[:zrange] = [0, cntmax]
             colorbar
@@ -726,12 +726,12 @@ module GR
         when :wireframe
           x, y, z = GR.gridit(x, y, z, 50, 50) if equal_length(x, y, z)
           GR.setfillcolorind(0)
-          GR.surface(x, y, z, GR::OPTION_FILLED_MESH)
+          GR._surface_(x, y, z, GR::OPTION_FILLED_MESH)
           draw_axes(kind, 2)
         when :surface
           x, y, z = GR.gridit(x, y, z, 200, 200) if equal_length(x, y, z)
           if kvs[:accelerate] == false
-            GR.surface(x, y, z, GR::OPTION_COLORED_MESH)
+            GR._surface_(x, y, z, GR::OPTION_COLORED_MESH)
           else
             require 'gr3'
             GR3.clear
@@ -772,13 +772,13 @@ module GR
           GR.uselinespec(spec)
           plot_polar(x, y)
         when :trisurf
-          GR.trisurface(x, y, z)
+          GR._trisurface_(x, y, z)
           draw_axes(kind, 2)
           colorbar(0.05)
         when :tricont
           zmin, zmax = kvs[:zrange]
           levels = linspace(zmin, zmax, 20)
-          GR.tricontour(x, y, z, levels)
+          GR._tricontour_(x, y, z, levels)
         when :shade
           xform = kvs[:xform] || 5
           if x.to_a.include? Float::NAN # FIXME: Ruby is different from Julia?
@@ -1144,6 +1144,7 @@ module GR
       plt.plot_data
     end
 
+    alias _contour_ contour
     def contour(*args)
       kv = if args[-1].is_a? Hash
              args.pop
@@ -1170,6 +1171,7 @@ module GR
       plt.plot_data
     end
 
+    alias _contourf_ contourf
     def contourf(*args)
       kv = if args[-1].is_a? Hash
              args.pop
@@ -1196,18 +1198,21 @@ module GR
       plt.plot_data
     end
 
+    alias _hexbin_ hexbin
     def hexbin(*args)
       plt = GR::Plot.new(*args)
       plt.kvs[:kind] = :hexbin
       plt.plot_data
     end
 
+    alias _tricontour_ tricontour
     def tricontour(*args)
       plt = GR::Plot.new(*args)
       plt.kvs[:kind] = :tricont
       plt.plot_data
     end
 
+    alias _surface_ surface
     def surface(*args)
       kv = if args[-1].is_a? Hash
              args.pop
@@ -1240,6 +1245,7 @@ module GR
       plt.plot_data
     end
 
+    alias _trisurface_ trisurface
     def trisurface(*args)
       plt = GR::Plot.new(*args)
       plt.kvs[:kind] = :trisurf
@@ -1258,7 +1264,7 @@ module GR
       plt.plot_data
     end
 
-    # Note: GR.shade exists
+    alias _shade_ shade
     def shade(*args)
       plt = GR::Plot.new(*args)
       plt.kvs[:kind] = :shade
