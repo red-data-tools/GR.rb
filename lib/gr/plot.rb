@@ -1279,6 +1279,7 @@ module GR
     end
 
     def barplot(labels, heights, kv = {})
+      labels = labels.map(&:to_s)
       wc, hc = barcoordinates(heights)
       horizontal = kv[:horizontal] || false
       plt = GR::Plot.new(labels, heights, kv)
