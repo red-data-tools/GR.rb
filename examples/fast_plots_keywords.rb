@@ -12,29 +12,29 @@ end
 
 ### LINE PLOT ###
 
-GR.lineplot(x, y)
+GR.plot(x, y)
 s
-GR.lineplot(x, y, title: 'Sine wave')
+GR.plot(x, y, title: 'Sine wave')
 s
-GR.lineplot(x, y, title: 'Sine wave', xlabel: 'X Label')
+GR.plot(x, y, title: 'Sine wave', xlabel: 'X Label')
 s
-GR.lineplot(x, y, title: 'Sine wave', ylabel: 'Y Label')
+GR.plot(x, y, title: 'Sine wave', ylabel: 'Y Label')
 s
-GR.lineplot(x, y, title: 'Sine wave', xlabel: 'X Label', ylabel: 'Y Label')
+GR.plot(x, y, title: 'Sine wave', xlabel: 'X Label', ylabel: 'Y Label')
 s
-GR.lineplot(x, y, title: 'Sine wave', backgroundcolor: 100)
+GR.plot(x, y, title: 'Sine wave', backgroundcolor: 100)
 s
-GR.lineplot(x, y, title: 'Sine wave', alpha: 0.5)
+GR.plot(x, y, title: 'Sine wave', alpha: 0.5)
 s
-GR.lineplot(x, y, title: 'Sine wave', figsize: [8, 4], alpha: 1)
+GR.plot(x, y, title: 'Sine wave', figsize: [8, 4], alpha: 1)
 s
-GR.lineplot(x, y, title: 'Sine wave', size: [360, 280])
+GR.plot(x, y, title: 'Sine wave', size: [360, 280])
 s
-GR.lineplot(x, y, title: 'SIN WAVE', labels: ['Sine wave'])
+GR.plot(x, y, title: 'SIN WAVE', labels: ['Sine wave'])
 s
 
 14.times do |loc|
-  GR.lineplot(x, y, title: 'SIN WAVE',
+  GR.plot(x, y, title: 'SIN WAVE',
                     xlabel: 'X Label', ylabel: 'Y Label',
                     labels: ["location #{loc}"],
                     location: loc)
@@ -42,14 +42,14 @@ s
 end
 
 10.times do |i|
-  GR.lineplot(x, y, title: 'Sine wave',
+  GR.plot(x, y, title: 'Sine wave',
                     xlim: [i, i + 1],
                     labels: ["xlim: [#{i}, #{i + 1}]"])
   s
 end
 
 5.times do |i|
-  GR.lineplot(x, y, title: 'Sine wave',
+  GR.plot(x, y, title: 'Sine wave',
                     ylim: [-9 + 2 * i, 9 - 2 * i],
                     labels: ["ylim: [#{-9 + 2 * i}, #{9 - 2 * i}]"])
   s
@@ -60,10 +60,10 @@ end
 x = Numo::DFloat.linspace(0, 10, 11)
 y = Numo::NMath.sin(x)
 
-GR.stepplot(x, y, title: 'STEP')
+GR.step(x, y, title: 'STEP')
 s
 %w[pre mid post].each do |w|
-  GR.stepplot(x, y, title: 'STEP', where: w, labels: [w])
+  GR.step(x, y, title: 'STEP', where: w, labels: [w])
   s
 end
 
@@ -82,19 +82,17 @@ x = Numo::DFloat.new(5000).rand_norm(20, 5)
 y = Numo::DFloat.new(5000).rand_norm(10, 5)
 50.times do |i|
   i += 3
-  GR.hexbinplot(x, y, title: "nbins: #{i}", nbins: i, colormap: i)
+  GR.hexbin(x, y, title: "nbins: #{i}", nbins: i, colormap: i)
   s
 end
-
-exit
 
 ### CONTOURF PLOT ###
 
 data = File.readlines(File.expand_path('fecr.dat', __dir__)).map(&:to_f)
 z = Numo::DFloat.cast(data).reshape(200, 200)
-GR.contourfplot(z)
+GR.contourf(z)
 s
-GR.contourfplot(z, xlog: true, labels: ['xlog: true'])
+GR.contourf(z, xlog: true, labels: ['xlog: true'])
 s
-GR.contourfplot(z, ylog: true, labels: ['ylog: true'])
+GR.contourf(z, ylog: true, labels: ['ylog: true'])
 s
