@@ -1065,30 +1065,31 @@ module GR
   end
 
   class << self
-    def lineplot(*args)
+    # line plot
+    def plot(*args)
       plt = GR::Plot.new(*args)
       plt.plot_data
     end
 
-    def stepplot(*args)
+    def step(*args)
       plt = GR::Plot.new(*args)
       plt.kvs[:kind] = :step
       plt.plot_data
     end
 
-    def scatterplot(*args)
+    def scatter(*args)
       plt = GR::Plot.new(*args)
       plt.kvs[:kind] = :scatter
       plt.plot_data
     end
 
-    def scatterplot3(*args)
+    def scatter3(*args)
       plt = GR::Plot.new(*args)
       plt.kvs[:kind] = :scatter3
       plt.plot_data
     end
 
-    def stemplot(*args)
+    def stem(*args)
       plt = GR::Plot.new(*args)
       plt.kvs[:kind] = :stem
       plt.plot_data
@@ -1143,7 +1144,7 @@ module GR
       plt.plot_data
     end
 
-    def contourplot(*args)
+    def contour(*args)
       kv = if args[-1].is_a? Hash
              args.pop
            else
@@ -1169,7 +1170,7 @@ module GR
       plt.plot_data
     end
 
-    def contourfplot(*args)
+    def contourf(*args)
       kv = if args[-1].is_a? Hash
              args.pop
            else
@@ -1195,19 +1196,19 @@ module GR
       plt.plot_data
     end
 
-    def hexbinplot(*args)
+    def hexbin(*args)
       plt = GR::Plot.new(*args)
       plt.kvs[:kind] = :hexbin
       plt.plot_data
     end
 
-    def tricontourplot(*args)
+    def tricontour(*args)
       plt = GR::Plot.new(*args)
       plt.kvs[:kind] = :tricont
       plt.plot_data
     end
 
-    def surfaceplot(*args)
+    def surface(*args)
       kv = if args[-1].is_a? Hash
              args.pop
            else
@@ -1233,13 +1234,13 @@ module GR
       plt.plot_data
     end
 
-    def polarplot(*args)
+    def polar(*args)
       plt = GR::Plot.new(*args)
       plt.kvs[:kind] = :polar
       plt.plot_data
     end
 
-    def trisurfaceplot(*args)
+    def trisurface(*args)
       plt = GR::Plot.new(*args)
       plt.kvs[:kind] = :trisurf
       plt.plot_data
@@ -1251,7 +1252,7 @@ module GR
       plt.plot_data
     end
 
-    def lineplot3(*args)
+    def plot3(*args)
       plt = GR::Plot.new(*args)
       plt.kvs[:kind] = :plot3
       plt.plot_data
@@ -1264,7 +1265,7 @@ module GR
       plt.plot_data
     end
 
-    def volumeplot(v, kv = {})
+    def volume(v, kv = {})
       plt = GR::Plot.new(v, kv)
       plt.kvs[:kind] = :volume
       plt.args = [[nil, nil, v, nil, '']]
