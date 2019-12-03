@@ -11,9 +11,9 @@ time = passenger.at(0).to_a
 value = passenger.at(1).to_a
 
 GR.plot(time, value,
-            title: 'Air Passenger numbers from 1949 to 1961',
-            ylabel: "Passenger numbers (1000's)",
-            xlabel: 'Date')
+        title: 'Air Passenger numbers from 1949 to 1961',
+        ylabel: "Passenger numbers (1000's)",
+        xlabel: 'Date')
 sleep 1.5
 
 volcano = RDatasets.datasets.volcano.to_matrix.to_a
