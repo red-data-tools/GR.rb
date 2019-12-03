@@ -8,42 +8,42 @@ NMath = Numo::NMath
 
 x = DFloat.linspace(0, 10, 1001)
 y = NMath.sin(x)
-GR.lineplot(x, y)
+GR.plot(x, y)
 gets
 
 x = DFloat.linspace(0, 10, 11)
 y = NMath.sin(x)
-GR.stepplot(x, y)
+GR.step(x, y)
 gets
 
 x = DFloat.linspace(0, 1, 51)
 y = x - x**2
 z = x.clone * 200
-GR.scatterplot(x, y, z)
+GR.scatter(x, y, z)
 gets
 
 sz = DFloat.linspace(50, 300, x.length)
 c = DFloat.linspace(0, 255, x.length)
-GR.scatterplot(x, y, sz, c)
+GR.scatter(x, y, sz, c)
 gets
 
-GR.stemplot(x, y)
+GR.stem(x, y)
 gets
 
 x = DFloat.linspace(0, 30, 1000)
 y = NMath.cos(x) * x
 z = NMath.sin(x) * x
-GR.lineplot3(x, y, z)
+GR.plot3(x, y, z)
 gets
 
 x = 2 * DFloat.new(100).rand - 1
 y = 2 * DFloat.new(100).rand - 1
 z = 2 * DFloat.new(100).rand - 1
-GR.scatterplot3(x, y, z)
+GR.scatter3(x, y, z)
 gets
 
 c = 999 * DFloat.new(100).rand + 1
-GR.scatterplot3(x, y, z, c)
+GR.scatter3(x, y, z, c)
 gets
 
 GR.histogram(DFloat.new(10_000).rand_norm)
@@ -57,13 +57,13 @@ gets
 
 x = DFloat.new(10_000).rand_norm
 y = DFloat.new(10_000).rand_norm
-GR.hexbinplot(x, y)
+GR.hexbin(x, y)
 gets
 
 x = 8 * DFloat.new(100).rand - 4
 y = 8 * DFloat.new(100).rand - 4
 z = NMath.sin(x) + NMath.cos(y)
-GR.contourplot(x, y, z)
+GR.contour(x, y, z)
 gets
 
 _x = DFloat.linspace(-2, 2, 40)
@@ -71,13 +71,13 @@ _y = DFloat.linspace(0, Math::PI, 20)
 x = _x.expand_dims(0) * DFloat.ones(_y.size, 1)
 y = _y.expand_dims(1) * DFloat.ones(1, _x.size)
 z = NMath.sin(x) + NMath.cos(y)
-GR.contourplot(x, y, z)
+GR.contour(x, y, z)
 gets
 
 x = 8 * DFloat.new(100).rand - 4
 y = 8 * DFloat.new(100).rand - 4
 z = NMath.sin(x) + NMath.cos(y)
-GR.contourfplot(x, y, z)
+GR.contourf(x, y, z)
 gets
 
 _x = DFloat.linspace(-2, 2, 40)
@@ -85,19 +85,19 @@ _y = DFloat.linspace(0, Math::PI, 20)
 x = _x.expand_dims(0) * DFloat.ones(_y.size, 1)
 y = _y.expand_dims(1) * DFloat.ones(1, _x.size)
 z = NMath.sin(x) + NMath.cos(y)
-GR.contourfplot(x, y, z)
+GR.contourf(x, y, z)
 gets
 
 x = 8 * DFloat.new(100).rand - 4
 y = 8 * DFloat.new(100).rand - 4
 z = NMath.sin(x) + NMath.cos(y)
-GR.tricontourplot(x, y, z)
+GR.tricontour(x, y, z)
 gets
 
 x = 8 * DFloat.new(100).rand - 4
 y = 8 * DFloat.new(100).rand - 4
 z = NMath.sin(x) + NMath.cos(y)
-GR.surfaceplot(x, y, z)
+GR.surface(x, y, z)
 gets
 
 _x = DFloat.linspace(-2, 2, 40)
@@ -105,14 +105,14 @@ _y = DFloat.linspace(0, Math::PI, 20)
 x = _x.expand_dims(0) * DFloat.ones(_y.size, 1)
 y = _y.expand_dims(1) * DFloat.ones(1, _x.size)
 z = NMath.sin(x) + NMath.cos(y)
-GR.surfaceplot(x, y, z)
+GR.surface(x, y, z)
 GR3.terminate
 gets
 
 x = 8 * DFloat.new(100).rand - 4
 y = 8 * DFloat.new(100).rand - 4
 z = NMath.sin(x) + NMath.cos(y)
-GR.trisurfaceplot(x, y, z)
+GR.trisurface(x, y, z)
 gets
 
 x = 8 * DFloat.new(100).rand - 4
@@ -129,7 +129,7 @@ z = NMath.sin(x) + NMath.cos(y)
 GR.wireframe(x, y, z)
 gets
 
-GR.volumeplot(DFloat.new(50, 50, 50).rand_norm)
+GR.volume(DFloat.new(50, 50, 50).rand_norm)
 gets
 
 n = 1_000_000
