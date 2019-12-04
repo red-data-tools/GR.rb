@@ -11,5 +11,5 @@ GR.contourf(z)
 gets
 
 z = Numo::DFloat.cast(data).reshape(200, 200)
-GR.contour(z, backgroundcolor: 1)
+GR.contour(z, backgroundcolor: 1, colormap: 4)
 gets
