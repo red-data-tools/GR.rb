@@ -1230,11 +1230,10 @@ module GR
       if args.size == 1
         if args[0].is_a? Array
           z = Numo::DFloat.cast(args[0])
-          xsize, ysize = z.shape
         elsif narray?(args[0])
           z = args[0]
-          xsize, ysize = z.shape
         end
+        xsize, ysize = z.shape
         x = ((1..xsize).to_a.map { |i| [i] * ysize }).flatten
         y = ((1..ysize).to_a * xsize).flatten
       elsif args.size == 3
