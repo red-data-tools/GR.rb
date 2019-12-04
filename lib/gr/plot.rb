@@ -1104,10 +1104,14 @@ module GR
     # end
 
     def heatmap(*args)
-      x, y, z, kv = parse_args(*args)
-      create_plot(:heatmap, x, y, z, kv) do |plt|
+      # FIXME
+      _x, _y, z, kv = parse_args(*args)
+      ysize, xsize = z.shape
+      z = z.reshape(xsize, ysize)
+      create_plot(:heatmap, kv) do |plt|
         plt.kvs[:xlim] ||= [0.5, xsize + 0.5]
         plt.kvs[:ylim] ||= [0.5, ysize + 0.5]
+        plt.args = [[(1..xsize).to_a, (1..ysize).to_a, z, nil, '']]
       end
     end
 
