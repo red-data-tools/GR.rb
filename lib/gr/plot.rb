@@ -1067,41 +1067,31 @@ module GR
   class << self
     # line plot
     def plot(*args)
-      plt = GR::Plot.new(*args)
-      plt.plot_data
+      create_plot(:line, *args)
     end
 
     def step(*args)
-      plt = GR::Plot.new(*args)
-      plt.kvs[:kind] = :step
-      plt.plot_data
+      create_plot(:step, *args)
     end
 
     def scatter(*args)
-      plt = GR::Plot.new(*args)
-      plt.kvs[:kind] = :scatter
-      plt.plot_data
+      create_plot(:scatter, *args)
     end
 
     def scatter3(*args)
-      plt = GR::Plot.new(*args)
-      plt.kvs[:kind] = :scatter3
-      plt.plot_data
+      create_plot(:scatter3, *args)
     end
 
     def stem(*args)
-      plt = GR::Plot.new(*args)
-      plt.kvs[:kind] = :stem
-      plt.plot_data
+      create_plot(:stem, *args)
     end
 
     def histogram(x, kv = {})
-      plt = GR::Plot.new(x, kv)
-      plt.kvs[:kind] = :hist
-      nbins = plt.kvs[:nbins] || 0
-      x, y = hist(x, nbins)
-      plt.args = [[x, y, nil, nil, '']]
-      plt.plot_data
+      create_plot(:hist, x, kv) do |plt|
+        nbins = plt.kvs[:nbins] || 0
+        x, y = hist(x, nbins)
+        plt.args = [[x, y, nil, nil, '']]
+      end
     end
 
     # def polarhistogram(x, kv = {})
@@ -1114,19 +1104,30 @@ module GR
     # end
 
     def heatmap(*args)
-      plt = GR::Plot.new(*args)
-      plt.kvs[:kind] = :heatmap
-      # FIXME
-      if narray?(args.first)
-        z = args.first
-        width, height = z.shape
-        plt.kvs[:xlim] ||= [0.5, width + 0.5]
-        plt.kvs[:ylim] ||= [0.5, height + 0.5]
-        plt.args = [[[*1..width], [*1..height], z, nil, '']]
+      kv = if args[-1].is_a? Hash
+             args.pop
+           else
+             {}
+           end
+      if args.size == 1
+        if args[0].is_a? Array
+          z = Numo::DFloat.cast(args[0])
+          xsize, ysize = z.shape
+        elsif narray?(args[0])
+          z = args[0]
+          xsize, ysize = z.shape
+        end
+        x = ((1..xsize).to_a.map { |i| [i] * ysize }).flatten
+        y = ((1..ysize).to_a * xsize).flatten
+      elsif args.size == 3
+        x, y, z = args
       else
-        raise 'not implemented'
+        raise
       end
-      plt.plot_data
+      create_plot(:heatmap, x, y, z, kv) do |plt|
+        plt.kvs[:xlim] ||= [0.5, xsize + 0.5]
+        plt.kvs[:ylim] ||= [0.5, ysize + 0.5]
+      end
     end
 
     def polarheatmap(*args)
@@ -1135,13 +1136,12 @@ module GR
       z = Numo::DFloat.cast(d)
       raise 'expected 2-D array' unless z.ndim == 2
 
-      plt = GR::Plot.new(*args)
-      plt.kvs[:kind] = :polarheatmap
-      width, height = z.shape
-      plt.kvs[:xlim] ||= [0.5, width + 0.5]
-      plt.kvs[:ylim] ||= [0.5, height + 0.5]
-      plt.args = [[(1..width).to_a, (1..height).to_a, z, nil, '']]
-      plt.plot_data
+      create_plot(:polarheatmap, z, *args) do |plt|
+        width, height = z.shape
+        plt.kvs[:xlim] ||= [0.5, width + 0.5]
+        plt.kvs[:ylim] ||= [0.5, height + 0.5]
+        plt.args = [[(1..width).to_a, (1..height).to_a, z, nil, '']]
+      end
     end
 
     alias _contour_ contour
@@ -1166,9 +1166,7 @@ module GR
       else
         raise
       end
-      plt = GR::Plot.new(x, y, z, kv)
-      plt.kvs[:kind] = :contour
-      plt.plot_data
+      create_plot(:contour, x, y, z, kv)
     end
 
     alias _contourf_ contourf
@@ -1193,23 +1191,17 @@ module GR
       else
         raise
       end
-      plt = GR::Plot.new(x, y, z, kv)
-      plt.kvs[:kind] = :contourf
-      plt.plot_data
+      create_plot(:contourf, x, y, z, kv)
     end
 
     alias _hexbin_ hexbin
     def hexbin(*args)
-      plt = GR::Plot.new(*args)
-      plt.kvs[:kind] = :hexbin
-      plt.plot_data
+      create_plot(:hexbin, *args)
     end
 
     alias _tricontour_ tricontour
     def tricontour(*args)
-      plt = GR::Plot.new(*args)
-      plt.kvs[:kind] = :tricont
-      plt.plot_data
+      create_plot(:tricont, *args)
     end
 
     alias _surface_ surface
@@ -1234,85 +1226,76 @@ module GR
       else
         raise
       end
-      plt = GR::Plot.new(x, y, z, kv)
-      plt.kvs[:kind] = :surface
-      plt.plot_data
+      create_plot(:surface, x, y, z, kv)
     end
 
     def polar(*args)
-      plt = GR::Plot.new(*args)
-      plt.kvs[:kind] = :polar
-      plt.plot_data
+      create_plot(:polar, *args)
     end
 
     alias _trisurface_ trisurface
     def trisurface(*args)
-      plt = GR::Plot.new(*args)
-      plt.kvs[:kind] = :trisurf
-      plt.plot_data
+      create_plot(:trisurf, *args)
     end
 
     def wireframe(*args)
-      plt = GR::Plot.new(*args)
-      plt.kvs[:kind] = :wireframe
-      plt.plot_data
+      create_plot(:wireframe, *args)
     end
 
     def plot3(*args)
-      plt = GR::Plot.new(*args)
-      plt.kvs[:kind] = :plot3
-      plt.plot_data
+      create_plot(:plot3, *args)
     end
 
     alias _shade_ shade
     def shade(*args)
-      plt = GR::Plot.new(*args)
-      plt.kvs[:kind] = :shade
-      plt.plot_data
+      create_plot(:shade, *args)
     end
 
     def volume(v, kv = {})
-      plt = GR::Plot.new(v, kv)
-      plt.kvs[:kind] = :volume
-      plt.args = [[nil, nil, v, nil, '']]
-      plt.plot_data
+      create_plot(:volume, v, kv) do |plt|
+        plt.args = [[nil, nil, v, nil, '']]
+      end
     end
 
     def barplot(labels, heights, kv = {})
       labels = labels.map(&:to_s)
       wc, hc = barcoordinates(heights)
       horizontal = kv[:horizontal] || false
-      plt = GR::Plot.new(labels, heights, kv)
-      plt.kvs[:kind] = :bar
-      if horizontal
-        plt.args = [[hc, wc, nil, nil, '']]
-        plt.kvs[:yticks] = [1, 1]
-        plt.kvs[:yticklabels] = labels
-      else
-        plt.args = [[wc, hc, nil, nil, '']]
-        plt.kvs[:xticks] = [1, 1]
-        plt.kvs[:xticklabels] = labels
+      create_plot(:bar, labels, heights, kv) do |plt|
+        if horizontal
+          plt.args = [[hc, wc, nil, nil, '']]
+          plt.kvs[:yticks] = [1, 1]
+          plt.kvs[:yticklabels] = labels
+        else
+          plt.args = [[wc, hc, nil, nil, '']]
+          plt.kvs[:xticks] = [1, 1]
+          plt.kvs[:xticklabels] = labels
+        end
       end
-      plt.plot_data
     end
 
     def imshow(img, kv = {})
       img = Numo::DFloat.cast(img) # Umm...
-      plt = GR::Plot.new(kv)
-      plt.kvs[:kind] = :imshow
-      plt.args = [[nil, nil, img, nil, '']]
-      plt.plot_data
+      create_plot(:imshow, img, kv) do |plt|
+        plt.args = [[nil, nil, img, nil, '']]
+      end
     end
 
     def isosurface(v, kv = {})
       v = Numo::DFloat.cast(v) # Umm...
-      plt = GR::Plot.new(kv)
-      plt.kvs[:kind] = :isosurface
-      plt.args = [[nil, nil, v, nil, '']]
-      plt.plot_data
+      create_plot(:isosurface, v, kv) do |plt|
+        plt.args = [[nil, nil, v, nil, '']]
+      end
     end
 
     private
+
+    def create_plot(type, *args, &block)
+      plt = GR::Plot.new(*args)
+      plt.kvs[:kind] = type
+      block.call(plt) if block_given?
+      plt.plot_data
+    end
 
     def hist(x, nbins = 0)
       nbins = (3.3 * Math.log10(x.length)).round + 1 if nbins <= 1
