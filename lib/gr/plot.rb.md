@@ -72,82 +72,60 @@ module GR
     def plot_args; end # should be private?
 
     # Draw one or more line plots.
-    def plot_line; end
-    alias lineplot plot_line
+    def plot; end
 
     # def plot_line_over oplot_line ?
 
     # Draw one or more step or staircase plots.
-    def plot_step; end
-    alias stepplot plot_step
-    alias step plot_step
+    def step; end
 
     # Draw one or more scatter plots.
-    def plot_scatter; end
-    alias scatterplot plot_scatter
-    alias scatter plot_scatter
+    def scatter; end
 
     # Draw a stem plot.
-    def plot_stem; end
-    alias stemplot plot_stem
-    alias stem plot_stem
+    def stem; end
 
     # Draw a bar plot.
-    def plot_bar; end
-    alias barplot plot_bar
-    alias bar plot_bar
+    def barplot; end
 
     def hist; end # should be private?
 
     # Draw a histogram.
-    def plot_histgram; end
-    alias histogram plot_histgram
+    def histgram; end
 
     # Draw a polar histogram.
-    def plot_polarhistogram; end
-    alias polarhistogram plot_polarhistogram
+    def polarhistogram; end
 
     # Draw a contour plot.
-    def plot_contour; end
-    alias contourplot plot_contour
+    def contour; end
     # GR.contour is already defined in GR::FFI class.
 
     # Draw a filled contour plot.
-    def plot_contourf; end
-    alias contourfplot plot_contour # change name?
+    def contourf; end
     # GR.contourf is already defined in GR::FFI class.
 
     # Draw a hexagon binning plot.
-    def plot_hexbin; end
-    alias hexbinplot plot_hexbin
+    def hexbin; end
     # GR.hexbin is already defined in GR::FFI class.
-    alias jointplot plot_hexbin
 
     # Draw a heatmap.
-    def plot_heatmap; end
-    alias heatmap plot_heatmap
+    def heatmap; end
 
-    def plot_polarheatmap; end
-    alias polarheatmap plot_polarheatmap
+    def polarheatmap; end
 
     # Draw a three-dimensional wireframe plot.
-    def plot_wireframe; end
-    alias wireframe plot_wireframe
+    def wireframe; end
 
     # Draw a three-dimensional surface plot.
-    def plot_surface; end
-    alias surfaceplot plot_surface
+    def surface; end
 
-    def plot_volume; end
-    alias volumeplot plot_volume
+    def volume; end
 
     # Draw one or more three-dimensional line plots.
-    def plot_line3; end
-    alias lineplot3 plot_line3
+    def plot3; end
 
     # Draw one or more three-dimensional scatter plots.
-    def plot_scatter3; end
-    alias scatterplot3 plot_scatter3
+    def scatter3; end
 
     def redraw; end
 
@@ -172,35 +150,22 @@ module GR
     def imshow; end
 
     # Draw an isosurface.
-    def plot_isosurface; end
+    def isosurface; end
 
     # Draw one or more polar plots.
-    def plot_polar; end
+    def polar; end
 
     # Draw a triangular surface plot.
-    def plot_trisurf; end
+    def trisurf; end
 
     # Draw a triangular contour plot.
-    def plot_tricont; end
+    def tricont; end
 
-    def plot_shade; end
+    def shade; end
 
     # def set_panzoom ?
 
     # mainloop
-
-    # GR.plot do
-    #
-    # end
-    #
-    # GR.plot(:scatter, * * *)
-    def plot; end
-
-    # Object ?
-
-    # a = GR::Bar.new()
-    # a.draw ?
-    # a = GR::Bar.plot() ?
   end
 end
 
