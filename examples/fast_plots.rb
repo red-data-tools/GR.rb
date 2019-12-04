@@ -137,7 +137,14 @@ z = NMath.sin(x) + NMath.cos(y)
 GR.wireframe(x, y, z)
 sleep 1.2
 
-GR.volume(DFloat.new(50, 50, 50).rand_norm)
+z = DFloat.new(50, 50, 50).rand_norm
+GR.volume(z)
+sleep 1.2
+GR.volume(z.sort(axis: 0))
+sleep 1.2
+GR.volume(z.sort(axis: 1))
+sleep 1.2
+GR.volume(z.sort(axis: 2))
 sleep 1.2
 
 n = 1_000_000
