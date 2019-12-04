@@ -1104,26 +1104,7 @@ module GR
     # end
 
     def heatmap(*args)
-      kv = if args[-1].is_a? Hash
-             args.pop
-           else
-             {}
-           end
-      if args.size == 1
-        if args[0].is_a? Array
-          z = Numo::DFloat.cast(args[0])
-          xsize, ysize = z.shape
-        elsif narray?(args[0])
-          z = args[0]
-          xsize, ysize = z.shape
-        end
-        x = ((1..xsize).to_a.map { |i| [i] * ysize }).flatten
-        y = ((1..ysize).to_a * xsize).flatten
-      elsif args.size == 3
-        x, y, z = args
-      else
-        raise
-      end
+      x, y, z, kv = parse_args(*args)
       create_plot(:heatmap, x, y, z, kv) do |plt|
         plt.kvs[:xlim] ||= [0.5, xsize + 0.5]
         plt.kvs[:ylim] ||= [0.5, ysize + 0.5]
@@ -1146,51 +1127,13 @@ module GR
 
     alias _contour_ contour
     def contour(*args)
-      kv = if args[-1].is_a? Hash
-             args.pop
-           else
-             {}
-           end
-      if args.size == 1
-        if args[0].is_a? Array
-          z = Numo::DFloat.cast(args[0])
-          xsize, ysize = z.shape
-        elsif narray?(args[0])
-          z = args[0]
-          xsize, ysize = z.shape
-        end
-        x = ((1..xsize).to_a.map { |i| [i] * ysize }).flatten
-        y = ((1..ysize).to_a * xsize).flatten
-      elsif args.size == 3
-        x, y, z = args
-      else
-        raise
-      end
+      x, y, z, kv = parse_args(*args)
       create_plot(:contour, x, y, z, kv)
     end
 
     alias _contourf_ contourf
     def contourf(*args)
-      kv = if args[-1].is_a? Hash
-             args.pop
-           else
-             {}
-           end
-      if args.size == 1
-        if args[0].is_a? Array
-          z = Numo::DFloat.cast(args[0])
-          xsize, ysize = z.shape
-        elsif narray?(args[0])
-          z = args[0]
-          xsize, ysize = z.shape
-        end
-        x = ((1..xsize).to_a.map { |i| [i] * ysize }).flatten
-        y = ((1..ysize).to_a * xsize).flatten
-      elsif args.size == 3
-        x, y, z = args
-      else
-        raise
-      end
+      x, y, z, kv = parse_args(*args)
       create_plot(:contourf, x, y, z, kv)
     end
 
@@ -1206,26 +1149,7 @@ module GR
 
     alias _surface_ surface
     def surface(*args)
-      kv = if args[-1].is_a? Hash
-             args.pop
-           else
-             {}
-           end
-      if args.size == 1
-        if args[0].is_a? Array
-          z = Numo::DFloat.cast(args[0])
-          xsize, ysize = z.shape
-        elsif narray?(args[0])
-          z = args[0]
-          xsize, ysize = z.shape
-        end
-        x = ((1..xsize).to_a.map { |i| [i] * ysize }).flatten
-        y = ((1..ysize).to_a * xsize).flatten
-      elsif args.size == 3
-        x, y, z = args
-      else
-        raise
-      end
+      x, y, z, kv = parse_args(*args)
       create_plot(:surface, x, y, z, kv)
     end
 
@@ -1295,6 +1219,30 @@ module GR
       plt.kvs[:kind] = type
       block.call(plt) if block_given?
       plt.plot_data
+    end
+
+    def parse_args(*args)
+      kv = if args[-1].is_a? Hash
+             args.pop
+           else
+             {}
+           end
+      if args.size == 1
+        if args[0].is_a? Array
+          z = Numo::DFloat.cast(args[0])
+          xsize, ysize = z.shape
+        elsif narray?(args[0])
+          z = args[0]
+          xsize, ysize = z.shape
+        end
+        x = ((1..xsize).to_a.map { |i| [i] * ysize }).flatten
+        y = ((1..ysize).to_a * xsize).flatten
+      elsif args.size == 3
+        x, y, z = args
+      else
+        raise
+      end
+      [x, y, z, kv]
     end
 
     def hist(x, nbins = 0)
