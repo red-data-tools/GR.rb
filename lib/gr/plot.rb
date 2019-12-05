@@ -20,7 +20,7 @@ module GR
     # So, you will see many if branches here.
     # This is not the Ruby code style. But it WORKS.
     #
-    # I want to thank the Josef Heinen(@jheinen), the creator of GR.jl
+    # I want to thank Josef Heinen(@jheinen), the creator of GR.jl
     # and Florian Rhiem(@FlorianRhiem), the creator of python-gr.
     #
     # If you are interested in an object-oriented implementation,
