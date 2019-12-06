@@ -671,8 +671,9 @@ module GR
           colorbar
         when :contour, :contourf
           zmin, zmax = kvs[:zrange]
-          if narray? z && z.ndim == 2
-            x, y, z = GR.gridit(x, y, z, *z.shape)
+          if narray?(z) && z.ndim == 2
+            a, b = z.shape
+            x, y, z = GR.gridit(x, y, z, b, a)
             zmin, zmax = kvs[:zlim] || z.compact.minmax # compact : removed nil
           elsif equal_length(x, y, z)
             x, y, z = GR.gridit(x, y, z, 200, 200)
@@ -727,8 +728,9 @@ module GR
           end
           colorbar(0, levels)
         when :wireframe
-          if narray? z && z.ndim == 2
-            x, y, z = GR.gridit(x, y, z, *z.shape)
+          if narray?(z) && z.ndim == 2
+            a, b = z.shape
+            x, y, z = GR.gridit(x, y, z, b, a)
           elsif equal_length(x, y, z)
             x, y, z = GR.gridit(x, y, z, 50, 50)
           end
@@ -736,8 +738,9 @@ module GR
           GR._surface_(x, y, z, GR::OPTION_FILLED_MESH)
           draw_axes(kind, 2)
         when :surface
-          if narray? z && z.ndim == 2
-            x, y, z = GR.gridit(x, y, z, *z.shape)
+          if narray?(z) && z.ndim == 2
+            a, b = z.shape
+            x, y, z = GR.gridit(x, y, z, b, a)
           elsif equal_length(x, y, z)
             x, y, z = GR.gridit(x, y, z, 200, 200)
           end
