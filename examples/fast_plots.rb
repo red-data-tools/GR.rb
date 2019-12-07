@@ -68,56 +68,37 @@ sleep 1.2
 
 _x = DFloat.linspace(-2, 2, 40)
 _y = DFloat.linspace(0, Math::PI, 20)
-x = _x.expand_dims(0) * DFloat.ones(_y.size, 1)
-y = _y.expand_dims(1) * DFloat.ones(1, _x.size)
-z = NMath.sin(x) + NMath.cos(y)
+x = (_x.expand_dims(0) * DFloat.ones(_y.size, 1)).flatten
+y = (_y.expand_dims(1) * DFloat.ones(1, _x.size)).flatten
+z = (NMath.sin(x) + NMath.cos(y)).flatten
 GR.contour(x, y, z)
 sleep 1.2
 
-x = 8 * DFloat.new(100).rand - 4
-y = 8 * DFloat.new(100).rand - 4
-z = NMath.sin(x) + NMath.cos(y)
 GR.contourf(x, y, z)
 sleep 1.2
 
-_x = DFloat.linspace(-2, 2, 40)
-_y = DFloat.linspace(0, Math::PI, 20)
-x = _x.expand_dims(0) * DFloat.ones(_y.size, 1)
-y = _y.expand_dims(1) * DFloat.ones(1, _x.size)
-z = NMath.sin(x) + NMath.cos(y)
-GR.contourf(x, y, z)
-sleep 1.2
-
-x = 8 * DFloat.new(100).rand - 4
-y = 8 * DFloat.new(100).rand - 4
-z = NMath.sin(x) + NMath.cos(y)
-GR.tricontour(x, y, z)
-sleep 1.2
-
-x = 8 * DFloat.new(100).rand - 4
-y = 8 * DFloat.new(100).rand - 4
-z = NMath.sin(x) + NMath.cos(y)
-GR.surface(x, y, z)
-sleep 1.2
-
-_x = DFloat.linspace(-2, 2, 40)
-_y = DFloat.linspace(0, Math::PI, 20)
-x = _x.expand_dims(0) * DFloat.ones(_y.size, 1)
-y = _y.expand_dims(1) * DFloat.ones(1, _x.size)
-z = NMath.sin(x) + NMath.cos(y)
 GR.surface(x, y, z)
 GR3.terminate
 sleep 1.2
 
-x = 8 * DFloat.new(100).rand - 4
-y = 8 * DFloat.new(100).rand - 4
-z = NMath.sin(x) + NMath.cos(y)
-GR.trisurface(x, y, z)
+GR.wireframe(x, y, z)
 sleep 1.2
 
 x = 8 * DFloat.new(100).rand - 4
 y = 8 * DFloat.new(100).rand - 4
 z = NMath.sin(x) + NMath.cos(y)
+GR.contourf(x, y, z)
+sleep 1.2
+
+GR.tricontour(x, y, z)
+sleep 1.2
+
+GR.surface(x, y, z)
+sleep 1.2
+
+GR.trisurface(x, y, z)
+sleep 1.2
+
 GR.wireframe(x, y, z)
 sleep 1.2
 
@@ -127,14 +108,6 @@ sleep 1.2
 GR.heatmap(z.sort(axis: 0))
 sleep 1.2
 GR.heatmap(z.sort(axis: 1))
-sleep 1.2
-
-_x = DFloat.linspace(-2, 2, 40)
-_y = DFloat.linspace(0, Math::PI, 20)
-x = _x.expand_dims(0) * DFloat.ones(_y.size, 1)
-y = _y.expand_dims(1) * DFloat.ones(1, _x.size)
-z = NMath.sin(x) + NMath.cos(y)
-GR.wireframe(x, y, z)
 sleep 1.2
 
 z = DFloat.new(50, 50, 50).rand_norm
