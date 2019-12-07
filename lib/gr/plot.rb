@@ -673,8 +673,9 @@ module GR
           zmin, zmax = kvs[:zrange]
           if narray?(z) && z.ndim == 2
             a, b = z.shape
-            x, y, z = GR.gridit(x, y, z, b, a)
-            zmin, zmax = kvs[:zlim] || z.compact.minmax # compact : removed nil
+            x = (1..b).to_a
+            y = (1..a).to_a
+            zmin, zmax = kvs[:zlim] || z.minmax
           elsif equal_length(x, y, z)
             x, y, z = GR.gridit(x, y, z, 200, 200)
             zmin, zmax = kvs[:zlim] || z.compact.minmax # compact : removed nil
@@ -730,7 +731,8 @@ module GR
         when :wireframe
           if narray?(z) && z.ndim == 2
             a, b = z.shape
-            x, y, z = GR.gridit(x, y, z, b, a)
+            x = (1..b).to_a
+            y = (1..a).to_a
           elsif equal_length(x, y, z)
             x, y, z = GR.gridit(x, y, z, 50, 50)
           end
@@ -740,7 +742,8 @@ module GR
         when :surface
           if narray?(z) && z.ndim == 2
             a, b = z.shape
-            x, y, z = GR.gridit(x, y, z, b, a)
+            x = (1..b).to_a
+            y = (1..a).to_a
           elsif equal_length(x, y, z)
             x, y, z = GR.gridit(x, y, z, 200, 200)
           end
