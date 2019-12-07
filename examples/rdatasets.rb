@@ -16,7 +16,7 @@ GR.plot(time, value,
         xlabel: 'Date')
 sleep 1.5
 
-volcano = RDatasets.datasets.volcano.to_matrix.to_a
+volcano = RDatasets.datasets.volcano.to_matrix.to_a.transpose
 GR.contour(volcano)
 sleep 1.5
 GR.contourf(volcano)
