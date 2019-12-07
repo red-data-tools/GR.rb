@@ -1165,7 +1165,8 @@ module GR
 
     alias _tricontour_ tricontour
     def tricontour(*args)
-      create_plot(:tricont, *args)
+      x, y, z, kv = parse_args(*args)
+      create_plot(:tricont, x, y, z, kv)
     end
 
     alias _surface_ surface
@@ -1180,11 +1181,13 @@ module GR
 
     alias _trisurface_ trisurface
     def trisurface(*args)
-      create_plot(:trisurf, *args)
+      x, y, z, kv = parse_args(*args)
+      create_plot(:trisurf, x, y, z, kv)
     end
 
     def wireframe(*args)
-      create_plot(:wireframe, *args)
+      x, y, z, kv = parse_args(*args)
+      create_plot(:wireframe, x, y, z, kv)
     end
 
     def plot3(*args)
