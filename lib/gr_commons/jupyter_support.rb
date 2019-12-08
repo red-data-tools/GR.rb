@@ -13,24 +13,26 @@ module GRCommons
       end
 
       # Display your plot in Jupyter Notebook / Lab
-      def show
+      def show(display = true)
         emergencyclosegks
         sleep 0.5
         type = ENV['GKSwstype']
         case type
         when 'svg'
           data = File.read(ENV['GKS_FILEPATH'] + '.svg')
-          IRuby.display(data, mime: 'image/svg+xml')
+          IRuby.display(data, mime: 'image/svg+xml') if display
         when 'webm', 'ogg', 'mp4', 'mov'
           require 'base64'
           data = File.binread(ENV['GKS_FILEPATH'] + '.' + type)
-          IRuby.display(
-            "<video controls autoplay type=\"video/#{type}\" " \
-            "src=\"data:video/#{type};base64,#{Base64.encode64(data)}\">",
-            mime: 'text/html'
-          )
+          if display
+            IRuby.display(
+              "<video controls autoplay type=\"video/#{type}\" " \
+              "src=\"data:video/#{type};base64,#{Base64.encode64(data)}\">",
+              mime: 'text/html'
+            )
+          end
         end
-        nil
+        data unless display
       end
     end
   end

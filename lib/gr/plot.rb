@@ -893,6 +893,11 @@ module GR
       end
     end
 
+    def to_svg
+      ## Need IRuby improvemend.
+      GR.show(false) if ENV['GKSwstype'] == 'svg'
+    end
+
     private
 
     def hasline(mask)
@@ -1243,6 +1248,7 @@ module GR
       plt.kvs[:kind] = type
       block.call(plt) if block_given?
       plt.plot_data
+      plt
     end
 
     def parse_args(*args)
