@@ -40,6 +40,11 @@ module GR
                  xlog yflip ylabel ylim ylog zflip zlabel zlim zlog clim
                  subplot].freeze
 
+    @@last_plot
+    def self.last_plot
+      @@last_plot
+    end
+
     def initialize(*args)
       @kvs = if args[-1].is_a? Hash
                args.pop
@@ -55,6 +60,7 @@ module GR
       @scheme = 0
       @background = 0xffffff
       @handle = nil
+      @@last_plot = self
     end
     attr_accessor :args, :kvs, :scheme
 
@@ -1239,6 +1245,12 @@ module GR
       create_plot(:isosurface, v, kv) do |plt|
         plt.args = [[nil, nil, v, nil, '']]
       end
+    end
+
+    def savefig(filename)
+      GR.beginprint(filename)
+      GR::Plot.last_plot.plot_data(false)
+      GR.endprint
     end
 
     private
