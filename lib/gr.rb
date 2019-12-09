@@ -1402,7 +1402,7 @@ module GR
         # data is a pointer of a pointer
         super(path, width, height, data.ref)
       end
-      d = data.to_str(w * h * 8).unpack('L*') # UINT8
+      d = data.to_str(w * h * 4).unpack('L*') # UINT8
       [w, h, d]
     end
 
