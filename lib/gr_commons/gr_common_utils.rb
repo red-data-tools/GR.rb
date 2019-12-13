@@ -22,9 +22,29 @@ module GRCommons
     # NOTE: The following method converts Ruby Array or NArray into packed string.
     SUPPORTED_TYPES.each do |type|
       define_method(type) do |data|
-        # FIXME: Use NArray#to_string
-        data = data.to_a.flatten
-        Fiddley::Utils.array2str(type, data)
+        case data
+        when Array
+          data = data.flatten
+          Fiddley::Utils.array2str(type, data)
+        when ->(x) { narray?(x) }
+          case type
+          when :uint8
+            Numo::UInt8.cast(data).to_binary
+          when :uint16
+            Numo::UInt16.cast(data).to_binary
+          when :int
+            Numo::Int32.cast(data).to_binary
+          when :uint
+            Numo::UInt32.cast(data).to_binary
+          when :double
+            Numo::DFloat.cast(data).to_binary
+          when :float
+            Numo::SFloat.cast(data).to_binary
+          end
+        else
+          data = data.to_a.flatten
+          Fiddley::Utils.array2str(type, data)
+        end
       end
     end
 
