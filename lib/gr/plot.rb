@@ -1293,7 +1293,12 @@ module GR
 
     def hist(x, nbins = 0)
       nbins = (3.3 * Math.log10(x.length)).round + 1 if nbins <= 1
-      require 'histogram/array' # dependency
+      begin
+        require 'histogram/array'
+      rescue LoadError => e
+        e.message << " Please add gem 'histogram' to your project's Gemfile."
+        raise e
+      end
       x = x.to_a if narray?(x)
       x, y = x.histogram(nbins, bin_boundary: :min)
       x.push(x[-1] + x[1] - x[0])
