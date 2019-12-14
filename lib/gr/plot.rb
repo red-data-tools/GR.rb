@@ -945,8 +945,11 @@ module GR
     end
 
     def plot_args(args, _fmt = :xys)
-      # :construction:
-      x, y, z, c = args
+      # FIXME
+      x, y, z, c = args.map do |i|
+        # Convert an Array-like class such as Daru::Vector to an Array
+        i.is_a?(Array) || narray?(i) ? i : i.to_a
+      end
       [[x, y, z, c]]
     end
 
