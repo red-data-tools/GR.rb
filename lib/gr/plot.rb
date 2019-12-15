@@ -40,7 +40,7 @@ module GR
                  xlog yflip ylabel ylim ylog zflip zlabel zlim zlog clim
                  subplot].freeze
 
-    @@last_plot
+    @@last_plot = nil
     def self.last_plot
       @@last_plot
     end
@@ -878,7 +878,7 @@ module GR
       args.each do |_x, _y, _z, _c, spec|
         if i < num_labels
           label = kvs[:labels][i]
-          tbx, tby = inqtext(0, 0, label)
+          _tbx, tby = inqtext(0, 0, label)
           dy = [(tby[2] - tby[0]) - 0.03, 0].max
           py -= 0.5 * dy
         end
