@@ -185,7 +185,7 @@ module GRCommons
 
       include Fiddley::Utils
 
-      def initialize(type, num = 1, _clear = true)
+      def initialize(type, num = 1)
         if num.is_a?(Fiddle::Pointer)
           @ptr = num
           @size = @ptr.size
