@@ -60,7 +60,7 @@ module GR
     @ffi_lib = File.expand_path('lib/libGR.so', ENV['GRDIR'])
   end
 
-  require_relative 'gr_commons'
+  require_relative 'gr_commons/gr_commons'
   require_relative 'gr/version'
   require_relative 'gr/ffi'
   require_relative 'gr/grbase'
