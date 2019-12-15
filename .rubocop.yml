@@ -1,5 +1,5 @@
 AllCops:
-  TargetRubyVersion: 2.3
+  TargetRubyVersion: 2.4
 
 Metrics/LineLength:
   Max: 130
@@ -21,4 +21,11 @@ Style/AsciiComments:
 
 Style/NumericPredicate:
   Enabled: false
-  
+
+# Greek alphabet
+Naming/VariableName:
+  Enabled: false
+
+# Greek alphabet
+Naming/VariableNumber:
+  Enabled: false
