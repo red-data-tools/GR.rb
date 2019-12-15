@@ -13,6 +13,8 @@
 :bar_chart:  [GR framework](https://github.com/sciapp/gr) - the graphics library for visualisation - for Ruby
 
 ## Installation
+GR.rb supports Ruby 2.4+.
+
 Install [GR](https://github.com/sciapp/gr/releases).
 Set environment variable GRDIR.
 
@@ -25,6 +27,8 @@ Add this line to your application's Gemfile:
 ```sh
 gem 'ruby-gr'
 ```
+
+GR3 and GR::Plot require [numo-narray](https://github.com/ruby-numo/numo-narray).
 
 ## Quick Start
 
