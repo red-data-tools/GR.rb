@@ -949,8 +949,15 @@ module GR
       args = [args] unless args.all? { |i| i.is_a? Array }
       args.map do |xyzc|
         x, y, z, c = xyzc.map do |i|
-          # Convert an Array-like class such as Daru::Vector to an Array
-          i.is_a?(Array) || narray?(i) ? i : i.to_a
+          if i.is_a?(Array) || narray?(i)
+            i
+          elsif i.respond_to?(:to_a)
+            # Convert an Array-like class such as Daru::Vector to an Array
+            i.to_a
+          else
+            # String
+            i
+          end
         end
         [x, y, z, c]
       end
