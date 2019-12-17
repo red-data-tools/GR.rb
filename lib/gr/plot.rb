@@ -946,11 +946,14 @@ module GR
 
     def plot_args(args, _fmt = :xys)
       # FIXME
-      x, y, z, c = args.map do |i|
-        # Convert an Array-like class such as Daru::Vector to an Array
-        i.is_a?(Array) || narray?(i) ? i : i.to_a
+      args = [args] unless args.all? { |i| i.is_a? Array }
+      args.map do |xyzc|
+        x, y, z, c = xyzc.map do |i|
+          # Convert an Array-like class such as Daru::Vector to an Array
+          i.is_a?(Array) || narray?(i) ? i : i.to_a
+        end
+        [x, y, z, c]
       end
-      [[x, y, z, c]]
     end
 
     # Normalize a color c with the range [cmin, cmax]
