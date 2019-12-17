@@ -889,14 +889,14 @@ module GR
         GR.restorestate
         GR.settextalign(GR::TEXT_HALIGN_LEFT, GR::TEXT_VALIGN_HALF)
         if i < num_labels
-          GR.text(px, py, label)
+          text(px, py, label)
           py -= 0.5 * dy
           i += 1
         end
         py -= 0.03
-        GR.selntran(1)
-        GR.restorestate
       end
+      GR.selntran(1)
+      GR.restorestate
     end
 
     def to_svg
