@@ -6,8 +6,6 @@
 require 'numo/gsl'
 require 'gr/plot'
 
-ENV["GKSwstype"] = "x11"
-
 sz = 150
 x = Numo::DFloat.new(sz).seq(1) / sz * 30
 
