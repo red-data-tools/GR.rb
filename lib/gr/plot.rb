@@ -878,6 +878,7 @@ module GR
       args.each do |_x, _y, _z, _c, spec|
         if i < num_labels
           label = kvs[:labels][i]
+          label = label.to_s
           _tbx, tby = inqtext(0, 0, label)
           dy = [(tby[2] - tby[0]) - 0.03, 0].max
           py -= 0.5 * dy
@@ -1079,6 +1080,7 @@ module GR
       w = 0
       h = 0
       kvs[:labels].each do |label|
+        label = label.to_s
         tbx, tby = inqtext(0, 0, label)
         w = [w, tbx[2]].max
         h += [tby[2] - tby[0], 0.03].max
