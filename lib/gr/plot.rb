@@ -947,7 +947,7 @@ module GR
 
     def plot_args(args, _fmt = :xys)
       # FIXME
-      args = [args] unless args.all? { |i| i.is_a? Array }
+      args = [args] unless args.all? { |i| i.is_a?(Array) && i[0].is_a?(Array) }
       args.map do |xyzc|
         x, y, z, c = xyzc.map do |i|
           if i.is_a?(Array) || narray?(i)
