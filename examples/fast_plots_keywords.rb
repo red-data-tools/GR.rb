@@ -80,7 +80,7 @@ end
 
 x = Numo::DFloat.new(5000).rand_norm(20, 5)
 y = Numo::DFloat.new(5000).rand_norm(10, 5)
-50.times do |i|
+48.times do |i|
   i += 3
   GR.hexbin(x, y, title: "nbins: #{i}", nbins: i, colormap: i)
   s
