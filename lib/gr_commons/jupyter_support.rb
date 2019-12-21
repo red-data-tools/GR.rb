@@ -21,6 +21,15 @@ module GRCommons
         when 'svg'
           data = File.read(ENV['GKS_FILEPATH'] + '.svg')
           IRuby.display(data, mime: 'image/svg+xml') if display
+        when 'png', '322', '140'
+          data = File.read(ENV['GKS_FILEPATH'] + '.png')
+          IRuby.display(data, mime: 'image/png') if display
+        when 'jpg', '321', '144'
+          data = File.read(ENV['GKS_FILEPATH'] + '.jpg')
+          IRuby.display(data, mime: 'image/jpeg') if display
+        when 'gif', '130'
+          data = File.read(ENV['GKS_FILEPATH'] + '.gif')
+          IRuby.display(data, mime: 'image/gif') if display
         when 'webm', 'ogg', 'mp4', 'mov'
           require 'base64'
           data = File.binread(ENV['GKS_FILEPATH'] + '.' + type)
