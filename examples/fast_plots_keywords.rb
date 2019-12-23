@@ -30,13 +30,13 @@ GR.plot(x, y, title: 'Sine wave', figsize: [8, 4], alpha: 1)
 s
 GR.plot(x, y, title: 'Sine wave', size: [360, 280])
 s
-GR.plot(x, y, title: 'SIN WAVE', labels: ['Sine wave'])
+GR.plot(x, y, title: 'SIN WAVE', label: 'Sine wave')
 s
 
 14.times do |loc|
   GR.plot(x, y, title: 'SIN WAVE',
                 xlabel: 'X Label', ylabel: 'Y Label',
-                labels: ["location #{loc}"],
+                label: "location #{loc}",
                 location: loc)
   s
 end
@@ -44,14 +44,14 @@ end
 10.times do |i|
   GR.plot(x, y, title: 'Sine wave',
                 xlim: [i, i + 1],
-                labels: ["xlim: [#{i}, #{i + 1}]"])
+                label: "xlim: [#{i}, #{i + 1}]")
   s
 end
 
 5.times do |i|
   GR.plot(x, y, title: 'Sine wave',
                 ylim: [-9 + 2 * i, 9 - 2 * i],
-                labels: ["ylim: [#{-9 + 2 * i}, #{9 - 2 * i}]"])
+                label: "ylim: [#{-9 + 2 * i}, #{9 - 2 * i}]")
   s
 end
 
@@ -63,7 +63,7 @@ y = Numo::NMath.sin(x)
 GR.step(x, y, title: 'STEP')
 s
 %w[pre mid post].each do |w|
-  GR.step(x, y, title: 'STEP', where: w, labels: [w])
+  GR.step(x, y, title: 'STEP', where: w, label: w)
   s
 end
 
@@ -92,7 +92,7 @@ data = File.readlines(File.expand_path('fecr.dat', __dir__)).map(&:to_f)
 z = Numo::DFloat.cast(data).reshape(200, 200)
 GR.contourf(z)
 s
-GR.contourf(z, xlog: true, labels: ['xlog: true'])
+GR.contourf(z, xlog: true, label: 'xlog: true')
 s
-GR.contourf(z, ylog: true, labels: ['ylog: true'])
+GR.contourf(z, ylog: true, label: 'ylog: true')
 s
