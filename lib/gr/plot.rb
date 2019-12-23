@@ -1190,7 +1190,7 @@ module GR
       create_plot(:hexbin, *args)
     end
 
-    alias _tricontour_ tricontour
+    # Draw a triangular contour plot.
     def tricont(*args)
       x, y, z, kv = parse_args(*args)
       create_plot(:tricont, x, y, z, kv)
