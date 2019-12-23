@@ -52,7 +52,7 @@ module GR
                {}
              end
 
-      # label is a original keyword arg which GR.jl does not have. 
+      # label is a original keyword arg which GR.jl does not have.
       @kvs[:labels] = [@kvs[:label]] if @kvs[:label] && @kvs[:labels].nil?
 
       @args = plot_args(args) # method name is the same as Julia/Python
@@ -578,11 +578,14 @@ module GR
         spec ||= ''
         GR.savestate
         GR.settransparency(kvs[:alpha]) if kvs.key?(:alpha)
+
         case kind
+
         when :line
           mask = GR.uselinespec(spec)
           GR.polyline(x, y) if hasline(mask)
           GR.polymarker(x, y) if hasmarker(mask)
+
         when :step
           mask = GR.uselinespec(spec)
           if hasline(mask)
@@ -614,6 +617,7 @@ module GR
             GR.polyline(xs, ys)
           end
           GR.polymarker(x, y) if hasmarker(mask)
+
         when :scatter
           GR.setmarkertype(GR::MARKERTYPE_SOLID_CIRCLE)
           if z || c
@@ -631,6 +635,7 @@ module GR
           else
             GR.polymarker(x, y)
           end
+
         when :stem
           GR.setlinecolorind(1)
           GR.polyline(kvs[:window][0..1], [0, 0])
@@ -642,6 +647,7 @@ module GR
             GR.polyline([xi, xi], [0, yi])
           end
           GR.polymarker(x, y)
+
         when :hist
           ymin = kvs[:window][2]
           y.length.times do |i|
@@ -652,6 +658,7 @@ module GR
             GR.setfillintstyle(GR::INTSTYLE_HOLLOW)
             GR.fillrect(x[i], x[i + 1], ymin, y[i])
           end
+
         # when :polarhist
         #   xmin, xmax = x.minmax
         #   ymax = kvs[:window][3]
@@ -667,6 +674,7 @@ module GR
         #     GR.fillarea([0, ρ[i] * Math.cos(θ[i]), ρ[i] * Math.cos(θ[i + 1])],
         #                 [0, ρ[i] * Math.sin(θ[i]), ρ[i] * Math.sin(θ[i + 1])])
         #   end
+
         when :polarheatmap
           w, h = z.shape
           cmap = colormap
@@ -679,6 +687,7 @@ module GR
           draw_polar_axes
           kvs[:zrange] = [cmin, cmax]
           colorbar
+
         when :contour, :contourf
           zmin, zmax = kvs[:zrange]
           if narray?(z) && z.ndim == 2
@@ -705,6 +714,7 @@ module GR
             GR._contourf_(x, y, h, z, clabels ? 1 : 0)
           end
           colorbar(0, h.length)
+
         when :hexbin
           nbins = kvs[:nbins] || 40
           cntmax = GR._hexbin_(x, y, nbins)
@@ -712,6 +722,7 @@ module GR
             kvs[:zrange] = [0, cntmax]
             colorbar
           end
+
         when :heatmap, :nonuniformheatmap
           case z
           when Array
@@ -738,6 +749,7 @@ module GR
             GR.nonuniformcellarray(x, y, w, h, colors)
           end
           colorbar(0, levels)
+
         when :wireframe
           if narray?(z) && z.ndim == 2
             a, b = z.shape
@@ -749,6 +761,7 @@ module GR
           GR.setfillcolorind(0)
           GR._surface_(x, y, z, GR::OPTION_FILLED_MESH)
           draw_axes(kind, 2)
+
         when :surface
           if narray?(z) && z.ndim == 2
             a, b = z.shape
@@ -766,6 +779,7 @@ module GR
           end
           draw_axes(kind, 2)
           colorbar(0.05)
+
         when :volume
           algorithm = kvs[:algorithm] || 0
           require 'gr3'
@@ -774,9 +788,11 @@ module GR
           draw_axes(kind, 2)
           kvs[:zrange] = [dmin, dmax]
           colorbar(0.05)
+
         when :plot3
           GR.polyline3d(x, y, z)
           draw_axes(kind, 2)
+
         when :scatter3
           GR.setmarkertype(GR::MARKERTYPE_SOLID_CIRCLE)
           if c
@@ -791,21 +807,27 @@ module GR
             GR.polymarker3d(x, y, z)
           end
           draw_axes(kind, 2)
+
         when :imshow
           plot_img(z)
+
         when :isosurface
           plot_iso(z)
+
         when :polar
           GR.uselinespec(spec)
           plot_polar(x, y)
+
         when :trisurf
           GR._trisurface_(x, y, z)
           draw_axes(kind, 2)
           colorbar(0.05)
+
         when :tricont
           zmin, zmax = kvs[:zrange]
           levels = linspace(zmin, zmax, 20)
           GR._tricontour_(x, y, z, levels)
+
         when :shade
           xform = kvs[:xform] || 5
           if x.to_a.include? Float::NAN # FIXME: Ruby is different from Julia?
@@ -814,6 +836,7 @@ module GR
           else
             GR.shadepoints(x, y, xform: xform)
           end
+
         when :bar
           0.step(x.length - 1, 2) do |i|
             GR.setfillcolorind(989)
@@ -824,6 +847,7 @@ module GR
             GR.fillrect(x[i], x[i + 1], y[i], y[i + 1])
           end
         end
+
         GR.restorestate
       end
 
@@ -1195,7 +1219,7 @@ module GR
       x, y, z, kv = parse_args(*args)
       create_plot(:tricont, x, y, z, kv)
     end
-    
+
     # Draw a three-dimensional wireframe plot.
     def wireframe(*args)
       x, y, z, kv = parse_args(*args)
