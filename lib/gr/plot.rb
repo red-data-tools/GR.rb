@@ -1114,33 +1114,24 @@ module GR
   end
 
   class << self
-    # line plot
+    # Draw one or more line plots.
     def plot(*args)
       create_plot(:line, *args)
     end
 
+    # Draw one or more step or staircase plots.
     def step(*args)
       create_plot(:step, *args)
     end
 
+    # Draw one or more scatter plots.
     def scatter(*args)
       create_plot(:scatter, *args)
     end
 
-    def scatter3(*args)
-      create_plot(:scatter3, *args)
-    end
-
+    # Draw a stem plot.
     def stem(*args)
       create_plot(:stem, *args)
-    end
-
-    def histogram(x, kv = {})
-      create_plot(:hist, x, kv) do |plt|
-        nbins = plt.kvs[:nbins] || 0
-        x, y = hist(x, nbins)
-        plt.args = [[x, y, nil, nil, '']]
-      end
     end
 
     # def polarhistogram(x, kv = {})
@@ -1152,6 +1143,7 @@ module GR
     #   plt.plot_data
     # end
 
+    # Draw a heatmap.
     def heatmap(*args)
       # FIXME
       _x, _y, z, kv = parse_args(*args)
@@ -1179,28 +1171,38 @@ module GR
     end
 
     alias _contour_ contour
+    # Draw a contour plot.
     def contour(*args)
       x, y, z, kv = parse_args(*args)
       create_plot(:contour, x, y, z, kv)
     end
 
     alias _contourf_ contourf
+    # Draw a filled contour plot.
     def contourf(*args)
       x, y, z, kv = parse_args(*args)
       create_plot(:contourf, x, y, z, kv)
     end
 
     alias _hexbin_ hexbin
+    # Draw a hexagon binning plot.
     def hexbin(*args)
       create_plot(:hexbin, *args)
     end
 
     alias _tricontour_ tricontour
-    def tricontour(*args)
+    def tricont(*args)
       x, y, z, kv = parse_args(*args)
       create_plot(:tricont, x, y, z, kv)
     end
+    
+    # Draw a three-dimensional wireframe plot.
+    def wireframe(*args)
+      x, y, z, kv = parse_args(*args)
+      create_plot(:wireframe, x, y, z, kv)
+    end
 
+    # Draw a three-dimensional surface plot.
     alias _surface_ surface
     def surface(*args)
       x, y, z, kv = parse_args(*args)
@@ -1212,18 +1214,20 @@ module GR
     end
 
     alias _trisurface_ trisurface
+    # Draw a triangular surface plot.
     def trisurface(*args)
       x, y, z, kv = parse_args(*args)
       create_plot(:trisurf, x, y, z, kv)
     end
 
-    def wireframe(*args)
-      x, y, z, kv = parse_args(*args)
-      create_plot(:wireframe, x, y, z, kv)
-    end
-
+    # Draw one or more three-dimensional line plots.
     def plot3(*args)
       create_plot(:plot3, *args)
+    end
+
+    # Draw one or more three-dimensional scatter plots.
+    def scatter3(*args)
+      create_plot(:scatter3, *args)
     end
 
     alias _shade_ shade
@@ -1237,6 +1241,7 @@ module GR
       end
     end
 
+    # Draw a bar plot.
     def barplot(labels, heights, kv = {})
       labels = labels.map(&:to_s)
       wc, hc = barcoordinates(heights)
@@ -1254,6 +1259,16 @@ module GR
       end
     end
 
+    # Draw a histogram.
+    def histogram(x, kv = {})
+      create_plot(:hist, x, kv) do |plt|
+        nbins = plt.kvs[:nbins] || 0
+        x, y = hist(x, nbins)
+        plt.args = [[x, y, nil, nil, '']]
+      end
+    end
+
+    # Draw an image.
     def imshow(img, kv = {})
       img = Numo::DFloat.cast(img) # Umm...
       create_plot(:imshow, img, kv) do |plt|
@@ -1261,6 +1276,7 @@ module GR
       end
     end
 
+    # Draw an isosurface.
     def isosurface(v, kv = {})
       v = Numo::DFloat.cast(v) # Umm...
       create_plot(:isosurface, v, kv) do |plt|
