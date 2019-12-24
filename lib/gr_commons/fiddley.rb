@@ -181,8 +181,6 @@ module GRCommons
     end
 
     class MemoryPointer
-      using Fiddley::RefineStringUnpack1 if defined?(Fiddley::RefineStringUnpack1)
-
       include Fiddley::Utils
 
       def initialize(type, num = 1)
