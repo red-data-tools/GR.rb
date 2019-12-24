@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+require 'fileutils'
 require 'gr/plot'
 
 Dir.chdir(__dir__)
