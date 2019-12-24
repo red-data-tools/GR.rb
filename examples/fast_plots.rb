@@ -90,7 +90,7 @@ z = NMath.sin(x) + NMath.cos(y)
 GR.contourf(x, y, z)
 sleep 1.2
 
-GR.tricontour(x, y, z)
+GR.tricont(x, y, z)
 sleep 1.2
 
 GR.surface(x, y, z)

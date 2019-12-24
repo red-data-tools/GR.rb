@@ -26,7 +26,7 @@ volcano = RDatasets.datasets.volcano.to_matrix.to_a.transpose
 opts = { title: "Auckland's Maunga Whau Volcano" }
 GR.contour(volcano, opts)
 sleep 1.5
-GR.tricontour(volcano, opts)
+GR.tricont(volcano, opts)
 sleep 1.5
 GR.contourf(volcano, opts)
 sleep 1.5

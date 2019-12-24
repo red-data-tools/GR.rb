@@ -826,7 +826,7 @@ module GR
         when :tricont
           zmin, zmax = kvs[:zrange]
           levels = linspace(zmin, zmax, 20)
-          GR._tricontour_(x, y, z, levels)
+          GR.tricontour(x, y, z, levels)
 
         when :shade
           xform = kvs[:xform] || 5
