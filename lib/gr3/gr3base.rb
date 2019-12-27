@@ -7,7 +7,9 @@ module GR3
     define_ffi_methods(FFI,
                        prefix: 'gr3_',
                        default_type: :float)
-    # workaround for `gr_volume`
+
+    # Workaround for `gr_volume`
+    # See https://github.com/sciapp/gr/issues/95
     define_ffi_methods(FFI,
                        prefix: 'gr_',
                        default_type: :double)
