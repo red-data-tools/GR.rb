@@ -2,8 +2,6 @@
 
 # https://github.com/jheinen/GR.jl/tree/master/examples
 
-ENV['GKS_ENCODING'] = 'utf8'
-
 require 'gr'
 
 hello = {
