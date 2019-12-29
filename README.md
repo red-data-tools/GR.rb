@@ -16,8 +16,9 @@
 
 GR.rb supports Ruby 2.4+.
 
-Install [GR](https://github.com/sciapp/gr/releases).
-Set environment variable GRDIR.
+[Install GR](#gr-installation).
+
+Set environment variable GRDIR, if you have not already done. 
 
 ```sh
 export GRDIR="/your/path/to/gr"
@@ -49,6 +50,30 @@ GR.plot(x, y)
 ## Examples
 
 Have a look in the [`examples`](https://github.com/red-data-tools/GR.rb/tree/master/examples) directory. 
+
+## GR Installation
+
+### Homebrew
+
+```sh
+brew install libgr
+```
+
+Set environment variable GRDIR.
+
+```sh
+export GRDIR="/usr/local/Cellar/libgr/0.44.1"
+```
+
+### Mac Linux Windows
+
+Download the [latest release](https://github.com/sciapp/gr/releases).
+
+Set environment variable GRDIR.
+
+```sh
+export GRDIR="your/path/to/gr"
+```
 
 ## Contributing
 
