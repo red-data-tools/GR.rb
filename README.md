@@ -10,7 +10,7 @@
   <img src="https://user-images.githubusercontent.com/5798442/70857099-13d57600-1f2c-11ea-8f3c-7d81065f13a5.png">
 </p>
 
-:bar_chart:  [GR framework](https://github.com/sciapp/gr) - the graphics library for visualisation - for Ruby
+:bar_chart:  [GR framework](https://github.com/sciapp/gr) - the graphics library for visualization - for Ruby
 
 ## Installation
 
