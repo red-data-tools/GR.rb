@@ -1790,6 +1790,26 @@ module GR
       n = equal_length(x, y)
       super(n, x, y, codes)
     end
+
+    # Define the border width of subsequent path output primitives.
+    # @param width [Numeric] The border width scale factor
+    def setborderwidth(*)
+      super
+    end
+
+    def inqborderwidth
+      inquiry_double { |pt| super(pt) }
+    end
+
+    # Define the color of subsequent path output primitives.
+    # @param color [Integer] The border color index (COLOR < 1256)
+    def setbordercolorind(*)
+      super
+    end
+
+    def inqbordercolorind
+      inquiry_int { |pt| super(pt) }
+    end
   end
 
   ASF_BUNDLED    = 0

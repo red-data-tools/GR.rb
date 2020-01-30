@@ -202,5 +202,9 @@ module GR
     extern 'void gr_setresamplemethod(unsigned int flag)'
     extern 'void gr_inqresamplemethod(unsigned int *flag)'
     extern 'void gr_path(int, double *, double *, char *)'
+    extern 'void gr_setborderwidth(double)'
+    extern 'void gr_inqborderwidth(double *)'
+    extern 'void gr_setbordercolorind(int)'
+    extern 'void gr_inqbordercolorind(int *)'
   end
 end

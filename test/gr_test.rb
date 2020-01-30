@@ -76,6 +76,12 @@ class GRTest < Test::Unit::TestCase
 
     assert_nil GR.setresamplemethod(3)
     assert_equal 3, GR.inqresamplemethod
+
+    assert_nil GR.setborderwidth(2.5)
+    assert_equal 2.5, GR.inqborderwidth
+
+    assert_nil GR.setbordercolorind(1002)
+    assert_equal 1002, GR.inqbordercolorind
   end
 
   def test_readimage
