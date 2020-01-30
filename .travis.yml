@@ -10,7 +10,7 @@ rvm:
   - 2.4
 before_install:
   - gem install bundler -v 2.0.2
-  - export GR_VERSION=0.44.1
+  - export GR_VERSION=0.46.0
   - chmod +x ./test/ci/install_gr.sh
   - ./test/ci/install_gr.sh
   - export GRDIR=$HOME/GR/$GR_VERSION/gr
