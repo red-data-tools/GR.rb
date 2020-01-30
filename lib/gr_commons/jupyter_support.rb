@@ -32,11 +32,17 @@ module GRCommons
           IRuby.display(data, mime: 'image/gif') if display
         when 'webm', 'ogg', 'mp4', 'mov'
           require 'base64'
+          mimespec = if type == 'mov'
+                       'movie/quicktime'
+                     else
+                       "video/#{type}"
+                     end
           data = File.binread(ENV['GKS_FILEPATH'] + '.' + type)
           if display
             IRuby.display(
-              "<video controls autoplay type=\"video/#{type}\" " \
-              "src=\"data:video/#{type};base64,#{Base64.encode64(data)}\">",
+              "<video autoplay controls><source type=\"#{mimespec}\" " \
+              "src=\"data:#{mimespec};base64,#{Base64.encode64(data)}\">" \
+              '</video>',
               mime: 'text/html'
             )
           end
