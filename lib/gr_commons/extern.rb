@@ -5,12 +5,18 @@ module GRCommons
   module Extern
     attr_reader :ffi_methods
 
-    # Remember added method name
-    def extern(*args)
+    # 1. Ignore functions that cannot be attached.
+    #    For compatiblity with older versions of GR.
+    # 2. Available function (names) are stored in @ffi_methods.
+    def try_extern(signature, *opts)
       @ffi_methods ||= []
-      func = super(*args)
-      @ffi_methods << func.name
-      func
+      begin
+        func = extern(signature, *opts)
+        @ffi_methods << func.name
+        func
+      rescue StandardError => e
+        warn "#{e.class.name}: #{e.message}"
+      end
     end
   end
 end
