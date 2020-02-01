@@ -1308,9 +1308,11 @@ module GR
       end
     end
 
-    def savefig(filename)
+    def savefig(filename, kv = {})
       GR.beginprint(filename)
-      GR::Plot.last_plot.plot_data(false)
+      plt = GR::Plot.last_plot
+      plt.kvs.merge!(kv)
+      plt.plot_data(false)
       GR.endprint
     end
 
