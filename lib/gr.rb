@@ -43,23 +43,24 @@ module GR
   class Error < StandardError; end
 
   class << self
-    attr_reader :ffi_lib
+    attr_accessor :ffi_lib
   end
+
+  raise Error, 'Please set env variable GRDIR' unless ENV['GRDIR']
 
   # Platforms |  path
   # Windows   |  bin/libgr.dll
   # MacOSX    |  lib/libGR.so (NOT .dylib)
   # Ubuntu    |  lib/libGR.so
-  raise Error, 'Please set env variable GRDIR' unless ENV['GRDIR']
+  if Object.const_defined?(:RubyInstaller)
+    self.ffi_lib = File.expand_path('bin/libgr.dll', ENV['GRDIR'])
+    RubyInstaller::Runtime.add_dll_directory(File.dirname(ffi_lib))
+  else
+    self.ffi_lib = File.expand_path('lib/libGR.so', ENV['GRDIR'])
+  end
 
   # Change the default encoding to UTF-8
   ENV['GKS_ENCODING'] ||= 'utf8'
-  if Object.const_defined?(:RubyInstaller)
-    @ffi_lib = File.expand_path('bin/libgr.dll', ENV['GRDIR'])
-    RubyInstaller::Runtime.add_dll_directory(File.dirname(@ffi_lib))
-  else
-    @ffi_lib = File.expand_path('lib/libGR.so', ENV['GRDIR'])
-  end
 
   require_relative 'gr_commons/gr_commons'
   require_relative 'gr/version'
