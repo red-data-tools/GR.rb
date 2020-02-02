@@ -52,8 +52,6 @@ module GR
   # Ubuntu    |  lib/libGR.so
   raise Error, 'Please set env variable GRDIR' unless ENV['GRDIR']
 
-  # Set the font path
-  ENV['GKS_FONTPATH'] ||= ENV['GRDIR']
   # Change the default encoding to UTF-8
   ENV['GKS_ENCODING'] ||= 'utf8'
   if Object.const_defined?(:RubyInstaller)
