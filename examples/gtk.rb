@@ -3,8 +3,6 @@
 # NOTE: This example may not work on Windows or Mac.
 
 require 'gr'
-require 'ffi' # To get the ffi pointer, you must load ffi before loading rcairo.
-# See https://github.com/rcairo/rcairo/pull/59
 require 'gtk3'
 require 'numo/narray'
 
@@ -28,7 +26,7 @@ class GRAppWindow < Gtk::ApplicationWindow
 
   def expose(_widget, cr)
     ENV['GKS_WSTYPE'] = '142'
-    ENV['GKSconid'] = cr.to_ptr.address.to_s
+    ENV['GKSconid'] = cr.raw_address.to_s
 
     cr.move_to(15, 45)
     cr.set_font_size(30)
