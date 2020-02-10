@@ -62,7 +62,7 @@ brew install libgr
 Set environment variable GRDIR.
 
 ```sh
-export GRDIR="/usr/local/Cellar/libgr/0.46.0"
+export GRDIR=$(brew --prefix libgr)
 ```
 
 ### Mac Linux Windows
