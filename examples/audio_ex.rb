@@ -17,14 +17,15 @@ GR.setlinecolorind(218)
 GR.setfillintstyle(1)
 GR.setfillcolorind(208)
 
-case RbConfig::CONFIG['host_os']
-when /mswin|msys|mingw|cygwin|bccwin|wince|emc/ # Windows
-  spawn("powershell -c (New-Object Media.SoundPlayer #{filepath}).PlaySync();")
-when /darwin|mac os/ # Mac
-  spawn("afplay #{filepath}")
-when /linux/ # Linux
-  spawn("aplay #{filepath}")
-end
+pid = case RbConfig::CONFIG['host_os']
+      when /mswin|msys|mingw|cygwin|bccwin|wince|emc/ # Windows
+        spawn("powershell -c (New-Object Media.SoundPlayer #{filepath}).PlaySync();")
+      when /darwin|mac os/ # Mac
+        spawn("afplay #{filepath}")
+      when /linux/ # Linux
+        spawn("aplay #{filepath}")
+      end
+Process.detouch(pid)
 
 count = 1
 start_time = Time.now
