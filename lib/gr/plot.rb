@@ -52,7 +52,7 @@ module GR
                {}
              end
 
-      # label is a original keyword arg which GR.jl does not have.
+      # label(singular form) is a original keyword arg which GR.jl does not have.
       @kvs[:labels] = [@kvs[:label]] if @kvs[:label] && @kvs[:labels].nil?
 
       @args = plot_args(args) # method name is the same as Julia/Python
