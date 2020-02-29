@@ -4,6 +4,7 @@ require 'gr'
 autoload :GR3, 'gr3'
 
 # FIXME: Plot should not depend on Numo::Narrray unless the GR3 module is required.
+# Note: The Plot class has a linspace function that is independent of Numo..
 require 'numo/narray'
 
 module GR
