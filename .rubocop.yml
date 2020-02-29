@@ -1,3 +1,6 @@
+# Note: This file may be freely modified by successive maintainers.
+# Ruby's style changes with the times. You don't have to stick to tradition.
+
 AllCops:
   TargetRubyVersion: 2.4
 
@@ -21,6 +24,10 @@ Style/AsciiComments:
 
 Style/NumericPredicate:
   Enabled: false
+
+# kojix2 likes `has_key?`
+Style/PreferredHashMethods:
+  EnforcedStyle: verbose
 
 # Greek alphabet
 Naming/VariableName:

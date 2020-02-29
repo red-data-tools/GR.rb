@@ -166,7 +166,7 @@ module GR
         scale |= GR::OPTION_FLIP_Y if kvs[:yflip]
         scale |= GR::OPTION_FLIP_Z if kvs[:zflip]
       end
-      if kvs.key?(:panzoom)
+      if kvs.has_key?(:panzoom)
         xmin, xmax, ymin, ymax = GR.panzoom(*kvs[:panzoom])
         kvs[:xrange] = [xmin, xmax]
         kvs[:yrange] = [ymin, ymax]
@@ -183,8 +183,8 @@ module GR
 
       xmin, xmax = kvs[:xrange]
       if (scale & GR::OPTION_X_LOG) == 0
-        xmin, xmax = GR.adjustlimits(xmin, xmax) unless kvs.key?(:xlim) || kvs.key?(:panzoom)
-        if kvs.key?(:xticks)
+        xmin, xmax = GR.adjustlimits(xmin, xmax) unless kvs.has_key?(:xlim) || kvs.has_key?(:panzoom)
+        if kvs.has_key?(:xticks)
           xtick, majorx = kvs[:xticks]
         else
           majorx = major_count
@@ -201,12 +201,12 @@ module GR
       kvs[:xaxis] = xtick, xorg, majorx
 
       ymin, ymax = kvs[:yrange]
-      if kind == :hist && !kvs.key?(:ylim)
+      if kind == :hist && !kvs.has_key?(:ylim)
         ymin = (scale & GR::OPTION_Y_LOG) == 0 ? 0 : 1
       end
       if (scale & GR::OPTION_Y_LOG) == 0
-        ymin, ymax = GR.adjustlimits(ymin, ymax) unless kvs.key?(:ylim) || kvs.key?(:panzoom)
-        if kvs.key?(:yticks)
+        ymin, ymax = GR.adjustlimits(ymin, ymax) unless kvs.has_key?(:ylim) || kvs.has_key?(:panzoom)
+        if kvs.has_key?(:yticks)
           ytick, majory = kvs[:yticks]
         else
           majory = major_count
@@ -225,8 +225,8 @@ module GR
       if %i[wireframe surface plot3 scatter3 trisurf volume].include?(kind)
         zmin, zmax = kvs[:zrange]
         if (scale & GR::OPTION_Z_LOG) == 0
-          zmin, zmax = GR.adjustlimits(zmin, zmax) if kvs.key?(:zlim)
-          if kvs.key?(:zticks)
+          zmin, zmax = GR.adjustlimits(zmin, zmax) if kvs.has_key?(:zlim)
+          if kvs.has_key?(:zticks)
             ztick, majorz = kvs[:zticks]
           else
             majorz = major_count
@@ -289,8 +289,8 @@ module GR
         else
           drawgrid && GR.grid(xtick, ytick, 0, 0, majorx, majory)
         end
-        if kvs.key?(:xticklabels) || kvs.key?(:yticklabels)
-          fx = if kvs.key?(:xticklabels)
+        if kvs.has_key?(:xticklabels) || kvs.has_key?(:yticklabels)
+          fx = if kvs.has_key?(:xticklabels)
                  GRCommons::Fiddley::Function.new(
                    :void, %i[double double string double]
                  ) do |x, y, _svalue, value|
@@ -304,7 +304,7 @@ module GR
                    GR.textext(x, y, value.to_s)
                  end
                end
-          fy = if kvs.key?(:yticklabels)
+          fy = if kvs.has_key?(:yticklabels)
                  GRCommons::Fiddley::Function.new(
                    :void, %i[double double string double]
                  ) do |x, y, _svalue, value|
@@ -325,7 +325,7 @@ module GR
         GR.axes(xtick, ytick, xorg[1], yorg[1], -majorx, -majory, -ticksize)
       end
 
-      if kvs.key?(:title)
+      if kvs.has_key?(:title)
         GR.savestate
         GR.settextalign(GR::TEXT_HALIGN_CENTER, GR::TEXT_VALIGN_TOP)
         text(0.5 * (viewport[0] + viewport[1]), vp[3], kvs[:title])
@@ -337,13 +337,13 @@ module GR
         zlabel = kvs[:zlabel] || ''
         GR.titles3d(xlabel, ylabel, zlabel)
       else
-        if kvs.key?(:xlabel)
+        if kvs.has_key?(:xlabel)
           GR.savestate
           GR.settextalign(GR::TEXT_HALIGN_CENTER, GR::TEXT_VALIGN_BOTTOM)
           text(0.5 * (viewport[0] + viewport[1]), vp[2] + 0.5 * charheight, kvs[:xlabel])
           GR.restorestate
         end
-        if kvs.key?(:ylabel)
+        if kvs.has_key?(:ylabel)
           GR.savestate
           GR.settextalign(GR::TEXT_HALIGN_CENTER, GR::TEXT_VALIGN_TOP)
           GR.setcharup(-1, 0)
@@ -410,7 +410,7 @@ module GR
 
     def plot_img(img)
       viewport = kvs[:vp].clone
-      viewport[3] -= 0.05 if kvs.key?(:title)
+      viewport[3] -= 0.05 if kvs.has_key?(:title)
       vp = kvs[:vp]
 
       if img.is_a? String
@@ -438,12 +438,12 @@ module GR
 
       GR.selntran(0)
       GR.setscale(0)
-      if kvs.key?(:xflip)
+      if kvs.has_key?(:xflip)
         tmp = xmax
         xmax = xmin
         xmin = tmp
       end
-      if kvs.key?(:yflip)
+      if kvs.has_key?(:yflip)
         tmp = ymax
         ymax = ymin
         ymin = tmp
@@ -454,7 +454,7 @@ module GR
         GR.cellarray(xmin, xmax, ymin, ymax, width, height, data)
       end
 
-      if kvs.key?(:title)
+      if kvs.has_key?(:title)
         GR.savestate
         GR.settextalign(GR::TEXT_HALIGN_CENTER, GR::TEXT_VALIGN_TOP)
         text(0.5 * (viewport[0] + viewport[1]), vp[3], kvs[:title])
@@ -509,9 +509,9 @@ module GR
       viewport = kvs[:viewport]
       zmin, zmax = kvs[:zrange]
       mask = (GR::OPTION_Z_LOG | GR::OPTION_FLIP_Y | GR::OPTION_FLIP_Z)
-      options = if kvs.key?(:zflip)
+      options = if kvs.has_key?(:zflip)
                   (GR.inqscale | GR::OPTION_FLIP_Y)
-                elsif kvs.key?(:yflip)
+                elsif kvs.has_key?(:yflip)
                   GR.inqscale & ~GR::OPTION_FLIP_Y
                 else
                   GR.inqscale
@@ -567,7 +567,7 @@ module GR
         end
       end
 
-      if kvs.key?(:colormap)
+      if kvs.has_key?(:colormap)
         GR.setcolormap(kvs[:colormap])
       else
         GR.setcolormap(GR::COLORMAP_VIRIDIS)
@@ -578,7 +578,7 @@ module GR
         # FIXME
         spec ||= ''
         GR.savestate
-        GR.settransparency(kvs[:alpha]) if kvs.key?(:alpha)
+        GR.settransparency(kvs[:alpha]) if kvs.has_key?(:alpha)
 
         case kind
 
@@ -852,9 +852,9 @@ module GR
         GR.restorestate
       end
 
-      draw_legend if %i[line step scatter stem].include?(kind) && kvs.key?(:labels)
+      draw_legend if %i[line step scatter stem].include?(kind) && kvs.has_key?(:labels)
 
-      if kvs.key?(:update)
+      if kvs.has_key?(:update)
         GR.updatews
         # if GR.isinline()
         #  restore_context()
@@ -1070,7 +1070,7 @@ module GR
       xmin, xmax = fix_minmax(xmin, xmax)
       ymin, ymax = fix_minmax(ymin, ymax)
       zmin, zmax = fix_minmax(zmin, zmax)
-      if kvs.key?(:xlim)
+      if kvs.has_key?(:xlim)
         x0, x1 = kvs[:xlim]
         x0 ||= xmin
         x1 ||= xmax
@@ -1078,7 +1078,7 @@ module GR
       else
         kvs[:xrange] = [xmin, xmax]
       end
-      if kvs.key?(:ylim)
+      if kvs.has_key?(:ylim)
         y0, y1 = kvs[:ylim]
         y0 ||= ymin
         y1 ||= ymax
@@ -1086,7 +1086,7 @@ module GR
       else
         kvs[:yrange] = [ymin, ymax]
       end
-      if kvs.key?(:zlim)
+      if kvs.has_key?(:zlim)
         z0, z1 = kvs[:zlim]
         z0 ||= zmin
         z1 ||= zmax
@@ -1094,7 +1094,7 @@ module GR
       else
         kvs[:zrange] = [zmin, zmax]
       end
-      if kvs.key?(:clim)
+      if kvs.has_key?(:clim)
         c0, c1 = kvs[:clim]
         c0 ||= cmin
         c1 ||= cmax
