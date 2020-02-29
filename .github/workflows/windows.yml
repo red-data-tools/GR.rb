@@ -21,7 +21,7 @@ jobs:
           ruby-version: ${{ matrix.ruby-version }}
       - name: Install GR framework
         run: |
-          $gr_version = "0.46.0"
+          $gr_version = "0.47.1"
           $gr_architecture = "x86_64"
           $gr_base_name = "gr-${gr_version}-Windows-${gr_architecture}"
           $gr_tar_name = "${gr_base_name}.tar"
