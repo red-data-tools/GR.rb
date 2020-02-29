@@ -381,13 +381,13 @@ module GR
           GR.drawarc(-r, r, -r, r, 0, 359)
         end
       end
-      linspace(0, 315, 8).each do |alpha|
+      0.step(by: 45, to: 315) do |alpha|
         sinf = Math.sin(alpha * Math::PI / 180)
         cosf = Math.cos(alpha * Math::PI / 180)
         GR.polyline([cosf, 0], [sinf, 0])
         GR.settextalign(GR::TEXT_HALIGN_CENTER, GR::TEXT_VALIGN_HALF)
         x, y = GR.wctondc(1.1 * cosf, 1.1 * sinf)
-        GR.textext(x, y, "%<alpha>g\xb0")
+        GR.textext(x, y, "#{alpha}^o")
       end
       GR.restorestate
     end
