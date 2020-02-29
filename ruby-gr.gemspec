@@ -18,7 +18,7 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = '>= 2.4'
 
-  spec.add_development_dependency 'bundler', '~> 2.0'
+  spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'histogram'
   spec.add_development_dependency 'numo-narray'
   spec.add_development_dependency 'pry'
@@ -26,7 +26,4 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rubocop'
   spec.add_development_dependency 'simplecov'
   spec.add_development_dependency 'test-unit'
-
-  # audio_ex.rb example
-  spec.add_development_dependency 'wavefile'
 end
