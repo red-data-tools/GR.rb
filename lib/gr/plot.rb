@@ -36,9 +36,9 @@ module GR
 
     # Keyword options conform to GR.jl.
     KW_ARGS = %i[accelerate algorithm alpha backgroundcolor barwidth baseline
-                 clabels color colormap figsize isovalue labels levels location
-                 nbins rotation size tilt title where xflip xform xlabel xlim
-                 xlog yflip ylabel ylim ylog zflip zlabel zlim zlog clim
+                 clabels color colormap figsize isovalue label labels levels
+                 location nbins rotation size tilt title where xflip xform xlabel
+                 xlim xlog yflip ylabel ylim ylog zflip zlabel zlim zlog clim
                  subplot].freeze
 
     @@last_plot = nil
@@ -52,6 +52,10 @@ module GR
              else
                {}
              end
+      # Check keyword options.
+      @kvs.each_key do |k|
+        warn "Unknown keyword: #{k}" unless KW_ARGS.include? k
+      end
 
       # label(singular form) is a original keyword arg which GR.jl does not have.
       @kvs[:labels] = [@kvs[:label]] if @kvs[:label] && @kvs[:labels].nil?
