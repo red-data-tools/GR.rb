@@ -30,7 +30,7 @@ sleep 1.2
 GR.stem(x, y)
 sleep 1.2
 
-angles = Numo::DFloat.linspace(0, 2*Math::PI, 40)
+angles = Numo::DFloat.linspace(0, 2 * Math::PI, 40)
 radii = Numo::DFloat.linspace(0, 20, 40)
 GR.polar(angles, radii)
 sleep 1.2
