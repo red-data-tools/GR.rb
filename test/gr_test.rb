@@ -82,6 +82,9 @@ class GRTest < Test::Unit::TestCase
 
     assert_nil GR.setbordercolorind(1002)
     assert_equal 1002, GR.inqbordercolorind
+
+    assert_nil GR.setprojectiontype(1)
+    assert_equal 1, GR.inqprojectiontype
   end
 
   def test_readimage

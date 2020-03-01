@@ -1809,6 +1809,14 @@ module GR
     def inqbordercolorind
       inquiry_int { |pt| super(pt) }
     end
+
+    def setprojectiontype(*)
+      super
+    end
+
+    def inqprojectiontype
+      inquiry_int { |pt| super(pt) }
+    end
   end
 
   ASF_BUNDLED    = 0
