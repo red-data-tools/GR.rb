@@ -1810,52 +1810,104 @@ module GR
       inquiry_int { |pt| super(pt) }
     end
 
+    # Set the projection type with this flag.
+    # @param flag [Integer] projection type
+    #  The available options are:
+    #  * 0 : GR_PROJECTION_DEFAULT
+    #    * default
+    #  * 1 : GR_PROJECTION_ORTHOGRAPHIC
+    #    * orthographic
+    #  * 2 : GR_PROJECTION_PERSPECTIVE
+    #    * perspective
     def setprojectiontype(*)
       super
     end
 
+    # Return the projection type.
     def inqprojectiontype
       inquiry_int { |pt| super(pt) }
     end
 
+    # Method to set the camera position, the upward facing direction and the
+    # focus point of the shown volume.
+    # @param camera_pos_x [Numeric] x component of the cameraposition in world coordinates
+    # @param camera_pos_y [Numeric] y component of the cameraposition in world coordinates
+    # @param camera_pos_z [Numeric] z component of the cameraposition in world coordinates
+    # @param up_x [Numeric] x component of the up vector
+    # @param up_y [Numeric] y component of the up vector
+    # @param up_z [Numeric] z component of the up vector
+    # @param focus_point_x [Numeric] x component of focus-point inside volume
+    # @param focus_point_y [Numeric] y component of focus-point inside volume
+    # @param focus_point_z [Numeric] z component of focus-point inside volume
     def settransformationparameters(*)
       super
     end
 
+    # Return the camera position, up vector and focus point.
     def inqtransformationparameters
       inquiry([:double] * 9) do |*pts|
         super(*pts)
       end
     end
 
+    # Set the far and near clipping plane for perspective projection and the 
+    # vertical field ov view.
+    # Switches projection type to perspective.
+    # param near_plane distance to near clipping plane
+    # param far_plane distance to far clipping plane
+    # param fov vertical field of view, input must be between 0 and 180 degrees
     def setperspectiveprojection(*)
       super
     end
 
+    # Return the parameters for the perspective projection.
     def inqperspectiveprojection
       inquiry %i[double double double] do |*pts|
         super(*pts)
       end
     end
 
+    # Set parameters for orthographic transformation.
+    # Switches projection type to orthographic.
+    # @param left [Numeric] xmin of the volume in worldcoordinates
+    # @param right [Numeric] xmax of volume in worldcoordinates
+    # @param bottom [Numeric] ymin of volume in worldcoordinates
+    # @param top [Numeric] ymax of volume in worldcoordinates
+    # @param near_plane [Numeric] distance to near clipping plane
+    # @param far_plane [Numeric] distance to far clipping plane
     def setorthographicprojection(*)
       super
     end
 
+    # Return the camera position, up vector and focus point.
     def inqorthographicprojection
       inquiry([:double] * 6) do |*pts|
         super(*pts)
       end
     end
 
+    # Interface for interaction with the rotation of the model. 
+    # For this a virtual Arcball is used.
+    # @param start_mouse_pos_x [Numeric] x component of the start mouse position
+    # @param start_mouse_pos_y [Numeric] y component of the start mouse position
+    # @param end_mouse_pos_x [Numeric] x component of the end mouse position
+    # @param end_mouse_pos_y [Numeric] y component of the end mouse position
     def camerainteraction(*)
       super
     end
 
+    # Set the three dimensional window. Only used for perspective and orthographic projection.
+    # @param xmin [Numeric] min x-value
+    # @param xmax [Numeric] max x-value
+    # @param ymin [Numeric] min y-value
+    # @param ymax [Numeric] max y-value
+    # @param zmin [Numeric] min z-value
+    # @param zmax [Numeric] max z-value
     def setwindow3d(*)
       super
     end
 
+    # Return the three dimensional window.
     def inqwindow3d
       inquiry([:double] * 6) do |*pts|
         super(*pts)
