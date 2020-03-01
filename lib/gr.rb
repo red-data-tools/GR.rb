@@ -1851,6 +1851,16 @@ module GR
     def camerainteraction(*)
       super
     end
+
+    def setwindow3d(*)
+      super
+    end
+
+    def inqwindow3d
+      inquiry([:double] * 6) do |*pts|
+        super(*pts)
+      end
+    end
   end
 
   ASF_BUNDLED    = 0
