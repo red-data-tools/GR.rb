@@ -1853,9 +1853,9 @@ module GR
     # Set the far and near clipping plane for perspective projection and the 
     # vertical field ov view.
     # Switches projection type to perspective.
-    # param near_plane distance to near clipping plane
-    # param far_plane distance to far clipping plane
-    # param fov vertical field of view, input must be between 0 and 180 degrees
+    # @param near_plane [Numeric] distance to near clipping plane
+    # @param far_plane [Numeric] distance to far clipping plane
+    # @param fov [Numeric] vertical field of view, input must be between 0 and 180 degrees
     def setperspectiveprojection(*)
       super
     end
