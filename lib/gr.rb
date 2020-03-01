@@ -1827,6 +1827,16 @@ module GR
         super(*pts)
       end
     end
+
+    def setperspectiveprojection(*)
+      super
+    end
+
+    def inqperspectiveprojection
+      inquiry %i[double double double] do |*pts|
+        super(*pts)
+      end
+    end
   end
 
   ASF_BUNDLED    = 0

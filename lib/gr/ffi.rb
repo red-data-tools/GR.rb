@@ -209,7 +209,8 @@ module GR
     try_extern 'void gr_inqbordercolorind(int *)'
     try_extern 'void gr_setprojectiontype(int)'
     try_extern 'void gr_inqprojectiontype(int *)'
-
+    try_extern 'void gr_setperspectiveprojection(double, double, double)'
+    try_extern 'void gr_inqperspectiveprojection(double *, double *, double *)'
     try_extern 'void gr_settransformationparameters(double, double, double, double, double, double, double, double, double)'
     try_extern 'void gr_inqtransformationparameters(double *, double *, double *, double *, double *, double *, double *,
                                               double *, double *);'
