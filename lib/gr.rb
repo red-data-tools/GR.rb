@@ -1817,6 +1817,16 @@ module GR
     def inqprojectiontype
       inquiry_int { |pt| super(pt) }
     end
+
+    def settransformationparameters(*)
+      super
+    end
+
+    def inqtransformationparameters
+      inquiry([:double] * 9) do |*args|
+        super(*args)
+      end
+    end
   end
 
   ASF_BUNDLED    = 0
