@@ -1837,6 +1837,16 @@ module GR
         super(*pts)
       end
     end
+
+    def setorthographicprojection(*)
+      super
+    end
+
+    def inqorthographicprojection
+      inquiry([:double] * 6) do |*pts|
+        super(*pts)
+      end
+    end
   end
 
   ASF_BUNDLED    = 0
