@@ -202,7 +202,7 @@ module GR
     # try_extern 'int gr_findboundary(int, double *, double *, double, double (*)(double, double), int, int *)'
     try_extern 'void gr_setresamplemethod(unsigned int flag)'
     try_extern 'void gr_inqresamplemethod(unsigned int *flag)'
-    try_extern 'void gr_path(int, double *, double *, char *)'
+    try_extern 'void gr_path(int, double *, double *, const char *)'
     try_extern 'void gr_setborderwidth(double)'
     try_extern 'void gr_inqborderwidth(double *)'
     try_extern 'void gr_setbordercolorind(int)'
