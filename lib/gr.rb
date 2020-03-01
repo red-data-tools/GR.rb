@@ -1847,6 +1847,10 @@ module GR
         super(*pts)
       end
     end
+
+    def camerainteraction(*)
+      super
+    end
   end
 
   ASF_BUNDLED    = 0

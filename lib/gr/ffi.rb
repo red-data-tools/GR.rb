@@ -216,5 +216,6 @@ module GR
                                               double *, double *);'
     try_extern 'void gr_setorthographicprojection(double, double, double, double, double, double)'
     try_extern 'void gr_inqorthographicprojection(double *, double *, double *, double *, double *, double *)'
+    try_extern 'void gr_camerainteraction(double, double, double, double)'
   end
 end
