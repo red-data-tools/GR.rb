@@ -1823,8 +1823,8 @@ module GR
     end
 
     def inqtransformationparameters
-      inquiry([:double] * 9) do |*args|
-        super(*args)
+      inquiry([:double] * 9) do |*pts|
+        super(*pts)
       end
     end
   end
