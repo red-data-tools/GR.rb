@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Module with common code for GR, GR3
+# Module with common code for GR, GR3.
 module GRCommons
 end
 

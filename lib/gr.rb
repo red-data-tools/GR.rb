@@ -36,7 +36,7 @@
 #                +------------------+
 #
 # The GR module works without Numo::Narrray.
-
+#
 # This is a procedural interface to the GR plotting library,
 # https://github.com/sciapp/gr
 module GR
@@ -1850,7 +1850,7 @@ module GR
       end
     end
 
-    # Set the far and near clipping plane for perspective projection and the 
+    # Set the far and near clipping plane for perspective projection and the
     # vertical field ov view.
     # Switches projection type to perspective.
     # @param near_plane [Numeric] distance to near clipping plane
@@ -1886,7 +1886,7 @@ module GR
       end
     end
 
-    # Interface for interaction with the rotation of the model. 
+    # Interface for interaction with the rotation of the model.
     # For this a virtual Arcball is used.
     # @param start_mouse_pos_x [Numeric] x component of the start mouse position
     # @param start_mouse_pos_y [Numeric] y component of the start mouse position

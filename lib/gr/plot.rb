@@ -8,7 +8,9 @@ autoload :GR3, 'gr3'
 require 'numo/narray'
 
 module GR
-  class Plot # should be Figure ?
+  # This class offers a simple, matlab-style API built on top of the GR package.
+  # The class name Plot may be changed in the future.
+  class Plot
     # Why is the Plot class NOT object-oriented?
     #
     # Because the code here is mainly ported from GR.jl.

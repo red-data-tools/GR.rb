@@ -5,9 +5,10 @@ module GRCommons
   module Extern
     attr_reader :ffi_methods
 
+    # Improved extern method.
     # 1. Ignore functions that cannot be attached.
-    #    For compatiblity with older versions of GR.
     # 2. Available function (names) are stored in @ffi_methods.
+    # For compatiblity with older versions of GR.
     def try_extern(signature, *opts)
       @ffi_methods ||= []
       begin

@@ -3,7 +3,9 @@
 require 'fiddle/import'
 
 module GR
-  # FFI Wrapper module for GR
+  # FFI Wrapper module for GR.
+  # The functions for GR are listed here.
+  # Add functions here when a new version of GR is released.
   module FFI
     extend Fiddle::Importer
 
@@ -16,8 +18,7 @@ module GR
     extend GRCommons::Extern
 
     # https://github.com/sciapp/gr/blob/master/lib/gr/gr.h
-    # Order is important.
-
+    # keep same order
     try_extern 'void gr_initgr(void)'
     try_extern 'void gr_opengks(void)'
     try_extern 'void gr_closegks(void)'

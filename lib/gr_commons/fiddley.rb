@@ -1,18 +1,17 @@
 # frozen_string_literal: true
 
-# Fiddley v0.0.8
-# https://github.com/unak/fiddley
-#
-# Copyright (c) 2017 NAKAMURA Usaku usa@garbagecollect.jp
-#
-# Released under the 2-Clause BSD License.
-
-# NOTE: kojix2 added, removed, and modified several methods.
-
 require 'fiddle/import'
 
 module GRCommons
-  # Ruby-FFI compatible API layer for Fiddle.
+  # Fiddley v0.0.8
+  # https://github.com/unak/fiddley
+  #
+  # Copyright (c) 2017 NAKAMURA Usaku usa@garbagecollect.jp
+  #
+  # Released under the 2-Clause BSD License.
+  #
+  # NOTE: This module is only part of the original code.
+  # kojix2 adds, deletes, and modifies several methods.
   module Fiddley
     # NOTE: GR.rb supports 2.4 +. Unpack 1 does not work under 2.3.
 

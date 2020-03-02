@@ -81,7 +81,7 @@ module GR3
   # a FFI::MemoryPointer in the GR3Base class.
   extend GR3Base
 
-  # This module is for adding error checking to all methods in GR3
+  # This module is for adding error checking to all methods in GR3.
   module CheckError
     def geterror
       line = GRCommons::Fiddley::MemoryPointer.new(:int)

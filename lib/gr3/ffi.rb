@@ -3,7 +3,9 @@
 require 'fiddle/import'
 
 module GR3
-  # FFI Wrapper module for GR3
+  # FFI Wrapper module for GR3.
+  # The functions for GR3 are listed here.
+  # Add functions here when a new version of GR is released.
   module FFI
     extend Fiddle::Importer
 
@@ -16,8 +18,7 @@ module GR3
     extend GRCommons::Extern
 
     # https://github.com/sciapp/gr/blob/master/lib/gr3/gr3.h
-    # Order is important.
-
+    # keep same order
     try_extern 'int gr3_init(int *attrib_list)'
     try_extern 'void gr3_free(void *pointer)'
     try_extern 'void gr3_terminate(void)'
