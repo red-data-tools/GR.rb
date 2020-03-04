@@ -399,11 +399,9 @@ module GR
     end
 
     def plot_polar(θ, ρ)
-      ρ = Numo::DFloat.cast(ρ) if ρ.is_a? Array
       window = kvs[:window]
-      rmin = window[2]
-      rmax = window[3]
-      ρ = (ρ - rmin) / (rmax - rmin)
+      rmax = window[3].to_f
+      ρ = ρ.map { |i| i / rmax }
       n = ρ.length
       x = []
       y = []
@@ -666,21 +664,18 @@ module GR
             GR.fillrect(x[i], x[i + 1], ymin, y[i])
           end
 
-        # when :polarhist
-        #   xmin, xmax = x.minmax
-        #   ymax = kvs[:window][3]
-        #   ρ = y.map { |i| 2 * (i.to_f / ymax - 0.5) }
-        #   θ = x.map { |i| 2 * Math::PI * (i.to_f - xmin) / (xmax - xmin) }
-        #   ρ.length.times do |i|
-        #     GR.setfillcolorind(989)
-        #     GR.setfillintstyle(GR::INTSTYLE_SOLID)
-        #     GR.fillarea([0, ρ[i] * Math.cos(θ[i]), ρ[i] * Math.cos(θ[i + 1])],
-        #                 [0, ρ[i] * Math.sin(θ[i]), ρ[i] * Math.sin(θ[i + 1])])
-        #     GR.setfillcolorind(1)
-        #     GR.setfillintstyle(GR::INTSTYLE_HOLLOW)
-        #     GR.fillarea([0, ρ[i] * Math.cos(θ[i]), ρ[i] * Math.cos(θ[i + 1])],
-        #                 [0, ρ[i] * Math.sin(θ[i]), ρ[i] * Math.sin(θ[i + 1])])
-        #   end
+        when :polarhist
+          ymax = kvs[:window][3].to_f
+          ρ = y.map { |i| i / ymax }
+          θ = x.map { |i| i * 180 / Math::PI }
+          (1...ρ.length).each do |i|
+            GR.setfillcolorind(989)
+            GR.setfillintstyle(GR::INTSTYLE_SOLID)
+            GR.fillarc(-ρ[i], ρ[i], -ρ[i], ρ[i], θ[i - 1], θ[i])
+            GR.setfillcolorind(1)
+            GR.setfillintstyle(GR::INTSTYLE_HOLLOW)
+            GR.fillarc(-ρ[i], ρ[i], -ρ[i], ρ[i], θ[i - 1], θ[i])
+          end
 
         when :polarheatmap
           w, h = z.shape
@@ -1165,14 +1160,14 @@ module GR
       create_plot(:stem, *args)
     end
 
-    # def polarhistogram(x, kv = {})
-    #   plt = GR::Plot.new(x, kv)
-    #   plt.kvs[:kind] = :polarhist
-    #   nbins = plt.kvs[:nbins] || 0
-    #   x, y = hist(x, nbins)
-    #   plt.args = [[x, y, nil, nil, '']]
-    #   plt.plot_data
-    # end
+    def polarhistogram(x, kv = {})
+      plt = GR::Plot.new(x, kv)
+      plt.kvs[:kind] = :polarhist
+      nbins = plt.kvs[:nbins] || 0
+      x, y = hist(x, nbins)
+      plt.args = [[x, y, nil, nil, '']]
+      plt.plot_data
+    end
 
     # Draw a heatmap.
     def heatmap(*args)
