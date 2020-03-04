@@ -38,10 +38,10 @@ module GR
 
     # Keyword options conform to GR.jl.
     KW_ARGS = %i[accelerate algorithm alpha backgroundcolor barwidth baseline
-                 clabels color colormap figsize isovalue label labels levels
-                 location nbins rotation size tilt title where xflip xform xlabel
-                 xlim xlog yflip ylabel ylim ylog zflip zlabel zlim zlog clim
-                 subplot].freeze
+                 clabels color colormap figsize horizontal isovalue label labels
+                 levels location nbins rotation size tilt title where xflip
+                 xform xlabel xlim xlog yflip ylabel ylim ylog zflip zlabel zlim
+                 zlog clim subplot].freeze
 
     @@last_plot = nil
     def self.last_plot
