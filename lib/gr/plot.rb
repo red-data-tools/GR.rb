@@ -1114,7 +1114,7 @@ module GR
       kvs[:labels].each do |label|
         label = label.to_s
         tbx, tby = inqtext(0, 0, label)
-        w = [w, tbx[2]].max
+        w = [w, tbx[2] - tbx[0]].max
         h += [tby[2] - tby[0], 0.03].max
       end
       GR.setscale(scale)
