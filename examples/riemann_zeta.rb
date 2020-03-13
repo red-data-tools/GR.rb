@@ -123,7 +123,7 @@ end
   [:abs, '|\zeta\(s\)|']
 ].each do |part, zlabel|
   %i[contour contourf wireframe surface].each do |type|
-    print "[#{part}] Now reating #{type} plot. Please wait..."
+    print "[#{part}] Now creating #{type} plot. Please wait..."
     time = Time.now
     GR.send(type, xs, ys, zs.map { |z| z.send(part).clamp(0, 2) },
             { title: "Riemann zeta function - #{type}",
