@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# https://ja.stackoverflow.com/questions/63624/ruby%E3%81%A7%E3%82%BC%E3%83%BC%E3%82%BF%E9%96%A2%E6%95%B0%E3%82%92%E8%A8%88%E7%AE%97%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95%E3%82%92%E6%8E%A2%E3%81%97%E3%81%A6%E3%81%84%E3%81%BE%E3%81%99
+# https://ja.stackoverflow.com/questions/63624/
 # by metropolis
 # http://slpr.sakura.ne.jp/qp/code-riemann-zeta/
 # by (c)sikino
