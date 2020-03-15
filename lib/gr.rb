@@ -529,6 +529,13 @@ module GR
       super
     end
 
+    # Gets the current text color index.
+    # This function gets the color of text output primitives.
+    # @return [Integer] color The text color index (COLOR < 1256)
+    def inqtextcolorind
+      inquiry_int { |pt| super(pt) }
+    end
+
     # Set the current character height.
     # @param height [Numeric] Text height value
     # `setcharheight` defines the height of subsequent text output primitives. Text height

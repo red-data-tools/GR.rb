@@ -61,6 +61,7 @@ module GR
     try_extern 'void gr_setcharexpan(double)'
     try_extern 'void gr_setcharspace(double)'
     try_extern 'void gr_settextcolorind(int)'
+    try_extern 'void gr_inqtextcolorind(int *)'
     try_extern 'void gr_setcharheight(double)'
     try_extern 'void gr_setcharup(double, double)'
     try_extern 'void gr_settextpath(int)'
