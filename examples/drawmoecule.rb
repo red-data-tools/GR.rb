@@ -15,6 +15,7 @@ atoms     = data.map { |row| row[0] }.map { |a| GR3::ATOM_NUMBERS[a] }
 colors    = atoms.map { |a| GR3::ATOM_COLORS[a] }
 radii     = atoms.map { |a| GR3::ATOM_RADII[a] }
 
+GR.initgr
 GR.setviewport(0, 1, 0, 1)
 
 360.times do |i|
