@@ -138,5 +138,5 @@ end
     # gets
   end
 end
-puts "Press Enter to exit..."
+puts 'Press Enter to exit...'
 gets
