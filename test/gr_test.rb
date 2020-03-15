@@ -88,6 +88,9 @@ class GRTest < Test::Unit::TestCase
 
     assert_nil GR.settextcolorind(999)
     assert_equal 999, GR.inqtextcolorind
+
+    assert_nil GR.setscalefactors3d(2.3, 2.4, 2.5)
+    assert_equal [2.3, 2.4, 2.5], GR.inqscalefactors3d
   end
 
   def test_readimage

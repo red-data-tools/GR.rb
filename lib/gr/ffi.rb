@@ -194,5 +194,7 @@ module GR
     try_extern 'void gr_camerainteraction(double, double, double, double)'
     try_extern 'void gr_setwindow3d(double, double, double, double, double, double)'
     try_extern 'void gr_inqwindow3d(double *, double *, double *, double *, double *, double *)'
+    try_extern 'void gr_setscalefactors3d(double, double, double)'
+    try_extern 'void gr_inqscalefactors3d(double *, double *, double *)'
   end
 end

@@ -1920,6 +1920,22 @@ module GR
         super(*pts)
       end
     end
+
+    # Set the scale factor for each axis. A one means no scale.
+    # All factor have to be != 0.
+    # @param x_axis_scale [Numeric] factor for scaling the x-axis
+    # @param y_axis_scale [Numeric] factor for scaling the y-axis
+    # @param z_axis_scale [Numeric] factor for scaling the z-axis
+    def setscalefactors3d(*)
+      super
+    end
+
+    # Returns the scale factors for each axis.
+    def inqscalefactors3d
+      inquiry %i[double double double] do |*opts|
+        super(*opts)
+      end
+    end
   end
 
   ASF_BUNDLED    = 0
