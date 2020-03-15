@@ -51,6 +51,11 @@ GR.plot(x, y)
 
 Have a look in the [`examples`](https://github.com/red-data-tools/GR.rb/tree/master/examples) directory. 
 
+## Documentation
+
+- [GR.rb API Documentation](https://rubydoc.info/gems/ruby-gr)
+- [GR Framework](https://gr-framework.org/)
+
 ## GR Installation
 
 ### Homebrew
