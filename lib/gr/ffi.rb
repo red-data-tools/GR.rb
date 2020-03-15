@@ -196,5 +196,6 @@ module GR
     try_extern 'void gr_inqwindow3d(double *, double *, double *, double *, double *, double *)'
     try_extern 'void gr_setscalefactors3d(double, double, double)'
     try_extern 'void gr_inqscalefactors3d(double *, double *, double *)'
+    try_extern 'void gr_transformationinterfaceforrepl(double, double, double, double)'
   end
 end

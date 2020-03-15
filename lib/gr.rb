@@ -1936,6 +1936,19 @@ module GR
         super(*opts)
       end
     end
+
+    # This is an interface for REPL based languages to enable an easier way to rotate around an object.
+    # It can also be used, if the user prefers angles instead of the direct camera position, but just
+    # to mention, the sideeffect is that the functionality gets reduced.
+    # fov = 0 or fov = nan means orthographic projection.
+    # radius = 0 or radius = nan uses the ball radius for the camera distance.
+    # @param phi [Numeric] phi angle of the spherical coordinates
+    # @param theta [Numeric] theta angle of the spherical coordinates
+    # @param fov [Numeric] vertical field of view
+    # @param radius [Numeric] camera distance to the focus middle point of the drawn objekt
+    def transformationinterfaceforrepl(*)
+      super
+    end
   end
 
   ASF_BUNDLED    = 0
