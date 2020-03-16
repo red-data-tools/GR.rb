@@ -82,4 +82,7 @@ export GRDIR="your/path/to/gr"
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/red-data-tools/GR.rb.
+* Report bugs
+* Fix bugs and submit pull requests
+* Write, clarify, or fix documentation
+* Suggest or add new features
