@@ -1937,15 +1937,19 @@ module GR
       end
     end
 
-    # This is an interface for REPL based languages to enable an easier way to rotate around an object.
-    # It can also be used, if the user prefers angles instead of the direct camera position, but just
-    # to mention, the sideeffect is that the functionality gets reduced.
-    # fov = 0 or fov = nan means orthographic projection.
-    # radius = 0 or radius = nan uses the ball radius for the camera distance.
+    # This is an interface for REPL based languages to enable an easier way to
+    # rotate around an object.
+    # The center of the 3d window is used as the focus point and the camera is
+    # positioned relative to it, using spherical coordinates. This function can
+    # therefore also be used if the user prefers spherical coordinates to setting
+    # the direct camera position, but with reduced functionality in comparison
+    # to gr.settransformationparameters, gr.setperspectiveprojection and
+    # gr.setorthographicprojection.
     # @param phi [Numeric] phi angle of the spherical coordinates
     # @param theta [Numeric] theta angle of the spherical coordinates
-    # @param fov [Numeric] vertical field of view
-    # @param radius [Numeric] camera distance to the focus middle point of the drawn objekt
+    # @param fov [Numeric] vertical field of view (0 or NaN for orthographic projection)
+    # @param radius [Numeric] distance between the camera and the focus point
+    #   (0 or NaN for the radius of the object's smallest bounding sphere)
     def transformationinterfaceforrepl(*)
       super
     end
