@@ -1140,26 +1140,27 @@ module GR
   end
 
   class << self
-    # Draw one or more line plots.
+    # (Plot) Draw one or more line plots.
     def plot(*args)
       create_plot(:line, *args)
     end
 
-    # Draw one or more step or staircase plots.
+    # (Plot) Draw one or more step or staircase plots.
     def step(*args)
       create_plot(:step, *args)
     end
 
-    # Draw one or more scatter plots.
+    # (Plot) Draw one or more scatter plots.
     def scatter(*args)
       create_plot(:scatter, *args)
     end
 
-    # Draw a stem plot.
+    # (Plot) Draw a stem plot.
     def stem(*args)
       create_plot(:stem, *args)
     end
 
+    # (Plot)
     def polarhistogram(x, kv = {})
       plt = GR::Plot.new(x, kv)
       plt.kvs[:kind] = :polarhist
@@ -1169,7 +1170,7 @@ module GR
       plt.plot_data
     end
 
-    # Draw a heatmap.
+    # (Plot) Draw a heatmap.
     def heatmap(*args)
       # FIXME
       _x, _y, z, kv = parse_args(*args)
@@ -1182,6 +1183,7 @@ module GR
       end
     end
 
+    # (Plot) Draw a polarheatmap.
     def polarheatmap(*args)
       d = args.shift
       # FIXME
@@ -1197,77 +1199,80 @@ module GR
     end
 
     alias _contour_ contour
-    # Draw a contour plot.
+    # (Plot) Draw a contour plot.
     def contour(*args)
       x, y, z, kv = parse_args(*args)
       create_plot(:contour, x, y, z, kv)
     end
 
     alias _contourf_ contourf
-    # Draw a filled contour plot.
+    # (Plot) Draw a filled contour plot.
     def contourf(*args)
       x, y, z, kv = parse_args(*args)
       create_plot(:contourf, x, y, z, kv)
     end
 
     alias _hexbin_ hexbin
-    # Draw a hexagon binning plot.
+    # (Plot) Draw a hexagon binning plot.
     def hexbin(*args)
       create_plot(:hexbin, *args)
     end
 
-    # Draw a triangular contour plot.
+    # (Plot) Draw a triangular contour plot.
     def tricont(*args)
       x, y, z, kv = parse_args(*args)
       create_plot(:tricont, x, y, z, kv)
     end
 
-    # Draw a three-dimensional wireframe plot.
+    # (Plot) Draw a three-dimensional wireframe plot.
     def wireframe(*args)
       x, y, z, kv = parse_args(*args)
       create_plot(:wireframe, x, y, z, kv)
     end
 
-    # Draw a three-dimensional surface plot.
+    # (Plot) Draw a three-dimensional surface plot.
     alias _surface_ surface
     def surface(*args)
       x, y, z, kv = parse_args(*args)
       create_plot(:surface, x, y, z, kv)
     end
 
+    # (Plot)
     def polar(*args)
       create_plot(:polar, *args)
     end
 
     alias _trisurface_ trisurface
-    # Draw a triangular surface plot.
+    # (Plot) Draw a triangular surface plot.
     def trisurface(*args)
       x, y, z, kv = parse_args(*args)
       create_plot(:trisurf, x, y, z, kv)
     end
 
-    # Draw one or more three-dimensional line plots.
+    # (Plot) Draw one or more three-dimensional line plots.
     def plot3(*args)
       create_plot(:plot3, *args)
     end
 
-    # Draw one or more three-dimensional scatter plots.
+    # (Plot) Draw one or more three-dimensional scatter plots.
     def scatter3(*args)
       create_plot(:scatter3, *args)
     end
 
     alias _shade_ shade
+    # (Plot)
     def shade(*args)
       create_plot(:shade, *args)
     end
 
+    # (Plot)
     def volume(v, kv = {})
       create_plot(:volume, v, kv) do |plt|
         plt.args = [[nil, nil, v, nil, '']]
       end
     end
 
-    # Draw a bar plot.
+    # (Plot) Draw a bar plot.
     def barplot(labels, heights, kv = {})
       labels = labels.map(&:to_s)
       wc, hc = barcoordinates(heights)
@@ -1285,7 +1290,7 @@ module GR
       end
     end
 
-    # Draw a histogram.
+    # (Plot) Draw a histogram.
     def histogram(x, kv = {})
       create_plot(:hist, x, kv) do |plt|
         nbins = plt.kvs[:nbins] || 0
@@ -1294,7 +1299,7 @@ module GR
       end
     end
 
-    # Draw an image.
+    # (Plot) Draw an image.
     def imshow(img, kv = {})
       img = Numo::DFloat.cast(img) # Umm...
       create_plot(:imshow, img, kv) do |plt|
@@ -1302,7 +1307,7 @@ module GR
       end
     end
 
-    # Draw an isosurface.
+    # (Plot) Draw an isosurface.
     def isosurface(v, kv = {})
       v = Numo::DFloat.cast(v) # Umm...
       create_plot(:isosurface, v, kv) do |plt|
@@ -1310,6 +1315,7 @@ module GR
       end
     end
 
+    # (Plot) Save the current figure to a file.
     def savefig(filename, kv = {})
       GR.beginprint(filename)
       plt = GR::Plot.last_plot
