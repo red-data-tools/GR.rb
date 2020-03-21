@@ -70,7 +70,7 @@ Set environment variable GRDIR.
 export GRDIR=$(brew --prefix libgr)
 ```
 
-If you fail to build libgr using homebrew, [please report the issue](https://github.com/red-data-tools/GR.rb/issues).
+If you fail to build libgr using homebrew, Please feel free to [send us your feedback](https://github.com/red-data-tools/GR.rb/issues).
 
 ### Mac Linux Windows
 
