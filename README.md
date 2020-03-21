@@ -82,7 +82,7 @@ Set environment variable GRDIR.
 export GRDIR="your/path/to/gr"
 ```
 
-## Using GR.rb as backend for Charty
+## Backend for Charty
 
 GR.rb is expected to be the backend for [Charty](https://github.com/red-data-tools/charty) in the future.
 
