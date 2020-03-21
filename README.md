@@ -70,6 +70,8 @@ Set environment variable GRDIR.
 export GRDIR=$(brew --prefix libgr)
 ```
 
+If you fail to build libgr using homebrew, [please report the issue](https://github.com/red-data-tools/GR.rb/issues).
+
 ### Mac Linux Windows
 
 Download the [latest release](https://github.com/sciapp/gr/releases).
