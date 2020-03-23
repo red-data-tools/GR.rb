@@ -73,8 +73,17 @@ module GR3
     try_extern 'void gr3_setviewmatrix(const float *m)'
     try_extern 'int gr3_getprojectiontype(void)'
     try_extern 'void gr3_setprojectiontype(int type)'
-    # try_extern 'unsigned int gr3_triangulate(const unsigned short *data, unsigned short isolevel, unsigned int dim_x, unsigned int dim_y, unsigned int dim_z, unsigned int stride_x, unsigned int stride_y, unsigned int stride_z, double step_x, double step_y, double step_z, double offset_x, double offset_y, double offset_z, gr3_triangle_t **triangles_p)'
-    # try_extern 'void gr3_triangulateindexed(const unsigned short *data, unsigned short isolevel, unsigned int dim_x, unsigned int dim_y, unsigned int dim_z, unsigned int stride_x, unsigned int stride_y, unsigned int stride_z, double step_x, double step_y, double step_z, double offset_x, double offset_y, double offset_z, unsigned int *num_vertices, gr3_coord_t **vertices, gr3_coord_t **normals, unsigned int *num_indices, unsigned int **indices)'
+    # try_extern 'unsigned int gr3_triangulate(const unsigned short *data, ' \
+    #      'unsigned short isolevel, unsigned int dim_x, unsigned int dim_y, unsigned int dim_z, ' \
+    #      'unsigned int stride_x, unsigned int stride_y, unsigned int stride_z, ' \
+    #      'double step_x, double step_y, double step_z, double offset_x, double offset_y, double offset_z, ' \
+    #      'gr3_triangle_t **triangles_p)'
+    # try_extern 'void gr3_triangulateindexed(const unsigned short *data, ' \
+    #      'unsigned short isolevel, unsigned int dim_x, unsigned int dim_y, unsigned int dim_z, ' \
+    #      'unsigned int stride_x, unsigned int stride_y, unsigned int stride_z, ' \
+    #      'double step_x, double step_y, double step_z, double offset_x, double offset_y, double offset_z, ' \
+    #      'unsigned int *num_vertices, gr3_coord_t **vertices, gr3_coord_t **normals, ' \
+    #      'unsigned int *num_indices, unsigned int **indices)'
     try_extern 'int gr3_createisosurfacemesh(int *mesh, unsigned short *data, ' \
            'unsigned short isolevel, unsigned int dim_x, unsigned int dim_y, unsigned int dim_z, ' \
            'unsigned int stride_x, unsigned int stride_y, unsigned int stride_z, ' \
