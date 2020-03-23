@@ -1413,7 +1413,7 @@ module GR
         # data is a pointer of a pointer
         super(path, width, height, data.ref)
       end
-      d = data.to_str(w * h * 4).unpack('L*') # UINT8
+      d = data.to_str(w * h * Fiddle::SIZEOF_INT).unpack('L*') # UInt8
       [w, h, d]
     end
 
@@ -1579,7 +1579,7 @@ module GR
         super(npoints, x, y, ntri, triangles.ref)
       end
       if n_tri > 0
-        tri = triangles.to_str(3 * n_tri * 4).unpack('l*') # Int32
+        tri = triangles.to_str(3 * n_tri * Fiddle::SIZEOF_INT).unpack('l*') # Int32
         # Ruby  : 0-based indexing
         # Julia : 1-based indexing
         tri = tri.each_slice(3).to_a
