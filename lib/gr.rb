@@ -1413,7 +1413,7 @@ module GR
         # data is a pointer of a pointer
         super(path, width, height, data.ref)
       end
-      d = data.to_str(w * h * Fiddle::SIZEOF_INT).unpack('L*') # UInt8
+      d = data.to_str(w * h * Fiddle::SIZEOF_INT).unpack('L*') # UInt32
       [w, h, d]
     end
 
