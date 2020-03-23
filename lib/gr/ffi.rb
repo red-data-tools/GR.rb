@@ -161,7 +161,7 @@ module GR
     try_extern 'void gr_selectcontext(int)'
     try_extern 'void gr_destroycontext(int)'
     try_extern 'int gr_uselinespec(char *)'
-    # try_extern 'void gr_delaunay(int, const double *, const double *, int *, int **)'
+    try_extern 'void gr_delaunay(int, const double *, const double *, int *, int **)'
     try_extern 'void gr_reducepoints(int, const double *, const double *, int, double *, double *)'
     try_extern 'void gr_trisurface(int, double *, double *, double *)'
     try_extern 'void gr_gradient(int, int, double *, double *, double *, double *, double *)'

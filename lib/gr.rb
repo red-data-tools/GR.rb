@@ -1406,6 +1406,8 @@ module GR
 
     # @return [Integer]
     def readimage(path)
+      # Feel free to make a pull request if you catch a mistake
+      # or you have an idea to improve it.
       data = Fiddle::Pointer.malloc(Fiddle::SIZEOF_INTPTR_T)
       w, h = inquiry [:int, :int] do |width, height|
         # data is a pointer of a pointer
@@ -1565,6 +1567,26 @@ module GR
     # @return [Integer]
     def uselinespec(*)
       super
+    end
+
+    def delaunay(x, y)
+      # Feel free to make a pull request if you catch a mistake
+      # or you have an idea to improve it.
+      npoints = equal_length(x, y)
+      triangles = Fiddle::Pointer.malloc(Fiddle::SIZEOF_INTPTR_T)
+      dim = 3
+      n_tri = inquiry_int do |ntri|
+        super(npoints, x, y, ntri, triangles.ref)
+      end
+      if n_tri > 0
+        tri = triangles.to_str(3 * n_tri * 4).unpack('l*') # Int32
+        # Ruby  : 0-based indexing
+        # Julia : 1-based indexing
+        tri = tri.each_slice(3).to_a
+        [n_tri, tri]
+      else
+        0
+      end
     end
 
     # Reduces the number of points of the x and y array.
