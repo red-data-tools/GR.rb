@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # https://github.com/jheinen/GR.jl/blob/master/examples/delaunay.jl
 
 require 'gr/plot'
@@ -8,7 +9,7 @@ def points_from_image(img, npts)
   xpts = []
   ypts = []
   cols = []
-  npts.times do |_i|
+  npts.times do
     x = rand * w
     y = rand * h
     c = img[y.floor, x.floor]
