@@ -561,6 +561,8 @@ module GR
         # Not yet.
       end
 
+      GR.settextfontprec(232, 3)
+
       set_viewport(kind, kvs[:subplot])
       unless kvs[:ax]
         set_window(kind)
