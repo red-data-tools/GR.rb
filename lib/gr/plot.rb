@@ -172,6 +172,7 @@ module GR
         scale |= GR::OPTION_FLIP_Y if kvs[:yflip]
         scale |= GR::OPTION_FLIP_Z if kvs[:zflip]
       end
+      kvs[:scale] = scale
       if kvs.has_key?(:panzoom)
         xmin, xmax, ymin, ymax = GR.panzoom(*kvs[:panzoom])
         kvs[:xrange] = [xmin, xmax]
@@ -1037,9 +1038,12 @@ module GR
     def minmax
       xmin = ymin = zmin = cmin = Float::INFINITY
       xmax = ymax = zmax = cmax = -Float::INFINITY
-
+      scale = kvs[:scale]
       args.each do |x, y, z, c|
         if x
+          if scale & GR::OPTION_X_LOG != 0
+            x.map! { |v| v > 0 ? v : Float::NAN }
+          end
           x0, x1 = x.minmax
           xmin = [x0, xmin].min
           xmax = [x1, xmax].max
@@ -1048,6 +1052,9 @@ module GR
           xmax = 1
         end
         if y
+          if scale & GR::OPTION_Y_LOG != 0
+            y.map! { |v| v > 0 ? v : Float::NAN }
+          end
           y0, y1 = y.minmax
           ymin = [y0, ymin].min
           ymax = [y1, ymax].max
@@ -1056,6 +1063,9 @@ module GR
           ymax = 1
         end
         if z
+          if scale & GR.OPTION_Z_LOG != 0
+            z.map! { |v| v > 0 ? v : Float::NAN }
+          end
           z0, z1 = z.minmax
           zmin = [z0, zmin].min
           zmax = [z1, zmax].max
