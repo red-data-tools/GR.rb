@@ -824,7 +824,7 @@ module GR
           plot_polar(x, y)
 
         when :trisurf
-          GR._trisurface_(x, y, z)
+          GR.trisurface(x, y, z)
           draw_axes(kind, 2)
           colorbar(0.05)
 
@@ -1254,9 +1254,8 @@ module GR
       create_plot(:polar, *args)
     end
 
-    alias _trisurface_ trisurface
     # (Plot) Draw a triangular surface plot.
-    def trisurface(*args)
+    def trisurf(*args)
       x, y, z, kv = parse_args(*args)
       create_plot(:trisurf, x, y, z, kv)
     end

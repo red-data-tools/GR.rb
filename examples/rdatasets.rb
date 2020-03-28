@@ -34,7 +34,7 @@ GR.heatmap(volcano, opts)
 sleep 1.5
 GR.surface(volcano, opts)
 sleep 1.5
-GR.trisurface(volcano, opts)
+GR.trisurf(volcano, opts)
 sleep 1.5
 GR.wireframe(volcano, opts)
 sleep 1.5

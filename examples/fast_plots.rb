@@ -101,7 +101,7 @@ sleep 1.2
 GR.surface(x, y, z)
 sleep 1.2
 
-GR.trisurface(x, y, z)
+GR.trisurf(x, y, z)
 sleep 1.2
 
 GR.wireframe(x, y, z)
