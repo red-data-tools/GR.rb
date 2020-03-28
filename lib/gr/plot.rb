@@ -1063,7 +1063,7 @@ module GR
           ymax = 1
         end
         if z
-          if scale & GR.OPTION_Z_LOG != 0
+          if scale & GR::OPTION_Z_LOG != 0
             z.map! { |v| v > 0 ? v : Float::NAN }
           end
           z0, z1 = z.minmax
