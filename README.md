@@ -82,6 +82,16 @@ require 'gr3'
 
 ## GR Installation
 
+### Official binary release
+
+Download the [latest release](https://github.com/sciapp/gr/releases).
+
+Set environment variable GRDIR.
+
+```sh
+export GRDIR="your/path/to/gr"
+```
+
 ### Homebrew
 
 ```sh
@@ -95,16 +105,6 @@ export GRDIR=$(brew --prefix libgr)
 ```
 
 If you fail to build libgr using homebrew, Please feel free to [send us your feedback](https://github.com/red-data-tools/GR.rb/issues).
-
-### Mac Linux Windows
-
-Download the [latest release](https://github.com/sciapp/gr/releases).
-
-Set environment variable GRDIR.
-
-```sh
-export GRDIR="your/path/to/gr"
-```
 
 ## Backend for Charty
 
