@@ -57,17 +57,23 @@ Have a look in the [`examples`](https://github.com/red-data-tools/GR.rb/tree/mas
 
 A simple, matlab-style API.
 
-`require 'gr/plot'`
+```ruby
+require 'gr/plot'
+```
 
 `plot` `step` `scatter` `stem` `histogram` `contour` `contourf` `hexbin` `heatmap` `wireframe` `surface` `plot3` `scatter3` `imshow` `isosurface` `polar` `polarhist` `polarheatmap` `trisurf` `tricont` `shade` `volume`
 
 #### GR
 
-`require 'gr'`
+```ruby
+require 'gr'
+```
 
 #### GR3
 
-`require 'gr3'`
+```ruby
+require 'gr3'
+```
 
 ## Documentation
 
