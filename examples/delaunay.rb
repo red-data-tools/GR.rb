@@ -34,7 +34,7 @@ cols = cols.cast_to(Numo::Int32)
 
 GR.settransparency(0.5)
 GR.setmarkersize(0.5)
-GR.scatter(x.minmax, y.minmax, figsize: [4,5], yflip: true) # FIXME
+GR.scatter(x.minmax, y.minmax, figsize: [4, 5], yflip: true) # FIXME
 
 n, tri = GR.delaunay(x, y)
 tri = Numo::Int32.cast(tri)
