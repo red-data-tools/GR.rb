@@ -1329,6 +1329,28 @@ module GR
       end
     end
 
+    # Set current subplot index.
+    def subplot(nr, nc, p)
+      xmin = 1
+      xmax = 0
+      ymin = 1
+      ymax = 0
+      p = [p] if p.is_a? Integer
+      p.each do |i|
+        r = (nr - (i - 1) / nc).to_f
+        c = ((i - 1) % nc + 1).to_f
+        xmin = [xmin, (c - 1) / nc].min
+        xmax = [xmax, c / nc].max
+        ymin = [ymin, (r - 1) / nr].min
+        ymax = [ymax, r / nr].max
+      end
+      {
+        subplot: [xmin, xmax, ymin, ymax],
+        clear: p[0] == 1,
+        update: p[-1] == nr * nc
+      }
+    end
+
     # (Plot) Save the current figure to a file.
     def savefig(filename, kv = {})
       GR.beginprint(filename)
