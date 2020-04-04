@@ -1366,10 +1366,6 @@ module GR
             z = xyzc[0]
           end
           xsize, ysize = z.shape
-          # NOTE:
-          # See
-          # https://github.com/jheinen/GR.jl/pull/246
-          # https://github.com/jheinen/GR.jl/issues/241
           x = (1..ysize).to_a * xsize
           y = (1..xsize).map { |i| Array.new(ysize, i) }.flatten
           [x, y, z]
