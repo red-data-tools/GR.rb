@@ -1193,7 +1193,7 @@ module GR
     # (Plot) Draw a heatmap.
     def heatmap(*args)
       # FIXME
-      args, kv = parse_args(*args)
+      args, kv = format_xyzc(*args)
       _x, _y, z = args
       ysize, xsize = z.shape
       z = z.reshape(xsize, ysize)
@@ -1222,13 +1222,13 @@ module GR
     alias _contour_ contour
     # (Plot) Draw a contour plot.
     def contour(*args)
-      create_plot(:contour, *parse_args(*args))
+      create_plot(:contour, *format_xyzc(*args))
     end
 
     alias _contourf_ contourf
     # (Plot) Draw a filled contour plot.
     def contourf(*args)
-      create_plot(:contourf, *parse_args(*args))
+      create_plot(:contourf, *format_xyzc(*args))
     end
 
     alias _hexbin_ hexbin
@@ -1239,18 +1239,18 @@ module GR
 
     # (Plot) Draw a triangular contour plot.
     def tricont(*args)
-      create_plot(:tricont, *parse_args(*args))
+      create_plot(:tricont, *format_xyzc(*args))
     end
 
     # (Plot) Draw a three-dimensional wireframe plot.
     def wireframe(*args)
-      create_plot(:wireframe, *parse_args(*args))
+      create_plot(:wireframe, *format_xyzc(*args))
     end
 
     # (Plot) Draw a three-dimensional surface plot.
     alias _surface_ surface
     def surface(*args)
-      create_plot(:surface, *parse_args(*args))
+      create_plot(:surface, *format_xyzc(*args))
     end
 
     # (Plot)
@@ -1260,7 +1260,7 @@ module GR
 
     # (Plot) Draw a triangular surface plot.
     def trisurf(*args)
-      create_plot(:trisurf, *parse_args(*args))
+      create_plot(:trisurf, *format_xyzc(*args))
     end
 
     # (Plot) Draw one or more three-dimensional line plots.
@@ -1348,7 +1348,7 @@ module GR
       plt
     end
 
-    def parse_args(*args)
+    def format_xyzc(*args)
       kv = if args[-1].is_a? Hash
              args.pop
            else
