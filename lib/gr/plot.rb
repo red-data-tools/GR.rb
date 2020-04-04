@@ -582,8 +582,7 @@ module GR
 
       GR.uselinespec(' ')
       args.each do |x, y, z, c, spec|
-        # FIXME
-        spec ||= ''
+        spec ||= kvs[:spec] ||= ''
         GR.savestate
         GR.settransparency(kvs[:alpha]) if kvs.has_key?(:alpha)
 
@@ -984,18 +983,25 @@ module GR
                              i.is_a?(Array) && (i[0].is_a?(Array) || narray?(i[0]))
                            end
       args.map do |xyzc|
+        spec = nil
+        case xyzc.last
+        when String
+          spec = xyzc.pop
+        when Hash
+          spec = xyzc.pop[:spec]
+        end
+
         x, y, z, c = xyzc.map do |i|
-          if i.is_a?(Array) || narray?(i)
+          if i.is_a?(Array) || narray?(i) || i.nil?
             i
           elsif i.respond_to?(:to_a)
             # Convert an Array-like class such as Daru::Vector to an Array
             i.to_a
-          else
-            # String
+          else # String
             i
           end
         end
-        [x, y, z, c]
+        [x, y, z, c, spec]
       end
     end
 
