@@ -1193,7 +1193,8 @@ module GR
     # (Plot) Draw a heatmap.
     def heatmap(*args)
       # FIXME
-      _x, _y, z, kv = parse_args(*args)
+      args, kv = parse_args(*args)
+      _x, _y, z = args
       ysize, xsize = z.shape
       z = z.reshape(xsize, ysize)
       create_plot(:heatmap, kv) do |plt|
@@ -1221,15 +1222,13 @@ module GR
     alias _contour_ contour
     # (Plot) Draw a contour plot.
     def contour(*args)
-      x, y, z, kv = parse_args(*args)
-      create_plot(:contour, x, y, z, kv)
+      create_plot(:contour, *parse_args(*args))
     end
 
     alias _contourf_ contourf
     # (Plot) Draw a filled contour plot.
     def contourf(*args)
-      x, y, z, kv = parse_args(*args)
-      create_plot(:contourf, x, y, z, kv)
+      create_plot(:contourf, *parse_args(*args))
     end
 
     alias _hexbin_ hexbin
@@ -1240,21 +1239,18 @@ module GR
 
     # (Plot) Draw a triangular contour plot.
     def tricont(*args)
-      x, y, z, kv = parse_args(*args)
-      create_plot(:tricont, x, y, z, kv)
+      create_plot(:tricont, *parse_args(*args))
     end
 
     # (Plot) Draw a three-dimensional wireframe plot.
     def wireframe(*args)
-      x, y, z, kv = parse_args(*args)
-      create_plot(:wireframe, x, y, z, kv)
+      create_plot(:wireframe, *parse_args(*args))
     end
 
     # (Plot) Draw a three-dimensional surface plot.
     alias _surface_ surface
     def surface(*args)
-      x, y, z, kv = parse_args(*args)
-      create_plot(:surface, x, y, z, kv)
+      create_plot(:surface, *parse_args(*args))
     end
 
     # (Plot)
@@ -1264,8 +1260,7 @@ module GR
 
     # (Plot) Draw a triangular surface plot.
     def trisurf(*args)
-      x, y, z, kv = parse_args(*args)
-      create_plot(:trisurf, x, y, z, kv)
+      create_plot(:trisurf, *parse_args(*args))
     end
 
     # (Plot) Draw one or more three-dimensional line plots.
@@ -1359,26 +1354,31 @@ module GR
            else
              {}
            end
-      if args.size == 1
-        if args[0].is_a? Array
-          z = Numo::DFloat.cast(args[0])
-        elsif narray?(args[0])
-          z = args[0]
-        end
-        xsize, ysize = z.shape
-        # NOTE:
-        # See
-        # https://github.com/jheinen/GR.jl/pull/246
-        # https://github.com/jheinen/GR.jl/issues/241
-        x = (1..ysize).to_a * xsize
-        y = (1..xsize).map { |i| Array.new(ysize, i) }.flatten
 
-      elsif args.size == 3
-        x, y, z = args
-      else
-        raise
+      args = [args] unless args.all? do |i|
+                             i.is_a?(Array) && (i[0].is_a?(Array) || narray?(i[0]))
+                           end
+      args.map! do |xyzc|
+        if xyzc.size == 1
+          if xyzc[0].is_a? Array
+            z = Numo::DFloat.cast(xyzc[0])
+          elsif narray?(xyzc[0])
+            z = xyzc[0]
+          end
+          xsize, ysize = z.shape
+          # NOTE:
+          # See
+          # https://github.com/jheinen/GR.jl/pull/246
+          # https://github.com/jheinen/GR.jl/issues/241
+          x = (1..ysize).to_a * xsize
+          y = (1..xsize).map { |i| Array.new(ysize, i) }.flatten
+          [x, y, z]
+        else
+
+          xyzc
+        end
       end
-      [x, y, z, kv]
+      [*args, kv]
     end
 
     def hist(x, nbins = 0)
