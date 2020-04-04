@@ -64,10 +64,10 @@ module GR
 
       @args = plot_args(args) # method name is the same as Julia/Python
       @kvs[:size] ||= [600, 450]
-      @kvs[:ax] ||= false
+      @kvs[:ax] = false if @kvs[:ax].nil?
       @kvs[:subplot] ||= [0, 1, 0, 1]
-      @kvs[:clear] ||= true
-      @kvs[:update] ||= true
+      @kvs[:clear] = true if @kvs[:clear].nil?
+      @kvs[:update] = true if @kvs[:update].nil?
       @scheme = 0
       @background = 0xffffff
       @handle = nil
@@ -859,7 +859,7 @@ module GR
 
       draw_legend if %i[line step scatter stem].include?(kind) && kvs.has_key?(:labels)
 
-      if kvs.has_key?(:update)
+      if kvs[:update]
         GR.updatews
         # if GR.isinline()
         #  restore_context()
