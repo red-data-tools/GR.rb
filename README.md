@@ -92,6 +92,8 @@ Set environment variable GRDIR.
 export GRDIR="your/path/to/gr"
 ```
 
+* macOS Catalina and macOS Mojave: See the "How to open an app that hasn’t been notarized or is from an unidentified developer" section of [Safely open apps on your Mac](https://support.apple.com/en-us/HT202491) in the Apple documentation.
+
 ### Homebrew
 
 ```sh
@@ -105,6 +107,10 @@ export GRDIR=$(brew --prefix libgr)
 ```
 
 If you fail to build libgr using homebrew, Please feel free to [send us your feedback](https://github.com/red-data-tools/GR.rb/issues).
+
+### Red data tools repository
+
+Red data tools provides [packages](https://github.com/red-data-tools/packages.red-data-tools.org ) related to our project including `libgr-dev` and `libgr3-dev` for advanced users.
 
 ## Backend for Charty
 
