@@ -1,4 +1,4 @@
- # frozen_string_literal: true
+# frozen_string_literal: true
 
 require 'gr/plot'
 
@@ -88,7 +88,7 @@ x = DFloat.linspace(0, 30, 1000)
 y = NMath.cos(x) * x
 z = NMath.sin(x) * x
 GR.plot3(*Array.new(3) { |i| [x + 4 * i, y, z, spec: %w[o s x][i]] })
-sleep 1.2 
+sleep 1.2
 
 #
 # x = 2 * DFloat.new(100).rand - 1
@@ -138,7 +138,7 @@ sleep 1.2
 x = 8 * DFloat.new(100).rand - 4
 y = 8 * DFloat.new(100).rand - 4
 z = NMath.sin(x) + NMath.cos(y)
-args = Array.new(3) {|i| [x, y, z + 2*i]}
+args = Array.new(3) { |i| [x, y, z + 2 * i] }
 GR.contour(*args)
 sleep 1.2
 
