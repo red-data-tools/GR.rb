@@ -125,5 +125,5 @@ GR.rb is expected to be the backend for [Charty](https://github.com/red-data-too
 
 ## Acknowledgements
 
-We would like to thank Josef Heinen, the creator of [GR.jl](https://github.com/jheinen/GR.jl) and Florian Rhiem, the creator of  [python-gr](https://github.com/sciapp/python-gr).
+We would like to thank Josef Heinen, the creator of [GR.jl](https://github.com/jheinen/GR.jl), Florian Rhiem, the creator of  [python-gr](https://github.com/sciapp/python-gr) and [GR](https://github.com/sciapp/gr) developers.
 
