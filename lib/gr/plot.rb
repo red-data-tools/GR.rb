@@ -794,7 +794,9 @@ module GR
           colorbar(0.05)
 
         when :plot3
-          GR.polyline3d(x, y, z)
+          mask = GR.uselinespec(spec)
+          GR.polyline3d(x, y, z) if hasline(mask)
+          GR.polymarker3d(x, y, z) if hasmarker(mask)
           draw_axes(kind, 2)
 
         when :scatter3
