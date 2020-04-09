@@ -35,7 +35,7 @@
 #           +----+JupyterSupport| |
 #              | +--------------+ |
 #              +------------------+
-# 
+#
 # (You can edit the above AA diagram with http://asciiflow.com/))
 #
 # Fiddley is Ruby-FFI compatible API layer for Fiddle.
@@ -72,6 +72,9 @@ module GR
   require_relative 'gr/version'
   require_relative 'gr/ffi'
   require_relative 'gr/grbase'
+
+  # Inquiry methods etc. are defined here.
+  extend GRCommons::GRCommonUtils
 
   # Support for Jupyter Notebook / Lab.
   extend GRCommons::JupyterSupport

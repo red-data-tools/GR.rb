@@ -2,6 +2,7 @@
 
 module GR
   # This module automatically converts Ruby arrays and Numo::Narray into pointers.
+  # Note: `extend GRCommons::GRCommonUtils` needed.
   module GRBase
     extend GRCommons::DefineMethods
     define_ffi_methods(FFI,
@@ -9,6 +10,4 @@ module GR
                        default_type: :double)
   end
   private_constant :GRBase
-
-  extend GRCommons::GRCommonUtils
 end

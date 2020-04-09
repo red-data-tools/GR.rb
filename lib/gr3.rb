@@ -81,6 +81,9 @@ module GR3
   require_relative 'gr3/ffi'
   require_relative 'gr3/gr3base'
 
+  # `inquiry` methods etc. are defined here.
+  extend GRCommons::GRCommonUtils
+
   # `float` is the default type in GR3.
   # A Ruby array or NArray passed to GR3 method is automatically converted to
   # a Fiddley::MemoryPointer in the GR3Base class.

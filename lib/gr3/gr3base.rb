@@ -2,6 +2,8 @@
 
 module GR3
   # This module automatically converts Ruby arrays and Numo::Narray into pointers.
+  # Note: `extend GRCommons:: GRCommonUtils` is required to convert an array to
+  # a packed string. The `float` method is defined there.
   module GR3Base
     extend GRCommons::DefineMethods
     define_ffi_methods(FFI,
@@ -15,6 +17,4 @@ module GR3
                        default_type: :double)
   end
   private_constant :GR3Base
-
-  extend GRCommons::GRCommonUtils
 end
