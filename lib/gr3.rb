@@ -83,7 +83,7 @@ module GR3
 
   # `float` is the default type in GR3
   # A Ruby array or NArray passed to GR3 method is automatically converted to
-  # a Fiddle::MemoryPointer in the GR3Base class.
+  # a Fiddley::MemoryPointer in the GR3Base class.
   extend GR3Base
 
   # This module is for adding error checking to all methods in GR3.

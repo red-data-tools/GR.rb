@@ -77,7 +77,7 @@ module GR
 
   # `double` is the default type in GR
   # A Ruby array or NArray passed to GR method is automatically converted to
-  # a Fiddle::MemoryPointer in the GRBase class.
+  # a Fiddley::MemoryPointer in the GRBase class.
   extend GRBase
 
   # Now you can see a lot of methods just calling super here.
