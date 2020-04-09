@@ -41,7 +41,7 @@
 # Why not GR::GR3?
 # * kojix2 did not want to force gr3 to be loaded when gr is loaded.
 # * kojix2 did not want to write `GR3 = GR::GR3` or something.
-# * This is a opinion of kojix2 and may be changed in the future.
+# * This is a opinion of kojix2 and may be changed by future maintainers.
 #
 # GR3 uses Numo::Narrray.
 # * It is difficult to write GR3 modules with only Ruby arrays.

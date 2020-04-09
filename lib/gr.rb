@@ -39,6 +39,7 @@
 # (You can edit the above AA diagram with http://asciiflow.com/))
 #
 # The GR module works without Numo::Narrray.
+# GR3 and GR::Plot depends on numo-narray.
 #
 # This is a procedural interface to the GR plotting library,
 # https://github.com/sciapp/gr
