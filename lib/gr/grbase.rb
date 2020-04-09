@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module GR
-  # This module automatically converts Ruby arrays and Numo::Narray into pointers.
-  # Note: `extend GRCommons::GRCommonUtils` needed.
+  # This module automatically converts Ruby arrays and Numo::Narray into 
+  # Fiddley::MemoryPointer.
   module GRBase
     extend GRCommons::DefineMethods
     define_ffi_methods(FFI,

@@ -5,7 +5,7 @@ require 'gr_commons/fiddley'
 module GRCommons
   # This module provides functionality common to GR and GR3.
   module GRCommonUtils
-    private
+    module_function
 
     def equal_length(*args)
       lengths = args.map(&:length)
