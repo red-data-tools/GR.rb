@@ -114,7 +114,7 @@ Red data tools provides [packages](https://github.com/red-data-tools/packages.re
 
 ## Backend for Charty
 
-GR.rb is expected to be the backend for [Charty](https://github.com/red-data-tools/charty) in the future.
+GR.rb will be the default backend for [Charty](https://github.com/red-data-tools/charty).
 
 ## Contributing
 
@@ -122,6 +122,7 @@ GR.rb is expected to be the backend for [Charty](https://github.com/red-data-too
 * Fix bugs and submit pull requests
 * Write, clarify, or fix documentation
 * Suggest or add new features
+* Create visualization library based on GR.rb
 
 ## Acknowledgements
 
