@@ -3,7 +3,7 @@
 require 'fiddle/import'
 
 module GRCommons
-  # Fiddley v0.0.8
+  # Fiddley v0.0.8 - Ruby-FFI compatible API layer for Fiddle
   # https://github.com/unak/fiddley
   #
   # Copyright (c) 2017 NAKAMURA Usaku usa@garbagecollect.jp

@@ -38,6 +38,8 @@
 #
 # (You can edit the above AA diagram with http://asciiflow.com/)
 #
+# Fiddley is Ruby-FFI compatible API layer for Fiddle.
+#
 # Why not GR::GR3?
 # * kojix2 did not want to force gr3 to be loaded when gr is loaded.
 # * kojix2 did not want to write `GR3 = GR::GR3` or something.
@@ -81,7 +83,7 @@ module GR3
 
   # `float` is the default type in GR3
   # A Ruby array or NArray passed to GR3 method is automatically converted to
-  # a FFI::MemoryPointer in the GR3Base class.
+  # a Fiddle::MemoryPointer in the GR3Base class.
   extend GR3Base
 
   # This module is for adding error checking to all methods in GR3.

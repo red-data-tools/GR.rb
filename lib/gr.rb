@@ -38,6 +38,8 @@
 # 
 # (You can edit the above AA diagram with http://asciiflow.com/))
 #
+# Fiddley is Ruby-FFI compatible API layer for Fiddle.
+#
 # The GR module works without Numo::Narrray.
 # GR3 and GR::Plot depends on numo-narray.
 #
@@ -75,7 +77,7 @@ module GR
 
   # `double` is the default type in GR
   # A Ruby array or NArray passed to GR method is automatically converted to
-  # a FFI::MemoryPointer in the GRBase class.
+  # a Fiddle::MemoryPointer in the GRBase class.
   extend GRBase
 
   # Now you can see a lot of methods just calling super here.
