@@ -17,34 +17,60 @@ module GRCommons
       lengths[0]
     end
 
+    # This constants is used in the test.
     SUPPORTED_TYPES = %i[uint8 uint16 int uint double float].freeze
 
-    # NOTE: The following method converts Ruby Array or NArray into packed string.
-    SUPPORTED_TYPES.each do |type|
-      define_method(type) do |data|
-        case data
-        when Array
-          data = data.flatten
-          Fiddley::Utils.array2str(type, data)
-        when ->(x) { narray?(x) }
-          case type
-          when :uint8
-            Numo::UInt8.cast(data).to_binary
-          when :uint16
-            Numo::UInt16.cast(data).to_binary
-          when :int
-            Numo::Int32.cast(data).to_binary
-          when :uint
-            Numo::UInt32.cast(data).to_binary
-          when :double
-            Numo::DFloat.cast(data).to_binary
-          when :float
-            Numo::SFloat.cast(data).to_binary
-          end
-        else
-          data = data.to_a.flatten
-          Fiddley::Utils.array2str(type, data)
-        end
+    # convert Ruby Array or NArray into packed string.
+    def uint8(data)
+      if narray?(data)
+        Numo::UInt8.cast(data).to_binary
+      else
+        Fiddley::Utils.array2str(:uint8, data.to_a.flatten)
+      end
+    end
+
+    # convert Ruby Array or NArray into packed string.
+    def uint16(data)
+      if narray?(data)
+        Numo::UInt16.cast(data).to_binary
+      else
+        Fiddley::Utils.array2str(:uint16, data.to_a.flatten)
+      end
+    end
+
+    # convert Ruby Array or NArray into packed string.
+    def int(data)
+      if narray?(data)
+        Numo::Int32.cast(data).to_binary
+      else
+        Fiddley::Utils.array2str(:int32, data.to_a.flatten)
+      end
+    end
+
+    # convert Ruby Array or NArray into packed string.
+    def uint(data)
+      if narray?(data)
+        Numo::UInt32.cast(data).to_binary
+      else
+        Fiddley::Utils.array2str(:uint, data.to_a.flatten)
+      end
+    end
+
+    # convert Ruby Array or NArray into packed string.
+    def double(data)
+      if narray?(data)
+        Numo::DFloat.cast(data).to_binary
+      else
+        Fiddley::Utils.array2str(:double, data.to_a.flatten)
+      end
+    end
+
+    # convert Ruby Array or NArray into packed string.
+    def float(data)
+      if narray?(data)
+        Numo::SFloat.cast(data).to_binary
+      else
+        Fiddley::Utils.array2str(:float, data.to_a.flatten)
       end
     end
 
