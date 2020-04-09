@@ -65,7 +65,7 @@ module GR
     self.ffi_lib = File.expand_path('lib/libGR.so', ENV['GRDIR'])
   end
 
-  # Change the default encoding to UTF-8
+  # Change the default encoding to UTF-8.
   ENV['GKS_ENCODING'] ||= 'utf8'
 
   require_relative 'gr_commons/gr_commons'
@@ -73,16 +73,16 @@ module GR
   require_relative 'gr/ffi'
   require_relative 'gr/grbase'
 
+  # Support for Jupyter Notebook / Lab.
   extend GRCommons::JupyterSupport
 
-  # `double` is the default type in GR
+  # `double` is the default type in GR.
   # A Ruby array or NArray passed to GR method is automatically converted to
   # a Fiddley::MemoryPointer in the GRBase class.
   extend GRBase
 
   # Now you can see a lot of methods just calling super here.
-  # Why? Do they really need?
-  # Yes. They are written to help the yard generate the documentation.
+  # They are written to help the yard generate the documentation.
   class << self
     def initgr(*)
       super

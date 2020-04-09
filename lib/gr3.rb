@@ -73,7 +73,7 @@ module GR3
     self.ffi_lib = File.expand_path('lib/libGR3.so', ENV['GRDIR'])
   end
 
-  # change the default encoding to UTF-8
+  # change the default encoding to UTF-8.
   ENV['GKS_ENCODING'] ||= 'utf8'
 
   require_relative 'gr_commons/gr_commons'
@@ -81,7 +81,7 @@ module GR3
   require_relative 'gr3/ffi'
   require_relative 'gr3/gr3base'
 
-  # `float` is the default type in GR3
+  # `float` is the default type in GR3.
   # A Ruby array or NArray passed to GR3 method is automatically converted to
   # a Fiddley::MemoryPointer in the GR3Base class.
   extend GR3Base
@@ -118,8 +118,7 @@ module GR3
   extend CheckError
 
   # Now you can see a lot of methods just calling super here.
-  # Why? Do they really need?
-  # Yes. They are written to help the yard generate the documentation.
+  # They are written to help the yard generate the documentation.
   class << self
     # This method initializes the gr3 context.
     # @return [Integer]
