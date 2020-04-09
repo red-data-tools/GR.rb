@@ -73,7 +73,7 @@ module GR
   require_relative 'gr/ffi'
   require_relative 'gr/grbase'
 
-  # Inquiry methods etc. are defined here.
+  # `inquiry` methods etc. are defined here.
   extend GRCommons::GRCommonUtils
 
   # Support for Jupyter Notebook / Lab.
