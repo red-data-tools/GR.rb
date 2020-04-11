@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module GR3
-  # This module automatically converts Ruby arrays and Numo::Narray into 
+  # This module automatically converts Ruby arrays and Numo::Narray into
   # Fiddley::MemoryPointer.
   module GR3Base
     extend GRCommons::DefineMethods
