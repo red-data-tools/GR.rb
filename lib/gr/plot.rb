@@ -1362,10 +1362,10 @@ module GR
 
     private
 
-    def create_plot(type, *args, &block)
+    def create_plot(type, *args)
       plt = GR::Plot.new(*args)
       plt.kvs[:kind] = type
-      block.call(plt) if block_given?
+      yield(plt) if block_given?
       plt.plot_data
       plt
     end
