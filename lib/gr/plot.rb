@@ -1329,6 +1329,11 @@ module GR
       end
     end
 
+    def hold(flag = true)
+      plt = GR::Plot.last_plot
+      plt.kvs.slice(:window, :scale, :xaxis, :yaxis, :zaxis).merge({ ax: flag, clear: !flag })
+    end
+
     # Set current subplot index.
     def subplot(nr, nc, p)
       xmin = 1
