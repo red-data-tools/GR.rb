@@ -43,9 +43,9 @@ module GR
                  xform xlabel xlim xlog yflip ylabel ylim ylog zflip zlabel zlim
                  zlog clim subplot].freeze
 
-    @@last_plot = nil
-    def self.last_plot
-      @@last_plot
+    @last_plot = nil
+    class << self
+      attr_accessor :last_plot
     end
 
     def initialize(*args)
@@ -71,7 +71,7 @@ module GR
       @scheme = 0
       @background = 0xffffff
       @handle = nil
-      @@last_plot = self
+      self.class.last_plot = self
     end
     attr_accessor :args, :kvs, :scheme
 
