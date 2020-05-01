@@ -239,7 +239,7 @@ module GR
     # @param dimx [Integer] X dimension of the color index array
     # @param dimy [Integer] Y dimension of the color index array
     # @param color [Array, NArray] Color index array
-    # The values for `x` and `y` are in world coordinates. `x` must contain 
+    # The values for `x` and `y` are in world coordinates. `x` must contain
     # `dimx` + 1 elements and `y` must contain `dimy` + 1 elements. The elements
     # i and i+1 are respectively the edges of the i-th cell in X and Y direction.
     def nonuniformcellarray(x, y, dimx, dimy, color)
@@ -1998,7 +1998,7 @@ module GR
     end
 
     def inqtext3d(x, y, z, string, axis)
-      inquiry [{double: 16}, {double: 16}] do |tbx, tby|
+      inquiry [{ double: 16 }, { double: 16 }] do |tbx, tby|
         super(x, y, z, string, axis, tbx, tby)
       end
     end
