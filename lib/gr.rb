@@ -1984,6 +1984,30 @@ module GR
     def transformationinterfaceforrepl(*)
       super
     end
+
+    def setspace3d(*)
+      super
+    end
+
+    def text3d(*)
+      super
+    end
+
+    def inqtext3d(x, y, z, string, axis)
+      inquiry [{double: 16}, {double: 16}] do |tbx, tby|
+        super(x, y, z, string, axis, tbx, tby)
+      end
+    end
+
+    def settextencoding(*)
+      super
+    end
+
+    def inqtextencoding
+      inquiry_int do |encoding|
+        super(encoding)
+      end
+    end
   end
 
   ASF_BUNDLED    = 0
