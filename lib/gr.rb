@@ -1972,23 +1972,18 @@ module GR
       end
     end
 
-    # This is an interface for REPL based languages to enable an easier way to
-    # rotate around an object.
+    # Set the camera for orthographic or perspective projection.
     # The center of the 3d window is used as the focus point and the camera is
-    # positioned relative to it, using spherical coordinates. This function can
-    # therefore also be used if the user prefers spherical coordinates to setting
-    # the direct camera position, but with reduced functionality in comparison
-    # to gr.settransformationparameters, gr.setperspectiveprojection and
-    # gr.setorthographicprojection.
-    # @param phi [Numeric] phi angle of the spherical coordinates
-    # @param theta [Numeric] theta angle of the spherical coordinates
+    # positioned relative to it, using camera distance, rotation and tilt similar
+    # to gr_setspace. This function can be used if the user prefers spherical
+    # coordinates to setting the camera position directly, but has reduced
+    # functionality in comparison to GR.settransformationparameters,
+    # GR.setperspectiveprojection and GR.setorthographicprojection.
+    # @param phi [Numeric] azimuthal angle of the spherical coordinates
+    # @param theta [Numeric] polar angle of the spherical coordinates
     # @param fov [Numeric] vertical field of view (0 or NaN for orthographic projection)
-    # @param radius [Numeric] distance between the camera and the focus point
+    # @param camera_distance [Numeric] distance between the camera and the focus point
     #   (0 or NaN for the radius of the object's smallest bounding sphere)
-    def transformationinterfaceforrepl(*)
-      super
-    end
-
     def setspace3d(*)
       super
     end
