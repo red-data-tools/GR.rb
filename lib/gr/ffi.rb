@@ -63,6 +63,7 @@ module GR
     try_extern 'void gr_settextcolorind(int)'
     try_extern 'void gr_inqtextcolorind(int *)'
     try_extern 'void gr_setcharheight(double)'
+    try_extern 'void gr_inqcharheight(double *)'
     try_extern 'void gr_setcharup(double, double)'
     try_extern 'void gr_settextpath(int)'
     try_extern 'void gr_settextalign(int, int)'
@@ -196,6 +197,10 @@ module GR
     try_extern 'void gr_inqwindow3d(double *, double *, double *, double *, double *, double *)'
     try_extern 'void gr_setscalefactors3d(double, double, double)'
     try_extern 'void gr_inqscalefactors3d(double *, double *, double *)'
-    try_extern 'void gr_transformationinterfaceforrepl(double, double, double, double)'
+    try_extern 'void gr_setspace3d(double, double, double, double)'
+    try_extern 'void gr_text3d(double, double, double, char *, int axis)'
+    try_extern 'void gr_inqtext3d(double, double, double, char *, int axis, double *, double *)'
+    try_extern 'void gr_settextencoding(int)'
+    try_extern 'void gr_inqtextencoding(int *)'
   end
 end
