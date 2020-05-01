@@ -239,6 +239,9 @@ module GR
     # @param dimx [Integer] X dimension of the color index array
     # @param dimy [Integer] Y dimension of the color index array
     # @param color [Array, NArray] Color index array
+    # The values for `x` and `y` are in world coordinates. `x` must contain 
+    # `dimx` + 1 elements and `y` must contain `dimy` + 1 elements. The elements
+    # i and i+1 are respectively the edges of the i-th cell in X and Y direction.
     def nonuniformcellarray(x, y, dimx, dimy, color)
       raise ArgumentError unless x.length == dimx + 1 && y.length == dimy + 1
 
@@ -1798,31 +1801,32 @@ module GR
       end
     end
 
-    # Draw paths using given vertices and path codes.
+    # Draw paths using the given vertices and path codes.
     # @param x [Array, NArray] A list containing the X coordinates
     # @param y [Array, NArray] A list containing the Y coordinates
-    # @param codes [String] Path codes
+    # @param codes [String] A list containing the path codes
     #  The following path codes are recognized:
     #  * M, m
-    #    * moveto           x, y
+    #    * moveto                      x, y
     #  * L, l
-    #    * lineto           x, y
+    #    * lineto                      x, y
     #  * Q, q
-    #    * quadratic Bézier x1, y1  x2, y2
+    #    * quadratic Bézier            x1, x2  y1, y2
     #  * C, c
-    #    * cubic Bézier     x1, y1  x2, y2  x3, y3
-    #  * R, r
-    #    * rectangle        w, h
+    #    * cubic Bézier                x1, x2, x3  y1, y2, y3
     #  * A, a
-    #    * arc              w, h  a1, a2
+    #    * arc                         rx, a1, reserved  ry, a2, reserved
     #  * Z
-    #    * closepath        -
+    #    * close path                  -
     #  * s
-    #    * stroke           -
+    #    * stroke                      -
+    #  * s
+    #    * close path and stroke       -
     #  * f
-    #    * fill             -
-    # The values for `x` and `y` are in normalized device coordinates.
-    # The `codes` describe several patch primitives that can be used to create compound paths.
+    #    * close path and fill         -
+    #  * F
+    #    * close path, fill and stroke -
+    # See https://gr-framework.org/python-gr.html#gr.path for more details.
     def path(x, y, codes)
       n = equal_length(x, y)
       super(n, x, y, codes)
@@ -2225,6 +2229,9 @@ module GR
   XFORM_LOGLOG    = 3
   XFORM_CUBIC     = 4
   XFORM_EQUALIZED = 5
+
+  ENCODING_LATIN1 = 300
+  ENCODING_UTF8 = 301
 
   UPSAMPLE_VERTICAL_DEFAULT     = 0x00000000
   UPSAMPLE_HORIZONTAL_DEFAULT   = 0x00000000
