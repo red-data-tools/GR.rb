@@ -488,7 +488,9 @@ module GR
       end
 
       GR.selntran(0)
-      values = ((v - v.min) / (v.max - v.min) * (2 ^ 16 - 1)).round
+      v = Numo::DFloat.cast(v) if v.is_a? Array
+      values = ((v - v.min) / (v.max - v.min) * (2**16 - 1)).round
+      values = Numo::UInt16.cast(values)
       nx, ny, nz = v.shape
       isovalue = ((kvs[:isovalue] || 0.5) - v.min) / (v.max - v.min)
       rotation = ((kvs[:rotation] || 40) * Math::PI / 180.0)
@@ -497,7 +499,7 @@ module GR
       GR3.clear
       mesh = GR3.createisosurfacemesh(values, [2.0 / (nx - 1), 2.0 / (ny - 1), 2.0 / (nz - 1)],
                                       [-1, -1, -1],
-                                      (isovalue * (2 ^ 16 - 1)).round)
+                                      (isovalue * (2**16 - 1)).round)
       color = kvs[:color] || [0.0, 0.5, 0.8]
       GR3.setbackgroundcolor(1, 1, 1, 0)
       GR3.drawmesh(mesh, 1, [0, 0, 0], [0, 0, 1], [0, 1, 0], color, [1, 1, 1])
