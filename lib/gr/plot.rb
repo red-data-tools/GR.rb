@@ -421,7 +421,7 @@ module GR
       if img.is_a? String
         width, height, data = GR.readimage(img)
       else
-        width, height = img.shape
+        height, width = img.shape
         cmin, cmax = kvs[:crange]
         data = img.map { |i| normalize_color(i, cmin, cmax) }
         data = data.map { |i| (1000 + i * 255).round }
