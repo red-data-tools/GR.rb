@@ -17,8 +17,8 @@ y = NMath.sin(x)
 GR.step(x, y)
 sleep 1.2
 
-angles = Numo::DFloat.linspace(0, 2 * Math::PI, 40)
-radii = Numo::DFloat.linspace(0, 20, 40)
+angles = DFloat.linspace(0, 2 * Math::PI, 40)
+radii = DFloat.linspace(0, 20, 40)
 GR.polar(angles, radii)
 sleep 1.2
 
@@ -58,7 +58,7 @@ sleep 1.2
 
 # Stem Plots
 
-x = Numo::DFloat.linspace(-2, 2, 40)
+x = DFloat.linspace(-2, 2, 40)
 y = x**3 + x**2 + x + 6
 GR.stem(x, y)
 sleep 1.2
@@ -134,7 +134,7 @@ sleep 1.2
 
 # Heatmaps
 
-z = Numo::DFloat.new(100, 50).rand_norm
+z = DFloat.new(100, 50).rand_norm
 GR.heatmap(z)
 sleep 1.2
 GR.heatmap(z.sort(axis: 0))

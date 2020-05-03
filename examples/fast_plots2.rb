@@ -70,8 +70,8 @@ sleep 1.2
 GR.scatter([x, y1, sz, c], [x, y2, sz, c], [x, y3, sz, c])
 sleep 1.2
 
-angles = Numo::DFloat.linspace(0, 2 * Math::PI, 40)
-radii = Numo::DFloat.linspace(0, 20, 40)
+angles = DFloat.linspace(0, 2 * Math::PI, 40)
+radii = DFloat.linspace(0, 20, 40)
 GR.polar(*Array.new(20) { |i| [angles, radii + i] })
 sleep 1.2
 
