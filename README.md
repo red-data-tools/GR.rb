@@ -49,7 +49,8 @@ GR.plot(x, y)
 
 ## Examples
 
-Have a look in the [`examples`](https://github.com/red-data-tools/GR.rb/tree/master/examples) directory. Start with [`fast_plot`](https://github.com/red-data-tools/GR.rb/blob/master/examples/fast_plots.rb).
+Have a look in the [`examples`](https://github.com/red-data-tools/GR.rb/tree/master/examples) directory. 
+* [Example Gallery](https://github.com/red-data-tools/GR.rb/wiki/Example-gallery)
 
 ## Features
 
