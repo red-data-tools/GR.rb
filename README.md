@@ -50,7 +50,7 @@ GR.plot(x, y)
 ## Examples
 
 Have a look in the [`examples`](https://github.com/red-data-tools/GR.rb/tree/master/examples) directory. 
-* [Example Gallery](https://github.com/red-data-tools/GR.rb/wiki/Example-gallery)
+* [Example Gallery](https://github.com/red-data-tools/GR.rb/wiki/1.-Example-gallery)
 
 ## Features
 
