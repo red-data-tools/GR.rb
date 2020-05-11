@@ -1100,30 +1100,12 @@ module GR
       xmin, xmax = fix_minmax(xmin, xmax)
       ymin, ymax = fix_minmax(ymin, ymax)
       zmin, zmax = fix_minmax(zmin, zmax)
-      if kvs.has_key?(:xlim)
-        # kvs[:xlim] is supposed to be Array or Range
-        x0 = kvs[:xlim].first || xmin
-        x1 = kvs[:xlim].last || xmax
-        kvs[:xrange] = [x0, x1]
-      else
-        kvs[:xrange] = [xmin, xmax]
-      end
-      if kvs.has_key?(:ylim)
-        # kvs[:ylim] is supposed to be Array or Range
-        y0 = kvs[:ylim].first || ymin
-        y1 = kvs[:ylim].last || ymax
-        kvs[:yrange] = [y0, y1]
-      else
-        kvs[:yrange] = [ymin, ymax]
-      end
-      if kvs.has_key?(:zlim)
-        # kvs[:zlim] is supposed to be Array or Range
-        z0 = kvs[:zlim].first || zmin
-        z1 = kvs[:zlim].last || zmax
-        kvs[:zrange] = [z0, z1]
-      else
-        kvs[:zrange] = [zmin, zmax]
-      end
+
+      # kvs[:xlim], kvs[:ylim], kvs[:zlim] is supposed to be Array or Range
+      kvs[:xrange] = [(kvs[:xlim]&.first || xmin), (kvs[:xlim]&.last || xmax)]
+      kvs[:yrange] = [(kvs[:ylim]&.first || ymin), (kvs[:ylim]&.last || ymax)]
+      kvs[:zrange] = [(kvs[:zlim]&.first || zmin), (kvs[:zlim]&.last || zmax)]
+
       if kvs.has_key?(:clim)
         c0, c1 = kvs[:clim]
         c0 ||= cmin
