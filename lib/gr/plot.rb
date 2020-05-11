@@ -710,7 +710,7 @@ module GR
           if kvs.has_key?(:zlim)
             zmin = kvs[:zlim].first if kvs[:zlim].first
             zmax = kvs[:zlim].last if kvs[:zlim].last
-          else
+          end
 
           GR.setspace(zmin, zmax, 0, 90)
           levels = kvs[:levels] || 0
