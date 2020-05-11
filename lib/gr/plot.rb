@@ -332,7 +332,7 @@ module GR
         GR.axes(xtick, ytick, xorg[1], yorg[1], -majorx, -majory, -ticksize)
       end
 
-      if kvs.has_key?(:title)
+      if kvs[:title]
         GR.savestate
         GR.settextalign(GR::TEXT_HALIGN_CENTER, GR::TEXT_VALIGN_TOP)
         text(0.5 * (viewport[0] + viewport[1]), vp[3], kvs[:title])
