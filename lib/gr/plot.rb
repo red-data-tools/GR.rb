@@ -700,11 +700,18 @@ module GR
             a, b = z.shape
             x = (1..b).to_a
             y = (1..a).to_a
-            zmin, zmax = kvs[:zlim] || z.minmax
+            zmin, zmax = z.minmax
           elsif equal_length(x, y, z)
             x, y, z = GR.gridit(x, y, z, 200, 200)
-            zmin, zmax = kvs[:zlim] || z.compact.minmax # compact : removed nil
+            zmin, zmax = z.compact.minmax # compact : removed nil
           end
+
+          # kvs[:zlim] is supposed to be Array or Range
+          if kvs.has_key?(:zlim)
+            zmin = kvs[:zlim].first if kvs[:zlim].first
+            zmax = kvs[:zlim].last if kvs[:zlim].last
+          else
+
           GR.setspace(zmin, zmax, 0, 90)
           levels = kvs[:levels] || 0
           clabels = kvs[:clabels] || false
@@ -1094,25 +1101,25 @@ module GR
       ymin, ymax = fix_minmax(ymin, ymax)
       zmin, zmax = fix_minmax(zmin, zmax)
       if kvs.has_key?(:xlim)
-        x0, x1 = kvs[:xlim]
-        x0 ||= xmin
-        x1 ||= xmax
+        # kvs[:xlim] is supposed to be Array or Range
+        x0 = kvs[:xlim].first || xmin
+        x1 = kvs[:xlim].last || xmax
         kvs[:xrange] = [x0, x1]
       else
         kvs[:xrange] = [xmin, xmax]
       end
       if kvs.has_key?(:ylim)
-        y0, y1 = kvs[:ylim]
-        y0 ||= ymin
-        y1 ||= ymax
+        # kvs[:ylim] is supposed to be Array or Range
+        y0 = kvs[:ylim].first || ymin
+        y1 = kvs[:ylim].last || ymax
         kvs[:yrange] = [y0, y1]
       else
         kvs[:yrange] = [ymin, ymax]
       end
       if kvs.has_key?(:zlim)
-        z0, z1 = kvs[:zlim]
-        z0 ||= zmin
-        z1 ||= zmax
+        # kvs[:zlim] is supposed to be Array or Range
+        z0 = kvs[:zlim].first || zmin
+        z1 = kvs[:zlim].last || zmax
         kvs[:zrange] = [z0, z1]
       else
         kvs[:zrange] = [zmin, zmax]
