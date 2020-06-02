@@ -8,7 +8,7 @@ rvm:
   - 2.5
   - 2.4
 before_install:
-  - export GR_VERSION=0.49.0
+  - export GR_VERSION=0.50.0
   - chmod +x ./test/ci/install_gr.sh
   - ./test/ci/install_gr.sh
   - export GRDIR=$HOME/GR/$GR_VERSION/gr
