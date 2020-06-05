@@ -23,6 +23,10 @@ GR.barplot(time, value, opts)
 sleep 1.5
 
 volcano = RDatasets.datasets.volcano.to_matrix.to_a.transpose
+
+# Fixme
+volcano = Numo::DFloat.cast(volcano)
+
 opts = { title: "Auckland's Maunga Whau Volcano" }
 GR.contour(volcano, opts)
 sleep 1.5
