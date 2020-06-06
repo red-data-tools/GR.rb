@@ -60,16 +60,19 @@ module GR3
     attr_accessor :ffi_lib
   end
 
-  raise Error, 'Please set env variable GRDIR' unless ENV['GRDIR']
-
   # Platforms |  path
   # Windows   |  bin/libGR3.dll
   # MacOSX    |  lib/libGR3.so (NOT .dylib)
   # Ubuntu    |  lib/libGR3.so
   if Object.const_defined?(:RubyInstaller)
+    ENV['GRDIR'] ||= [
+      RubyInstaller::Runtime.msys2_installation.msys_path,
+      RubyInstaller::Runtime.msys2_installation.mingwarch,
+    ].join(File::ALT_SEPARATOR)
     self.ffi_lib = File.expand_path('bin/libGR3.dll', ENV['GRDIR'])
     RubyInstaller::Runtime.add_dll_directory(File.dirname(ffi_lib))
   else
+    raise Error, 'Please set env variable GRDIR' unless ENV['GRDIR']
     self.ffi_lib = File.expand_path('lib/libGR3.so', ENV['GRDIR'])
   end
 
