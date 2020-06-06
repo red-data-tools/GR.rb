@@ -26,4 +26,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rubocop'
   spec.add_development_dependency 'simplecov'
   spec.add_development_dependency 'test-unit'
+
+  spec.metadata["msys2_mingw_dependencies"] = "gr"
 end
