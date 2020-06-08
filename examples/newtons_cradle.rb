@@ -9,7 +9,8 @@ Theta = 70.0   # initial angle
 Gamma = 0.1    # damping coefficient
 L = 0.2        # wire length
 
-_w, _h, Ball = GR.readimage(File.expand_path('ball.png', __dir__))
+assets_dir = File.expand_path('assets', __dir__)
+_w, _h, Ball = GR.readimage(File.join(assets_dir, 'ball.png'))
 
 def rk4(x, h, y, f)
   k1 = h * f.call(x, y)

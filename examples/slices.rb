@@ -6,7 +6,8 @@ require 'gr'
 require 'gr3'
 require 'numo/narray'
 
-data = Numo::UInt16.from_string(File.binread(File.expand_path('mri.raw', __dir__)))
+assets_dir = File.expand_path('assets', __dir__)
+data = Numo::UInt16.from_string(File.binread(File.join(assets_dir, 'mri.raw')))
                    .reshape(64, 64, 93)
 data[data > 2000] = 2000
 data = Numo::UInt16.cast((data / 2000.0 * Numo::UInt16::MAX).floor)

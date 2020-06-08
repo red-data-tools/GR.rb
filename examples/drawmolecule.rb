@@ -6,7 +6,9 @@ require 'gr'
 require 'gr3'
 require 'numo/narray'
 
-data = File.readlines(File.expand_path('dna.xyz', __dir__))
+assets_dir = File.expand_path('assets', __dir__)
+
+data = File.readlines(File.join(assets_dir, 'dna.xyz'))
 data = data[2..-2]
 data.map! { |row| row.split(' ') }
 

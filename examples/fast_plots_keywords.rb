@@ -6,6 +6,8 @@ require 'numo/narray'
 x = Numo::DFloat.linspace(0, 10, 1001)
 y = Numo::NMath.sin(x)
 
+assets_dir = File.expand_path('assets', __dir__)
+
 def s(t = 0.4)
   sleep t
 end
@@ -88,7 +90,7 @@ end
 
 ### CONTOURF PLOT ###
 
-data = File.readlines(File.expand_path('fecr.dat', __dir__)).map(&:to_f)
+data = File.readlines(File.join(assets_dir, 'fecr.dat')).map(&:to_f)
 z = Numo::DFloat.cast(data).reshape(200, 200)
 GR.contourf(z)
 s

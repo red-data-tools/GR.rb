@@ -97,7 +97,7 @@ class GRTest < Test::Unit::TestCase
   end
 
   def test_readimage
-    width, height, data = GR.readimage(File.expand_path('../examples/ruby-logo.png', __dir__))
+    width, height, data = GR.readimage(File.expand_path('../examples/assets/ruby-logo.png', __dir__))
     assert_equal 198, width
     assert_equal 244, height
     assert_equal 198 * 244, data.length
@@ -105,7 +105,7 @@ class GRTest < Test::Unit::TestCase
     require 'digest/md5'
     assert_equal 'ef670ef7f4edc6261cb7ade2f8ce72ab', Digest::MD5.hexdigest(data.join)
 
-    width, height, data = GR.readimage(File.expand_path('../examples/ball.png', __dir__))
+    width, height, data = GR.readimage(File.expand_path('../examples/assets/ball.png', __dir__))
     assert_equal 50, width
     assert_equal 50, height
     assert_equal 50 * 50, data.length

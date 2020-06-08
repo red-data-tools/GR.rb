@@ -5,7 +5,8 @@
 require 'gr/plot'
 require 'numo/narray'
 
-data = File.readlines(File.expand_path('kws2.dat', __dir__))
+assets_dir = File.expand_path('assets', __dir__)
+data = File.readlines(File.join(assets_dir, 'kws2.dat'))
 data = data[70..-3].join.strip.split(/\s+/).map(&:to_f)
 z = Numo::DFloat.cast(data).reshape(128, 128)
 [3, 4].each do |c|

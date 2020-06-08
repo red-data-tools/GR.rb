@@ -26,7 +26,8 @@ def points_from_image(img, npts)
   [xpts, ypts, cols].map { |ar| Numo::DFloat.cast(ar) }
 end
 
-w, h, data = GR.readimage(File.expand_path('ruby-logo.png', __dir__))
+assets_dir = File.expand_path('assets', __dir__)
+w, h, data = GR.readimage(File.join(assets_dir, 'ruby-logo.png'))
 img = Numo::UInt32.cast(data).reshape(h, w)
 
 x, y, cols = points_from_image(img, 100_000)
