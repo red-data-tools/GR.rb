@@ -1595,10 +1595,10 @@ module GR
         super(npoints, x, y, ntri, triangles.ref)
       end
       if n_tri > 0
-        tri = triangles.to_str(3 * n_tri * Fiddle::SIZEOF_INT).unpack('l*') # Int32
+        tri = triangles.to_str(dim * n_tri * Fiddle::SIZEOF_INT).unpack('l*') # Int32
         # Ruby  : 0-based indexing
         # Julia : 1-based indexing
-        tri = tri.each_slice(3).to_a
+        tri = tri.each_slice(dim).to_a
         [n_tri, tri]
       else
         0
