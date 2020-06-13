@@ -48,7 +48,7 @@ GR.plot(x, y)
 ```
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/5798442/84570473-b0d47700-adc8-11ea-87a5-a68d9f410e4c.png">
+  <img src="https://user-images.githubusercontent.com/5798442/84570709-242ab880-adca-11ea-9099-3a6b3418bf19.png">
 </p>
 
 ```ruby
@@ -65,8 +65,7 @@ GR.plot(
   ylabel:   "y",
   ylim:     [-1.2, 1.2],
   labels:   ["sin(x)", "cos(x)"],
-  location: 11,
-  figsize:  [8,4]
+  location: 11
 )
 ```
 
