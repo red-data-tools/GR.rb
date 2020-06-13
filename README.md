@@ -69,10 +69,7 @@ GR.plot(
 )
 ```
 
-## Examples
-
-Have a look in the [`examples`](https://github.com/red-data-tools/GR.rb/tree/master/examples) directory. 
-* [Example Gallery](https://github.com/red-data-tools/GR.rb/wiki/1.-Example-gallery)
+Have a look in the [Example Gallery](https://github.com/red-data-tools/GR.rb/wiki/1.-Example-gallery).
 
 ## Features
 
