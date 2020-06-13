@@ -100,6 +100,7 @@ require 'gr3'
 
 ## Documentation
 
+- [GR.rb Wiki](https://github.com/red-data-tools/GR.rb/wiki)
 - [GR Framework](https://gr-framework.org/)
 - [GR.rb API Documentation](https://rubydoc.info/gems/ruby-gr)
 
