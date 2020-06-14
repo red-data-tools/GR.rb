@@ -37,11 +37,12 @@ module GR
                    volume].freeze # the name might be changed in the future.
 
     # Keyword options conform to GR.jl.
-    KW_ARGS = %i[accelerate algorithm alpha backgroundcolor barwidth baseline
-                 clabels color colormap figsize horizontal isovalue label labels
-                 levels location nbins rotation size tilt title where xflip
-                 xform xlabel xlim xlog yflip ylabel ylim ylog zflip zlabel zlim
-                 zlog clim subplot].freeze
+    KW_ARGS = %i[accelerate algorithm alpha ax backgroundcolor barwidth baseline
+                 clabels clear clim color colormap crange figsize horizontal
+                 isovalue kind label labels levels location nbins ratio rotation
+                 scale size spec subplot tilt title update xaxis xflip xform
+                 xlabel xlim xlog xrange yaxis yflip ylabel ylim ylog zflip
+                 yrange viewport vp where window zaxis zlabel zlim zlog zrange].freeze
 
     @last_plot = nil
     class << self
