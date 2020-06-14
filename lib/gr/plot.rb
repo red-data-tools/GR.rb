@@ -182,12 +182,8 @@ module GR
         minmax
       end
 
-      major_count = if %i[wireframe surface plot3 scatter3 polar polarhist
-                          polarheatmap trisurf volume].include?(kind)
-                      2
-                    else
-                      5
-                    end
+      major_count = %i[wireframe surface plot3 scatter3 polar polarhist
+                       polarheatmap trisurf volume].include?(kind) ? 2 : 5
 
       xmin, xmax = kvs[:xrange]
       if (scale & GR::OPTION_X_LOG) == 0
