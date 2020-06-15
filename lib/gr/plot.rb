@@ -269,7 +269,7 @@ module GR
       ratio = kvs[:ratio]
       xtick, xorg, majorx = kvs[:xaxis]
       ytick, yorg, majory = kvs[:yaxis]
-      drawgrid = kvs[:grid] || true
+      drawgrid = true if kvs[:grid].nil?
       xtick = 10 if kvs[:scale] & GR::OPTION_X_LOG != 0
       ytick = 10 if kvs[:scale] & GR::OPTION_Y_LOG != 0
       GR.setlinecolorind(1)
@@ -290,8 +290,8 @@ module GR
       else
         if %i[heatmap nonuniformheatmap shade].include?(kind)
           ticksize = -ticksize
-        else
-          drawgrid && GR.grid(xtick, ytick, 0, 0, majorx, majory)
+        elsif drawgrid
+          GR.grid(xtick, ytick, 0, 0, majorx, majory)
         end
         if kvs.has_key?(:xticklabels) || kvs.has_key?(:yticklabels)
           fx = if kvs.has_key?(:xticklabels)
