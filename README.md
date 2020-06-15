@@ -69,8 +69,6 @@ GR.plot(
 )
 ```
 
-Have a look in the [Example Gallery](https://github.com/red-data-tools/GR.rb/wiki/1.-Example-gallery).
-
 ## Features
 
 There are two layers to the GR.rb API. 
