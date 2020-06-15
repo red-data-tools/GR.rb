@@ -90,12 +90,8 @@ GR.savefig("figure.png")
 ## Features
 
 There are two layers to the GR.rb API. 
-* High-level API - GR::Plot
-* Low-level API - GR, GR3
 
-#### GR::Plot
-
-A simple, matlab-style API. 
+#### GR::Plot - A simple, matlab-style API. 
 
 ```ruby
 require 'gr/plot'
@@ -128,9 +124,7 @@ List of vailable functions. See [GR.rb Wiki](https://github.com/red-data-tools/G
 [`imshow`](../../wiki/Plotting-functions#imshow)
 [`isosurface`](../../wiki/Plotting-functions#isosurface)
 
-#### GR module
-
-you can call native GR functions.
+#### GR - A module for calling native GR functions.
 
 ```ruby
 require 'gr'
@@ -140,9 +134,7 @@ GR.setviewport(0.1, 0.9, 0.1, 0.9)
 GR.setwindow(0.0, 20.0, 0.0, 20.0)
 ```
 
-#### GR3 module
-
-You can call native GR3 functions.
+#### GR3 - A module for calling native GR3 functions.
 
 ```ruby
 require 'gr3'
@@ -175,8 +167,8 @@ export GRDIR="your/path/to/gr"
 
 ### Using your package manager
 
-We provide third party GR packages for Mac, Linux and Windows (for advanced users).
-If you find any problems, please report them to the [issue](https://github.com/red-data-tools/GR.rb/issues).
+* The third party GR packages for Mac, Linux and Windows (for advanced users) are available.
+* If you find problems, please report to the [issue](https://github.com/red-data-tools/GR.rb/issues).
 
 #### Mac: Homebrew
 
