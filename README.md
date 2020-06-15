@@ -69,6 +69,12 @@ GR.plot(
 )
 ```
 
+Save to PNG file.
+
+```ruby
+GR.savefig("figure.png")
+```
+
 ## Features
 
 There are two layers to the GR.rb API. 
