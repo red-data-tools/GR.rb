@@ -269,7 +269,7 @@ module GR
       ratio = kvs[:ratio]
       xtick, xorg, majorx = kvs[:xaxis]
       ytick, yorg, majory = kvs[:yaxis]
-      drawgrid = true if kvs[:grid].nil?
+      drawgrid = kvs.has_key?(:grid) ? kvs[:grid] : true
       xtick = 10 if kvs[:scale] & GR::OPTION_X_LOG != 0
       ytick = 10 if kvs[:scale] & GR::OPTION_Y_LOG != 0
       GR.setlinecolorind(1)
