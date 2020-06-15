@@ -92,7 +92,29 @@ GR.plot(x, y)
 
 List of vailable functions. See [GR.rb Wiki](https://github.com/red-data-tools/GR.rb/wiki) for details.
 
-`plot` `step` `scatter` `stem` `histogram` `contour` `contourf` `hexbin` `heatmap` `wireframe` `surface` `plot3` `scatter3` `imshow` `isosurface` `polar` `polarhist` `polarheatmap` `trisurf` `tricont` `shade` `volume`
+[`plot`](https://github.com/red-data-tools/GR.rb/wiki/Plotting-functions#plot)
+[`step`](https://github.com/red-data-tools/GR.rb/wiki/Plotting-functions#step)
+[`plot3`](https://github.com/red-data-tools/GR.rb/wiki/Plotting-functions#plot3)
+[`polar`](https://github.com/red-data-tools/GR.rb/wiki/Plotting-functions#polar)
+[`scatter`](https://github.com/red-data-tools/GR.rb/wiki/Plotting-functions#scatter)
+[`scatter3`](https://github.com/red-data-tools/GR.rb/wiki/Plotting-functions#scatter3)
+[`stem`](https://github.com/red-data-tools/GR.rb/wiki/Plotting-functions#stem)
+[`barplot`](https://github.com/red-data-tools/GR.rb/wiki/Plotting-functions#barplot)
+[`histogram`](https://github.com/red-data-tools/GR.rb/wiki/Plotting-functions#histogram)
+[`polarhistogram`](https://github.com/red-data-tools/GR.rb/wiki/Plotting-functions#polarhistogram)
+[`hexbin`](https://github.com/red-data-tools/GR.rb/wiki/Plotting-functions#hexbin)
+[`contour`](https://github.com/red-data-tools/GR.rb/wiki/Plotting-functions#contour)
+[`contourf`](https://github.com/red-data-tools/GR.rb/wiki/Plotting-functions#contourf)
+[`tricont`](https://github.com/red-data-tools/GR.rb/wiki/Plotting-functions#tricont)
+[`surface`](https://github.com/red-data-tools/GR.rb/wiki/Plotting-functions#surface)
+[`trisurf`](https://github.com/red-data-tools/GR.rb/wiki/Plotting-functions#trisurf)
+[`wireframe`](https://github.com/red-data-tools/GR.rb/wiki/Plotting-functions#wireframe)
+[`volume`](https://github.com/red-data-tools/GR.rb/wiki/Plotting-functions#volume)
+[`heatmap`](https://github.com/red-data-tools/GR.rb/wiki/Plotting-functions#heatmap)
+[`polarheatmap`](https://github.com/red-data-tools/GR.rb/wiki/Plotting-functions#polarheatmap)
+[`shade`](https://github.com/red-data-tools/GR.rb/wiki/Plotting-functions#shade)
+[`imshow`](https://github.com/red-data-tools/GR.rb/wiki/Plotting-functions#imshow)
+[`isosurface`](https://github.com/red-data-tools/GR.rb/wiki/Plotting-functions#isosurface)
 
 #### GR module
 
@@ -156,7 +178,7 @@ Set environment variable GRDIR.
 export GRDIR=$(brew --prefix libgr)
 ```
 
-#### Linux: packages.red-data-tools.org 
+#### Linux: APT Yum
 
 [packages.red-data-tools.org](https://github.com/red-data-tools/packages.red-data-tools.org) provides `libgr-dev` and `libgr3-dev`.
 
