@@ -111,6 +111,8 @@ require 'gr3'
 GR3.cameralookat(-3, 2, -2, 0, 0, 0, 0, 0, -1)
 ```
 
+* GR.rb can be used in Jupyter Notebook.
+
 ## Documentation
 
 - [GR.rb Wiki](https://github.com/red-data-tools/GR.rb/wiki)
@@ -119,7 +121,7 @@ GR3.cameralookat(-3, 2, -2, 0, 0, 0, 0, 0, -1)
 
 ## GR Installation
 
-### Official binary release
+### Installing an official release (recommended)
 
 Download the [latest release](https://github.com/sciapp/gr/releases).
 
@@ -131,7 +133,12 @@ export GRDIR="your/path/to/gr"
 
 * macOS Catalina and macOS Mojave: See the "How to open an app that hasn’t been notarized or is from an unidentified developer" section of [Safely open apps on your Mac](https://support.apple.com/en-us/HT202491) in the Apple documentation.
 
-### Homebrew
+### Using your package manager
+
+We provide third party GR packages for Mac, Linux and Windows (for advanced users).
+If you find any problems, please report them to the [issue](https://github.com/red-data-tools/GR.rb/issues).
+
+#### Mac: Homebrew
 
 ```sh
 brew install libgr
@@ -143,11 +150,13 @@ Set environment variable GRDIR.
 export GRDIR=$(brew --prefix libgr)
 ```
 
-If you fail to build libgr using homebrew, Please feel free to [send us your feedback](https://github.com/red-data-tools/GR.rb/issues).
+#### Linux: packages.red-data-tools.org 
 
-### Red data tools repository
+[packages.red-data-tools.org](https://github.com/red-data-tools/packages.red-data-tools.org) provides `libgr-dev` and `libgr3-dev`.
 
-Red data tools provides [packages](https://github.com/red-data-tools/packages.red-data-tools.org ) related to our project including `libgr-dev` and `libgr3-dev` for advanced users.
+#### Windows: MSYS2
+
+If you are using Rubyinstaller, pacman will automatically install [mingw-w64-gr](https://packages.msys2.org/base/mingw-w64-gr) when the gem is installed.
 
 ## Backend for Charty
 
