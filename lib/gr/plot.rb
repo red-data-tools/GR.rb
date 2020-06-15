@@ -1278,9 +1278,8 @@ module GR
     def barplot(labels, heights, kv = {})
       labels = labels.map(&:to_s)
       wc, hc = barcoordinates(heights)
-      horizontal = kv[:horizontal] || false
       create_plot(:bar, labels, heights, kv) do |plt|
-        if horizontal
+        if kv[:horizontal]
           plt.args = [[hc, wc, nil, nil, '']]
           plt.kvs[:yticks] = [1, 1]
           plt.kvs[:yticklabels] = labels
