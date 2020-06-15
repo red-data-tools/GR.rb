@@ -73,26 +73,44 @@ Have a look in the [Example Gallery](https://github.com/red-data-tools/GR.rb/wik
 
 ## Features
 
+There are two layers to the GR.rb API. 
+* High-level API - GR::Plot
+* Low-level API - GR, GR3
+
 #### GR::Plot
 
-A simple, matlab-style API.
+A simple, matlab-style API. 
 
 ```ruby
 require 'gr/plot'
+GR.plot(x, y)
 ```
+
+List of vailable functions. See [GR.rb Wiki](https://github.com/red-data-tools/GR.rb/wiki) for details.
 
 `plot` `step` `scatter` `stem` `histogram` `contour` `contourf` `hexbin` `heatmap` `wireframe` `surface` `plot3` `scatter3` `imshow` `isosurface` `polar` `polarhist` `polarheatmap` `trisurf` `tricont` `shade` `volume`
 
-#### GR
+#### GR module
+
+you can call native GR functions.
 
 ```ruby
 require 'gr'
+
+# For example
+GR.setviewport(0.1, 0.9, 0.1, 0.9)
+GR.setwindow(0.0, 20.0, 0.0, 20.0)
 ```
 
-#### GR3
+#### GR3 module
+
+You can call native GR3 functions.
 
 ```ruby
 require 'gr3'
+
+# For example
+GR3.cameralookat(-3, 2, -2, 0, 0, 0, 0, 0, -1)
 ```
 
 ## Documentation
