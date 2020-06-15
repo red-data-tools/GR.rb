@@ -1339,6 +1339,7 @@ module GR
       end
       {
         subplot: [xmin, xmax, ymin, ymax],
+        # The policy of clearing when p[0]==1 is controversial
         clear: p[0] == 1,
         update: p[-1] == nr * nc
       }
