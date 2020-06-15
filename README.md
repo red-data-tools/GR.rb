@@ -6,9 +6,21 @@
 [![Gitter Chat](https://badges.gitter.im/red-data-tools/en.svg)](https://gitter.im/red-data-tools/en)
 [![Docs Latest](https://img.shields.io/badge/docs-latest-blue.svg)](https://rubydoc.info/gems/ruby-gr)
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/5798442/70857099-13d57600-1f2c-11ea-8f3c-7d81065f13a5.png">
-</p>
+![rdatasets-1](https://i.imgur.com/XEQ6wKs.png)
+![stem](https://i.imgur.com/3w0Ejrm.png)
+![histogram](https://i.imgur.com/xUdoA2s.png)
+![barplot](https://i.imgur.com/52bOFKE.png)
+![scatter3](https://i.imgur.com/yTTVetQ.png)
+![volume](https://i.imgur.com/CuRN6oC.png)
+![griddata](https://i.imgur.com/58HdYDo.png)
+![2darray](https://i.imgur.com/aKR2FJG.png)
+![2dpolararray](https://i.imgur.com/cmSrxvS.png)
+![hexbin](https://i.imgur.com/unWhQHr.png)
+![rdatasets-2](https://i.imgur.com/ZPit2F5.png)
+![rdatasets-3](https://i.imgur.com/TbNoxwy.png)
+![surface](https://i.imgur.com/sWdaHme.png)
+![face](https://i.imgur.com/uLCKi2r.png)
+![shade](https://i.imgur.com/VJmS3EQ.png)
 
 :bar_chart:  [GR framework](https://github.com/sciapp/gr) - the graphics library for visualization - for Ruby
 
