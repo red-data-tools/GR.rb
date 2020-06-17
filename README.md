@@ -87,7 +87,7 @@ Save to PNG file.
 GR.savefig("figure.png")
 ```
 
-## Features
+## API Overview
 
 There are two layers to the GR.rb API. 
 
@@ -142,8 +142,6 @@ require 'gr3'
 # For example
 GR3.cameralookat(-3, 2, -2, 0, 0, 0, 0, 0, -1)
 ```
-
-* GR.rb can be used in Jupyter Notebook.
 
 ## Documentation
 
