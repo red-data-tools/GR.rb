@@ -142,6 +142,14 @@ sleep 1.2
 GR.heatmap(z.sort(axis: 1), title: 'heatmap - axis 1')
 sleep 1.2
 
+# Polarheatmap
+
+angle = DFloat.linspace(0, 2*Math::PI, 40)
+radius = DFloat.linspace(0, 10, 20)
+z = NMath.sin(angle.expand_dims(0).transpose) * NMath.cos(radius)
+GR.polarheatmap(z, title: 'polarheatmap')
+sleep 1.2
+
 n = 1_000_000
 x = DFloat.new(n).rand_norm
 y = DFloat.new(n).rand_norm
