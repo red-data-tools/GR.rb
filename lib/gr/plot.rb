@@ -683,9 +683,10 @@ module GR
           cmap = colormap
           cmin, cmax = kvs[:zrange]
           data = z.map { |i| normalize_color(i, cmin, cmax) }
-          colors = data.map { |i| 1000 + i * 255 }
-          # if kvs[:xflip]
-          # if kvs[;yflip]
+          data.reverse(axis: 0) if kvs[:xflip]
+          data.reverse(axis: 1) if kvs[:yflip]
+          colors = data * 255 + 1000
+          colors = colors.transpose # Julia is column major
           GR.polarcellarray(0, 0, 0, 360, 0, 1, w, h, colors)
           draw_polar_axes
           kvs[:zrange] = [cmin, cmax]
