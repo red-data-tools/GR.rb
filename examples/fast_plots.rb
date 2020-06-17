@@ -144,7 +144,7 @@ sleep 1.2
 
 # Polarheatmap
 
-angle = DFloat.linspace(0, 2*Math::PI, 40)
+angle = DFloat.linspace(0, 2 * Math::PI, 40)
 radius = DFloat.linspace(0, 10, 20)
 z = NMath.sin(angle.expand_dims(0).transpose) * NMath.cos(radius)
 GR.polarheatmap(z, title: 'polarheatmap')

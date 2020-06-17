@@ -4,11 +4,9 @@ require_relative 'test_helper'
 require 'grm'
 
 class GRMTest < Test::Unit::TestCase
-  def setup
-  end
+  def setup; end
 
-  def teardown
-  end
+  def teardown; end
 
   def test_grm_ffi_lib
     assert_kind_of String, GRM.ffi_lib
