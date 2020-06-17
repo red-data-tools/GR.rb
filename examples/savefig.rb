@@ -29,3 +29,9 @@ GR.savefig('savefig/image.svg')
 # GR.savefig('savefig/image.png', title: 'PNG')
 # GR.savefig('savefig/image.tiff', title: 'TIFF')
 # GR.savefig('savefig/image.svg', title: 'SVG')
+
+# You can save video files.
+#
+# GR.beginprint("video.webm")
+# ... some nice plotting
+# GR.endprint
