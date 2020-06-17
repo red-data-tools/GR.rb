@@ -89,7 +89,7 @@ GR.savefig("figure.png")
 
 ## API Overview
 
-There are two layers to the GR.rb API. 
+There are two different approaches to plotting with GR.rb. One way is to call Matlab-like APIs. The other is to call GR/GR3 native functions. We are planning to prepare a more object-oriented interface based on [GRUtils.jl](https://github.com/heliosdrm/GRUtils.jl) in the future.
 
 #### GR::Plot - A simple, matlab-style API. 
 
@@ -165,10 +165,10 @@ export GRDIR="your/path/to/gr"
 
 ### Using your package manager
 
-* The third party GR packages for Mac, Linux and Windows (for advanced users) are available.
-* If you find problems, please report to the [issue](https://github.com/red-data-tools/GR.rb/issues).
+* The third party GR packages for Mac, Linux and Windows are available (for advanced users).
+* If you find any problem, please report the issue [here](https://github.com/red-data-tools/GR.rb/issues).
 
-#### Mac: Homebrew
+#### Mac - Homebrew
 
 ```sh
 brew install libgr
@@ -180,11 +180,11 @@ Set environment variable GRDIR.
 export GRDIR=$(brew --prefix libgr)
 ```
 
-#### Linux: APT Yum
+#### Linux - APT Yum
 
 [packages.red-data-tools.org](https://github.com/red-data-tools/packages.red-data-tools.org) provides `libgr-dev` and `libgr3-dev`.
 
-#### Windows: MSYS2
+#### Windows - MSYS2
 
 If you are using Rubyinstaller, pacman will automatically install [mingw-w64-gr](https://packages.msys2.org/base/mingw-w64-gr) when the gem is installed.
 
