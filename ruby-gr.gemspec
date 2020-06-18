@@ -18,9 +18,10 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = '>= 2.4'
 
+  spec.add_dependency 'histogram'
+  spec.add_dependency 'numo-narray'
+
   spec.add_development_dependency 'bundler'
-  spec.add_development_dependency 'histogram'
-  spec.add_development_dependency 'numo-narray'
   spec.add_development_dependency 'pry'
   spec.add_development_dependency 'rake', '~> 12.3.3'
   spec.add_development_dependency 'rubocop'
