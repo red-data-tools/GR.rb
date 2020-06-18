@@ -22,27 +22,21 @@
 ![face](https://i.imgur.com/uLCKi2r.png)
 ![shade](https://i.imgur.com/VJmS3EQ.png)
 
-:bar_chart:  [GR framework](https://github.com/sciapp/gr) - the graphics library for visualization - for Ruby
+:bar_chart:  [GR framework](https://github.com/sciapp/gr) - powerful visualization library - for Ruby
 
 ## Installation
 
 GR.rb supports Ruby 2.4+.
 
-[Install GR](#gr-installation).
-
-Set environment variable GRDIR, if you have not already done. 
+First, [nstall GR](#gr-installation). Next, set environment variable `GRDIR`. 
 
 ```sh
 export GRDIR="/your/path/to/gr"
 ```
 
-Add this line to your application's Gemfile:
-
 ```sh
-gem 'ruby-gr'
+gem install ruby-gr
 ```
-
-GR3 and GR::Plot require [numo-narray](https://github.com/ruby-numo/numo-narray).
 
 ## Quick Start
 
@@ -81,7 +75,7 @@ GR.plot(
 )
 ```
 
-Save to PNG file.
+Save in PNG format.
 
 ```ruby
 GR.savefig("figure.png")
@@ -126,6 +120,8 @@ List of vailable functions. See [GR.rb Wiki](https://github.com/red-data-tools/G
 
 #### GR - A module for calling native GR functions.
 
+2-D Plots and common 3-D Plots.
+
 ```ruby
 require 'gr'
 
@@ -135,6 +131,8 @@ GR.setwindow(0.0, 20.0, 0.0, 20.0)
 ```
 
 #### GR3 - A module for calling native GR3 functions.
+
+Complex 3D scenes.
 
 ```ruby
 require 'gr3'
@@ -174,7 +172,7 @@ export GRDIR="your/path/to/gr"
 brew install libgr
 ```
 
-Set environment variable GRDIR.
+Set environment variable `GRDIR`.
 
 ```sh
 export GRDIR=$(brew --prefix libgr)
