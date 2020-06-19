@@ -28,7 +28,7 @@
 
 GR.rb supports Ruby 2.4+.
 
-First, [nstall GR](#gr-installation). Next, set environment variable `GRDIR`. 
+First, [install GR](#gr-installation). Next, set environment variable `GRDIR`. 
 
 ```sh
 export GRDIR="/your/path/to/gr"
