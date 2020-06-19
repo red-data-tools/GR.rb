@@ -28,7 +28,7 @@ pid = case RbConfig::CONFIG['host_os']
               'echo Loaded";'                                        \
               '$player.PlaySync();',
                     out: w, err: w)
-        puts r.gets
+        puts r.gets # wait for loading music...
         w.close
         pid
       when /darwin|mac os/ # Mac
