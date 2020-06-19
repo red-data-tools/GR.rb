@@ -21,13 +21,22 @@ GR.setfillcolorind(208)
 
 pid = case RbConfig::CONFIG['host_os']
       when /mswin|msys|mingw|cygwin|bccwin|wince|emc/ # Windows
-        spawn("powershell -c (New-Object Media.SoundPlayer #{filepath}).PlaySync();")
+        r, w = IO.pipe
+        pid = spawn('powershell -c '                                 \
+              "$player=(New-Object Media.SoundPlayer #{file_path});" \
+              '$player.LoadAsync();'                                 \
+              'echo Loaded";'                                        \
+              '$player.PlaySync();',
+                    out: w, err: w)
+        puts r.gets
+        w.close
+        pid
       when /darwin|mac os/ # Mac
         spawn("afplay #{file_path}")
       when /linux/ # Linux
         spawn("aplay #{file_path}")
-      end
-Process.detouch(pid)
+end
+Process.detach(pid)
 
 count = 1
 start_time = Time.now
