@@ -1323,7 +1323,7 @@ module GR
     end
 
     # Set current subplot index.
-    def subplot(nr, nc, p)
+    def subplot(nr, nc, p, kv = {})
       xmin = 1
       xmax = 0
       ymin = 1
@@ -1342,7 +1342,7 @@ module GR
         # The policy of clearing when p[0]==1 is controversial
         clear: p[0] == 1,
         update: p[-1] == nr * nc
-      }
+      }.merge kv
     end
 
     # (Plot) Save the current figure to a file.
