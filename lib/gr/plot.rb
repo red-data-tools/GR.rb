@@ -48,7 +48,7 @@ module GR
     class << self
       attr_accessor :last_plot
     end
-    
+
     attr_accessor :args, :kvs, :scheme
 
     def initialize(*raw_args)
@@ -56,19 +56,17 @@ module GR
       @args = plot_args(raw_args) # method name is the same as Julia/Python
 
       # Check keyword options.
-      kvs.each_key{ |k| warn "Unknown keyword: #{k}" unless KW_ARGS.include? k }
+      kvs.each_key { |k| warn "Unknown keyword: #{k}" unless KW_ARGS.include? k }
 
       # label(singular form) is a original keyword arg which GR.jl does not have.
-      if kvs.has_key? :label
-        kvs[:labels] ||= [kvs[:label]]
-      end
+      kvs[:labels] ||= [kvs[:label]] if kvs.has_key? :label
 
       # Don't use || because we need to tell `false` from `nil`
-      kvs[:size]    = [600, 450]   if !kvs.has_key? :size
-      kvs[:ax]      = false        if !kvs.has_key? :ax
-      kvs[:subplot] = [0, 1, 0, 1] if !kvs.has_key? :subplot
-      kvs[:clear]   = true         if !kvs.has_key? :clear
-      kvs[:update]  = true         if !kvs.has_key? :update
+      kvs[:size]    = [600, 450]   unless kvs.has_key? :size
+      kvs[:ax]      = false        unless kvs.has_key? :ax
+      kvs[:subplot] = [0, 1, 0, 1] unless kvs.has_key? :subplot
+      kvs[:clear]   = true         unless kvs.has_key? :clear
+      kvs[:update]  = true         unless kvs.has_key? :update
 
       @scheme     = 0
       @background = 0xffffff
@@ -88,7 +86,7 @@ module GR
              else
                kvs[:size]
              end
-             
+
       vp = subplot.clone
 
       if w > h
