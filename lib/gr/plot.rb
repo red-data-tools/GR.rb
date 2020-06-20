@@ -38,7 +38,7 @@ module GR
 
     # Keyword options conform to GR.jl.
     KW_ARGS = %i[accelerate algorithm alpha ax backgroundcolor barwidth baseline
-                 clabels clear clim color colormap crange figsize horizontal
+                 clabels clear clim color colormap crange figsize grid horizontal
                  isovalue kind label labels levels location nbins ratio rotation
                  scale size spec subplot tilt title update xaxis xflip xform
                  xlabel xlim xlog xrange yaxis yflip ylabel ylim ylog zflip
