@@ -193,7 +193,11 @@ module GR
         xmax += 0.5
       end
       xtick, majorx = if (scale & GR::OPTION_X_LOG) == 0
-                        xmin, xmax = GR.adjustlimits(xmin, xmax) unless kvs.has_key?(:xlim) || kvs.has_key?(:panzoom)
+                        unless %i[heatmap polarheatmap].include?(kind)
+                          unless kvs.has_key?(:xlim)
+                            xmin, xmax = GR.adjustlimits(xmin, xmax) unless kvs[:panzoom]
+                          end
+                        end
                         if kvs.has_key?(:xticks)
                           kvs[:xticks]
                         else
@@ -214,7 +218,11 @@ module GR
         ymin = (scale & GR::OPTION_Y_LOG) == 0 ? 0 : 1
       end
       ytick, majory = if (scale & GR::OPTION_Y_LOG) == 0
-                        ymin, ymax = GR.adjustlimits(ymin, ymax) unless kvs.has_key?(:ylim) || kvs.has_key?(:panzoom)
+                        unless %i[heatmap polarheatmap].include?(kind)
+                          unless kvs.has_key?(:ylim)
+                            ymin, ymax = GR.adjustlimits(ymin, ymax) unless kvs[:panzoom]
+                          end
+                        end
                         if kvs.has_key?(:yticks)
                           kvs[:yticks]
                         else
