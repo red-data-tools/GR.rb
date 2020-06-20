@@ -48,33 +48,34 @@ module GR
     class << self
       attr_accessor :last_plot
     end
+    
+    attr_accessor :args, :kvs, :scheme
 
-    def initialize(*args)
-      @kvs = if args[-1].is_a? Hash
-               args.pop
-             else
-               {}
-             end
+    def initialize(*raw_args)
+      @kvs = raw_args.last.is_a?(Hash) ? raw_args.pop : {}
+      @args = plot_args(raw_args) # method name is the same as Julia/Python
+
       # Check keyword options.
-      @kvs.each_key do |k|
-        warn "Unknown keyword: #{k}" unless KW_ARGS.include? k
-      end
+      kvs.each_key{ |k| warn "Unknown keyword: #{k}" unless KW_ARGS.include? k }
 
       # label(singular form) is a original keyword arg which GR.jl does not have.
-      @kvs[:labels] = [@kvs[:label]] if @kvs[:label] && @kvs[:labels].nil?
+      if kvs.has_key? :label
+        kvs[:labels] ||= [kvs[:label]]
+      end
 
-      @args = plot_args(args) # method name is the same as Julia/Python
-      @kvs[:size] ||= [600, 450]
-      @kvs[:ax] = false if @kvs[:ax].nil?
-      @kvs[:subplot] ||= [0, 1, 0, 1]
-      @kvs[:clear] = true if @kvs[:clear].nil?
-      @kvs[:update] = true if @kvs[:update].nil?
-      @scheme = 0
+      # Don't use || because we need to tell `false` from `nil`
+      kvs[:size]    = [600, 450]   if !kvs.has_key? :size
+      kvs[:ax]      = false        if !kvs.has_key? :ax
+      kvs[:subplot] = [0, 1, 0, 1] if !kvs.has_key? :subplot
+      kvs[:clear]   = true         if !kvs.has_key? :clear
+      kvs[:update]  = true         if !kvs.has_key? :update
+
+      @scheme     = 0
       @background = 0xffffff
-      @handle = nil
+      # @handle     = nil           # This variable will be used in gr_meta
+
       self.class.last_plot = self
     end
-    attr_accessor :args, :kvs, :scheme
 
     def set_viewport(kind, subplot)
       mwidth, mheight, width, height = GR.inqdspsize
