@@ -79,17 +79,15 @@ module GR
 
     def set_viewport(kind, subplot)
       mwidth, mheight, width, height = GR.inqdspsize
-      if kvs[:figsize]
-        w = 0.0254 * width * kvs[:figsize][0] / mwidth
-        h = 0.0254 * height * kvs[:figsize][1] / mheight
-      else
-        dpi = width / mwidth * 0.0254
-        if dpi > 200
-          w, h = kvs[:size].map { |x| x * dpi / 100 }
-        else
-          w, h = kvs[:size]
-        end
-      end
+      dpi = width / mwidth * 0.0254
+      w, h = if kvs[:figsize]
+               [(0.0254 * width  * kvs[:figsize][0] / mwidth),
+                (0.0254 * height * kvs[:figsize][1] / mheight)]
+             elsif dpi > 200
+               kvs[:size].map { |i| i * dpi / 100 }
+             else
+               kvs[:size]
+             end
       viewport = [0, 0, 0, 0]
       vp = subplot.clone
       if w > h
