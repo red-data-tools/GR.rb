@@ -79,19 +79,18 @@ module GR
 
     def set_viewport(kind, subplot)
       mwidth, mheight, width, height = GR.inqdspsize
-      if kvs[:figsize]
-        w = 0.0254 * width * kvs[:figsize][0] / mwidth
-        h = 0.0254 * height * kvs[:figsize][1] / mheight
-      else
-        dpi = width / mwidth * 0.0254
-        if dpi > 200
-          w, h = kvs[:size].map { |x| x * dpi / 100 }
-        else
-          w, h = kvs[:size]
-        end
-      end
-      viewport = [0, 0, 0, 0]
+      dpi = width / mwidth * 0.0254
+      w, h = if kvs[:figsize]
+               [(0.0254 * width  * kvs[:figsize][0] / mwidth),
+                (0.0254 * height * kvs[:figsize][1] / mheight)]
+             elsif dpi > 200
+               kvs[:size].map { |i| i * dpi / 100 }
+             else
+               kvs[:size]
+             end
+             
       vp = subplot.clone
+
       if w > h
         ratio = h / w.to_f
         msize = mwidth * w / width
@@ -107,6 +106,7 @@ module GR
         vp[0] *= ratio
         vp[1] *= ratio
       end
+
       if %i[wireframe surface plot3 scatter3 trisurf volume].include?(kind)
         extent = [vp[1] - vp[0], vp[3] - vp[2]].min
         vp1 = 0.5 * (vp[0] + vp[1] - extent)
@@ -116,10 +116,12 @@ module GR
       else
         vp1, vp2, vp3, vp4 = vp
       end
-      viewport[0] = vp1 + 0.125 * (vp2 - vp1)
-      viewport[1] = vp1 + 0.925 * (vp2 - vp1)
-      viewport[2] = vp3 + 0.125 * (vp4 - vp3)
-      viewport[3] = vp3 + 0.925 * (vp4 - vp3)
+
+      viewport = [vp1 + 0.125 * (vp2 - vp1),
+                  vp1 + 0.925 * (vp2 - vp1),
+                  vp3 + 0.125 * (vp4 - vp3),
+                  vp3 + 0.925 * (vp4 - vp3)]
+
       if %i[contour contourf hexbin heatmap nonuniformheatmap polarheatmap
             surface trisurf volume].include?(kind)
         viewport[1] -= 0.1
@@ -133,11 +135,11 @@ module GR
         end
       end
 
-      GR.setviewport(viewport[0], viewport[1], viewport[2], viewport[3])
+      GR.setviewport(*viewport)
 
       kvs[:viewport] = viewport
-      kvs[:vp] = vp
-      kvs[:ratio] = ratio
+      kvs[:vp]       = vp
+      kvs[:ratio]    = ratio
 
       if kvs[:backgroundcolor]
         GR.savestate
