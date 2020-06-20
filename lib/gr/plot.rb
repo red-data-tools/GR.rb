@@ -48,7 +48,7 @@ module GR
     class << self
       attr_accessor :last_plot
     end
-    
+
     attr_accessor :args, :kvs, :scheme
 
     def initialize(*raw_args)
@@ -56,19 +56,17 @@ module GR
       @args = plot_args(raw_args) # method name is the same as Julia/Python
 
       # Check keyword options.
-      kvs.each_key{ |k| warn "Unknown keyword: #{k}" unless KW_ARGS.include? k }
+      kvs.each_key { |k| warn "Unknown keyword: #{k}" unless KW_ARGS.include? k }
 
       # label(singular form) is a original keyword arg which GR.jl does not have.
-      if kvs.has_key? :label
-        kvs[:labels] ||= [kvs[:label]]
-      end
+      kvs[:labels] ||= [kvs[:label]] if kvs.has_key? :label
 
       # Don't use || because we need to tell `false` from `nil`
-      kvs[:size]    = [600, 450]   if !kvs.has_key? :size
-      kvs[:ax]      = false        if !kvs.has_key? :ax
-      kvs[:subplot] = [0, 1, 0, 1] if !kvs.has_key? :subplot
-      kvs[:clear]   = true         if !kvs.has_key? :clear
-      kvs[:update]  = true         if !kvs.has_key? :update
+      kvs[:size]    = [600, 450]   unless kvs.has_key? :size
+      kvs[:ax]      = false        unless kvs.has_key? :ax
+      kvs[:subplot] = [0, 1, 0, 1] unless kvs.has_key? :subplot
+      kvs[:clear]   = true         unless kvs.has_key? :clear
+      kvs[:update]  = true         unless kvs.has_key? :update
 
       @scheme     = 0
       @background = 0xffffff
@@ -88,7 +86,7 @@ module GR
              else
                kvs[:size]
              end
-             
+
       vp = subplot.clone
 
       if w > h
@@ -169,14 +167,15 @@ module GR
     def set_window(kind)
       scale = 0
       unless %i[polar polarhist polarheatmap].include?(kind)
-        scale |= GR::OPTION_X_LOG if kvs[:xlog]
-        scale |= GR::OPTION_Y_LOG if kvs[:ylog]
-        scale |= GR::OPTION_Z_LOG if kvs[:zlog]
+        scale |= GR::OPTION_X_LOG  if kvs[:xlog]
+        scale |= GR::OPTION_Y_LOG  if kvs[:ylog]
+        scale |= GR::OPTION_Z_LOG  if kvs[:zlog]
         scale |= GR::OPTION_FLIP_X if kvs[:xflip]
         scale |= GR::OPTION_FLIP_Y if kvs[:yflip]
         scale |= GR::OPTION_FLIP_Z if kvs[:zflip]
       end
       kvs[:scale] = scale
+
       if kvs.has_key?(:panzoom)
         xmin, xmax, ymin, ymax = GR.panzoom(*kvs[:panzoom])
         kvs[:xrange] = [xmin, xmax]
@@ -189,64 +188,65 @@ module GR
                        polarheatmap trisurf volume].include?(kind) ? 2 : 5
 
       xmin, xmax = kvs[:xrange]
-      if (scale & GR::OPTION_X_LOG) == 0
-        xmin, xmax = GR.adjustlimits(xmin, xmax) unless kvs.has_key?(:xlim) || kvs.has_key?(:panzoom)
-        if kvs.has_key?(:xticks)
-          xtick, majorx = kvs[:xticks]
-        else
-          majorx = major_count
-          xtick = GR.tick(xmin, xmax) / majorx
-        end
-      else
-        xtick = majorx = 1
+      if %i[heatmap polarheatmap].include?(kind) && kvs.has_key?(:xlim)
+        xmin -= 0.5
+        xmax += 0.5
       end
-      xorg = if (scale & GR::OPTION_FLIP_X) == 0
-               [xmin, xmax]
-             else
-               [xmax, xmin]
-             end
+      xtick, majorx = if (scale & GR::OPTION_X_LOG) == 0
+                        unless %i[heatmap polarheatmap].include?(kind)
+                          unless kvs.has_key?(:xlim)
+                            xmin, xmax = GR.adjustlimits(xmin, xmax) unless kvs[:panzoom]
+                          end
+                        end
+                        if kvs.has_key?(:xticks)
+                          kvs[:xticks]
+                        else
+                          [GR.tick(xmin, xmax) / major_count, major_count]
+                        end
+                      else
+                        [1, 1]
+                      end
+      xorg = (scale & GR::OPTION_FLIP_X) == 0 ? [xmin, xmax] : [xmax, xmin]
       kvs[:xaxis] = xtick, xorg, majorx
 
       ymin, ymax = kvs[:yrange]
+      if %i[heatmap polarheatmap].include?(kind) && kvs.has_key?(:ylim)
+        ymin -= 0.5
+        ymax += 0.5
+      end
       if kind == :hist && !kvs.has_key?(:ylim)
         ymin = (scale & GR::OPTION_Y_LOG) == 0 ? 0 : 1
       end
-      if (scale & GR::OPTION_Y_LOG) == 0
-        ymin, ymax = GR.adjustlimits(ymin, ymax) unless kvs.has_key?(:ylim) || kvs.has_key?(:panzoom)
-        if kvs.has_key?(:yticks)
-          ytick, majory = kvs[:yticks]
-        else
-          majory = major_count
-          ytick = GR.tick(ymin, ymax) / majory
-        end
-      else
-        ytick = majory = 1
-      end
-      yorg = if (scale & GR::OPTION_FLIP_Y) == 0
-               [ymin, ymax]
-             else
-               [ymax, ymin]
-             end
+      ytick, majory = if (scale & GR::OPTION_Y_LOG) == 0
+                        unless %i[heatmap polarheatmap].include?(kind)
+                          unless kvs.has_key?(:ylim)
+                            ymin, ymax = GR.adjustlimits(ymin, ymax) unless kvs[:panzoom]
+                          end
+                        end
+                        if kvs.has_key?(:yticks)
+                          kvs[:yticks]
+                        else
+                          [GR.tick(ymin, ymax) / major_count, major_count]
+                        end
+                      else
+                        [1, 1]
+                      end
+      yorg = (scale & GR::OPTION_FLIP_Y) == 0 ? [ymin, ymax] : [ymax, ymin]
       kvs[:yaxis] = ytick, yorg, majory
 
       if %i[wireframe surface plot3 scatter3 trisurf volume].include?(kind)
         zmin, zmax = kvs[:zrange]
-        if (scale & GR::OPTION_Z_LOG) == 0
-          zmin, zmax = GR.adjustlimits(zmin, zmax) if kvs.has_key?(:zlim)
-          if kvs.has_key?(:zticks)
-            ztick, majorz = kvs[:zticks]
-          else
-            majorz = major_count
-            ztick = GR.tick(zmin, zmax) / majorz
-          end
-        else
-          ztick = majorz = 1
-        end
-        zorg = if (scale & GR::OPTION_FLIP_Z) == 0
-                 [zmin, zmax]
-               else
-                 [zmax, zmin]
-               end
+        ztick, majorz = if (scale & GR::OPTION_Z_LOG) == 0
+                          zmin, zmax = GR.adjustlimits(zmin, zmax) if kvs.has_key?(:zlim)
+                          if kvs.has_key?(:zticks)
+                            kvs[:zticks]
+                          else
+                            [GR.tick(zmin, zmax) / major_count, major_count]
+                          end
+                        else
+                          [1, 1]
+                        end
+        zorg = (scale & GR::OPTION_FLIP_Z) == 0 ? [zmin, zmax] : [zmax, zmin]
         kvs[:zaxis] = ztick, zorg, majorz
       end
 
@@ -258,7 +258,7 @@ module GR
       end
       if %i[wireframe surface plot3 scatter3 trisurf volume].include?(kind)
         rotation = kvs[:rotation] || 40
-        tilt = kvs[:tilt] || 70
+        tilt     = kvs[:tilt]     || 70
         GR.setspace(zmin, zmax, rotation, tilt)
       end
 
