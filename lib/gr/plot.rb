@@ -41,8 +41,9 @@ module GR
                  clabels clear clim color colormap crange figsize grid horizontal
                  isovalue kind label labels levels location nbins ratio rotation
                  scale size spec subplot tilt title update xaxis xflip xform
-                 xlabel xlim xlog xrange yaxis yflip ylabel ylim ylog zflip
-                 yrange viewport vp where window zaxis zlabel zlim zlog zrange].freeze
+                 xlabel xlim xlog xrange xticks yaxis yflip ylabel ylim ylog 
+                 zflip yrange yticks viewport vp where window zaxis zlabel zlim 
+                 zlog zrange zticks].freeze
 
     @last_plot = nil
     class << self
@@ -186,6 +187,10 @@ module GR
 
       major_count = %i[wireframe surface plot3 scatter3 polar polarhist
                        polarheatmap trisurf volume].include?(kind) ? 2 : 5
+
+      kvs[:xticks] = [kvs[:xticks], major_count] if kvs[:xticks].is_a? Numeric
+      kvs[:yticks] = [kvs[:yticks], major_count] if kvs[:yticks].is_a? Numeric
+      kvs[:zticks] = [kvs[:zticks], major_count] if kvs[:zticks].is_a? Numeric
 
       xmin, xmax = kvs[:xrange]
       if %i[heatmap polarheatmap].include?(kind) && kvs.has_key?(:xlim)
