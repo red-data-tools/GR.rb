@@ -73,7 +73,7 @@ end
 
 x = Numo::DFloat.new(10_000).rand_norm(10, 5)
 s
-50.times do |i|
+1.step(41, 10) do |i|
   GR.histogram(x, title: "nbins: #{i}", nbins: i)
   s 0.2
 end
@@ -82,10 +82,10 @@ end
 
 x = Numo::DFloat.new(5000).rand_norm(20, 5)
 y = Numo::DFloat.new(5000).rand_norm(10, 5)
-48.times do |i|
+1.step(48, 4) do |i|
   i += 3
   GR.hexbin(x, y, title: "nbins: #{i}", nbins: i, colormap: i)
-  s
+  s 0.2
 end
 
 ### CONTOURF PLOT ###
