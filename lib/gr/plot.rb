@@ -219,8 +219,12 @@ module GR
         ymin -= 0.5
         ymax += 0.5
       end
-      if kind == :hist && !kvs.has_key?(:ylim)
-        ymin = (scale & GR::OPTION_Y_LOG) == 0 ? 0 : 1
+      if kind == :hist 
+        if kvs[:horizontal] && !kvs.has_key?(:xlim)
+          xmin = (scale & GR::OPTION_X_LOG) == 0 ? 0 : 1
+        elsif !kvs.has_key?(:ylim)
+          ymin = (scale & GR::OPTION_Y_LOG) == 0 ? 0 : 1
+        end
       end
       ytick, majory = if (scale & GR::OPTION_Y_LOG) == 0
                         unless %i[heatmap polarheatmap].include?(kind)
@@ -663,14 +667,26 @@ module GR
           GR.polymarker(x, y)
 
         when :hist
-          ymin = kvs[:window][2]
-          y.length.times do |i|
-            GR.setfillcolorind(989)
-            GR.setfillintstyle(GR::INTSTYLE_SOLID)
-            GR.fillrect(x[i], x[i + 1], ymin, y[i])
-            GR.setfillcolorind(1)
-            GR.setfillintstyle(GR::INTSTYLE_HOLLOW)
-            GR.fillrect(x[i], x[i + 1], ymin, y[i])
+          if kvs[:horizontal]
+            xmin = kvs[:window][0]
+            x.length.times do |i|
+              GR.setfillcolorind(989)
+              GR.setfillintstyle(GR::INTSTYLE_SOLID)
+              GR.fillrect(xmin, x[i], y[i], y[i + 1]) 
+              GR.setfillcolorind(1)
+              GR.setfillintstyle(GR::INTSTYLE_HOLLOW)
+              GR.fillrect(xmin, x[i], y[i], y[i + 1])
+            end
+          else
+            ymin = kvs[:window][2]
+            y.length.times do |i|
+              GR.setfillcolorind(989)
+              GR.setfillintstyle(GR::INTSTYLE_SOLID)
+              GR.fillrect(x[i], x[i + 1], ymin, y[i])
+              GR.setfillcolorind(1)
+              GR.setfillintstyle(GR::INTSTYLE_HOLLOW)
+              GR.fillrect(x[i], x[i + 1], ymin, y[i])
+            end
           end
 
         when :polarhist
@@ -1302,11 +1318,15 @@ module GR
     end
 
     # (Plot) Draw a histogram.
-    def histogram(x, kv = {})
-      create_plot(:hist, x, kv) do |plt|
+    def histogram(series, kv = {})
+      create_plot(:hist, series, kv) do |plt|
         nbins = plt.kvs[:nbins] || 0
-        x, y = hist(x, nbins)
-        plt.args = [[x, y, nil, nil, '']]
+        x, y = hist(series, nbins)
+        if kv[:horizontal]
+          plt.args = [[y, x, nil, nil, '']]
+        else
+          plt.args = [[x, y, nil, nil, '']]
+        end
       end
     end
 
