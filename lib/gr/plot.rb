@@ -41,8 +41,8 @@ module GR
                  clabels clear clim color colormap crange figsize grid horizontal
                  isovalue kind label labels levels location nbins ratio rotation
                  scale size spec subplot tilt title update xaxis xflip xform
-                 xlabel xlim xlog xrange xticks yaxis yflip ylabel ylim ylog 
-                 zflip yrange yticks viewport vp where window zaxis zlabel zlim 
+                 xlabel xlim xlog xrange xticks yaxis yflip ylabel ylim ylog
+                 zflip yrange yticks viewport vp where window zaxis zlabel zlim
                  zlog zrange zticks].freeze
 
     @last_plot = nil
@@ -219,7 +219,7 @@ module GR
         ymin -= 0.5
         ymax += 0.5
       end
-      if kind == :hist 
+      if kind == :hist
         if kvs[:horizontal] && !kvs.has_key?(:xlim)
           xmin = (scale & GR::OPTION_X_LOG) == 0 ? 0 : 1
         elsif !kvs.has_key?(:ylim)
@@ -672,7 +672,7 @@ module GR
             x.length.times do |i|
               GR.setfillcolorind(989)
               GR.setfillintstyle(GR::INTSTYLE_SOLID)
-              GR.fillrect(xmin, x[i], y[i], y[i + 1]) 
+              GR.fillrect(xmin, x[i], y[i], y[i + 1])
               GR.setfillcolorind(1)
               GR.setfillintstyle(GR::INTSTYLE_HOLLOW)
               GR.fillrect(xmin, x[i], y[i], y[i + 1])
@@ -1322,11 +1322,11 @@ module GR
       create_plot(:hist, series, kv) do |plt|
         nbins = plt.kvs[:nbins] || 0
         x, y = hist(series, nbins)
-        if kv[:horizontal]
-          plt.args = [[y, x, nil, nil, '']]
-        else
-          plt.args = [[x, y, nil, nil, '']]
-        end
+        plt.args = if kv[:horizontal]
+                     [[y, x, nil, nil, '']]
+                   else
+                     [[x, y, nil, nil, '']]
+                   end
       end
     end
 
