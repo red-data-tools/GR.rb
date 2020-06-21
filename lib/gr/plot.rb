@@ -1065,7 +1065,8 @@ module GR
       args.each do |x, y, z, c|
         if x
           if scale & GR::OPTION_X_LOG != 0
-            x.map! { |v| v > 0 ? v : Float::NAN }
+            # duck typing for NArray
+            x = x.map { |v| v > 0 ? v : Float::NAN }
           end
           x0, x1 = x.minmax
           xmin = [x0, xmin].min
@@ -1076,7 +1077,7 @@ module GR
         end
         if y
           if scale & GR::OPTION_Y_LOG != 0
-            y.map! { |v| v > 0 ? v : Float::NAN }
+            y = y.map { |v| v > 0 ? v : Float::NAN }
           end
           y0, y1 = y.minmax
           ymin = [y0, ymin].min
@@ -1087,7 +1088,7 @@ module GR
         end
         if z
           if scale & GR::OPTION_Z_LOG != 0
-            z.map! { |v| v > 0 ? v : Float::NAN }
+            z = z.map { |v| v > 0 ? v : Float::NAN }
           end
           z0, z1 = z.minmax
           zmin = [z0, zmin].min
