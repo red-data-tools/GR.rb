@@ -641,8 +641,7 @@ module GR
           if z || c
             if c
               cmin, cmax = kvs[:crange]
-              c = c.to_a if narray?(c)
-              c.map! { |i| normalize_color(i, cmin, cmax) }
+              c = c.map { |i| normalize_color(i, cmin, cmax) }
               cind = c.map { |i| (1000 + i * 255).round }
             end
             x.length.times do |i|
@@ -834,7 +833,7 @@ module GR
           GR.setmarkertype(GR::MARKERTYPE_SOLID_CIRCLE)
           if c
             cmin, cmax = kvs[:crange]
-            c = c.map { |i| normalize_color(i, cmin, cmax) } # NArray -> Array
+            c = c.map { |i| normalize_color(i, cmin, cmax) }
             cind = c.map { |i| (1000 + i * 255).round }
             x.length.times do |i|
               GR.setmarkercolorind(cind[i])
@@ -1040,7 +1039,9 @@ module GR
 
     # Normalize a color c with the range [cmin, cmax]
     #   0 <= normalize_color(c, cmin, cmax) <= 1
+    # Note: narray.map{|i| normalize_color(i)} There's room for speedup.
     def normalize_color(c, cmin, cmax)
+      c = c.to_f # if c is Integer
       c = c.clamp(cmin, cmax) - cmin
       c /= (cmax - cmin) if cmin != cmax
       c
