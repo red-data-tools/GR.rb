@@ -6,6 +6,16 @@ require 'numo/narray'
 DFloat = Numo::DFloat
 NMath = Numo::NMath
 
+# https://heliosdrm.github.io/GRUtils.jl/latest/#A-basic-example-1
+
+x = DFloat.linspace(0, 10, 500)
+y = NMath.sin(x**2) * NMath.exp(-x)
+GR.plot(x, y, ylim: [-0.5, 0.5],
+              xlabel: 'X', ylabel: 'Y', title: 'Example plot')
+k = GR.hold
+GR.plot([x, -2 * NMath.exp(x)**-1, '--k'], [x, 2 * NMath.exp(x)**-1, '--k'], k)
+sleep 1.2
+
 x = DFloat.linspace(0, 10, 1001)
 y1 = NMath.sin(x)
 y2 = NMath.cos(x)
