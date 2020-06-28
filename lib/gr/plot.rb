@@ -62,7 +62,7 @@ module GR
       # label(singular form) is a original keyword arg which GR.jl does not have.
       kvs[:labels] ||= [kvs[:label]] if kvs.has_key? :label
 
-      # Don't use || because we need to tell `false` from `nil`
+      # Don't use ||= here, because we need to tell `false` from `nil`
       kvs[:size]    = [600, 450]   unless kvs.has_key? :size
       kvs[:ax]      = false        unless kvs.has_key? :ax
       kvs[:subplot] = [0, 1, 0, 1] unless kvs.has_key? :subplot
