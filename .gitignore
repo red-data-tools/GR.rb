@@ -9,8 +9,4 @@
 /vendor/
 /examples/savefig
 
-Gemfile.lock
-
-# rspec failure tracking
-.rspec_status
-
+*.lock
