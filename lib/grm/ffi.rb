@@ -59,5 +59,8 @@ module GRM
     try_extern 'int grm_send_ref(const void *p, const char *key, char format, const void *ref, int len)'
     try_extern 'int grm_send_args(const void *p, const grm_args_t *args)'
     try_extern 'void grm_close(const void *p)'
+
+    # https://github.com/sciapp/gr/blob/master/lib/grm/plot.h
+    try_extern 'int grm_plot(const grm_args_t *args);'
   end
 end
