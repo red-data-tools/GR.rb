@@ -12,6 +12,12 @@ before_install:
   - chmod +x ./test/ci/install_gr.sh
   - ./test/ci/install_gr.sh
   - export GRDIR=$HOME/GR/$GR_VERSION/gr
+# Remove this item when a new version of Fiddle is released 
+# that supports the variadic function
+install:
+  - gem install specific_install
+  - gem specific_install https://github.com/ruby/fiddle
+  - bundle update
 cache:
   bundler: true
   directories:
