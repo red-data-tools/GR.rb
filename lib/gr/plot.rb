@@ -185,8 +185,12 @@ module GR
         minmax
       end
 
-      major_count = %i[wireframe surface plot3 scatter3 polar polarhist
-                       polarheatmap trisurf volume].include?(kind) ? 2 : 5
+      major_count = if %i[wireframe surface plot3 scatter3 polar polarhist
+                          polarheatmap trisurf volume].include?(kind)
+                      2
+                    else
+                      5
+end
 
       kvs[:xticks] = [kvs[:xticks], major_count] if kvs[:xticks].is_a? Numeric
       kvs[:yticks] = [kvs[:yticks], major_count] if kvs[:yticks].is_a? Numeric
