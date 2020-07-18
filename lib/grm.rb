@@ -1,5 +1,15 @@
 # frozen_string_literal: true
 
+# Check Fiddle version.
+require 'fiddle'
+
+if !Fiddle.const_defined?(:VERSION) ||
+   (Gem::Version.new(Fiddle::VERSION) <= Gem::Version.new('1.0.0'))
+  warn 'You need the latest version of fiddle to make GRM work. '
+  warn 'GRM will end without loading.'
+  return
+end
+
 module GRM
   class Error < StandardError; end
 
