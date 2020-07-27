@@ -21,15 +21,14 @@ module GRM
     # header files.
 
     # https://github.com/sciapp/gr/blob/master/lib/grm/args.h
-
     try_extern 'grm_args_t *grm_args_new(void)'
     try_extern 'void grm_args_delete(grm_args_t *args)'
-    # Fiddle does not currently support variable-length arguments in C.
     try_extern 'int grm_args_push(grm_args_t *args, const char *key, const char *value_format, ...)'
     try_extern 'int grm_args_push_buf(grm_args_t *args, const char *key, const char *value_format, const void *buffer, int apply_padding)'
     try_extern 'int grm_args_contains(const grm_args_t *args, const char *keyword)'
     try_extern 'void grm_args_clear(grm_args_t *args)'
     try_extern 'void grm_args_remove(grm_args_t *args, const char *key)'
+    try_extern 'grm_args_ptr_t grm_length(double value, const char *unit)'
 
     # https://github.com/sciapp/gr/blob/master/lib/grm/dump.h
     try_extern 'void grm_dump(const grm_args_t *args, FILE *f)'
@@ -37,23 +36,20 @@ module GRM
     try_extern 'char *grm_dump_json_str(void)'
 
     # https://github.com/sciapp/gr/blob/master/lib/grm/event.h
-    # grm_event_type_t is an enum.
-    # In the original fiddley, there is code for an enum.
-    # But GR's fiddley doesn't have it.
-    # try_extern 'int grm_register(grm_event_type_t type, grm_event_callback_t callback)'
-    # try_extern 'int grm_unregister(grm_event_type_t type)'
+    try_extern 'int grm_register(grm_event_type_t type, grm_event_callback_t callback)'
+    try_extern 'int grm_unregister(grm_event_type_t type)'
 
     # https://github.com/sciapp/gr/blob/master/lib/grm/interaction.h
     try_extern 'int grm_input(const grm_args_t *input_args)'
-    # try_extern 'int grm_get_box(const int x1, const int y1, const int x2, const int y2, const int keep_aspect_ratio, int *x, int *y, int *w, int *h)'
-    # try_extern 'grm_tooltip_info_t *grm_get_tooltip(const int, const int)'
+    try_extern 'int grm_get_box(const int x1, const int y1, const int x2, const int y2, const int keep_aspect_ratio, int *x, int *y, int *w, int *h)'
+    try_extern 'grm_input(const grm_args_t *input_args)'
+    try_extern 'grm_tooltip_info_t *grm_get_tooltip(const int, const int)'
 
     # https://github.com/sciapp/gr/blob/master/lib/grm/net.h
-    # try_extern 'void *grm_open(int is_receiver, const char *name, unsigned int id,
-    #                            const char *(*custom_recv)(const char *, unsigned int),
-    #                            int (*custom_send)(const char *, unsigned int, const char *))
+    try_extern 'void *grm_open(int is_receiver, const char *name, unsigned int id,
+                               const char *(*custom_recv)(const char *, unsigned int),
+                               int (*custom_send)(const char *, unsigned int, const char *))'
     try_extern 'grm_args_t *grm_recv(const void *p, grm_args_t *args)'
-    # Fiddle does not currently support variable-length arguments in C.
     try_extern 'int grm_send(const void *p, const char *data_desc, ...)'
     try_extern 'int grm_send_buf(const void *p, const char *data_desc, const void *buffer, int apply_padding)'
     try_extern 'int grm_send_ref(const void *p, const char *key, char format, const void *ref, int len)'
@@ -61,6 +57,17 @@ module GRM
     try_extern 'void grm_close(const void *p)'
 
     # https://github.com/sciapp/gr/blob/master/lib/grm/plot.h
-    try_extern 'int grm_plot(const grm_args_t *args);'
+    try_extern 'void grm_finalize(void)'
+    try_extern 'int grm_clear(void)'
+    try_extern 'unsigned int grm_max_plotid(void)'
+    try_extern 'int grm_merge(const grm_args_t *args)'
+    try_extern 'int grm_merge_extended(const grm_args_t *args, int hold, const char *identificator)'
+    try_extern 'int grm_merge_hold(const grm_args_t *args)'
+    try_extern 'int grm_merge_named(const grm_args_t *args, const char *identificator)'
+    try_extern 'int grm_plot(const grm_args_t *args)'
+    try_extern 'int grm_switch(unsigned int id)'
+
+    # https://github.com/sciapp/gr/blob/master/lib/grm/util.h
+    try_extern 'FILE *grm_get_stdout(void)'
   end
 end
