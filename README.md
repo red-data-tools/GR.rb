@@ -83,7 +83,7 @@ GR.savefig("figure.png")
 
 ## API Overview
 
-There are two different approaches to plotting with GR.rb. One way is to call Matlab-like APIs. The other is to call GR/GR3 native functions. We are planning to prepare a more object-oriented interface based on [GRUtils.jl](https://github.com/heliosdrm/GRUtils.jl) in the future.
+There are two different approaches to plotting with GR.rb. One way is to call Matlab-like APIs. The other is to call GR/GR3 native functions. We are planning to prepare a [more object-oriented interface](https://github.com/kojix2/GRUtils.rb) based on [GRUtils.jl](https://github.com/heliosdrm/GRUtils.jl) in the future.
 
 #### GR::Plot - A simple, matlab-style API. 
 
