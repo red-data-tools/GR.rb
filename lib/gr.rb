@@ -66,7 +66,11 @@ module GR
   else
     raise Error, 'Please set env variable GRDIR' unless ENV['GRDIR']
 
-    self.ffi_lib = File.expand_path('lib/libGR.so', ENV['GRDIR'])
+    Dir.chdir(ENV['GRDIR']) do
+      if path = Dir['**/libGR.so'].first
+        self.ffi_lib = File.expand_path(path)
+      end
+    end
   end
 
   # Change the default encoding to UTF-8.
