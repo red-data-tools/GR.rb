@@ -60,31 +60,20 @@ module GR3
     attr_accessor :ffi_lib
   end
 
+  require_relative 'gr_commons/gr_commons'
+  extend GRCommons::SearchSharedLibrary
+
   # Platforms |  path
   # Windows   |  bin/libGR3.dll
   # MacOSX    |  lib/libGR3.so (NOT .dylib)
   # Ubuntu    |  lib/libGR3.so
-  if Object.const_defined?(:RubyInstaller)
-    ENV['GRDIR'] ||= [
-      RubyInstaller::Runtime.msys2_installation.msys_path,
-      RubyInstaller::Runtime.msys2_installation.mingwarch
-    ].join(File::ALT_SEPARATOR)
-    self.ffi_lib = File.expand_path('bin/libGR3.dll', ENV['GRDIR'])
-    RubyInstaller::Runtime.add_dll_directory(File.dirname(ffi_lib))
-  else
-    raise Error, 'Please set env variable GRDIR' unless ENV['GRDIR']
+  self.ffi_lib = case RbConfig::CONFIG['host_os']
+                 when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
+                   search_shared_library('libGR3.dll')
+                 else
+                   search_shared_library('libGR3.so')
+               end
 
-    Dir.chdir(ENV['GRDIR']) do
-      if path = Dir['**/libGR3.so'].first
-        self.ffi_lib = File.expand_path(path)
-      end
-    end
-  end
-
-  # change the default encoding to UTF-8.
-  ENV['GKS_ENCODING'] ||= 'utf8'
-
-  require_relative 'gr_commons/gr_commons'
   require_relative 'gr3/version'
   require_relative 'gr3/ffi'
   require_relative 'gr3/gr3base'
