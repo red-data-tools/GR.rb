@@ -554,6 +554,14 @@ module GR
       super
     end
 
+    # Gets the current character height.
+    # This function gets the height of text output primitives. Text height is
+    # defined as a percentage of the default window. GR uses the default text
+    # height of 0.027 (2.7% of the height of the default window).
+    def inqcharheight
+      inquiry_double { |pt| super(pt) }
+    end
+
     # Set the current character text angle up vector.
     # @param ux [Numeric] Text up vector
     # @param uy [Numeric] Text up vector
