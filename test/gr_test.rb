@@ -24,79 +24,133 @@ class GRTest < Test::Unit::TestCase
     assert_kind_of String, GR.version
   end
 
-  def test_setinq_methods
-    assert_kind_of Array, GR.inqdspsize
-    assert_kind_of Array, GR.inqtext(0, 0, 'Ruby')
-    # gridit
-    assert_nil GR.setlinetype(3)
-    assert_equal 3, GR.inqlinetype
+  sub_test_case 'Set and Inquiry methods' do
+    def test_inqdspsize
+      assert_kind_of Array, GR.inqdspsize
+    end
 
-    assert_nil GR.setlinewidth(3)
-    assert_equal 3, GR.inqlinewidth
+    def test_inqtext
+      assert_kind_of Array, GR.inqtext(0, 0, 'Ruby')
+    end
 
-    assert_nil GR.setlinecolorind(3)
-    assert_equal 3, GR.inqlinecolorind
+    def test_linetype
+      assert_nil GR.setlinetype(3)
+      assert_equal 3, GR.inqlinetype
+    end
 
-    assert_nil GR.setmarkertype(3)
-    assert_equal 3, GR.inqmarkertype
+    def test_linewidth
+      assert_nil GR.setlinewidth(3)
+      assert_equal 3, GR.inqlinewidth
+    end
 
-    assert_nil GR.setmarkercolorind(3)
-    assert_equal 3, GR.inqmarkercolorind
+    def test_linecolorind
+      assert_nil GR.setlinecolorind(3)
+      assert_equal 3, GR.inqlinecolorind
+    end
 
-    assert_nil GR.setfillintstyle(3)
-    assert_equal 3, GR.inqfillintstyle
+    def test_markertype
+      assert_nil GR.setmarkertype(3)
+      assert_equal 3, GR.inqmarkertype
+    end
 
-    assert_nil GR.setfillstyle(3)
-    assert_equal 3, GR.inqfillstyle
+    def test_markercolorind
+      assert_nil GR.setmarkercolorind(3)
+      assert_equal 3, GR.inqmarkercolorind
+    end
 
-    assert_nil GR.setfillcolorind(3)
-    assert_equal 3, GR.inqfillcolorind
+    def test_fillintstyle
+      assert_nil GR.setfillintstyle(3)
+      assert_equal 3, GR.inqfillintstyle
+    end
 
-    assert_equal 0, GR.setscale(8)
-    assert_equal 8, GR.inqscale
+    def test_fillstyle
+      assert_nil GR.setfillstyle(3)
+      assert_equal 3, GR.inqfillstyle
+    end
 
-    assert_nil GR.setwindow(0.1, 0.9, 0.11, 0.99)
-    assert_equal [0.1, 0.9, 0.11, 0.99], GR.inqwindow
+    def test_fillcolorind
+      assert_nil GR.setfillcolorind(3)
+      assert_equal 3, GR.inqfillcolorind
+    end
 
-    assert_nil GR.setviewport(0.1, 0.9, 0.11, 0.99)
-    assert_equal [0.1, 0.9, 0.11, 0.99], GR.inqviewport
+    def test_scale
+      assert_equal 0, GR.setscale(8)
+      assert_equal 8, GR.inqscale
+    end
 
-    assert_equal 0, GR.setspace(0.1, 0.9, 40, 50)
-    assert_equal [0.1, 0.9, 40, 50], GR.inqspace
+    def test_window
+      assert_nil GR.setwindow(0.1, 0.9, 0.11, 0.99)
+      assert_equal [0.1, 0.9, 0.11, 0.99], GR.inqwindow
+    end
 
-    assert_kind_of Array, GR.inqtextext(0, 0, 'Ruby')
+    def test_viewport
+      assert_nil GR.setviewport(0.1, 0.9, 0.11, 0.99)
+      assert_equal [0.1, 0.9, 0.11, 0.99], GR.inqviewport
+    end
 
-    assert_nil GR.setcolormap(3)
-    assert_equal 3, GR.inqcolormap
+    def test_space
+      assert_equal 0, GR.setspace(0.1, 0.9, 40, 50)
+      assert_equal [0.1, 0.9, 40, 50], GR.inqspace
+    end
 
-    assert_equal 0, GR.inqcolor(1)
+    def test_textext
+      assert_kind_of Array, GR.inqtextext(0, 0, 'Ruby')
+    end
+
+    def test_colormap
+      assert_nil GR.setcolormap(3)
+      assert_equal 3, GR.inqcolormap
+    end
+
+    def test_color
+      assert_equal 0, GR.inqcolor(1)
+    end
 
     # assert_kind_of Array, GR.inqmathtex(0,0,"Ruby")
-    assert_kind_of Array, GR.inqbbox
 
-    assert_nil GR.setresamplemethod(3)
-    assert_equal 3, GR.inqresamplemethod
+    def test_box
+      assert_kind_of Array, GR.inqbbox
+    end
 
-    assert_nil GR.setborderwidth(2.5)
-    assert_equal 2.5, GR.inqborderwidth
+    def test_resamplemethod
+      assert_nil GR.setresamplemethod(3)
+      assert_equal 3, GR.inqresamplemethod
+    end
 
-    assert_nil GR.setbordercolorind(1002)
-    assert_equal 1002, GR.inqbordercolorind
+    def test_borderwidth
+      assert_nil GR.setborderwidth(2.5)
+      assert_equal 2.5, GR.inqborderwidth
+    end
 
-    assert_nil GR.setprojectiontype(1)
-    assert_equal 1, GR.inqprojectiontype
+    def test_bordercolorind
+      assert_nil GR.setbordercolorind(1002)
+      assert_equal 1002, GR.inqbordercolorind
+    end
 
-    assert_nil GR.settextcolorind(999)
-    assert_equal 999, GR.inqtextcolorind
+    def test_projectiontype
+      assert_nil GR.setprojectiontype(1)
+      assert_equal 1, GR.inqprojectiontype
+    end
 
-    assert_nil GR.setcharheight(0.028)
-    assert_equal 0.028, GR.inqcharheight
+    def test_textcolorind
+      assert_nil GR.settextcolorind(999)
+      assert_equal 999, GR.inqtextcolorind
+    end
 
-    assert_nil GR.setscalefactors3d(2.3, 2.4, 2.5)
-    assert_equal [2.3, 2.4, 2.5], GR.inqscalefactors3d
+    def test_charheight
+      assert_nil GR.setcharheight(0.028)
+      assert_equal 0.028, GR.inqcharheight
+    end
 
-    assert_nil GR.settextencoding(300)
-    assert_equal 300, GR.inqtextencoding
+    def test_scalefactors3d
+      assert_nil GR.setscalefactors3d(2.3, 2.4, 2.5)
+      assert_equal [2.3, 2.4, 2.5], GR.inqscalefactors3d
+    end
+
+    def test_textencoding
+      assert_nil GR.settextencoding(300)
+      assert_equal 300, GR.inqtextencoding
+    end
   end
 
   def test_readimage
