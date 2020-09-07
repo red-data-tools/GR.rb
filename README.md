@@ -7,6 +7,7 @@
 [![Docs Latest](https://img.shields.io/badge/docs-latest-blue.svg)](https://rubydoc.info/gems/ruby-gr)
 
 [![rdatasets-1](https://i.imgur.com/XEQ6wKs.png)](examples/rdatasets.rb)
+[![stem](https://i.imgur.com/3w0Ejrm.png)](examples/fast_plots.rb)
 [![histogram](https://i.imgur.com/xUdoA2s.png)](examples/fast_plots.rb)
 [![barplot](https://i.imgur.com/52bOFKE.png)](examples/fast_plots.rb)
 [![scatter3](https://i.imgur.com/yTTVetQ.png)](examples/fast_plots.rb)
