@@ -577,7 +577,9 @@ end
         # Not yet.
       end
 
-      GR.settextfontprec(232, 3)
+      # The following fonts are the default in GR.jl
+      # Japanese, Chinese, Korean, etc. cannot be displayed.
+      # GR.settextfontprec(232, 3) # CM Serif Roman
 
       set_viewport(kind, kvs[:subplot])
       unless kvs[:ax]
