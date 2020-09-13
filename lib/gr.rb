@@ -502,6 +502,8 @@ module GR
     #  * 129 : FONT_PALATINO_BOLDITALIC
     #  * 130 : FONT_ZAPFCHANCERY_MEDIUMITALIC
     #  * 131 : FONT_ZAPFDINGBATS
+    #  * 232 : FONT_COMPUTERMODERN
+    #  * 233 : FONT_DEJAVUSANS
     # @param precision [Integer] Text precision
     #  * 0 : TEXT_PRECISION_STRING
     #    *   String precision (higher quality)
@@ -509,6 +511,8 @@ module GR
     #    *   Character precision (medium quality)
     #  * 2 : TEXT_PRECISION_STROKE
     #    *   Stroke precision (lower quality)
+    #  * 3 : TEXT_PRECISION_OUTLINE
+    #    *   Outline precision (highest quality)
     # The appearance of a font depends on the text precision value specified.
     # STRING, CHARACTER or STROKE precision allows for a greater or lesser
     # realization of the text primitives, for efficiency. STRING is the default
