@@ -3,10 +3,13 @@
 # Check Fiddle version.
 require 'fiddle'
 
+# Check if fiddle supports variadic arguments.
+# Fiddle is a standard Gem and may not have VERSION constant.
 if !Fiddle.const_defined?(:VERSION) ||
    (Gem::Version.new(Fiddle::VERSION) <= Gem::Version.new('1.0.0'))
-  warn 'You need the latest version of fiddle to make GRM work. '
-  warn 'GRM will end without loading.'
+  warn 'Fiddle 1.0.1 or higher is required to run GRM.'
+  warn 'This is because GRM need support for variadic arguments.'
+  warn 'See https://github.com/ruby/fiddle'
   return
 end
 
