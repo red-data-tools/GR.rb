@@ -13,7 +13,7 @@ module GRCommons
   # NOTE: This module is only part of the original code.
   # kojix2 adds, deletes, and modifies several methods.
   module Fiddley
-    # NOTE: GR.rb supports 2.4 +. Unpack 1 does not work under 2.3.
+    # NOTE: GR.rb supports 2.5 +. Unpack 1 does not work under 2.3.
 
     module Utils
       # assumes short = 16bit, int = 32bit, long long = 64bit

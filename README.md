@@ -26,7 +26,7 @@
 
 ## Installation
 
-GR.rb supports Ruby 2.4+.
+GR.rb supports Ruby 2.5+.
 
 First, [install GR](#gr-installation). Next, set environment variable `GRDIR`. 
 

@@ -2,7 +2,7 @@
 # Ruby's style changes with the times. You don't have to stick to tradition.
 
 AllCops:
-  TargetRubyVersion: 2.4
+  TargetRubyVersion: 2.5
 
 Layout/LineLength:
   Max: 130
