@@ -72,7 +72,7 @@ module GR3
                    search_shared_library('libGR3.dll')
                  else
                    search_shared_library('libGR3.so')
-               end
+                 end
 
   require_relative 'gr3/version'
   require_relative 'gr3/ffi'

@@ -190,7 +190,7 @@ module GR
                       2
                     else
                       5
-end
+                    end
 
       kvs[:xticks] = [kvs[:xticks], major_count] if kvs[:xticks].is_a? Numeric
       kvs[:yticks] = [kvs[:yticks], major_count] if kvs[:yticks].is_a? Numeric
