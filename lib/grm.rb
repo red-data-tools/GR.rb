@@ -7,10 +7,11 @@ require 'fiddle'
 # Fiddle is a standard Gem and may not have VERSION constant.
 if !Fiddle.const_defined?(:VERSION) ||
    (Gem::Version.new(Fiddle::VERSION) <= Gem::Version.new('1.0.0'))
-  warn 'Fiddle 1.0.1 or higher is required to run GRM.'
-  warn 'This is because GRM need support for variadic arguments.'
-  warn 'See https://github.com/ruby/fiddle'
-  return
+  raise LoadError, <<~MSG
+    Failed to load GRM module
+    Fiddle 1.0.1 or higher is required to run GRM.
+    See https://github.com/ruby/fiddle
+  MSG
 end
 
 module GRM
@@ -32,7 +33,7 @@ module GRM
                    search_shared_library('libGRM.dll')
                  else
                    search_shared_library('libGRM.so')
-  end
+                 end
 
   require_relative 'grm/version'
   require_relative 'grm/ffi'
