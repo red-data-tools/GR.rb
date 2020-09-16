@@ -26,9 +26,9 @@ class GRAppWindow < Gtk::ApplicationWindow
     ENV['GKS_WSTYPE'] = '142'
     ENV['GKSconid'] = cr.raw_address.to_s
 
-    cr.move_to(15, 45)
-    cr.set_font_size(30)
-    cr.show_text('Contour Plot using Gtk ...')
+    GR.settextfontprec(3, 0)
+    GR.setcharheight(0.05)
+    GR.text(0.5, 0.9, "Contour Plot using GTK")
 
     xd = -2 + DFloat.new(100).rand * 4
     yd = -2 + DFloat.new(100).rand * 4
@@ -40,7 +40,6 @@ class GRAppWindow < Gtk::ApplicationWindow
     GR.setmarkertype(GR::MARKERTYPE_SOLID_CIRCLE)
     GR.setcharheight(0.024)
     GR.settextalign(2, 0)
-    GR.settextfontprec(3, 0)
 
     x, y, z = GR.gridit(xd, yd, zd, 200, 200)
     h = -0.6.step(0.6, 0.05).to_a
