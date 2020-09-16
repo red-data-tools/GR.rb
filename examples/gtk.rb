@@ -28,7 +28,7 @@ class GRAppWindow < Gtk::ApplicationWindow
 
     GR.settextfontprec(3, 0)
     GR.setcharheight(0.05)
-    GR.text(0.5, 0.9, "Contour Plot using GTK")
+    GR.text(0.5, 0.9, 'Contour Plot using GTK')
 
     xd = -2 + DFloat.new(100).rand * 4
     yd = -2 + DFloat.new(100).rand * 4
