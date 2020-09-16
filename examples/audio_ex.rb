@@ -35,7 +35,7 @@ pid = case RbConfig::CONFIG['host_os']
         spawn("afplay #{file_path}")
       when /linux/ # Linux
         spawn("aplay #{file_path}")
-end
+      end
 Process.detach(pid)
 
 count = 1
