@@ -96,7 +96,12 @@ module GR
       super
     end
 
-    # inqdspsize
+    # Get the current display size.
+    # Depending on the current workstation type, the current display might be 
+    # the primary screen (e.g. when using gksqt or GKSTerm) or a purely virtual 
+    # display (e.g. when using Cairo). When a high DPI screen is used as the 
+    # current display, width and height will be in logical pixels. 
+    # @return [Array] meter_width, meter_height, width, height
     def inqdspsize
       inquiry %i[double double int int] do |*pts|
         super(*pts)
@@ -108,9 +113,7 @@ module GR
     # @param connection [String] A connection identifier.
     # @param workstation_type [Integer] The desired workstation type.
     #  * 5         : Workstation Independent Segment Storage
-    #  * 7, 8      : Computer Graphics Metafile (CGM binary, clear text)
     #  * 41        : Windows GDI
-    #  * 51        : Mac Quickdraw
     #  * 61 - 64   : PostScript (b/w, color)
     #  * 101, 102  : Portable Document Format (plain, compressed)
     #  * 210 - 213 : X Windows
@@ -131,7 +134,6 @@ module GR
     #  * 410       : Socket driver
     #  * 415       : 0MQ driver
     #  * 420       : OpenGL
-    #  * 430       : HTML5 Canvas
     def openws(*)
       super
     end
@@ -154,6 +156,7 @@ module GR
       super
     end
 
+    # Configure the specified workstation.
     def configurews(*)
       super
     end
@@ -295,6 +298,7 @@ module GR
       super(n, x, y, m, method)
     end
 
+    # Interpolate data from arbitrary points at points on a rectangular grid.
     def gridit(xd, yd, zd, nx, ny)
       nd = equal_length(xd, yd, zd)
       inquiry [{ double: nx }, { double: ny }, { double: nx * ny }] do |px, py, pz|
@@ -356,7 +360,6 @@ module GR
       super
     end
 
-    # inqlinecolorind
     def inqlinecolorind
       inquiry_int { |pt| super(pt) }
     end
@@ -516,7 +519,9 @@ module GR
     # The appearance of a font depends on the text precision value specified.
     # STRING, CHARACTER or STROKE precision allows for a greater or lesser
     # realization of the text primitives, for efficiency. STRING is the default
-    # precision for GR and produces the highest quality output.
+    # precision for GR and produces the highest quality output using either
+    # native font rendering or FreeType. OUTLINE uses the GR path rendering 
+    # functions to draw individual glyphs and produces the highest quality output. 
     def settextfontprec(*)
       super
     end
@@ -627,6 +632,8 @@ module GR
     #    *   Fill the interior of the polygon using the style index as a pattern index
     #  * 3 : HATCH
     #    *   Fill the interior of the polygon using the style index as a cross-hatched style
+    #  * 4 : SOLID_WITH_BORDER 	
+    #    *   Fill the interior of the polygon using the fill color index and draw the bounding polyline
     # `setfillintstyle` defines the interior style  for subsequent fill area output
     # primitives. The default interior style is HOLLOW.
     def setfillintstyle(*)
@@ -650,6 +657,7 @@ module GR
     end
 
     # Returns the current fill area color index.
+    # This function gets the color index for PATTERN and HATCH fills. 
     def inqfillstyle
       inquiry_int { |pt| super(pt) }
     end
@@ -663,6 +671,7 @@ module GR
     end
 
     # Returns the current fill area color index.
+    # This function gets the color of fill area output primitives. 
     def inqfillcolorind
       inquiry_int { |pt| super(pt) }
     end
@@ -937,12 +946,40 @@ module GR
     #   coordinate unit. Major tick marks are twice as long as minor tick marks.
     #   A negative value reverses the tick marks on the axes from inward facing
     #   to outward facing (or vice versa).
+    # Tick marks are positioned along each axis so that major tick marks fall on 
+    # the axes origin (whether visible or not). Major tick marks are labeled 
+    # with the corresponding data values. Axes are drawn according to the scale 
+    # of the window. Axes and tick marks are drawn using solid lines; line color 
+    # and width can be modified using the gr_setlinetype and gr_setlinewidth 
+    # functions. Axes are drawn according to the linear or logarithmic 
+    # transformation established by the gr_setscale function. 
     def axes(*)
       super
     end
 
     alias axes2d axes
 
+    # Create axes in the current workspace and supply a custom function for 
+    # changing the behaviour of the tick labels.
+    # @param x_tick [Numeric] The interval between minor tick marks on the X axis.
+    # @param y_tick [Numeric] The interval between minor tick marks on the Y axis.
+    # @param x_org [Numeric] The world coordinate of the origin (point of intersection) of the X axis.
+    # @param y_org [Numeric] The world coordinate of the origin (point of intersection) of the Y axis.
+    # @param major_x [Integer] Unitless integer value specifying the number of minor tick intervals between major tick marks on the X axis. Values of 0 or 1 imply no minor ticks. Negative values specify no labels will be drawn for the associated axis.
+    # @param major_y [Integer] Unitless integer value specifying the number of minor tick intervals between major tick marks on the Y axis. Values of 0 or 1 imply no minor ticks. Negative values specify no labels will be drawn for the associated axis.
+    # @param tick_size [Numeric] The length of minor tick marks specified in a normalized device coordinate unit. Major tick marks are twice as long as minor tick marks. A negative value reverses the tick marks on the axes from inward facing to outward facing (or vice versa).
+    # @param fpx [Pointer] Function pointer to a function that returns a label for a given tick on the X axis. The callback function should have the following arguments [Numeric]
+    # @param fpy [Pointer] Exactly same as the fpx above, but for the the Y axis.
+    # Similar to gr_axes() but allows more fine-grained control over tick labels
+    # and text positioning by supplying callback functions. Within the callback
+    # function you can use normal GR text primitives for performing any
+    # manipulations on the label text.
+    # See gr_axes() for more details on drawing axes. 
+    # * fpx/fpy
+    #   * param x [Numeric] NDC of the label in X direction.
+    #   * param y [Numeric] NDC of the label in Y direction.
+    #   * param svalue [String] Internal string representation of the text drawn by GR at (x,y).
+    #   * param value [Numeric] Floating point representation of the label drawn at (x,y).
     def axeslbl(*)
       super
     end
