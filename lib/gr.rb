@@ -97,10 +97,10 @@ module GR
     end
 
     # Get the current display size.
-    # Depending on the current workstation type, the current display might be 
-    # the primary screen (e.g. when using gksqt or GKSTerm) or a purely virtual 
-    # display (e.g. when using Cairo). When a high DPI screen is used as the 
-    # current display, width and height will be in logical pixels. 
+    # Depending on the current workstation type, the current display might be
+    # the primary screen (e.g. when using gksqt or GKSTerm) or a purely virtual
+    # display (e.g. when using Cairo). When a high DPI screen is used as the
+    # current display, width and height will be in logical pixels.
     # @return [Array] meter_width, meter_height, width, height
     def inqdspsize
       inquiry %i[double double int int] do |*pts|
@@ -520,8 +520,8 @@ module GR
     # STRING, CHARACTER or STROKE precision allows for a greater or lesser
     # realization of the text primitives, for efficiency. STRING is the default
     # precision for GR and produces the highest quality output using either
-    # native font rendering or FreeType. OUTLINE uses the GR path rendering 
-    # functions to draw individual glyphs and produces the highest quality output. 
+    # native font rendering or FreeType. OUTLINE uses the GR path rendering
+    # functions to draw individual glyphs and produces the highest quality output.
     def settextfontprec(*)
       super
     end
@@ -632,7 +632,7 @@ module GR
     #    *   Fill the interior of the polygon using the style index as a pattern index
     #  * 3 : HATCH
     #    *   Fill the interior of the polygon using the style index as a cross-hatched style
-    #  * 4 : SOLID_WITH_BORDER 	
+    #  * 4 : SOLID_WITH_BORDER
     #    *   Fill the interior of the polygon using the fill color index and draw the bounding polyline
     # `setfillintstyle` defines the interior style  for subsequent fill area output
     # primitives. The default interior style is HOLLOW.
@@ -657,7 +657,7 @@ module GR
     end
 
     # Returns the current fill area color index.
-    # This function gets the color index for PATTERN and HATCH fills. 
+    # This function gets the color index for PATTERN and HATCH fills.
     def inqfillstyle
       inquiry_int { |pt| super(pt) }
     end
@@ -671,7 +671,7 @@ module GR
     end
 
     # Returns the current fill area color index.
-    # This function gets the color of fill area output primitives. 
+    # This function gets the color of fill area output primitives.
     def inqfillcolorind
       inquiry_int { |pt| super(pt) }
     end
@@ -946,20 +946,20 @@ module GR
     #   coordinate unit. Major tick marks are twice as long as minor tick marks.
     #   A negative value reverses the tick marks on the axes from inward facing
     #   to outward facing (or vice versa).
-    # Tick marks are positioned along each axis so that major tick marks fall on 
-    # the axes origin (whether visible or not). Major tick marks are labeled 
-    # with the corresponding data values. Axes are drawn according to the scale 
-    # of the window. Axes and tick marks are drawn using solid lines; line color 
-    # and width can be modified using the gr_setlinetype and gr_setlinewidth 
-    # functions. Axes are drawn according to the linear or logarithmic 
-    # transformation established by the gr_setscale function. 
+    # Tick marks are positioned along each axis so that major tick marks fall on
+    # the axes origin (whether visible or not). Major tick marks are labeled
+    # with the corresponding data values. Axes are drawn according to the scale
+    # of the window. Axes and tick marks are drawn using solid lines; line color
+    # and width can be modified using the gr_setlinetype and gr_setlinewidth
+    # functions. Axes are drawn according to the linear or logarithmic
+    # transformation established by the gr_setscale function.
     def axes(*)
       super
     end
 
     alias axes2d axes
 
-    # Create axes in the current workspace and supply a custom function for 
+    # Create axes in the current workspace and supply a custom function for
     # changing the behaviour of the tick labels.
     # @param x_tick [Numeric] The interval between minor tick marks on the X axis.
     # @param y_tick [Numeric] The interval between minor tick marks on the Y axis.
@@ -974,7 +974,7 @@ module GR
     # and text positioning by supplying callback functions. Within the callback
     # function you can use normal GR text primitives for performing any
     # manipulations on the label text.
-    # See gr_axes() for more details on drawing axes. 
+    # See gr_axes() for more details on drawing axes.
     # * fpx/fpy
     #   * param x [Numeric] NDC of the label in X direction.
     #   * param y [Numeric] NDC of the label in Y direction.

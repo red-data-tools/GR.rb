@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Original code
 # https://github.com/sciapp/gr/issues/114#issuecomment-619824616
 # Written in Ruby by @kou

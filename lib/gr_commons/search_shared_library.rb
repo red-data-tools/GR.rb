@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'pkg-config'
 
 module GRCommons
@@ -55,7 +57,7 @@ module GRCommons
         if path = Dir["**/#{name}"].first # FIXME
           File.expand_path(path)
         else
-          raise StandardError '#{name} not found in #{base_dir}'
+          raise StandardError "#{name} not found in #{base_dir}"
         end
       end
     end
