@@ -61,9 +61,9 @@ module GR
   # Ubuntu    |  lib/libGR.so
   self.ffi_lib = case RbConfig::CONFIG['host_os']
                  when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
-                   search_shared_library('libgr.dll')
+                   search_shared_library('libgr.dll', 'gr')
                  else
-                   search_shared_library('libGR.so')
+                   search_shared_library('libGR.so', 'gr')
                  end
 
   require_relative 'gr/version'
