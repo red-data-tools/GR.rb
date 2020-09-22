@@ -161,21 +161,16 @@ export GRDIR="your/path/to/gr"
 
 * macOS Catalina and macOS Mojave: See the "How to open an app that hasn’t been notarized or is from an unidentified developer" section of [Safely open apps on your Mac](https://support.apple.com/en-us/HT202491) in the Apple documentation.
 
-### Using your package manager
+### Using package managers
 
 * The third party GR packages for Mac, Linux and Windows are available (for advanced users).
 * If you find any problem, please report the issue [here](https://github.com/red-data-tools/GR.rb/issues).
+* Note: These packages may not have some features, for example, video output.
 
 #### Mac - Homebrew
 
 ```sh
 brew install libgr
-```
-
-Set environment variable `GRDIR`.
-
-```sh
-export GRDIR=$(brew --prefix libgr)
 ```
 
 #### Linux - APT Yum
@@ -192,13 +187,14 @@ GR.rb will be the default backend for [Charty](https://github.com/red-data-tools
 
 ## Contributing
 
-* Report bugs
-* Fix bugs and submit pull requests
+* [Report bugs](https://github.com/red-data-tools/GR.rb/issues)
+* Fix bugs and [submit pull requests](https://github.com/red-data-tools/GR.rb/pulls)
 * Write, clarify, or fix documentation
 * Suggest or add new features
-* Create visualization library based on GR.rb
+* Update GR packages ( Homebrew, MinGW, red-data-tools )
+* Create visualization tools based on GR.rb
 
 ## Acknowledgements
 
-We would like to thank Josef Heinen, the creator of [GR.jl](https://github.com/jheinen/GR.jl), Florian Rhiem, the creator of  [python-gr](https://github.com/sciapp/python-gr), and [GR](https://github.com/sciapp/gr) developers.
+We would like to thank Josef Heinen, the creator of [GR](https://github.com/sciapp/gr) and [GR.jl](https://github.com/jheinen/GR.jl), Florian Rhiem, the creator of [python-gr](https://github.com/sciapp/python-gr), and all [GR](https://github.com/sciapp/gr) developers.
 
