@@ -64,10 +64,10 @@ module GRCommons
 
     def pkg_config_search(gr_lib_name, pkg_name)
       PKGConfig.variable(pkg_name, 'sopath')
-    rescue NotFoundError => e
-      warn "Cannot find #{gr_lib_name}."
-      warn 'Please set environment variable GRDIR.'
-      raise e
+    rescue PackageConfig::NotFoundError => e
+      raise "#{e.message} Cannot find #{gr_lib_name}. " \
+            "Please Make sure that GR is installed and the environment ” \
+            ”variable GRDIR is set correctly."
     end
   end
 end
