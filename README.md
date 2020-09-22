@@ -181,9 +181,9 @@ brew install libgr
 
 #### Linux - APT Yum
 
-[packages.red-data-tools.org](https://github.com/red-data-tools/packages.red-data-tools.org) provides `libgr-dev` and `libgr3-dev`.
+[packages.red-data-tools.org](https://github.com/red-data-tools/packages.red-data-tools.org) provides `libgr-dev`, `libgr3-dev` and `libgrm-dev`
 
-#### Windows - MSYS2
+### Windows - MSYS2
 
 If you are using Rubyinstaller, pacman will automatically install [mingw-w64-gr](https://packages.msys2.org/base/mingw-w64-gr) when the gem is installed.
 
