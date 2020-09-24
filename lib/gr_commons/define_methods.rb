@@ -5,8 +5,8 @@ module GRCommons
   module DefineMethods
     private
 
-    def define_ffi_methods(ffi_class, prefix: '', default_type: :double)
-      ffi_class.ffi_methods.each do |method|
+    def define_ffi_methods(ffi_module, prefix: '', default_type: :double)
+      ffi_module.ffi_methods.each do |method|
         # Use delete_prefix (Ruby >= 2.5)
         method_name = method.to_s.sub(/^#{prefix}/, '')
 
@@ -23,7 +23,7 @@ module GRCommons
               arg
             end
           end
-          ffi_class.send(method, *args)
+          ffi_module.send(method, *args)
         end
       end
     end
