@@ -345,29 +345,29 @@ module GR
         GR.axes(xtick, ytick, xorg[1], yorg[1], -majorx, -majory, -ticksize)
       end
 
-      if kvs[:title]
+      if kvs.has_key?(:title)
         GR.savestate
         GR.settextalign(GR::TEXT_HALIGN_CENTER, GR::TEXT_VALIGN_TOP)
-        text(0.5 * (viewport[0] + viewport[1]), vp[3], kvs[:title])
+        text(0.5 * (viewport[0] + viewport[1]), vp[3], kvs[:title].to_s)
         GR.restorestate
       end
       if %i[wireframe surface plot3 scatter3 trisurf volume].include?(kind)
-        xlabel = kvs[:xlabel] || ''
-        ylabel = kvs[:ylabel] || ''
-        zlabel = kvs[:zlabel] || ''
+        xlabel = (kvs[:xlabel] || '').to_s
+        ylabel = (kvs[:ylabel] || '').to_s
+        zlabel = (kvs[:zlabel] || '').to_s
         GR.titles3d(xlabel, ylabel, zlabel)
       else
         if kvs.has_key?(:xlabel)
           GR.savestate
           GR.settextalign(GR::TEXT_HALIGN_CENTER, GR::TEXT_VALIGN_BOTTOM)
-          text(0.5 * (viewport[0] + viewport[1]), vp[2] + 0.5 * charheight, kvs[:xlabel])
+          text(0.5 * (viewport[0] + viewport[1]), vp[2] + 0.5 * charheight, kvs[:xlabel].to_s)
           GR.restorestate
         end
         if kvs.has_key?(:ylabel)
           GR.savestate
           GR.settextalign(GR::TEXT_HALIGN_CENTER, GR::TEXT_VALIGN_TOP)
           GR.setcharup(-1, 0)
-          text(vp[0] + 0.5 * charheight, 0.5 * (viewport[2] + viewport[3]), kvs[:ylabel])
+          text(vp[0] + 0.5 * charheight, 0.5 * (viewport[2] + viewport[3]), kvs[:ylabel].to_s)
           GR.restorestate
         end
       end
@@ -475,7 +475,7 @@ module GR
       if kvs.has_key?(:title)
         GR.savestate
         GR.settextalign(GR::TEXT_HALIGN_CENTER, GR::TEXT_VALIGN_TOP)
-        text(0.5 * (viewport[0] + viewport[1]), vp[3], kvs[:title])
+        text(0.5 * (viewport[0] + viewport[1]), vp[3], kvs[:title].to_s)
         GR.restorestate
       end
       GR.selntran(1)
@@ -1054,6 +1054,7 @@ module GR
     end
 
     def inqtext(x, y, s)
+      s = s.to_s
       if s.length >= 2 && s[0] == '$' && s[-1] == '$'
         GR.inqmathtex(x, y, s[1..-2])
       elsif s.include?('\\') || s.include?('_') || s.include?('^')
@@ -1064,6 +1065,7 @@ module GR
     end
 
     def text(x, y, s)
+      s = s.to_s
       if s.length >= 2 && s[0] == '$' && s[-1] == '$'
         GR.mathtex(x, y, s[1..-2])
       elsif s.include?('\\') || s.include?('_') || s.include?('^')
