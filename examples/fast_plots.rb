@@ -89,10 +89,10 @@ y1 = 8 * DFloat.new(100).rand - 4
 z1 = NMath.sin(x1) + NMath.cos(y1)
 
 # FIXME
-_x2 = DFloat.linspace(-2, 2, 40)
-_y2 = DFloat.linspace(0, Math::PI, 20)
-x2 = (_x2.expand_dims(0) * DFloat.ones(_y2.size, 1)).flatten
-y2 = (_y2.expand_dims(1) * DFloat.ones(1, _x2.size)).flatten
+x_2 = DFloat.linspace(-2, 2, 40)
+y_2 = DFloat.linspace(0, Math::PI, 20)
+x2 = (_x2.expand_dims(0) * DFloat.ones(y_2.size, 1)).flatten
+y2 = (_y2.expand_dims(1) * DFloat.ones(1, x_2.size)).flatten
 z2 = NMath.sin(x2) + NMath.cos(y2)
 
 GR.contour(x1, y1, z1, title: 'contour - 1')

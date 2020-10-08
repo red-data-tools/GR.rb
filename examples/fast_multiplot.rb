@@ -26,7 +26,6 @@ sleep 1.2
 x = DFloat.linspace(0, 10, 101)
 y1 = NMath.sin(x)
 y2 = NMath.cos(x)
-y3 = NMath.tan(x)
 GR.plot([x, y1, spec: 'b'], [x, y2, spec: 'g'],
         ylim: [-1.2, 1.2])
 sleep 1.2
@@ -34,7 +33,6 @@ sleep 1.2
 x = DFloat.linspace(0, 10, 101)
 y1 = NMath.sin(x)
 y2 = NMath.cos(x)
-y3 = NMath.tan(x)
 GR.plot([x, y1], [x, y2],
         spec: 'x',
         ylim: [-1.2, 1.2])
@@ -51,7 +49,6 @@ sleep 1.2
 x = DFloat.linspace(0, 10, 51)
 y1 = NMath.sin(x)
 y2 = NMath.cos(x)
-y3 = NMath.tan(x)
 GR.step([x, y1, spec: 'b'], [x, y2, spec: 'g'],
         ylim: [-1.2, 1.2])
 sleep 1.2
@@ -59,7 +56,6 @@ sleep 1.2
 x = DFloat.linspace(0, 10, 51)
 y1 = NMath.sin(x)
 y2 = NMath.cos(x)
-y3 = NMath.tan(x)
 GR.step([x, y1], [x, y2],
         ylim: [-1.2, 1.2],
         spec: 'r')
