@@ -27,28 +27,28 @@ def cgamma(z)
     PI / (CMath.sin(PI * z) * cgamma(1.0 - z))
   else
     z -= 1.0
-    x = (1...QLEN).inject(Q[0]) { |s, i| s += Q[i] / (z + i) }
+    x = (1...QLEN).inject(Q[0]) { |s, i| s + Q[i] / (z + i) }
     t = z + QLEN_G + 0.5
     SQRT_2PI * (t**(z + 0.5)) * CMath.exp(-t) * x
   end
 end
 
-def zeta_p_series(z)
-  def _zeta(z)
-    n = 2
-    prev = Complex(1)
-    sum = Complex(1)
-    while n < 1e+6
-      add = 1.0 / (n**z)
-      sum += add
-      break if (add - prev).abs2 < EPSILON
+def _zeta(z)
+  n = 2
+  prev = Complex(1)
+  sum = Complex(1)
+  while n < 1e+6
+    add = 1.0 / (n**z)
+    sum += add
+    break if (add - prev).abs2 < EPSILON
 
-      n += 1
-      prev = add
-    end
-    sum
+    n += 1
+    prev = add
   end
+  sum
+end
 
+def zeta_p_series(z)
   if z.real > 1.0
     _zeta(z)
   else
@@ -70,7 +70,7 @@ def zeta_binomial(z)
   sum = Complex(0)
   loop do
     add = (1..n).inject(Complex(n)) do |s, k|
-      s += combinations(n, k) * ((-1)**k) / ((k + 1.0)**z)
+      s + combinations(n, k) * ((-1)**k) / ((k + 1.0)**z)
     end / (2**(n + 1))
     sum += add
     break if (add - prev).abs2 < EPSILON
