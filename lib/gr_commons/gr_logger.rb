@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # This script was created primarily for debugging purposes.
-# Note: This script should be isolated. 
+# Note: This script should be isolated.
 # It should not be loaded when gr_commons/gr_commons is loaded.
 
 require 'logger'
@@ -32,9 +32,9 @@ module GRCommons
   # @note This module is for those who want to see low-level function calls in GR.
   #
   # = How it works　
-  # prepend a module named Inspector to the singular class 
+  # prepend a module named Inspector to the singular class
   # of the FFI module. It will inspects the GR function call of the FFI module
-  # 
+  #
   # @example
   #   require 'gr_commons/gr_logger'
   #   GRCommons.gr_log("log.txt")
@@ -57,7 +57,7 @@ if Object.const_defined?(:GR)
       module Inspector
         GR::FFI.ffi_methods.each do |s|
           define_method(s) do |*args|
-            GRCommons.gr_logger.info "GR::FFI.#{s}\n" + args.ai  + "\n"
+            GRCommons.gr_logger.info "GR::FFI.#{s}\n" + args.ai + "\n"
             super(*args)
           end
         end
@@ -75,7 +75,7 @@ if Object.const_defined?(:GR3)
       module Inspector
         GR3::FFI.ffi_methods.each do |s|
           define_method(s) do |*args|
-            GRCommons.gr_logger.info "GR3::FFI.#{s}\n" + args.ai  + "\n"
+            GRCommons.gr_logger.info "GR3::FFI.#{s}\n" + args.ai + "\n"
             super(*args)
           end
         end
@@ -93,7 +93,7 @@ if Object.const_defined?(:GRM)
       module Inspector
         GRM::FFI.ffi_methods.each do |s|
           define_method(s) do |*args|
-            GRCommons.gr_logger.info "GRM::FFI.#{s}\n" + args.ai  + "\n"
+            GRCommons.gr_logger.info "GRM::FFI.#{s}\n" + args.ai + "\n"
             super(*args)
           end
         end
