@@ -158,7 +158,7 @@ class GRTest < Test::Unit::TestCase
     assert_equal 198, width
     assert_equal 244, height
     assert_equal 198 * 244, data.length
-    assert_true data.all? { |i| i >= 0 }
+    assert_true(data.all? { |i| i >= 0 })
     require 'digest/md5'
     assert_equal 'ef670ef7f4edc6261cb7ade2f8ce72ab', Digest::MD5.hexdigest(data.join)
 
@@ -166,7 +166,7 @@ class GRTest < Test::Unit::TestCase
     assert_equal 50, width
     assert_equal 50, height
     assert_equal 50 * 50, data.length
-    assert_true data.all? { |i| i >= 0 }
+    assert_true(data.all? { |i| i >= 0 })
     require 'digest/md5'
     assert_equal '11a9f559a454bf1882ba2c5cb6044310', Digest::MD5.hexdigest(data.join)
   end

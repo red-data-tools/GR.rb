@@ -54,7 +54,8 @@ module GRCommons
 
     def recursive_search(name, base_dir)
       Dir.chdir(base_dir) do
-        if path = Dir["**/#{name}"].first # FIXME
+        path = Dir["**/#{name}"].first # FIXME
+        if path
           File.expand_path(path)
         else
           raise StandardError "#{name} not found in #{base_dir}"
