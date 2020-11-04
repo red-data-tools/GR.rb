@@ -16,7 +16,7 @@ module GRCommons
     # @example
     #   require 'gr_commons/gr_logger'
     #   GRCommons.gr_log("log.txt")
-    def gr_log(out = STDERR)
+    def gr_log(out = $stderr)
       GRCommons::GRLogger.new(out)
     end
 
@@ -44,7 +44,7 @@ module GRCommons
       @@logger ||= GRCommons::GRLogger.new
     end
 
-    def initialize(out = STDERR)
+    def initialize(out = $stderr)
       super(out, level: :info)
       @@logger ||= self
     end

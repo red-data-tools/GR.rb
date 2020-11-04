@@ -210,7 +210,7 @@ module GRCommons
         end
 
         define_method("put_array_of_int#{bits}") do |offset, ary|
-          put_bytes(offset, ary.pack(form + '*'))
+          put_bytes(offset, ary.pack("#{form}*"))
         end
 
         define_method("write_array_of_int#{bits}") do |ary|
@@ -226,7 +226,7 @@ module GRCommons
         end
 
         define_method("get_array_of_int#{bits}") do |offset, num|
-          @ptr[offset, bytes * num].unpack(form + '*')
+          @ptr[offset, bytes * num].unpack("#{form}*")
         end
 
         define_method("read_array_of_int#{bits}") do |num|
@@ -244,7 +244,7 @@ module GRCommons
         end
 
         define_method("put_array_of_uint#{bits}") do |offset, ary|
-          put_bytes(offset, ary.pack(form2 + '*'))
+          put_bytes(offset, ary.pack("#{form2}*"))
         end
 
         define_method("write_array_of_uint#{bits}") do |ary|
@@ -260,7 +260,7 @@ module GRCommons
         end
 
         define_method("get_array_of_uint#{bits}") do |offset, num|
-          @ptr[offset, bytes * num].unpack(form2 + '*')
+          @ptr[offset, bytes * num].unpack("#{form2}*")
         end
 
         define_method("read_array_of_uint#{bits}") do |num|
@@ -330,12 +330,12 @@ module GRCommons
 
       # added
       define_method('get_array_of_double') do |offset, num|
-        @ptr[offset, 8 * num].unpack('d' + '*')
+        @ptr[offset, 8 * num].unpack('d*')
       end
 
       # added
       define_method('get_array_of_float') do |offset, num|
-        @ptr[offset, 4 * num].unpack('f' + '*')
+        @ptr[offset, 4 * num].unpack('f*')
       end
 
       # added

@@ -775,9 +775,10 @@ module GR
           else
             h = levels
           end
-          if kind == :contour
+          case kind
+          when :contour
             GR._contour_(x, y, h, z, clabels ? 1 : 1000)
-          elsif kind == :contourf
+          when :contourf
             GR._contourf_(x, y, h, z, clabels ? 1 : 0)
           end
           colorbar(0, h.length)

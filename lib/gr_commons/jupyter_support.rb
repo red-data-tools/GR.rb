@@ -19,16 +19,16 @@ module GRCommons
         type = ENV['GKSwstype']
         case type
         when 'svg'
-          data = File.read(ENV['GKS_FILEPATH'] + '.svg')
+          data = File.read("#{ENV['GKS_FILEPATH']}.svg")
           IRuby.display(data, mime: 'image/svg+xml') if display
         when 'png', '322', '140'
-          data = File.read(ENV['GKS_FILEPATH'] + '.png')
+          data = File.read("#{ENV['GKS_FILEPATH']}.png")
           IRuby.display(data, mime: 'image/png') if display
         when 'jpg', '321', '144'
-          data = File.read(ENV['GKS_FILEPATH'] + '.jpg')
+          data = File.read("#{ENV['GKS_FILEPATH']}.jpg")
           IRuby.display(data, mime: 'image/jpeg') if display
         when 'gif', '130'
-          data = File.read(ENV['GKS_FILEPATH'] + '.gif')
+          data = File.read("#{ENV['GKS_FILEPATH']}.gif")
           IRuby.display(data, mime: 'image/gif') if display
         when 'webm', 'ogg', 'mp4', 'mov'
           require 'base64'
@@ -37,7 +37,7 @@ module GRCommons
                      else
                        "video/#{type}"
                      end
-          data = File.binread(ENV['GKS_FILEPATH'] + '.' + type)
+          data = File.binread("#{ENV['GKS_FILEPATH']}.#{type}")
           if display
             IRuby.display(
               "<video autoplay controls><source type=\"#{mimespec}\" " \
