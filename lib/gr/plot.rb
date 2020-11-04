@@ -38,12 +38,28 @@ module GR
 
     # Keyword options conform to GR.jl.
     KW_ARGS = %i[accelerate algorithm alpha ax backgroundcolor barwidth baseline
-                 clabels clear clim color colormap crange figsize grid horizontal
-                 isovalue kind label labels levels location nbins ratio rotation
-                 scale size spec subplot tilt title update xaxis xflip xform
-                 xlabel xlim xlog xrange xticks yaxis yflip ylabel ylim ylog
-                 zflip yrange yticks viewport vp where window zaxis zlabel zlim
-                 zlog zrange zticks].freeze
+                 clabels clear clim color colormap crange figsize font grid
+                 horizontal isovalue kind label labels levels location nbins
+                 ratio rotation scale size spec subplot tilt title update xaxis
+                 xflip xform xlabel xlim xlog xrange xticks yaxis yflip ylabel
+                 ylim ylog zflip yrange yticks viewport vp where window zaxis
+                 zlabel zlim zlog zrange zticks].freeze
+
+    FONTS = {
+      'Times_Roman' => 101, 'Times_Italic' => 102, 'Times_Bold' => 103, 'Times_BoldItalic' => 104,
+      'Helvetica_Regular' => 105, 'Helvetica_Oblique' => 106, 'Helvetica_Bold' => 107, 'Helvetica_BoldOblique' => 108,
+      'Courier_Regular' => 109, 'Courier_Oblique' => 110, 'Courier_Bold' => 111, 'Courier_BoldOblique' => 112,
+      'Symbol' => 113,
+      'Bookman_Light' => 114, 'Bookman_LightItalic' => 115, 'Bookman_Demi' => 116, 'Bookman_DemiItalic' => 117,
+      'NewCenturySchlbk_Roman' => 118, 'NewCenturySchlbk_Italic' => 119, 'NewCenturySchlbk_Bold' => 120, 'NewCenturySchlbk_BoldItalic' => 121,
+      'AvantGarde_Book' => 122, 'AvantGarde_BookOblique' => 123, 'AvantGarde_Demi' => 124, 'AvantGarde_DemiOblique' => 125,
+      'Palatino_Roman' => 126, 'Palatino_Italic' => 127, 'Palatino_Bold' => 128, 'Palatino_BoldItalic' => 129,
+      'ZapfChancery_MediumItalic' => 130,
+      'ZapfDingbats' => 131,
+      'CMUSerif-Math' => 232,
+      'DejaVuSans' => 233,
+      'PingFangSC' => 234
+    }.freeze
 
     @last_plot = nil
     class << self
@@ -577,9 +593,20 @@ module GR
         # Not yet.
       end
 
-      # The following fonts are the default in GR.jl
-      # Japanese, Chinese, Korean, etc. cannot be displayed.
-      # GR.settextfontprec(232, 3) # CM Serif Roman
+      if kvs.has_key?(:font)
+        name = kvs[:font]
+        if FONTS.include?(name)
+          font = FONTS[name]
+          GR.settextfontprec(font, font > 200 ? 3 : 0)
+        else
+          println('Unknown font name: $name')
+        end
+      else
+        # The following fonts are the default in GR.jl
+        # Japanese, Chinese, Korean, etc. cannot be displayed.
+
+        # GR.settextfontprec(232, 3) # CM Serif Roman
+      end
 
       set_viewport(kind, kvs[:subplot])
       unless kvs[:ax]
