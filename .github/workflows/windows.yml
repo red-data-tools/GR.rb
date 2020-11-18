@@ -27,11 +27,6 @@ jobs:
         run: |
           gem install bundler
 
-      - name: Install latest Fiddle
-        run: |
-          gem install specific_install
-          gem specific_install https://github.com/ruby/fiddle
-
       - name: Install dependencies
         run: |
           bundle install
