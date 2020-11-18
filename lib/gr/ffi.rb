@@ -202,5 +202,6 @@ module GR
     try_extern 'void gr_inqtext3d(double, double, double, char *, int axis, double *, double *)'
     try_extern 'void gr_settextencoding(int)'
     try_extern 'void gr_inqtextencoding(int *)'
+    # gr_setcallback(char *(*)(const char *));
   end
 end
