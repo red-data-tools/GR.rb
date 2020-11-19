@@ -12,15 +12,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        gr:
+          - 0.53.0
         os:
+          - ubuntu
           - windows
         ruby:
           - 2.5
           - 2.6
           - 2.7
-          - head
-        exclude:
-          - { os: windows , ruby: head }
 
     steps:
       - uses: actions/checkout@v2
@@ -29,9 +29,25 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
+      
+      - name: Set up GR
+        if: matrix.os == 'ubuntu'
+        run: |
+            wget https://github.com/sciapp/gr/releases/download/v${{ matrix.gr }}/gr-${{ matrix.gr }}-Ubuntu-x86_64.tar.gz
+            tar -xvf gr-${{ matrix.gr }}-Ubuntu-x86_64.tar.gz
 
       - run: gem install bundler
 
       - run: bundle update
 
-      - run: bundle exec rake test
+      - name: Test Ubuntu
+        if: matrix.os == 'ubuntu'
+        env:
+          GRDIR: gr
+        run: |
+          bundle exec rake test
+      
+      - name: Test Windows
+        if: matrix.os == 'windows'
+        run: |
+          bundle exec rake test
