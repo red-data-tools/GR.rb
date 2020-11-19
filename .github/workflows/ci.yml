@@ -13,6 +13,7 @@ jobs:
       fail-fast: false
       matrix:
         os:
+          - ubuntu
           - windows
         ruby:
           - 2.5
@@ -29,6 +30,15 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
+      
+      - name: Set up GR
+        if: >-
+          matrix.os != 'ubuntu'
+        run: |
+          export GR_VERSION=0.53.0
+          chmod +x ./test/ci/install_gr.sh
+          ./test/ci/install_gr.sh
+          export GRDIR=$HOME/GR/$GR_VERSION/gr
 
       - run: gem install bundler
 
