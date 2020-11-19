@@ -1,6 +1,5 @@
 # GR.rb
 
-[![The MIT License](https://img.shields.io/badge/license-MIT-orange.svg)](LICENSE.txt)
 [![Gem Version](https://badge.fury.io/rb/ruby-gr.svg)](https://badge.fury.io/rb/ruby-gr)
 [![Gitter Chat](https://badges.gitter.im/red-data-tools/en.svg)](https://gitter.im/red-data-tools/en)
 [![Docs Latest](https://img.shields.io/badge/docs-latest-blue.svg)](https://rubydoc.info/gems/ruby-gr)
