@@ -6,8 +6,7 @@ on:
 
 jobs:
   test:
-    name: >-
-      ${{ matrix.os }} ${{ matrix.ruby }}
+    name: ${{ matrix.os }} ${{ matrix.ruby }}
     runs-on: ${{ matrix.os }}-latest
     strategy:
       fail-fast: false
@@ -33,8 +32,8 @@ jobs:
       - name: Set up GR
         if: matrix.os == 'ubuntu'
         run: |
-            wget https://github.com/sciapp/gr/releases/download/v${{ matrix.gr }}/gr-${{ matrix.gr }}-Ubuntu-x86_64.tar.gz
-            tar -xvf gr-${{ matrix.gr }}-Ubuntu-x86_64.tar.gz
+          wget https://github.com/sciapp/gr/releases/download/v${{ matrix.gr }}/gr-${{ matrix.gr }}-Ubuntu-x86_64.tar.gz
+          tar -xvf gr-${{ matrix.gr }}-Ubuntu-x86_64.tar.gz
 
       - run: gem install bundler
 
@@ -42,7 +41,8 @@ jobs:
 
       - name: Test (Ubuntu)
         if: matrix.os == 'ubuntu'
-        env: GRDIR: gr
+        env:
+          GRDIR: gr
         run: bundle exec rake test
       
       - name: Test (Windows)
