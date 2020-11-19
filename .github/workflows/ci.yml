@@ -40,14 +40,11 @@ jobs:
 
       - run: bundle update
 
-      - name: Test Ubuntu
+      - name: Test (Ubuntu)
         if: matrix.os == 'ubuntu'
-        env:
-          GRDIR: gr
-        run: |
-          bundle exec rake test
+        env: GRDIR: gr
+        run: bundle exec rake test
       
-      - name: Test Windows
+      - name: Test (Windows)
         if: matrix.os == 'windows'
-        run: |
-          bundle exec rake test
+        run: bundle exec rake test
