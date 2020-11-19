@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  test:
+    name: >-
+      ${{ matrix.os }} ${{ matrix.ruby }}
+    runs-on: ${{ matrix.os }}-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - windows
+        ruby:
+          - 2.5
+          - 2.6
+          - 2.7
+          - head
+        exclude:
+          - { os: windows , ruby: head }
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+
+      - run: gem install bundler
+
+      - run: bundle update
+
+      - run: bundle exec rake test
