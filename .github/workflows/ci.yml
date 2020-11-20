@@ -6,12 +6,13 @@ on:
 
 jobs:
   test:
-    name: ${{ matrix.os }} ${{ matrix.ruby }}
+    name: ${{ matrix.os }} Ruby ${{ matrix.ruby }} gr ${{ matrix.gr }}
     runs-on: ${{ matrix.os }}-latest
     strategy:
       fail-fast: false
       matrix:
         gr:
+          - 0.52.0
           - 0.53.0
         os:
           - ubuntu
