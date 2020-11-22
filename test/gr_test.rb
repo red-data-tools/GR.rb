@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'test_helper'
-require 'gr'
+require_relative '../lib/gr'
 
 class GRTest < Test::Unit::TestCase
   def setup

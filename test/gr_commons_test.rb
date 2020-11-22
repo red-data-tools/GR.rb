@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'test_helper'
-require 'gr_commons/gr_commons'
+require_relative '../lib/gr_commons/gr_commons'
 
 class GRCommonsTest < Test::Unit::TestCase
   def setup
