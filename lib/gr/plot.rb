@@ -1193,20 +1193,12 @@ module GR
       [w, h]
     end
 
-    # NOTE: duplicated definition (GRCommonUtils)
     def equal_length(*args)
-      lengths = args.map(&:length)
-      unless lengths.all? { |l| l == lengths[0] }
-        raise ArgumentError,
-              'Sequences must have same length.'
-      end
-
-      lengths[0]
+      GRCommons::GRCommonUtils.equal_length(*args)
     end
 
-    # NOTE: duplicated definition (GRCommonUtils)
     def narray?(data)
-      defined?(Numo::NArray) && data.is_a?(Numo::NArray)
+      GRCommons::GRCommonUtils.narray?(data)
     end
   end
 
