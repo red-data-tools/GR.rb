@@ -81,20 +81,12 @@ module GR
   # a Fiddley::MemoryPointer in the GRBase class.
   extend GRBase
 
-  # Now you can see a lot of methods just calling super here.
-  # They are written to help the yard generate the documentation.
   class << self
-    def initgr(*)
-      super
-    end
+    # @!method initgr
 
-    def opengks(*)
-      super
-    end
+    # @!method opengks
 
-    def closegks(*)
-      super
-    end
+    # @!method closegks
 
     # Get the current display size.
     # Depending on the current workstation type, the current display might be
@@ -134,40 +126,26 @@ module GR
     #  * 410       : Socket driver
     #  * 415       : 0MQ driver
     #  * 420       : OpenGL
-    def openws(*)
-      super
-    end
+    # @!method openws
 
     # Close the specified workstation.
     # @param workstation_id [Integer] A workstation identifier.
-    def closews(*)
-      super
-    end
+    # @!method closews
 
     # Activate the specified workstation.
     # @param workstation_id [Integer] A workstation identifier.
-    def activatews(*)
-      super
-    end
+    # @!method activatews
 
     # Deactivate the specified workstation.
     # @param workstation_id [Integer] A workstation identifier.
-    def deactivatews(*)
-      super
-    end
+    # @!method deactivatews
 
     # Configure the specified workstation.
-    def configurews(*)
-      super
-    end
+    # @!method configurews
 
-    def clearws(*)
-      super
-    end
+    # @!method clearws
 
-    def updatews(*)
-      super
-    end
+    # @!method updatews
 
     # Draw a polyline using the current line attributes,
     # starting from the first data point and ending at the last data point.
@@ -195,9 +173,7 @@ module GR
     # The attributes that control the appearance of text are text font and precision,
     # character expansion factor, character spacing, text color index, character
     # height, character up vector, text path and text alignment.
-    def text(*)
-      super
-    end
+    # @!method text
 
     def inqtext(x, y, string)
       inquiry [{ double: 4 }, { double: 4 }] do |tbx, tby|
@@ -332,9 +308,7 @@ module GR
     #    *    Sequence of pairs of dots
     #  * -8 : LINETYPE_TRIPLE_DOT
     #    *    Sequence of groups of three dots
-    def setlinetype(*)
-      super
-    end
+    # @!method setlinetype
 
     def inqlinetype
       inquiry_int { |pt| super(pt) }
@@ -346,9 +320,7 @@ module GR
     # on the workstation multiplied by the line width scale factor.
     # This value is mapped by the workstation to the nearest available line width.
     # The default line width is 1.0, or 1 times the line width generated on the graphics device.
-    def setlinewidth(*)
-      super
-    end
+    # @!method setlinewidth
 
     def inqlinewidth
       inquiry_double { |pt| super(pt) }
@@ -356,9 +328,7 @@ module GR
 
     # Define the color of subsequent polyline output primitives.
     # @param color [Integer] The polyline color index (COLOR < 1256)
-    def setlinecolorind(*)
-      super
-    end
+    # @!method setlinecolorind
 
     def inqlinecolorind
       inquiry_int { |pt| super(pt) }
@@ -441,9 +411,7 @@ module GR
     #  * -32 : MARKERTYPE_OMARK
     #    *     o-mark
     # Polymarkers appear centered over their specified coordinates.
-    def setmarkertype(*)
-      super
-    end
+    # @!method setmarkertype
 
     def inqmarkertype
       inquiry_int { |pt| super(pt) }
@@ -453,9 +421,7 @@ module GR
     # @param size [Numeric] Scale factor applied to the nominal marker size
     # The polymarker size is calculated as the nominal size generated on the graphics device
     # multiplied by the marker size scale factor.
-    def setmarkersize(*)
-      super
-    end
+    # @!method setmarkersize
 
     # Inquire the marker size for polymarkers.
     def inqmarkersize
@@ -464,9 +430,7 @@ module GR
 
     # Define the color of subsequent polymarker output primitives.
     # @param color [Integer] The polymarker color index (COLOR < 1256)
-    def setmarkercolorind(*)
-      super
-    end
+    # @!method setmarkercolorind
 
     def inqmarkercolorind
       inquiry_int { |pt| super(pt) }
@@ -522,30 +486,22 @@ module GR
     # precision for GR and produces the highest quality output using either
     # native font rendering or FreeType. OUTLINE uses the GR path rendering
     # functions to draw individual glyphs and produces the highest quality output.
-    def settextfontprec(*)
-      super
-    end
+    # @!method settextfontprec
 
     # Set the current character expansion factor (width to height ratio).
     # @param factor [Numeric] Text expansion factor applied to the nominal text width-to-height ratio
     # `setcharexpan` defines the width of subsequent text output primitives. The expansion
     # factor alters the width of the generated characters, but not their height. The default
     # text expansion factor is 1, or one times the normal width-to-height ratio of the text.
-    def setcharexpan(*)
-      super
-    end
+    # @!method setcharexpan
 
-    def setcharspace(*)
-      super
-    end
+    # @!method setcharspace
 
     # Sets the current text color index.
     # @param color [Integer] The text color index (COLOR < 1256)
     # `settextcolorind` defines the color of subsequent text output primitives.
     # GR uses the default foreground color (black=1) for the default text color index.
-    def settextcolorind(*)
-      super
-    end
+    # @!method settextcolorind
 
     # Gets the current text color index.
     # This function gets the color of text output primitives.
@@ -559,9 +515,7 @@ module GR
     # `setcharheight` defines the height of subsequent text output primitives. Text height
     # is defined as a percentage of the default window. GR uses the default text height of
     # 0.027 (2.7% of the height of the default window).
-    def setcharheight(*)
-      super
-    end
+    # @!method setcharheight
 
     # Gets the current character height.
     # This function gets the height of text output primitives. Text height is
@@ -576,9 +530,7 @@ module GR
     # @param uy [Numeric] Text up vector
     # `setcharup` defines the vertical rotation of subsequent text output primitives.
     # The text up vector is initially set to (0, 1), horizontal to the baseline.
-    def setcharup(*)
-      super
-    end
+    # @!method setcharup
 
     # Define the current direction in which subsequent text will be drawn.
     # @param path [Integer] Text path
@@ -590,9 +542,7 @@ module GR
     #    *   downside-up
     #  * 3 : TEXT_PATH_DOWN
     #    *   upside-down
-    def settextpath(*)
-      super
-    end
+    # @!method settextpath
 
     # Set the current horizontal and vertical alignment for text.
     # @param horizontal [Integer] Horizontal text alignment
@@ -618,9 +568,7 @@ module GR
     # `settextalign` specifies how the characters in a text primitive will be aligned
     # in horizontal and vertical space. The default text alignment indicates horizontal left
     # alignment and vertical baseline alignment.
-    def settextalign(*)
-      super
-    end
+    # @!method settextalign
 
     # Set the fill area interior style to be used for fill areas.
     # @param style [Integer] The style of fill to be used
@@ -636,9 +584,7 @@ module GR
     #    *   Fill the interior of the polygon using the fill color index and draw the bounding polyline
     # `setfillintstyle` defines the interior style  for subsequent fill area output
     # primitives. The default interior style is HOLLOW.
-    def setfillintstyle(*)
-      super
-    end
+    # @!method setfillintstyle
 
     # Returns the fill area interior style to be used for fill areas.
     def inqfillintstyle
@@ -652,9 +598,7 @@ module GR
     # index points to a device-independent pattern table. If interior style is set to HATCH
     # the fill style index indicates different hatch styles. If HOLLOW or SOLID is specified
     # for the interior style, the fill style index is unused.
-    def setfillstyle(*)
-      super
-    end
+    # @!method setfillstyle
 
     # Returns the current fill area color index.
     # This function gets the color index for PATTERN and HATCH fills.
@@ -666,9 +610,7 @@ module GR
     # @param color [Integer] The text color index (COLOR < 1256)
     # `setfillcolorind` defines the color of subsequent fill area output primitives.
     # GR uses the default foreground color (black=1) for the default fill area color index.
-    def setfillcolorind(*)
-      super
-    end
+    # @!method setfillcolorind
 
     # Returns the current fill area color index.
     # This function gets the color of fill area output primitives.
@@ -682,9 +624,7 @@ module GR
     # @param red [Numeric] Red intensity in the range 0.0 to 1.0
     # @param green [Numeric] Green intensity in the range 0.0 to 1.0
     # @param blue [Numeric] Blue intensity in the range 0.0 to 1.0
-    def setcolorrep(*)
-      super
-    end
+    # @!method setcolorrep
 
     # `setwindow` establishes a window, or rectangular subspace, of world coordinates to be
     # plotted. If you desire log scaling or mirror-imaging of axes, use the SETSCALE function.
@@ -699,9 +639,7 @@ module GR
     # rectangular NDC viewport which is, in turn, mapped onto the display surface of the
     # open and active workstation, in device coordinates. By default, GR uses the range
     # \[0,1] x [0,1], in world coordinates, as the normalization transformation window.
-    def setwindow(*)
-      super
-    end
+    # @!method setwindow
 
     # inqwindow
     def inqwindow
@@ -721,9 +659,7 @@ module GR
     # through which all output primitives pass. The WC window is mapped onto the rectangular
     # NDC viewport which is, in turn, mapped onto the display surface of the open and active
     # workstation, in device coordinates.
-    def setviewport(*)
-      super
-    end
+    # @!method setviewport
 
     # inqviewport
     def inqviewport
@@ -737,9 +673,7 @@ module GR
     # @param transform [Integer] A normalization transformation number.
     #  * 0    : Selects the identity transformation in which both the window and viewport have the range of 0 to 1
     #  * >= 1 : Selects a normalization transformation as defined by `setwindow` and `setviewport`
-    def selntran(*)
-      super
-    end
+    # @!method selntran
 
     # Set the clipping indicator.
     # @params indicator [Integer] An indicator specifying whether clipping is on or off.
@@ -751,9 +685,7 @@ module GR
     # past the viewport boundaries. If clipping is off, primitives may exceed the viewport
     # boundaries, and they will be drawn to the edge of the workstation window.
     # By default, clipping is on.
-    def setclip(*)
-      super
-    end
+    # @!method setclip
 
     # Set the area of the NDC viewport that is to be drawn in the workstation window.
     # @param xmin [Numeric] The left horizontal coordinate of the workstation window.
@@ -764,9 +696,7 @@ module GR
     # to be output to the device. By default, the workstation transformation will map the
     # range [0,1] x [0,1] in NDC onto the largest square on the workstation’s display
     # surface. The aspect ratio of the workstation window is maintained at 1 to 1.
-    def setwswindow(*)
-      super
-    end
+    # @!method setwswindow
 
     # Define the size of the workstation graphics window in meters.
     # @param xmin [Numeric] The left horizontal coordinate of the workstation viewport.
@@ -777,37 +707,21 @@ module GR
     # meters. This command allows the workstation window to be accurately sized for a
     # display or hardcopy device, and is often useful for sizing graphs for desktop
     # publishing applications.
-    def setwsviewport(*)
-      super
-    end
+    # @!method setwsviewport
 
-    def createseg(*)
-      super
-    end
+    # @!method createseg
 
-    def copysegws(*)
-      super
-    end
+    # @!method copysegws
 
-    def redrawsegws(*)
-      super
-    end
+    # @!method redrawsegws
 
-    def setsegtran(*)
-      super
-    end
+    # @!method setsegtran
 
-    def closeseg(*)
-      super
-    end
+    # @!method closeseg
 
-    def emergencyclosegks(*)
-      super
-    end
+    # @!method emergencyclosegks
 
-    def updategks(*)
-      super
-    end
+    # @!method updategks
 
     # Set the abstract Z-space used for mapping three-dimensional output primitives into
     # the current world coordinate space.
@@ -822,9 +736,7 @@ module GR
     # These settings are used for all subsequent three-dimensional output primitives until
     # other values are specified. Angles of rotation and viewing angle must be specified
     # between 0° and 90°.
-    def setspace(*)
-      super
-    end
+    # @!method setspace
 
     def inqspace
       inquiry %i[double double int int] do |*pts|
@@ -856,9 +768,7 @@ module GR
     # world coordinate system.
     # Note: When applying a logarithmic transformation to a specific axis, the system
     # assumes that the axes limits are greater than zero.
-    def setscale(*)
-      super
-    end
+    # @!method setscale
 
     # inqscale
     def inqscale
@@ -917,9 +827,7 @@ module GR
     # Note: `\v` is a replacement for `\nu` which would conflict with `\n` (newline)
     # For more sophisticated mathematical formulas, you should use the `gr.mathtex`
     # function.
-    def textext(*)
-      super
-    end
+    # @!method textext
 
     # inqtextext
     def inqtextext(x, y, string)
@@ -953,9 +861,7 @@ module GR
     # and width can be modified using the gr_setlinetype and gr_setlinewidth
     # functions. Axes are drawn according to the linear or logarithmic
     # transformation established by the gr_setscale function.
-    def axes(*)
-      super
-    end
+    # @!method axes
 
     alias axes2d axes
 
@@ -980,9 +886,7 @@ module GR
     #   * param y [Numeric] NDC of the label in Y direction.
     #   * param svalue [String] Internal string representation of the text drawn by GR at (x,y).
     #   * param value [Numeric] Floating point representation of the label drawn at (x,y).
-    def axeslbl(*)
-      super
-    end
+    # @!method axeslbl
 
     # Draw a linear and/or logarithmic grid.
     # @param x_tick [Numeric] The length in world coordinates of the interval between minor grid lines.
@@ -999,9 +903,7 @@ module GR
     # Major grid lines correspond to the axes origin and major tick marks whether visible
     # or not. Minor grid lines are drawn at points equal to minor tick marks. Major grid
     # lines are drawn using black lines and minor grid lines are drawn using gray lines.
-    def grid(*)
-      super
-    end
+    # @!method grid
 
     # Draw a linear and/or logarithmic grid.
     # @param x_tick [Numeric] The length in world coordinates of the interval between minor grid lines.
@@ -1023,9 +925,7 @@ module GR
     # Major grid lines correspond to the axes origin and major tick marks whether visible
     # or not. Minor grid lines are drawn at points equal to minor tick marks. Major grid
     # lines are drawn using black lines and minor grid lines are drawn using gray lines.
-    def grid3d(*)
-      super
-    end
+    # @!method grid3d
 
     # Draw a standard vertical error bar graph.
     # @param x [Array, NArray] A list of length N containing the X coordinates
@@ -1103,17 +1003,13 @@ module GR
     # are drawn using solid lines; line color and width can be modified using the
     # `setlinetype` and `setlinewidth` functions. Axes are drawn according to
     # the linear or logarithmic transformation established by the `setscale` function.
-    def axes3d(*)
-      super
-    end
+    # @!method axes3d
 
     # Display axis titles just outside of their respective axes.
     # @param x_title [String] The text to be displayed on the X axis
     # @param x_title [String] The text to be displayed on the Y axis
     # @param x_title [String] The text to be displayed on the Z axis
-    def titles3d(*)
-      super
-    end
+    # @!method titles3d
 
     # Draw a three-dimensional surface plot for the given data points.
     # @param x [Array, NArray] A list containing the X coordinates
@@ -1201,9 +1097,7 @@ module GR
       super(n, x, y, nbins)
     end
 
-    def setcolormap(*)
-      super
-    end
+    # @!method setcolormap
 
     # inqcolormap
     def inqcolormap
@@ -1221,9 +1115,7 @@ module GR
       super(n, r, g, b, positions)
     end
 
-    def colorbar(*)
-      super
-    end
+    # @!method colorbar
 
     def inqcolor(color)
       inquiry_int do |rgb|
@@ -1232,9 +1124,7 @@ module GR
     end
 
     # @return [Integer]
-    def inqcolorfromrgb(*)
-      super
-    end
+    # @!method inqcolorfromrgb
 
     def hsvtorgb(h, s, v)
       inquiry %i[double double double] do |r, g, b|
@@ -1243,14 +1133,10 @@ module GR
     end
 
     # @return [Numeric]
-    def tick(*)
-      super
-    end
+    # @!method tick
 
     # @return [Integer]
-    def validaterange(*)
-      super
-    end
+    # @!method validaterange
 
     def adjustlimits(amin, amax)
       inquiry %i[double double] do |pamin, pamax|
@@ -1282,9 +1168,7 @@ module GR
     #  * .wmf : Windows Metafile
     # `beginprint` opens an additional graphics output device. The device type is obtained
     # from the given file extension.
-    def beginprint(*)
-      super
-    end
+    # @!method beginprint
 
     # Open and activate a print device with the given layout attributes.
     # @param pathname [String] Filename for the print device.
@@ -1322,13 +1206,9 @@ module GR
     #  * Ledger : 0.432 x 0.279
     #  * Tabloid : 0.279 x 0.432
     # @param orientation [String] Page orientation (Landscape, Portait)
-    def beginprintext(*)
-      super
-    end
+    # @!method beginprintext
 
-    def endprint(*)
-      super
-    end
+    # @!method endprint
 
     def ndctowc(x, y)
       inquiry %i[double double] do |px, py|
@@ -1360,18 +1240,14 @@ module GR
     # @param xmax [Numeric] Lower right edge of the rectangle
     # @param ymin [Numeric] Upper left edge of the rectangle
     # @param ymax [Numeric] Upper right edge of the rectangle
-    def drawrect(*)
-      super
-    end
+    # @!method drawrect
 
     # Draw a filled rectangle using the current fill attributes.
     # @param xmin [Numeric] Lower left edge of the rectangle
     # @param xmax [Numeric] Lower right edge of the rectangle
     # @param ymin [Numeric] Upper left edge of the rectangle
     # @param ymax [Numeric] Upper right edge of the rectangle
-    def fillrect(*)
-      super
-    end
+    # @!method fillrect
 
     # Draw a circular or elliptical arc covering the specified rectangle.
     # @param xmin [Numeric] Lower left edge of the rectangle
@@ -1383,9 +1259,7 @@ module GR
     # The resulting arc begins at `a1` and ends at `a2` degrees. Angles are interpreted
     # such that 0 degrees is at the 3 o'clock position. The center of the arc is the center
     # of the given rectangle.
-    def drawarc(*)
-      super
-    end
+    # @!method drawarc
 
     # Fill a circular or elliptical arc covering the specified rectangle.
     # @param xmin [Numeric] Lower left edge of the rectangle
@@ -1397,9 +1271,7 @@ module GR
     # The resulting arc begins at `a1` and ends at `a2` degrees. Angles are interpreted
     # such that 0 degrees is at the 3 o'clock position. The center of the arc is the center
     # of the given rectangle.
-    def fillarc(*)
-      super
-    end
+    # @!method fillarc
 
     # Draw simple and compound outlines consisting of line segments and bezier curves.
     # @param points [Array, NArray] (N, 2) array of (x, y) vertices
@@ -1438,17 +1310,13 @@ module GR
     #  * 17 : double line, single-ended
     #  * 18 : double line, double-ended
     # `setarrowstyle` defines the arrow style for subsequent arrow primitives.
-    def setarrowstyle(*)
-      super
-    end
+    # @!method setarrowstyle
 
     # Set the arrow size to be used for subsequent arrow commands.
     # @param size [Numeric] The arrow size to be used
     # `setarrowsize` defines the arrow size for subsequent arrow primitives.
     # The default arrow size is 1.
-    def setarrowsize(*)
-      super
-    end
+    # @!method setarrowsize
 
     # Draw an arrow between two points.
     # @param x1 [Numeric] Starting point of the arrow (tail)
@@ -1458,9 +1326,7 @@ module GR
     # Different arrow styles (angles between arrow tail and wing, optionally filled
     # heads, double headed arrows) are available and can be set with the `setarrowstyle`
     # function.
-    def drawarrow(*)
-      super
-    end
+    # @!method drawarrow
 
     # @return [Integer]
     def readimage(path)
@@ -1498,9 +1364,7 @@ module GR
     end
 
     # @return [Integer]
-    def importgraphics(*)
-      super
-    end
+    # @!method importgraphics
 
     # `setshadow` allows drawing of shadows, realized by images painted underneath,
     # and offset from, graphics objects such that the shadow mimics the effect of a light
@@ -1513,15 +1377,11 @@ module GR
     #   is offset from the object
     # @param blur [Numeric]
     #   A blur value, which specifies whether the object has a hard or a diffuse edge
-    def setshadow(*)
-      super
-    end
+    # @!method setshadow
 
     # Set the value of the alpha component associated with GR colors.
     # @param alpha [Numeric] An alpha value (0.0 - 1.0)
-    def settransparency(*)
-      super
-    end
+    # @!method settransparency
 
     # Change the coordinate transformation according to the given matrix.
     # @param mat [Array, NArray] 2D transformation matrix
@@ -1536,13 +1396,9 @@ module GR
     # `begingraphics` allows to write all graphics output into a XML-formatted file until
     # the `endgraphics` functions is called. The resulting file may later be imported with
     # the `importgraphics` function.
-    def begingraphics(*)
-      super
-    end
+    # @!method begingraphics
 
-    def endgraphics(*)
-      super
-    end
+    # @!method endgraphics
 
     # @return [String]
     def getgraphics(*)
@@ -1550,18 +1406,14 @@ module GR
     end
 
     # @return [Integer]
-    def drawgraphics(*)
-      super
-    end
+    # @!method drawgraphics
 
     # Generate a character string starting at the given location. Strings can be defined
     # to create mathematical symbols and Greek letters using LaTeX syntax.
     # @param x [Numeric] Position of the text string specified in world coordinates
     # @param y [Numeric] Position of the text string specified in world coordinates
     # @param string [String] The text string to be drawn
-    def mathtex(*)
-      super
-    end
+    # @!method mathtex
 
     # inqmathtex
     def inqmathtex(x, y, string)
@@ -1570,21 +1422,13 @@ module GR
       end
     end
 
-    def beginselection(*)
-      super
-    end
+    # @!method beginselection
 
-    def endselection(*)
-      super
-    end
+    # @!method endselection
 
-    def moveselection(*)
-      super
-    end
+    # @!method moveselection
 
-    def resizeselection(*)
-      super
-    end
+    # @!method resizeselection
 
     def inqbbox
       inquiry %i[double double double double] do |*pts|
@@ -1593,39 +1437,23 @@ module GR
     end
 
     # @return [Numeric]
-    def precision(*)
-      super
-    end
+    # @!method precision
 
-    def setregenflags(*)
-      super
-    end
+    # @!method setregenflags
 
     # @return [Integer]
-    def inqregenflags(*)
-      super
-    end
+    # @!method inqregenflags
 
-    def savestate(*)
-      super
-    end
+    # @!method savestate
 
-    def restorestate(*)
-      super
-    end
+    # @!method restorestate
 
-    def selectcontext(*)
-      super
-    end
+    # @!method selectcontext
 
-    def destroycontext(*)
-      super
-    end
+    # @!method destroycontext
 
     # @return [Integer]
-    def uselinespec(*)
-      super
-    end
+    # @!method uselinespec
 
     def delaunay(x, y)
       # Feel free to make a pull request if you catch a mistake
@@ -1730,9 +1558,7 @@ module GR
       super.to_s
     end
 
-    def shade(*)
-      super
-    end
+    # @!method shade
 
     # Display a point set as a aggregated and rasterized image.
     # @param x [Array, NArray] A pointer to the X coordinates
@@ -1836,9 +1662,7 @@ module GR
     #    *            lanczos for vertical downsampling
     #  * 0x03000000 : DOWNSAMPLE_HORIZONTAL_LANCZOS
     #    *            lanczos for horizontal downsampling
-    def setresamplemethod(*)
-      super
-    end
+    # @!method setresamplemethod
 
     # Inquire the resample method used for gr.drawimage().
     def inqresamplemethod
@@ -1880,9 +1704,7 @@ module GR
 
     # Define the border width of subsequent path output primitives.
     # @param width [Numeric] The border width scale factor
-    def setborderwidth(*)
-      super
-    end
+    # @!method setborderwidth
 
     def inqborderwidth
       inquiry_double { |pt| super(pt) }
@@ -1890,9 +1712,7 @@ module GR
 
     # Define the color of subsequent path output primitives.
     # @param color [Integer] The border color index (COLOR < 1256)
-    def setbordercolorind(*)
-      super
-    end
+    # @!method setbordercolorind
 
     def inqbordercolorind
       inquiry_int { |pt| super(pt) }
@@ -1907,9 +1727,7 @@ module GR
     #    * orthographic
     #  * 2 : GR_PROJECTION_PERSPECTIVE
     #    * perspective
-    def setprojectiontype(*)
-      super
-    end
+    # @!method setprojectiontype
 
     # Return the projection type.
     def inqprojectiontype
@@ -1927,9 +1745,7 @@ module GR
     # @param focus_point_x [Numeric] x component of focus-point inside volume
     # @param focus_point_y [Numeric] y component of focus-point inside volume
     # @param focus_point_z [Numeric] z component of focus-point inside volume
-    def settransformationparameters(*)
-      super
-    end
+    # @!method settransformationparameters
 
     # Return the camera position, up vector and focus point.
     def inqtransformationparameters
@@ -1944,9 +1760,7 @@ module GR
     # @param near_plane [Numeric] distance to near clipping plane
     # @param far_plane [Numeric] distance to far clipping plane
     # @param fov [Numeric] vertical field of view, input must be between 0 and 180 degrees
-    def setperspectiveprojection(*)
-      super
-    end
+    # @!method setperspectiveprojection
 
     # Return the parameters for the perspective projection.
     def inqperspectiveprojection
@@ -1963,9 +1777,7 @@ module GR
     # @param top [Numeric] ymax of volume in worldcoordinates
     # @param near_plane [Numeric] distance to near clipping plane
     # @param far_plane [Numeric] distance to far clipping plane
-    def setorthographicprojection(*)
-      super
-    end
+    # @!method setorthographicprojection
 
     # Return the camera position, up vector and focus point.
     def inqorthographicprojection
@@ -1980,9 +1792,7 @@ module GR
     # @param start_mouse_pos_y [Numeric] y component of the start mouse position
     # @param end_mouse_pos_x [Numeric] x component of the end mouse position
     # @param end_mouse_pos_y [Numeric] y component of the end mouse position
-    def camerainteraction(*)
-      super
-    end
+    # @!method camerainteraction
 
     # Set the three dimensional window. Only used for perspective and orthographic projection.
     # @param xmin [Numeric] min x-value
@@ -1991,9 +1801,7 @@ module GR
     # @param ymax [Numeric] max y-value
     # @param zmin [Numeric] min z-value
     # @param zmax [Numeric] max z-value
-    def setwindow3d(*)
-      super
-    end
+    # @!method setwindow3d
 
     # Return the three dimensional window.
     def inqwindow3d
@@ -2007,9 +1815,7 @@ module GR
     # @param x_axis_scale [Numeric] factor for scaling the x-axis
     # @param y_axis_scale [Numeric] factor for scaling the y-axis
     # @param z_axis_scale [Numeric] factor for scaling the z-axis
-    def setscalefactors3d(*)
-      super
-    end
+    # @!method setscalefactors3d
 
     # Returns the scale factors for each axis.
     def inqscalefactors3d
@@ -2030,13 +1836,9 @@ module GR
     # @param fov [Numeric] vertical field of view (0 or NaN for orthographic projection)
     # @param camera_distance [Numeric] distance between the camera and the focus point
     #   (0 or NaN for the radius of the object's smallest bounding sphere)
-    def setspace3d(*)
-      super
-    end
+    # @!method setspace3d
 
-    def text3d(*)
-      super
-    end
+    # @!method text3d
 
     def inqtext3d(x, y, z, string, axis)
       inquiry [{ double: 16 }, { double: 16 }] do |tbx, tby|
@@ -2044,9 +1846,7 @@ module GR
       end
     end
 
-    def settextencoding(*)
-      super
-    end
+    # @!method settextencoding
 
     def inqtextencoding
       inquiry_int do |encoding|

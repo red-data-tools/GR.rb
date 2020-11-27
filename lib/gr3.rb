@@ -117,23 +117,15 @@ module GR3
   end
   extend CheckError
 
-  # Now you can see a lot of methods just calling super here.
-  # They are written to help the yard generate the documentation.
   class << self
     # This method initializes the gr3 context.
     # @return [Integer]
-    def gr3_init(*)
-      super
-    end
+    # @!method gr3_init
 
-    def free(*)
-      super
-    end
+    # @!method free
 
     # This function terminates the gr3 context.
-    def terminate(*)
-      super
-    end
+    # @!method terminate
 
     # @!method geterror
     # This function returns information on the most recent GR3 error.
@@ -159,28 +151,20 @@ module GR3
 
     # This function clears the draw list.
     # @return [Integer]
-    def clear(*)
-      super
-    end
+    # @!method clear
 
     # Use the currently bound framebuffer as the framebuffer used for drawing to OpenGL (using gr3.drawimage).
     # This function is only needed when you do not want to render to 0, the default framebuffer.
-    def usecurrentframebuffer(*)
-      super
-    end
+    # @!method usecurrentframebuffer
 
     # Set the framebuffer used for drawing to OpenGL (using gr3.drawimage).
     # This function is only needed when you do not want to render to 0, the default framebuffer.
-    def useframebuffer(*)
-      super
-    end
+    # @!method useframebuffer
 
     # Set rendering quality
     # @param quality [] The quality to set
     # @return [Integer]
-    def setquality(*)
-      super
-    end
+    # @!method setquality
 
     # @return [Integer]
     def getimage(width, height, use_alpha = true)
@@ -191,14 +175,10 @@ module GR3
     end
 
     # @return [Integer]
-    def export(*)
-      super
-    end
+    # @!method export
 
     # @return [Integer]
-    def drawimage(*)
-      super
-    end
+    # @!method drawimage
 
     # createmesh_nocopy
     # @return [Integer]
@@ -256,16 +236,12 @@ module GR3
     # @param ups [Array, NArray] The up directions
     # @param colors [Array, NArray] The colors the meshes should be drawn in, it will be multiplied with each vertex color
     # @param scales [Array, NArray] The scaling factors
-    def drawmesh(*)
-      super
-    end
+    # @!method drawmesh
 
     # This function marks a mesh for deletion and removes the user’s reference from the mesh’s referenc counter,
     # so a user must not use the mesh after calling this function.
     # @param mesh [Integer] The mesh that should be marked for deletion
-    def deletemesh(*)
-      super
-    end
+    # @!method deletemesh
 
     # This function sets the view matrix by getting the position of the camera,
     # the position of the center of focus and the direction which should point up.
@@ -278,9 +254,7 @@ module GR3
     # @param  up_x [Array, NArray] The x-component of the up direction
     # @param  up_y [Array, NArray] The y-component of the up direction
     # @param  up_z [Array, NArray] The z-component of the up direction
-    def cameralookat(*)
-      super
-    end
+    # @!method cameralookat
 
     # This function sets the projection parameters.
     # This function takes effect when the next image is created.
@@ -289,85 +263,53 @@ module GR3
     # @param zNear [Numeric] The distance to the near clipping plane.
     # @param zFar [Numeric] The distance to the far clipping plane.
     # @return [Integer]
-    def setcameraprojectionparameters(*)
-      super
-    end
+    # @!method setcameraprojectionparameters
 
     # Get the projection parameters.
     # @return [Integer]
-    def getcameraprojectionparameters(*)
-      super
-    end
+    # @!method getcameraprojectionparameters
 
     # This function sets the direction of light.
     # If it is called with (0, 0, 0), the light is always pointing into the same direction as the camera.
     # @param x [Numeric] The x-component of the light's direction
     # @param y [Numeric] The y-component of the light's direction
     # @param z [Numeric] The z-component of the light's direction
-    def setlightdirection(*)
-      super
-    end
+    # @!method setlightdirection
 
     # This function sets the background color.
-    def setbackgroundcolor(*)
-      super
-    end
+    # @!method setbackgroundcolor
 
     # @return [Integer]
-    def createheightmapmesh(*)
-      super
-    end
+    # @!method createheightmapmesh
 
-    def drawheightmap(*)
-      super
-    end
+    # @!method drawheightmap
 
     # This function allows drawing a cylinder without requiring a mesh.
-    def drawconemesh(*)
-      super
-    end
+    # @!method drawconemesh
 
     # This function allows drawing a cylinder without requiring a mesh.
-    def drawcylindermesh(*)
-      super
-    end
+    # @!method drawcylindermesh
 
     # This function allows drawing a sphere without requiring a mesh.
-    def drawspheremesh(*)
-      super
-    end
+    # @!method drawspheremesh
 
-    def drawcubemesh(*)
-      super
-    end
+    # @!method drawcubemesh
 
-    def setobjectid(*)
-      super
-    end
+    # @!method setobjectid
 
     # @return [Integer]
-    def selectid(*)
-      super
-    end
+    # @!method selectid
 
-    def getviewmatrix(*)
-      super
-    end
+    # @!method getviewmatrix
 
-    def setviewmatrix(*)
-      super
-    end
+    # @!method setviewmatrix
 
     # the current projection type: GR3_PROJECTION_PERSPECTIVE or GR3_PROJECTION_PARALLEL
     # @return [Integer]
-    def getprojectiontype(*)
-      super
-    end
+    # @!method getprojectiontype
 
     # @param type [Integer] the new projection type: GR3_PROJECTION_PERSPECTIVE or GR3_PROJECTION_PARALLEL
-    def setprojectiontype(*)
-      super
-    end
+    # @!method setprojectiontype
 
     # This function creates an isosurface from voxel data using the
     # marching cubes algorithm.
@@ -426,15 +368,11 @@ module GR3
     # @param ups [Array, NArray] the up directions
     # @param colors [Array, NArray] the colors the meshes should be drawn in, it will be multiplied with each vertex color
     # @param scales [Array, NArray] the scaling factors
-    def drawmesh_grlike(*)
-      super
-    end
+    # @!method drawmesh_grlike
 
     # Convenience function for drawing a surfacemesh.
     # @param mesh [Integer] the mesh to be drawn
-    def drawsurface(*)
-      super
-    end
+    # @!method drawsurface
 
     # Create a surface plot with gr3 and draw it with gks as cellarray.
     # @param x [Array, NArray] an array containing the x-coordinates
