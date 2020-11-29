@@ -43,7 +43,7 @@ module GRCommons
       if narray?(data)
         Numo::Int32.cast(data).to_binary
       else
-        Fiddley::Utils.array2str(:int32, data.to_a.flatten)
+        Fiddley::Utils.array2str(:int32, data.to_a.flatten) # TODO
       end
     end
 
@@ -52,7 +52,7 @@ module GRCommons
       if narray?(data)
         Numo::UInt32.cast(data).to_binary
       else
-        Fiddley::Utils.array2str(:uint, data.to_a.flatten)
+        Fiddley::Utils.array2str(:uint, data.to_a.flatten) # TODO
       end
     end
 

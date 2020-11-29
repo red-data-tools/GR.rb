@@ -174,7 +174,7 @@ module GR
     try_extern 'void gr_shadepoints(int, double *, double *, int, int, int)'
     try_extern 'void gr_shadelines(int, double *, double *, int, int, int)'
     try_extern 'void gr_panzoom(double, double, double, double, double *, double *, double *, double *)'
-    # try_extern 'int gr_findboundary(int, double *, double *, double, double (*)(double, double), int, int *)'
+    try_extern 'int gr_findboundary(int, double *, double *, double, double (*)(double, double), int, int *)'
     try_extern 'void gr_setresamplemethod(unsigned int flag)'
     try_extern 'void gr_inqresamplemethod(unsigned int *flag)'
     try_extern 'void gr_path(int, double *, double *, const char *)'
