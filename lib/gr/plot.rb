@@ -46,19 +46,40 @@ module GR
                  zlabel zlim zlog zrange zticks].freeze
 
     FONTS = {
-      'Times_Roman' => 101, 'Times_Italic' => 102, 'Times_Bold' => 103, 'Times_BoldItalic' => 104,
-      'Helvetica_Regular' => 105, 'Helvetica_Oblique' => 106, 'Helvetica_Bold' => 107, 'Helvetica_BoldOblique' => 108,
-      'Courier_Regular' => 109, 'Courier_Oblique' => 110, 'Courier_Bold' => 111, 'Courier_BoldOblique' => 112,
-      'Symbol' => 113,
-      'Bookman_Light' => 114, 'Bookman_LightItalic' => 115, 'Bookman_Demi' => 116, 'Bookman_DemiItalic' => 117,
-      'NewCenturySchlbk_Roman' => 118, 'NewCenturySchlbk_Italic' => 119, 'NewCenturySchlbk_Bold' => 120, 'NewCenturySchlbk_BoldItalic' => 121,
-      'AvantGarde_Book' => 122, 'AvantGarde_BookOblique' => 123, 'AvantGarde_Demi' => 124, 'AvantGarde_DemiOblique' => 125,
-      'Palatino_Roman' => 126, 'Palatino_Italic' => 127, 'Palatino_Bold' => 128, 'Palatino_BoldItalic' => 129,
-      'ZapfChancery_MediumItalic' => 130,
-      'ZapfDingbats' => 131,
-      'CMUSerif-Math' => 232,
-      'DejaVuSans' => 233,
-      'PingFangSC' => 234
+      times_roman: 101,
+      times_italic: 102,
+      times_bold: 103,
+      times_bolditalic: 104,
+      helvetica_regular: 105,
+      helvetica_oblique: 106,
+      helvetica_bold: 107,
+      helvetica_boldoblique: 108,
+      courier_regular: 109,
+      courier_oblique: 110,
+      courier_bold: 111,
+      courier_boldoblique: 112,
+      symbol: 113,
+      bookman_light: 114,
+      bookman_lightitalic: 115,
+      bookman_demi: 116,
+      bookman_demiitalic: 117,
+      newcenturyschlbk_roman: 118,
+      newcenturyschlbk_italic: 119,
+      newcenturyschlbk_bold: 120,
+      newcenturyschlbk_bolditalic: 121,
+      avantgarde_book: 122,
+      avantgarde_bookoblique: 123,
+      avantgarde_demi: 124,
+      avantgarde_demioblique: 125,
+      palatino_roman: 126,
+      palatino_italic: 127,
+      palatino_bold: 128,
+      palatino_bolditalic: 129,
+      zapfchancery_mediumitalic: 130,
+      zapfdingbats: 131,
+      cmuserif_math: 232, # original: cmuserif-math
+      dejavusans: 233,
+      pingfangsc: 234
     }.freeze
 
     @last_plot = nil
@@ -595,11 +616,13 @@ module GR
 
       if kvs.has_key?(:font)
         name = kvs[:font]
-        if FONTS.include?(name)
-          font = FONTS[name]
+        # 'Cmuserif-Math' => :cmuserif_math
+        sym_name = name.to_s.gsub('-','_').downcase.to_sym 
+        if FONTS.include?(sym_name)
+          font = FONTS[sym_name]
           GR.settextfontprec(font, font > 200 ? 3 : 0)
         else
-          println('Unknown font name: $name')
+          warn "Unknown font name: #{name}" # should raise error?
         end
       else
         # The following fonts are the default in GR.jl
