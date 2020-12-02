@@ -1212,6 +1212,10 @@ module GR
     # least `nx` * `ny` data points. Z describes the surface height at each point
     # on the grid. Data is ordered as shown in the table:
     #
+    # @note `surface` is overwritten by `require gr/plot`.
+    #       The original method is moved to the underscored name.
+    #       The yard document will show the method name after evacuation.
+    #
     # @param x [Array, NArray] A list containing the X coordinates
     # @param y [Array, NArray] A list containing the Y coordinates
     # @param z [Array, NArray]
@@ -1235,6 +1239,10 @@ module GR
 
     # Draw contours of a three-dimensional data set whose values are specified
     # over a rectangular mesh. Contour lines may optionally be labeled.
+    #
+    # @note `contour` is overwritten by `require gr/plot`.
+    #       The original method is moved to the underscored name.
+    #       The yard document will show the method name after evacuation.
     #
     # @param x [Array, NArray] A list containing the X coordinates
     # @param y [Array, NArray] A list containing the Y coordinates
@@ -1260,6 +1268,10 @@ module GR
 
     # Draw filled contours of a three-dimensional data set whose values are
     # specified over a rectangular mesh.
+    #
+    # @note `contourf` is overwritten by `require gr/plot`.
+    #       The original method is moved to the underscored name.
+    #       The yard document will show the method name after evacuation.
     #
     # @param x [Array, NArray] A list containing the X coordinates
     # @param y [Array, NArray] A list containing the Y coordinates
@@ -1292,6 +1304,10 @@ module GR
       super(npoints, x, y, z, nlevels, levels)
     end
 
+    # @note `hexbin` is overwritten by `require gr/plot`.
+    #       The original method is moved to the underscored name.
+    #       The yard document will show the method name after evacuation.
+    #
     # @return [Integer]
     def hexbin(x, y, nbins)
       n = x.length
@@ -1831,6 +1847,10 @@ module GR
       super.to_s
     end
 
+    # @note `hexbin` is overwritten by `require gr/plot`.
+    #       The original method is moved to the underscored name.
+    #       The yard document will show the method name after evacuation.
+    #
     # @!method shade
 
     # Display a point set as a aggregated and rasterized image.
