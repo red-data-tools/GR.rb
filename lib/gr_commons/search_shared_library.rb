@@ -58,7 +58,7 @@ module GRCommons
         if path
           File.expand_path(path)
         else
-          raise StandardError "#{name} not found in #{base_dir}"
+          raise "#{name} not found in #{base_dir}"
         end
       end
     end
