@@ -40,7 +40,7 @@ Set environment variable `GRDIR`.
 export GRDIR="/your/path/to/gr"
 ```
 
-Note: If you use package managers to install GR, [pkg-config](https://github.com/ruby-gnome/pkg-config) may automatically detect the shared library location without specifying the `GRDIR` environment variable. 
+If you use package managers to install GR, [pkg-config](https://github.com/ruby-gnome/pkg-config) may automatically detect the shared library location without specifying the `GRDIR` environment variable. 
 
 ## Quick Start
 
@@ -87,7 +87,7 @@ GR.savefig("figure.png")
 
 ## API Overview
 
-There are two different approaches to plotting with GR.rb. One way is to call Matlab-like APIs. The other is to call GR/GR3 native functions. We are planning to prepare a [more object-oriented interface](https://github.com/kojix2/GRUtils.rb) based on [GRUtils.jl](https://github.com/heliosdrm/GRUtils.jl) in the future.
+There are two different approaches to plotting with GR.rb. One way is to call Matlab-like APIs. The other is to call GR/GR3 native functions. 
 
 #### GR::Plot - A simple, matlab-style API. 
 
@@ -97,6 +97,7 @@ GR.plot(x, y)
 ```
 
 List of vailable functions. See [GR.rb Wiki](https://github.com/red-data-tools/GR.rb/wiki) for details.
+Some GR module methods are overridden.
 
 [`plot`](../../wiki/Plotting-functions#plot)
 [`step`](../../wiki/Plotting-functions#step)
@@ -121,6 +122,8 @@ List of vailable functions. See [GR.rb Wiki](https://github.com/red-data-tools/G
 [`shade`](../../wiki/Plotting-functions#shade)
 [`imshow`](../../wiki/Plotting-functions#imshow)
 [`isosurface`](../../wiki/Plotting-functions#isosurface)
+
+We are planning to prepare a [more object-oriented interface](https://github.com/kojix2/GRUtils.rb) based on [GRUtils.jl](https://github.com/heliosdrm/GRUtils.jl) in the future.
 
 #### GR - A module for calling native GR functions.
 
@@ -150,6 +153,8 @@ GR3.cameralookat(-3, 2, -2, 0, 0, 0, 0, 0, -1)
 - [GR.rb Wiki](https://github.com/red-data-tools/GR.rb/wiki)
 - [GR Framework](https://gr-framework.org/)
 - [GR.rb API Documentation](https://rubydoc.info/gems/ruby-gr)
+
+Although GR.rb adds methods dynamically, we try our best to provide a complete yard document. However, if you want to see more up-to-date information, we recommend using the official GR reference.
 
 ## GR Installation
 
