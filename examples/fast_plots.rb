@@ -105,9 +105,9 @@ sleep 1.2
 GR.contourf(x2, y2, z2, title: 'contourf - 2')
 sleep 1.2
 
-GR.surface(x1, y1, z1, title: 'surface - 1')
+GR.surface(x1, y1, z1, title: 'surface - 1', accelerate: false)
 sleep 1.2
-GR.surface(x2, y2, z2, title: 'surface - 2')
+GR.surface(x2, y2, z2, title: 'surface - 2', accelerate: false)
 sleep 1.2
 
 GR.trisurf(x1, y1, z1, title: 'trisurf - 1')
