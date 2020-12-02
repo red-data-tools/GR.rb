@@ -117,9 +117,9 @@ module GRCommons
       when Hash
         typ = type.keys[0]
         len = type.values[0]
-        pt.send("read_array_of_#{typ}", len)
+        pt.public_send("read_array_of_#{typ}", len)
       else
-        pt.send("read_#{type}")
+        pt.public_send("read_#{type}")
       end
     end
 

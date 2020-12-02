@@ -19,7 +19,7 @@ x = Numo::DFloat.new(sz).seq(1) / sz * 30
   ['Regular Modified Spherical Bessel Functions', :bessel_il_scaled, 'bessel i', { xlog: true, ylog: true }],
   ['Irregular Modified Spherical Bessel Functions', :bessel_kl_scaled, 'bessel k', { xlog: true, ylog: true }]
 ].each do |t, method, labelname, opts|
-  y = Array.new(6) { |n| [x, Numo::GSL::Sf.send(method, n, x)] }
+  y = Array.new(6) { |n| [x, Numo::GSL::Sf.public_send(method, n, x)] }
   l = Array.new(6) { |n| labelname + n.to_s }
   GR.plot(*y, { title: t, labels: l, xlabel: 'x', ylabel: 'y' }.merge(opts))
   gets

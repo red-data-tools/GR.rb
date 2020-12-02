@@ -10,11 +10,9 @@ require 'gr/plot'
 ENV['GKS_WSTYPE'] = 'gksqt'
 
 PI       = Math::PI
-Q        = [
-  0.99999999999980993, 676.5203681218851, -1259.1392167224028,
-  771.32342877765313, -176.61502916214059, 12.507343278686905,
-  -0.13857109526572012, 9.9843695780195716e-6, 1.5056327351493116e-7
-].freeze
+Q        = [0.99999999999980993, 676.5203681218851, -1259.1392167224028,
+            771.32342877765313, -176.61502916214059, 12.507343278686905,
+            -0.13857109526572012, 9.9843695780195716e-6, 1.5056327351493116e-7].freeze
 QLEN     = Q.count
 QLEN_G   = QLEN - 2
 SQRT_2PI = Math.sqrt(2.0 * PI)
@@ -125,15 +123,17 @@ end
   %i[contour contourf wireframe surface].each do |type|
     print "[#{part}] Now creating #{type} plot. Please wait..."
     time = Time.now
-    GR.send(type, xs, ys, zs.map { |z| z.send(part).clamp(0, 2) },
-            { title: "Riemann zeta function - #{type}",
-              figsize: [8, 6],
-              rotation: 45,
-              tilt: 78,
-              xlabel: 'Re\(s\)',
-              ylabel: 'Im\(s\)',
-              zlabel: zlabel,
-              accelerate: false })
+    GR.public_send(
+      type, xs, ys, zs.map { |z| z.public_send(part).clamp(0, 2) },
+      { title: "Riemann zeta function - #{type}",
+        figsize: [8, 6],
+        rotation: 45,
+        tilt: 78,
+        xlabel: 'Re\(s\)',
+        ylabel: 'Im\(s\)',
+        zlabel: zlabel,
+        accelerate: false }
+    )
     puts "done. time: #{(Time.now - time).round(2)} s"
     # gets
   end

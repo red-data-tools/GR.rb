@@ -6,7 +6,7 @@ NMath = Numo::NMath
 
 %i[barplot stem step plot].each_with_index do |t, i|
   h = GR.subplot(2, 2, i + 1)
-  GR.send t, [*1..10], [*1..10].shuffle, h.merge(title: "subplot #{i}")
+  GR.public_send t, [*1..10], [*1..10].shuffle, h.merge(title: "subplot #{i}")
 end
 sleep 1.5
 

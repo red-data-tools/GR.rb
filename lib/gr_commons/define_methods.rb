@@ -16,14 +16,14 @@ module GRCommons
           args.map! do |arg|
             case arg
             when Array
-              GRCommons::GRCommonUtils.send(default_type, arg)
+              GRCommons::GRCommonUtils.public_send(default_type, arg)
             when ->(x) { defined?(Numo::NArray) && x.is_a?(Numo::NArray) }
-              GRCommons::GRCommonUtils.send(default_type, arg)
+              GRCommons::GRCommonUtils.public_send(default_type, arg)
             else
               arg
             end
           end
-          ffi_module.send(method, *args)
+          ffi_module.public_send(method, *args)
         end
       end
     end
