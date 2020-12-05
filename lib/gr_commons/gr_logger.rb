@@ -11,7 +11,7 @@ require 'awesome_print'
 module GRCommons
   class << self
     # Create a new GRLogger
-    # @params out [String]
+    # @param out [String]
     # @return [GRLogger]
     # @example
     #   require 'gr_commons/gr_logger'

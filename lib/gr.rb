@@ -777,7 +777,7 @@ module GR
 
     # Set the clipping indicator.
     #
-    # @params indicator [Integer] An indicator specifying whether clipping is on
+    # @param indicator [Integer] An indicator specifying whether clipping is on
     #                             or off.
     # * 0 : Clipping is off. Data outside of the window will be drawn.
     # * 1 : Clipping is on. Data outside of the window will not be drawn.
