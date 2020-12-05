@@ -7,7 +7,7 @@ on:
 jobs:
   test:
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
-    name: ${{ matrix.os }} Ruby ${{ maStrix.ruby }} gr ${{ matrix.gr }}
+    name: ${{ matrix.os }} Ruby ${{ matrix.ruby }} gr ${{ matrix.gr }}
     runs-on: ${{ matrix.os }}-latest
     strategy:
       fail-fast: false
