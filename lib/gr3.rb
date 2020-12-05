@@ -63,7 +63,6 @@ module GR3
   end
 
   require_relative 'gr_commons/gr_commons'
-  extend GRCommons::SearchSharedLibrary
 
   # Platforms |  path
   # Windows   |  bin/libGR3.dll
@@ -71,9 +70,9 @@ module GR3
   # Ubuntu    |  lib/libGR3.so
   self.ffi_lib = case RbConfig::CONFIG['host_os']
                  when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
-                   search_shared_library('libGR3.dll', 'gr3')
+                   GRCommons::Lib.search('libGR3.dll', 'gr3')
                  else
-                   search_shared_library('libGR3.so', 'gr3')
+                   GRCommons::Lib.search('libGR3.so', 'gr3')
                  end
 
   require_relative 'gr3/version'

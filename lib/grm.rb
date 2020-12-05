@@ -22,7 +22,6 @@ module GRM
   end
 
   require_relative 'gr_commons/gr_commons'
-  extend GRCommons::SearchSharedLibrary
 
   # Platforms |  path
   # Windows   |  bin/libGRM.dll
@@ -30,9 +29,9 @@ module GRM
   # Ubuntu    |  lib/libGRM.so
   self.ffi_lib = case RbConfig::CONFIG['host_os']
                  when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
-                   search_shared_library('libGRM.dll', 'grm')
+                   GRCommons::Lib.search('libGRM.dll', 'grm')
                  else
-                   search_shared_library('libGRM.so', 'grm')
+                   GRCommons::Lib.search('libGRM.so', 'grm')
                  end
 
   require_relative 'grm/version'

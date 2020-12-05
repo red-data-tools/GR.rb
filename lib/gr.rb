@@ -53,7 +53,6 @@ module GR
   end
 
   require_relative 'gr_commons/gr_commons'
-  extend GRCommons::SearchSharedLibrary
 
   # Platforms |  path
   # Windows   |  bin/libgr.dll
@@ -61,9 +60,9 @@ module GR
   # Ubuntu    |  lib/libGR.so
   self.ffi_lib = case RbConfig::CONFIG['host_os']
                  when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
-                   search_shared_library('libgr.dll', 'gr')
+                   GRCommons::Lib.search('libgr.dll', 'gr')
                  else
-                   search_shared_library('libGR.so', 'gr')
+                   GRCommons::Lib.search('libGR.so', 'gr')
                  end
 
   require_relative 'gr/version'

@@ -21,13 +21,13 @@ module GRCommons
   # - Windows
   #   - MinGW https://github.com/msys2/MINGW-packages
   #     - mingw-w64-gr
-  module SearchSharedLibrary
+  module Lib
     # Search the shared library.
     # @note This method does not detect the Operating System.
     #
     # @param gr_lib_name [String] The actual file name of the shared library.
     # @param pkg_name [String] The package name to be used when searching with pkg-configg
-    def search_shared_library(gr_lib_name, pkg_name)
+    def self.search(gr_lib_name, pkg_name)
       # Windows + RubyInstaller
       if Object.const_defined?(:RubyInstaller)
         ENV['GRDIR'] ||= [
@@ -52,7 +52,7 @@ module GRCommons
       end
     end
 
-    def recursive_search(name, base_dir)
+    def self.recursive_search(name, base_dir)
       Dir.chdir(base_dir) do
         path = Dir["**/#{name}"].first # FIXME
         if path
@@ -63,7 +63,7 @@ module GRCommons
       end
     end
 
-    def pkg_config_search(gr_lib_name, pkg_name)
+    def self.pkg_config_search(gr_lib_name, pkg_name)
       PKGConfig.variable(pkg_name, 'sopath')
     rescue PackageConfig::NotFoundError => e
       raise "#{e.message} Cannot find #{gr_lib_name}. " \
