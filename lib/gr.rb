@@ -60,9 +60,9 @@ module GR
   # Ubuntu    |  lib/libGR.so
   self.ffi_lib = case RbConfig::CONFIG['host_os']
                  when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
-                   GRCommons::Lib.search('libgr.dll', 'gr')
+                   GRCommons::GRLib.search('libgr.dll', 'gr')
                  else
-                   GRCommons::Lib.search('libGR.so', 'gr')
+                   GRCommons::GRLib.search('libGR.so', 'gr')
                  end
 
   require_relative 'gr/version'

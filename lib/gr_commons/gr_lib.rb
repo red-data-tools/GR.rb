@@ -21,7 +21,7 @@ module GRCommons
   # - Windows
   #   - MinGW https://github.com/msys2/MINGW-packages
   #     - mingw-w64-gr
-  module Lib
+  module GRLib
     # Search the shared library.
     # @note This method does not detect the Operating System.
     #

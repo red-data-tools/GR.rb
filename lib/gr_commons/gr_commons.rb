@@ -7,7 +7,7 @@ end
 # Change the default encoding to UTF-8.
 ENV['GKS_ENCODING'] ||= 'utf8'
 
-require_relative 'lib'
+require_relative 'gr_lib'
 require_relative 'extern'
 require_relative 'define_methods'
 require_relative 'gr_common_utils'

@@ -70,9 +70,9 @@ module GR3
   # Ubuntu    |  lib/libGR3.so
   self.ffi_lib = case RbConfig::CONFIG['host_os']
                  when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
-                   GRCommons::Lib.search('libGR3.dll', 'gr3')
+                   GRCommons::GRLib.search('libGR3.dll', 'gr3')
                  else
-                   GRCommons::Lib.search('libGR3.so', 'gr3')
+                   GRCommons::GRLib.search('libGR3.so', 'gr3')
                  end
 
   require_relative 'gr3/version'

@@ -29,9 +29,9 @@ module GRM
   # Ubuntu    |  lib/libGRM.so
   self.ffi_lib = case RbConfig::CONFIG['host_os']
                  when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
-                   GRCommons::Lib.search('libGRM.dll', 'grm')
+                   GRCommons::GRLib.search('libGRM.dll', 'grm')
                  else
-                   GRCommons::Lib.search('libGRM.so', 'grm')
+                   GRCommons::GRLib.search('libGRM.so', 'grm')
                  end
 
   require_relative 'grm/version'
