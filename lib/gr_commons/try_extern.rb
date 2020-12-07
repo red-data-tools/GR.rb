@@ -2,7 +2,7 @@
 
 module GRCommons
   # This module records the names of the methods defined by Fiddle::Importer.
-  module Extern
+  module TryExtern
     attr_reader :ffi_methods
 
     # Improved extern method.

@@ -15,7 +15,7 @@ module GR3
       raise LoadError, 'Could not find GR Framework'
     end
 
-    extend GRCommons::Extern
+    extend GRCommons::TryExtern
 
     # https://github.com/sciapp/gr/blob/master/lib/gr3/gr3.h
     # keep same order

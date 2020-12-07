@@ -8,7 +8,7 @@ end
 ENV['GKS_ENCODING'] ||= 'utf8'
 
 require_relative 'gr_lib'
-require_relative 'extern'
+require_relative 'try_extern'
 require_relative 'define_methods'
 require_relative 'gr_common_utils'
 require_relative 'jupyter_support'

@@ -15,7 +15,7 @@ module GRM
       raise LoadError, 'Could not find GR Framework'
     end
 
-    extend GRCommons::Extern
+    extend GRCommons::TryExtern
 
     # Currently, the declarations of GRM functions are distributed in several
     # header files.
