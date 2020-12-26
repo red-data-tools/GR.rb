@@ -31,8 +31,7 @@ First, [install GR](#gr-installation). Then install `ruby-gr` gem.
 ```sh
 gem install ruby-gr
 ```
-
-Note: If you are using Rubyinstaller(Windows), pacman will automatically install [mingw-w64-gr](https://packages.msys2.org/base/mingw-w64-gr).
+https://rubyinstaller.org/)(Windows), pacman will automatically install [mingw-w64-gr](https://packages.msys2.org/base/mingw-w64-gr).
 
 Set environment variable `GRDIR`. 
 
