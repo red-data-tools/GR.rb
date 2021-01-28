@@ -67,8 +67,8 @@ module GRCommons
       PKGConfig.variable(pkg_name, 'sopath')
     rescue PackageConfig::NotFoundError => e
       raise "#{e.message} Cannot find #{gr_lib_name}. " \
-            "Please Make sure that GR is installed and the environment ” \
-            ”variable GRDIR is set correctly."
+            'Please Make sure that GR is installed and the environment ' \
+            'variable GRDIR is set correctly.'
     end
   end
 end
