@@ -41,6 +41,8 @@ module GR
                'int, int, int, int, int, int, int *)'
     try_extern 'void gr_polarcellarray(double, double, double, double, double, double, ' \
                'int, int, int, int, int, int, int *)'
+    try_extern 'void gr_nonuniformpolarcellarray(double, double, double *, double *, ' \
+               'int, int, int, int, int, int, int *);'
     try_extern 'void gr_gdp(int, double *, double *, int, int, int *)'
     try_extern 'void gr_spline(int, double *, double *, int, int)'
     try_extern 'void gr_gridit(int, double *, double *, double *, int, int, ' \
