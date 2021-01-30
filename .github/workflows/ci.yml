@@ -11,8 +11,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        gr: [ '0.53.0', '0.54.0' ]
-        os: [ 'ubuntu', 'windows' ]
+        gr: [ '0.54.0' ]
+        os: [ 'ubuntu', 'macos', 'windows' ]
         ruby: [ '2.5', '2.6', '2.7', '3.0' ]
     runs-on: ${{ matrix.os }}-latest
     steps:
@@ -21,22 +21,30 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
-      - name: Set up GR
+      - name: Set up GR (ubuntu)
         if: matrix.os == 'ubuntu'
         run: |
           wget https://github.com/sciapp/gr/releases/download/v${{ matrix.gr }}/gr-${{ matrix.gr }}-Ubuntu-x86_64.tar.gz
           tar -xvf gr-${{ matrix.gr }}-Ubuntu-x86_64.tar.gz
-
-      - run: gem install bundler
-
-      - run: bundle update
-
-      - name: Test (Ubuntu)
+      - name: Set up GR (macos)
+        if: matrix.os == 'macos'
+        run: |
+          wget https://github.com/sciapp/gr/releases/download/v${{ matrix.gr }}/gr-${{ matrix.gr }}-Darwin-x86_64.tar.gz
+          tar -xvf gr-${{ matrix.gr }}-Darwin-x86_64.tar.gz
+      - name: Install gems
+        run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+      - name: Test (ubuntu)
         if: matrix.os == 'ubuntu'
         env:
           GRDIR: gr
         run: bundle exec rake test
-      
-      - name: Test (Windows)
+      - name: Test (macos)
+        if: matrix.os == 'macos'
+        env:
+          GRDIR: gr
+        run: bundle exec rake test
+      - name: Test (windows)
         if: matrix.os == 'windows'
         run: bundle exec rake test
