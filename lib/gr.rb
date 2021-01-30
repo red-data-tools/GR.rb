@@ -48,6 +48,8 @@
 module GR
   class Error < StandardError; end
 
+  class NotFoundError < Error; end
+
   class << self
     attr_accessor :ffi_lib
   end

@@ -58,6 +58,8 @@
 module GR3
   class Error < StandardError; end
 
+  class NotFoundError < Error; end
+
   class << self
     attr_accessor :ffi_lib
   end
