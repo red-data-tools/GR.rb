@@ -29,14 +29,18 @@ module GRM
   # Windows   |  bin/libGRM.dll
   # MacOSX    |  lib/libGRM.dylib (v0.53.0 .so)
   # Ubuntu    |  lib/libGRM.so
-  self.ffi_lib = case RbConfig::CONFIG['host_os']
-                 when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
-                   GRCommons::GRLib.search('libGRM.dll', 'grm')
-                 when /darwin|mac os/
-                   GRCommons::GRLib.search('libGRM.dylib', 'grm')
-                 else
-                   GRCommons::GRLib.search('libGRM.so', 'grm')
-                 end
+  lib_names, pkg_name = \
+    case RbConfig::CONFIG['host_os']
+    when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
+      [['libGRM.dll'], 'grm']
+    when /darwin|mac os/
+      [['libGRM.dylib', 'libGRM.so'], 'grm']
+    else
+      [['libGRM.so'], 'grm']
+    end
+  lib_path = GRCommons::GRLib.search(lib_names, pkg_name)
+  raise NotFoundError, "#{lib_names} not found" if lib_path.nil?
+  self.ffi_lib = lib_path
 
   require_relative 'grm/version'
   require_relative 'grm/ffi'

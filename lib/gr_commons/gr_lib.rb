@@ -26,51 +26,46 @@ module GRCommons
       # Search the shared library.
       # @note This method does not detect the Operating System.
       #
-      # @param gr_lib_name [String] The actual file name of the shared library.
+      # @param gr_lib_names [Array] The actual file name of the shared library.
       # @param pkg_name [String] The package name to be used when searching with pkg-configg
-      def search(gr_lib_name, pkg_name)
+      def search(gr_lib_names, pkg_name)
         # Windows + RubyInstaller
         if Object.const_defined?(:RubyInstaller)
           ENV['GRDIR'] ||= [
             RubyInstaller::Runtime.msys2_installation.msys_path,
             RubyInstaller::Runtime.msys2_installation.mingwarch
           ].join(File::ALT_SEPARATOR)
-          recursive_search(gr_lib_name, ENV['GRDIR']).tap do |path|
-            RubyInstaller::Runtime.add_dll_directory(File.dirname(path))
+          gr_lib_names.find do |gr_lib_name|
+            recursive_search(gr_lib_name, ENV['GRDIR'])
+          end.tap do |path|
+            RubyInstaller::Runtime.add_dll_directory(File.dirname(path)) if path
           end
         # ENV['GRDIR'] (Linux, Mac, Windows)
         elsif ENV['GRDIR']
-          begin
+          gr_lib_names.find do |gr_lib_name|
             recursive_search(gr_lib_name, ENV['GRDIR'])
-          rescue StandardError => e
-            warn "\nWhile searching for #{gr_lib_name} in the directory specified " \
-                 "in the GRDIR environment variable, ENV['GRDIR']=#{ENV['GRDIR']}, " \
-                 "the following error occurred : #{e.message}"
+          end || gr_lib_names.find do |gr_lib_name|
             pkg_config_search(gr_lib_name, pkg_name)
           end
         else
-          pkg_config_search(gr_lib_name, pkg_name)
+          gr_lib_names.find do |gr_lib_name|
+            pkg_config_search(gr_lib_name, pkg_name)
+          end
         end
       end
 
       def recursive_search(name, base_dir)
         Dir.chdir(base_dir) do
           path = Dir["**/#{name}"].first # FIXME
-          if path
-            File.expand_path(path)
-          else
-            raise "#{name} not found in #{base_dir}"
-          end
+          File.expand_path(path) if path
         end
       end
 
       def pkg_config_search(gr_lib_name, pkg_name)
         PKGConfig.variable(pkg_name, 'sopath')
       rescue PackageConfig::NotFoundError => e
-        raise "#{e.message} Cannot find #{gr_lib_name}. " \
-              'Please Make sure that GR is installed and the environment ' \
-              'variable GRDIR is set correctly.'
+        warn "#{e.message} Cannot find #{gr_lib_name}. "
       end
-  end
+    end
   end
 end
