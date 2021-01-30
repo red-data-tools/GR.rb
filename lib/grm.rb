@@ -27,7 +27,7 @@ module GRM
 
   # Platforms |  path
   # Windows   |  bin/libGRM.dll
-  # MacOSX    |  lib/libGRM.so (NOT .dylib)
+  # MacOSX    |  lib/libGRM.dylib (v0.53.0 .so)
   # Ubuntu    |  lib/libGRM.so
   self.ffi_lib = case RbConfig::CONFIG['host_os']
                  when /mswin|msys|mingw|cygwin|bccwin|wince|emc/

@@ -58,7 +58,7 @@ module GR
 
   # Platforms |  path
   # Windows   |  bin/libgr.dll
-  # MacOSX    |  lib/libGR.so (NOT .dylib)
+  # MacOSX    |  lib/libGR.so (v0.53.0 .so)
   # Ubuntu    |  lib/libGR.so
   self.ffi_lib = case RbConfig::CONFIG['host_os']
                  when /mswin|msys|mingw|cygwin|bccwin|wince|emc/

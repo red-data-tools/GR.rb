@@ -68,7 +68,7 @@ module GR3
 
   # Platforms |  path
   # Windows   |  bin/libGR3.dll
-  # MacOSX    |  lib/libGR3.so (NOT .dylib)
+  # MacOSX    |  lib/libGR3.dylib (v0.53.0 .so)
   # Ubuntu    |  lib/libGR3.so
   self.ffi_lib = case RbConfig::CONFIG['host_os']
                  when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
