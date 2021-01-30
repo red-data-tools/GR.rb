@@ -26,17 +26,18 @@ jobs:
         run: |
           wget https://github.com/sciapp/gr/releases/download/v${{ matrix.gr }}/gr-${{ matrix.gr }}-Ubuntu-x86_64.tar.gz
           tar -xvf gr-${{ matrix.gr }}-Ubuntu-x86_64.tar.gz
-        env:
-          GRDIR: gr
       - name: Set up GR (macos)
         if: matrix.os == 'macos'
         run: |
           wget https://github.com/sciapp/gr/releases/download/v${{ matrix.gr }}/gr-${{ matrix.gr }}-Darwin-x86_64.tar.gz
           tar -xvf gr-${{ matrix.gr }}-Darwin-x86_64.tar.gz
-        env:
-          GRDIR: gr
-      - name: Test
+      - name: Install Gems
         run: |
           gem install bundler
           bundle install --jobs 4 --retry 3
-          bundle exec rake test
+      - name: Test (ubuntu/macos)
+        env:
+          GRDIR: gr
+        run: bundle exec rake test
+      - name: Test (windows)
+        run: bundle exec rake test
