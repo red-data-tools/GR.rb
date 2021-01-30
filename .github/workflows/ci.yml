@@ -8,30 +8,19 @@ jobs:
   test:
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
     name: ${{ matrix.os }} Ruby ${{ matrix.ruby }} gr ${{ matrix.gr }}
-    runs-on: ${{ matrix.os }}-latest
     strategy:
       fail-fast: false
       matrix:
-        gr:
-          - 0.52.0
-          - 0.53.0
-        os:
-          - ubuntu
-          - windows
-        ruby:
-          - 2.5
-          - 2.6
-          - 2.7
-          - 3.0
-
+        gr: [ '0.53.0', '0.54.0' ]
+        os: [ 'ubuntu', 'windows' ]
+        ruby: [ '2.5', '2.6', '2.7', '3.0' ]
+    runs-on: ${{ matrix.os }}-latest
     steps:
       - uses: actions/checkout@v2
-
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
-      
       - name: Set up GR
         if: matrix.os == 'ubuntu'
         run: |
