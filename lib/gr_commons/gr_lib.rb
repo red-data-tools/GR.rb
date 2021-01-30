@@ -35,22 +35,22 @@ module GRCommons
             RubyInstaller::Runtime.msys2_installation.msys_path,
             RubyInstaller::Runtime.msys2_installation.mingwarch
           ].join(File::ALT_SEPARATOR)
-          gr_lib_names.find do |gr_lib_name|
+          gr_lib_names.lazy.map do |gr_lib_name|
             recursive_search(gr_lib_name, ENV['GRDIR'])
-          end.tap do |path|
+          end.find{|i| i}.tap do |path|
             RubyInstaller::Runtime.add_dll_directory(File.dirname(path)) if path
           end
         # ENV['GRDIR'] (Linux, Mac, Windows)
         elsif ENV['GRDIR']
-          gr_lib_names.find do |gr_lib_name|
+          gr_lib_names.lazy.map do |gr_lib_name|
             recursive_search(gr_lib_name, ENV['GRDIR'])
-          end || gr_lib_names.find do |gr_lib_name|
+          end.find{|i| i} || gr_lib_names.lazy.map do |gr_lib_name|
             pkg_config_search(gr_lib_name, pkg_name)
-          end
+          end.find{|i| i}
         else
-          gr_lib_names.find do |gr_lib_name|
+          gr_lib_names.lazy.map do |gr_lib_name|
             pkg_config_search(gr_lib_name, pkg_name)
-          end
+          end.find{|i| i}
         end
       end
 
