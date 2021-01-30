@@ -30,6 +30,8 @@ module GRM
   self.ffi_lib = case RbConfig::CONFIG['host_os']
                  when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
                    GRCommons::GRLib.search('libGRM.dll', 'grm')
+                 when /darwin|mac os/
+                   GRCommons::GRLib.search('libGRM.dylib', 'grm')
                  else
                    GRCommons::GRLib.search('libGRM.so', 'grm')
                  end

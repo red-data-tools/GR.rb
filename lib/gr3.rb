@@ -71,6 +71,8 @@ module GR3
   self.ffi_lib = case RbConfig::CONFIG['host_os']
                  when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
                    GRCommons::GRLib.search('libGR3.dll', 'gr3')
+                 when /darwin|mac os/
+                   GRCommons::GRLib.search('libGR3.dylib', 'gr3')
                  else
                    GRCommons::GRLib.search('libGR3.so', 'gr3')
                  end

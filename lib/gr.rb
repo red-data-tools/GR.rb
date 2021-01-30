@@ -61,6 +61,8 @@ module GR
   self.ffi_lib = case RbConfig::CONFIG['host_os']
                  when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
                    GRCommons::GRLib.search('libgr.dll', 'gr')
+                 when /darwin|mac os/
+                   GRCommons::GRLib.search('libgr.dylib', 'gr')
                  else
                    GRCommons::GRLib.search('libGR.so', 'gr')
                  end
