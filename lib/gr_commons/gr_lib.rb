@@ -67,7 +67,7 @@ module GRCommons
       #                                 If not found, nil is returned.
       def recursive_search(name, base_dir)
         Dir.chdir(base_dir) do
-          paths = Dir["**/#{name}"]
+          paths = Dir["**/#{name}"].sort
           warn "More than one file found: #{paths}" if paths.size > 1
           path = paths.first
           File.expand_path(path) if path
