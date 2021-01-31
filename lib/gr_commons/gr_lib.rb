@@ -26,45 +26,59 @@ module GRCommons
       # Search the shared library.
       # @note This method does not detect the Operating System.
       #
-      # @param gr_lib_names [Array] The actual file name of the shared library.
+      # @param lib_names [Array] The actual file name of the shared library.
       # @param pkg_name [String] The package name to be used when searching with pkg-configg
-      def search(gr_lib_names, pkg_name)
+      def search(lib_names, pkg_name)
+        def lib_names.map_find
+          lazy.map do |name|
+            yield(name)
+          end.find{|path| path}
+        end
         # Windows + RubyInstaller
         if Object.const_defined?(:RubyInstaller)
-          ENV['GRDIR'] ||= [
+          dir = ENV['GRDIR'] || [
             RubyInstaller::Runtime.msys2_installation.msys_path,
             RubyInstaller::Runtime.msys2_installation.mingwarch
           ].join(File::ALT_SEPARATOR)
-          gr_lib_names.lazy.map do |gr_lib_name|
-            recursive_search(gr_lib_name, ENV['GRDIR'])
+          lib_names.lazy.map do |lib_name|
+            recursive_search(lib_name, dir)
           end.find{|i| i}.tap do |path|
             RubyInstaller::Runtime.add_dll_directory(File.dirname(path)) if path
           end
         # ENV['GRDIR'] (Linux, Mac, Windows)
         elsif ENV['GRDIR']
-          gr_lib_names.lazy.map do |gr_lib_name|
-            recursive_search(gr_lib_name, ENV['GRDIR'])
-          end.find{|i| i} || gr_lib_names.lazy.map do |gr_lib_name|
-            pkg_config_search(gr_lib_name, pkg_name)
-          end.find{|i| i}
+          # Search for XXX.dylib and then XXX.so on macOS
+          lib_names.map_find do |lib_name|
+            recursive_search(lib_name, ENV['GRDIR'])
+          end || lib_names.map_find do |lib_name|
+            pkg_config_search(lib_name, pkg_name)
+          end
         else
-          gr_lib_names.lazy.map do |gr_lib_name|
-            pkg_config_search(gr_lib_name, pkg_name)
-          end.find{|i| i}
+          lib_names.map_find do |lib_name|
+            pkg_config_search(lib_name, pkg_name)
+          end
         end
       end
 
+      # Recursive file search in directories
+      # @param name [String] File to search for
+      # @param base_dir [String] Directory to search
+      # @retrun path [String, NilClass] Returns the first path found.
+      #                                 If not found, nil is returned.
       def recursive_search(name, base_dir)
         Dir.chdir(base_dir) do
-          path = Dir["**/#{name}"].first # FIXME
+          paths = Dir["**/#{name}"]
+          warn "More than one file found: #{paths}" if paths.size > 1
+          path = paths.first
           File.expand_path(path) if path
         end
       end
 
-      def pkg_config_search(gr_lib_name, pkg_name)
+      # Use pkg-config to search for shared libraries
+      def pkg_config_search(lib_name, pkg_name)
         PKGConfig.variable(pkg_name, 'sopath')
       rescue PackageConfig::NotFoundError => e
-        warn "#{e.message} Cannot find #{gr_lib_name}. "
+        warn "#{e.message} Cannot find #{lib_name}. "
       end
     end
   end
