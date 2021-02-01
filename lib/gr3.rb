@@ -70,8 +70,9 @@ module GR3
   # Windows   |  bin/libGR3.dll
   # MacOSX    |  lib/libGR3.dylib (v0.53.0 .so)
   # Ubuntu    |  lib/libGR3.so
+  platform = RbConfig::CONFIG['host_os']
   lib_names, pkg_name = \
-    case RbConfig::CONFIG['host_os']
+    case platform
     when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
       [['libGR3.dll'], 'gr3']
     when /darwin|mac os/
@@ -80,7 +81,9 @@ module GR3
       [['libGR3.so'], 'gr3']
     end
   lib_path = GRCommons::GRLib.search(lib_names, pkg_name)
+
   raise NotFoundError, "#{lib_names} not found" if lib_path.nil?
+
   self.ffi_lib = lib_path
 
   require_relative 'gr3/version'

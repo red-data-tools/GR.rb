@@ -29,8 +29,9 @@ module GRM
   # Windows   |  bin/libGRM.dll
   # MacOSX    |  lib/libGRM.dylib (v0.53.0 .so)
   # Ubuntu    |  lib/libGRM.so
+  platform = RbConfig::CONFIG['host_os']
   lib_names, pkg_name = \
-    case RbConfig::CONFIG['host_os']
+    case platform
     when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
       [['libGRM.dll'], 'grm']
     when /darwin|mac os/
@@ -39,7 +40,9 @@ module GRM
       [['libGRM.so'], 'grm']
     end
   lib_path = GRCommons::GRLib.search(lib_names, pkg_name)
+
   raise NotFoundError, "#{lib_names} not found" if lib_path.nil?
+
   self.ffi_lib = lib_path
 
   require_relative 'grm/version'

@@ -60,8 +60,9 @@ module GR
   # Windows   |  bin/libgr.dll
   # MacOSX    |  lib/libGR.so (v0.53.0 .so)
   # Ubuntu    |  lib/libGR.so
+  platform = RbConfig::CONFIG['host_os']
   lib_names, pkg_name = \
-    case RbConfig::CONFIG['host_os']
+    case platform
     when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
       [['libgr.dll'], 'gr']
     when /darwin|mac os/
@@ -70,7 +71,9 @@ module GR
       [['libGR.so'], 'gr']
     end
   lib_path = GRCommons::GRLib.search(lib_names, pkg_name)
+
   raise NotFoundError, "#{lib_names} not found" if lib_path.nil?
+
   self.ffi_lib = lib_path
 
   require_relative 'gr/version'
