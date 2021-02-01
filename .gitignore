@@ -9,4 +9,10 @@
 /vendor/
 /examples/savefig
 
+**/Makefile
+
+*.so
+*.dylib
+*.dll
+*.o
 *.lock
