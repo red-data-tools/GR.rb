@@ -64,9 +64,9 @@ module GR
   lib_names, pkg_name = \
     case platform
     when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
-      [['libgr.dll'], 'gr']
+      [['libGR.dll'], 'gr']
     when /darwin|mac os/
-      [['libgr.dylib', 'libgr.so'], 'gr']
+      [['libGR.dylib', 'libGR.so'], 'gr']
     else
       [['libGR.so'], 'gr']
     end
