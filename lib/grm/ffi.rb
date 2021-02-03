@@ -36,6 +36,7 @@ module GRM
     try_extern 'char *grm_dump_json_str(void)'
 
     # https://github.com/sciapp/gr/blob/master/lib/grm/event.h
+    typealias 'grm_event_type_t', 'int'
     try_extern 'int grm_register(grm_event_type_t type, grm_event_callback_t callback)'
     try_extern 'int grm_unregister(grm_event_type_t type)'
 
