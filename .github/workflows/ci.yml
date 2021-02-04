@@ -35,7 +35,7 @@ jobs:
         if: matrix.os == 'windows'
         run: |
           wget https://github.com/sciapp/gr/releases/download/v${{ matrix.gr }}/gr-${{ matrix.gr }}-Windows-x86_64.tar.gz
-          tar -xvf gr-${{ matrix.gr }}-Darwin-x86_64.tar.gz
+          tar -xvf gr-${{ matrix.gr }}-Windows-x86_64.tar.gz
       - name: Install gems
         run: |
           gem install bundler
