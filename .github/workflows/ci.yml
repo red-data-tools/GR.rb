@@ -7,7 +7,7 @@ on:
 jobs:
   test:
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
-    name: ${{ matrix.os }} Ruby ${{ matrix.ruby }} gr ${{ matrix.gr }}
+    name: OS ${{ matrix.os }} Ruby ${{ matrix.ruby }} GR ${{ matrix.gr }}
     strategy:
       fail-fast: false
       matrix:
@@ -29,7 +29,7 @@ jobs:
           wget https://github.com/sciapp/gr/releases/download/v${{ matrix.gr }}/gr-${{ matrix.gr }}-Ubuntu-x86_64.tar.gz
           tar -xvf gr-${{ matrix.gr }}-Ubuntu-x86_64.tar.gz
       - name: Get official GR binary (macos)
-        if: ${{ matrix.gr != 'system' && matrix.os == 'macos' }}'
+        if: ${{ matrix.gr != 'system' && matrix.os == 'macos' }}
         run: |
           wget https://github.com/sciapp/gr/releases/download/v${{ matrix.gr }}/gr-${{ matrix.gr }}-Darwin-x86_64.tar.gz
           tar -xvf gr-${{ matrix.gr }}-Darwin-x86_64.tar.gz
