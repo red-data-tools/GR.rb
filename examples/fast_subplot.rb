@@ -32,7 +32,9 @@ x = DFloat.hstack [ax, bx, cx]
 y = DFloat.hstack [ay, by, cy]
 
 GR.shade x, y, subplot: [0.02, 0.2, 0.8, 0.98], clear: true, update: false
-GR.histogram x, subplot: [0.135, 0.89, 0.8, 0.98], clear: false, nbins: 50, grid: false, update: false
-GR.histogram y, subplot: [0.02, 0.2, 0.0, 0.82], horizontal: true, xflip: true, nbins: 50, grid: false, clear: false, update: false
+GR.histogram x, subplot: [0.135, 0.89, 0.8, 0.98], clear: false, nbins: 50,
+                grid: false, update: false
+GR.histogram y, subplot: [0.02, 0.2, 0.0, 0.82], horizontal: true, xflip: true,
+                nbins: 50, grid: false, clear: false, update: false
 GR.hexbin x, y, subplot: [0.12, 1.0, 0.0, 0.82], clear: false, update: true
 sleep 1.5

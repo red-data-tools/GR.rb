@@ -239,10 +239,10 @@ module GR
         xmax += 0.5
       end
       xtick, majorx = if (scale & GR::OPTION_X_LOG) == 0
-                        unless %i[heatmap polarheatmap].include?(kind)
-                          unless kvs.has_key?(:xlim)
-                            xmin, xmax = GR.adjustlimits(xmin, xmax) unless kvs[:panzoom]
-                          end
+                        if !%i[heatmap polarheatmap].include?(kind) &&
+                           !kvs.has_key?(:xlim) &&
+                           !kvs[:panzoom]
+                          xmin, xmax = GR.adjustlimits(xmin, xmax)
                         end
                         if kvs.has_key?(:xticks)
                           kvs[:xticks]
@@ -268,10 +268,10 @@ module GR
         end
       end
       ytick, majory = if (scale & GR::OPTION_Y_LOG) == 0
-                        unless %i[heatmap polarheatmap].include?(kind)
-                          unless kvs.has_key?(:ylim)
-                            ymin, ymax = GR.adjustlimits(ymin, ymax) unless kvs[:panzoom]
-                          end
+                        if !%i[heatmap polarheatmap].include?(kind) &&
+                           !kvs.has_key?(:ylim) &&
+                           !kvs[:panzoom]
+                          ymin, ymax = GR.adjustlimits(ymin, ymax)
                         end
                         if kvs.has_key?(:yticks)
                           kvs[:yticks]
@@ -617,7 +617,7 @@ module GR
       if kvs.has_key?(:font)
         name = kvs[:font]
         # 'Cmuserif-Math' => :cmuserif_math
-        sym_name = name.to_s.gsub('-','_').downcase.to_sym 
+        sym_name = name.to_s.gsub('-', '_').downcase.to_sym
         if FONTS.include?(sym_name)
           font = FONTS[sym_name]
           GR.settextfontprec(font, font > 200 ? 3 : 0)

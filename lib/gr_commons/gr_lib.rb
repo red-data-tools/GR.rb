@@ -29,10 +29,8 @@ module GRCommons
       # @param lib_names [Array] The actual file name of the shared library.
       # @param pkg_name [String] The package name to be used when searching with pkg-configg
       def search(lib_names, pkg_name)
-        def lib_names.map_find
-          lazy.map do |name|
-            yield(name)
-          end.find{|path| path}
+        def lib_names.map_find(&block)
+          lazy.map(&block).find { |path| path }
         end
         # Windows + RubyInstaller
         if Object.const_defined?(:RubyInstaller)
@@ -42,7 +40,7 @@ module GRCommons
           ].join(File::ALT_SEPARATOR)
           lib_names.lazy.map do |lib_name|
             recursive_search(lib_name, dir)
-          end.find{|i| i}.tap do |path|
+          end.find { |i| i }.tap do |path|
             RubyInstaller::Runtime.add_dll_directory(File.dirname(path)) if path
           end
         # ENV['GRDIR'] (Linux, Mac, Windows)
