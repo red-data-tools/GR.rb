@@ -33,7 +33,7 @@ jobs:
         run: |
           wget https://github.com/sciapp/gr/releases/download/v${{ matrix.gr }}/gr-${{ matrix.gr }}-Darwin-x86_64.tar.gz
           tar -xvf gr-${{ matrix.gr }}-Darwin-x86_64.tar.gz
-      - name: Get official GR binary (ubuntu)
+      - name: Set up RedDataTools APT repository (ubuntu)
         if: ${{ matrix.gr == 'system' && matrix.os == 'ubuntu' }}
         run: |
           sudo apt install -y -V ca-certificates lsb-release wget
@@ -41,6 +41,11 @@ jobs:
           sudo apt install -y -V ./red-data-tools-apt-source-latest-$(lsb_release --codename --short).deb
           sudo apt update
           sudo apt install libgrm-dev
+      - name: Set up Homebrew (macos)
+        if: ${{ matrix.gr == 'system' && matrix.os == 'macos' }}
+        run: |
+          brew update
+          brew install libgr
       - name: Install gems
         run: |
           gem install bundler
