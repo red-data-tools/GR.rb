@@ -195,6 +195,9 @@ GR.rb will be the default backend for [Charty](https://github.com/red-data-tools
 
 ## Contributing
 
+Contributions to GR.rb are very welcome.
+GR.rb is a library under development, so please feel free to send us improvements like typofix.
+
 * [Report bugs](https://github.com/red-data-tools/GR.rb/issues)
 * Fix bugs and [submit pull requests](https://github.com/red-data-tools/GR.rb/pulls)
 * Write, clarify, or fix documentation
