@@ -1,6 +1,7 @@
 # GR.rb
 
-[![Gem Version](https://badge.fury.io/rb/ruby-gr.svg)](https://badge.fury.io/rb/ruby-gr)
+[![Gem Version](https://img.shields.io/gem/v/ruby-gr?color=brightgreen)](https://rubygems.org/gems/ruby-gr)
+[![CI](https://github.com/red-data-tools/GR.rb/workflows/CI/badge.svg)](https://github.com/red-data-tools/GR.rb/actions)
 [![Gitter Chat](https://badges.gitter.im/red-data-tools/en.svg)](https://gitter.im/red-data-tools/en)
 [![Docs Latest](https://img.shields.io/badge/docs-latest-blue.svg)](https://rubydoc.info/gems/ruby-gr)
 
