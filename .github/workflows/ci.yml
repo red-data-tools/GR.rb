@@ -21,11 +21,21 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
-      - name: Set up GR
-        if: matrix.gr != 'system'
+      - name: Set up GR (ubuntu)
+        if: matrix.os == 'ubuntu'
         run: |
-          wget https://github.com/sciapp/gr/releases/download/v${{ matrix.gr }}/gr-${{ matrix.gr }}-${{ matrix.os }}-x86_64.tar.gz
-          tar -xvf gr-${{ matrix.gr }}-${{ matrix.os }}-x86_64.tar.gz
+          wget https://github.com/sciapp/gr/releases/download/v${{ matrix.gr }}/gr-${{ matrix.gr }}-Ubuntu-x86_64.tar.gz
+          tar -xvf gr-${{ matrix.gr }}-Ubuntu-x86_64.tar.gz
+      - name: Set up GR (macos)
+        if: matrix.os == 'macos'
+        run: |
+          wget https://github.com/sciapp/gr/releases/download/v${{ matrix.gr }}/gr-${{ matrix.gr }}-Darwin-x86_64.tar.gz
+          tar -xvf gr-${{ matrix.gr }}-Darwin-x86_64.tar.gz
+      - name: Set up GR (windows)
+        if: matrix.os == 'windows'
+        run: |
+          wget https://github.com/sciapp/gr/releases/download/v${{ matrix.gr }}/gr-${{ matrix.gr }}-Windows-x86_64.tar.gz
+          tar -xvf gr-${{ matrix.gr }}-Windows-x86_64.tar.gz
       - name: Install gems
         run: |
           gem install bundler
