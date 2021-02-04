@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        gr: [ '0.54.0' ]
+        gr: [ '0.54.0', 'system' ]
         os: [ 'ubuntu', 'macos', 'windows' ]
         ruby: [ '2.5', '2.6', '2.7', '3.0' ]
     runs-on: ${{ matrix.os }}-latest
@@ -21,18 +21,18 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
-      - name: Set up GR (ubuntu)
-        if: matrix.os == 'ubuntu'
+      - name: Get official GR binary (ubuntu)
+        if: ${{ matrix.gr != 'system' && matrix.os == 'ubuntu' }}
         run: |
           wget https://github.com/sciapp/gr/releases/download/v${{ matrix.gr }}/gr-${{ matrix.gr }}-Ubuntu-x86_64.tar.gz
           tar -xvf gr-${{ matrix.gr }}-Ubuntu-x86_64.tar.gz
-      - name: Set up GR (macos)
-        if: matrix.os == 'macos'
+      - name: Get official GR binary (macos)
+        if: ${{ matrix.gr != 'system' && matrix.os == 'macos' }}'
         run: |
           wget https://github.com/sciapp/gr/releases/download/v${{ matrix.gr }}/gr-${{ matrix.gr }}-Darwin-x86_64.tar.gz
           tar -xvf gr-${{ matrix.gr }}-Darwin-x86_64.tar.gz
-      - name: Set up GR (windows)
-        if: matrix.os == 'windows'
+      - name: Get official GR binary (windows)
+        if: ${{ matrix.gr != 'system' && matrix.os == 'windows' }}'
         run: |
           wget https://github.com/sciapp/gr/releases/download/v${{ matrix.gr }}/gr-${{ matrix.gr }}-Windows-x86_64.tar.gz
           tar -xvf gr-${{ matrix.gr }}-Windows-x86_64.tar.gz
@@ -40,8 +40,11 @@ jobs:
         run: |
           gem install bundler
           bundle install --jobs 4 --retry 3
-      - name: Test
+      - name: Test (official binary)
         if: matrix.gr != 'system'
         env:
           GRDIR: gr
+        run: bundle exec rake test
+      - name: Test (packages)
+        if: matrix.gr == 'system'
         run: bundle exec rake test
