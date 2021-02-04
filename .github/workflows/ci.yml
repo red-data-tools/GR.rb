@@ -15,7 +15,7 @@ jobs:
         os: [ 'ubuntu', 'macos', 'windows' ]
         ruby: [ '2.5', '2.6', '2.7', '3.0' ]
         exclude:
-          - { os: windows-latest , gr: system }
+          - { os: windows , gr: system }
     runs-on: ${{ matrix.os }}-latest
     steps:
       - uses: actions/checkout@v2
