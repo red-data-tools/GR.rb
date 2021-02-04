@@ -28,6 +28,7 @@ module GRM
     try_extern 'int grm_args_contains(const grm_args_t *args, const char *keyword)'
     try_extern 'void grm_args_clear(grm_args_t *args)'
     try_extern 'void grm_args_remove(grm_args_t *args, const char *key)'
+    typealias 'grm_args_ptr_t', 'void*'
     try_extern 'grm_args_ptr_t grm_length(double value, const char *unit)'
 
     # https://github.com/sciapp/gr/blob/master/lib/grm/dump.h
@@ -36,14 +37,17 @@ module GRM
     try_extern 'char *grm_dump_json_str(void)'
 
     # https://github.com/sciapp/gr/blob/master/lib/grm/event.h
-    typealias 'grm_event_type_t', 'int'
+    typealias 'grm_event_type_t', 'int' # enum
+    typealias 'grm_event_callback_t', 'void*'
     try_extern 'int grm_register(grm_event_type_t type, grm_event_callback_t callback)'
     try_extern 'int grm_unregister(grm_event_type_t type)'
 
     # https://github.com/sciapp/gr/blob/master/lib/grm/interaction.h
+    # FIXME: https://github.com/ruby/fiddle/issues/68
+    typealias 'const_int', 'int' # FIXME
     try_extern 'int grm_input(const grm_args_t *input_args)'
-    try_extern 'int grm_get_box(const int x1, const int y1, const int x2, const int y2, const int keep_aspect_ratio, int *x, int *y, int *w, int *h)'
-    try_extern 'grm_tooltip_info_t *grm_get_tooltip(const int, const int)'
+    try_extern 'int grm_get_box(const_int x1, const_int y1, const_int x2, const_int y2, const_int keep_aspect_ratio, int *x, int *y, int *w, int *h)' # FIXME
+    try_extern 'grm_tooltip_info_t *grm_get_tooltip(const_int, const_int)' # FIXME
 
     # https://github.com/sciapp/gr/blob/master/lib/grm/net.h
     try_extern 'void *grm_open(int is_receiver, const char *name, unsigned int id,
