@@ -14,9 +14,9 @@ jobs:
         gr: [ '0.54.0', 'system' ]
         os: [ 'ubuntu', 'macos', 'windows' ]
         ruby: [ '2.5', '2.6', '2.7', '3.0' ]
+        exclude:
+          - { runs-on: windows-latest , gr: system }
     runs-on: ${{ matrix.os }}-latest
-    exclude:
-      - { runs-on: windows-latest , gr: system }
     steps:
       - uses: actions/checkout@v2
       - name: Set up Ruby
