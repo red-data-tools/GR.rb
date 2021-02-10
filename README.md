@@ -34,13 +34,13 @@ gem install ruby-gr
 ```
 Note: If you are using [RubyInstaller](https://rubyinstaller.org/) (Windows), pacman will automatically install [mingw-w64-gr](https://packages.msys2.org/base/mingw-w64-gr).
 
-Set environment variable `GRDIR`. 
+Set environment variable `GRDIR`.
 
 ```sh
 export GRDIR="/your/path/to/gr"
 ```
 
-If you use package managers to install GR, [pkg-config](https://github.com/ruby-gnome/pkg-config) may automatically detect the shared library location without specifying the `GRDIR` environment variable. 
+If you use package managers to install GR, [pkg-config](https://github.com/ruby-gnome/pkg-config) may automatically detect the shared library location without specifying the `GRDIR` environment variable.
 
 ## Quick Start
 
@@ -79,7 +79,7 @@ GR.plot(
 )
 ```
 
-Save in PNG format.
+Save the figure in PNG format.
 
 ```ruby
 GR.savefig("figure.png")
@@ -87,17 +87,17 @@ GR.savefig("figure.png")
 
 ## API Overview
 
-There are two different approaches to plotting with GR.rb. One way is to call Matlab-like APIs. The other is to call GR/GR3 native functions. 
+There are two different approaches when plotting with GR.rb. One is to call Matlab-like APIs. The other is to call GR/GR3 native functions.
 
-#### GR::Plot - A simple, matlab-style API. 
+#### GR::Plot - A simple, matlab-style API.
 
 ```ruby
 require 'gr/plot'
 GR.plot(x, y)
 ```
 
-List of vailable functions. See [GR.rb Wiki](https://github.com/red-data-tools/GR.rb/wiki) for details.
-Some GR module methods are overridden.
+Below are a list of available functions. See [GR.rb Wiki](https://github.com/red-data-tools/GR.rb/wiki) for details.
+Some GR module methods are overwritten.
 
 [`plot`](../../wiki/Plotting-functions#plot)
 [`step`](../../wiki/Plotting-functions#step)
@@ -123,7 +123,7 @@ Some GR module methods are overridden.
 [`imshow`](../../wiki/Plotting-functions#imshow)
 [`isosurface`](../../wiki/Plotting-functions#isosurface)
 
-We are planning to prepare a [more object-oriented interface](https://github.com/kojix2/GRUtils.rb) based on [GRUtils.jl](https://github.com/heliosdrm/GRUtils.jl) in the future.
+We are preparing a [more object-oriented interface](https://github.com/kojix2/GRUtils.rb) based on [GRUtils.jl](https://github.com/heliosdrm/GRUtils.jl) in the future.
 
 #### GR - A module for calling native GR functions.
 
@@ -154,7 +154,7 @@ GR3.cameralookat(-3, 2, -2, 0, 0, 0, 0, 0, -1)
 - [GR Framework](https://gr-framework.org/)
 - [GR.rb API Documentation](https://rubydoc.info/gems/ruby-gr)
 
-Although GR.rb adds methods dynamically, we try our best to provide a complete yard document. However, if you want to see more up-to-date information, we recommend using the official GR reference.
+Although GR.rb adds methods dynamically, we try our best to provide a complete yard document. If you want to see more up-to-date information, we recommend using the official GR reference.
 
 ## GR Installation
 
@@ -168,13 +168,13 @@ Set environment variable GRDIR.
 export GRDIR="your/path/to/gr"
 ```
 
-* macOS Catalina and macOS Mojave: See the "How to open an app that hasn’t been notarized or is from an unidentified developer" section of [Safely open apps on your Mac](https://support.apple.com/en-us/HT202491) in the Apple documentation.
+* macOS Catalina and macOS Mojave: See the "How to open an app that hasn’t been notarized or is from an unidentified developer" section under [Safely open apps on your Mac](https://support.apple.com/en-us/HT202491) in the Apple documentation.
 
 ### Using package managers
 
 * The third party GR packages for Mac, Linux and Windows are available (for advanced users).
 * If you find any problem, please report the issue [here](https://github.com/red-data-tools/GR.rb/issues).
-* Note: These packages may not have some features, for example, video output.
+* Note: These packages may not have some features such as video output.
 
 #### Mac - Homebrew
 
@@ -196,7 +196,7 @@ GR.rb will be the default backend for [Charty](https://github.com/red-data-tools
 
 ## Contributing
 
-GR.rb is a library under development, so even small improvements like typofix are welcome!
+GR.rb is a library under development, so even small improvements like fixing typos are welcome!
 Please feel free to send us your PR.
 
 * [Report bugs](https://github.com/red-data-tools/GR.rb/issues)
@@ -209,4 +209,3 @@ Please feel free to send us your PR.
 ## Acknowledgements
 
 We would like to thank Josef Heinen, the creator of [GR](https://github.com/sciapp/gr) and [GR.jl](https://github.com/jheinen/GR.jl), Florian Rhiem, the creator of [python-gr](https://github.com/sciapp/python-gr), and all [GR](https://github.com/sciapp/gr) developers.
-
