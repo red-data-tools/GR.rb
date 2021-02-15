@@ -16,9 +16,9 @@ module GRCommons
           args.map! do |arg|
             case arg
             when Array
-              GRCommons::GRCommonUtils.public_send(default_type, arg)
+              GRCommonUtils.public_send(default_type, arg)
             when ->(x) { defined?(Numo::NArray) && x.is_a?(Numo::NArray) }
-              GRCommons::GRCommonUtils.public_send(default_type, arg)
+              GRCommonUtils.public_send(default_type, arg)
             else
               arg
             end
