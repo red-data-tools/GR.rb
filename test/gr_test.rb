@@ -129,6 +129,11 @@ class GRTest < Test::Unit::TestCase
       assert_equal 1002, GR.inqbordercolorind
     end
 
+    def test_clipxform
+      assert_nil GR.selectclipxform(3)
+      assert_equal 3, GR.inqclipxform
+    end
+
     def test_projectiontype
       assert_nil GR.setprojectiontype(1)
       assert_equal 1, GR.inqprojectiontype

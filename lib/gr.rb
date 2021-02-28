@@ -2034,6 +2034,12 @@ module GR
       inquiry_int { |pt| super(pt) }
     end
 
+    # @!method selectclipxform
+
+    def inqclipxform
+      inquiry_int { |pt| super(pt) }
+    end
+
     # Set the projection type with this flag.
     #
     # @param flag [Integer] projection type
