@@ -823,6 +823,7 @@ module GR3
   IA_END_OF_LIST        = 0
   IA_FRAMEBUFFER_WIDTH  = 1
   IA_FRAMEBUFFER_HEIGHT = 2
+  IA_NUM_THREADS        = 3
 
   # Error
   ERROR_NONE                   =  0
@@ -852,6 +853,11 @@ module GR3
   # Drawable
   DRAWABLE_OPENGL = 1
   DRAWABLE_GKS    = 2
+
+  # Projection
+  PROJECTION_PERSPECTIVE  = 0
+  PROJECTION_PARALLEL     = 1
+  PROJECTION_ORTHOGRAPHIC = 24
 
   # SurfaceOption
   SURFACE_DEFAULT     =  0

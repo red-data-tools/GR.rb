@@ -138,5 +138,7 @@ module GR3
     # try_extern 'void gr3_drawtrianglesurface(int n, const float *triangles)'
     try_extern 'void gr_volume(int nx, int ny, int nz, double *data, ' \
            'int algorithm, double *dmin_ptr, double *dmax_ptr)'
+    try_extern 'void gr3_setorthographicprojection' \
+           '(float left, float right, float bottom, float top, float znear, float zfar)'
   end
 end

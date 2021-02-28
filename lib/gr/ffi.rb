@@ -184,6 +184,8 @@ module GR
     try_extern 'void gr_inqborderwidth(double *)'
     try_extern 'void gr_setbordercolorind(int)'
     try_extern 'void gr_inqbordercolorind(int *)'
+    try_extern 'void gr_selectclipxform(int)'
+    try_extern 'void gr_inqclipxform(int *);'
     try_extern 'void gr_setprojectiontype(int)'
     try_extern 'void gr_inqprojectiontype(int *)'
     try_extern 'void gr_setperspectiveprojection(double, double, double)'
