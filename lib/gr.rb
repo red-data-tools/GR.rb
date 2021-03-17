@@ -1423,7 +1423,15 @@ module GR
     #  * .webm 	     : WebM video file
     #  * .ogg 	     : Ogg video file
     #
-    # @!method beginprint
+    # @note Ruby feature - you can use block to call endprint automatically.
+
+    def beginprint(file_path)
+      super(file_path)
+      if block_given?
+        yield
+        endprint
+      end
+    end
 
     # Open and activate a print device with the given layout attributes.
     #
