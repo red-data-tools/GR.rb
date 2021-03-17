@@ -180,7 +180,9 @@ export GRDIR="your/path/to/gr"
 
 ```sh
 brew install libgr
+# brew install --build-from-source libgr
 ```
+
 
 #### Linux - APT
 
