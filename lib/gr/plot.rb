@@ -1023,7 +1023,7 @@ module GR
 
     def to_svg
       ## Need IRuby improvemend.
-      GR.show(false) if ENV['GKSwstype'] == 'svg'
+      GR.show(false) if ENV['GKS_WSTYPE'] == 'svg'
     end
 
     private

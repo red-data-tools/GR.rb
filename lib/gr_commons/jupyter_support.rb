@@ -8,7 +8,7 @@ module GRCommons
       # Sets the environment variable when the module is extended.
       def self.extended(_obj)
         require 'tmpdir'
-        ENV['GKSwstype'] = 'svg'
+        ENV['GKS_WSTYPE'] = 'svg'
         ENV['GKS_FILEPATH'] = Dir::Tmpname.create('plot-') {}
       end
 
@@ -16,7 +16,7 @@ module GRCommons
       def show(display = true)
         emergencyclosegks
         sleep 0.5
-        type = ENV['GKSwstype']
+        type = ENV['GKS_WSTYPE']
         case type
         when 'svg'
           data = File.read("#{ENV['GKS_FILEPATH']}.svg")
