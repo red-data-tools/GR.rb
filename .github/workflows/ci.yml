@@ -46,7 +46,7 @@ jobs:
         if: ${{ matrix.gr == 'system' && matrix.os == 'macos' }}
         run: |
           brew update
-          brew install libgr --build-from-source
+          brew install libgr
       - name: Install gems
         run: |
           gem install bundler
