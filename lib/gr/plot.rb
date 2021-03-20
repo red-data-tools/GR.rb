@@ -621,7 +621,12 @@ module GR
           font = FONTS[sym_name]
           GR.settextfontprec(font, font > 200 ? 3 : 0)
         else
-          warn "Unknown font name: #{name}" # should raise error?
+          font = GR.loadfont(name)
+          if font >= 0
+            GR.settextfontprec(font, 3)
+          else
+            warn "Unknown font name: #{name}"
+          end
         end
       else
         # The following fonts are the default in GR.jl
