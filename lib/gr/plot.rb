@@ -33,8 +33,8 @@ module GR
     # Plot kinds conform to GR.jl
     PLOT_KIND = %i[line step scatter stem hist contour contourf hexbin heatmap
                    nonuniformheatmap wireframe surface plot3 scatter3 imshow
-                   isosurface polar polarhist polarheatmap trisurf tricont shade
-                   volume].freeze # the name might be changed in the future.
+                   isosurface polar polarhist polarheatmap nonuniformpolarheatmap
+                   trisurf tricont shade volume].freeze
 
     # Keyword options conform to GR.jl.
     KW_ARGS = %i[accelerate algorithm alpha ax backgroundcolor barwidth baseline
@@ -158,7 +158,7 @@ module GR
                   vp3 + 0.925 * (vp4 - vp3)]
 
       if %i[contour contourf hexbin heatmap nonuniformheatmap polarheatmap
-            surface trisurf volume].include?(kind)
+            nonuniformpolarheatmap surface trisurf volume].include?(kind)
         viewport[1] -= 0.1
       end
 
@@ -192,7 +192,7 @@ module GR
         GR.restorestate
       end
 
-      if %i[polar polarhist polarheatmap].include? kind
+      if %i[polar polarhist polarheatmap nonuniformpolarheatmap].include? kind
         xmin, xmax, ymin, ymax = viewport
         xcenter = 0.5 * (xmin + xmax)
         ycenter = 0.5 * (ymin + ymax)
@@ -203,7 +203,7 @@ module GR
 
     def set_window(kind)
       scale = 0
-      unless %i[polar polarhist polarheatmap].include?(kind)
+      unless %i[polar polarhist polarheatmap nonuniformpolarheatmap].include?(kind)
         scale |= GR::OPTION_X_LOG  if kvs[:xlog]
         scale |= GR::OPTION_Y_LOG  if kvs[:ylog]
         scale |= GR::OPTION_Z_LOG  if kvs[:zlog]
@@ -222,7 +222,7 @@ module GR
       end
 
       major_count = if %i[wireframe surface plot3 scatter3 polar polarhist
-                          polarheatmap trisurf volume].include?(kind)
+                          polarheatmap nonuniformpolarheatmap trisurf volume].include?(kind)
                       2
                     else
                       5
@@ -300,7 +300,7 @@ module GR
       end
 
       kvs[:window] = xmin, xmax, ymin, ymax
-      if %i[polar polarhist polarheatmap].include?(kind)
+      if %i[polar polarhist polarheatmap nonuniformpolarheatmap].include?(kind)
         GR.setwindow(-1, 1, -1, 1)
       else
         GR.setwindow(xmin, xmax, ymin, ymax)
@@ -640,7 +640,7 @@ module GR
         set_window(kind)
         if %i[polar polarhist].include?(kind)
           draw_polar_axes
-        elsif !%i[imshow isosurface polarheatmap].include?(kind)
+        elsif !%i[imshow isosurface polarheatmap nonuniformpolarheatmap].include?(kind)
           draw_axes(kind)
         end
       end
@@ -761,7 +761,7 @@ module GR
             GR.fillarc(-ρ[i], ρ[i], -ρ[i], ρ[i], θ[i - 1], θ[i])
           end
 
-        when :polarheatmap
+        when :polarheatmap, :nonuniformpolarheatmap
           w, h = z.shape
           cmap = colormap
           cmin, cmax = kvs[:zrange]
@@ -770,7 +770,15 @@ module GR
           data.reverse(axis: 1) if kvs[:yflip]
           colors = data * 255 + 1000
           colors = colors.transpose # Julia is column major
-          GR.polarcellarray(0, 0, 0, 360, 0, 1, w, h, colors)
+          case kind
+          when :polarheatmap
+            GR.polarcellarray(0, 0, 0, 360, 0, 1, w, h, colors)
+          when :nonuniformpolarheatmap
+            ymax = y.max.to_f
+            ρ = y.map{|i| i / ymax}
+            θ = x.map { |i| i * 180 / Math::PI }
+            GR.nonuniformpolarcellarray(θ, ρ, w, h, colors)
+          end
           draw_polar_axes
           kvs[:zrange] = [cmin, cmax]
           colorbar
@@ -1286,6 +1294,20 @@ module GR
         plt.kvs[:xlim] ||= [0.5, width + 0.5]
         plt.kvs[:ylim] ||= [0.5, height + 0.5]
         plt.args = [[(1..width).to_a, (1..height).to_a, z, nil, '']]
+      end
+    end
+
+    # (Plot) Draw a nonuniformpolarheatmap.
+    def nonuniformpolarheatmap(*args)
+      # FIXME
+      args, kv = format_xyzc(*args)
+      _x, _y, z = args
+      ysize, xsize = z.shape
+      z = z.reshape(xsize, ysize)
+      create_plot(:heatmap, kv) do |plt|
+        plt.kvs[:xlim] ||= [0.5, xsize + 0.5]
+        plt.kvs[:ylim] ||= [0.5, ysize + 0.5]
+        plt.args = [[(1..xsize).to_a, (1..ysize).to_a, z, nil, '']]
       end
     end
 
