@@ -269,7 +269,9 @@ module GR
     def nonuniformcellarray(x, y, dimx, dimy, color)
       raise ArgumentError unless x.length == dimx + 1 && y.length == dimy + 1
 
-      super(x, y, dimx, dimy, 1, 1, dimx, dimy, int(color))
+      nx = (dimx == x.length) ? -dimx : dimx
+      ny = (dimy == y.length) ? -dimy : dimy
+      super(x, y, nx, ny, 1, 1, dimx, dimy, int(color))
     end
 
     # Display a two dimensional color index array mapped to a disk using polar
