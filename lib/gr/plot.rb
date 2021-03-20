@@ -78,8 +78,7 @@ module GR
       zapfchancery_mediumitalic: 130,
       zapfdingbats: 131,
       cmuserif_math: 232, # original: cmuserif-math
-      dejavusans: 233,
-      pingfangsc: 234
+      dejavusans: 233
     }.freeze
 
     @last_plot = nil
