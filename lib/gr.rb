@@ -334,7 +334,7 @@ module GR
     # are specified allowing nonuniform sized cells.
     #
     def nonuniformpolarcellarray(phi, r, ncol, nrow, color)
-      raise ArgumentError unless phi.length == ncol + 1 && r.length == nrow + 1
+      raise ArgumentError unless (ncol..(ncol + 1)).include?(phi.length) && (nrow..(nrow + 1)).include?(r.length)
 
       dimphi = ncol == phi.length ? -ncol : ncol
       dimr = nrow == r.length ? -nrow : nrow
