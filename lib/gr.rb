@@ -269,8 +269,8 @@ module GR
     def nonuniformcellarray(x, y, dimx, dimy, color)
       raise ArgumentError unless x.length == dimx + 1 && y.length == dimy + 1
 
-      nx = (dimx == x.length) ? -dimx : dimx
-      ny = (dimy == y.length) ? -dimy : dimy
+      nx = dimx == x.length ? -dimx : dimx
+      ny = dimy == y.length ? -dimy : dimy
       super(x, y, nx, ny, 1, 1, dimx, dimy, int(color))
     end
 
@@ -318,6 +318,27 @@ module GR
     #
     def polarcellarray(x_org, y_org, phimin, phimax, rmin, rmax, dimphi, dimr, color)
       super(x_org, y_org, phimin, phimax, rmin, rmax, dimphi, dimr, 1, 1, dimphi, dimr, int(color))
+    end
+
+    # Display a two dimensional color index array mapped to a disk using polar
+    # coordinates with nonuniform cell sizes.
+    #
+    # @param phi   [Array, NArray] array with the angles of the disk sector in degrees
+    # @param r     [Array, NArray] array with the radii of the disk in world coordinates
+    # @param ncol  [Integer] total number of columns in the color index array and the angle array
+    # @param nrow  [Integer] total number of rows in the color index array and the radii array
+    # @param color [Integer] color index array
+    #
+    # The mapping of the polar coordinates and the drawing is performed simialr
+    # to `gr_polarcellarray` with the difference that the individual cell sizes
+    # are specified allowing nonuniform sized cells.
+    #
+    def nonuniformpolarcellarray(phi, r, ncol, nrow, color)
+      raise ArgumentError unless phi.length == ncol + 1 && r.length == nrow + 1
+
+      dimphi = ncol == phi.length ? -ncol : ncol
+      dimr = nrow == r.length ? -nrow : nrow
+      super(0, 0, phi, r, dimphi, dimr, 1, 1, ncol, nrow, int(color))
     end
 
     # Generates a generalized drawing primitive (GDP) of the type you specify,
