@@ -2204,6 +2204,20 @@ module GR
         super(encoding)
       end
     end
+
+    # Load a font file from a given filename.
+    #
+    # This function loads a font from a given absolute filename and assigns a
+    # font index to it. To use the loaded font call `gr_settextfontprec` using
+    # the resulting font index and precision 3.
+    #
+    # @param filename [String] The absolute filename of the font
+    #
+    def loadfont(str)
+      inquiry_int do |font|
+        super(str, font)
+      end
+    end
   end
 
   ASF_BUNDLED    = 0
