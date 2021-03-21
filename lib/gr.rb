@@ -175,14 +175,17 @@ module GR
     # Draw a polyline using the current line attributes,
     # starting from the first data point and ending at the last data point.
     #
-    # @param x [Array, NArray] A list containing the X coordinates
-    # @param y [Array, NArray] A list containing the Y coordinates
+    # @param x         [Array, NArray]          A list containing the X coordinates
+    # @param y         [Array, NArray]          A list containing the Y coordinates
+    # @param linewidth [Array, NArray, Numeric] A list containing the line widths
+    # @param line_z    [Array, NArray]          A list to be converted to colors
     #
     # The values for x and y are in world coordinates.
     # The attributes that control the appearance of a polyline are linetype,
     # linewidth and color index.
     #
     def polyline(x, y, linewidth = nil, line_z = nil)
+      # GR.jl - Multiple dispatch
       n = equal_length(x, y)
       if linewidth.nil? && line_z.nil?
         super(n, x, y)
@@ -199,14 +202,17 @@ module GR
 
     # Draw marker symbols centered at the given data points.
     #
-    # @param x [Array, NArray] A list containing the X coordinates
-    # @param y [Array, NArray] A list containing the Y coordinates
+    # @param x          [Array, NArray]          A list containing the X coordinates
+    # @param y          [Array, NArray]          A list containing the Y coordinates
+    # @param markersize [Array, NArray, Numeric] A list containing the marker sizes
+    # @param marker_z   [Array, NArray]          A list to be converted to colors
     #
     # The values for x and y are in world coordinates.
     # The attributes that control the appearance of a polymarker are marker type,
     # marker size scale factor and color index.
     #
     def polymarker(x, y, markersize = nil, marker_z = nil)
+      # GR.jl - Multiple dispatch
       n = equal_length(x, y)
       if markersize.nil? && marker_z.nil?
         super(n, x, y)
