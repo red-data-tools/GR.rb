@@ -221,7 +221,6 @@ module GR
       end
     end
 
-
     # Draw a text at position `x`, `y` using the current text attributes.
     #
     # @param x      [Numeric] The X coordinate of starting position of the text
@@ -2070,6 +2069,8 @@ module GR
     # @return [Array, NArray]
     def to_rgb_color(z)
       zmin, zmax = z.minmax
+      return Array.new(z.length, 0) if zmax == zmin
+
       z.map  do |i|
         zi = (i - zmin) / (zmax - zmin).to_f
         inqcolor(1000 + (zi * 255).round)
