@@ -188,4 +188,10 @@ class GRTest < Test::Unit::TestCase
   def test_constant
     assert_equal 47, GR::COLORMAP_MAGMA
   end
+
+  def test_to_rgb_color
+    GR.setcolormap(3)
+    assert_equal [0, 1_081_558, 16_514_815], GR.to_rgb_color([1, 2, 3])
+    assert_equal Numo::Int32[0, 1_081_558, 16_514_815], GR.to_rgb_color(Numo::Int32[1, 2, 3])
+  end
 end

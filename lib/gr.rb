@@ -2045,6 +2045,16 @@ module GR
       super(n, x, y, codes)
     end
 
+    # @param z [Array, NArray]
+    # @return [Array, NArray]
+    def to_rgb_color(z)
+      zmin, zmax = z.minmax
+      z.map  do |i|
+        zi = (i - zmin) / (zmax - zmin).to_f
+        inqcolor(1000 + (zi * 255).round)
+      end
+    end
+
     # Define the border width of subsequent path output primitives.
     #
     # @param width [Numeric] The border width scale factor
