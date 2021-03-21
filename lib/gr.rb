@@ -182,9 +182,19 @@ module GR
     # The attributes that control the appearance of a polyline are linetype,
     # linewidth and color index.
     #
-    def polyline(x, y)
+    def polyline(x, y, linewidth = nil, line_z = nil)
       n = equal_length(x, y)
-      super(n, x, y)
+      if linewidth.nil? && line_z.nil?
+        super(n, x, y)
+      else
+        linewidth = Array.new(n, linewidth) if linewidth.is_a?(Numeric)
+        linewidth.map! { |i| (100 * i).round }
+        line_z ||= Array.new(n, 0)
+        raise ArgumentError if n != equal_length(linewidth, line_z)
+
+        color = to_rgb_color(line_z)
+        gdp(x, y, GDP_DRAW_LINES, linewidth.zip(color).flatten)
+      end
     end
 
     # Draw marker symbols centered at the given data points.
@@ -196,10 +206,21 @@ module GR
     # The attributes that control the appearance of a polymarker are marker type,
     # marker size scale factor and color index.
     #
-    def polymarker(x, y)
+    def polymarker(x, y, markersize = nil, marker_z = nil)
       n = equal_length(x, y)
-      super(n, x, y)
+      if markersize.nil? && marker_z.nil?
+        super(n, x, y)
+      else
+        markersize = Array.new(n, markersize) if markersize.is_a?(Numeric)
+        markersize.map! { |i| (100 * i).round }
+        marker_z ||= Array.new(n, 0)
+        raise ArgumentError if n != equal_length(markersize, marker_z)
+
+        color = to_rgb_color(marker_z)
+        gdp(x, y, GDP_DRAW_MARKERS, markersize.zip(color).flatten)
+      end
     end
+
 
     # Draw a text at position `x`, `y` using the current text attributes.
     #
@@ -2458,6 +2479,10 @@ module GR
   PATH_CURVE3    = 0x03
   PATH_CURVE4    = 0x04
   PATH_CLOSEPOLY = 0x4f
+
+  GDP_DRAW_PATH = 1
+  GDP_DRAW_LINES = 2
+  GDP_DRAW_MARKERS = 3
 
   MPL_SUPPRESS_CLEAR  = 1
   MPL_POSTPONE_UPDATE = 2
