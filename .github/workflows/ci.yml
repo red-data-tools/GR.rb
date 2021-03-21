@@ -29,6 +29,8 @@ jobs:
         run: |
           wget https://github.com/sciapp/gr/releases/download/v${{ matrix.gr }}/gr-${{ matrix.gr }}-Ubuntu-x86_64.tar.gz
           tar -xvf gr-${{ matrix.gr }}-Ubuntu-x86_64.tar.gz
+          sudo apt update
+          sudo apt install libqt5widgets5
       - name: Get official GR binary (macos)
         if: ${{ matrix.gr != 'system' && matrix.os == 'macos' }}
         run: |
@@ -55,6 +57,7 @@ jobs:
         if: matrix.gr != 'system'
         env:
           GRDIR: gr
+          QT_QPA_PLATFORM: offscreen
         run: bundle exec rake test
       - name: Test (packages)
         if: matrix.gr == 'system'
