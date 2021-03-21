@@ -353,7 +353,7 @@ module GR
     def gdp(x, y, primid, datrec)
       n = equal_length(x, y)
       ldr = datrec.length
-      super(n, x, y, primid, ldr, datrec)
+      super(n, x, y, primid, ldr, int(datrec))
     end
 
     # Generate a cubic spline-fit,
