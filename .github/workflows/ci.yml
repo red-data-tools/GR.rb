@@ -61,4 +61,6 @@ jobs:
         run: bundle exec rake test
       - name: Test (packages)
         if: matrix.gr == 'system'
+        env:
+          QT_QPA_PLATFORM: offscreen
         run: bundle exec rake test
