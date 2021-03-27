@@ -662,11 +662,11 @@ module GR
         when :line
           mask = GR.uselinespec(spec)
           linewidth = kvs[:linewidth]
-          # Slightly different from Julia, 
+          # Slightly different from Julia,
           # Because the implementation of polyline and polymarker is different.
           z ||= linewidth # FIXME
-           GR.polyline(x, y, z, c) if hasline(mask)
-           GR.polymarker(x, y, z, c) if hasmarker(mask)
+          GR.polyline(x, y, z, c) if hasline(mask)
+          GR.polymarker(x, y, z, c) if hasmarker(mask)
 
         when :step
           mask = GR.uselinespec(spec)

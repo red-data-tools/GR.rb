@@ -26,7 +26,7 @@ sleep 1.2
 x = DFloat.linspace(0, 10, 101)
 y1 = NMath.sin(x)
 y2 = NMath.cos(x)
-GR.plot([x, y1, spec: 'b'], [x, y2, spec: 'g'],
+GR.plot([x, y1, { spec: 'b' }], [x, y2, { spec: 'g' }],
         ylim: [-1.2, 1.2])
 sleep 1.2
 
@@ -49,7 +49,7 @@ sleep 1.2
 x = DFloat.linspace(0, 10, 51)
 y1 = NMath.sin(x)
 y2 = NMath.cos(x)
-GR.step([x, y1, spec: 'b'], [x, y2, spec: 'g'],
+GR.step([x, y1, { spec: 'b' }], [x, y2, { spec: 'g' }],
         ylim: [-1.2, 1.2])
 sleep 1.2
 
@@ -93,7 +93,7 @@ sleep 1.2
 x = DFloat.linspace(0, 30, 1000)
 y = NMath.cos(x) * x
 z = NMath.sin(x) * x
-GR.plot3(*Array.new(3) { |i| [x + 4 * i, y, z, spec: %w[o s x][i]] })
+GR.plot3(*Array.new(3) { |i| [x + 4 * i, y, z, { spec: %w[o s x][i] }] })
 sleep 1.2
 
 #
