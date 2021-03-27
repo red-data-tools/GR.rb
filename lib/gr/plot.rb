@@ -39,11 +39,11 @@ module GR
     # Keyword options conform to GR.jl.
     KW_ARGS = %i[accelerate algorithm alpha ax backgroundcolor barwidth baseline
                  clabels clear clim color colormap crange figsize font grid
-                 horizontal isovalue kind label labels levels location nbins
-                 ratio rotation scale size spec subplot tilt title update xaxis
-                 xflip xform xlabel xlim xlog xrange xticks yaxis yflip ylabel
-                 ylim ylog zflip yrange yticks viewport vp where window zaxis
-                 zlabel zlim zlog zrange zticks].freeze
+                 horizontal isovalue kind label labels levels linewidth location
+                 nbins ratio rotation scale size spec subplot tilt title update
+                 xaxis xflip xform xlabel xlim xlog xrange xticks yaxis yflip
+                 ylabel ylim ylog zflip yrange yticks viewport vp where window
+                 zaxis zlabel zlim zlog zrange zticks].freeze
 
     FONTS = {
       times_roman: 101,
@@ -661,8 +661,14 @@ module GR
 
         when :line
           mask = GR.uselinespec(spec)
-          GR.polyline(x, y) if hasline(mask)
-          GR.polymarker(x, y) if hasmarker(mask)
+          if c
+            linewidth = kvs[:linewidth]
+            GR.polyline(x, y, linewidth, c) # linewidth is Numeric.
+          else
+            linewidth = kvs[:linewidth]
+            GR.polyline(x, y, linewidth) if hasline(mask)
+            GR.polymarker(x, y) if hasmarker(mask)
+          end
 
         when :step
           mask = GR.uselinespec(spec)
@@ -702,13 +708,8 @@ module GR
             if c
               cmin, cmax = kvs[:crange]
               c = c.map { |i| normalize_color(i, cmin, cmax) }
-              cind = c.map { |i| (1000 + i * 255).round }
             end
-            x.length.times do |i|
-              GR.setmarkersize(z[i] / 100.0) if z
-              GR.setmarkercolorind(cind[i]) if c
-              GR.polymarker([x[i]], [y[i]])
-            end
+            GR.polymarker(x, y, z.map { |i| i * 0.01 }, c)
           else
             GR.polymarker(x, y)
           end
@@ -775,7 +776,7 @@ module GR
             GR.polarcellarray(0, 0, 0, 360, 0, 1, w, h, colors)
           when :nonuniformpolarheatmap
             ymax = y.max.to_f
-            ρ = y.map{|i| i / ymax}
+            ρ = y.map { |i| i / ymax }
             θ = x.map { |i| i * 180 / Math::PI }
             GR.nonuniformpolarcellarray(θ, ρ, w, h, colors)
           end
