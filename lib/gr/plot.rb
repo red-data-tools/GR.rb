@@ -152,15 +152,20 @@ module GR
         vp1, vp2, vp3, vp4 = vp
       end
 
-      viewport = [vp1 + 0.125 * (vp2 - vp1),
-                  vp1 + 0.925 * (vp2 - vp1),
-                  vp3 + 0.125 * (vp4 - vp3),
-                  vp3 + 0.925 * (vp4 - vp3)]
+      left_margin = kvs.has_key?(:ylabel) ? 0.05 : 0
+      right_margin = if %i[contour contourf hexbin heatmap nonuniformheatmap polarheatmap
+                           nonuniformpolarheatmap surface trisurf volume].include?(kind)
+                       0.1
+                     else
+                       0
+                     end
+      bottom_margin = kvs.has_key?(:xlabel) ? 0.05 : 0
+      top_margin = kvs.has_key?(:title) ? 0.075 : 0
 
-      if %i[contour contourf hexbin heatmap nonuniformheatmap polarheatmap
-            nonuniformpolarheatmap surface trisurf volume].include?(kind)
-        viewport[1] -= 0.1
-      end
+      viewport = [vp1 + (0.075 + left_margin) * (vp2 - vp1),
+                  vp1 + (0.95 - right_margin) * (vp2 - vp1),
+                  vp3 + (0.075 + bottom_margin) * (vp4 - vp3),
+                  vp3 + (0.975 - top_margin) * (vp4 - vp3)]
 
       if %i[line step scatter stem].include?(kind) && kvs[:labels]
         location = kvs[:location] || 1
