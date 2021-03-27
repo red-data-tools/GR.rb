@@ -192,7 +192,7 @@ module GR
       else
         linewidth ||= GR.inqlinewidth
         linewidth = if linewidth.is_a?(Numeric)
-                      Array.new(n, linewidth)
+                      Array.new(n, linewidth * 100)
                     else
                       raise ArgumentError if n != linewidth.length
 
@@ -230,7 +230,7 @@ module GR
       else
         markersize ||= GR.inqmarkersize
         markersize = if markersize.is_a?(Numeric)
-                       Array.new(n, markersize)
+                       Array.new(n, markersize * 100)
                      else
                        raise ArgumentError if n != markersize.length
 
