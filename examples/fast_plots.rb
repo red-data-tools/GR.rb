@@ -32,15 +32,15 @@ sleep 1.2
 
 x = DFloat.linspace(0, 1, 51)
 y = x - x**2
-z = x.clone * 200
+z = DFloat.linspace(50, 300, x.length)
 GR.scatter(x, y, z, title: 'scatter')
 sleep 1.2
 
 x = DFloat.linspace(0, 1, 51)
 y = x - x**2
-sz = DFloat.linspace(50, 300, x.length)
+z = DFloat.linspace(50, 300, x.length)
 c = DFloat.linspace(0, 255, x.length)
-GR.scatter(x, y, sz, c, title: 'scatter with colors')
+GR.scatter(x, y, z, c, title: 'scatter with colors')
 sleep 1.2
 
 x = 2 * DFloat.new(100).rand - 1

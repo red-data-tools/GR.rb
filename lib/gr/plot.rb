@@ -661,13 +661,17 @@ module GR
 
         when :line
           mask = GR.uselinespec(spec)
+          linewidth = kvs[:linewidth]
           if c
-            linewidth = kvs[:linewidth]
             GR.polyline(x, y, linewidth, c) # linewidth is Numeric.
           else
-            linewidth = kvs[:linewidth]
-            GR.polyline(x, y, linewidth) if hasline(mask)
-            GR.polymarker(x, y) if hasmarker(mask)
+            if linewidth
+              GR.polyline(x, y, linewidth) if hasline(mask)
+              GR.polymarker(x, y, linewidth) if hasmarker(mask) # should be marker width?
+            else
+              GR.polyline(x, y) if hasline(mask)
+              GR.polymarker(x, y) if hasmarker(mask)
+            end
           end
 
         when :step
@@ -708,8 +712,10 @@ module GR
             if c
               cmin, cmax = kvs[:crange]
               c = c.map { |i| normalize_color(i, cmin, cmax) }
+              GR.polymarker(x, y, z.map { |i| i * 0.01 }, c)
+            else
+              GR.polymarker(x, y, z.map { |i| i * 0.01 })
             end
-            GR.polymarker(x, y, z.map { |i| i * 0.01 }, c)
           else
             GR.polymarker(x, y)
           end

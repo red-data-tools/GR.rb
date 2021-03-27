@@ -178,7 +178,7 @@ module GR
     # @param x         [Array, NArray]          A list containing the X coordinates
     # @param y         [Array, NArray]          A list containing the Y coordinates
     # @param linewidth [Array, NArray, Numeric] A list containing the line widths
-    # @param line_z    [Array, NArray]          A list to be converted to colors
+    # @param line_z    [Array, NArray, Numeric] A list to be converted to colors
     #
     # The values for x and y are in world coordinates.
     # The attributes that control the appearance of a polyline are linetype,
@@ -190,13 +190,24 @@ module GR
       if linewidth.nil? && line_z.nil?
         super(n, x, y)
       else
-        linewidth = Array.new(n, linewidth) if linewidth.is_a?(Numeric)
-        linewidth.map! { |i| (100 * i).round }
-        line_z ||= Array.new(n, 0)
-        raise ArgumentError if n != equal_length(linewidth, line_z)
+        linewidth ||= GR.inqlinewidth
+        linewidth = if linewidth.is_a?(Numeric)
+                      Array.new(n, linewidth)
+                    else
+                      raise ArgumentError if n != linewidth.length
 
-        color = to_rgb_color(line_z)
-        gdp(x, y, GDP_DRAW_LINES, linewidth.zip(color).flatten)
+                      linewidth.map { |i| (100 * i).round }
+                    end
+        line_z ||= GR.inqcolor(989) # FIXME
+        color = if line_z.is_a?(Numeric)
+                  Array.new(n, line_z)
+                else
+                  raise ArgumentError if n != line_z.length
+
+                  to_rgb_color(line_z)
+                end
+        z = linewidth.to_a.zip(color).flatten # to_a : NArray
+        gdp(x, y, GDP_DRAW_LINES, z)
       end
     end
 
@@ -205,7 +216,7 @@ module GR
     # @param x          [Array, NArray]          A list containing the X coordinates
     # @param y          [Array, NArray]          A list containing the Y coordinates
     # @param markersize [Array, NArray, Numeric] A list containing the marker sizes
-    # @param marker_z   [Array, NArray]          A list to be converted to colors
+    # @param marker_z   [Array, NArray, Numeric] A list to be converted to colors
     #
     # The values for x and y are in world coordinates.
     # The attributes that control the appearance of a polymarker are marker type,
@@ -217,13 +228,24 @@ module GR
       if markersize.nil? && marker_z.nil?
         super(n, x, y)
       else
-        markersize = Array.new(n, markersize) if markersize.is_a?(Numeric)
-        markersize.map! { |i| (100 * i).round }
-        marker_z ||= Array.new(n, 0)
-        raise ArgumentError if n != equal_length(markersize, marker_z)
+        markersize ||= GR.inqmarkersize
+        markersize = if markersize.is_a?(Numeric)
+                       Array.new(n, markersize)
+                     else
+                       raise ArgumentError if n != markersize.length
 
-        color = to_rgb_color(marker_z)
-        gdp(x, y, GDP_DRAW_MARKERS, markersize.zip(color).flatten)
+                       markersize.map { |i| (100 * i).round }
+                     end
+        marker_z ||= GR.inqcolor(989) # FIXME
+        color = if marker_z.is_a?(Numeric)
+                  Array.new(n, marker_z)
+                else
+                  raise ArgumentError if n != marker_z.length
+
+                  to_rgb_color(marker_z)
+                end
+        z = markersize.to_a.zip(color).flatten # to_a : NArray
+        gdp(x, y, GDP_DRAW_MARKERS, z)
       end
     end
 
