@@ -1227,7 +1227,7 @@ module GR
       scale = 10.0**Math.log10(amax - amin).truncate
       tick_size = [5.0, 2.0, 1.0, 0.5, 0.2, 0.1, 0.05, 0.02, 0.01]
       i = tick_size.find_index do |tsize|
-        ((amax - amin) / scale / tsize) > 7
+        ((amax - amin) / scale / tsize) > 7 # maximum number of tick marks
       end
       tick = tick_size[i - 1] * scale
     end
