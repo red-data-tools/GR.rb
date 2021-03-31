@@ -1217,6 +1217,12 @@ module GR
       end
     end
 
+    def to_wc(wn)
+      xmin, ymin = GR.ndctowc(wn[0], wn[2])
+      xmax, ymax = GR.ndctowc(wn[1], wn[3])
+      [xmin, xmax, ymin, ymax]
+    end
+
     def legend_size
       scale = GR.inqscale
       GR.selntran(0)
