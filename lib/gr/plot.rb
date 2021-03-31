@@ -251,7 +251,7 @@ module GR
                         if kvs.has_key?(:xticks)
                           kvs[:xticks]
                         else
-                          [GR.tick(xmin, xmax) / major_count, major_count]
+                          [auto_tick(xmin, xmax) / major_count, major_count]
                         end
                       else
                         [1, 1]
@@ -280,7 +280,7 @@ module GR
                         if kvs.has_key?(:yticks)
                           kvs[:yticks]
                         else
-                          [GR.tick(ymin, ymax) / major_count, major_count]
+                          [auto_tick(ymin, ymax) / major_count, major_count]
                         end
                       else
                         [1, 1]
@@ -295,7 +295,7 @@ module GR
                           if kvs.has_key?(:zticks)
                             kvs[:zticks]
                           else
-                            [GR.tick(zmin, zmax) / major_count, major_count]
+                            [auto_tick(zmin, zmax) / major_count, major_count]
                           end
                         else
                           [1, 1]
@@ -427,7 +427,7 @@ module GR
       GR.setcharheight(charheight)
       GR.setlinetype(GR::LINETYPE_SOLID)
 
-      tick = 0.5 * GR.tick(rmin, rmax)
+      tick = auto_tick(rmin, rmax)
       n = ((rmax - rmin) / tick + 0.5).round
       (n + 1).times do |i|
         r = i.to_f / n
@@ -589,7 +589,7 @@ module GR
       charheight = [0.016 * diag, 0.012].max
       GR.setcharheight(charheight)
       if kvs[:scale] & GR::OPTION_Z_LOG == 0
-        ztick = 0.5 * GR.tick(zmin, zmax)
+        ztick = auto_tick(zmin, zmax)
         GR.axes(0, ztick, 1, zmin, 0, 1, 0.005)
       else
         GR.setscale(GR::OPTION_Y_LOG)
@@ -1221,6 +1221,15 @@ module GR
       xmin, ymin = GR.ndctowc(wn[0], wn[2])
       xmax, ymax = GR.ndctowc(wn[1], wn[3])
       [xmin, xmax, ymin, ymax]
+    end
+
+    def auto_tick(amin, amax)
+      scale = 10.0**Math.log10(amax - amin).truncate
+      tick_size = [5.0, 2.0, 1.0, 0.5, 0.2, 0.1, 0.05, 0.02, 0.01]
+      i = tick_size.find_index do |tsize|
+        ((amax - amin) / scale / tsize) > 7
+      end
+      tick = tick_size[i - 1] * scale
     end
 
     def legend_size
