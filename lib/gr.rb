@@ -1436,6 +1436,16 @@ module GR
       super(n, r, g, b, positions)
     end
 
+    # Inquire the color index range of the current colormap.
+    # 
+    # @return [Array] first_color_ind The color index of the first color,
+    #                 last_color_ind The color index of the last color
+    def inqcolormapinds
+      inquiry %i[int int] do |first_color_ind, last_color_ind|
+        super(first_color_ind, last_color_ind)
+      end
+    end
+
     # @!method colorbar
 
     def inqcolor(color)

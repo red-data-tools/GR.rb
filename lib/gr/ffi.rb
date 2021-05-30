@@ -117,6 +117,7 @@ module GR
     try_extern 'void gr_setcolormap(int)'
     try_extern 'void gr_inqcolormap(int *)'
     try_extern 'void gr_setcolormapfromrgb(int n, double *r, double *g, double *b, double *x)'
+    try_extern 'void gr_inqcolormapinds(int *, int *)'
     try_extern 'void gr_colorbar(void)'
     try_extern 'void gr_inqcolor(int, int *)'
     try_extern 'int gr_inqcolorfromrgb(double, double, double)'
