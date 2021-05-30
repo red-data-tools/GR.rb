@@ -23,39 +23,56 @@ module GRCommons
   #     - mingw-w64-gr
   module GRLib
     class << self
+      # Check if using RubyInstaller or not.
+      def ruby_installer?
+        Object.const_defined?(:RubyInstaller)
+      end
+
+      # Return the directory path from the GRDIR environment variable.
+      def get_grdir_from_env(lib_names)
+        return nil unless ENV['GRDIR']
+        return ENV['GRDIR'] if Dir.exist?(ENV['GRDIR'])
+
+        warn "#{lib_names} : Dir GRDIR=#{ENV['GRDIR']} not found." # return nil
+      end
+
       # Search the shared library.
       # @note This method does not detect the Operating System.
       #
       # @param lib_names [Array] The actual file name of the shared library.
       # @param pkg_name [String] The package name to be used when searching with pkg-configg
       def search(lib_names, pkg_name)
+        # FIXME: There may be a better way to do it...
         def lib_names.map_find(&block)
           lazy.map(&block).find { |path| path }
         end
+
+        # ENV['GRDIR']
+        # Verify that the directory exists.
+        grdir = get_grdir_from_env(lib_names)
+
         # Windows + RubyInstaller
-        if Object.const_defined?(:RubyInstaller)
-          dir = ENV['GRDIR'] || [
-            RubyInstaller::Runtime.msys2_installation.msys_path,
-            RubyInstaller::Runtime.msys2_installation.mingwarch
-          ].join(File::ALT_SEPARATOR)
-          lib_names.lazy.map do |lib_name|
-            recursive_search(lib_name, dir)
-          end.find { |i| i }.tap do |path|
-            RubyInstaller::Runtime.add_dll_directory(File.dirname(path)) if path
-          end
-        # ENV['GRDIR'] (Linux, Mac, Windows)
-        elsif ENV['GRDIR']
-          # Search for XXX.dylib and then XXX.so on macOS
-          lib_names.map_find do |lib_name|
-            recursive_search(lib_name, ENV['GRDIR'])
-          end || lib_names.map_find do |lib_name|
-            pkg_config_search(lib_name, pkg_name)
-          end
-        else
-          lib_names.map_find do |lib_name|
-            pkg_config_search(lib_name, pkg_name)
+        if ruby_installer?
+          grdir ||= [RubyInstaller::Runtime.msys2_installation.msys_path,
+                     RubyInstaller::Runtime.msys2_installation.mingwarch].join(File::ALT_SEPARATOR)
+        end
+
+        # Search grdir
+        if grdir
+          lib_path = lib_names.map_find do |lib_name|
+            recursive_search(lib_name, grdir)
           end
         end
+
+        # Search with pkg-config
+        lib_path ||= lib_names.map_find do |lib_name|
+          pkg_config_search(lib_name, pkg_name)
+        end
+
+        # Windows + RubyInstaller
+        RubyInstaller::Runtime.add_dll_directory(File.dirname(lib_path)) if ruby_installer?
+
+        lib_path
       end
 
       # Recursive file search in directories
