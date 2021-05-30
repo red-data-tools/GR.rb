@@ -68,7 +68,7 @@ module GR3
 
   # Platforms |  path
   # Windows   |  bin/libGR3.dll
-  # MacOSX    |  lib/libGR3.dylib (v0.53.0 .so)
+  # MacOSX    |  lib/libGR3.dylib ( <= v0.53.0 .so)
   # Ubuntu    |  lib/libGR3.so
   platform = RbConfig::CONFIG['host_os']
   lib_names, pkg_name = \

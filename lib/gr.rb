@@ -58,7 +58,7 @@ module GR
 
   # Platforms |  path
   # Windows   |  bin/libgr.dll
-  # MacOSX    |  lib/libGR.so (v0.53.0 .so)
+  # MacOSX    |  lib/libGR.dylib ( <= v0.53.0 .so)
   # Ubuntu    |  lib/libGR.so
   platform = RbConfig::CONFIG['host_os']
   lib_names, pkg_name = \

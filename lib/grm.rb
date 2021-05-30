@@ -27,7 +27,7 @@ module GRM
 
   # Platforms |  path
   # Windows   |  bin/libGRM.dll
-  # MacOSX    |  lib/libGRM.dylib (v0.53.0 .so)
+  # MacOSX    |  lib/libGRM.dylib ( <= v0.53.0 .so)
   # Ubuntu    |  lib/libGRM.so
   platform = RbConfig::CONFIG['host_os']
   lib_names, pkg_name = \
