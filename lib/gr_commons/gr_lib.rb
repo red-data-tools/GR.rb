@@ -78,7 +78,7 @@ module GRCommons
       # Recursive file search in directories
       # @param name [String] File to search for
       # @param base_dir [String] Directory to search
-      # @retrun path [String, NilClass] Returns the first path found.
+      # @return path [String, NilClass] Returns the first path found.
       #                                 If not found, nil is returned.
       def recursive_search(name, base_dir)
         Dir.chdir(base_dir) do

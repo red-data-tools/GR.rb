@@ -1114,8 +1114,8 @@ module GR
 
     # Normalize a color c with the range [cmin, cmax]
     #   0 <= normalize_color(c, cmin, cmax) <= 1
-    # Note: narray.map{|i| normalize_color(i)} There's room for speedup.
     def normalize_color(c, cmin, cmax)
+      # NOTE: narray.map{|i| normalize_color(i)} There's room for speedup.
       c = c.to_f # if c is Integer
       c = c.clamp(cmin, cmax) - cmin
       c /= (cmax - cmin) if cmin != cmax

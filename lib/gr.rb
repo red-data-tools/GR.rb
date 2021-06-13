@@ -330,9 +330,9 @@ module GR
     # raidus. The center point of the resulting disk is located at `xorg`, `yorg`
     # and the radius of the disk is `rmax`.
     #
-    # @param xorg    [Numeric]       X coordinate of the disk center in world
+    # @param x_org   [Numeric]       X coordinate of the disk center in world
     #                                coordinates
-    # @param yorg    [Numeric]       Y coordinate of the disk center in world
+    # @param y_org   [Numeric]       Y coordinate of the disk center in world
     #                                coordinates
     # @param phimin  [Numeric]       start angle of the disk sector in degrees
     # @param phimax  [Numeric]       end angle of the disk sector in degrees
@@ -340,7 +340,7 @@ module GR
     #                                coordinates
     # @param rmax    [Numeric]       outer radius of the punctured disk in world
     #                                coordinates
-    # @param dimiphi [Integer]       Phi (X) dimension of the color index array
+    # @param dimphi  [Integer]       Phi (X) dimension of the color index array
     # @param dimr    [Integer]       iR (Y) dimension of the color index array
     # @param color   [Array, NArray] Color index array
     #
@@ -1377,7 +1377,7 @@ module GR
     # @param x      [Array, NArray] A list containing the X coordinates
     # @param y      [Array, NArray] A list containing the Y coordinates
     # @param z      [Array, NArray] A list containing the Z coordinates
-    # @param lavels [Array, NArray] A list of contour levels
+    # @param levels [Array, NArray] A list of contour levels
     #
     def tricontour(x, y, z, levels)
       npoints = x.length # equal_length ?
@@ -1437,7 +1437,7 @@ module GR
     end
 
     # Inquire the color index range of the current colormap.
-    # 
+    #
     # @return [Array] first_color_ind The color index of the first color,
     #                 last_color_ind The color index of the last color
     def inqcolormapinds
@@ -1633,14 +1633,14 @@ module GR
     # curves.
     #
     # @param points [Array, NArray] (N, 2) array of (x, y) vertices
-    # @parm codes [Array, NArray] N-length array of path codes
+    # @param codes [Array, NArray] N-length array of path codes
     #  *  STOP      : end the entire path
     #  *  MOVETO    : move to the given vertex
     #  *  LINETO    : draw a line from the current position to the given vertex
     #  *  CURVE3    : draw a quadratic Bézier curve
     #  *  CURVE4    : draw a cubic Bézier curve
     #  *  CLOSEPOLY : draw a line segment to the start point of the current path
-    # @parm fill [Integer]
+    # @param fill [Integer]
     #   A flag indication whether resulting path is to be filled or not
     #
     def drawpath(points, codes, fill)
