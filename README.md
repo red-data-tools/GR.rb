@@ -123,8 +123,6 @@ Some GR module methods are overwritten.
 [`imshow`](../../wiki/Plotting-functions#imshow)
 [`isosurface`](../../wiki/Plotting-functions#isosurface)
 
-We are preparing a [more object-oriented interface](https://github.com/kojix2/GRUtils.rb) based on [GRUtils.jl](https://github.com/heliosdrm/GRUtils.jl) in the future.
-
 #### GR - A module for calling native GR functions.
 
 2-D Plots and common 3-D Plots.
@@ -180,9 +178,8 @@ macOS : Please  the section "How to open apps from un-notarized or unidentified 
 
 ```sh
 brew install libgr
-# brew install --build-from-source libgr
+export GKS_WSTYPE=411 # gksqt (recommended)
 ```
-
 
 #### Linux - APT
 
@@ -192,7 +189,8 @@ Debian GNU/Linux and Ubuntu
 
 ```sh
 sudo apt install -y -V ca-certificates lsb-release wget
-wget https://packages.red-data-tools.org/$(lsb_release --id --short | tr 'A-Z' 'a-z')/red-data-tools-apt-source-latest-$(lsb_release --codename --short).deb
+wget https://packages.red-data-tools.org/$(lsb_release --id --short | tr 'A-Z' 'a-z'\
+  )/red-data-tools-apt-source-latest-$(lsb_release --codename --short).deb
 sudo apt install -y -V ./red-data-tools-apt-source-latest-$(lsb_release --codename --short).deb
 sudo apt update
 sudo apt install libgrm-dev
@@ -207,13 +205,9 @@ CentOS
 sudo dnf install -y gr-devel
 ```
 
-### Windows - MSYS2
+#### Windows - MSYS2
 
 If you are using Rubyinstaller, pacman will automatically install [mingw-w64-gr](https://packages.msys2.org/base/mingw-w64-gr) when the gem is installed.
-
-## Backend for Charty
-
-GR.rb will be the default backend for [Charty](https://github.com/red-data-tools/charty).
 
 ## Contributing
 
@@ -226,6 +220,22 @@ Please feel free to send us your PR.
 * Suggest or add new features
 * Update GR packages ( Homebrew, MinGW, red-data-tools )
 * Create visualization tools based on GR.rb
+
+To get started with development:
+
+```sh
+git clone https://github.com/red-data-tools/GR.rb
+cd GR.rb
+bundle install
+bundle exec rake test
+```
+
+* [I'm new to Ruby](https://github.com/red-data-tools/GR.rb/wiki/I%27m-new-to-Ruby)
+
+## Future plans
+
+* GR.rb will be the default backend for [Charty](https://github.com/red-data-tools/charty).
+* [Object-oriented interface](https://github.com/kojix2/GRUtils.rb) based on [GRUtils.jl](https://github.com/heliosdrm/GRUtils.jl). 
 
 ## Acknowledgements
 
