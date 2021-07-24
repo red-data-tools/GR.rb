@@ -168,7 +168,7 @@ Set environment variable GRDIR.
 export GRDIR="your/path/to/gr"
 ```
 
-* macOS Catalina and macOS Mojave: See the "How to open an app that hasn’t been notarized or is from an unidentified developer" section under [Safely open apps on your Mac](https://support.apple.com/en-us/HT202491) in the Apple documentation.
+macOS : Please  the section "How to open apps from un-notarized or unidentified developers" in the Apple documentation ["Safely open apps on your Mac"](https://support.apple.com/en-us/HT202491).
 
 ### Using package managers
 
