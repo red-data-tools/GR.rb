@@ -146,6 +146,16 @@ require 'gr3'
 GR3.cameralookat(-3, 2, -2, 0, 0, 0, 0, 0, -1)
 ```
 
+### Using GR.rb non-interactively
+
+Both APIs will by default start a Qt based window to show the result of the last call.
+This behavior is caused by GR itself as it will [implicitly generate output to a file or application](https://gr-framework.org/workstations.html#no-output).
+If you want to use GR.rb non-interactively, eg., as part of a static site build, you can do this by setting the environment variable `GKS_WSTYPE`to `100`.
+
+```sh
+export GKS_WSTYPE=100
+```
+
 ## Documentation
 
 - [GR.rb Wiki](https://github.com/red-data-tools/GR.rb/wiki)
