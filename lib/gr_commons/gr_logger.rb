@@ -5,8 +5,7 @@
 # It should not be loaded when gr_commons/gr_commons is loaded.
 
 require 'logger'
-require 'rainbow'
-require 'awesome_print'
+require 'pp'
 
 module GRCommons
   class << self
@@ -57,7 +56,7 @@ if Object.const_defined?(:GR)
       module Inspector
         GR::FFI.ffi_methods.each do |s|
           define_method(s) do |*args|
-            GRCommons.gr_logger.info "GR::FFI.#{s}\n#{args.ai}\n"
+            GRCommons.gr_logger.info "GR::FFI.#{s}\n#{args.pretty_inspect}\n"
             super(*args)
           end
         end
@@ -75,7 +74,7 @@ if Object.const_defined?(:GR3)
       module Inspector
         GR3::FFI.ffi_methods.each do |s|
           define_method(s) do |*args|
-            GRCommons.gr_logger.info "GR3::FFI.#{s}\n#{args.ai}\n"
+            GRCommons.gr_logger.info "GR3::FFI.#{s}\n#{args.pretty_inspect}\n"
             super(*args)
           end
         end
@@ -93,7 +92,7 @@ if Object.const_defined?(:GRM)
       module Inspector
         GRM::FFI.ffi_methods.each do |s|
           define_method(s) do |*args|
-            GRCommons.gr_logger.info "GRM::FFI.#{s}\n#{args.ai}\n"
+            GRCommons.gr_logger.info "GRM::FFI.#{s}\n#{args.pretty_inspect}\n"
             super(*args)
           end
         end
