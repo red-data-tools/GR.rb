@@ -53,8 +53,8 @@ module GRCommons
 
         # Windows + RubyInstaller
         if ruby_installer?
-          grdir ||= [RubyInstaller::Runtime.msys2_installation.msys_path,
-                     RubyInstaller::Runtime.msys2_installation.mingwarch].join(File::ALT_SEPARATOR)
+          grdir ||= File.join(RubyInstaller::Runtime.msys2_installation.msys_path,
+                              RubyInstaller::Runtime.msys2_installation.mingwarch)
         end
 
         # Search grdir
@@ -70,7 +70,11 @@ module GRCommons
         end
 
         # Windows + RubyInstaller
-        RubyInstaller::Runtime.add_dll_directory(File.dirname(lib_path)) if ruby_installer?
+        if ruby_installer?
+          RubyInstaller::Runtime.add_dll_directory(File.dirname(lib_path))
+          # FIXME: Where should I write this code?
+          ENV['GKS_FONTPATH'] ||= grdir
+        end
 
         lib_path
       end

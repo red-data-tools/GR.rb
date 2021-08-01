@@ -39,6 +39,9 @@ module GRM
     else
       [['libGRM.so'], 'grm']
     end
+
+  # On Windows + RubyInstaller,
+  # the environment variable GKS_FONTPATH will be set.
   lib_path = GRCommons::GRLib.search(lib_names, pkg_name)
 
   raise NotFoundError, "#{lib_names} not found" if lib_path.nil?
