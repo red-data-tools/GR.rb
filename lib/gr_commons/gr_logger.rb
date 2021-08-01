@@ -30,13 +30,13 @@ module GRCommons
     end
   end
 
-  # If GR.rb call native functions of the GR framework, 
+  # If GR.rb call native functions of the GR framework,
   # it will be recorded in the log file.
   #
   # @note Mainly used by developers for debugging.
   #
   # = How it works　
-  # It prepend a module named Inspector to the singular class of the FFI module. 
+  # It prepend a module named Inspector to the singular class of the FFI module.
   # It will inspects the GR function call of the FFI module
   #
   # @example
