@@ -123,8 +123,6 @@ Some GR module methods are overwritten.
 [`imshow`](../../wiki/Plotting-functions#imshow)
 [`isosurface`](../../wiki/Plotting-functions#isosurface)
 
-We are preparing a [more object-oriented interface](https://github.com/kojix2/GRUtils.rb) based on [GRUtils.jl](https://github.com/heliosdrm/GRUtils.jl) in the future.
-
 #### GR - A module for calling native GR functions.
 
 2-D Plots and common 3-D Plots.
@@ -148,6 +146,16 @@ require 'gr3'
 GR3.cameralookat(-3, 2, -2, 0, 0, 0, 0, 0, -1)
 ```
 
+### Using GR.rb non-interactively
+
+Both APIs will by default start a Qt based window to show the result of the last call.
+This behavior is caused by GR itself as it will [implicitly generate output to a file or application](https://gr-framework.org/workstations.html#no-output).
+If you want to use GR.rb non-interactively, eg., as part of a static site build, you can do this by setting the environment variable `GKS_WSTYPE`to `100`.
+
+```sh
+export GKS_WSTYPE=100
+```
+
 ## Documentation
 
 - [GR.rb Wiki](https://github.com/red-data-tools/GR.rb/wiki)
@@ -168,7 +176,7 @@ Set environment variable GRDIR.
 export GRDIR="your/path/to/gr"
 ```
 
-* macOS Catalina and macOS Mojave: See the "How to open an app that hasn’t been notarized or is from an unidentified developer" section under [Safely open apps on your Mac](https://support.apple.com/en-us/HT202491) in the Apple documentation.
+macOS : Please  the section "How to open apps from un-notarized or unidentified developers" in the Apple documentation ["Safely open apps on your Mac"](https://support.apple.com/en-us/HT202491).
 
 ### Using package managers
 
@@ -180,9 +188,8 @@ export GRDIR="your/path/to/gr"
 
 ```sh
 brew install libgr
-# brew install --build-from-source libgr
+export GKS_WSTYPE=411 # gksqt (recommended)
 ```
-
 
 #### Linux - APT
 
@@ -192,7 +199,8 @@ Debian GNU/Linux and Ubuntu
 
 ```sh
 sudo apt install -y -V ca-certificates lsb-release wget
-wget https://packages.red-data-tools.org/$(lsb_release --id --short | tr 'A-Z' 'a-z')/red-data-tools-apt-source-latest-$(lsb_release --codename --short).deb
+wget https://packages.red-data-tools.org/$(lsb_release --id --short | tr 'A-Z' 'a-z'\
+  )/red-data-tools-apt-source-latest-$(lsb_release --codename --short).deb
 sudo apt install -y -V ./red-data-tools-apt-source-latest-$(lsb_release --codename --short).deb
 sudo apt update
 sudo apt install libgrm-dev
@@ -207,13 +215,9 @@ CentOS
 sudo dnf install -y gr-devel
 ```
 
-### Windows - MSYS2
+#### Windows - MSYS2
 
 If you are using Rubyinstaller, pacman will automatically install [mingw-w64-gr](https://packages.msys2.org/base/mingw-w64-gr) when the gem is installed.
-
-## Backend for Charty
-
-GR.rb will be the default backend for [Charty](https://github.com/red-data-tools/charty).
 
 ## Contributing
 
@@ -226,6 +230,22 @@ Please feel free to send us your PR.
 * Suggest or add new features
 * Update GR packages ( Homebrew, MinGW, red-data-tools )
 * Create visualization tools based on GR.rb
+
+To get started with development:
+
+```sh
+git clone https://github.com/red-data-tools/GR.rb
+cd GR.rb
+bundle install
+bundle exec rake test
+```
+
+* [I'm new to Ruby](https://github.com/red-data-tools/GR.rb/wiki/I%27m-new-to-Ruby)
+
+## Future plans
+
+* GR.rb will be the default backend for [Charty](https://github.com/red-data-tools/charty).
+* [Object-oriented interface](https://github.com/kojix2/GRUtils.rb) based on [GRUtils.jl](https://github.com/heliosdrm/GRUtils.jl). 
 
 ## Acknowledgements
 
