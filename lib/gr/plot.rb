@@ -312,8 +312,9 @@ module GR
       end
       if %i[wireframe surface plot3 scatter3 trisurf volume].include?(kind)
         rotation = kvs[:rotation] || 40
-        tilt     = kvs[:tilt]     || 70
-        GR.setspace(zmin, zmax, rotation, tilt)
+        tilt     = kvs[:tilt]     || 60
+        GR.setwindow3d(xmin, xmax, ymin, ymax, zmin, zmax)
+        GR.setspace3d(-rotation, tilt, 30, 0)
       end
 
       kvs[:scale] = scale
@@ -332,10 +333,10 @@ module GR
       GR.setlinecolorind(1)
       diag = Math.sqrt((viewport[1] - viewport[0])**2 + (viewport[3] - viewport[2])**2)
       GR.setlinewidth(1)
-      charheight = [0.018 * diag, 0.012].max
-      GR.setcharheight(charheight)
       ticksize = 0.0075 * diag
       if %i[wireframe surface plot3 scatter3 trisurf volume].include?(kind)
+        charheight = [0.024 * diag, 0.012].max
+        GR.setcharheight(charheight)
         ztick, zorg, majorz = kvs[:zaxis]
         if pass == 1 && drawgrid
           GR.grid3d(xtick, 0, ztick, xorg[0], yorg[1], zorg[0], 2, 0, 2)
@@ -345,6 +346,8 @@ module GR
           GR.axes3d(0, ytick, 0, xorg[1], yorg[0], zorg[0], 0, majory, 0, ticksize)
         end
       else
+        charheight = [0.018 * diag, 0.012].max
+        GR.setcharheight(charheight)
         if %i[heatmap nonuniformheatmap shade].include?(kind)
           ticksize = -ticksize
         elsif drawgrid
