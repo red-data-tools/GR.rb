@@ -155,7 +155,7 @@ module GR
       left_margin = kvs.has_key?(:ylabel) ? 0.05 : 0
       right_margin = if %i[contour contourf hexbin heatmap nonuniformheatmap polarheatmap
                            nonuniformpolarheatmap surface trisurf volume].include?(kind)
-                       0.1
+                       (vp2 - vp1) * 0.1
                      else
                        0
                      end
