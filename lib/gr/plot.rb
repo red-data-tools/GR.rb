@@ -305,7 +305,7 @@ module GR
       end
 
       kvs[:window] = xmin, xmax, ymin, ymax
-      if %i[polar polarhist polarheatmap nonuniformpolarheatmap].include?(kind)
+      if %i[polar polarhist polarheatmap nonuniformpolarheatmap trisurf].include?(kind)
         GR.setwindow(-1, 1, -1, 1)
       else
         GR.setwindow(xmin, xmax, ymin, ymax)
