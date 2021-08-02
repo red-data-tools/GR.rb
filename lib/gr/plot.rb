@@ -809,7 +809,7 @@ module GR
             zmin = kvs[:zlim].first if kvs[:zlim].first
             zmax = kvs[:zlim].last if kvs[:zlim].last
           end
-
+          GR.setprojectiontype(0)
           GR.setspace(zmin, zmax, 0, 90)
           levels = kvs[:levels] || 0
           clabels = kvs[:clabels] || false
