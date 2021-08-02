@@ -223,7 +223,7 @@ module GR
         kvs[:xrange] = [xmin, xmax]
         kvs[:yrange] = [ymin, ymax]
       else
-        minmax
+        minmax(kind)
       end
 
       major_count = if %i[wireframe surface plot3 scatter3 polar polarhist
@@ -1152,7 +1152,7 @@ module GR
       [a, b]
     end
 
-    def minmax
+    def minmax(kind)
       xmin = ymin = zmin = cmin = Float::INFINITY
       xmax = ymax = zmax = cmax = -Float::INFINITY
       scale = kvs[:scale]
@@ -1165,6 +1165,8 @@ module GR
           x0, x1 = x.minmax
           xmin = [x0, xmin].min
           xmax = [x1, xmax].max
+        elsif kind == :volume
+          xmin, xmax = -1, 1
         else
           xmin = 0
           xmax = 1
@@ -1176,6 +1178,8 @@ module GR
           y0, y1 = y.minmax
           ymin = [y0, ymin].min
           ymax = [y1, ymax].max
+        elsif kind == :volume
+          ymin, ymax = -1, 1
         else
           ymin = 0
           ymax = 1
