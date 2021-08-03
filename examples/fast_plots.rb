@@ -158,6 +158,6 @@ sleep 1.2
 
 require 'gr3'
 s = Numo::DFloat.linspace(-0.6, 0.6, 50)
-v = 1 - ((s**2 +  (s**2).expand_dims(0).transpose).expand_dims(2) + s.reshape(1, 1, true)**2)**0.5
+v = 1 - ((s**2 + (s**2).expand_dims(0).transpose).expand_dims(2) + s.reshape(1, 1, true)**2)**0.5
 GR.isosurface(v, title: 'isosurface') # FIXME: title not shown
 sleep 1.2
