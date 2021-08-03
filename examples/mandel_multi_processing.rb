@@ -1,25 +1,32 @@
 # frozen_string_literal: true
 
+# This sample uses druby and parallel to enable multiprocessing.
+# * dRuby is a distributed object system for Ruby.
+# * Parallel run ruby code in parallel Processes.
+
 require 'optparse'
 require 'numo/narray'
 require 'drb/drb'
 require 'parallel'
 
+def number_of_cores_in_cpu
+  case RbConfig::CONFIG['host_os']
+  when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
+    puts 'Parallel gem is not supported on windows...'
+    exit
+  when /darwin|mac os/
+    n = `sysctl -n hw.ncpu`.to_i
+    n - 1 if n > 4
+  when /linux/
+    n = `nproc`.to_i
+    n - 1 if n > 4
+  else
+    4
+  end
+end
+
 opt = {
-  proceses:
-    case RbConfig::CONFIG['host_os']
-    when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
-      puts 'Parallel gem is not supported on windows...'
-      exit
-    when /darwin|mac os/
-      n = `sysctl -n hw.ncpu`.to_i
-      n - 1 if n > 4
-    when /linux/
-      n = `nproc`.to_i
-      n - 1 if n > 4
-    else
-      4
-    end,
+  proceses: number_of_cores_in_cpu,
   epochs: 100,
   port: 12_344
 }
