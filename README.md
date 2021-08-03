@@ -188,6 +188,11 @@ macOS : Please  the section "How to open apps from un-notarized or unidentified 
 
 ```sh
 brew install libgr
+```
+
+Set the workstation type to gksqt.
+
+```
 export GKS_WSTYPE=411 # gksqt (recommended)
 ```
 
