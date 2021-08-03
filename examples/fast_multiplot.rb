@@ -10,9 +10,10 @@ NMath = Numo::NMath
 
 x = DFloat.linspace(0, 10, 500)
 y = NMath.sin(x**2) * NMath.exp(-x)
-GR.plot(x, y, ylim: [-0.5, 0.5],
-              xlabel: 'X', ylabel: 'Y', title: 'Example plot')
+kw = {ylim: [-0.5, 0.5], xlabel: 'X', ylabel: 'Y', title: 'Example plot'}
+GR.plot(x, y, kw.clone) # FIXME
 k = GR.hold
+k.merge!(kw)
 GR.plot([x, -2 * NMath.exp(x)**-1, '--k'], [x, 2 * NMath.exp(x)**-1, '--k'], k)
 sleep 1.2
 
