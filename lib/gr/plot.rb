@@ -155,7 +155,7 @@ module GR
       left_margin = kvs.has_key?(:ylabel) ? 0.05 : 0
       right_margin = if %i[contour contourf hexbin heatmap nonuniformheatmap polarheatmap
                            nonuniformpolarheatmap surface trisurf volume].include?(kind)
-                       0.1
+                       (vp2 - vp1) * 0.1
                      else
                        0
                      end
@@ -223,7 +223,7 @@ module GR
         kvs[:xrange] = [xmin, xmax]
         kvs[:yrange] = [ymin, ymax]
       else
-        minmax
+        minmax(kind)
       end
 
       major_count = if %i[wireframe surface plot3 scatter3 polar polarhist
@@ -305,15 +305,16 @@ module GR
       end
 
       kvs[:window] = xmin, xmax, ymin, ymax
-      if %i[polar polarhist polarheatmap nonuniformpolarheatmap].include?(kind)
+      if %i[polar polarhist polarheatmap nonuniformpolarheatmap trisurf].include?(kind)
         GR.setwindow(-1, 1, -1, 1)
       else
         GR.setwindow(xmin, xmax, ymin, ymax)
       end
       if %i[wireframe surface plot3 scatter3 trisurf volume].include?(kind)
         rotation = kvs[:rotation] || 40
-        tilt     = kvs[:tilt]     || 70
-        GR.setspace(zmin, zmax, rotation, tilt)
+        tilt     = kvs[:tilt]     || 60
+        GR.setwindow3d(xmin, xmax, ymin, ymax, zmin, zmax)
+        GR.setspace3d(-rotation, tilt, 30, 0)
       end
 
       kvs[:scale] = scale
@@ -332,10 +333,10 @@ module GR
       GR.setlinecolorind(1)
       diag = Math.sqrt((viewport[1] - viewport[0])**2 + (viewport[3] - viewport[2])**2)
       GR.setlinewidth(1)
-      charheight = [0.018 * diag, 0.012].max
-      GR.setcharheight(charheight)
       ticksize = 0.0075 * diag
       if %i[wireframe surface plot3 scatter3 trisurf volume].include?(kind)
+        charheight = [0.024 * diag, 0.012].max
+        GR.setcharheight(charheight)
         ztick, zorg, majorz = kvs[:zaxis]
         if pass == 1 && drawgrid
           GR.grid3d(xtick, 0, ztick, xorg[0], yorg[1], zorg[0], 2, 0, 2)
@@ -345,6 +346,8 @@ module GR
           GR.axes3d(0, ytick, 0, xorg[1], yorg[0], zorg[0], 0, majory, 0, ticksize)
         end
       else
+        charheight = [0.018 * diag, 0.012].max
+        GR.setcharheight(charheight)
         if %i[heatmap nonuniformheatmap shade].include?(kind)
           ticksize = -ticksize
         elsif drawgrid
@@ -798,7 +801,7 @@ module GR
             zmin = kvs[:zlim].first if kvs[:zlim].first
             zmax = kvs[:zlim].last if kvs[:zlim].last
           end
-
+          GR.setprojectiontype(0)
           GR.setspace(zmin, zmax, 0, 90)
           levels = kvs[:levels] || 0
           clabels = kvs[:clabels] || false
@@ -1144,7 +1147,7 @@ module GR
       [a, b]
     end
 
-    def minmax
+    def minmax(kind)
       xmin = ymin = zmin = cmin = Float::INFINITY
       xmax = ymax = zmax = cmax = -Float::INFINITY
       scale = kvs[:scale]
@@ -1157,6 +1160,8 @@ module GR
           x0, x1 = x.minmax
           xmin = [x0, xmin].min
           xmax = [x1, xmax].max
+        elsif kind == :volume
+          xmin, xmax = -1, 1
         else
           xmin = 0
           xmax = 1
@@ -1168,6 +1173,8 @@ module GR
           y0, y1 = y.minmax
           ymin = [y0, ymin].min
           ymax = [y1, ymax].max
+        elsif kind == :volume
+          ymin, ymax = -1, 1
         else
           ymin = 0
           ymax = 1

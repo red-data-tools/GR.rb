@@ -9,6 +9,6 @@ class PlotTest < Test::Unit::TestCase
   end
 
   def test_minmax
-    assert_equal [Float::INFINITY, -Float::INFINITY], @plot.send(:minmax)
+    assert_equal [Float::INFINITY, -Float::INFINITY], @plot.send(:minmax, :line)
   end
 end
