@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
-# ENV["GKS_WSTYPE"] = "mp4"
-# ENV["GKS_VIDEO_OPTS"] = "600x450@25@2x" # video size
+# configure video
+ENV['GKS_WSTYPE']     = 'mp4'
+ENV['GKS_VIDEO_OPTS'] = '600x450@25@2x' # video size
 
 require 'gr/plot'
 require 'fileutils'
