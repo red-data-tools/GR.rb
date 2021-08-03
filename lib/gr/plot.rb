@@ -707,17 +707,9 @@ module GR
 
         when :scatter
           GR.setmarkertype(GR::MARKERTYPE_SOLID_CIRCLE)
-          if z || c
-            if c
-              cmin, cmax = kvs[:crange]
-              c = c.map { |i| normalize_color(i, cmin, cmax) }
-              GR.polymarker(x, y, z.map { |i| i * 0.01 }, c)
-            else
-              GR.polymarker(x, y, z.map { |i| i * 0.01 })
-            end
-          else
-            GR.polymarker(x, y)
-          end
+          z = z&.map { |i| i * 0.01 }
+          c = c&.map { |i| normalize_color(i, *kvs[:crange]) }
+          GR.polymarker(x, y, z, c)
 
         when :stem
           GR.setlinecolorind(1)
