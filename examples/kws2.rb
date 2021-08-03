@@ -11,12 +11,11 @@ data = data[70..-3].join.strip.split(/\s+/).map(&:to_f)
 z = Numo::DFloat.cast(data).reshape(128, 128)
 [3, 4].each do |c|
   GR.surface(z,
-             figsize: [6, 5],
-             rotation: 45, tilt: 78,
+             figsize: [7, 6],
+             rotation: 45, tilt: 20,
              colormap: c,
              xlabel: 'X',
              ylabel: 'Y',
-             zlabel: 'Counts',
-             accelerate: false)
+             zlabel: 'Counts')
   gets
 end
