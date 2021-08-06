@@ -89,7 +89,8 @@ module GR
     attr_accessor :args, :kvs, :scheme
 
     def initialize(*raw_args)
-      @kvs = raw_args.last.is_a?(Hash) ? raw_args.pop : {}
+      # Keywords are cloned to avoid disruptive changes
+      @kvs = raw_args.last.is_a?(Hash) ? raw_args.pop.clone : {}
       @args = plot_args(raw_args) # method name is the same as Julia/Python
 
       # Check keyword options.
