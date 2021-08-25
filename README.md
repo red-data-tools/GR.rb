@@ -220,6 +220,11 @@ CentOS
 sudo dnf install -y gr-devel
 ```
 
+#### Linux - Other
+
+GR releases are also available from the [openSUSE Build service](https://software.opensuse.org) for CentOS, Debian, Fedora openSUSE and 
+Ubuntu. Obtain a packaged release [here](https://software.opensuse.org//download.html?project=science%3Agr-framework&package=gr).
+
 #### Windows - MSYS2
 
 If you are using Rubyinstaller, pacman will automatically install [mingw-w64-gr](https://packages.msys2.org/base/mingw-w64-gr) when the gem is installed.
