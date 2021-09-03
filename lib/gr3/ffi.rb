@@ -91,6 +91,8 @@ module GR3
            'double offset_x, double offset_y, double offset_z)'
     try_extern 'int gr3_createsurfacemesh(int *mesh, int nx, int ny, ' \
            'float *px, float *py, float *pz, int option)'
+    try_extern 'int gr3_createsurface3dmesh(int *mesh, int ncols, int nrows, ' \
+           'float *px, float *py, float *pz);'
     try_extern 'void gr3_drawmesh_grlike(int mesh, int n, ' \
            'const float *positions, const float *directions, const float *ups, ' \
            'const float *colors, const float *scales)'
@@ -140,5 +142,7 @@ module GR3
            'int algorithm, double *dmin_ptr, double *dmax_ptr)'
     try_extern 'void gr3_setorthographicprojection' \
            '(float left, float right, float bottom, float top, float znear, float zfar)'
+    try_extern 'void gr3_setsurfaceoption(int option)'
+    try_extern 'int gr3_getsurfaceoption(void)'
   end
 end
