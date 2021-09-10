@@ -205,11 +205,11 @@ Ubuntu. Obtain a packaged release [here](https://software.opensuse.org//download
 export GRDIR="/usr/gr" # Check the location with `dpkg -L gr`
 ```
 
-#### Linux - APT
+#### Linux - Red-data-tools
 
 [packages.red-data-tools.org](https://github.com/red-data-tools/packages.red-data-tools.org) provides `libgr-dev`, `libgr3-dev` and `libgrm-dev`
 
-Debian GNU/Linux and Ubuntu 
+Debian GNU/Linux and Ubuntu :
 
 ```sh
 sudo apt install -y -V ca-certificates lsb-release wget
@@ -220,9 +220,7 @@ sudo apt update
 sudo apt install libgrm-dev
 ```
 
-#### Linux - Yum
-
-CentOS
+CentOS :
 
 ```sh
 (. /etc/os-release && sudo dnf install -y https://packages.red-data-tools.org/centos/${VERSION_ID}/red-data-tools-release-latest.noarch.rpm)
