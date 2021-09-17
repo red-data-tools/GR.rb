@@ -256,7 +256,7 @@ bundle exec rake test
 
 ## Future plans
 
-* GR.rb will be the default backend for [Charty](https://github.com/red-data-tools/charty).
+* Creating a backend for [Charty](https://github.com/red-data-tools/charty).
 * [Object-oriented interface](https://github.com/kojix2/GRUtils.rb) based on [GRUtils.jl](https://github.com/heliosdrm/GRUtils.jl). 
 
 ## Acknowledgements
