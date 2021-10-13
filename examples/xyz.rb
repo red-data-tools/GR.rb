@@ -22,7 +22,8 @@ OptionParser.new do |opt|
   opt.on('-s', '--size VALUE', Integer) { |v| options[:size] = v }
   opt.on('-t', '--title TITLE', String) { |v| options[:title] = v }
   if ARGV.empty?
-    warn opt.help; exit 1
+    warn opt.help
+    exit 1
   end
   opt.parse!(ARGV)
   options[:title] ||= ARGV[0]

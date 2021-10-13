@@ -1162,7 +1162,8 @@ module GR
           xmin = [x0, xmin].min
           xmax = [x1, xmax].max
         elsif kind == :volume
-          xmin, xmax = -1, 1
+          xmin = -1
+          xmax = 1
         else
           xmin = 0
           xmax = 1
@@ -1175,7 +1176,8 @@ module GR
           ymin = [y0, ymin].min
           ymax = [y1, ymax].max
         elsif kind == :volume
-          ymin, ymax = -1, 1
+          ymin = -1
+          ymax = 1
         else
           ymin = 0
           ymax = 1
