@@ -11,12 +11,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        gr: [ '0.57.3', '0.58.1', 'system' ]
+        gr: [ '0.59.0', '0.61.0', 'system' ]
         os: [ 'ubuntu', 'macos', 'windows' ]
         ruby: [ '2.6', '2.7', '3.0' ]
         exclude:
-          - { os: windows , gr: '0.57.3' }
-          - { os: windows , gr: '0.58.1' }
+          - { os: windows , gr: '0.59.0' }
+          - { os: windows , gr: '0.61.0' }
     runs-on: ${{ matrix.os }}-latest
     steps:
       - uses: actions/checkout@v2
