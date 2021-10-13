@@ -35,6 +35,7 @@ module GRM
     when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
       [['libGRM.dll'], 'grm']
     when /darwin|mac os/
+      ENV['GKSwstype'] ||= 'gksqt'
       [['libGRM.dylib', 'libGRM.so'], 'grm']
     else
       [['libGRM.so'], 'grm']

@@ -76,6 +76,7 @@ module GR3
     when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
       [['libGR3.dll'], 'gr3']
     when /darwin|mac os/
+      ENV['GKSwstype'] ||= 'gksqt'
       [['libGR3.dylib', 'libGR3.so'], 'gr3']
     else
       [['libGR3.so'], 'gr3']

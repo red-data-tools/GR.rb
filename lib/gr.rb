@@ -66,6 +66,7 @@ module GR
     when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
       [['libGR.dll'], 'gr']
     when /darwin|mac os/
+      ENV['GKSwstype'] ||= 'gksqt'
       [['libGR.dylib', 'libGR.so'], 'gr']
     else
       [['libGR.so'], 'gr']
