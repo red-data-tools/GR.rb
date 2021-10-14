@@ -209,5 +209,13 @@ module GR
     try_extern 'void gr_inqtextencoding(int *)'
     try_extern 'void gr_loadfont(char *, int *)'
     # gr_setcallback(char *(*)(const char *));
+    try_extern 'void gr_setthreadnumber(int)'
+    try_extern 'void gr_setpicturesizeforvolume(int, int)'
+    try_extern 'void gr_setvolumebordercalculation(int)'
+    try_extern 'void gr_setapproximativecalculation(int)'
+    try_extern 'void gr_inqvolumeflags(int *, int *, int *, int *, int *)'
+    try_extern 'void gr_cpubasedvolume(int, int, int, double *, int, double *, double *, double *, double *)'
+    try_extern 'void gr_inqvpsize(int *, int *, double *)'
+    try_extern 'void gr_polygonmesh3d(int, const double *, const double *, const double *, int, const int *, const int *)'
   end
 end
