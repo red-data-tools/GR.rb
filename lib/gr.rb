@@ -1704,13 +1704,14 @@ module GR
     def readimage(path)
       # Feel free to make a pull request if you catch a mistake
       # or you have an idea to improve it.
-      data = Fiddle::Pointer.malloc(Fiddle::SIZEOF_INTPTR_T)
+      Fiddle::Pointer.malloc(Fiddle::SIZEOF_INTPTR_T, Fiddle::RUBY_FREE) do |data|
       w, h = inquiry [:int, :int] do |width, height|
         # data is a pointer of a pointer
         super(path, width, height, data.ref)
       end
       d = data.to_str(w * h * Fiddle::SIZEOF_INT).unpack('L*') # UInt32
       [w, h, d]
+    end
     end
 
     # Draw an image into a given rectangular area.
@@ -1842,7 +1843,7 @@ module GR
       # Feel free to make a pull request if you catch a mistake
       # or you have an idea to improve it.
       npoints = equal_length(x, y)
-      triangles = Fiddle::Pointer.malloc(Fiddle::SIZEOF_INTPTR_T)
+      Fiddle::Pointer.malloc(Fiddle::SIZEOF_INTPTR_T, Fiddle::RUBY_FREE) do |triangles|
       dim = 3
       n_tri = inquiry_int do |ntri|
         super(npoints, x, y, ntri, triangles.ref)
@@ -1856,6 +1857,7 @@ module GR
       else
         0
       end
+    end
     end
 
     # Reduces the number of points of the x and y array.
