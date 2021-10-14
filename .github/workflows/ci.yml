@@ -57,7 +57,7 @@ jobs:
         if: matrix.gr != 'system'
         env:
           GRDIR: gr
-          QT_QPA_PLATFORM: offscreen
+          GKS_WSTYPE: 100
         run: bundle exec rake test
       - name: Test (packages)
         if: matrix.gr == 'system'
