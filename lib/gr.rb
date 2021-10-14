@@ -2322,7 +2322,7 @@ module GR
     # @param num [Integer] num number of threads
     #
     # @!method setthreadnumber
-    
+
     # Set the width and height of the resulting picture.
     # These values are only used for gr_volume and gr_cpubasedvolume.
     # The default values are 1000 for both.
@@ -2344,8 +2344,8 @@ module GR
     #
     # @!method setvolumebordercalculation    # @!method setthreadnumber
 
-    # Set if gr_cpubasedvolume is calculated approximative or exact. 
-    # To use the exact calculation set approximative_calculation to 0. 
+    # Set if gr_cpubasedvolume is calculated approximative or exact.
+    # To use the exact calculation set approximative_calculation to 0.
     # The default value is the approximative version, which can be set with the
     # number 1.
     #
@@ -2353,7 +2353,6 @@ module GR
     #                                            of the volume
     #
     # @!method setapproximativecalculation
-
   end
 
   ASF_BUNDLED    = 0

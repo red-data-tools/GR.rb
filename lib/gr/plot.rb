@@ -325,7 +325,7 @@ module GR
     def draw_axes(kind, pass = 1)
       viewport = kvs[:viewport]
       vp = kvs[:vp]
-      ratio = kvs[:ratio]
+      _ratio = kvs[:ratio]
       xtick, xorg, majorx = kvs[:xaxis]
       ytick, yorg, majory = kvs[:yaxis]
       drawgrid = kvs.has_key?(:grid) ? kvs[:grid] : true
@@ -1231,7 +1231,7 @@ module GR
       i = tick_size.find_index do |tsize|
         ((amax - amin) / scale / tsize) > 7 # maximum number of tick marks
       end
-      tick = tick_size[i - 1] * scale
+      tick_size[i - 1] * scale
     end
 
     def legend_size
