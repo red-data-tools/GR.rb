@@ -198,8 +198,7 @@ export GKS_WSTYPE=411 # gksqt (recommended)
 
 #### Linux - openSUSE Build service
 
-GR releases are also available from the [openSUSE Build service](https://software.opensuse.org) for CentOS, Debian, Fedora openSUSE and 
-Ubuntu. Obtain a packaged release [here](https://software.opensuse.org//download.html?project=science%3Agr-framework&package=gr).
+GR releases are also available from the [openSUSE Build service](https://software.opensuse.org//download.html?project=science%3Agr-framework&package=gr) for CentOS, Debian, Fedora openSUSE and Ubuntu. Obtain a packaged release [here](https://software.opensuse.org//download.html?project=science%3Agr-framework&package=gr).
 
 ```sh
 export GRDIR="/usr/gr" # Check the location with `dpkg -L gr`
