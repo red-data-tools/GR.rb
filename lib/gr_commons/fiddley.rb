@@ -188,7 +188,7 @@ module GRCommons
           @size = @ptr.size
         else
           @size = type2size(type) * num
-          @ptr = Fiddle::Pointer.malloc(@size)
+          @ptr = Fiddle::Pointer.malloc(@size, Fiddle::RUBY_FREE)
         end
       end
 
