@@ -2149,9 +2149,9 @@ module GR
     #
     # @param flag [Integer] projection type
     #  The available options are:
-    #  * 0 : GR_PROJECTION_DEFAULT      - default
-    #  * 1 : GR_PROJECTION_ORTHOGRAPHIC - orthographic
-    #  * 2 : GR_PROJECTION_PERSPECTIVE  - perspective
+    #  * 0 : PROJECTION_DEFAULT      - default
+    #  * 1 : PROJECTION_ORTHOGRAPHIC - orthographic
+    #  * 2 : PROJECTION_PERSPECTIVE  - perspective
     #
     # @!method setprojectiontype
 
@@ -2315,6 +2315,34 @@ module GR
         super(str, font)
       end
     end
+
+    # Set the number of threads which can run parallel.
+    # The default value is the number of threads the cpu has.
+    #
+    # @param num [Integer] num number of threads
+    #
+    # @!method setthreadnumber
+    
+    # Set the width and height of the resulting picture.
+    # These values are only used for gr_volume and gr_cpubasedvolume.
+    # The default values are 1000 for both.
+    #
+    # @param width  [Integer] width of the resulting image
+    # @param height [Integer] height of the resulting image
+    #
+    # @!method setpicturesizeforvolume
+
+    # Set the gr_volume border type with this flag.
+    # This inflicts how the volume is calculated. When the flag is set to
+    # GR_VOLUME_WITH_BORDER the border will be calculated the same as the points
+    # inside the volume.
+    #
+    # @param flag [Integer] calculation of the gr_volume border
+    #  The available options are:
+    #  * 0 : VOLUME_WITHOUT_BORDER - default value
+    #  * 1 : VOLUME_WITH_BORDER    - gr_volume with border
+    #
+    # @!method setvolumebordercalculation    # @!method setthreadnumber
   end
 
   ASF_BUNDLED    = 0
