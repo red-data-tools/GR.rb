@@ -2343,6 +2343,17 @@ module GR
     #  * 1 : VOLUME_WITH_BORDER    - gr_volume with border
     #
     # @!method setvolumebordercalculation    # @!method setthreadnumber
+
+    # Set if gr_cpubasedvolume is calculated approximative or exact. 
+    # To use the exact calculation set approximative_calculation to 0. 
+    # The default value is the approximative version, which can be set with the
+    # number 1.
+    #
+    # @param approximative_calculation [Integer] exact or approximative calculation
+    #                                            of the volume
+    #
+    # @!method setapproximativecalculation
+
   end
 
   ASF_BUNDLED    = 0
