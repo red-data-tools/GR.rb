@@ -2376,6 +2376,12 @@ module GR
         super(*pts)
       end
     end
+
+    def polygonmesh3d(px, py, pz, connections, colors)
+      n_points = equal_length(px, py, pz)
+      n_connections = colors.length
+      super(n_points, px, py, pz, n_connections, int(connections), int(colors))
+    end
   end
 
   ASF_BUNDLED    = 0
