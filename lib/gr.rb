@@ -2353,6 +2353,29 @@ module GR
     #                                            of the volume
     #
     # @!method setapproximativecalculation
+
+    # Inquire the parameters which can be set for cpubasedvolume. 
+    # The size of the resulting image, the way the volumeborder is calculated and
+    # the amount of threads which are used.
+    #
+    # @return [Array]
+    #  * border -                    flag which tells how the border is calculated
+    #  * max_threads -               number of threads
+    #  * picture_width -             width of the resulting image
+    #  * picture_height -            height of the resulting image
+    #  * approximative_calculation - exact or approximative calculation of gr_cpubasedvolume
+    #
+    def inqvolumeflags
+      inquiry([:int] * 5) do |*pts|
+        super(*pts)
+      end
+    end
+
+    def inqvpsize
+      inquiry %i[int int double] do |*pts|
+        super(*pts)
+      end
+    end
   end
 
   ASF_BUNDLED    = 0
