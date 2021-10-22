@@ -2354,7 +2354,7 @@ module GR
     #
     # @!method setapproximativecalculation
 
-    # Inquire the parameters which can be set for cpubasedvolume. 
+    # Inquire the parameters which can be set for cpubasedvolume.
     # The size of the resulting image, the way the volumeborder is calculated and
     # the amount of threads which are used.
     #
