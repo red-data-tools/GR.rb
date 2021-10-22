@@ -29,21 +29,16 @@ jobs:
         run: |
           wget https://github.com/sciapp/gr/releases/download/v${{ matrix.gr }}/gr-${{ matrix.gr }}-Ubuntu-x86_64.tar.gz
           tar -xvf gr-${{ matrix.gr }}-Ubuntu-x86_64.tar.gz
-          sudo apt update
-          sudo apt install libqt5widgets5
       - name: Get official GR binary (macos)
         if: ${{ matrix.gr != 'system' && matrix.os == 'macos' }}
         run: |
           wget https://github.com/sciapp/gr/releases/download/v${{ matrix.gr }}/gr-${{ matrix.gr }}-Darwin-x86_64.tar.gz
           tar -xvf gr-${{ matrix.gr }}-Darwin-x86_64.tar.gz
-      - name: Set up RedDataTools APT repository (ubuntu)
+      - name: Set up OBS binary (ubuntu)
         if: ${{ matrix.gr == 'system' && matrix.os == 'ubuntu' }}
         run: |
-          sudo apt install -y -V ca-certificates lsb-release wget
-          wget https://packages.red-data-tools.org/$(lsb_release --id --short | tr 'A-Z' 'a-z')/red-data-tools-apt-source-latest-$(lsb_release --codename --short).deb
-          sudo apt install -y -V ./red-data-tools-apt-source-latest-$(lsb_release --codename --short).deb
-          sudo apt update
-          sudo apt install libgrm-dev
+          wget https://download.opensuse.org/repositories/science:/gr-framework/xUbuntu_20.04/amd64/gr_0.61.0-1_amd64.deb
+          sudo apt-get install -y ./gr_0.61.0-1_amd64.deb
       - name: Set up Homebrew (macos)
         if: ${{ matrix.gr == 'system' && matrix.os == 'macos' }}
         run: |
@@ -60,7 +55,13 @@ jobs:
           GKS_WSTYPE: 100
         run: bundle exec rake test
       - name: Test (packages)
-        if: matrix.gr == 'system'
+        if: ${{ matrix.gr == 'system' && matrix.os != 'ubuntu' }}
         env:
           QT_QPA_PLATFORM: offscreen
+        run: bundle exec rake test
+      - name: Test (packages) (ubuntu)
+        if: ${{ matrix.gr == 'system' && matrix.os == 'ubuntu' }}
+        env:
+          QT_QPA_PLATFORM: offscreen
+          GRDIR: /usr/gr
         run: bundle exec rake test
