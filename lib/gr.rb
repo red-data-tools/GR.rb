@@ -2371,6 +2371,9 @@ module GR
       end
     end
 
+    # FIXME!
+    # @!method cpubasedvolume
+
     def inqvpsize
       inquiry %i[int int double] do |*pts|
         super(*pts)
