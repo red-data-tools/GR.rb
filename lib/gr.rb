@@ -2371,7 +2371,7 @@ module GR
       end
     end
 
-    # FIXME!
+    # FIXME! (#61)
     # @!method cpubasedvolume
 
     def inqvpsize
