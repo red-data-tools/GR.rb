@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'gr'
 
 x = [0, 1, 0, 1, 0.707]

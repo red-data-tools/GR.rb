@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ENV['GKS_DOUBLE_BUF'] = '1'
 
 require 'gr'
