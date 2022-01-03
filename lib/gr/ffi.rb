@@ -33,7 +33,9 @@ module GR
     try_extern 'void gr_polyline(int, double *, double *)'
     try_extern 'void gr_polymarker(int, double *, double *)'
     try_extern 'void gr_text(double, double, char *)'
+    try_extern 'void gr_textx(double, double, char *, int)'
     try_extern 'void gr_inqtext(double, double, char *, double *, double *)'
+    try_extern 'gr_inqtextx(double, double, char *, int, double *, double *)'
     try_extern 'void gr_fillarea(int, double *, double *)'
     try_extern 'void gr_cellarray(double, double, double, double, ' \
                'int, int, int, int, int, int, int *)'
