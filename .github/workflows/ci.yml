@@ -15,8 +15,8 @@ jobs:
         os: [ 'ubuntu', 'macos', 'windows' ]
         ruby: [ '2.7', '3.0', '3.1' ]
         exclude:
-          - { os: windows , gr: '0.59.0' }
           - { os: windows , gr: '0.61.0' }
+          - { os: windows , gr: '0.62.0' }
     runs-on: ${{ matrix.os }}-latest
     steps:
       - uses: actions/checkout@v2
@@ -37,8 +37,8 @@ jobs:
       - name: Set up OBS binary (ubuntu)
         if: ${{ matrix.gr == 'system' && matrix.os == 'ubuntu' }}
         run: |
-          wget https://download.opensuse.org/repositories/science:/gr-framework/xUbuntu_20.04/amd64/gr_0.61.0-1_amd64.deb
-          sudo apt-get install -y ./gr_0.61.0-1_amd64.deb
+          wget https://download.opensuse.org/repositories/science:/gr-framework/xUbuntu_20.04/amd64/gr_${{ matrix.gr }}-1_amd64.deb
+          sudo apt-get install -y ./gr_${{ matrix.gr }}-1_amd64.deb
       - name: Set up Homebrew (macos)
         if: ${{ matrix.gr == 'system' && matrix.os == 'macos' }}
         run: |
