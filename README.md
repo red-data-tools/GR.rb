@@ -44,6 +44,8 @@ If you use package managers to install GR, [pkg-config](https://github.com/ruby-
 
 ## Quick Start
 
+:point_right: [Wiki -plotting functions](https://github.com/red-data-tools/GR.rb/wiki/Plotting-functions)
+
 <p align="center">
   <img src="https://user-images.githubusercontent.com/5798442/69689128-74cb1480-110b-11ea-9097-29e878a19e8f.png">
 </p>
