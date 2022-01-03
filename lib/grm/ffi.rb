@@ -70,8 +70,5 @@ module GRM
     try_extern 'int grm_merge_named(const grm_args_t *args, const char *identificator)'
     try_extern 'int grm_plot(const grm_args_t *args)'
     try_extern 'int grm_switch(unsigned int id)'
-
-    # https://github.com/sciapp/gr/blob/master/lib/grm/util.h
-    try_extern 'FILE *grm_get_stdout(void)'
   end
 end
