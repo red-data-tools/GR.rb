@@ -233,6 +233,10 @@ bundle exec rake test
 
 * [I'm new to Ruby](https://github.com/red-data-tools/GR.rb/wiki/I%27m-new-to-Ruby)
 
+    Do you need commit rights to my repository?
+    Do you want to get admin rights and take over the project?
+    If so, please feel free to contact us.
+
 ## Future plans
 
 * Creating a backend for [Charty](https://github.com/red-data-tools/charty).
