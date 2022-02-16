@@ -144,5 +144,12 @@ module GR3
            '(float left, float right, float bottom, float top, float znear, float zfar)'
     try_extern 'void gr3_setsurfaceoption(int option)'
     try_extern 'int gr3_getsurfaceoption(void)'
+    try_extern 'int gr3_getlightsources(int max_num_lights, float *positions, float *colors)'
+    try_extern 'int gr3_setlightsources(int num_lights, float *positions, float *colors)'
+    try_extern 'void gr3_setlightparameters(float ambient, float diffuse, float specular, float specular_power)'
+    try_extern 'void gr3_getlightparameters(float *ambient, float *diffuse, float *specular, float *specular_power)'
+    try_extern 'void gr3_setdefaultlightparameters()'
+    try_extern 'void gr3_setclipping(float xmin, float xmax, float ymin, float ymax, float zmin, float zmax)'
+    try_extern 'void gr3_getclipping(float *xmin, float *xmax, float *ymin, float *ymax, float *zmin, float *zmax)'
   end
 end
