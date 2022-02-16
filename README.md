@@ -231,11 +231,16 @@ bundle install
 bundle exec rake test
 ```
 
-* [I'm new to Ruby](https://github.com/red-data-tools/GR.rb/wiki/I%27m-new-to-Ruby)
+If you are not familiar with Ruby development, please see
+[I'm new to Ruby](https://github.com/red-data-tools/GR.rb/wiki/I%27m-new-to-Ruby)
 
-    Do you need commit rights to my repository?
-    Do you want to get admin rights and take over the project?
-    If so, please feel free to contact us.
+GR.rb is open source software
+
+```
+Do you need commit rights to my repository?
+Do you want to get admin rights and take over the project?
+If so, please feel free to contact us.
+```
 
 ## Future plans
 
