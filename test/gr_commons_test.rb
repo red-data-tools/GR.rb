@@ -3,6 +3,8 @@
 require_relative 'test_helper'
 require_relative '../lib/gr_commons/gr_commons'
 
+require 'numo/narray'
+
 class GRCommonsTest < Test::Unit::TestCase
   def setup
     @utils = Module.new { extend GRCommons::GRCommonUtils }
