@@ -19,6 +19,7 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = '>= 2.5'
 
   spec.add_dependency 'fiddle'
+  spec.add_dependency 'gr-plot'
   spec.add_dependency 'histogram'
   spec.add_dependency 'numo-narray'
   spec.add_dependency 'pkg-config'
