@@ -134,24 +134,20 @@ export GKS_WSTYPE=100
 ## Documentation
 
 - [GR.rb Wiki](https://github.com/red-data-tools/GR.rb/wiki)
-- [GR Framework](https://gr-framework.org/)
-- [GR.rb API Documentation](https://rubydoc.info/gems/ruby-gr)
-
-Although GR.rb adds methods dynamically, we try our best to provide a complete yard document. If you want to see more up-to-date information, we recommend using the official GR reference.
+- [GR.rb API Documentation](https://rubydoc.info/gems/ruby-gr) - Yard documents.
+- [GR Framework](https://gr-framework.org/) - The official GR reference.
 
 ## GR Installation
 
 ### Installing an official release (recommended)
 
-Download the [latest release](https://github.com/sciapp/gr/releases).
-
-Set environment variable GRDIR.
+Download the [latest release](https://github.com/sciapp/gr/releases) and place it where you want. Then set environment variable `GRDIR`.
 
 ```sh
 export GRDIR="your/path/to/gr"
 ```
 
-macOS : Please  the section "How to open apps from un-notarized or unidentified developers" in the Apple documentation ["Safely open apps on your Mac"](https://support.apple.com/en-us/HT202491).
+macOS : See ["How to open apps from un-notarized or unidentified developers"](https://support.apple.com/en-us/HT202491) in the Apple documentation.
 
 ### Using package managers
 
