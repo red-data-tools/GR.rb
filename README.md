@@ -30,8 +30,7 @@ GR.rb supports Ruby 2.5+.
 First, [install GR](#gr-installation). Then install `gr-plot` gem.
 
 ```sh
-gem install gr-plot # Install GR wrapper with the matlab like api (recommended)
-gem install ruby-gr # Install pure GR wrapper
+gem install gr-plot
 ```
 
 [pkg-config](https://github.com/ruby-gnome/pkg-config) will detect the location of the shared library. Otherwise, you need to specify the environment variable. 
@@ -180,20 +179,13 @@ macOS : Please  the section "How to open apps from un-notarized or unidentified 
 
 ### Using package managers
 
-* The third party GR packages for Mac, Linux and Windows are available (for advanced users).
-* If you find any problem, please report the issue [here](https://github.com/red-data-tools/GR.rb/issues).
-* Note: These packages may not have some features such as video output.
+The third party GR packages for Mac, Linux and Windows are available for advanced users. However, these packages are provided by OSS volunteers and may not be the latest version or support some features (such as video output). If you find any problem, please report the issue [here](https://github.com/red-data-tools/GR.rb/issues). 
 
 #### Mac - Homebrew
 
 ```sh
 brew install libgr
-```
-
-Set the workstation type to gksqt.
-
-```sh
-export GKS_WSTYPE=411 # gksqt (recommended)
+export GKS_WSTYPE=411 # Set the workstation type to gksqt (recommended)
 ```
 
 #### Linux - openSUSE Build service
@@ -220,19 +212,8 @@ Please feel free to send us your PR.
 * Update GR packages ( Homebrew, MinGW, red-data-tools )
 * Create visualization tools based on GR.rb
 
-To get started with development:
-
-```sh
-git clone https://github.com/red-data-tools/GR.rb
-cd GR.rb
-bundle install
-bundle exec rake test
-```
-
-If you are not familiar with Ruby development, please see
+If you are not familiar with Ruby gem development, please see
 [I'm new to Ruby](https://github.com/red-data-tools/GR.rb/wiki/I%27m-new-to-Ruby)
-
-GR.rb is open source software
 
 ```
 Do you need commit rights to my repository?
@@ -240,10 +221,7 @@ Do you want to get admin rights and take over the project?
 If so, please feel free to contact us.
 ```
 
-## Future plans
-
-* Creating a backend for [Charty](https://github.com/red-data-tools/charty).
-* [Object-oriented interface](https://github.com/kojix2/GRUtils.rb) based on [GRUtils.jl](https://github.com/heliosdrm/GRUtils.jl). 
+I've seen a lot of OSS abandoned because no one has commit rights to the original repository anymore; the right to request commit rights for GR.rb is always open.
 
 ## Acknowledgements
 
