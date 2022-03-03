@@ -53,34 +53,10 @@ require 'gr/plot'
 x = [0, 0.2, 0.4, 0.6, 0.8, 1.0]
 y = [0.3, 0.5, 0.4, 0.2, 0.6, 0.7]
 
+# show the figure
 GR.plot(x, y)
-```
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/5798442/84570709-242ab880-adca-11ea-9099-3a6b3418bf19.png">
-</p>
-
-```ruby
-require 'gr/plot'
-
-x  = Numo::DFloat.linspace(0, 10, 101)
-y1 = Numo::NMath.sin(x)
-y2 = Numo::NMath.cos(x)
-
-GR.plot(
-  [x, y1, 'bo'], [x, y2, 'g*'],
-  title:    "Multiple plot example",
-  xlabel:   "x",
-  ylabel:   "y",
-  ylim:     [-1.2, 1.2],
-  labels:   ["sin(x)", "cos(x)"],
-  location: 11
-)
-```
-
-Save the figure in PNG format.
-
-```ruby
+# Save the figure in PNG format.
 GR.savefig("figure.png")
 ```
 
