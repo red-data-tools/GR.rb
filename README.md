@@ -27,21 +27,18 @@
 
 GR.rb supports Ruby 2.5+.
 
-First, [install GR](#gr-installation). Then install `ruby-gr` gem.
+First, [install GR](#gr-installation). Then install `gr-plot` gem.
 
 ```sh
 gem install gr-plot # Install GR wrapper with the matlab like api (recommended)
 gem install ruby-gr # Install pure GR wrapper
 ```
-Note: If you are using [RubyInstaller](https://rubyinstaller.org/) (Windows), pacman will automatically install [mingw-w64-gr](https://packages.msys2.org/base/mingw-w64-gr).
 
-Set environment variable `GRDIR`.
+[pkg-config](https://github.com/ruby-gnome/pkg-config) will detect the location of the shared library. Otherwise, you need to specify the environment variable. 
 
 ```sh
 export GRDIR="/your/path/to/gr"
 ```
-
-If you use package managers to install GR, [pkg-config](https://github.com/ruby-gnome/pkg-config) may automatically detect the shared library location without specifying the `GRDIR` environment variable.
 
 ## Quick Start
 
