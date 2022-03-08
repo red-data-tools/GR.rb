@@ -62,8 +62,6 @@ GR.savefig("figure.png")
 
 ## API Overview
 
-There are two different approaches when plotting with GR.rb. One is to call Matlab-like APIs. The other is to call GR/GR3 native functions.
-
 #### GR::Plot - A simple, matlab-style API.
 
 ```ruby
@@ -71,8 +69,7 @@ require 'gr/plot'
 GR.plot(x, y)
 ```
 
-Below are a list of available functions. See [GR.rb Wiki](https://github.com/red-data-tools/GR.rb/wiki) for details.
-Some GR module methods are overwritten.
+List of available functions. 
 
 [`plot`](../../wiki/Plotting-functions#plot)
 [`step`](../../wiki/Plotting-functions#step)
@@ -97,6 +94,9 @@ Some GR module methods are overwritten.
 [`shade`](../../wiki/Plotting-functions#shade)
 [`imshow`](../../wiki/Plotting-functions#imshow)
 [`isosurface`](../../wiki/Plotting-functions#isosurface)
+
+See [GR.rb Wiki](https://github.com/red-data-tools/GR.rb/wiki) for details.
+Some GR module methods are overwritten. Code has been moved to [gr-plot](https://github.com/red-data-tools/gr-plot).
 
 #### GR - A module for calling native GR functions.
 
