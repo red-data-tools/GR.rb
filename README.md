@@ -27,7 +27,7 @@
 
 GR.rb supports Ruby 2.5+.
 
-First, [install GR](#gr-installation). Then install `gr-plot` gem.
+First, [install GR](#gr-installation). Then install [`gr-plot`](https://github.com/red-data-tools/gr-plot) gem.
 
 ```sh
 gem install gr-plot
@@ -62,7 +62,7 @@ GR.savefig("figure.png")
 
 ## API Overview
 
-#### GR::Plot - A simple, matlab-style API.
+#### [GR::Plot - A simple, matlab-style API](https://github.com/red-data-tools/gr-plot)
 
 ```ruby
 require 'gr/plot'
@@ -98,7 +98,7 @@ List of available functions.
 See [GR.rb Wiki](https://github.com/red-data-tools/GR.rb/wiki) for details.
 Some GR module methods are overwritten. Code has been moved to [gr-plot](https://github.com/red-data-tools/gr-plot).
 
-#### GR - A module for calling native GR functions.
+#### GR - A module for calling native GR functions
 
 2-D Plots and common 3-D Plots.
 
@@ -110,7 +110,7 @@ GR.setviewport(0.1, 0.9, 0.1, 0.9)
 GR.setwindow(0.0, 20.0, 0.0, 20.0)
 ```
 
-#### GR3 - A module for calling native GR3 functions.
+#### GR3 - A module for calling native GR3 functions
 
 Complex 3D scenes.
 
