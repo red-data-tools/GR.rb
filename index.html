@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  File: README
+  
+    &mdash; Documentation by YARD 0.9.27
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "README";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><div id='filecontents'>
+<h1 id="label-GR.rb">GR.rb</h1>
+
+<p><a href="https://rubygems.org/gems/ruby-gr"><img src="https://img.shields.io/gem/v/ruby-gr?color=brightgreen"></a> <a href="https://github.com/red-data-tools/GR.rb/actions"><img src="https://github.com/red-data-tools/GR.rb/workflows/CI/badge.svg"></a> <a href="https://gitter.im/red-data-tools/en"><img src="https://badges.gitter.im/red-data-tools/en.svg"></a> <a href="https://rubydoc.info/gems/ruby-gr"><img src="https://img.shields.io/badge/docs-latest-blue.svg"></a></p>
+
+<p><a href="examples/rdatasets_rb.html"><img src="https://i.imgur.com/XEQ6wKs.png"></a> <a href="examples/fast_plots_rb.html"><img src="https://i.imgur.com/3w0Ejrm.png"></a> <a href="examples/fast_plots_rb.html"><img src="https://i.imgur.com/xUdoA2s.png"></a> <a href="examples/fast_plots_rb.html"><img src="https://i.imgur.com/52bOFKE.png"></a> <a href="examples/fast_plots_rb.html"><img src="https://i.imgur.com/yTTVetQ.png"></a> <a href="examples/fast_plots_rb.html"><img src="https://i.imgur.com/CuRN6oC.png"></a> <a href="examples/griddata_rb.html"><img src="https://i.imgur.com/58HdYDo.png"></a> <a href="examples/2darray_rb.html"><img src="https://i.imgur.com/aKR2FJG.png"></a> <a href="examples/2dpolararray_rb.html"><img src="https://i.imgur.com/cmSrxvS.png"></a> <a href="examples/hexbin_rb.html"><img src="https://i.imgur.com/unWhQHr.png"></a> <a href="examples/rdatasets_rb.html"><img src="https://i.imgur.com/ZPit2F5.png"></a> <a href="examples/rdatasets_rb.html"><img src="https://i.imgur.com/TbNoxwy.png"></a> <a href="examples/kws2_rb.html"><img src="https://i.imgur.com/sWdaHme.png"></a> <a href="examples/face_rb.html"><img src="https://i.imgur.com/uLCKi2r.png"></a> <a href="examples/shade_ex_rb.html"><img src="https://i.imgur.com/VJmS3EQ.png"></a></p>
+
+<p>:bar_chart: <a href="https://github.com/sciapp/gr">GR framework</a> - powerful visualization library - for Ruby</p>
+
+<h2 id="label-Installation">Installation</h2>
+
+<p>GR.rb supports Ruby 2.5+.</p>
+
+<p>First, <a href="#gr-installation">install GR</a>. Then install href="https://github.com/red-data-tools/gr-plot"></a> gem.</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_gem'>gem</span> <span class='id identifier rubyid_install'>install</span> <span class='id identifier rubyid_gr'>gr</span><span class='op'>-</span><span class='id identifier rubyid_plot'>plot</span>
+</code></pre>
+
+<p><a href="https://github.com/ruby-gnome/pkg-config">pkg-config</a> will detect the location of the shared library. Otherwise, you need to specify the environment variable.</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_export'>export</span> <span class='const'>GRDIR</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/your/path/to/gr</span><span class='tstring_end'>&quot;</span></span>
+</code></pre>
+
+<h2 id="label-Quick+Start">Quick Start</h2>
+
+<p>:point_right: <a href="https://github.com/red-data-tools/GR.rb/wiki/Plotting-functions">Wiki -plotting functions</a></p>
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/5798442/69689128-74cb1480-110b-11ea-9097-29e878a19e8f.png">
+</p>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>gr/plot</span><span class='tstring_end'>&#39;</span></span>
+
+<span class='id identifier rubyid_x'>x</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='int'>0</span><span class='comma'>,</span> <span class='float'>0.2</span><span class='comma'>,</span> <span class='float'>0.4</span><span class='comma'>,</span> <span class='float'>0.6</span><span class='comma'>,</span> <span class='float'>0.8</span><span class='comma'>,</span> <span class='float'>1.0</span><span class='rbracket'>]</span>
+<span class='id identifier rubyid_y'>y</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='float'>0.3</span><span class='comma'>,</span> <span class='float'>0.5</span><span class='comma'>,</span> <span class='float'>0.4</span><span class='comma'>,</span> <span class='float'>0.2</span><span class='comma'>,</span> <span class='float'>0.6</span><span class='comma'>,</span> <span class='float'>0.7</span><span class='rbracket'>]</span>
+
+<span class='comment'># show the figure
+</span><span class='const'><span class='object_link'><a href="GR.html" title="GR (module)">GR</a></span></span><span class='period'>.</span><span class='id identifier rubyid_plot'>plot</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='rparen'>)</span>
+
+<span class='comment'># Save the figure in PNG format.
+</span><span class='const'><span class='object_link'><a href="GR.html" title="GR (module)">GR</a></span></span><span class='period'>.</span><span class='id identifier rubyid_savefig'>savefig</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>figure.png</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+</code></pre>
+
+<h2 id="label-API+Overview">API Overview</h2>
+
+<h4 id="label-GR-3A-3APlot+-+A+simple-2C+matlab-style+API"><a href="https://github.com/red-data-tools/gr-plot">GR::Plot - A simple, matlab-style API</a></h4>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>gr/plot</span><span class='tstring_end'>&#39;</span></span>
+<span class='const'><span class='object_link'><a href="GR.html" title="GR (module)">GR</a></span></span><span class='period'>.</span><span class='id identifier rubyid_plot'>plot</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='rparen'>)</span>
+</code></pre>
+
+<p>List of available functions.</p>
+
+<p>href="../../wiki/Plotting-functions#plot"></a> href="../../wiki/Plotting-functions#step"></a> href="../../wiki/Plotting-functions#plot3"></a> href="../../wiki/Plotting-functions#polar"></a> href="../../wiki/Plotting-functions#scatter"></a> href="../../wiki/Plotting-functions#scatter3"></a> href="../../wiki/Plotting-functions#stem"></a> href="../../wiki/Plotting-functions#barplot"></a> href="../../wiki/Plotting-functions#histogram"></a> href="../../wiki/Plotting-functions#polarhistogram"></a> href="../../wiki/Plotting-functions#hexbin"></a> href="../../wiki/Plotting-functions#contour"></a> href="../../wiki/Plotting-functions#contourf"></a> href="../../wiki/Plotting-functions#tricont"></a> href="../../wiki/Plotting-functions#surface"></a> href="../../wiki/Plotting-functions#trisurf"></a> href="../../wiki/Plotting-functions#wireframe"></a> href="../../wiki/Plotting-functions#volume"></a> href="../../wiki/Plotting-functions#heatmap"></a> href="../../wiki/Plotting-functions#polarheatmap"></a> href="../../wiki/Plotting-functions#shade"></a> href="../../wiki/Plotting-functions#imshow"></a> href="../../wiki/Plotting-functions#isosurface"></a></p>
+
+<p>See <a href="https://github.com/red-data-tools/GR.rb/wiki">GR.rb Wiki</a> for details. Some GR module methods are overwritten. Code has been moved to <a href="https://github.com/red-data-tools/gr-plot">gr-plot</a>.</p>
+
+<h4 id="label-GR+-+A+module+for+calling+native+GR+functions">GR - A module for calling native GR functions</h4>
+
+<p>2-D Plots and common 3-D Plots.</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>gr</span><span class='tstring_end'>&#39;</span></span>
+
+<span class='comment'># For example
+</span><span class='const'><span class='object_link'><a href="GR.html" title="GR (module)">GR</a></span></span><span class='period'>.</span><span class='id identifier rubyid_setviewport'><span class='object_link'><a href="GR.html#setviewport-class_method" title="GR.setviewport (method)">setviewport</a></span></span><span class='lparen'>(</span><span class='float'>0.1</span><span class='comma'>,</span> <span class='float'>0.9</span><span class='comma'>,</span> <span class='float'>0.1</span><span class='comma'>,</span> <span class='float'>0.9</span><span class='rparen'>)</span>
+<span class='const'><span class='object_link'><a href="GR.html" title="GR (module)">GR</a></span></span><span class='period'>.</span><span class='id identifier rubyid_setwindow'><span class='object_link'><a href="GR.html#setwindow-class_method" title="GR.setwindow (method)">setwindow</a></span></span><span class='lparen'>(</span><span class='float'>0.0</span><span class='comma'>,</span> <span class='float'>20.0</span><span class='comma'>,</span> <span class='float'>0.0</span><span class='comma'>,</span> <span class='float'>20.0</span><span class='rparen'>)</span>
+</code></pre>
+
+<h4 id="label-GR3+-+A+module+for+calling+native+GR3+functions">GR3 - A module for calling native GR3 functions</h4>
+
+<p>Complex 3D scenes.</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>gr3</span><span class='tstring_end'>&#39;</span></span>
+
+<span class='comment'># For example
+</span><span class='const'><span class='object_link'><a href="GR3.html" title="GR3 (module)">GR3</a></span></span><span class='period'>.</span><span class='id identifier rubyid_cameralookat'><span class='object_link'><a href="GR3.html#cameralookat-class_method" title="GR3.cameralookat (method)">cameralookat</a></span></span><span class='lparen'>(</span><span class='op'>-</span><span class='int'>3</span><span class='comma'>,</span> <span class='int'>2</span><span class='comma'>,</span> <span class='op'>-</span><span class='int'>2</span><span class='comma'>,</span> <span class='int'>0</span><span class='comma'>,</span> <span class='int'>0</span><span class='comma'>,</span> <span class='int'>0</span><span class='comma'>,</span> <span class='int'>0</span><span class='comma'>,</span> <span class='int'>0</span><span class='comma'>,</span> <span class='op'>-</span><span class='int'>1</span><span class='rparen'>)</span>
+</code></pre>
+
+<h3 id="label-Using+GR.rb+non-interactively">Using GR.rb non-interactively</h3>
+
+<p>Both APIs will by default start a Qt based window to show the result of the last call. This behavior is caused by GR itself as it will <a href="https://gr-framework.org/workstations.html#no-output">implicitly generate output to a file or application</a>. If you want to use GR.rb non-interactively, eg., as part of a static site build, you can do this by setting the environment variable <code>GKS_WSTYPE</code>to <code>100</code>.</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_export'>export</span> <span class='const'>GKS_WSTYPE</span><span class='op'>=</span><span class='int'>100</span>
+</code></pre>
+
+<h2 id="label-Documentation">Documentation</h2>
+<ul><li>
+<p><a href="https://github.com/red-data-tools/GR.rb/wiki">GR.rb Wiki</a></p>
+</li><li>
+<p><a href="https://rubydoc.info/gems/ruby-gr">GR.rb API Documentation</a> - Yard documents.</p>
+</li><li>
+<p><a href="https://gr-framework.org/">GR Framework</a> - The official GR reference.</p>
+</li></ul>
+
+<h2 id="label-GR+Installation">GR Installation</h2>
+
+<h3 id="label-Installing+an+official+release+-28recommended-29">Installing an official release (recommended)</h3>
+
+<p>Download the <a href="https://github.com/sciapp/gr/releases">latest release</a> and place it where you want. Then set environment variable <code>GRDIR</code>.</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_export'>export</span> <span class='const'>GRDIR</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>your/path/to/gr</span><span class='tstring_end'>&quot;</span></span>
+</code></pre>
+
+<p>macOS : See <a href="https://support.apple.com/en-us/HT202491">“How to open apps from un-notarized or unidentified developers”</a> in the Apple documentation.</p>
+
+<h3 id="label-Using+package+managers">Using package managers</h3>
+
+<p>The third party GR packages for Mac, Linux and Windows are available for advanced users. However, these packages are provided by OSS volunteers and may not be the latest version or support some features (such as video output). If you find any problem, please report the issue <a href="https://github.com/red-data-tools/GR.rb/issues">here</a>.</p>
+
+<h4 id="label-Mac+-+Homebrew">Mac - Homebrew</h4>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_brew'>brew</span> <span class='id identifier rubyid_install'>install</span> <span class='id identifier rubyid_libgr'>libgr</span>
+<span class='id identifier rubyid_export'>export</span> <span class='const'>GKS_WSTYPE</span><span class='op'>=</span><span class='int'>411</span> <span class='comment'># Set the workstation type to gksqt (recommended)
+</span></code></pre>
+
+<h4 id="label-Linux+-+openSUSE+Build+service">Linux - openSUSE Build service</h4>
+
+<p>GR releases are also available from the <a href="https://software.opensuse.org//download.html?project=science%3Agr-framework&package=gr">openSUSE Build service</a> for CentOS, Debian, Fedora openSUSE and Ubuntu. Obtain a packaged release <a href="https://software.opensuse.org//download.html?project=science%3Agr-framework&package=gr">here</a>.</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_export'>export</span> <span class='const'>GRDIR</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/usr/gr</span><span class='tstring_end'>&quot;</span></span> <span class='comment'># Check the location with `dpkg -L gr`
+</span></code></pre>
+
+<h4 id="label-Windows+-+MSYS2">Windows - MSYS2</h4>
+
+<p>If you are using Rubyinstaller, pacman will automatically install <a href="https://packages.msys2.org/base/mingw-w64-gr">mingw-w64-gr</a> when the gem is installed.</p>
+
+<h2 id="label-Contributing">Contributing</h2>
+
+<p>GR.rb is a library under development, so even small improvements like fixing typos are welcome! Please feel free to send us your PR.</p>
+<ul><li>
+<p><a href="https://github.com/red-data-tools/GR.rb/issues">Report bugs</a></p>
+</li><li>
+<p>Fix bugs and <a href="https://github.com/red-data-tools/GR.rb/pulls">submit pull requests</a></p>
+</li><li>
+<p>Write, clarify, or fix documentation</p>
+</li><li>
+<p>Suggest or add new features</p>
+</li><li>
+<p>Update GR packages ( Homebrew, MinGW, red-data-tools )</p>
+</li><li>
+<p>Create visualization tools based on GR.rb</p>
+</li></ul>
+
+<p>If you are not familiar with Ruby gem development, please see <a href="https://github.com/red-data-tools/GR.rb/wiki/I%27m-new-to-Ruby">I’m new to Ruby</a></p>
+
+<pre class="code ruby"><code class="ruby">Do you need commit rights to my repository?
+Do you want to get admin rights and take over the project?
+If so, please feel free to contact us.
+</code></pre>
+
+<p>I’ve seen a lot of OSS abandoned because no one has commit rights to the original repository anymore; the right to request commit rights for GR.rb is always open.</p>
+
+<h2 id="label-Acknowledgements">Acknowledgements</h2>
+
+<p>We would like to thank Josef Heinen, the creator of <a href="https://github.com/sciapp/gr">GR</a> and <a href="https://github.com/jheinen/GR.jl">GR.jl</a>, Florian Rhiem, the creator of <a href="https://github.com/sciapp/python-gr">python-gr</a>, and all <a href="https://github.com/sciapp/gr">GR</a> developers.</p>
+</div></div>
+
+      <div id="footer">
+  Generated on Thu Mar 24 09:41:48 2022 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.27 (ruby-3.1.1).
+</div>
+
+    </div>
+  </body>
+</html>
