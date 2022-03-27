@@ -60,7 +60,7 @@ GR.plot(x, y)
 GR.savefig("figure.png")
 ```
 
-GR.rb supports [Jupyter Notebook / Lab](https://jupyter.org).
+GR.rb supports [Jupyter Notebook / Lab](../../wiki/Jupyter-Notebook).
 
 ## API Overview
 
