@@ -60,6 +60,8 @@ GR.plot(x, y)
 GR.savefig("figure.png")
 ```
 
+GR.rb supports [Jupyter Notebook / Lab](https://jupyter.org).
+
 ## API Overview
 
 #### [GR::Plot - A simple, matlab-style API](https://github.com/red-data-tools/gr-plot)
