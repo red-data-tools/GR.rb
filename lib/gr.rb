@@ -274,6 +274,32 @@ module GR
       end
     end
 
+    # Draw a text at position `x`, `y` using the given options and current text
+    # attributes.
+    #
+    # @param x      [Numeric] The X coordinate of the starting position of the text string
+    # @param y      [Numeric] The Y coordinate of the starting position of the text string
+    # @param string [String]  The text to be drawn
+    # @param opts   [Integer] Bit mask including text options (GR_TEXT_USE_WC,
+    # GR_TEXT_ENABLE_INLINE_MATH)
+    #
+    # The values for `x` and `y` specify the text position. If the GR_TEXT_USE_WC
+    # option is set, they are interpreted as world cordinates, otherwise as
+    # normalized device coordinates. The string may contain new line characters
+    # and inline math expressions ($...$). The latter are only taken into account,
+    # if the GR_TEXT_ENABLE_INLINE_MATH option is set.
+    # The attributes that control the appearance of text are text font and
+    # precision, character expansion factor, character spacing, text color index,
+    # character height, character up vector, text path and text alignment.
+    #
+    # @!method text
+
+    def inqtextx(x, y, string, opts)
+      inquiry [{ double: 4 }, { double: 4 }] do |tbx, tby|
+        super(x, y, string, opts, tbx, tby)
+      end
+    end
+
     # Allows you to specify a polygonal shape of an area to be filled.
     #
     # @param x [Array, NArray] A list containing the X coordinates

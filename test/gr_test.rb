@@ -35,6 +35,12 @@ class GRTest < Test::Unit::TestCase
       assert_kind_of Array, GR.inqtext(0, 0, 'Ruby')
     end
 
+    def test_inqtextx
+      assert_kind_of Array, GR.inqtextx(0, 0, 'Ruby',
+                                        GR::TEXT_ENABLE_INLINE_MATH | \
+                                        GR::TEXT_USE_WC)
+    end
+
     def test_linetype
       assert_nil GR.setlinetype(3)
       assert_equal 3, GR.inqlinetype
