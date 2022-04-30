@@ -39,7 +39,7 @@ jobs:
         run: |
           sudo apt update -yq && sudo apt upgrade -yq
           wget https://download.opensuse.org/repositories/science:/gr-framework/xUbuntu_20.04/amd64/gr_0.64.2-1_amd64.deb
-          sudo apt-get install -y gr_*amd64.deb
+          sudo apt-get install -y ./gr_*amd64.deb
       - name: Set up Homebrew (macos)
         if: ${{ matrix.gr == 'system' && matrix.os == 'macos' }}
         run: |
