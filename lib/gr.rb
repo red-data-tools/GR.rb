@@ -268,12 +268,6 @@ module GR
     #
     # @!method text
 
-    def inqtext(x, y, string)
-      inquiry [{ double: 4 }, { double: 4 }] do |tbx, tby|
-        super(x, y, string, tbx, tby)
-      end
-    end
-
     # Draw a text at position `x`, `y` using the given options and current text
     # attributes.
     #
@@ -292,7 +286,13 @@ module GR
     # precision, character expansion factor, character spacing, text color index,
     # character height, character up vector, text path and text alignment.
     #
-    # @!method text
+    # @!method textx
+
+    def inqtext(x, y, string)
+      inquiry [{ double: 4 }, { double: 4 }] do |tbx, tby|
+        super(x, y, string, tbx, tby)
+      end
+    end
 
     def inqtextx(x, y, string, opts)
       inquiry [{ double: 4 }, { double: 4 }] do |tbx, tby|
