@@ -160,6 +160,7 @@ module GR
     try_extern 'void gr_resizeselection(int, double, double)'
     try_extern 'void gr_inqbbox(double *, double *, double *, double *)'
     try_extern 'double gr_precision(void)'
+    try_extern 'int gr_text_maxsize(void)'
     try_extern 'void gr_setregenflags(int)'
     try_extern 'int gr_inqregenflags(void)'
     try_extern 'void gr_savestate(void)'

@@ -1846,7 +1846,9 @@ module GR
     end
 
     # @return [Numeric]
-    # @!method precision
+    # @!method
+
+    # @!method text_maxsize
 
     # @!method setregenflags
 
