@@ -3262,7 +3262,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Draw a text at position ‘x`, `y` using the current text attributes.</p>
+<p>Draw a text at position ‘x`, `y` using the given options and current text attributes.</p>
 </div></span>
   
 </li>
@@ -3377,9 +3377,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Draw a text at position ‘x`, `y` using the given options and current text attributes.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -5481,7 +5479,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Draw a text at position ‘x`, `y` using the given options and current text attributes.</p>
+<p>Draw a text at position ‘x`, `y` using the current text attributes.</p>
 </div></span>
   
 </li>
@@ -5528,6 +5526,30 @@
   
     <span class="summary_desc"><div class='inline'>
 <p>Draw a text at position ‘x`, `y` using the current text attributes.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#textx-class_method" title="textx (class method)">.<strong>textx</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Draw a text at position ‘x`, `y` using the given options and current text attributes.</p>
 </div></span>
   
 </li>
@@ -11830,9 +11852,11 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Draw a text at position ‘x`, `y` using the current text attributes.</p>
+<p>Draw a text at position ‘x`, `y` using the given options and current text attributes.</p>
 
-<p>The values for ‘x` and `y` are in normalized device coordinates. The attributes that control the appearance of text are text font and precision, character expansion factor, character spacing, text color index, character height, character up vector, text path and text alignment.</p>
+<p>GR_TEXT_ENABLE_INLINE_MATH)</p>
+
+<p>The values for ‘x` and `y` specify the text position. If the GR_TEXT_USE_WC option is set, they are interpreted as world cordinates, otherwise as normalized device coordinates. The string may contain new line characters and inline math expressions ($…$). The latter are only taken into account, if the GR_TEXT_ENABLE_INLINE_MATH option is set. The attributes that control the appearance of text are text font and precision, character expansion factor, character spacing, text color index, character height, character up vector, text path and text alignment.</p>
 
 
   </div>
@@ -11852,7 +11876,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The X coordinate of starting position of the text string</p>
+<p>The X coordinate of the starting position of the text string</p>
 </div>
       
     </li>
@@ -11868,7 +11892,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The Y coordinate of starting position of the text string</p>
+<p>The Y coordinate of the starting position of the text string</p>
 </div>
       
     </li>
@@ -11889,6 +11913,22 @@
       
     </li>
   
+    <li>
+      
+        <span class='name'>opts</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Bit mask including text options (GR_TEXT_USE_WC,</p>
+</div>
+      
+    </li>
+  
 </ul>
 
 
@@ -11898,14 +11938,14 @@
       <pre class="lines">
 
 
-271
-272
-273
-274
-275</pre>
+291
+292
+293
+294
+295</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 271</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 291</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inqtext'>inqtext</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_string'>string</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_inquiry'>inquiry</span> <span class='lbracket'>[</span><span class='lbrace'>{</span> <span class='label'>double:</span> <span class='int'>4</span> <span class='rbrace'>}</span><span class='comma'>,</span> <span class='lbrace'>{</span> <span class='label'>double:</span> <span class='int'>4</span> <span class='rbrace'>}</span><span class='rbracket'>]</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_tbx'>tbx</span><span class='comma'>,</span> <span class='id identifier rubyid_tby'>tby</span><span class='op'>|</span>
@@ -12100,90 +12140,7 @@
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Draw a text at position ‘x`, `y` using the given options and current text attributes.</p>
-
-<p>GR_TEXT_ENABLE_INLINE_MATH)</p>
-
-<p>The values for ‘x` and `y` specify the text position. If the GR_TEXT_USE_WC option is set, they are interpreted as world cordinates, otherwise as normalized device coordinates. The string may contain new line characters and inline math expressions ($…$). The latter are only taken into account, if the GR_TEXT_ENABLE_INLINE_MATH option is set. The attributes that control the appearance of text are text font and precision, character expansion factor, character spacing, text color index, character height, character up vector, text path and text alignment.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  <p class="tag_title">Parameters:</p>
-<ul class="param">
-  
-    <li>
-      
-        <span class='name'>x</span>
-      
-      
-        <span class='type'>(<tt>Numeric</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The X coordinate of the starting position of the text string</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-        <span class='name'>y</span>
-      
-      
-        <span class='type'>(<tt>Numeric</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The Y coordinate of the starting position of the text string</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-        <span class='name'>string</span>
-      
-      
-        <span class='type'>(<tt>String</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The text to be drawn</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-        <span class='name'>opts</span>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Bit mask including text options (GR_TEXT_USE_WC,</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
@@ -19536,11 +19493,9 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Draw a text at position ‘x`, `y` using the given options and current text attributes.</p>
+<p>Draw a text at position ‘x`, `y` using the current text attributes.</p>
 
-<p>GR_TEXT_ENABLE_INLINE_MATH)</p>
-
-<p>The values for ‘x` and `y` specify the text position. If the GR_TEXT_USE_WC option is set, they are interpreted as world cordinates, otherwise as normalized device coordinates. The string may contain new line characters and inline math expressions ($…$). The latter are only taken into account, if the GR_TEXT_ENABLE_INLINE_MATH option is set. The attributes that control the appearance of text are text font and precision, character expansion factor, character spacing, text color index, character height, character up vector, text path and text alignment.</p>
+<p>The values for ‘x` and `y` are in normalized device coordinates. The attributes that control the appearance of text are text font and precision, character expansion factor, character spacing, text color index, character height, character up vector, text path and text alignment.</p>
 
 
   </div>
@@ -19560,7 +19515,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The X coordinate of the starting position of the text string</p>
+<p>The X coordinate of starting position of the text string</p>
 </div>
       
     </li>
@@ -19576,7 +19531,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The Y coordinate of the starting position of the text string</p>
+<p>The Y coordinate of starting position of the text string</p>
 </div>
       
     </li>
@@ -19597,22 +19552,6 @@
       
     </li>
   
-    <li>
-      
-        <span class='name'>opts</span>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Bit mask including text options (GR_TEXT_USE_WC,</p>
-</div>
-      
-    </li>
-  
 </ul>
 
 
@@ -19622,20 +19561,12 @@
       <pre class="lines">
 
 
-271
-272
-273
-274
-275</pre>
+</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 271</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 256</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_inqtext'>inqtext</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_string'>string</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_inquiry'>inquiry</span> <span class='lbracket'>[</span><span class='lbrace'>{</span> <span class='label'>double:</span> <span class='int'>4</span> <span class='rbrace'>}</span><span class='comma'>,</span> <span class='lbrace'>{</span> <span class='label'>double:</span> <span class='int'>4</span> <span class='rbrace'>}</span><span class='rbracket'>]</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_tbx'>tbx</span><span class='comma'>,</span> <span class='id identifier rubyid_tby'>tby</span><span class='op'>|</span>
-    <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_string'>string</span><span class='comma'>,</span> <span class='id identifier rubyid_tbx'>tbx</span><span class='comma'>,</span> <span class='id identifier rubyid_tby'>tby</span><span class='rparen'>)</span>
-  <span class='kw'>end</span>
-<span class='kw'>end</span></pre>
+</pre>
     </td>
   </tr>
 </table>
@@ -19810,6 +19741,123 @@
       <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1012</span>
 
 </pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="textx-class_method">
+  
+    .<strong>textx</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Draw a text at position ‘x`, `y` using the given options and current text attributes.</p>
+
+<p>GR_TEXT_ENABLE_INLINE_MATH)</p>
+
+<p>The values for ‘x` and `y` specify the text position. If the GR_TEXT_USE_WC option is set, they are interpreted as world cordinates, otherwise as normalized device coordinates. The string may contain new line characters and inline math expressions ($…$). The latter are only taken into account, if the GR_TEXT_ENABLE_INLINE_MATH option is set. The attributes that control the appearance of text are text font and precision, character expansion factor, character spacing, text color index, character height, character up vector, text path and text alignment.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>x</span>
+      
+      
+        <span class='type'>(<tt>Numeric</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The X coordinate of the starting position of the text string</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>y</span>
+      
+      
+        <span class='type'>(<tt>Numeric</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The Y coordinate of the starting position of the text string</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>string</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The text to be drawn</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>opts</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Bit mask including text options (GR_TEXT_USE_WC,</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+291
+292
+293
+294
+295</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 291</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_inqtext'>inqtext</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_string'>string</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_inquiry'>inquiry</span> <span class='lbracket'>[</span><span class='lbrace'>{</span> <span class='label'>double:</span> <span class='int'>4</span> <span class='rbrace'>}</span><span class='comma'>,</span> <span class='lbrace'>{</span> <span class='label'>double:</span> <span class='int'>4</span> <span class='rbrace'>}</span><span class='rbracket'>]</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_tbx'>tbx</span><span class='comma'>,</span> <span class='id identifier rubyid_tby'>tby</span><span class='op'>|</span>
+    <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_string'>string</span><span class='comma'>,</span> <span class='id identifier rubyid_tbx'>tbx</span><span class='comma'>,</span> <span class='id identifier rubyid_tby'>tby</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -20694,7 +20742,7 @@
 </div>
 
       <div id="footer">
-  Generated on Sat Apr 30 02:05:47 2022 by
+  Generated on Sat Apr 30 02:22:48 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.1.2).
 </div>
