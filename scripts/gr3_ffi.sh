@@ -2,7 +2,7 @@
 
 cd "$(dirname "$0")"
 
-cat ../lib/gr/ffi.rb \
+cat ../lib/gr3/ffi.rb \
   | sed -ze "s/' *\\\\ *\n *'//g" \
   | grep "try_extern" \
   | sed -e "s/^[ \t]*//" -e "s/[ \t]*$//" \
