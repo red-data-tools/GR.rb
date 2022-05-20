@@ -44,7 +44,7 @@ module GR
     try_extern 'void gr_polarcellarray(double, double, double, double, double, double, ' \
                'int, int, int, int, int, int, int *)'
     try_extern 'void gr_nonuniformpolarcellarray(double, double, double *, double *, ' \
-               'int, int, int, int, int, int, int *);'
+               'int, int, int, int, int, int, int *)'
     try_extern 'void gr_gdp(int, double *, double *, int, int, int *)'
     try_extern 'void gr_spline(int, double *, double *, int, int)'
     try_extern 'void gr_gridit(int, double *, double *, double *, int, int, ' \
@@ -99,10 +99,11 @@ module GR
     try_extern 'void gr_inqscale(int *)'
     try_extern 'int gr_textext(double, double, char *)'
     try_extern 'void gr_inqtextext(double, double, char *, double *, double *)'
+    try_extern 'void gr_setscientificformat(int)'
     try_extern 'void gr_axes(double, double, double, double, int, int, double)'
     try_extern 'void gr_axeslbl(double, double, double, double, int, int, double,' \
-               'void (*)(double, double, const char *, double),' \
-               'void (*)(double, double, const char *, double))'
+               ' void (*)(double, double, const char *, double),' \
+               ' void (*)(double, double, const char *, double))'
     try_extern 'void gr_grid(double, double, double, double, int, int)'
     try_extern 'void gr_grid3d(double, double, double, double, double, double, int, int, int)'
     try_extern 'void gr_verrorbars(int, double *, double *, double *, double *)'
@@ -174,22 +175,22 @@ module GR
     try_extern 'void gr_gradient(int, int, double *, double *, double *, double *, double *)'
     try_extern 'void gr_quiver(int, int, double *, double *, double *, double *, int)'
     try_extern 'void gr_interp2(int nx, int ny, const double *x, const double *y, const double *z,' \
-               'int nxq, int nyq, const double *xq, const double *yq, double *zq, int method, double extrapval)'
+               ' int nxq, int nyq, const double *xq, const double *yq, double *zq, int method, double extrapval)'
     try_extern 'const char *gr_version(void)'
     try_extern 'void gr_shade(int, double *, double *, int, int, double *, int, int, int *)'
     try_extern 'void gr_shadepoints(int, double *, double *, int, int, int)'
     try_extern 'void gr_shadelines(int, double *, double *, int, int, int)'
     try_extern 'void gr_panzoom(double, double, double, double, double *, double *, double *, double *)'
     try_extern 'int gr_findboundary(int, double *, double *, double, double (*)(double, double), int, int *)'
-    try_extern 'void gr_setresamplemethod(unsigned int flag)'
-    try_extern 'void gr_inqresamplemethod(unsigned int *flag)'
+    try_extern 'void gr_setresamplemethod(unsigned int)'
+    try_extern 'void gr_inqresamplemethod(unsigned int *)'
     try_extern 'void gr_path(int, double *, double *, const char *)'
     try_extern 'void gr_setborderwidth(double)'
     try_extern 'void gr_inqborderwidth(double *)'
     try_extern 'void gr_setbordercolorind(int)'
     try_extern 'void gr_inqbordercolorind(int *)'
     try_extern 'void gr_selectclipxform(int)'
-    try_extern 'void gr_inqclipxform(int *);'
+    try_extern 'void gr_inqclipxform(int *)'
     try_extern 'void gr_setprojectiontype(int)'
     try_extern 'void gr_inqprojectiontype(int *)'
     try_extern 'void gr_setperspectiveprojection(double, double, double)'
@@ -197,7 +198,7 @@ module GR
     try_extern 'void gr_settransformationparameters(double, double, double, ' \
                'double, double, double, double, double, double)'
     try_extern 'void gr_inqtransformationparameters(double *, double *, double *, ' \
-               'double *, double *, double *, double *, double *, double *);'
+               'double *, double *, double *, double *, double *, double *)'
     try_extern 'void gr_setorthographicprojection(double, double, double, double, double, double)'
     try_extern 'void gr_inqorthographicprojection(double *, double *, double *, double *, double *, double *)'
     try_extern 'void gr_camerainteraction(double, double, double, double)'
@@ -211,7 +212,7 @@ module GR
     try_extern 'void gr_settextencoding(int)'
     try_extern 'void gr_inqtextencoding(int *)'
     try_extern 'void gr_loadfont(char *, int *)'
-    # gr_setcallback(char *(*)(const char *));
+    try_extern 'void gr_setcallback(char *(*)(const char *))'
     try_extern 'void gr_setthreadnumber(int)'
     try_extern 'void gr_setpicturesizeforvolume(int, int)'
     try_extern 'void gr_setvolumebordercalculation(int)'
