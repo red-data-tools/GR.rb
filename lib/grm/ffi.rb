@@ -47,6 +47,7 @@ module GRM
     typealias 'const_int', 'int' # FIXME
     try_extern 'int grm_input(const grm_args_t *input_args)'
     try_extern 'int grm_get_box(const_int x1, const_int y1, const_int x2, const_int y2, const_int keep_aspect_ratio, int *x, int *y, int *w, int *h)' # FIXME
+    try_extern 'int grm_is3d(const int x, const int y)'
     try_extern 'grm_tooltip_info_t *grm_get_tooltip(const_int, const_int)' # FIXME
 
     # https://github.com/sciapp/gr/blob/master/lib/grm/net.h
