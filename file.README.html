@@ -176,8 +176,13 @@
 
 <p>GR releases are also available from the <a href="https://software.opensuse.org//download.html?project=science%3Agr-framework&package=gr">openSUSE Build service</a> for CentOS, Debian, Fedora openSUSE and Ubuntu. Obtain a packaged release <a href="https://software.opensuse.org//download.html?project=science%3Agr-framework&package=gr">here</a>.</p>
 
+<p>GR will be installed in <code>/usr/gr</code>. Set one of the following environment variables so that GR.rb can find the library.</p>
+
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_export'>export</span> <span class='const'>GRDIR</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/usr/gr</span><span class='tstring_end'>&quot;</span></span> <span class='comment'># Check the location with `dpkg -L gr`
 </span></code></pre>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_export'>export</span> <span class='const'>PKG_CONFIG_PATH</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>$PKG_CONFIG_PATH:/usr/gr/lib/pkgconfig</span><span class='tstring_end'>&quot;</span></span>
+</code></pre>
 
 <h4 id="label-Windows+-+MSYS2">Windows - MSYS2</h4>
 
@@ -215,7 +220,7 @@ If so, please feel free to contact us.
 </div></div>
 
       <div id="footer">
-  Generated on Fri May 20 06:24:30 2022 by
+  Generated on Fri May 20 06:34:58 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.1.2).
 </div>
