@@ -2,4 +2,5 @@
 
 cd "$(dirname "$0")"
 
-diff <(./gr_h.sh) <(./gr_ffi.sh)
+delta <(./gr_h.sh) <(./gr_ffi.sh)
+# diff <(./gr_h.sh) <(./gr_ffi.sh)
