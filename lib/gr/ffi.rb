@@ -37,18 +37,18 @@ module GR
     try_extern 'void gr_inqtext(double, double, char *, double *, double *)'
     try_extern 'void gr_inqtextx(double, double, char *, int, double *, double *)'
     try_extern 'void gr_fillarea(int, double *, double *)'
-    try_extern 'void gr_cellarray(double, double, double, double, ' \
-               'int, int, int, int, int, int, int *)'
-    try_extern 'void gr_nonuniformcellarray(double *, double *, ' \
-               'int, int, int, int, int, int, int *)'
-    try_extern 'void gr_polarcellarray(double, double, double, double, double, double, ' \
-               'int, int, int, int, int, int, int *)'
-    try_extern 'void gr_nonuniformpolarcellarray(double, double, double *, double *, ' \
-               'int, int, int, int, int, int, int *)'
+    try_extern 'void gr_cellarray(double, double, double, double,' \
+               ' int, int, int, int, int, int, int *)'
+    try_extern 'void gr_nonuniformcellarray(double *, double *,' \
+               ' int, int, int, int, int, int, int *)'
+    try_extern 'void gr_polarcellarray(double, double, double, double, double, double,' \
+               ' int, int, int, int, int, int, int *)'
+    try_extern 'void gr_nonuniformpolarcellarray(double, double, double *, double *,' \
+               ' int, int, int, int, int, int, int *)'
     try_extern 'void gr_gdp(int, double *, double *, int, int, int *)'
     try_extern 'void gr_spline(int, double *, double *, int, int)'
-    try_extern 'void gr_gridit(int, double *, double *, double *, int, int, ' \
-               'double *, double *, double *)'
+    try_extern 'void gr_gridit(int, double *, double *, double *, int, int,' \
+               ' double *, double *, double *)'
     try_extern 'void gr_setlinetype(int)'
     try_extern 'void gr_inqlinetype(int *)'
     try_extern 'void gr_setlinewidth(double)'
@@ -195,10 +195,10 @@ module GR
     try_extern 'void gr_inqprojectiontype(int *)'
     try_extern 'void gr_setperspectiveprojection(double, double, double)'
     try_extern 'void gr_inqperspectiveprojection(double *, double *, double *)'
-    try_extern 'void gr_settransformationparameters(double, double, double, ' \
-               'double, double, double, double, double, double)'
-    try_extern 'void gr_inqtransformationparameters(double *, double *, double *, ' \
-               'double *, double *, double *, double *, double *, double *)'
+    try_extern 'void gr_settransformationparameters(double, double, double,' \
+               ' double, double, double, double, double, double)'
+    try_extern 'void gr_inqtransformationparameters(double *, double *, double *,' \
+               ' double *, double *, double *, double *, double *, double *)'
     try_extern 'void gr_setorthographicprojection(double, double, double, double, double, double)'
     try_extern 'void gr_inqorthographicprojection(double *, double *, double *, double *, double *, double *)'
     try_extern 'void gr_camerainteraction(double, double, double, double)'
