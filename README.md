@@ -166,8 +166,14 @@ export GKS_WSTYPE=411 # Set the workstation type to gksqt (recommended)
 
 GR releases are also available from the [openSUSE Build service](https://software.opensuse.org//download.html?project=science%3Agr-framework&package=gr) for CentOS, Debian, Fedora openSUSE and Ubuntu. Obtain a packaged release [here](https://software.opensuse.org//download.html?project=science%3Agr-framework&package=gr).
 
+GR will be installed in `/usr/gr`. Set one of the following environment variables so that GR.rb can find the library.
+
 ```sh
 export GRDIR="/usr/gr" # Check the location with `dpkg -L gr`
+```
+
+```sh
+export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/usr/gr/lib/pkgconfig"
 ```
 
 #### Windows - MSYS2
