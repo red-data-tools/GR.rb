@@ -17,6 +17,8 @@ module GR3
 
     extend GRCommons::TryExtern
 
+    typealias("GR3_MC_DTYPE", "unsigned short")
+
     # https://github.com/sciapp/gr/blob/master/lib/gr3/gr3.h
     # keep same order
     try_extern 'int gr3_init(int *attrib_list)'
@@ -25,7 +27,7 @@ module GR3
     try_extern 'int gr3_geterror(int clear, int *line, const char **file)'
     try_extern 'const char *gr3_getrenderpathstring(void)'
     try_extern 'const char *gr3_geterrorstring(int error)'
-    # try_extern 'void gr3_setlogcallback(void (*gr3_log_func)(const char *log_message))'
+    try_extern 'void gr3_setlogcallback(void (*gr3_log_func)(const char *log_message))'
     try_extern 'int gr3_clear(void)'
     try_extern 'void gr3_usecurrentframebuffer()'
     try_extern 'void gr3_useframebuffer(unsigned int framebuffer)'
@@ -73,19 +75,19 @@ module GR3
     try_extern 'void gr3_setviewmatrix(const float *m)'
     try_extern 'int gr3_getprojectiontype(void)'
     try_extern 'void gr3_setprojectiontype(int type)'
-    # try_extern 'unsigned int gr3_triangulate(const unsigned short *data, ' \
-    #      'unsigned short isolevel, unsigned int dim_x, unsigned int dim_y, unsigned int dim_z, ' \
-    #      'unsigned int stride_x, unsigned int stride_y, unsigned int stride_z, ' \
-    #      'double step_x, double step_y, double step_z, double offset_x, double offset_y, double offset_z, ' \
-    #      'gr3_triangle_t **triangles_p)'
-    # try_extern 'void gr3_triangulateindexed(const unsigned short *data, ' \
-    #      'unsigned short isolevel, unsigned int dim_x, unsigned int dim_y, unsigned int dim_z, ' \
-    #      'unsigned int stride_x, unsigned int stride_y, unsigned int stride_z, ' \
-    #      'double step_x, double step_y, double step_z, double offset_x, double offset_y, double offset_z, ' \
-    #      'unsigned int *num_vertices, gr3_coord_t **vertices, gr3_coord_t **normals, ' \
-    #      'unsigned int *num_indices, unsigned int **indices)'
-    try_extern 'int gr3_createisosurfacemesh(int *mesh, unsigned short *data,' \
-               ' unsigned short isolevel, unsigned int dim_x, unsigned int dim_y, unsigned int dim_z,' \
+    try_extern 'unsigned int gr3_triangulate(const GR3_MC_DTYPE *data,' \
+               ' GR3_MC_DTYPE isolevel, unsigned int dim_x, unsigned int dim_y, unsigned int dim_z,' \
+               ' unsigned int stride_x, unsigned int stride_y, unsigned int stride_z,' \
+               ' double step_x, double step_y, double step_z, double offset_x, double offset_y, double offset_z,' \
+               ' gr3_triangle_t **triangles_p)'
+    try_extern 'void gr3_triangulateindexed(const GR3_MC_DTYPE *data,' \
+               ' GR3_MC_DTYPE isolevel, unsigned int dim_x, unsigned int dim_y, unsigned int dim_z,' \
+               ' unsigned int stride_x, unsigned int stride_y, unsigned int stride_z,' \
+               ' double step_x, double step_y, double step_z, double offset_x, double offset_y, double offset_z,' \
+               ' unsigned int *num_vertices, gr3_coord_t **vertices, gr3_coord_t **normals,' \
+               ' unsigned int *num_indices, unsigned int **indices)'
+    try_extern 'int gr3_createisosurfacemesh(int *mesh, GR3_MC_DTYPE *data,' \
+               ' GR3_MC_DTYPE isolevel, unsigned int dim_x, unsigned int dim_y, unsigned int dim_z,' \
                ' unsigned int stride_x, unsigned int stride_y, unsigned int stride_z,' \
                ' double step_x, double step_y, double step_z,' \
                ' double offset_x, double offset_y, double offset_z)'
@@ -107,32 +109,32 @@ module GR3
                ' float cone_radius, float cylinder_radius, float cone_height, float cylinder_height)'
     try_extern 'void gr3_drawmolecule(int n, const float *positions, const float *colors, const float *radii,' \
                ' float bond_radius, const float bond_color[3], float bond_delta)'
-    try_extern 'void gr3_createxslicemesh(int *mesh, const unsigned short *data,' \
+    try_extern 'void gr3_createxslicemesh(int *mesh, const GR3_MC_DTYPE *data,' \
                ' unsigned int ix, unsigned int dim_x, unsigned int dim_y, unsigned int dim_z,' \
                ' unsigned int stride_x, unsigned int stride_y, unsigned int stride_z,' \
                ' double step_x, double step_y, double step_z,' \
                ' double offset_x, double offset_y, double offset_z)'
-    try_extern 'void gr3_createyslicemesh(int *mesh, const unsigned short *data,' \
+    try_extern 'void gr3_createyslicemesh(int *mesh, const GR3_MC_DTYPE *data,' \
                ' unsigned int iy, unsigned int dim_x, unsigned int dim_y, unsigned int dim_z,' \
                ' unsigned int stride_x, unsigned int stride_y, unsigned int stride_z,' \
                ' double step_x, double step_y, double step_z,' \
                ' double offset_x, double offset_y, double offset_z)'
-    try_extern 'void gr3_createzslicemesh(int *mesh, const unsigned short *data,' \
+    try_extern 'void gr3_createzslicemesh(int *mesh, const GR3_MC_DTYPE *data,' \
                ' unsigned int iz, unsigned int dim_x, unsigned int dim_y, unsigned int dim_z,' \
                ' unsigned int stride_x, unsigned int stride_y, unsigned int stride_z,' \
                ' double step_x, double step_y, double step_z,' \
                ' double offset_x, double offset_y, double offset_z)'
-    try_extern 'void gr3_drawxslicemesh(const unsigned short *data, unsigned int ix,' \
+    try_extern 'void gr3_drawxslicemesh(const GR3_MC_DTYPE *data, unsigned int ix,' \
                ' unsigned int dim_x, unsigned int dim_y, unsigned int dim_z,' \
                ' unsigned int stride_x, unsigned int stride_y, unsigned int stride_z,' \
                ' double step_x, double step_y, double step_z,' \
                ' double offset_x, double offset_y, double offset_z)'
-    try_extern 'void gr3_drawyslicemesh(const unsigned short *data, unsigned int iy,' \
+    try_extern 'void gr3_drawyslicemesh(const GR3_MC_DTYPE *data, unsigned int iy,' \
                ' unsigned int dim_x, unsigned int dim_y, unsigned int dim_z,' \
                ' unsigned int stride_x, unsigned int stride_y, unsigned int stride_z,' \
                ' double step_x, double step_y, double step_z,' \
                ' double offset_x, double offset_y, double offset_z)'
-    try_extern 'void gr3_drawzslicemesh(const unsigned short *data, unsigned int iz,' \
+    try_extern 'void gr3_drawzslicemesh(const GR3_MC_DTYPE *data, unsigned int iz,' \
                ' unsigned int dim_x, unsigned int dim_y, unsigned int dim_z,' \
                ' unsigned int stride_x, unsigned int stride_y, unsigned int stride_z,' \
                ' double step_x, double step_y, double step_z,' \
