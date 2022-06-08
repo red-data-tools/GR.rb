@@ -19,11 +19,12 @@ jobs:
           - { os: windows , gr: '0.64.4' }
     runs-on: ${{ matrix.os }}-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
       - name: Get official GR binary (ubuntu)
         if: ${{ matrix.gr != 'system' && matrix.os == 'ubuntu' }}
         run: |
@@ -48,10 +49,6 @@ jobs:
         run: |
           brew update
           brew install libgr
-      - name: Install gems
-        run: |
-          gem install bundler
-          bundle install --jobs 4 --retry 3
       - name: Test (official binary)
         if: matrix.gr != 'system'
         env:
