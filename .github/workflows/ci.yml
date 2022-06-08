@@ -11,12 +11,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        gr: [ '0.63.1', '0.64.2', 'system' ]
+        gr: [ '0.63.1', '0.64.4', 'system' ]
         os: [ 'ubuntu', 'macos', 'windows' ]
         ruby: [ '2.7', '3.0', '3.1' ]
         exclude:
           - { os: windows , gr: '0.63.1' }
-          - { os: windows , gr: '0.64.2' }
+          - { os: windows , gr: '0.64.4' }
     runs-on: ${{ matrix.os }}-latest
     steps:
       - uses: actions/checkout@v2
@@ -37,9 +37,12 @@ jobs:
       - name: Setup OBS binary (ubuntu)
         if: ${{ matrix.gr == 'system' && matrix.os == 'ubuntu' }}
         run: |
+          echo 'deb http://download.opensuse.org/repositories/science:/gr-framework/xUbuntu_20.04/ /' |
+            sudo tee /etc/apt/sources.list.d/science:gr-framework.list
+          curl -fsSL https://download.opensuse.org/repositories/science:gr-framework/xUbuntu_20.04/Release.key |
+            gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/science_gr-framework.gpg > /dev/null
           sudo apt update -yq && sudo apt upgrade -yq
-          wget https://download.opensuse.org/repositories/science:/gr-framework/xUbuntu_20.04/amd64/gr_0.64.3-1_amd64.deb
-          sudo apt-get install -y ./gr_*amd64.deb
+          sudo apt-get install -y gr
       - name: Set up Homebrew (macos)
         if: ${{ matrix.gr == 'system' && matrix.os == 'macos' }}
         run: |
