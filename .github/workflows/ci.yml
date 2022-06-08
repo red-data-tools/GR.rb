@@ -42,7 +42,7 @@ jobs:
           curl -fsSL https://download.opensuse.org/repositories/science:gr-framework/xUbuntu_20.04/Release.key |
             gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/science_gr-framework.gpg > /dev/null
           sudo apt update -yq && sudo apt upgrade -yq
-          sudo apt-get install -y ./gr_*amd64.deb
+          sudo apt-get install -y gr
       - name: Set up Homebrew (macos)
         if: ${{ matrix.gr == 'system' && matrix.os == 'macos' }}
         run: |
