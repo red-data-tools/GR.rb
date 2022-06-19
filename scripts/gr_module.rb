@@ -1,4 +1,4 @@
-gr_h_code = `#{File.expand_path("gr_h.sh", __dir__)}`
+gr_h_code = `#{File.expand_path('gr_h.sh', __dir__)}`
 gr_m_code = File.read(File.expand_path('../lib/gr.rb', __dir__))
 
 gr_allfunc = gr_h_code.scan(/(?<= gr_)[0-9a-zA-Z_]+/).to_a
