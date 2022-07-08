@@ -3,7 +3,7 @@
 [![Gem Version](https://img.shields.io/gem/v/ruby-gr?color=brightgreen)](https://rubygems.org/gems/ruby-gr)
 [![CI](https://github.com/red-data-tools/GR.rb/workflows/CI/badge.svg)](https://github.com/red-data-tools/GR.rb/actions)
 [![Gitter Chat](https://badges.gitter.im/red-data-tools/en.svg)](https://gitter.im/red-data-tools/en)
-[![Docs Latest](https://img.shields.io/badge/docs-latest-blue.svg)](https://rubydoc.info/gems/ruby-gr)
+[![Docs Latest](https://img.shields.io/badge/docs-latest-blue.svg)](https://red-data-tools.github.io/GR.rb/)
 
 [![rdatasets-1](https://i.imgur.com/XEQ6wKs.png)](examples/rdatasets.rb)
 [![stem](https://i.imgur.com/3w0Ejrm.png)](examples/fast_plots.rb)
@@ -136,7 +136,7 @@ export GKS_WSTYPE=100
 ## Documentation
 
 - [GR.rb Wiki](https://github.com/red-data-tools/GR.rb/wiki)
-- [GR.rb API Documentation](https://rubydoc.info/gems/ruby-gr) - Yard documents.
+- [GR.rb API Documentation](https://red-data-tools.github.io/GR.rb/) - Yard documents.
 - [GR Framework](https://gr-framework.org/) - The official GR reference.
 
 ## GR Installation
