@@ -809,6 +809,12 @@ module GR
       inquiry_int { |pt| super(pt) }
     end
 
+    # @!method gr_setresizebehaviour
+
+    def inqresizebehaviour
+      inquiry_int { |pt| super(pt) }
+    end
+
     # Redefine an existing color index representation by specifying an RGB color
     # triplet.
     #

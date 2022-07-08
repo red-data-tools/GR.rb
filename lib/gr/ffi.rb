@@ -77,6 +77,8 @@ module GR
     try_extern 'void gr_inqfillstyle(int *)'
     try_extern 'void gr_setfillcolorind(int)'
     try_extern 'void gr_inqfillcolorind(int *)'
+    try_extern 'void gr_setresizebehaviour(int)'
+    try_extern 'void gr_inqresizebehaviour(int *)'
     try_extern 'void gr_setcolorrep(int, double, double, double)'
     try_extern 'void gr_setwindow(double, double, double, double)'
     try_extern 'void gr_inqwindow(double *, double *, double *, double *)'
