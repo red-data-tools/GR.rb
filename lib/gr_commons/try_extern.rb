@@ -15,8 +15,8 @@ module GRCommons
         func = extern(signature, *opts)
         @ffi_methods << func.name
         func
-      rescue StandardError => e
-        warn "#{e.class.name}: #{e.message}"
+      rescue Fiddle::DLError => e
+        warn "#{e.class.name}: #{e.message}" if $VERBOSE
       end
     end
   end
