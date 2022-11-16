@@ -100,6 +100,8 @@ module GR3
                ' const float *colors, const float *scales)'
     try_extern 'void gr3_drawsurface(int mesh)'
     try_extern 'void gr3_surface(int nx, int ny, float *px, float *py, float *pz, int option)'
+    try_extern 'void gr3_isosurface(int nx, int ny, int nz, const float *data, float isovalue, const float *color,' \
+               ' const int *strides)'
     try_extern 'int gr3_drawtubemesh(int n, float *points, float *colors, float *radii,' \
                ' int num_steps, int num_segments)'
     try_extern 'int gr3_createtubemesh(int *mesh, int n,' \
