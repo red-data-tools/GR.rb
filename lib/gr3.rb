@@ -587,10 +587,10 @@ module GR3
 
       super(n, positions, colors, radii, bond_radius, bond_color, bond_delta)
 
-      if spins
-        spins = Numo::SFloat.cast(spins).reshape(n, 3)
-        drawspins(positions, spins, colors)
-      end
+      return unless spins
+
+      spins = Numo::SFloat.cast(spins).reshape(n, 3)
+      drawspins(positions, spins, colors)
     end
 
     # Creates meshes for slices through the given data, using the current GR

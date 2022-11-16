@@ -17,7 +17,7 @@ module GR3
 
     extend GRCommons::TryExtern
 
-    typealias("GR3_MC_DTYPE", "unsigned short")
+    typealias('GR3_MC_DTYPE', 'unsigned short')
 
     # https://github.com/sciapp/gr/blob/master/lib/gr3/gr3.h
     # keep same order

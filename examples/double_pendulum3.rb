@@ -22,7 +22,7 @@ end
 def double_pendulum(theta, length, mass)
   direction = DFloat.zeros(3, 2)
   position = DFloat.zeros(3, 3)
-  (0..1).each do |i|
+  2.times do |i|
     direction[true, i] = [sin(theta[i]) * length[i] * 2,
                           - cos(theta[i]) * length[i] * 2, 0]
     position[true, i + 1] = position[true, i] + direction[true, i]

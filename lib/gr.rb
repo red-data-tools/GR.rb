@@ -1544,10 +1544,10 @@ module GR
 
     def beginprint(file_path)
       super(file_path)
-      if block_given?
-        yield
-        endprint
-      end
+      return unless block_given?
+
+      yield
+      endprint
     end
 
     # Open and activate a print device with the given layout attributes.

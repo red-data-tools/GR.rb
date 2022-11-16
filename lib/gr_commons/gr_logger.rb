@@ -5,7 +5,6 @@
 # It should not be loaded when gr_commons/gr_commons is loaded.
 
 require 'logger'
-require 'pp'
 
 module GRCommons
   # Convenience class methods
