@@ -112,6 +112,116 @@
   
 </p>
 
+  
+    <h2>
+      Constant Summary
+      <small><a href="#" class="constants_summary_toggle">collapse</a></small>
+    </h2>
+
+    <dl class="constants">
+      
+        <dt id="Vertex-constant" class="">Vertex =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p><a href="https://github.com/sciapp/gr/blob/master/lib/gr/gr.h">github.com/sciapp/gr/blob/master/lib/gr/gr.h</a> keep same order</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='id identifier rubyid_struct'>struct</span> <span class='lbracket'>[</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>double x</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>double y</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+<span class='rbracket'>]</span></pre></dd>
+      
+        <dt id="Point3d-constant" class="">Point3d =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Three-dimensional coordinate</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='id identifier rubyid_struct'>struct</span> <span class='lbracket'>[</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>double x</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>double y</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>double z</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+<span class='rbracket'>]</span></pre></dd>
+      
+        <dt id="DataPoint3d-constant" class="">DataPoint3d =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Data point for ‘gr_volume_nogrid`</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='id identifier rubyid_struct'>struct</span> <span class='lbracket'>[</span>
+  <span class='lbrace'>{</span> <span class='label'>pt:</span> <span class='const'><span class='object_link'><a href="#Point3d-constant" title="GR::FFI::Point3d (constant)">Point3d</a></span></span> <span class='rbrace'>}</span><span class='comma'>,</span>  <span class='comment'># Coordinates of data point
+</span>  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>double data</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>    <span class='comment'># Intensity of data point
+</span><span class='rbracket'>]</span></pre></dd>
+      
+        <dt id="Guess-constant" class="">Guess =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Provides optional extra data for ‘gr_volume_interp_gauss`</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='id identifier rubyid_struct'>struct</span> <span class='lbracket'>[</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>double sqrt_det</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='comment'># Square root of determinant of covariance matrix
+</span>  <span class='lbrace'>{</span><span class='label'>gauss_sig_1:</span> <span class='const'><span class='object_link'><a href="#Point3d-constant" title="GR::FFI::Point3d (constant)">Point3d</a></span></span><span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='lbrace'>{</span><span class='label'>gauss_sig_2:</span> <span class='const'><span class='object_link'><a href="#Point3d-constant" title="GR::FFI::Point3d (constant)">Point3d</a></span></span><span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='lbrace'>{</span><span class='label'>gauss_sig_3:</span> <span class='const'><span class='object_link'><a href="#Point3d-constant" title="GR::FFI::Point3d (constant)">Point3d</a></span></span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='comment'># \f$\Sigma^{-\frac{1}{2}}\f$ encoded as three column vectors
+</span><span class='rbracket'>]</span></pre></dd>
+      
+        <dt id="TriLinear-constant" class="">TriLinear =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Provides optional extra data for ‘gr_volume_interp_tri_linear`</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='id identifier rubyid_struct'>struct</span> <span class='lbracket'>[</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>double grid_x_re</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='comment'># Reciproke of interpolation kernel extent in x-directionGrid resolution in x direction 
+</span>  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>double grid_y_re</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='comment'># Reciproke of interpolation kernel extent in y-directionGrid resolution in y direction
+</span>  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>double grid_z_re</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='comment'># Reciproke of interpolation kernel extent in z-directionGrid resolution in z direction
+</span><span class='rbracket'>]</span></pre></dd>
+      
+    </dl>
+  
+
 
 
 
@@ -146,7 +256,7 @@
 </div>
 
       <div id="footer">
-  Generated on Wed Nov 16 05:44:31 2022 by
+  Generated on Wed Nov 16 06:12:01 2022 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.28 (ruby-3.1.2).
 </div>
