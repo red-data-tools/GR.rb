@@ -6863,10 +6863,10 @@
 
 <span class='kw'>def</span> <span class='id identifier rubyid_beginprint'>beginprint</span><span class='lparen'>(</span><span class='id identifier rubyid_file_path'>file_path</span><span class='rparen'>)</span>
   <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_file_path'>file_path</span><span class='rparen'>)</span>
-  <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
-    <span class='kw'>yield</span>
-    <span class='id identifier rubyid_endprint'>endprint</span>
-  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
+
+  <span class='kw'>yield</span>
+  <span class='id identifier rubyid_endprint'>endprint</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -20824,7 +20824,7 @@
 </div>
 
       <div id="footer">
-  Generated on Mon Sep  5 04:35:31 2022 by
+  Generated on Wed Nov 16 05:44:30 2022 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.28 (ruby-3.1.2).
 </div>
