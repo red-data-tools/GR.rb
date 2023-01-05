@@ -54,6 +54,7 @@ module GR
     ]
 
     try_extern 'void gr_initgr(void)'
+    try_extern 'int gr_debug(void)'
     try_extern 'void gr_opengks(void)'
     try_extern 'void gr_closegks(void)'
     try_extern 'void gr_inqdspsize(double *, double *, int *, int *)'
