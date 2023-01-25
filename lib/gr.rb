@@ -278,7 +278,7 @@ module GR
     # GR_TEXT_ENABLE_INLINE_MATH)
     #
     # The values for `x` and `y` specify the text position. If the GR_TEXT_USE_WC
-    # option is set, they are interpreted as world cordinates, otherwise as
+    # option is set, they are interpreted as world coordinates, otherwise as
     # normalized device coordinates. The string may contain new line characters
     # and inline math expressions ($...$). The latter are only taken into account,
     # if the GR_TEXT_ENABLE_INLINE_MATH option is set.
@@ -407,7 +407,7 @@ module GR
     # @param nrow  [Integer] total number of rows in the color index array and the radii array
     # @param color [Integer] color index array
     #
-    # The mapping of the polar coordinates and the drawing is performed simialr
+    # The mapping of the polar coordinates and the drawing is performed similar
     # to `gr_polarcellarray` with the difference that the individual cell sizes
     # are specified allowing nonuniform sized cells.
     #
@@ -556,7 +556,7 @@ module GR
     #  * -27 : MARKERTYPE_STAR_6          - 6-pointed star (hexagram)
     #  * -28 : MARKERTYPE_STAR_7          - 7-pointed star (heptagram)
     #  * -29 : MARKERTYPE_STAR_8          - 8-pointed star (octagram)
-    #  * -30 : MARKERTYPE_VLINE           - verical line
+    #  * -30 : MARKERTYPE_VLINE           - vertical line
     #  * -31 : MARKERTYPE_HLINE           - horizontal line
     #  * -32 : MARKERTYPE_OMARK           - o-mark
     #
@@ -1586,7 +1586,7 @@ module GR
     #  * Folio : 0.210 x 0.330
     #  * Ledger : 0.432 x 0.279
     #  * Tabloid : 0.279 x 0.432
-    # @param orientation [String] Page orientation (Landscape, Portait)
+    # @param orientation [String] Page orientation (Landscape, Portrait)
     #
     # @!method beginprintext
 

@@ -26,7 +26,7 @@ def number_of_cores_in_cpu
 end
 
 opt = {
-  proceses: number_of_cores_in_cpu,
+  processes: number_of_cores_in_cpu,
   epochs: 100,
   port: 12_344
 }

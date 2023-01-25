@@ -302,7 +302,7 @@ module GR3
     # @!method drawmesh
 
     # This function marks a mesh for deletion and removes the user’s reference
-    # from the mesh’s referenc counter, so a user must not use the mesh after
+    # from the mesh’s reference counter, so a user must not use the mesh after
     # calling this function.
     #
     # @param mesh [Integer] The mesh that should be marked for deletion

@@ -8,7 +8,7 @@ module GRCommons
     # Improved extern method.
     # 1. Ignore functions that cannot be attached.
     # 2. Available function (names) are stored in @ffi_methods.
-    # For compatiblity with older versions of GR.
+    # For compatibility with older versions of GR.
     def try_extern(signature, *opts)
       @ffi_methods ||= []
       begin
