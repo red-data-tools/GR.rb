@@ -102,6 +102,7 @@ module GR
     try_extern 'void gr_settextcolorind(int)'
     try_extern 'void gr_inqtextcolorind(int *)'
     try_extern 'void gr_setcharheight(double)'
+    try_extern 'void gr_setwscharheight(double chh, double height)'
     try_extern 'void gr_inqcharheight(double *)'
     try_extern 'void gr_setcharup(double, double)'
     try_extern 'void gr_settextpath(int)'
