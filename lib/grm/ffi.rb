@@ -26,6 +26,8 @@ module GRM
     try_extern 'int grm_args_push(grm_args_t *args, const char *key, const char *value_format, ...)'
     try_extern 'int grm_args_push_buf(grm_args_t *args, const char *key, const char *value_format, const void *buffer, int apply_padding)'
     try_extern 'int grm_args_contains(const grm_args_t *args, const char *keyword)'
+    try_extern 'int grm_args_first_value(const grm_args_t *args, const char *keyword, const char *first_value_format, void *first_value, unsigned int *array_length)'
+    try_extern 'int grm_args_values(const grm_args_t *args, const char *keyword, const char *expected_format, ...)'
     try_extern 'void grm_args_clear(grm_args_t *args)'
     try_extern 'void grm_args_remove(grm_args_t *args, const char *key)'
     typealias 'grm_args_ptr_t', 'void*'
@@ -43,17 +45,15 @@ module GRM
     try_extern 'int grm_unregister(grm_event_type_t type)'
 
     # https://github.com/sciapp/gr/blob/master/lib/grm/include/grm/interaction.h
-    # FIXME: https://github.com/ruby/fiddle/issues/68
-    typealias 'const_int', 'int' # FIXME
     try_extern 'int grm_input(const grm_args_t *input_args)'
-    try_extern 'int grm_get_box(const_int x1, const_int y1, const_int x2, const_int y2, const_int keep_aspect_ratio, int *x, int *y, int *w, int *h)' # FIXME
+    try_extern 'int grm_get_box(const int x1, const int y1, const int x2, const int y2, const int keep_aspect_ratio, int *x, int *y, int *w, int *h)' # FIXME
     try_extern 'int grm_is3d(const int x, const int y)'
-    try_extern 'grm_tooltip_info_t *grm_get_tooltip(const_int, const_int)' # FIXME
+    try_extern 'grm_tooltip_info_t *grm_get_tooltip(const int, const int)' # FIXME
 
     # https://github.com/sciapp/gr/blob/master/lib/grm/include/grm/net.h
-    try_extern 'void *grm_open(int is_receiver, const char *name, unsigned int id,
-                               const char *(*custom_recv)(const char *, unsigned int),
-                               int (*custom_send)(const char *, unsigned int, const char *))'
+    try_extern 'void *grm_open(int is_receiver, const char *name, unsigned int id, ' \
+                              'const char *(*custom_recv)(const char *, unsigned int), ' \
+                              'int (*custom_send)(const char *, unsigned int, const char *))'
     try_extern 'grm_args_t *grm_recv(const void *p, grm_args_t *args)'
     try_extern 'int grm_send(const void *p, const char *data_desc, ...)'
     try_extern 'int grm_send_buf(const void *p, const char *data_desc, const void *buffer, int apply_padding)'
