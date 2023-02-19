@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
   spec.files         = Dir['*.{md,txt}', '{lib}/**/*']
   spec.require_paths = ['lib']
 
-  spec.required_ruby_version = '>= 2.6'
+  spec.required_ruby_version = '>= 2.7'
 
   spec.add_dependency 'fiddle', '>= 1.1.0'
   spec.add_dependency 'numo-narray'
