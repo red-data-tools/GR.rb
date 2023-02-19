@@ -46,9 +46,9 @@ module GRM
 
     # https://github.com/sciapp/gr/blob/master/lib/grm/include/grm/interaction.h
     try_extern 'int grm_input(const grm_args_t *input_args)'
-    try_extern 'int grm_get_box(const int x1, const int y1, const int x2, const int y2, const int keep_aspect_ratio, int *x, int *y, int *w, int *h)' # FIXME
+    try_extern 'int grm_get_box(const int x1, const int y1, const int x2, const int y2, const int keep_aspect_ratio, int *x, int *y, int *w, int *h)'
     try_extern 'int grm_is3d(const int x, const int y)'
-    try_extern 'grm_tooltip_info_t *grm_get_tooltip(const int, const int)' # FIXME
+    try_extern 'grm_tooltip_info_t *grm_get_tooltip(const int, const int)'
 
     # https://github.com/sciapp/gr/blob/master/lib/grm/include/grm/net.h
     try_extern 'void *grm_open(int is_receiver, const char *name, unsigned int id, ' \
