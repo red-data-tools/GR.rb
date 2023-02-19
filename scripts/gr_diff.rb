@@ -3,6 +3,8 @@
 require_relative 'utils'
 require 'diffy'
 
+Dir.chdir(__dir__)
+
 gr_h = extract_api('https://raw.githubusercontent.com/sciapp/gr/master/lib/gr/gr.h', 'DLLEXPORT')
 gr_ffi = extract_ffi('../lib/gr/ffi.rb')
 
