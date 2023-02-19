@@ -20,7 +20,7 @@ module GRM
     # Currently, the declarations of GRM functions are distributed in several
     # header files.
 
-    # https://github.com/sciapp/gr/blob/master/lib/grm/args.h
+    # https://github.com/sciapp/gr/blob/master/lib/grm/include/grm/args.h
     try_extern 'grm_args_t *grm_args_new(void)'
     try_extern 'void grm_args_delete(grm_args_t *args)'
     try_extern 'int grm_args_push(grm_args_t *args, const char *key, const char *value_format, ...)'
@@ -31,18 +31,18 @@ module GRM
     typealias 'grm_args_ptr_t', 'void*'
     try_extern 'grm_args_ptr_t grm_length(double value, const char *unit)'
 
-    # https://github.com/sciapp/gr/blob/master/lib/grm/dump.h
+    # https://github.com/sciapp/gr/blob/master/lib/grm/include/grm/dump.h
     try_extern 'void grm_dump(const grm_args_t *args, FILE *f)'
     try_extern 'void grm_dump_json(const grm_args_t *args, FILE *f)'
     try_extern 'char *grm_dump_json_str(void)'
 
-    # https://github.com/sciapp/gr/blob/master/lib/grm/event.h
+    # https://github.com/sciapp/gr/blob/master/lib/grm/include/grm/event.h
     typealias 'grm_event_type_t', 'int' # enum
     typealias 'grm_event_callback_t', 'void*'
     try_extern 'int grm_register(grm_event_type_t type, grm_event_callback_t callback)'
     try_extern 'int grm_unregister(grm_event_type_t type)'
 
-    # https://github.com/sciapp/gr/blob/master/lib/grm/interaction.h
+    # https://github.com/sciapp/gr/blob/master/lib/grm/include/grm/interaction.h
     # FIXME: https://github.com/ruby/fiddle/issues/68
     typealias 'const_int', 'int' # FIXME
     try_extern 'int grm_input(const grm_args_t *input_args)'
@@ -50,7 +50,7 @@ module GRM
     try_extern 'int grm_is3d(const int x, const int y)'
     try_extern 'grm_tooltip_info_t *grm_get_tooltip(const_int, const_int)' # FIXME
 
-    # https://github.com/sciapp/gr/blob/master/lib/grm/net.h
+    # https://github.com/sciapp/gr/blob/master/lib/grm/include/grm/net.h
     try_extern 'void *grm_open(int is_receiver, const char *name, unsigned int id,
                                const char *(*custom_recv)(const char *, unsigned int),
                                int (*custom_send)(const char *, unsigned int, const char *))'
@@ -61,7 +61,7 @@ module GRM
     try_extern 'int grm_send_args(const void *p, const grm_args_t *args)'
     try_extern 'void grm_close(const void *p)'
 
-    # https://github.com/sciapp/gr/blob/master/lib/grm/plot.h
+    # https://github.com/sciapp/gr/blob/master/lib/grm/include/grm/plot.h
     try_extern 'void grm_finalize(void)'
     try_extern 'int grm_clear(void)'
     try_extern 'unsigned int grm_max_plotid(void)'
