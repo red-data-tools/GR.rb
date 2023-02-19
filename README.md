@@ -25,8 +25,6 @@
 
 ## Installation
 
-GR.rb supports Ruby 2.5+.
-
 First, [install GR](#gr-installation). Then install [`gr-plot`](https://github.com/red-data-tools/gr-plot) gem.
 
 ```sh
