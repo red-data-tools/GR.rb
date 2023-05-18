@@ -144,6 +144,8 @@ module GR3
     try_extern 'void gr3_drawtrianglesurface(int n, const float *triangles)'
     try_extern 'void gr_volume(int nx, int ny, int nz, double *data,' \
                ' int algorithm, double *dmin_ptr, double *dmax_ptr)'
+    try_extern 'const gr3_volume_2pass_t *gr_volume_2pass(int nx, int ny, int nz, double *data,' \
+               ' int algorithm, double *dmin_ptr, double *dmax_ptr, const gr3_volume_2pass_t *context)'
     try_extern 'void gr3_setorthographicprojection' \
                '(float left, float right, float bottom, float top, float znear, float zfar)'
     try_extern 'void gr3_setsurfaceoption(int option)'
@@ -153,6 +155,8 @@ module GR3
     try_extern 'void gr3_setlightparameters(float ambient, float diffuse, float specular, float specular_power)'
     try_extern 'void gr3_getlightparameters(float *ambient, float *diffuse, float *specular, float *specular_power)'
     try_extern 'void gr3_setdefaultlightparameters()'
+    try_extern 'int gr3_getalphamode(int *mode)'
+    try_extern 'void gr3_setalphamode(int mode)'
     try_extern 'void gr3_setclipping(float xmin, float xmax, float ymin, float ymax, float zmin, float zmax)'
     try_extern 'void gr3_getclipping(float *xmin, float *xmax, float *ymin, float *ymax, float *zmin, float *zmax)'
   end
