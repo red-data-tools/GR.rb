@@ -28,11 +28,10 @@ module GR3
       'float z'
     ]
 
-    # FIXME: Nested struct array is not supported by Fiddle?
-    # Triangle = struct [
-    #   'Coord vertices[3]',
-    #   'Coord normal[3]'
-    # ]
+    Triangle = struct [
+      { 'vertices' => [Coord, 3] },
+      { 'normal' => [Coord, 3] }
+    ]
 
     Volume2Pass = struct [
       'double dmin',
