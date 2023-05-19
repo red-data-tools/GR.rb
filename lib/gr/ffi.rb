@@ -22,35 +22,47 @@ module GR
 
     Vertex = struct [
       'double x',
-      'double y',
+      'double y'
     ]
 
     # Three-dimensional coordinate
     Point3d = struct [
       'double x',
       'double y',
-      'double z',
+      'double z'
     ]
 
     # Data point for `gr_volume_nogrid`
     DataPoint3d = struct [
-      { pt: Point3d },  # Coordinates of data point
-      'double data',    # Intensity of data point
+      { pt: Point3d }, # Coordinates of data point
+      'double data' # Intensity of data point
     ]
 
     # Provides optional extra data for `gr_volume_interp_gauss`
     Guess = struct [
       'double sqrt_det', # Square root of determinant of covariance matrix
-      {gauss_sig_1: Point3d},
-      {gauss_sig_2: Point3d},
-      {gauss_sig_3: Point3d}, # \f$\Sigma^{-\frac{1}{2}}\f$ encoded as three column vectors
+      { gauss_sig_1: Point3d },
+      { gauss_sig_2: Point3d },
+      { gauss_sig_3: Point3d } # \f$\Sigma^{-\frac{1}{2}}\f$ encoded as three column vectors
     ]
 
     # Provides optional extra data for `gr_volume_interp_tri_linear`
     TriLinear = struct [
-      'double grid_x_re', # Reciproke of interpolation kernel extent in x-directionGrid resolution in x direction 
+      'double grid_x_re', # Reciproke of interpolation kernel extent in x-directionGrid resolution in x direction
       'double grid_y_re', # Reciproke of interpolation kernel extent in y-directionGrid resolution in y direction
-      'double grid_z_re', # Reciproke of interpolation kernel extent in z-directionGrid resolution in z direction
+      'double grid_z_re' # Reciproke of interpolation kernel extent in z-directionGrid resolution in z direction
+    ]
+
+    CpuBasedVolume2Pass = struct [
+      'double dmin',
+      'double dmax',
+      'cpubasedvolume_2pass_priv_t *priv'
+    ]
+
+    Hexbin2Pass = struct [
+      'int nc',
+      'int nntmax',
+      'hexbin_2pass_priv_t *priv'
     ]
 
     try_extern 'void gr_initgr(void)'
@@ -263,6 +275,11 @@ module GR
     try_extern 'const cpubasedvolume_2pass_t *gr_cpubasedvolume_2pass(int, int, int, double *, int, double *, double *, double *, double *, const cpubasedvolume_2pass_t *)'
     try_extern 'void gr_inqvpsize(int *, int *, double *)'
     try_extern 'void gr_polygonmesh3d(int, const double *, const double *, const double *, int, const int *, const int *)'
+    # FIXME:
+    # typedef double (*kernel_f)(const data_point3d_t *, const void *, const point3d_t *, const point3d_t *);
+    # typedef double (*radius_f)(const data_point3d_t *, const void *);
+    typealias 'kernel_f', 'void*'
+    typealias 'radius_f', 'void*'
     try_extern 'void gr_volume_nogrid(unsigned long, const data_point3d_t *, const void *, int, kernel_f, double *, double *, double, radius_f)'
     try_extern 'void gr_volume_interp_tri_linear_init(double, double, double)'
     try_extern 'void gr_volume_interp_gauss_init(double, double *)'
