@@ -17,10 +17,29 @@ module GR3
 
     extend GRCommons::TryExtern
 
-    typealias('GR3_MC_DTYPE', 'unsigned short')
-
     # https://github.com/sciapp/gr/blob/master/lib/gr3/gr3.h
     # keep same order
+
+    typealias('GR3_MC_DTYPE', 'unsigned short')
+
+    Coord = struct [
+      'float x',
+      'float y',
+      'float z'
+    ]
+
+    # FIXME: Nested struct array is not supported by Fiddle?
+    # Triangle = struct [
+    #   'Coord vertices[3]',
+    #   'Coord normal[3]'
+    # ]
+
+    Volume2Pass = struct [
+      'double dmin',
+      'double dmax',
+      'gr3_volume_2pass_priv_t *priv'
+    ]
+
     try_extern 'int gr3_init(int *attrib_list)'
     try_extern 'void gr3_free(void *pointer)'
     try_extern 'void gr3_terminate(void)'
