@@ -11,3 +11,9 @@ group :test do
   gem 'simplecov'
   gem 'test-unit'
 end
+
+# For maintainace scripts
+group :development do
+  gem 'colorize'
+  gem 'diffy'
+end
