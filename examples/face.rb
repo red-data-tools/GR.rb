@@ -28,7 +28,7 @@ GR.setspace(-80, 200, 45, 70)
 
 GR.setcharheight(14.0 / 500)
 GR.axes3d(1, 0, 20, -2, -7, -80, 2, 0, 2, -0.01)
-GR.axes3d(0, 1,  0, 12, -7, -80, 0, 2, 0,  0.01)
+GR.axes3d(0, 1, 0, 12, -7, -80, 0, 2, 0, 0.01)
 GR.titles3d('X-Axis', 'Y-Axis', 'Z-Axis')
 
 GR.surface(x, y, z, 3)

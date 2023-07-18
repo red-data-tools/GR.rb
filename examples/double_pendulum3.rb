@@ -64,7 +64,7 @@ def main
     c = m2 * l1 * cos(t1 - t2)
     d = m2 * l2
     e = -m2 * l2 * w2**2 * sin(t1 - t2) - G * (m1 + m2) * sin(t1)
-    f =  m2 * l1 * w1**2 * sin(t1 - t2) - m2 * G * sin(t2)
+    f = m2 * l1 * w1**2 * sin(t1 - t2) - m2 * G * sin(t2)
     DFloat[w1, (e * d - b * f) / (a * d - c * b), w2, (a * f - c * e) / (a * d - c * b)]
   }
 
