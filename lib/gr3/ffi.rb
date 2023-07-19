@@ -29,8 +29,8 @@ module GR3
     ]
 
     Triangle = struct [
-      { 'vertices' => [Coord, 3] },
-      { 'normal' => [Coord, 3] }
+      { 'vertices[3]' => Coord },
+      { 'normal[3]' => Coord }
     ]
 
     Volume2Pass = struct [
