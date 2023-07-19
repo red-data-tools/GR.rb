@@ -48,7 +48,9 @@ module GRM
     try_extern 'int grm_input(const grm_args_t *input_args)'
     try_extern 'int grm_get_box(const int x1, const int y1, const int x2, const int y2, const int keep_aspect_ratio, int *x, int *y, int *w, int *h)'
     try_extern 'int grm_is3d(const int x, const int y)'
-    try_extern 'grm_tooltip_info_t *grm_get_tooltip(const int, const int)'
+    try_extern 'grm_tooltip_info_t *grm_get_tooltip(int mouse_x, int mouse_y)'
+    try_extern 'grm_tooltip_info_t **grm_get_tooltips_x(int mouse_x, int mouse_y, unsigned int *array_length)'
+    try_extern 'grm_accumulated_tooltip_info_t *grm_get_accumulated_tooltip_x(int mouse_x, int mouse_y)'
 
     # https://github.com/sciapp/gr/blob/master/lib/grm/include/grm/net.h
     try_extern 'void *grm_open(int is_receiver, const char *name, unsigned int id, ' \
@@ -70,6 +72,7 @@ module GRM
     try_extern 'int grm_merge_hold(const grm_args_t *args)'
     try_extern 'int grm_merge_named(const grm_args_t *args, const char *identificator)'
     try_extern 'int grm_plot(const grm_args_t *args)'
+    try_extern 'int grm_export(const char *file_path)'
     try_extern 'int grm_switch(unsigned int id)'
   end
 end
