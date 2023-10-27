@@ -198,6 +198,10 @@ module GRCommons
         @ptr
       end
 
+      def address
+        @ptr.to_i
+      end
+
       { 8 => 'c', 16 => 's', 32 => 'l', 64 => 'q' }.each do |bits, form|
         bytes = bits / 8
 
