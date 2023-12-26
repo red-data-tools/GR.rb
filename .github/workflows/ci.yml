@@ -10,9 +10,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        gr: ["0.71.8", "0.72.9", "system"]
+        gr: ["0.72.11", "0.73.0", "system"]
         os: ["ubuntu", "macos", "windows"]
-        ruby: ["2.7", "3.1", "3.2"]
+        ruby: ["3.1", "3.2", "3.3"]
         exclude:
           - { os: windows, gr: "0.71.8" }
           - { os: windows, gr: "0.72.9" }
