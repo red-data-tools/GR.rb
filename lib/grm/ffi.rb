@@ -21,6 +21,7 @@ module GRM
     # header files.
 
     # https://github.com/sciapp/gr/blob/master/lib/grm/include/grm/args.h
+    try_extern 'grm_args_value_iterator_t *grm_arg_value_iter(const arg_t *arg)'
     try_extern 'grm_args_t *grm_args_new(void)'
     try_extern 'void grm_args_delete(grm_args_t *args)'
     try_extern 'int grm_args_push(grm_args_t *args, const char *key, const char *value_format, ...)'
@@ -30,6 +31,7 @@ module GRM
     try_extern 'int grm_args_values(const grm_args_t *args, const char *keyword, const char *expected_format, ...)'
     try_extern 'void grm_args_clear(grm_args_t *args)'
     try_extern 'void grm_args_remove(grm_args_t *args, const char *key)'
+    try_extern 'grm_args_iterator_t *grm_args_iter(const grm_args_t *args)'
     typealias 'grm_args_ptr_t', 'void*'
     try_extern 'grm_args_ptr_t grm_length(double value, const char *unit)'
 
@@ -51,6 +53,7 @@ module GRM
     try_extern 'grm_tooltip_info_t *grm_get_tooltip(int mouse_x, int mouse_y)'
     try_extern 'grm_tooltip_info_t **grm_get_tooltips_x(int mouse_x, int mouse_y, unsigned int *array_length)'
     try_extern 'grm_accumulated_tooltip_info_t *grm_get_accumulated_tooltip_x(int mouse_x, int mouse_y)'
+    try_extern 'int grm_get_hover_mode(int mouse_x, int mouse_y, int disable_movable_xform)'
 
     # https://github.com/sciapp/gr/blob/master/lib/grm/include/grm/net.h
     try_extern 'void *grm_open(int is_receiver, const char *name, unsigned int id, ' \
@@ -66,13 +69,18 @@ module GRM
     # https://github.com/sciapp/gr/blob/master/lib/grm/include/grm/plot.h
     try_extern 'void grm_finalize(void)'
     try_extern 'int grm_clear(void)'
+    try_extern 'void grm_dump_graphics_tree(FILE *f)'
+    try_extern 'char *grm_dump_graphics_tree_str(void)'
     try_extern 'unsigned int grm_max_plotid(void)'
     try_extern 'int grm_merge(const grm_args_t *args)'
     try_extern 'int grm_merge_extended(const grm_args_t *args, int hold, const char *identificator)'
     try_extern 'int grm_merge_hold(const grm_args_t *args)'
     try_extern 'int grm_merge_named(const grm_args_t *args, const char *identificator)'
     try_extern 'int grm_plot(const grm_args_t *args)'
+    try_extern 'int grm_render(void)'
+    try_extern 'int grm_process_tree(void)'
     try_extern 'int grm_export(const char *file_path)'
     try_extern 'int grm_switch(unsigned int id)'
+    try_extern 'int grm_load_graphics_tree(FILE *file)'
   end
 end
