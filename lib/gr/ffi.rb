@@ -155,6 +155,10 @@ module GR
     try_extern 'void gr_axeslbl(double, double, double, double, int, int, double,' \
                ' void (*)(double, double, const char *, double),' \
                ' void (*)(double, double, const char *, double))'
+    try_extern 'void gr_axis(char, axis_t *)'
+    try_extern 'void gr_drawaxis(char, axis_t *)'
+    try_extern 'void gr_drawaxes(axis_t *, axis_t *, int)'
+    try_extern 'void gr_freeaxis(axis_t *)'
     try_extern 'void gr_grid(double, double, double, double, int, int)'
     try_extern 'void gr_grid3d(double, double, double, double, double, double, int, int, int)'
     try_extern 'void gr_verrorbars(int, double *, double *, double *, double *)'
@@ -210,6 +214,8 @@ module GR
     try_extern 'int gr_startlistener(void)'
     try_extern 'void gr_mathtex(double, double, char *)'
     try_extern 'void gr_inqmathtex(double, double, char *, double *, double *)'
+    try_extern 'void gr_mathtex3d(double, double, double, char *, int)'
+    try_extern 'void gr_inqmathtex3d(double, double, double, char *, int, double *, double *, double *, double *)'
     try_extern 'void gr_beginselection(int, int)'
     try_extern 'void gr_endselection(void)'
     try_extern 'void gr_setbboxcallback(int, void (*)(int, double, double, double, double))'
@@ -234,7 +240,8 @@ module GR
     try_extern 'void gr_gradient(int, int, double *, double *, double *, double *, double *)'
     try_extern 'void gr_quiver(int, int, double *, double *, double *, double *, int)'
     try_extern 'void gr_interp2(int nx, int ny, const double *x, const double *y, const double *z,' \
-               ' int nxq, int nyq, const double *xq, const double *yq, double *zq, int method, double extrapval)'
+               ' int nxq, int nyq, const double *xq, const double *yq, double *zq,' \
+               ' interp2_method_t method, double extrapval)'
     try_extern 'const char *gr_version(void)'
     try_extern 'void gr_shade(int, double *, double *, int, int, double *, int, int, int *)'
     try_extern 'void gr_shadepoints(int, double *, double *, int, int, int)'
@@ -294,5 +301,10 @@ module GR
     try_extern 'double gr_volume_interp_gauss(const data_point3d_t *, const void *, const point3d_t *, const point3d_t *)'
     try_extern 'void gr_setmathfont(int font)'
     try_extern 'void gr_inqmathfont(int *font)'
+    try_extern 'void gr_setclipregion(int region)'
+    try_extern 'void gr_inqclipregion(int *region)'
+    try_extern 'void gr_settextoffset(double xoff, double yoff)'
+    try_extern 'char *gr_ftoa(char *string, double value, format_reference_t *reference)'
+    try_extern 'void gr_getformat(format_reference_t *result, double origin, double min, double max, double tick_width, int major)'
   end
 end
