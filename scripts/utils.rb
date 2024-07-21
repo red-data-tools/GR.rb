@@ -16,6 +16,8 @@ def extract_api(file, prefix)
      .map { _1.gsub(/^.*#{prefix} (.*)$/, '\1') }
      .tap { puts "#{file}: #{_1.size} lines".yellow }
      .join("\n")
+     .chomp
+     .+("\n")
 end
 
 def extract_ffi(file)
@@ -29,4 +31,6 @@ def extract_ffi(file)
       .map { _1.gsub(/^.*try_extern '([^']+)'.*$/, '\1') }
       .tap { puts "#{file}: #{_1.size} lines".yellow }
       .join("\n")
+      .chomp
+      .+("\n")
 end
