@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
 module GRCommons
-  VERSION = '0.72.9.0'
+  VERSION = '0.73.6.0'
 end
