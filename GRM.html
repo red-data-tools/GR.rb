@@ -98,7 +98,7 @@
     
   
     
-      <strong class="classes">Classes:</strong> <span class='object_link'><a href="GRM/Error.html" title="GRM::Error (class)">Error</a></span>, <span class='object_link'><a href="GRM/NotFoundError.html" title="GRM::NotFoundError (class)">NotFoundError</a></span>
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="GRM/Args.html" title="GRM::Args (class)">Args</a></span>, <span class='object_link'><a href="GRM/Error.html" title="GRM::Error (class)">Error</a></span>, <span class='object_link'><a href="GRM/NotFoundError.html" title="GRM::NotFoundError (class)">NotFoundError</a></span>
     
   
 </p>
@@ -163,6 +163,127 @@
 
 
 
+  
+    <h2>
+      Class Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#merge-class_method" title="merge (class method)">.<strong>merge</strong>(args = nil)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#merge_extended-class_method" title="merge_extended (class method)">.<strong>merge_extended</strong>(args = nil, hold = 0, identifiator = nil)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#merge_hold-class_method" title="merge_hold (class method)">.<strong>merge_hold</strong>(args = nil)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#merge_named-class_method" title="merge_named (class method)">.<strong>merge_named</strong>(args = nil, identifiator = nil)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#plot-class_method" title="plot (class method)">.<strong>plot</strong>(args = nil)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
 
   
   
@@ -170,7 +291,7 @@
   
   
   
-  <h2>Method Summary</h2>
+  
   
   <h3 class="inherited">Methods included from <span class='object_link'><a href="GRCommons/GRCommonUtils.html" title="GRCommons::GRCommonUtils (module)">GRCommons::GRCommonUtils</a></span></h3>
   <p class="inherited"><span class='object_link'><a href="GRCommons/GRCommonUtils.html#create_ffi_pointer-class_method" title="GRCommons::GRCommonUtils.create_ffi_pointer (method)">create_ffi_pointer</a></span>, <span class='object_link'><a href="GRCommons/GRCommonUtils.html#double-class_method" title="GRCommons::GRCommonUtils.double (method)">double</a></span>, <span class='object_link'><a href="GRCommons/GRCommonUtils.html#equal_length-class_method" title="GRCommons::GRCommonUtils.equal_length (method)">equal_length</a></span>, <span class='object_link'><a href="GRCommons/GRCommonUtils.html#float-class_method" title="GRCommons::GRCommonUtils.float (method)">float</a></span>, <span class='object_link'><a href="GRCommons/GRCommonUtils.html#inquiry-class_method" title="GRCommons::GRCommonUtils.inquiry (method)">inquiry</a></span>, <span class='object_link'><a href="GRCommons/GRCommonUtils.html#inquiry_double-class_method" title="GRCommons::GRCommonUtils.inquiry_double (method)">inquiry_double</a></span>, <span class='object_link'><a href="GRCommons/GRCommonUtils.html#inquiry_int-class_method" title="GRCommons::GRCommonUtils.inquiry_int (method)">inquiry_int</a></span>, <span class='object_link'><a href="GRCommons/GRCommonUtils.html#inquiry_uint-class_method" title="GRCommons::GRCommonUtils.inquiry_uint (method)">inquiry_uint</a></span>, <span class='object_link'><a href="GRCommons/GRCommonUtils.html#int-class_method" title="GRCommons::GRCommonUtils.int (method)">int</a></span>, <span class='object_link'><a href="GRCommons/GRCommonUtils.html#narray%3F-class_method" title="GRCommons::GRCommonUtils.narray? (method)">narray?</a></span>, <span class='object_link'><a href="GRCommons/GRCommonUtils.html#read_ffi_pointer-class_method" title="GRCommons::GRCommonUtils.read_ffi_pointer (method)">read_ffi_pointer</a></span>, <span class='object_link'><a href="GRCommons/GRCommonUtils.html#uint-class_method" title="GRCommons::GRCommonUtils.uint (method)">uint</a></span>, <span class='object_link'><a href="GRCommons/GRCommonUtils.html#uint16-class_method" title="GRCommons::GRCommonUtils.uint16 (method)">uint16</a></span>, <span class='object_link'><a href="GRCommons/GRCommonUtils.html#uint8-class_method" title="GRCommons::GRCommonUtils.uint8 (method)">uint8</a></span></p>
@@ -236,10 +357,166 @@
   </div>
 
 
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="merge-class_method">
+  
+    .<strong>merge</strong>(args = nil)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+152
+153
+154</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/grm.rb', line 152</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='kw'>super</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="GRM/Args.html" title="GRM::Args (class)">Args</a></span></span><span class='period'>.</span><span class='id identifier rubyid_try_convert'><span class='object_link'><a href="GRM/Args.html#try_convert-class_method" title="GRM::Args.try_convert (method)">try_convert</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="merge_extended-class_method">
+  
+    .<strong>merge_extended</strong>(args = nil, hold = 0, identifiator = nil)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+156
+157
+158</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/grm.rb', line 156</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_merge_extended'>merge_extended</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_hold'>hold</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_identifiator'>identifiator</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='kw'>super</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="GRM/Args.html" title="GRM::Args (class)">Args</a></span></span><span class='period'>.</span><span class='id identifier rubyid_try_convert'><span class='object_link'><a href="GRM/Args.html#try_convert-class_method" title="GRM::Args.try_convert (method)">try_convert</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='id identifier rubyid_hold'>hold</span><span class='comma'>,</span> <span class='id identifier rubyid_identificator'>identificator</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="merge_hold-class_method">
+  
+    .<strong>merge_hold</strong>(args = nil)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+160
+161
+162</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/grm.rb', line 160</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_merge_hold'>merge_hold</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='kw'>super</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="GRM/Args.html" title="GRM::Args (class)">Args</a></span></span><span class='period'>.</span><span class='id identifier rubyid_try_convert'><span class='object_link'><a href="GRM/Args.html#try_convert-class_method" title="GRM::Args.try_convert (method)">try_convert</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="merge_named-class_method">
+  
+    .<strong>merge_named</strong>(args = nil, identifiator = nil)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+164
+165
+166</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/grm.rb', line 164</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_merge_named'>merge_named</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_identifiator'>identifiator</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='kw'>super</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="GRM/Args.html" title="GRM::Args (class)">Args</a></span></span><span class='period'>.</span><span class='id identifier rubyid_try_convert'><span class='object_link'><a href="GRM/Args.html#try_convert-class_method" title="GRM::Args.try_convert (method)">try_convert</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='id identifier rubyid_identificator'>identificator</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="plot-class_method">
+  
+    .<strong>plot</strong>(args = nil)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+168
+169
+170</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/grm.rb', line 168</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_plot'>plot</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='kw'>super</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="GRM/Args.html" title="GRM::Args (class)">Args</a></span></span><span class='period'>.</span><span class='id identifier rubyid_try_convert'><span class='object_link'><a href="GRM/Args.html#try_convert-class_method" title="GRM::Args.try_convert (method)">try_convert</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
 </div>
 
       <div id="footer">
-  Generated on Sun Jul 21 01:41:23 2024 by
+  Generated on Tue Aug  6 03:27:52 2024 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.36 (ruby-3.3.4).
 </div>
