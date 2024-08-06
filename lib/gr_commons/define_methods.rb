@@ -20,7 +20,11 @@ module GRCommons
             when ->(x) { defined?(Numo::NArray) && x.is_a?(Numo::NArray) }
               GRCommonUtils.public_send(default_type, arg)
             else
-              arg
+              if arg.respond_to?(:to_gr)
+                arg.to_gr
+              else
+                arg
+              end
             end
           end
           ffi_module.public_send(method, *args)
