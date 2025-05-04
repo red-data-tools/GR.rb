@@ -65,5 +65,7 @@ jobs:
         if: ${{ matrix.gr == 'system' && matrix.os == 'ubuntu' }}
         env:
           QT_QPA_PLATFORM: offscreen
-          GRDIR: /usr/gr
+          LD_PRELOAD: /usr/lib/x86_64-linux-gnu/libicuuc.so.74
+          LD_LIBRARY_PATH: /usr/lib/x86_64-linux-gnu
+          PKG_CONFIG_PATH: /usr/gr/lib/pkgconfig/
         run: bundle exec rake test
