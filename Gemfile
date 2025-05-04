@@ -16,4 +16,5 @@ end
 group :development do
   gem 'colorize'
   gem 'diffy'
+  gem 'gr-plot'
 end
