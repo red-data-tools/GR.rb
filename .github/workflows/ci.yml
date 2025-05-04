@@ -11,9 +11,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        gr: ["0.72.11", "0.73.10", "system"]
+        gr: ["0.73.14", "system"]
         os: ["ubuntu", "macos", "windows"]
         ruby: ["3.2", "3.3", "3.4"]
+        ubuntu_version: ["24.04"]
         exclude:
           - { os: windows, gr: "0.72.11" }
           - { os: windows, gr: "0.73.10" }
@@ -38,9 +39,9 @@ jobs:
       - name: Setup OBS binary (ubuntu)
         if: ${{ matrix.gr == 'system' && matrix.os == 'ubuntu' }}
         run: |
-          echo 'deb http://download.opensuse.org/repositories/science:/gr-framework/xUbuntu_20.04/ /' |
+          echo 'deb http://download.opensuse.org/repositories/science:/gr-framework/xUbuntu_${{ matrix.ubuntu_version }}/ /' |
             sudo tee /etc/apt/sources.list.d/science:gr-framework.list
-          curl -fsSL https://download.opensuse.org/repositories/science:gr-framework/xUbuntu_20.04/Release.key |
+          curl -fsSL https://download.opensuse.org/repositories/science:gr-framework/xUbuntu_${{ matrix.ubuntu_version }}/Release.key |
             gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/science_gr-framework.gpg > /dev/null
           sudo apt update -yq && sudo apt upgrade -yq
           sudo apt-get install -y gr
