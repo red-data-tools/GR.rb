@@ -288,7 +288,7 @@ module GR3
     #
     # This function does not return an error code, because of its asynchronous
     # nature. If gr3_getpixmap_() returns a GR3_ERROR_OPENGL_ERR, this might be
-    # caused by this function saving unuseable data into the draw list.
+    # caused by this function saving unusable data into the draw list.
     #
     # @param mesh       [Integer]       The mesh to be drawn
     # @param n          [Integer]       The number of meshes to be drawn

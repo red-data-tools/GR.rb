@@ -137,7 +137,7 @@ module GR
     #  * 371       : Gtk
     #  * 380       : wxWidgets
     #  * 381       : Qt4
-    #  * 382       : Scaleable Vector Graphics (SVG)
+    #  * 382       : Scalable Vector Graphics (SVG)
     #  * 390       : Windows Metafile
     #  * 400       : Quartz
     #  * 410       : Socket driver
@@ -519,7 +519,7 @@ module GR
       inquiry_int { |pt| super(pt) }
     end
 
-    # Specifiy the marker type for polymarkers.
+    # Specify the marker type for polymarkers.
     #
     # @param style [Integer] The polymarker marker type
     #  * 1   : MARKERTYPE_DOT             - Smallest displayable dot
