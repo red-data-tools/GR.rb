@@ -11,7 +11,7 @@ x = n.times.map { |i| i * 30.0 / n }
 y = n.times.map { |i| Math.cos(x[i]) * x[i] }
 z = n.times.map { |i| Math.sin(x[i]) * x[i] }
 
-GRM.plot(kind: "plot3",
+GRM.plot(kind: 'plot3',
          x: x,
          y: y,
          z: z)

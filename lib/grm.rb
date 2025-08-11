@@ -67,15 +67,13 @@ module GRM
         case value
         when Hash
           new(**value)
-        else
-          nil
         end
       end
     end
 
     def initialize(**args)
       @args = GRM.args_new
-      @args.free = FFI["grm_args_delete"]
+      @args.free = FFI['grm_args_delete']
       @references = []
       args.each do |key, value|
         push(key, value)
@@ -86,42 +84,42 @@ module GRM
       key = key.to_s if key.is_a?(Symbol)
       case value
       when String
-        GRM.args_push(@args, key, "s", :const_string, value)
+        GRM.args_push(@args, key, 's', :const_string, value)
       when Integer
-        GRM.args_push(@args, key, "i", :int, value)
+        GRM.args_push(@args, key, 'i', :int, value)
       when Float
-        GRM.args_push(@args, key, "d", :double, value)
+        GRM.args_push(@args, key, 'd', :double, value)
       when Args
-        GRM.args_push(@args, key, "a", :voidp, value.address)
+        GRM.args_push(@args, key, 'a', :voidp, value.address)
         value.to_gr.free = nil
       when Array
         case value[0]
         when String
-          addresses = value.collect {|v| Fiddle::Pointer[v].to_i}
-          GRM.args_push(@args, key, "nS",
+          addresses = value.collect { |v| Fiddle::Pointer[v].to_i }
+          GRM.args_push(@args, key, 'nS',
                         :int, value.size,
-                        :voidp, addresses.pack("J*"))
+                        :voidp, addresses.pack('J*'))
         when Integer
-          GRM.args_push(@args, key, "nI",
+          GRM.args_push(@args, key, 'nI',
                         :int, value.size,
-                        :voidp, value.pack("i*"))
+                        :voidp, value.pack('i*'))
         when Float
-          GRM.args_push(@args, key, "nD",
+          GRM.args_push(@args, key, 'nD',
                         :int, value.size,
-                        :voidp, value.pack("d*"))
+                        :voidp, value.pack('d*'))
         when Args
-          GRM.args_push(@args, key, "nA",
+          GRM.args_push(@args, key, 'nA',
                         :int, value.size,
-                        :voidp, value.collect(&:address).pack("J*"))
+                        :voidp, value.collect(&:address).pack('J*'))
           value.each do |v|
             v.to_gr.free = nil
           end
         else
-          vs = value.collect {|v| Args.new(**v)}
+          vs = value.collect { |v| Args.new(**v) }
           @references.concat(vs)
-          GRM.args_push(@args, key, "nA",
+          GRM.args_push(@args, key, 'nA',
                         :int, value.size,
-                        :voidp, vs.collect(&:address).pack("J*"))
+                        :voidp, vs.collect(&:address).pack('J*'))
           vs.each do |v|
             v.to_gr.free = nil
           end
@@ -129,7 +127,7 @@ module GRM
       else
         v = Args.new(**value)
         @references << v
-        GRM.args_push(@args, key, "a", :voidp, v.address)
+        GRM.args_push(@args, key, 'a', :voidp, v.address)
         v.to_gr.free = nil
       end
     end
@@ -149,23 +147,23 @@ module GRM
   end
 
   class << self
-    def merge(args=nil)
+    def merge(args = nil)
       super(Args.try_convert(args) || args)
     end
 
-    def merge_extended(args=nil, hold=0, identifiator=nil)
+    def merge_extended(args = nil, hold = 0, _identifiator = nil)
       super(Args.try_convert(args) || args, hold, identificator)
     end
 
-    def merge_hold(args=nil)
+    def merge_hold(args = nil)
       super(Args.try_convert(args) || args)
     end
 
-    def merge_named(args=nil, identifiator=nil)
+    def merge_named(args = nil, _identifiator = nil)
       super(Args.try_convert(args) || args, identificator)
     end
 
-    def plot(args=nil)
+    def plot(args = nil)
       super(Args.try_convert(args) || args)
     end
   end

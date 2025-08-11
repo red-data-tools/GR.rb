@@ -732,7 +732,7 @@ module GR
     #  * 3 : TEXT_HALIGN_RIGHT  - Right justify
     #
     # @param vertical [Integer] Vertical text alignment
-    #  * 0 : TEXT_VALIGN_NORMAL   
+    #  * 0 : TEXT_VALIGN_NORMAL
     #  * 1 : TEXT_VALIGN_TOP    - Align with the top of the characters
     #  * 2 : TEXT_VALIGN_CAP    - Aligned with the cap of the characters
     #  * 3 : TEXT_VALIGN_HALF   - Aligned with the half line of the characters
