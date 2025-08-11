@@ -21,7 +21,7 @@ module GRM
     # header files.
 
     # https://github.com/sciapp/gr/blob/master/lib/grm/include/grm/args.h
-    try_extern 'grm_args_value_iterator_t *grm_arg_value_iter(const arg_t *arg)'
+    try_extern 'grm_args_value_iterator_t *grm_arg_value_iter(const grm_arg_t *arg)'
     try_extern 'grm_args_t *grm_args_new(void)'
     try_extern 'void grm_args_delete(grm_args_t *args)'
     try_extern 'int grm_args_push(grm_args_t *args, const char *key, const char *value_format, ...)'
@@ -39,6 +39,9 @@ module GRM
     try_extern 'void grm_dump(const grm_args_t *args, FILE *f)'
     try_extern 'void grm_dump_json(const grm_args_t *args, FILE *f)'
     try_extern 'char *grm_dump_json_str(void)'
+    try_extern 'char *grm_dump_html(char *plot_id)'
+    try_extern 'char *grm_dump_html_args(char *plot_id, grm_args_t *args)'
+    try_extern 'void grm_dump_bson(const grm_args_t *args, FILE *f)'
 
     # https://github.com/sciapp/gr/blob/master/lib/grm/include/grm/event.h
     typealias 'grm_event_type_t', 'int' # enum
@@ -71,7 +74,7 @@ module GRM
     try_extern 'int grm_clear(void)'
     try_extern 'void grm_dump_graphics_tree(FILE *f)'
     try_extern 'char *grm_dump_graphics_tree_str(void)'
-    try_extern 'unsigned int grm_max_plotid(void)'
+    try_extern 'unsigned int grm_max_plot_id(void)'
     try_extern 'int grm_merge(const grm_args_t *args)'
     try_extern 'int grm_merge_extended(const grm_args_t *args, int hold, const char *identificator)'
     try_extern 'int grm_merge_hold(const grm_args_t *args)'
@@ -82,5 +85,16 @@ module GRM
     try_extern 'int grm_export(const char *file_path)'
     try_extern 'int grm_switch(unsigned int id)'
     try_extern 'int grm_load_graphics_tree(FILE *file)'
+    try_extern 'int grm_validate(void)'
+    try_extern 'std::shared_ptr<GRM::Element> grm_get_document_root(void)'
+    try_extern 'std::shared_ptr<GRM::Render> grm_get_render(void)'
+    try_extern 'int grm_iterate_grid(GRM::Grid *grid, const std::shared_ptr<GRM::Element> &parent_dom_element, int plot_id)'
+    try_extern 'int grm_plot_helper(GRM::GridElement *grid_element, GRM::Slice *slice, const std::shared_ptr<GRM::Element> &parent_dom_element, int plot_id)'
+    try_extern 'std::shared_ptr<GRM::Element> grm_get_subplot_from_ndc_point_using_dom(double x, double y)'
+    try_extern 'std::shared_ptr<GRM::Element> grm_get_subplot_from_ndc_points_using_dom(unsigned int n, const double *x, const double *y)'
+    try_extern 'void grm_set_attribute_on_all_subplots(std::string attribute, int value)'
+    try_extern 'int grm_get_focus_and_factor_from_dom(const int x1, const int y1, const int x2, const int y2, const int keep_aspect_ratio, double *factor_x, double *factor_y, double *focus_x, double *focus_y, std::shared_ptr<GRM::Element> &subplot_element)'
+    try_extern 'std::map<std::string, std::list<std::string>> grm_get_context_data()'
+    try_extern 'std::shared_ptr<GRM::Document> grm_load_graphics_tree_schema(bool with_private_attributes = false)'
   end
 end
