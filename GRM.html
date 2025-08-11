@@ -196,7 +196,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#merge_extended-class_method" title="merge_extended (class method)">.<strong>merge_extended</strong>(args = nil, hold = 0, identifiator = nil)  &#x21d2; Object </a>
+      <a href="#merge_extended-class_method" title="merge_extended (class method)">.<strong>merge_extended</strong>(args = nil, hold = 0, _identifiator = nil)  &#x21d2; Object </a>
     
 
     
@@ -240,7 +240,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#merge_named-class_method" title="merge_named (class method)">.<strong>merge_named</strong>(args = nil, identifiator = nil)  &#x21d2; Object </a>
+      <a href="#merge_named-class_method" title="merge_named (class method)">.<strong>merge_named</strong>(args = nil, _identifiator = nil)  &#x21d2; Object </a>
     
 
     
@@ -376,14 +376,14 @@
       <pre class="lines">
 
 
-152
-153
-154</pre>
+150
+151
+152</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/grm.rb', line 152</span>
+      <pre class="code"><span class="info file"># File 'lib/grm.rb', line 150</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>super</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="GRM/Args.html" title="GRM::Args (class)">Args</a></span></span><span class='period'>.</span><span class='id identifier rubyid_try_convert'><span class='object_link'><a href="GRM/Args.html#try_convert-class_method" title="GRM::Args.try_convert (method)">try_convert</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -394,7 +394,7 @@
       <div class="method_details ">
   <h3 class="signature " id="merge_extended-class_method">
   
-    .<strong>merge_extended</strong>(args = nil, hold = 0, identifiator = nil)  &#x21d2; <tt>Object</tt> 
+    .<strong>merge_extended</strong>(args = nil, hold = 0, _identifiator = nil)  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -406,14 +406,14 @@
       <pre class="lines">
 
 
-156
-157
-158</pre>
+154
+155
+156</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/grm.rb', line 156</span>
+      <pre class="code"><span class="info file"># File 'lib/grm.rb', line 154</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_merge_extended'>merge_extended</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_hold'>hold</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_identifiator'>identifiator</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_merge_extended'>merge_extended</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_hold'>hold</span> <span class='op'>=</span> <span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid__identifiator'>_identifiator</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>super</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="GRM/Args.html" title="GRM::Args (class)">Args</a></span></span><span class='period'>.</span><span class='id identifier rubyid_try_convert'><span class='object_link'><a href="GRM/Args.html#try_convert-class_method" title="GRM::Args.try_convert (method)">try_convert</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='id identifier rubyid_hold'>hold</span><span class='comma'>,</span> <span class='id identifier rubyid_identificator'>identificator</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -436,14 +436,14 @@
       <pre class="lines">
 
 
-160
-161
-162</pre>
+158
+159
+160</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/grm.rb', line 160</span>
+      <pre class="code"><span class="info file"># File 'lib/grm.rb', line 158</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_merge_hold'>merge_hold</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_merge_hold'>merge_hold</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>super</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="GRM/Args.html" title="GRM::Args (class)">Args</a></span></span><span class='period'>.</span><span class='id identifier rubyid_try_convert'><span class='object_link'><a href="GRM/Args.html#try_convert-class_method" title="GRM::Args.try_convert (method)">try_convert</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -454,7 +454,7 @@
       <div class="method_details ">
   <h3 class="signature " id="merge_named-class_method">
   
-    .<strong>merge_named</strong>(args = nil, identifiator = nil)  &#x21d2; <tt>Object</tt> 
+    .<strong>merge_named</strong>(args = nil, _identifiator = nil)  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -466,14 +466,14 @@
       <pre class="lines">
 
 
-164
-165
-166</pre>
+162
+163
+164</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/grm.rb', line 164</span>
+      <pre class="code"><span class="info file"># File 'lib/grm.rb', line 162</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_merge_named'>merge_named</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_identifiator'>identifiator</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_merge_named'>merge_named</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid__identifiator'>_identifiator</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>super</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="GRM/Args.html" title="GRM::Args (class)">Args</a></span></span><span class='period'>.</span><span class='id identifier rubyid_try_convert'><span class='object_link'><a href="GRM/Args.html#try_convert-class_method" title="GRM::Args.try_convert (method)">try_convert</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='id identifier rubyid_identificator'>identificator</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -496,14 +496,14 @@
       <pre class="lines">
 
 
-168
-169
-170</pre>
+166
+167
+168</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/grm.rb', line 168</span>
+      <pre class="code"><span class="info file"># File 'lib/grm.rb', line 166</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_plot'>plot</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_plot'>plot</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>super</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="GRM/Args.html" title="GRM::Args (class)">Args</a></span></span><span class='period'>.</span><span class='id identifier rubyid_try_convert'><span class='object_link'><a href="GRM/Args.html#try_convert-class_method" title="GRM::Args.try_convert (method)">try_convert</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -516,9 +516,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue May  6 11:38:11 2025 by
+  Generated on Mon Aug 11 08:09:42 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.37 (ruby-3.4.3).
+  0.9.37 (ruby-3.4.5).
 </div>
 
     </div>
