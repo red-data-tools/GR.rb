@@ -4,6 +4,7 @@
 [![CI](https://github.com/red-data-tools/GR.rb/workflows/CI/badge.svg)](https://github.com/red-data-tools/GR.rb/actions)
 [![Gitter Chat](https://badges.gitter.im/red-data-tools/en.svg)](https://gitter.im/red-data-tools/en)
 [![Docs Latest](https://img.shields.io/badge/docs-latest-blue.svg)](https://red-data-tools.github.io/GR.rb/)
+[![Lines of Code](https://img.shields.io/endpoint?url=https%3A%2F%2Ftokei.kojix2.net%2Fbadge%2Fgithub%2Fred-data-tools%2FGR.rb%2Flines)](https://tokei.kojix2.net/github/red-data-tools/GR.rb)
 
 [![rdatasets-1](https://i.imgur.com/XEQ6wKs.png)](examples/rdatasets.rb)
 [![stem](https://i.imgur.com/3w0Ejrm.png)](examples/fast_plots.rb)
