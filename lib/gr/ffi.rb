@@ -298,6 +298,7 @@ module GR
     # typedef double (*radius_f)(const data_point3d_t *, const void *);
     typealias 'kernel_f', 'void*'
     typealias 'radius_f', 'void*'
+    typealias 'interp2_method_t', 'int'
     try_extern 'void gr_volume_nogrid(unsigned long, const data_point3d_t *, const void *, int, kernel_f, double *, double *, double, radius_f)'
     try_extern 'void gr_volume_interp_tri_linear_init(double, double, double)'
     try_extern 'void gr_volume_interp_gauss_init(double, double *)'
