@@ -1348,9 +1348,12 @@ module GR
     #  * 6 SHADED_MESH   - Applies light source shading to the 3-D surface
     #
     def surface(x, y, z, option)
-      # TODO: check: Arrays have incorrect length or dimension.
       nx = x.length
       ny = y.length
+      if z.length != nx * ny
+        raise ArgumentError, "z must have length nx * ny (expected #{nx * ny}, got #{z.length})"
+      end
+
       super(nx, ny, x, y, z, option)
     end
 
@@ -1376,10 +1379,13 @@ module GR
     #   of 1000 to `major_h`.
     #
     def contour(x, y, h, z, major_h)
-      # TODO: check: Arrays have incorrect length or dimension.
       nx = x.length
       ny = y.length
       nh = h.length
+      if z.length != nx * ny
+        raise ArgumentError, "z must have length nx * ny (expected #{nx * ny}, got #{z.length})"
+      end
+
       super(nx, ny, nh, x, y, h, z, major_h)
     end
 
@@ -1401,10 +1407,13 @@ module GR
     #   array containing the Z coordinates
     #
     def contourf(x, y, h, z, major_h)
-      # TODO: check: Arrays have incorrect length or dimension.
       nx = x.length
       ny = y.length
       nh = h.length
+      if z.length != nx * ny
+        raise ArgumentError, "z must have length nx * ny (expected #{nx * ny}, got #{z.length})"
+      end
+
       super(nx, ny, nh, x, y, h, z, major_h)
     end
 
@@ -1416,7 +1425,7 @@ module GR
     # @param levels [Array, NArray] A list of contour levels
     #
     def tricontour(x, y, z, levels)
-      npoints = x.length # equal_length ?
+      npoints = equal_length(x, y, z)
       nlevels = levels.length
       super(npoints, x, y, z, nlevels, levels)
     end
@@ -1919,9 +1928,12 @@ module GR
 
     # @deprecated
     def gradient(x, y, z)
-      # TODO: check: Arrays have incorrect length or dimension.
       nx = x.length
       ny = y.length
+      if z.length != nx * ny
+        raise ArgumentError, "z must have length nx * ny (expected #{nx * ny}, got #{z.length})"
+      end
+
       inquiry [{ double: nx * ny }, { double: nx * ny }] do |pu, pv|
         super(nx, ny, x, y, z, pu, pv)
       end
@@ -1942,9 +1954,12 @@ module GR
     # The values for `x` and `y` are in world coordinates.
     #
     def quiver(x, y, u, v, color)
-      # TODO: check: Arrays have incorrect length or dimension.
       nx = x.length
       ny = y.length
+      if u.length != nx * ny || v.length != nx * ny
+        raise ArgumentError, "u and v must have length nx * ny (expected #{nx * ny}, got u: #{u.length}, v: #{v.length})"
+      end
+
       super(nx, ny, x, y, u, v, (color ? 1 : 0))
     end
 
