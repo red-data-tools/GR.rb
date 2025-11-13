@@ -1350,9 +1350,7 @@ module GR
     def surface(x, y, z, option)
       nx = x.length
       ny = y.length
-      if z.length != nx * ny
-        raise ArgumentError, "z must have length nx * ny (expected #{nx * ny}, got #{z.length})"
-      end
+      raise ArgumentError, "z must have length nx * ny (expected #{nx * ny}, got #{z.length})" if z.length != nx * ny
 
       super(nx, ny, x, y, z, option)
     end
@@ -1382,9 +1380,7 @@ module GR
       nx = x.length
       ny = y.length
       nh = h.length
-      if z.length != nx * ny
-        raise ArgumentError, "z must have length nx * ny (expected #{nx * ny}, got #{z.length})"
-      end
+      raise ArgumentError, "z must have length nx * ny (expected #{nx * ny}, got #{z.length})" if z.length != nx * ny
 
       super(nx, ny, nh, x, y, h, z, major_h)
     end
@@ -1410,9 +1406,7 @@ module GR
       nx = x.length
       ny = y.length
       nh = h.length
-      if z.length != nx * ny
-        raise ArgumentError, "z must have length nx * ny (expected #{nx * ny}, got #{z.length})"
-      end
+      raise ArgumentError, "z must have length nx * ny (expected #{nx * ny}, got #{z.length})" if z.length != nx * ny
 
       super(nx, ny, nh, x, y, h, z, major_h)
     end
@@ -1930,9 +1924,7 @@ module GR
     def gradient(x, y, z)
       nx = x.length
       ny = y.length
-      if z.length != nx * ny
-        raise ArgumentError, "z must have length nx * ny (expected #{nx * ny}, got #{z.length})"
-      end
+      raise ArgumentError, "z must have length nx * ny (expected #{nx * ny}, got #{z.length})" if z.length != nx * ny
 
       inquiry [{ double: nx * ny }, { double: nx * ny }] do |pu, pv|
         super(nx, ny, x, y, z, pu, pv)
