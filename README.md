@@ -21,7 +21,7 @@
 [![face](https://i.imgur.com/uLCKi2r.png)](examples/face.rb)
 [![shade](https://i.imgur.com/VJmS3EQ.png)](examples/shade_ex.rb)
 
-:bar_chart:  [GR framework](https://github.com/sciapp/gr) - powerful visualization library - for Ruby
+:bar_chart: [GR framework](https://github.com/sciapp/gr) - powerful visualization library - for Ruby
 
 ## Installation
 
@@ -31,7 +31,7 @@ First, [install GR](#gr-installation). Then install [`gr-plot`](https://github.c
 gem install gr-plot
 ```
 
-[pkg-config](https://github.com/ruby-gnome/pkg-config) will detect the location of the shared library. Otherwise, you need to specify the environment variable. 
+[pkg-config](https://github.com/ruby-gnome/pkg-config) will detect the location of the shared library. Otherwise, you need to specify the environment variable.
 
 ```sh
 export GRDIR="/your/path/to/gr"
@@ -69,7 +69,7 @@ require 'gr/plot'
 GR.plot(x, y)
 ```
 
-List of available functions. 
+List of available functions.
 
 [`plot`](../../wiki/Plotting-functions#plot)
 [`step`](../../wiki/Plotting-functions#step)
@@ -151,7 +151,7 @@ macOS : See ["How to open apps from un-notarized or unidentified developers"](ht
 
 ### Using package managers
 
-The third party GR packages for Mac, Linux and Windows are available for advanced users. However, these packages are provided by OSS volunteers and may not be the latest version or support some features (such as video output). If you find any problem, please report the issue [here](https://github.com/red-data-tools/GR.rb/issues). 
+The third party GR packages for Mac, Linux and Windows are available for advanced users. However, these packages are provided by OSS volunteers and may not be the latest version or support some features (such as video output). If you find any problem, please report the issue [here](https://github.com/red-data-tools/GR.rb/issues).
 
 #### Mac - Homebrew
 
@@ -183,12 +183,12 @@ If you are using Rubyinstaller, pacman will automatically install [mingw-w64-gr]
 GR.rb is a library under development, so even small improvements like fixing typos are welcome!
 Please feel free to send us your PR.
 
-* [Report bugs](https://github.com/red-data-tools/GR.rb/issues)
-* Fix bugs and [submit pull requests](https://github.com/red-data-tools/GR.rb/pulls)
-* Write, clarify, or fix documentation
-* Suggest or add new features
-* Update GR packages ( Homebrew, MinGW, red-data-tools )
-* Create visualization tools based on GR.rb
+- [Report bugs](https://github.com/red-data-tools/GR.rb/issues)
+- Fix bugs and [submit pull requests](https://github.com/red-data-tools/GR.rb/pulls)
+- Write, clarify, or fix documentation
+- Suggest or add new features
+- Update GR packages ( Homebrew, MinGW, red-data-tools )
+- Create visualization tools based on GR.rb
 
 If you are not familiar with Ruby gem development, please see
 [I'm new to Ruby](https://github.com/red-data-tools/GR.rb/wiki/I%27m-new-to-Ruby)
