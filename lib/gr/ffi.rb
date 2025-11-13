@@ -243,6 +243,7 @@ module GR
     try_extern 'void gr_trisurface(int, double *, double *, double *)'
     try_extern 'void gr_gradient(int, int, double *, double *, double *, double *, double *)'
     try_extern 'void gr_quiver(int, int, double *, double *, double *, double *, int)'
+    typealias 'interp2_method_t', 'int'
     try_extern 'void gr_interp2(int nx, int ny, const double *x, const double *y, const double *z,' \
                ' int nxq, int nyq, const double *xq, const double *yq, double *zq,' \
                ' interp2_method_t method, double extrapval)'
@@ -298,7 +299,6 @@ module GR
     # typedef double (*radius_f)(const data_point3d_t *, const void *);
     typealias 'kernel_f', 'void*'
     typealias 'radius_f', 'void*'
-    typealias 'interp2_method_t', 'int'
     try_extern 'void gr_volume_nogrid(unsigned long, const data_point3d_t *, const void *, int, kernel_f, double *, double *, double, radius_f)'
     try_extern 'void gr_volume_interp_tri_linear_init(double, double, double)'
     try_extern 'void gr_volume_interp_gauss_init(double, double *)'
