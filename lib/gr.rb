@@ -1116,7 +1116,8 @@ module GR
 
     alias axes2d axes
 
-    def axis(option, min: Float::NAN, max: Float::NAN, tick: Float::NAN, org: Float::NAN, position: Float::NAN, major_count: 1, tick_size: Float::NAN, label_position: Float::NAN, draw_axis_line: 1, label_orientation: 0)
+    def axis(option, min: Float::NAN, max: Float::NAN, tick: Float::NAN, org: Float::NAN, position: Float::NAN, major_count: 1,
+             tick_size: Float::NAN, label_position: Float::NAN, draw_axis_line: 1, label_orientation: 0)
       ax = FFI::Axis.malloc
       ax.min = min
       ax.max = max
@@ -1136,7 +1137,8 @@ module GR
       ax
     end
 
-    def drawaxis(option, min: Float::NAN, max: Float::NAN, tick: Float::NAN, org: Float::NAN, position: Float::NAN, major_count: 1, tick_size: Float::NAN, label_position: Float::NAN, draw_axis_line: 1, label_orientation: 0)
+    def drawaxis(option, min: Float::NAN, max: Float::NAN, tick: Float::NAN, org: Float::NAN, position: Float::NAN,
+                 major_count: 1, tick_size: Float::NAN, label_position: Float::NAN, draw_axis_line: 1, label_orientation: 0)
       ax = FFI::Axis.malloc
       ax.min = min
       ax.max = max
