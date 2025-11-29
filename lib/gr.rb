@@ -2470,6 +2470,45 @@ module GR
       n_connections = colors.length
       super(n_points, px, py, pz, n_connections, int(connections), int(colors))
     end
+
+    # @return [Integer]
+    def startlistener
+      inquiry_int do |ret|
+        super(ret)
+      end
+    end
+
+    # @!method setmathfont
+
+    def inqmathfont
+      inquiry_int { |pt| super(pt) }
+    end
+
+    # @!method setclipregion
+
+    def inqclipregion
+      inquiry_int { |pt| super(pt) }
+    end
+
+    # @!method setclipsector
+
+    def inqclipsector
+      inquiry %i[double double] do |*pts|
+        super(*pts)
+      end
+    end
+
+    def getformat(origin, min, max, tick_width, major)
+      ref = FFI::FormatReference.malloc
+      super(ref, origin, min, max, tick_width, major)
+      ref
+    end
+
+    def ftoa(value, format_ref)
+      string = Fiddle::Pointer.malloc(256)
+      super(string, value, format_ref)
+      string.to_s
+    end
   end
 
   ASF_BUNDLED    = 0
