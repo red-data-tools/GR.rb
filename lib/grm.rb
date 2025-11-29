@@ -93,6 +93,26 @@ module GRM
         GRM.args_push(@args, key, 'a', :voidp, value.address)
         value.to_gr.free = nil
       when Array
+        raise ArgumentError, "Array value for key '#{key}' cannot be empty" if value.empty?
+
+        # Handle 2D Array (Matrix): flatten and add dimensions
+        if value[0].is_a?(Array)
+          rows = value.size
+          cols = value[0].size
+          # Validate that all rows have the same length
+          unless value.all? { |row| row.size == cols }
+            raise ArgumentError, "All rows in 2D array for key '#{key}' must have the same length"
+          end
+
+          # Flatten in row-major order
+          flattened = value.flatten
+
+          push(key, flattened)
+          # GRM expects dims in [width, height] order (columns, rows)
+          push("#{key}_dims", [cols, rows])
+          return
+        end
+
         case value[0]
         when String
           addresses = value.collect { |v| Fiddle::Pointer[v].to_i }
