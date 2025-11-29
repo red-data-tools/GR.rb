@@ -47,7 +47,7 @@ class GR3Test < Test::Unit::TestCase
     # Test set/get lightsources
     # Note: getlightsources returns [num_lights, positions, colors]
     # positions and colors are arrays of floats
-    
+
     # Set 1 light
     GR3.setlightsources(1, [0, 0, 1], [1, 1, 1])
     num, pos, col = GR3.getlightsources(1)
