@@ -96,42 +96,30 @@ module GRM
         case value[0]
         when String
           addresses = value.collect { |v| Fiddle::Pointer[v].to_i }
-          packed = addresses.pack('J*')
-          @references << packed
-          @references << value
           GRM.args_push(@args, key, 'nS',
                         :int, value.size,
-                        :voidp, packed)
+                        :voidp, addresses.pack('J*'))
         when Integer
-          packed = value.pack('i*')
-          @references << packed
           GRM.args_push(@args, key, 'nI',
                         :int, value.size,
-                        :voidp, packed)
+                        :voidp, value.pack('i*'))
         when Float
-          packed = value.pack('d*')
-          @references << packed
           GRM.args_push(@args, key, 'nD',
                         :int, value.size,
-                        :voidp, packed)
+                        :voidp, value.pack('d*'))
         when Args
-          packed = value.collect(&:address).pack('J*')
-          @references << packed
-          @references << value
           GRM.args_push(@args, key, 'nA',
                         :int, value.size,
-                        :voidp, packed)
+                        :voidp, value.collect(&:address).pack('J*'))
           value.each do |v|
             v.to_gr.free = nil
           end
         else
           vs = value.collect { |v| Args.new(**v) }
           @references.concat(vs)
-          packed = vs.collect(&:address).pack('J*')
-          @references << packed
           GRM.args_push(@args, key, 'nA',
                         :int, value.size,
-                        :voidp, packed)
+                        :voidp, vs.collect(&:address).pack('J*'))
           vs.each do |v|
             v.to_gr.free = nil
           end
