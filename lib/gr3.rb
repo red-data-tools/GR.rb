@@ -593,6 +593,70 @@ module GR3
       drawspins(positions, spins, colors)
     end
 
+    # @!method setalphamode
+
+    # @return [Integer]
+    def getalphamode
+      inquiry_int do |mode|
+        super(mode)
+      end
+    end
+
+    # @!method setlightsources
+
+    # @return [Integer]
+    def getlightsources(max_num_lights = 16)
+      positions = GRCommons::Fiddley::MemoryPointer.new(:float, max_num_lights * 3)
+      colors = GRCommons::Fiddley::MemoryPointer.new(:float, max_num_lights * 3)
+      num_lights = super(max_num_lights, positions, colors)
+      # TODO: Return arrays instead of pointers?
+      # For now, returning pointers as they might be large?
+      # But usually we want ruby objects.
+      # Let's convert them to arrays if num_lights > 0
+      pos_arr = positions.read_array_of_float(num_lights * 3).each_slice(3).to_a
+      col_arr = colors.read_array_of_float(num_lights * 3).each_slice(3).to_a
+      [num_lights, pos_arr, col_arr]
+    end
+
+    # @!method setlightparameters
+
+    # @return [Array<Float>]
+    def getlightparameters
+      inquiry %i[float float float float] do |ambient, diffuse, specular, specular_power|
+        super(ambient, diffuse, specular, specular_power)
+      end
+    end
+
+    # @!method setdefaultlightparameters
+
+    # @!method setclipping
+
+    # @return [Array<Float>]
+    def getclipping
+      inquiry %i[float float float float float float] do |xmin, xmax, ymin, ymax, zmin, zmax|
+        super(xmin, xmax, ymin, ymax, zmin, zmax)
+      end
+    end
+
+    # @!method setsurfaceoption
+
+    # @return [Integer]
+    def getsurfaceoption
+      super
+    end
+
+    # @param data [NArray] 3D narray array containing the voxel data
+    # @param isovalue [Float] isovalue at which the surface will be created
+    # @param color [Array, NArray] the color of the surface
+    # @param strides [Array, NArray] the strides in each direction
+    def isosurface(data, isovalue = 0.5, color = nil, strides = nil)
+      nx, ny, nz = data.shape
+      color ||= [1.0, 1.0, 1.0]
+      strides ||= [1, 1, 1]
+      strides = GRCommons::GRCommonUtils.int(strides)
+      super(nx, ny, nz, data, isovalue, color, strides)
+    end
+
     # Creates meshes for slices through the given data, using the current GR
     # colormap. Use the parameters x, y or z to specify what slices should be
     # drawn and at which positions they should go through the data. If neither
