@@ -380,12 +380,12 @@
       <pre class="lines">
 
 
-160
-161
-162</pre>
+182
+183
+184</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/grm.rb', line 160</span>
+      <pre class="code"><span class="info file"># File 'lib/grm.rb', line 182</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_address'>address</span>
   <span class='ivar'>@args</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
@@ -410,13 +410,13 @@
       <pre class="lines">
 
 
-155
-156
-157
-158</pre>
+177
+178
+179
+180</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/grm.rb', line 155</span>
+      <pre class="code"><span class="info file"># File 'lib/grm.rb', line 177</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_clear'>clear</span>
   <span class='const'><span class='object_link'><a href="../GRM.html" title="GRM (module)">GRM</a></span></span><span class='period'>.</span><span class='id identifier rubyid_args_clear'>args_clear</span><span class='lparen'>(</span><span class='ivar'>@args</span><span class='rparen'>)</span>
@@ -512,13 +512,57 @@
 150
 151
 152
-153</pre>
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/grm.rb', line 83</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_key'>key</span> <span class='op'>=</span> <span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='kw'>if</span> <span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Symbol</span><span class='rparen'>)</span>
+
+  <span class='comment'># Support Numo::NArray transparently when available
+</span>  <span class='kw'>if</span> <span class='kw'>defined?</span><span class='lparen'>(</span><span class='const'>Numo</span><span class='op'>::</span><span class='const'>NArray</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Numo</span><span class='op'>::</span><span class='const'>NArray</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_shape'>shape</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_shape'>shape</span>
+    <span class='kw'>case</span> <span class='id identifier rubyid_shape'>shape</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
+    <span class='kw'>when</span> <span class='int'>1</span>
+      <span class='comment'># 1D NArray: delegate to existing Array handling
+</span>      <span class='kw'>return</span> <span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_to_a'>to_a</span><span class='rparen'>)</span>
+    <span class='kw'>when</span> <span class='int'>2</span>
+      <span class='comment'># 2D NArray: convert to nested Array and reuse 2D Array path
+</span>      <span class='id identifier rubyid_rows'>rows</span><span class='comma'>,</span> <span class='id identifier rubyid_cols'>cols</span> <span class='op'>=</span> <span class='id identifier rubyid_shape'>shape</span>
+      <span class='id identifier rubyid_nested'>nested</span> <span class='op'>=</span> <span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_rows'>rows</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_r'>r</span><span class='op'>|</span>
+        <span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_cols'>cols</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_c'>c</span><span class='op'>|</span>
+          <span class='id identifier rubyid_value'>value</span><span class='lbracket'>[</span><span class='id identifier rubyid_r'>r</span><span class='comma'>,</span> <span class='id identifier rubyid_c'>c</span><span class='rbracket'>]</span>
+        <span class='kw'>end</span>
+      <span class='kw'>end</span>
+      <span class='kw'>return</span> <span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_nested'>nested</span><span class='rparen'>)</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Numo::NArray with dimension &gt; 2 is not supported for key &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_key'>key</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
   <span class='kw'>case</span> <span class='id identifier rubyid_value'>value</span>
   <span class='kw'>when</span> <span class='const'>String</span>
     <span class='const'><span class='object_link'><a href="../GRM.html" title="GRM (module)">GRM</a></span></span><span class='period'>.</span><span class='id identifier rubyid_args_push'>args_push</span><span class='lparen'>(</span><span class='ivar'>@args</span><span class='comma'>,</span> <span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>s</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='symbol'>:const_string</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
@@ -608,12 +652,12 @@
       <pre class="lines">
 
 
-164
-165
-166</pre>
+186
+187
+188</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/grm.rb', line 164</span>
+      <pre class="code"><span class="info file"># File 'lib/grm.rb', line 186</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_gr'>to_gr</span>
   <span class='ivar'>@args</span>
@@ -628,7 +672,7 @@
 </div>
 
       <div id="footer">
-  Generated on Sat Nov 29 14:24:22 2025 by
+  Generated on Sat Nov 29 14:41:42 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.7).
 </div>
