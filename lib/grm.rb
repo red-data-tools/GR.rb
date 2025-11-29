@@ -82,6 +82,28 @@ module GRM
 
     def push(key, value)
       key = key.to_s if key.is_a?(Symbol)
+
+      # Support Numo::NArray transparently when available
+      if defined?(Numo::NArray) && value.is_a?(Numo::NArray)
+        shape = value.shape
+        case shape.length
+        when 1
+          # 1D NArray: delegate to existing Array handling
+          return push(key, value.to_a)
+        when 2
+          # 2D NArray: convert to nested Array and reuse 2D Array path
+          rows, cols = shape
+          nested = Array.new(rows) do |r|
+            Array.new(cols) do |c|
+              value[r, c]
+            end
+          end
+          return push(key, nested)
+        else
+          raise ArgumentError, "Numo::NArray with dimension > 2 is not supported for key '#{key}'"
+        end
+      end
+
       case value
       when String
         GRM.args_push(@args, key, 's', :const_string, value)
