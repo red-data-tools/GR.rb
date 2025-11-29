@@ -380,12 +380,12 @@
       <pre class="lines">
 
 
-140
-141
-142</pre>
+160
+161
+162</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/grm.rb', line 140</span>
+      <pre class="code"><span class="info file"># File 'lib/grm.rb', line 160</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_address'>address</span>
   <span class='ivar'>@args</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
@@ -410,13 +410,13 @@
       <pre class="lines">
 
 
-135
-136
-137
-138</pre>
+155
+156
+157
+158</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/grm.rb', line 135</span>
+      <pre class="code"><span class="info file"># File 'lib/grm.rb', line 155</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_clear'>clear</span>
   <span class='const'><span class='object_link'><a href="../GRM.html" title="GRM (module)">GRM</a></span></span><span class='period'>.</span><span class='id identifier rubyid_args_clear'>args_clear</span><span class='lparen'>(</span><span class='ivar'>@args</span><span class='rparen'>)</span>
@@ -492,7 +492,27 @@
 130
 131
 132
-133</pre>
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/grm.rb', line 83</span>
@@ -510,6 +530,26 @@
     <span class='const'><span class='object_link'><a href="../GRM.html" title="GRM (module)">GRM</a></span></span><span class='period'>.</span><span class='id identifier rubyid_args_push'>args_push</span><span class='lparen'>(</span><span class='ivar'>@args</span><span class='comma'>,</span> <span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='symbol'>:voidp</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_address'>address</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_to_gr'>to_gr</span><span class='period'>.</span><span class='id identifier rubyid_free'>free</span> <span class='op'>=</span> <span class='kw'>nil</span>
   <span class='kw'>when</span> <span class='const'>Array</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Array value for key &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_key'>key</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; cannot be empty</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+
+    <span class='comment'># Handle 2D Array (Matrix): flatten and add dimensions
+</span>    <span class='kw'>if</span> <span class='id identifier rubyid_value'>value</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Array</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_rows'>rows</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>
+      <span class='id identifier rubyid_cols'>cols</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>
+      <span class='comment'># Validate that all rows have the same length
+</span>      <span class='kw'>unless</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_all?'>all?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_row'>row</span><span class='op'>|</span> <span class='id identifier rubyid_row'>row</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>==</span> <span class='id identifier rubyid_cols'>cols</span> <span class='rbrace'>}</span>
+        <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>All rows in 2D array for key &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_key'>key</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; must have the same length</span><span class='tstring_end'>&quot;</span></span>
+      <span class='kw'>end</span>
+
+      <span class='comment'># Flatten in row-major order
+</span>      <span class='id identifier rubyid_flattened'>flattened</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_flatten'>flatten</span>
+
+      <span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_flattened'>flattened</span><span class='rparen'>)</span>
+      <span class='comment'># GRM expects dims in [width, height] order (columns, rows)
+</span>      <span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_key'>key</span><span class='embexpr_end'>}</span><span class='tstring_content'>_dims</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='id identifier rubyid_cols'>cols</span><span class='comma'>,</span> <span class='id identifier rubyid_rows'>rows</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+      <span class='kw'>return</span>
+    <span class='kw'>end</span>
+
     <span class='kw'>case</span> <span class='id identifier rubyid_value'>value</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
     <span class='kw'>when</span> <span class='const'>String</span>
       <span class='id identifier rubyid_addresses'>addresses</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_v'>v</span><span class='op'>|</span> <span class='const'>Fiddle</span><span class='op'>::</span><span class='const'>Pointer</span><span class='lbracket'>[</span><span class='id identifier rubyid_v'>v</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span> <span class='rbrace'>}</span>
@@ -568,12 +608,12 @@
       <pre class="lines">
 
 
-144
-145
-146</pre>
+164
+165
+166</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/grm.rb', line 144</span>
+      <pre class="code"><span class="info file"># File 'lib/grm.rb', line 164</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_gr'>to_gr</span>
   <span class='ivar'>@args</span>
@@ -588,7 +628,7 @@
 </div>
 
       <div id="footer">
-  Generated on Sat Nov 29 13:51:42 2025 by
+  Generated on Sat Nov 29 14:24:22 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.7).
 </div>
