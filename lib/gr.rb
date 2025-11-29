@@ -1116,6 +1116,50 @@ module GR
 
     alias axes2d axes
 
+    def axis(option, min: Float::NAN, max: Float::NAN, tick: Float::NAN, org: Float::NAN, position: Float::NAN, major_count: 1, tick_size: Float::NAN, label_position: Float::NAN, draw_axis_line: 1, label_orientation: 0)
+      ax = FFI::Axis.malloc
+      ax.min = min
+      ax.max = max
+      ax.tick = tick
+      ax.org = org
+      ax.position = position
+      ax.major_count = major_count
+      ax.tick_size = tick_size
+      ax.label_position = label_position
+      ax.draw_axis_line = draw_axis_line
+      ax.label_orientation = label_orientation
+      ax.ticks = FFI::Pointer::NULL
+      ax.num_ticks = 0
+      ax.tick_labels = FFI::Pointer::NULL
+      ax.num_tick_labels = 0
+      super(option, ax)
+      ax
+    end
+
+    def drawaxis(option, min: Float::NAN, max: Float::NAN, tick: Float::NAN, org: Float::NAN, position: Float::NAN, major_count: 1, tick_size: Float::NAN, label_position: Float::NAN, draw_axis_line: 1, label_orientation: 0)
+      ax = FFI::Axis.malloc
+      ax.min = min
+      ax.max = max
+      ax.tick = tick
+      ax.org = org
+      ax.position = position
+      ax.major_count = major_count
+      ax.tick_size = tick_size
+      ax.label_position = label_position
+      ax.draw_axis_line = draw_axis_line
+      ax.label_orientation = label_orientation
+      ax.ticks = FFI::Pointer::NULL
+      ax.num_ticks = 0
+      ax.tick_labels = FFI::Pointer::NULL
+      ax.num_tick_labels = 0
+      super(option, ax)
+      ax
+    end
+
+    def drawaxes(x_axis, y_axis, option = 1)
+      super(x_axis, y_axis, option)
+    end
+
     # Create axes in the current workspace and supply a custom function for
     # changing the behaviour of the tick labels.
     #
