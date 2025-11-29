@@ -65,6 +65,39 @@ module GR
       'hexbin_2pass_priv_t *priv'
     ]
 
+    Tick = struct [
+      'double value',
+      'int is_major'
+    ]
+
+    TickLabel = struct [
+      'double tick',
+      'char *label',
+      'double width'
+    ]
+
+    Axis = struct [
+      'double min',
+      'double max',
+      'double tick',
+      'double org',
+      'double position',
+      'int major_count',
+      'int num_ticks',
+      'void *ticks',
+      'double tick_size',
+      'int num_tick_labels',
+      'void *tick_labels',
+      'double label_position',
+      'int draw_axis_line',
+      'int label_orientation'
+    ]
+
+    FormatReference = struct [
+      'char *format',
+      'int length'
+    ]
+
     try_extern 'void gr_initgr(void)'
     try_extern 'int gr_debug(void)'
     try_extern 'void gr_opengks(void)'
