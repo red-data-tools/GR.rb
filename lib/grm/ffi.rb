@@ -84,6 +84,7 @@ module GRM
     try_extern 'int grm_process_tree(void)'
     try_extern 'int grm_export(const char *file_path)'
     try_extern 'int grm_switch(unsigned int id)'
+    try_extern 'int grm_get_error_code()'
     try_extern 'int grm_load_graphics_tree(FILE *file)'
     try_extern 'int grm_validate(void)'
     # The following functions use C++ types that cannot be parsed by Fiddle
