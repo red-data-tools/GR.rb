@@ -148,23 +148,28 @@ module GRM
 
   class << self
     def merge(args = nil)
-      super(Args.try_convert(args) || args)
+      args = Args.try_convert(args) || args
+      super(args)
     end
 
-    def merge_extended(args = nil, hold = 0, _identifiator = nil)
-      super(Args.try_convert(args) || args, hold, identificator)
+    def merge_extended(args = nil, hold = 0, identificator = nil)
+      args = Args.try_convert(args) || args
+      super(args, hold, identificator)
     end
 
     def merge_hold(args = nil)
-      super(Args.try_convert(args) || args)
+      args = Args.try_convert(args) || args
+      super(args)
     end
 
-    def merge_named(args = nil, _identifiator = nil)
-      super(Args.try_convert(args) || args, identificator)
+    def merge_named(args = nil, identificator = nil)
+      args = Args.try_convert(args) || args
+      super(args, identificator)
     end
 
     def plot(args = nil)
-      super(Args.try_convert(args) || args)
+      args = Args.try_convert(args) || args
+      super(args)
     end
   end
 end
