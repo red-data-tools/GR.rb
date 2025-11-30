@@ -8796,7 +8796,7 @@
 <span class='kw'>def</span> <span class='id identifier rubyid_drawaxes'>drawaxes</span><span class='lparen'>(</span><span class='id identifier rubyid_x_axis'>x_axis</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_y_axis'>y_axis</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_option'>option</span> <span class='op'>=</span> <span class='int'>1</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_c_x'>c_x</span> <span class='op'>=</span> <span class='id identifier rubyid_x_axis'>x_axis</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid___axis_to_c_axis'>__axis_to_c_axis</span><span class='lparen'>(</span><span class='id identifier rubyid_x_axis'>x_axis</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_c_y'>c_y</span> <span class='op'>=</span> <span class='id identifier rubyid_y_axis'>y_axis</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid___axis_to_c_axis'>__axis_to_c_axis</span><span class='lparen'>(</span><span class='id identifier rubyid_y_axis'>y_axis</span><span class='rparen'>)</span>
-  <span class='const'><span class='object_link'><a href="GR/FFI.html" title="GR::FFI (module)">FFI</a></span></span><span class='period'>.</span><span class='id identifier rubyid_gr_drawaxes'>gr_drawaxes</span><span class='lparen'>(</span><span class='id identifier rubyid_c_x'>c_x</span> <span class='op'>||</span> <span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_c_y'>c_y</span> <span class='op'>||</span> <span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_option'>option</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="GR/FFI.html" title="GR::FFI (module)">FFI</a></span></span><span class='period'>.</span><span class='id identifier rubyid_gr_drawaxes'>gr_drawaxes</span><span class='lparen'>(</span><span class='id identifier rubyid_c_x'>c_x</span><span class='op'>&amp;.</span><span class='id identifier rubyid_to_ptr'>to_ptr</span><span class='comma'>,</span> <span class='id identifier rubyid_c_y'>c_y</span><span class='op'>&amp;.</span><span class='id identifier rubyid_to_ptr'>to_ptr</span><span class='comma'>,</span> <span class='id identifier rubyid_option'>option</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -21713,7 +21713,7 @@
 </div>
 
       <div id="footer">
-  Generated on Sun Nov 30 03:04:40 2025 by
+  Generated on Sun Nov 30 03:45:03 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.7).
 </div>
