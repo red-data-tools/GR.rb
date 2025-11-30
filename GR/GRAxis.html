@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: GR::GRAxis
+  
+    &mdash; Documentation by YARD 0.9.37
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "GR::GRAxis";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (G)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../GR.html" title="GR (module)">GR</a></span></span>
+     &raquo; 
+    <span class="title">GRAxis</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: GR::GRAxis
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">GR::GRAxis</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/gr.rb</dd>
+  </dl>
+  
+</div>
+
+
+
+
+
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#draw_axis_line-instance_method" title="#draw_axis_line (instance method)">#<strong>draw_axis_line</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute draw_axis_line.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#label_orientation-instance_method" title="#label_orientation (instance method)">#<strong>label_orientation</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute label_orientation.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#label_position-instance_method" title="#label_position (instance method)">#<strong>label_position</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute label_position.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#major_count-instance_method" title="#major_count (instance method)">#<strong>major_count</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute major_count.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#max-instance_method" title="#max (instance method)">#<strong>max</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute max.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#min-instance_method" title="#min (instance method)">#<strong>min</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute min.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#num_ticks-instance_method" title="#num_ticks (instance method)">#<strong>num_ticks</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute num_ticks.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#org-instance_method" title="#org (instance method)">#<strong>org</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute org.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#position-instance_method" title="#position (instance method)">#<strong>position</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute position.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#tick-instance_method" title="#tick (instance method)">#<strong>tick</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute tick.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#tick_labels-instance_method" title="#tick_labels (instance method)">#<strong>tick_labels</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute tick_labels.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#tick_size-instance_method" title="#tick_size (instance method)">#<strong>tick_size</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute tick_size.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#ticks-instance_method" title="#ticks (instance method)">#<strong>ticks</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute ticks.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(min: Float::NAN, max: Float::NAN, tick: Float::NAN, org: Float::NAN, position: Float::NAN, major_count: 1, num_ticks: 0, ticks: nil, tick_size: Float::NAN, tick_labels: nil, label_position: Float::NAN, draw_axis_line: 1, label_orientation: 0)  &#x21d2; GRAxis </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A new instance of GRAxis.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>(min: Float::NAN, max: Float::NAN, tick: Float::NAN, org: Float::NAN, position: Float::NAN, major_count: 1, num_ticks: 0, ticks: nil, tick_size: Float::NAN, tick_labels: nil, label_position: Float::NAN, draw_axis_line: 1, label_orientation: 0)  &#x21d2; <tt><span class='object_link'><a href="" title="GR::GRAxis (class)">GRAxis</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns a new instance of GRAxis.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 124</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='label'>min:</span> <span class='const'>Float</span><span class='op'>::</span><span class='const'>NAN</span><span class='comma'>,</span> <span class='label'>max:</span> <span class='const'>Float</span><span class='op'>::</span><span class='const'>NAN</span><span class='comma'>,</span> <span class='label'>tick:</span> <span class='const'>Float</span><span class='op'>::</span><span class='const'>NAN</span><span class='comma'>,</span>
+               <span class='label'>org:</span> <span class='const'>Float</span><span class='op'>::</span><span class='const'>NAN</span><span class='comma'>,</span> <span class='label'>position:</span> <span class='const'>Float</span><span class='op'>::</span><span class='const'>NAN</span><span class='comma'>,</span>
+               <span class='label'>major_count:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>num_ticks:</span> <span class='int'>0</span><span class='comma'>,</span> <span class='label'>ticks:</span> <span class='kw'>nil</span><span class='comma'>,</span>
+               <span class='label'>tick_size:</span> <span class='const'>Float</span><span class='op'>::</span><span class='const'>NAN</span><span class='comma'>,</span> <span class='label'>tick_labels:</span> <span class='kw'>nil</span><span class='comma'>,</span>
+               <span class='label'>label_position:</span> <span class='const'>Float</span><span class='op'>::</span><span class='const'>NAN</span><span class='comma'>,</span>
+               <span class='label'>draw_axis_line:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>label_orientation:</span> <span class='int'>0</span><span class='rparen'>)</span>
+  <span class='ivar'>@min</span> <span class='op'>=</span> <span class='id identifier rubyid_min'>min</span>
+  <span class='ivar'>@max</span> <span class='op'>=</span> <span class='id identifier rubyid_max'>max</span>
+  <span class='ivar'>@tick</span> <span class='op'>=</span> <span class='id identifier rubyid_tick'>tick</span>
+  <span class='ivar'>@org</span> <span class='op'>=</span> <span class='id identifier rubyid_org'>org</span>
+  <span class='ivar'>@position</span> <span class='op'>=</span> <span class='id identifier rubyid_position'>position</span>
+  <span class='ivar'>@major_count</span> <span class='op'>=</span> <span class='id identifier rubyid_major_count'>major_count</span>
+  <span class='ivar'>@num_ticks</span> <span class='op'>=</span> <span class='id identifier rubyid_num_ticks'>num_ticks</span>
+  <span class='ivar'>@ticks</span> <span class='op'>=</span> <span class='id identifier rubyid_ticks'>ticks</span>
+  <span class='ivar'>@tick_size</span> <span class='op'>=</span> <span class='id identifier rubyid_tick_size'>tick_size</span>
+  <span class='ivar'>@tick_labels</span> <span class='op'>=</span> <span class='id identifier rubyid_tick_labels'>tick_labels</span>
+  <span class='ivar'>@label_position</span> <span class='op'>=</span> <span class='id identifier rubyid_label_position'>label_position</span>
+  <span class='ivar'>@draw_axis_line</span> <span class='op'>=</span> <span class='id identifier rubyid_draw_axis_line'>draw_axis_line</span>
+  <span class='ivar'>@label_orientation</span> <span class='op'>=</span> <span class='id identifier rubyid_label_orientation'>label_orientation</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="draw_axis_line=-instance_method"></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="draw_axis_line-instance_method">
+  
+    #<strong>draw_axis_line</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute draw_axis_line.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+119
+120
+121</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 119</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_draw_axis_line'>draw_axis_line</span>
+  <span class='ivar'>@draw_axis_line</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="label_orientation=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="label_orientation-instance_method">
+  
+    #<strong>label_orientation</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute label_orientation.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+119
+120
+121</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 119</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_label_orientation'>label_orientation</span>
+  <span class='ivar'>@label_orientation</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="label_position=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="label_position-instance_method">
+  
+    #<strong>label_position</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute label_position.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+119
+120
+121</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 119</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_label_position'>label_position</span>
+  <span class='ivar'>@label_position</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="major_count=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="major_count-instance_method">
+  
+    #<strong>major_count</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute major_count.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+119
+120
+121</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 119</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_major_count'>major_count</span>
+  <span class='ivar'>@major_count</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="max=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="max-instance_method">
+  
+    #<strong>max</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute max.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+119
+120
+121</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 119</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_max'>max</span>
+  <span class='ivar'>@max</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="min=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="min-instance_method">
+  
+    #<strong>min</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute min.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+119
+120
+121</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 119</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_min'>min</span>
+  <span class='ivar'>@min</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="num_ticks=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="num_ticks-instance_method">
+  
+    #<strong>num_ticks</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute num_ticks.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+119
+120
+121</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 119</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_num_ticks'>num_ticks</span>
+  <span class='ivar'>@num_ticks</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="org=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="org-instance_method">
+  
+    #<strong>org</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute org.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+119
+120
+121</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 119</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_org'>org</span>
+  <span class='ivar'>@org</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="position=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="position-instance_method">
+  
+    #<strong>position</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute position.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+119
+120
+121</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 119</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_position'>position</span>
+  <span class='ivar'>@position</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="tick=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="tick-instance_method">
+  
+    #<strong>tick</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute tick.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+119
+120
+121</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 119</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_tick'>tick</span>
+  <span class='ivar'>@tick</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="tick_labels=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="tick_labels-instance_method">
+  
+    #<strong>tick_labels</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute tick_labels.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+119
+120
+121</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 119</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_tick_labels'>tick_labels</span>
+  <span class='ivar'>@tick_labels</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="tick_size=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="tick_size-instance_method">
+  
+    #<strong>tick_size</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute tick_size.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+119
+120
+121</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 119</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_tick_size'>tick_size</span>
+  <span class='ivar'>@tick_size</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="ticks=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="ticks-instance_method">
+  
+    #<strong>ticks</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute ticks.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+119
+120
+121</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 119</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_ticks'>ticks</span>
+  <span class='ivar'>@ticks</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+</div>
+
+      <div id="footer">
+  Generated on Sun Nov 30 00:34:47 2025 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.37 (ruby-3.4.7).
+</div>
+
+    </div>
+  </body>
+</html>
