@@ -1192,7 +1192,7 @@ module GR
     def drawaxes(x_axis = nil, y_axis = nil, option = 1)
       c_x = x_axis && __axis_to_c_axis(x_axis)
       c_y = y_axis && __axis_to_c_axis(y_axis)
-      FFI.gr_drawaxes(c_x || 0, c_y || 0, option)
+      FFI.gr_drawaxes(c_x&.to_ptr, c_y&.to_ptr, option)
     end
 
     # Create axes in the current workspace and supply a custom function for
@@ -2550,6 +2550,8 @@ module GR
     # Convert high-level GRAxis into low-level FFI::Axis
     def __axis_to_c_axis(axis)
       c_axis = FFI::Axis.malloc
+      # Keep references to allocated memory to prevent GC
+      memory_refs = []
 
       c_axis.min_val = axis.min
       c_axis.max_val = axis.max
@@ -2561,14 +2563,15 @@ module GR
       # ticks
       if axis.ticks && !axis.ticks.empty?
         count = axis.ticks.size
-        mem = FFI::Tick.malloc(count)
+        mem = Fiddle::Pointer.malloc(FFI::Tick.size * count, Fiddle::RUBY_FREE)
+        memory_refs << mem
         axis.ticks.each_with_index do |t, i|
-          tick = FFI::Tick.new(mem.to_ptr + i * FFI::Tick.size)
+          tick = FFI::Tick.new(mem + i * FFI::Tick.size)
           tick.value = t.value
           tick.is_major = t.is_major
         end
         c_axis.num_ticks = count
-        c_axis.ticks = mem.to_ptr
+        c_axis.ticks = mem.to_i
       else
         c_axis.num_ticks = 0
         c_axis.ticks = 0
@@ -2579,15 +2582,21 @@ module GR
       # tick labels
       if axis.tick_labels && !axis.tick_labels.empty?
         count = axis.tick_labels.size
-        mem = FFI::TickLabel.malloc(count)
+        mem = Fiddle::Pointer.malloc(FFI::TickLabel.size * count, Fiddle::RUBY_FREE)
+        memory_refs << mem
         axis.tick_labels.each_with_index do |tl, i|
-          lbl = FFI::TickLabel.new(mem.to_ptr + i * FFI::TickLabel.size)
+          lbl = FFI::TickLabel.new(mem + i * FFI::TickLabel.size)
           lbl.tick = tl.tick
-          lbl.label = Fiddle::Pointer[tl.label.to_s + "\0"]
+          # Allocate persistent memory for label string
+          label_str = tl.label.to_s + "\0"
+          label_ptr = Fiddle::Pointer.malloc(label_str.bytesize, Fiddle::RUBY_FREE)
+          memory_refs << label_ptr
+          label_ptr[0, label_str.bytesize] = label_str
+          lbl.label = label_ptr.to_i
           lbl.width = tl.width
         end
         c_axis.num_tick_labels = count
-        c_axis.tick_labels = mem.to_ptr
+        c_axis.tick_labels = mem.to_i
       else
         c_axis.num_tick_labels = 0
         c_axis.tick_labels = 0
@@ -2596,6 +2605,9 @@ module GR
       c_axis.label_position = axis.label_position
       c_axis.draw_axis_line = axis.draw_axis_line
       c_axis.label_orientation = axis.label_orientation
+
+      # Store memory references in the axis object to prevent GC
+      c_axis.instance_variable_set(:@__memory_refs, memory_refs)
 
       c_axis
     end
