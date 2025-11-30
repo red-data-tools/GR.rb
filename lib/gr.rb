@@ -1172,17 +1172,21 @@ module GR
       end
 
       c_axis = __axis_to_c_axis(axis)
-      # accept String, Symbol or single-character option
-      ch = option.is_a?(Symbol) ? option.to_s[0, 1] : option.to_s[0, 1]
-      FFI.gr_axis(ch.ord, c_axis)
+
+      str = option.to_s
+      raise ArgumentError, "axis option must be a single character, got #{str.inspect}" unless str.length == 1
+
+      FFI.gr_axis(str.ord, c_axis)
       __axis_from_c_axis(c_axis)
     end
 
     def drawaxis(option, axis)
       c_axis = __axis_to_c_axis(axis)
-      # accept String, Symbol or single-character option
-      ch = option.is_a?(Symbol) ? option.to_s[0, 1] : option.to_s[0, 1]
-      FFI.gr_drawaxis(ch.ord, c_axis)
+
+      str = option.to_s
+      raise ArgumentError, "axis option must be a single character, got #{str.inspect}" unless str.length == 1
+
+      FFI.gr_drawaxis(str.ord, c_axis)
     end
 
     def drawaxes(x_axis = nil, y_axis = nil, option = 1)
