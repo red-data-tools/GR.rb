@@ -84,7 +84,7 @@
   <dl>
     <dt>Defined in:</dt>
     <dd>lib/gr.rb<span class="defines">,<br />
-  lib/gr/ffi.rb,<br /> lib/gr/grbase.rb,<br /> lib/gr/version.rb,<br /> lib/gr_commons/gr_logger.rb</span>
+  lib/gr/ffi.rb,<br /> lib/gr/plot.rb,<br /> lib/gr/grbase.rb,<br /> lib/gr/version.rb,<br /> lib/gr_commons/gr_logger.rb</span>
 </dd>
   </dl>
   
@@ -152,7 +152,7 @@
     
   
     
-      <strong class="classes">Classes:</strong> <span class='object_link'><a href="GR/Error.html" title="GR::Error (class)">Error</a></span>, <span class='object_link'><a href="GR/GRAxis.html" title="GR::GRAxis (class)">GRAxis</a></span>, <span class='object_link'><a href="GR/GRTick.html" title="GR::GRTick (class)">GRTick</a></span>, <span class='object_link'><a href="GR/GRTickLabel.html" title="GR::GRTickLabel (class)">GRTickLabel</a></span>, <span class='object_link'><a href="GR/NotFoundError.html" title="GR::NotFoundError (class)">NotFoundError</a></span>
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="GR/Error.html" title="GR::Error (class)">Error</a></span>, <span class='object_link'><a href="GR/GRAxis.html" title="GR::GRAxis (class)">GRAxis</a></span>, <span class='object_link'><a href="GR/GRTick.html" title="GR::GRTick (class)">GRTick</a></span>, <span class='object_link'><a href="GR/GRTickLabel.html" title="GR::GRTickLabel (class)">GRTickLabel</a></span>, <span class='object_link'><a href="GR/NotFoundError.html" title="GR::NotFoundError (class)">NotFoundError</a></span>, <span class='object_link'><a href="GR/Plot.html" title="GR::Plot (class)">Plot</a></span>
     
   
 </p>
@@ -1478,6 +1478,122 @@
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#_contour_-class_method" title="_contour_ (class method)">.<strong>_contour_</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Draw contours of a three-dimensional data set whose values are specified over a rectangular mesh.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#_contourf_-class_method" title="_contourf_ (class method)">.<strong>_contourf_</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Draw filled contours of a three-dimensional data set whose values are specified over a rectangular mesh.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#_hexbin_-class_method" title="_hexbin_ (class method)">.<strong>_hexbin_</strong>  &#x21d2; Integer </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#_shade_-class_method" title="_shade_ (class method)">.<strong>_shade_</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#_surface_-class_method" title="_surface_ (class method)">.<strong>_surface_</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Draw a three-dimensional surface plot for the given data points.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#activatews-class_method" title="activatews (class method)">.<strong>activatews</strong>  &#x21d2; Object </a>
     
 
@@ -1635,6 +1751,30 @@
 
   
     <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#barplot-class_method" title="barplot (class method)">.<strong>barplot</strong>(*args)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>(Plot) Draw a bar plot.</p>
+</div></span>
   
 </li>
 
@@ -1922,7 +2062,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#contour-class_method" title="contour (class method)">.<strong>contour</strong>(x, y, h, z, major_h)  &#x21d2; Object </a>
+      <a href="#contour-class_method" title="contour (class method)">.<strong>contour</strong>(*args)  &#x21d2; Object </a>
     
 
     
@@ -1937,7 +2077,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Draw contours of a three-dimensional data set whose values are specified over a rectangular mesh.</p>
+<p>(Plot) Draw a contour plot.</p>
 </div></span>
   
 </li>
@@ -1946,7 +2086,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#contourf-class_method" title="contourf (class method)">.<strong>contourf</strong>(x, y, h, z, major_h)  &#x21d2; Object </a>
+      <a href="#contourf-class_method" title="contourf (class method)">.<strong>contourf</strong>(*args)  &#x21d2; Object </a>
     
 
     
@@ -1961,7 +2101,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Draw filled contours of a three-dimensional data set whose values are specified over a rectangular mesh.</p>
+<p>(Plot) Draw a filled contour plot.</p>
 </div></span>
   
 </li>
@@ -2680,6 +2820,30 @@
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#heatmap-class_method" title="heatmap (class method)">.<strong>heatmap</strong>(*args)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>(Plot) Draw a heatmap.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#herrorbars-class_method" title="herrorbars (class method)">.<strong>herrorbars</strong>(x, y, e1, e2)  &#x21d2; Object </a>
     
 
@@ -2704,7 +2868,55 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#hexbin-class_method" title="hexbin (class method)">.<strong>hexbin</strong>(x, y, nbins)  &#x21d2; Integer </a>
+      <a href="#hexbin-class_method" title="hexbin (class method)">.<strong>hexbin</strong>(*args)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>(Plot) Draw a hexagon binning plot.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#histogram-class_method" title="histogram (class method)">.<strong>histogram</strong>(series, kv = {})  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>(Plot) Draw a histogram.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#hold-class_method" title="hold (class method)">.<strong>hold</strong>(flag = true)  &#x21d2; Object </a>
     
 
     
@@ -2763,6 +2975,30 @@
 
   
     <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#imshow-class_method" title="imshow (class method)">.<strong>imshow</strong>(img, kv = {})  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>(Plot) Draw an image.</p>
+</div></span>
   
 </li>
 
@@ -3848,6 +4084,30 @@
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#isosurface-class_method" title="isosurface (class method)">.<strong>isosurface</strong>(v, kv = {})  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>(Plot) Draw an isosurface.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#loadfont-class_method" title="loadfont (class method)">.<strong>loadfont</strong>(str)  &#x21d2; Object </a>
     
 
@@ -3964,6 +4224,30 @@
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#nonuniformheatmap-class_method" title="nonuniformheatmap (class method)">.<strong>nonuniformheatmap</strong>(*args)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>(Plot) Draw a nonuniformheatmap.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#nonuniformpolarcellarray-class_method" title="nonuniformpolarcellarray (class method)">.<strong>nonuniformpolarcellarray</strong>(phi, r, ncol, nrow, color)  &#x21d2; Object </a>
     
 
@@ -3980,6 +4264,30 @@
   
     <span class="summary_desc"><div class='inline'>
 <p>Display a two dimensional color index array mapped to a disk using polar coordinates with nonuniform cell sizes.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#nonuniformpolarheatmap-class_method" title="nonuniformpolarheatmap (class method)">.<strong>nonuniformpolarheatmap</strong>(*args)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>(Plot) Draw a nonuniformpolarheatmap.</p>
 </div></span>
   
 </li>
@@ -4082,6 +4390,78 @@
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#plot-class_method" title="plot (class method)">.<strong>plot</strong>(*args)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>(Plot) Draw one or more line plots.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#plot3-class_method" title="plot3 (class method)">.<strong>plot3</strong>(*args)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>(Plot) Draw one or more three-dimensional line plots.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#polar-class_method" title="polar (class method)">.<strong>polar</strong>(*args)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>(Plot).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#polarcellarray-class_method" title="polarcellarray (class method)">.<strong>polarcellarray</strong>(x_org, y_org, phimin, phimax, rmin, rmax, dimphi, dimr, color)  &#x21d2; Object </a>
     
 
@@ -4098,6 +4478,54 @@
   
     <span class="summary_desc"><div class='inline'>
 <p>Display a two dimensional color index array mapped to a disk using polar coordinates.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#polarheatmap-class_method" title="polarheatmap (class method)">.<strong>polarheatmap</strong>(*args)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>(Plot) Draw a polarheatmap.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#polarhistogram-class_method" title="polarhistogram (class method)">.<strong>polarhistogram</strong>(x, kv = {})  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>(Plot).</p>
 </div></span>
   
 </li>
@@ -4360,6 +4788,30 @@
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#savefig-class_method" title="savefig (class method)">.<strong>savefig</strong>(filename, kv = {})  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>(Plot) Save the current figure to a file.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#savestate-class_method" title="savestate (class method)">.<strong>savestate</strong>  &#x21d2; Object </a>
     
 
@@ -4375,6 +4827,54 @@
 
   
     <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#scatter-class_method" title="scatter (class method)">.<strong>scatter</strong>(*args)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>(Plot) Draw one or more scatter plots.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#scatter3-class_method" title="scatter3 (class method)">.<strong>scatter3</strong>(*args)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>(Plot) Draw one or more three-dimensional scatter plots.</p>
+</div></span>
   
 </li>
 
@@ -5685,7 +6185,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#shade-class_method" title="shade (class method)">.<strong>shade</strong>  &#x21d2; Object </a>
+      <a href="#shade-class_method" title="shade (class method)">.<strong>shade</strong>(*args)  &#x21d2; Object </a>
     
 
     
@@ -5699,7 +6199,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>(Plot).</p>
+</div></span>
   
 </li>
 
@@ -5779,6 +6281,30 @@
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#stairs-class_method" title="stairs (class method)">.<strong>stairs</strong>(*args)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>(Plot) Draw one or more step or staircase plots.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#startlistener-class_method" title="startlistener (class method)">.<strong>startlistener</strong>  &#x21d2; Integer </a>
     
 
@@ -5801,7 +6327,79 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#surface-class_method" title="surface (class method)">.<strong>surface</strong>(x, y, z, option)  &#x21d2; Object </a>
+      <a href="#stem-class_method" title="stem (class method)">.<strong>stem</strong>(*args)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>(Plot) Draw a stem plot.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#step-class_method" title="step (class method)">.<strong>step</strong>(*args)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>(Plot) Draw one or more step or staircase plots.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#subplot-class_method" title="subplot (class method)">.<strong>subplot</strong>(nr, nc, p, kv = {})  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Set current subplot index.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#surface-class_method" title="surface (class method)">.<strong>surface</strong>(*args)  &#x21d2; Object </a>
     
 
     
@@ -6009,6 +6607,30 @@
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#tricont-class_method" title="tricont (class method)">.<strong>tricont</strong>(*args)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>(Plot) Draw a triangular contour plot.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#tricontour-class_method" title="tricontour (class method)">.<strong>tricontour</strong>(x, y, z, levels)  &#x21d2; Object </a>
     
 
@@ -6025,6 +6647,30 @@
   
     <span class="summary_desc"><div class='inline'>
 <p>Draw a contour plot for the given triangle mesh.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#trisurf-class_method" title="trisurf (class method)">.<strong>trisurf</strong>(*args)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>(Plot) Draw a triangular surface plot.</p>
 </div></span>
   
 </li>
@@ -6195,6 +6841,30 @@
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#volume-class_method" title="volume (class method)">.<strong>volume</strong>(v, kv = {})  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>(Plot).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#wc3towc-class_method" title="wc3towc (class method)">.<strong>wc3towc</strong>(x, y, z)  &#x21d2; Object </a>
     
 
@@ -6232,6 +6902,30 @@
 
   
     <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#wireframe-class_method" title="wireframe (class method)">.<strong>wireframe</strong>(*args)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>(Plot) Draw a three-dimensional wireframe plot.</p>
+</div></span>
   
 </li>
 
@@ -6328,7 +7022,563 @@
 
     
       <div class="method_details first">
-  <h3 class="signature first" id="activatews-class_method">
+  <h3 class="signature first" id="_contour_-class_method">
+  
+    .<strong>_contour_</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'>
+<p>‘contour` is overwritten by `require gr/plot`. The original method is moved to the underscored name. The yard document will show the method name after evacuation.</p>
+</div>
+  </div>
+
+
+<p>Draw contours of a three-dimensional data set whose values are specified over a rectangular mesh. Contour lines may optionally be labeled.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>x</span>
+      
+      
+        <span class='type'>(<tt>Array</tt>, <tt>NArray</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>A list containing the X coordinates</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>y</span>
+      
+      
+        <span class='type'>(<tt>Array</tt>, <tt>NArray</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>A list containing the Y coordinates</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>h</span>
+      
+      
+        <span class='type'>(<tt>Array</tt>, <tt>NArray</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>A list containing the Z coordinate for the height values</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>z</span>
+      
+      
+        <span class='type'>(<tt>Array</tt>, <tt>NArray</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>A list containing the Z coordinate for the height values A list of length ‘len(x)` * `len(y)` or an appropriately dimensioned array containing the Z coordinates</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>major_h</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Directs GR to label contour lines. For example, a value of 3 would label every third line. A value of 1 will label every line. A value of 0 produces no labels. To produce colored contour lines, add an offset of 1000 to ‘major_h`.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ArgumentError</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1674
+1675
+1676
+1677
+1678
+1679
+1680
+1681</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr/plot.rb', line 1674</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_contour'>contour</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_h'>h</span><span class='comma'>,</span> <span class='id identifier rubyid_z'>z</span><span class='comma'>,</span> <span class='id identifier rubyid_major_h'>major_h</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_nx'>nx</span> <span class='op'>=</span> <span class='id identifier rubyid_x'>x</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
+  <span class='id identifier rubyid_ny'>ny</span> <span class='op'>=</span> <span class='id identifier rubyid_y'>y</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
+  <span class='id identifier rubyid_nh'>nh</span> <span class='op'>=</span> <span class='id identifier rubyid_h'>h</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>z must have length nx * ny (expected </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_nx'>nx</span> <span class='op'>*</span> <span class='id identifier rubyid_ny'>ny</span><span class='embexpr_end'>}</span><span class='tstring_content'>, got </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_z'>z</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_z'>z</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>!=</span> <span class='id identifier rubyid_nx'>nx</span> <span class='op'>*</span> <span class='id identifier rubyid_ny'>ny</span>
+
+  <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_nx'>nx</span><span class='comma'>,</span> <span class='id identifier rubyid_ny'>ny</span><span class='comma'>,</span> <span class='id identifier rubyid_nh'>nh</span><span class='comma'>,</span> <span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_h'>h</span><span class='comma'>,</span> <span class='id identifier rubyid_z'>z</span><span class='comma'>,</span> <span class='id identifier rubyid_major_h'>major_h</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="_contourf_-class_method">
+  
+    .<strong>_contourf_</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'>
+<p>‘contourf` is overwritten by `require gr/plot`. The original method is moved to the underscored name. The yard document will show the method name after evacuation.</p>
+</div>
+  </div>
+
+
+<p>Draw filled contours of a three-dimensional data set whose values are specified over a rectangular mesh.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>x</span>
+      
+      
+        <span class='type'>(<tt>Array</tt>, <tt>NArray</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>A list containing the X coordinates</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>y</span>
+      
+      
+        <span class='type'>(<tt>Array</tt>, <tt>NArray</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>A list containing the Y coordinates</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>h</span>
+      
+      
+        <span class='type'>(<tt>Array</tt>, <tt>NArray</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>A list containing the Z coordinate for the height values or the number of contour lines which will be evenly distributed between minimum and maximum Z value</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>z</span>
+      
+      
+        <span class='type'>(<tt>Array</tt>, <tt>NArray</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>A list of length ‘len(x)` * `len(y)` or an appropriately dimensioned array containing the Z coordinates</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ArgumentError</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1680
+1681
+1682
+1683
+1684
+1685
+1686
+1687</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr/plot.rb', line 1680</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_contourf'>contourf</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_h'>h</span><span class='comma'>,</span> <span class='id identifier rubyid_z'>z</span><span class='comma'>,</span> <span class='id identifier rubyid_major_h'>major_h</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_nx'>nx</span> <span class='op'>=</span> <span class='id identifier rubyid_x'>x</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
+  <span class='id identifier rubyid_ny'>ny</span> <span class='op'>=</span> <span class='id identifier rubyid_y'>y</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
+  <span class='id identifier rubyid_nh'>nh</span> <span class='op'>=</span> <span class='id identifier rubyid_h'>h</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>z must have length nx * ny (expected </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_nx'>nx</span> <span class='op'>*</span> <span class='id identifier rubyid_ny'>ny</span><span class='embexpr_end'>}</span><span class='tstring_content'>, got </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_z'>z</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_z'>z</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>!=</span> <span class='id identifier rubyid_nx'>nx</span> <span class='op'>*</span> <span class='id identifier rubyid_ny'>ny</span>
+
+  <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_nx'>nx</span><span class='comma'>,</span> <span class='id identifier rubyid_ny'>ny</span><span class='comma'>,</span> <span class='id identifier rubyid_nh'>nh</span><span class='comma'>,</span> <span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_h'>h</span><span class='comma'>,</span> <span class='id identifier rubyid_z'>z</span><span class='comma'>,</span> <span class='id identifier rubyid_major_h'>major_h</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="_hexbin_-class_method">
+  
+    .<strong>_hexbin_</strong>  &#x21d2; <tt>Integer</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'>
+<p>‘hexbin` is overwritten by `require gr/plot`. The original method is moved to the underscored name. The yard document will show the method name after evacuation.</p>
+</div>
+  </div>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1686
+1687
+1688
+1689</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr/plot.rb', line 1686</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_hexbin'>hexbin</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_nbins'>nbins</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_n'>n</span> <span class='op'>=</span> <span class='id identifier rubyid_x'>x</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
+  <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_n'>n</span><span class='comma'>,</span> <span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_nbins'>nbins</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="_shade_-class_method">
+  
+    .<strong>_shade_</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'>
+<p>‘hexbin` is overwritten by `require gr/plot`. The original method is moved to the underscored name. The yard document will show the method name after evacuation.</p>
+</div>
+  </div>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr/plot.rb', line 1728</span>
+
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="_surface_-class_method">
+  
+    .<strong>_surface_</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'>
+<p>‘surface` is overwritten by `require gr/plot`. The original method is moved to the underscored name. The yard document will show the method name after evacuation.</p>
+</div>
+  </div>
+
+
+<p>Draw a three-dimensional surface plot for the given data points.</p>
+
+<p>‘x` and `y` define a grid. `z` is a singly dimensioned array containing at least `nx` * `ny` data points. Z describes the surface height at each point on the grid. Data is ordered as shown in the table: (Plot) Draw a three-dimensional surface plot.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>x</span>
+      
+      
+        <span class='type'>(<tt>Array</tt>, <tt>NArray</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>A list containing the X coordinates</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>y</span>
+      
+      
+        <span class='type'>(<tt>Array</tt>, <tt>NArray</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>A list containing the Y coordinates</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>z</span>
+      
+      
+        <span class='type'>(<tt>Array</tt>, <tt>NArray</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>A list of length ‘len(x)` * `len(y)` or an appropriately dimensioned array containing the Z coordinates</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>option</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Surface display option</p>
+<ul><li>
+<p>0 LINES         - Use X Y polylines to denote the surface</p>
+</li><li>
+<p>1 MESH          - Use a wire grid to denote the surface</p>
+</li><li>
+<p>2 FILLED_MESH   - Applies an opaque grid to the surface</p>
+</li><li>
+<p>3 Z_SHADED_MESH - Applies Z-value shading to the surface</p>
+</li><li>
+<p>4 COLORED_MESH  - Applies a colored grid to the surface</p>
+</li><li>
+<p>5 CELL_ARRAY    - Applies a grid of individually-colored cells to the surface</p>
+</li><li>
+<p>6 SHADED_MESH   - Applies light source shading to the 3-D surface</p>
+</li></ul>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ArgumentError</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1703
+1704
+1705
+1706
+1707
+1708
+1709</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr/plot.rb', line 1703</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_surface'>surface</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_z'>z</span><span class='comma'>,</span> <span class='id identifier rubyid_option'>option</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_nx'>nx</span> <span class='op'>=</span> <span class='id identifier rubyid_x'>x</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
+  <span class='id identifier rubyid_ny'>ny</span> <span class='op'>=</span> <span class='id identifier rubyid_y'>y</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>z must have length nx * ny (expected </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_nx'>nx</span> <span class='op'>*</span> <span class='id identifier rubyid_ny'>ny</span><span class='embexpr_end'>}</span><span class='tstring_content'>, got </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_z'>z</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_z'>z</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>!=</span> <span class='id identifier rubyid_nx'>nx</span> <span class='op'>*</span> <span class='id identifier rubyid_ny'>ny</span>
+
+  <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_nx'>nx</span><span class='comma'>,</span> <span class='id identifier rubyid_ny'>ny</span><span class='comma'>,</span> <span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_z'>z</span><span class='comma'>,</span> <span class='id identifier rubyid_option'>option</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="activatews-class_method">
   
     .<strong>activatews</strong>  &#x21d2; <tt>Object</tt> 
   
@@ -7121,6 +8371,93 @@
 
   <span class='const'><span class='object_link'><a href="GR/FFI.html" title="GR::FFI (module)">FFI</a></span></span><span class='period'>.</span><span class='id identifier rubyid_gr_axis'>gr_axis</span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='period'>.</span><span class='id identifier rubyid_ord'>ord</span><span class='comma'>,</span> <span class='id identifier rubyid_c_axis'>c_axis</span><span class='rparen'>)</span>
   <span class='id identifier rubyid___axis_from_c_axis'>__axis_from_c_axis</span><span class='lparen'>(</span><span class='id identifier rubyid_c_axis'>c_axis</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="barplot-class_method">
+  
+    .<strong>barplot</strong>(*args)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>(Plot) Draw a bar plot.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1742
+1743
+1744
+1745
+1746
+1747
+1748
+1749
+1750
+1751
+1752
+1753
+1754
+1755
+1756
+1757
+1758
+1759
+1760
+1761
+1762
+1763
+1764
+1765
+1766
+1767</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr/plot.rb', line 1742</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_barplot'>barplot</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_kv'>kv</span> <span class='op'>=</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Hash</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_pop'>pop</span> <span class='op'>:</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>==</span> <span class='int'>2</span>
+    <span class='id identifier rubyid_labels'>labels</span><span class='comma'>,</span> <span class='id identifier rubyid_heights'>heights</span> <span class='op'>=</span> <span class='id identifier rubyid_args'>args</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>==</span> <span class='int'>1</span>
+    <span class='id identifier rubyid_heights'>heights</span> <span class='op'>=</span> <span class='id identifier rubyid_args'>args</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_labels'>labels</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='int'>1</span><span class='op'>..</span><span class='id identifier rubyid_heights'>heights</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:to_s</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_wc'>wc</span><span class='comma'>,</span> <span class='id identifier rubyid_hc'>hc</span> <span class='op'>=</span> <span class='id identifier rubyid_barcoordinates'>barcoordinates</span><span class='lparen'>(</span><span class='id identifier rubyid_heights'>heights</span><span class='comma'>,</span> <span class='id identifier rubyid_kv'>kv</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_horizontal'>horizontal</span> <span class='op'>=</span> <span class='id identifier rubyid_kv'>kv</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='symbol'>:horizontal</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_create_plot'>create_plot</span><span class='lparen'>(</span><span class='symbol'>:bar</span><span class='comma'>,</span> <span class='id identifier rubyid_kv'>kv</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_plt'>plt</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_horizontal'>horizontal</span>
+      <span class='id identifier rubyid_plt'>plt</span><span class='period'>.</span><span class='id identifier rubyid_args'>args</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='lbracket'>[</span><span class='id identifier rubyid_hc'>hc</span><span class='comma'>,</span> <span class='id identifier rubyid_wc'>wc</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rbracket'>]</span>
+      <span class='id identifier rubyid_plt'>plt</span><span class='period'>.</span><span class='id identifier rubyid_kvs'>kvs</span><span class='lbracket'>[</span><span class='symbol'>:yticks</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='int'>1</span><span class='comma'>,</span> <span class='int'>1</span><span class='rbracket'>]</span>
+      <span class='id identifier rubyid_plt'>plt</span><span class='period'>.</span><span class='id identifier rubyid_kvs'>kvs</span><span class='lbracket'>[</span><span class='symbol'>:yticklabels</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_labels'>labels</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:to_s</span><span class='rparen'>)</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_plt'>plt</span><span class='period'>.</span><span class='id identifier rubyid_args'>args</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='lbracket'>[</span><span class='id identifier rubyid_wc'>wc</span><span class='comma'>,</span> <span class='id identifier rubyid_hc'>hc</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rbracket'>]</span>
+      <span class='id identifier rubyid_plt'>plt</span><span class='period'>.</span><span class='id identifier rubyid_kvs'>kvs</span><span class='lbracket'>[</span><span class='symbol'>:xticks</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='int'>1</span><span class='comma'>,</span> <span class='int'>1</span><span class='rbracket'>]</span>
+      <span class='id identifier rubyid_plt'>plt</span><span class='period'>.</span><span class='id identifier rubyid_kvs'>kvs</span><span class='lbracket'>[</span><span class='symbol'>:xticklabels</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_labels'>labels</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:to_s</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -7966,7 +9303,7 @@
       <div class="method_details ">
   <h3 class="signature " id="contour-class_method">
   
-    .<strong>contour</strong>(x, y, h, z, major_h)  &#x21d2; <tt>Object</tt> 
+    .<strong>contour</strong>(*args)  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -7975,118 +9312,13 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>‘contour` is overwritten by `require gr/plot`. The original method is moved to the underscored name. The yard document will show the method name after evacuation.</p>
-</div>
-  </div>
-
-
-<p>Draw contours of a three-dimensional data set whose values are specified over a rectangular mesh. Contour lines may optionally be labeled.</p>
+<p>(Plot) Draw a contour plot.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
-<ul class="param">
   
-    <li>
-      
-        <span class='name'>x</span>
-      
-      
-        <span class='type'>(<tt>Array</tt>, <tt>NArray</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>A list containing the X coordinates</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-        <span class='name'>y</span>
-      
-      
-        <span class='type'>(<tt>Array</tt>, <tt>NArray</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>A list containing the Y coordinates</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-        <span class='name'>h</span>
-      
-      
-        <span class='type'>(<tt>Array</tt>, <tt>NArray</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>A list containing the Z coordinate for the height values</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-        <span class='name'>z</span>
-      
-      
-        <span class='type'>(<tt>Array</tt>, <tt>NArray</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>A list containing the Z coordinate for the height values A list of length ‘len(x)` * `len(y)` or an appropriately dimensioned array containing the Z coordinates</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-        <span class='name'>major_h</span>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Directs GR to label contour lines. For example, a value of 3 would label every third line. A value of 1 will label every line. A value of 0 produces no labels. To produce colored contour lines, add an offset of 1000 to ‘major_h`.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-<p class="tag_title">Raises:</p>
-<ul class="raise">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>ArgumentError</tt>)</span>
-      
-      
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -8122,7 +9354,7 @@
       <div class="method_details ">
   <h3 class="signature " id="contourf-class_method">
   
-    .<strong>contourf</strong>(x, y, h, z, major_h)  &#x21d2; <tt>Object</tt> 
+    .<strong>contourf</strong>(*args)  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -8131,102 +9363,13 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>‘contourf` is overwritten by `require gr/plot`. The original method is moved to the underscored name. The yard document will show the method name after evacuation.</p>
-</div>
-  </div>
-
-
-<p>Draw filled contours of a three-dimensional data set whose values are specified over a rectangular mesh.</p>
+<p>(Plot) Draw a filled contour plot.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
-<ul class="param">
   
-    <li>
-      
-        <span class='name'>x</span>
-      
-      
-        <span class='type'>(<tt>Array</tt>, <tt>NArray</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>A list containing the X coordinates</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-        <span class='name'>y</span>
-      
-      
-        <span class='type'>(<tt>Array</tt>, <tt>NArray</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>A list containing the Y coordinates</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-        <span class='name'>h</span>
-      
-      
-        <span class='type'>(<tt>Array</tt>, <tt>NArray</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>A list containing the Z coordinate for the height values or the number of contour lines which will be evenly distributed between minimum and maximum Z value</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-        <span class='name'>z</span>
-      
-      
-        <span class='type'>(<tt>Array</tt>, <tt>NArray</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>A list of length ‘len(x)` * `len(y)` or an appropriately dimensioned array containing the Z coordinates</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-<p class="tag_title">Raises:</p>
-<ul class="raise">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>ArgumentError</tt>)</span>
-      
-      
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -10578,6 +11721,79 @@
 </div>
     
       <div class="method_details ">
+  <h3 class="signature " id="heatmap-class_method">
+  
+    .<strong>heatmap</strong>(*args)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>(Plot) Draw a heatmap. (Plot) Draw a heatmap.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1591
+1592
+1593
+1594
+1595
+1596
+1597
+1598
+1599
+1600
+1601
+1602
+1603
+1604
+1605
+1606
+1607
+1608
+1609</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr/plot.rb', line 1591</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_heatmap'>heatmap</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_kv'>kv</span> <span class='op'>=</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Hash</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_pop'>pop</span> <span class='op'>:</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>==</span> <span class='int'>1</span>
+    <span class='id identifier rubyid_z'>z</span> <span class='op'>=</span> <span class='id identifier rubyid_args'>args</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_z'>z</span> <span class='op'>=</span> <span class='const'>Numo</span><span class='op'>::</span><span class='const'>DFloat</span><span class='period'>.</span><span class='id identifier rubyid_cast'>cast</span><span class='lparen'>(</span><span class='id identifier rubyid_z'>z</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_z'>z</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Array</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_ysize'>ysize</span><span class='comma'>,</span> <span class='id identifier rubyid_xsize'>xsize</span> <span class='op'>=</span> <span class='id identifier rubyid_z'>z</span><span class='period'>.</span><span class='id identifier rubyid_shape'>shape</span>
+    <span class='id identifier rubyid_z'>z</span> <span class='op'>=</span> <span class='id identifier rubyid_z'>z</span><span class='period'>.</span><span class='id identifier rubyid_reshape'>reshape</span><span class='lparen'>(</span><span class='id identifier rubyid_xsize'>xsize</span><span class='comma'>,</span> <span class='id identifier rubyid_ysize'>ysize</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_x'>x</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='int'>1</span><span class='op'>..</span><span class='id identifier rubyid_xsize'>xsize</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_a'>to_a</span>
+    <span class='id identifier rubyid_y'>y</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='int'>1</span><span class='op'>..</span><span class='id identifier rubyid_ysize'>ysize</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_a'>to_a</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>==</span> <span class='int'>3</span>
+    <span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_z'>z</span> <span class='op'>=</span> <span class='id identifier rubyid_args'>args</span>
+    <span class='id identifier rubyid_z'>z</span> <span class='op'>=</span> <span class='const'>Numo</span><span class='op'>::</span><span class='const'>DFloat</span><span class='period'>.</span><span class='id identifier rubyid_cast'>cast</span><span class='lparen'>(</span><span class='id identifier rubyid_z'>z</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_z'>z</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Array</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_create_plot'>create_plot</span><span class='lparen'>(</span><span class='symbol'>:heatmap</span><span class='comma'>,</span> <span class='id identifier rubyid_kv'>kv</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_plt'>plt</span><span class='op'>|</span>
+    <span class='id identifier rubyid_plt'>plt</span><span class='period'>.</span><span class='id identifier rubyid_args'>args</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='lbracket'>[</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_z'>z</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rbracket'>]</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
   <h3 class="signature " id="herrorbars-class_method">
   
     .<strong>herrorbars</strong>(x, y, e1, e2)  &#x21d2; <tt>Object</tt> 
@@ -10691,7 +11907,7 @@
       <div class="method_details ">
   <h3 class="signature " id="hexbin-class_method">
   
-    .<strong>hexbin</strong>(x, y, nbins)  &#x21d2; <tt>Integer</tt> 
+    .<strong>hexbin</strong>(*args)  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -10700,32 +11916,13 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>‘hexbin` is overwritten by `require gr/plot`. The original method is moved to the underscored name. The yard document will show the method name after evacuation.</p>
-</div>
-  </div>
-
+<p>(Plot) Draw a hexagon binning plot.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -10744,6 +11941,87 @@
 <span class='kw'>def</span> <span class='id identifier rubyid_hexbin'>hexbin</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_nbins'>nbins</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_n'>n</span> <span class='op'>=</span> <span class='id identifier rubyid_x'>x</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
   <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_n'>n</span><span class='comma'>,</span> <span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_nbins'>nbins</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="histogram-class_method">
+  
+    .<strong>histogram</strong>(series, kv = {})  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>(Plot) Draw a histogram.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1770
+1771
+1772
+1773
+1774
+1775
+1776</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr/plot.rb', line 1770</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_histogram'>histogram</span><span class='lparen'>(</span><span class='id identifier rubyid_series'>series</span><span class='comma'>,</span> <span class='id identifier rubyid_kv'>kv</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_create_plot'>create_plot</span><span class='lparen'>(</span><span class='symbol'>:hist</span><span class='comma'>,</span> <span class='id identifier rubyid_series'>series</span><span class='comma'>,</span> <span class='id identifier rubyid_kv'>kv</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_plt'>plt</span><span class='op'>|</span>
+    <span class='id identifier rubyid_nbins'>nbins</span> <span class='op'>=</span> <span class='id identifier rubyid_plt'>plt</span><span class='period'>.</span><span class='id identifier rubyid_kvs'>kvs</span><span class='lbracket'>[</span><span class='symbol'>:nbins</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='int'>0</span>
+    <span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span> <span class='op'>=</span> <span class='id identifier rubyid_hist'>hist</span><span class='lparen'>(</span><span class='id identifier rubyid_series'>series</span><span class='comma'>,</span> <span class='id identifier rubyid_nbins'>nbins</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_plt'>plt</span><span class='period'>.</span><span class='id identifier rubyid_args'>args</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='lbracket'>[</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rbracket'>]</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="hold-class_method">
+  
+    .<strong>hold</strong>(flag = true)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1794
+1795
+1796
+1797</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr/plot.rb', line 1794</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_hold'>hold</span><span class='lparen'>(</span><span class='id identifier rubyid_flag'>flag</span> <span class='op'>=</span> <span class='kw'>true</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_plt'>plt</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="GR (module)">GR</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="GR/Plot.html" title="GR::Plot (class)">Plot</a></span></span><span class='period'>.</span><span class='id identifier rubyid_last_plot'><span class='object_link'><a href="GR/Plot.html#last_plot-class_method" title="GR::Plot.last_plot (method)">last_plot</a></span></span>
+  <span class='id identifier rubyid_plt'>plt</span><span class='period'>.</span><span class='id identifier rubyid_kvs'>kvs</span><span class='period'>.</span><span class='id identifier rubyid_slice'>slice</span><span class='lparen'>(</span><span class='symbol'>:window</span><span class='comma'>,</span> <span class='symbol'>:scale</span><span class='comma'>,</span> <span class='symbol'>:xaxis</span><span class='comma'>,</span> <span class='symbol'>:yaxis</span><span class='comma'>,</span> <span class='symbol'>:zaxis</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='lbrace'>{</span> <span class='label'>ax:</span> <span class='id identifier rubyid_flag'>flag</span><span class='comma'>,</span> <span class='label'>clear:</span> <span class='op'>!</span><span class='id identifier rubyid_flag'>flag</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -10849,6 +12127,53 @@
       <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1853</span>
 
 </pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="imshow-class_method">
+  
+    .<strong>imshow</strong>(img, kv = {})  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>(Plot) Draw an image.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1779
+1780
+1781
+1782
+1783
+1784</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr/plot.rb', line 1779</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_imshow'>imshow</span><span class='lparen'>(</span><span class='id identifier rubyid_img'>img</span><span class='comma'>,</span> <span class='id identifier rubyid_kv'>kv</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_img'>img</span> <span class='op'>=</span> <span class='const'>Numo</span><span class='op'>::</span><span class='const'>DFloat</span><span class='period'>.</span><span class='id identifier rubyid_cast'>cast</span><span class='lparen'>(</span><span class='id identifier rubyid_img'>img</span><span class='rparen'>)</span> <span class='comment'># Umm...
+</span>  <span class='id identifier rubyid_create_plot'>create_plot</span><span class='lparen'>(</span><span class='symbol'>:imshow</span><span class='comma'>,</span> <span class='id identifier rubyid_img'>img</span><span class='comma'>,</span> <span class='id identifier rubyid_kv'>kv</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_plt'>plt</span><span class='op'>|</span>
+    <span class='id identifier rubyid_plt'>plt</span><span class='period'>.</span><span class='id identifier rubyid_args'>args</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='lbracket'>[</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_img'>img</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rbracket'>]</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -13467,6 +14792,53 @@
 </div>
     
       <div class="method_details ">
+  <h3 class="signature " id="isosurface-class_method">
+  
+    .<strong>isosurface</strong>(v, kv = {})  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>(Plot) Draw an isosurface.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1787
+1788
+1789
+1790
+1791
+1792</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr/plot.rb', line 1787</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_isosurface'>isosurface</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='comma'>,</span> <span class='id identifier rubyid_kv'>kv</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_v'>v</span> <span class='op'>=</span> <span class='const'>Numo</span><span class='op'>::</span><span class='const'>DFloat</span><span class='period'>.</span><span class='id identifier rubyid_cast'>cast</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span> <span class='comment'># Umm...
+</span>  <span class='id identifier rubyid_create_plot'>create_plot</span><span class='lparen'>(</span><span class='symbol'>:isosurface</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span><span class='comma'>,</span> <span class='id identifier rubyid_kv'>kv</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_plt'>plt</span><span class='op'>|</span>
+    <span class='id identifier rubyid_plt'>plt</span><span class='period'>.</span><span class='id identifier rubyid_args'>args</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='lbracket'>[</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rbracket'>]</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
   <h3 class="signature " id="loadfont-class_method">
   
     .<strong>loadfont</strong>(str)  &#x21d2; <tt>Object</tt> 
@@ -13835,6 +15207,79 @@
 </div>
     
       <div class="method_details ">
+  <h3 class="signature " id="nonuniformheatmap-class_method">
+  
+    .<strong>nonuniformheatmap</strong>(*args)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>(Plot) Draw a nonuniformheatmap.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1612
+1613
+1614
+1615
+1616
+1617
+1618
+1619
+1620
+1621
+1622
+1623
+1624
+1625
+1626
+1627
+1628
+1629
+1630</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr/plot.rb', line 1612</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_nonuniformheatmap'>nonuniformheatmap</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_kv'>kv</span> <span class='op'>=</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Hash</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_pop'>pop</span> <span class='op'>:</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>==</span> <span class='int'>1</span>
+    <span class='id identifier rubyid_z'>z</span> <span class='op'>=</span> <span class='id identifier rubyid_args'>args</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_z'>z</span> <span class='op'>=</span> <span class='const'>Numo</span><span class='op'>::</span><span class='const'>DFloat</span><span class='period'>.</span><span class='id identifier rubyid_cast'>cast</span><span class='lparen'>(</span><span class='id identifier rubyid_z'>z</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_z'>z</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Array</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_ysize'>ysize</span><span class='comma'>,</span> <span class='id identifier rubyid_xsize'>xsize</span> <span class='op'>=</span> <span class='id identifier rubyid_z'>z</span><span class='period'>.</span><span class='id identifier rubyid_shape'>shape</span>
+    <span class='id identifier rubyid_z'>z</span> <span class='op'>=</span> <span class='id identifier rubyid_z'>z</span><span class='period'>.</span><span class='id identifier rubyid_reshape'>reshape</span><span class='lparen'>(</span><span class='id identifier rubyid_xsize'>xsize</span><span class='comma'>,</span> <span class='id identifier rubyid_ysize'>ysize</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_x'>x</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='int'>1</span><span class='op'>..</span><span class='id identifier rubyid_xsize'>xsize</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_a'>to_a</span>
+    <span class='id identifier rubyid_y'>y</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='int'>1</span><span class='op'>..</span><span class='id identifier rubyid_ysize'>ysize</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_a'>to_a</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>==</span> <span class='int'>3</span>
+    <span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_z'>z</span> <span class='op'>=</span> <span class='id identifier rubyid_args'>args</span>
+    <span class='id identifier rubyid_z'>z</span> <span class='op'>=</span> <span class='const'>Numo</span><span class='op'>::</span><span class='const'>DFloat</span><span class='period'>.</span><span class='id identifier rubyid_cast'>cast</span><span class='lparen'>(</span><span class='id identifier rubyid_z'>z</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_z'>z</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Array</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_create_plot'>create_plot</span><span class='lparen'>(</span><span class='symbol'>:nonuniformheatmap</span><span class='comma'>,</span> <span class='id identifier rubyid_kv'>kv</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_plt'>plt</span><span class='op'>|</span>
+    <span class='id identifier rubyid_plt'>plt</span><span class='period'>.</span><span class='id identifier rubyid_args'>args</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='lbracket'>[</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_z'>z</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rbracket'>]</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
   <h3 class="signature " id="nonuniformpolarcellarray-class_method">
   
     .<strong>nonuniformpolarcellarray</strong>(phi, r, ncol, nrow, color)  &#x21d2; <tt>Object</tt> 
@@ -13976,6 +15421,79 @@
   <span class='id identifier rubyid_dimphi'>dimphi</span> <span class='op'>=</span> <span class='id identifier rubyid_ncol'>ncol</span> <span class='op'>==</span> <span class='id identifier rubyid_phi'>phi</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>?</span> <span class='op'>-</span><span class='id identifier rubyid_ncol'>ncol</span> <span class='op'>:</span> <span class='id identifier rubyid_ncol'>ncol</span>
   <span class='id identifier rubyid_dimr'>dimr</span> <span class='op'>=</span> <span class='id identifier rubyid_nrow'>nrow</span> <span class='op'>==</span> <span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>?</span> <span class='op'>-</span><span class='id identifier rubyid_nrow'>nrow</span> <span class='op'>:</span> <span class='id identifier rubyid_nrow'>nrow</span>
   <span class='kw'>super</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span> <span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_phi'>phi</span><span class='comma'>,</span> <span class='id identifier rubyid_r'>r</span><span class='comma'>,</span> <span class='id identifier rubyid_dimphi'>dimphi</span><span class='comma'>,</span> <span class='id identifier rubyid_dimr'>dimr</span><span class='comma'>,</span> <span class='int'>1</span><span class='comma'>,</span> <span class='int'>1</span><span class='comma'>,</span> <span class='id identifier rubyid_ncol'>ncol</span><span class='comma'>,</span> <span class='id identifier rubyid_nrow'>nrow</span><span class='comma'>,</span> <span class='id identifier rubyid_int'>int</span><span class='lparen'>(</span><span class='id identifier rubyid_color'>color</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="nonuniformpolarheatmap-class_method">
+  
+    .<strong>nonuniformpolarheatmap</strong>(*args)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>(Plot) Draw a nonuniformpolarheatmap.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1654
+1655
+1656
+1657
+1658
+1659
+1660
+1661
+1662
+1663
+1664
+1665
+1666
+1667
+1668
+1669
+1670
+1671
+1672</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr/plot.rb', line 1654</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_nonuniformpolarheatmap'>nonuniformpolarheatmap</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_kv'>kv</span> <span class='op'>=</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Hash</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_pop'>pop</span> <span class='op'>:</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>==</span> <span class='int'>1</span>
+    <span class='id identifier rubyid_z'>z</span> <span class='op'>=</span> <span class='id identifier rubyid_args'>args</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_z'>z</span> <span class='op'>=</span> <span class='const'>Numo</span><span class='op'>::</span><span class='const'>DFloat</span><span class='period'>.</span><span class='id identifier rubyid_cast'>cast</span><span class='lparen'>(</span><span class='id identifier rubyid_z'>z</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_z'>z</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Array</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_ysize'>ysize</span><span class='comma'>,</span> <span class='id identifier rubyid_xsize'>xsize</span> <span class='op'>=</span> <span class='id identifier rubyid_z'>z</span><span class='period'>.</span><span class='id identifier rubyid_shape'>shape</span>
+    <span class='id identifier rubyid_z'>z</span> <span class='op'>=</span> <span class='id identifier rubyid_z'>z</span><span class='period'>.</span><span class='id identifier rubyid_reshape'>reshape</span><span class='lparen'>(</span><span class='id identifier rubyid_xsize'>xsize</span><span class='comma'>,</span> <span class='id identifier rubyid_ysize'>ysize</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_x'>x</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='int'>1</span><span class='op'>..</span><span class='id identifier rubyid_xsize'>xsize</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_a'>to_a</span>
+    <span class='id identifier rubyid_y'>y</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='int'>1</span><span class='op'>..</span><span class='id identifier rubyid_ysize'>ysize</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_a'>to_a</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>==</span> <span class='int'>3</span>
+    <span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_z'>z</span> <span class='op'>=</span> <span class='id identifier rubyid_args'>args</span>
+    <span class='id identifier rubyid_z'>z</span> <span class='op'>=</span> <span class='const'>Numo</span><span class='op'>::</span><span class='const'>DFloat</span><span class='period'>.</span><span class='id identifier rubyid_cast'>cast</span><span class='lparen'>(</span><span class='id identifier rubyid_z'>z</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_z'>z</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Array</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_create_plot'>create_plot</span><span class='lparen'>(</span><span class='symbol'>:nonuniformpolarheatmap</span><span class='comma'>,</span> <span class='id identifier rubyid_kv'>kv</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_plt'>plt</span><span class='op'>|</span>
+    <span class='id identifier rubyid_plt'>plt</span><span class='period'>.</span><span class='id identifier rubyid_args'>args</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='lbracket'>[</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_z'>z</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rbracket'>]</span>
+  <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -14336,6 +15854,129 @@
 </div>
     
       <div class="method_details ">
+  <h3 class="signature " id="plot-class_method">
+  
+    .<strong>plot</strong>(*args)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>(Plot) Draw one or more line plots.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1555
+1556
+1557</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr/plot.rb', line 1555</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_plot'>plot</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_create_plot'>create_plot</span><span class='lparen'>(</span><span class='symbol'>:line</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="plot3-class_method">
+  
+    .<strong>plot3</strong>(*args)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>(Plot) Draw one or more three-dimensional line plots.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1719
+1720
+1721</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr/plot.rb', line 1719</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_plot3'>plot3</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_create_plot'>create_plot</span><span class='lparen'>(</span><span class='symbol'>:plot3</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="polar-class_method">
+  
+    .<strong>polar</strong>(*args)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>(Plot)</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1709
+1710
+1711</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr/plot.rb', line 1709</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_polar'>polar</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_create_plot'>create_plot</span><span class='lparen'>(</span><span class='symbol'>:polar</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
   <h3 class="signature " id="polarcellarray-class_method">
   
     .<strong>polarcellarray</strong>(x_org, y_org, phimin, phimax, rmin, rmax, dimphi, dimr, color)  &#x21d2; <tt>Object</tt> 
@@ -14537,6 +16178,130 @@
 
 <span class='kw'>def</span> <span class='id identifier rubyid_polarcellarray'>polarcellarray</span><span class='lparen'>(</span><span class='id identifier rubyid_x_org'>x_org</span><span class='comma'>,</span> <span class='id identifier rubyid_y_org'>y_org</span><span class='comma'>,</span> <span class='id identifier rubyid_phimin'>phimin</span><span class='comma'>,</span> <span class='id identifier rubyid_phimax'>phimax</span><span class='comma'>,</span> <span class='id identifier rubyid_rmin'>rmin</span><span class='comma'>,</span> <span class='id identifier rubyid_rmax'>rmax</span><span class='comma'>,</span> <span class='id identifier rubyid_dimphi'>dimphi</span><span class='comma'>,</span> <span class='id identifier rubyid_dimr'>dimr</span><span class='comma'>,</span> <span class='id identifier rubyid_color'>color</span><span class='rparen'>)</span>
   <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_x_org'>x_org</span><span class='comma'>,</span> <span class='id identifier rubyid_y_org'>y_org</span><span class='comma'>,</span> <span class='id identifier rubyid_phimin'>phimin</span><span class='comma'>,</span> <span class='id identifier rubyid_phimax'>phimax</span><span class='comma'>,</span> <span class='id identifier rubyid_rmin'>rmin</span><span class='comma'>,</span> <span class='id identifier rubyid_rmax'>rmax</span><span class='comma'>,</span> <span class='id identifier rubyid_dimphi'>dimphi</span><span class='comma'>,</span> <span class='id identifier rubyid_dimr'>dimr</span><span class='comma'>,</span> <span class='int'>1</span><span class='comma'>,</span> <span class='int'>1</span><span class='comma'>,</span> <span class='id identifier rubyid_dimphi'>dimphi</span><span class='comma'>,</span> <span class='id identifier rubyid_dimr'>dimr</span><span class='comma'>,</span> <span class='id identifier rubyid_int'>int</span><span class='lparen'>(</span><span class='id identifier rubyid_color'>color</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="polarheatmap-class_method">
+  
+    .<strong>polarheatmap</strong>(*args)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>(Plot) Draw a polarheatmap.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1633
+1634
+1635
+1636
+1637
+1638
+1639
+1640
+1641
+1642
+1643
+1644
+1645
+1646
+1647
+1648
+1649
+1650
+1651</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr/plot.rb', line 1633</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_polarheatmap'>polarheatmap</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_kv'>kv</span> <span class='op'>=</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Hash</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_pop'>pop</span> <span class='op'>:</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>==</span> <span class='int'>1</span>
+    <span class='id identifier rubyid_z'>z</span> <span class='op'>=</span> <span class='id identifier rubyid_args'>args</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_z'>z</span> <span class='op'>=</span> <span class='const'>Numo</span><span class='op'>::</span><span class='const'>DFloat</span><span class='period'>.</span><span class='id identifier rubyid_cast'>cast</span><span class='lparen'>(</span><span class='id identifier rubyid_z'>z</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_z'>z</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Array</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_ysize'>ysize</span><span class='comma'>,</span> <span class='id identifier rubyid_xsize'>xsize</span> <span class='op'>=</span> <span class='id identifier rubyid_z'>z</span><span class='period'>.</span><span class='id identifier rubyid_shape'>shape</span>
+    <span class='id identifier rubyid_z'>z</span> <span class='op'>=</span> <span class='id identifier rubyid_z'>z</span><span class='period'>.</span><span class='id identifier rubyid_reshape'>reshape</span><span class='lparen'>(</span><span class='id identifier rubyid_xsize'>xsize</span><span class='comma'>,</span> <span class='id identifier rubyid_ysize'>ysize</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_x'>x</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='int'>1</span><span class='op'>..</span><span class='id identifier rubyid_xsize'>xsize</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_a'>to_a</span>
+    <span class='id identifier rubyid_y'>y</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='int'>1</span><span class='op'>..</span><span class='id identifier rubyid_ysize'>ysize</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_a'>to_a</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>==</span> <span class='int'>3</span>
+    <span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_z'>z</span> <span class='op'>=</span> <span class='id identifier rubyid_args'>args</span>
+    <span class='id identifier rubyid_z'>z</span> <span class='op'>=</span> <span class='const'>Numo</span><span class='op'>::</span><span class='const'>DFloat</span><span class='period'>.</span><span class='id identifier rubyid_cast'>cast</span><span class='lparen'>(</span><span class='id identifier rubyid_z'>z</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_z'>z</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Array</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_create_plot'>create_plot</span><span class='lparen'>(</span><span class='symbol'>:polarheatmap</span><span class='comma'>,</span> <span class='id identifier rubyid_kv'>kv</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_plt'>plt</span><span class='op'>|</span>
+    <span class='id identifier rubyid_plt'>plt</span><span class='period'>.</span><span class='id identifier rubyid_args'>args</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='lbracket'>[</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_z'>z</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rbracket'>]</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="polarhistogram-class_method">
+  
+    .<strong>polarhistogram</strong>(x, kv = {})  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>(Plot)</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1580
+1581
+1582
+1583
+1584
+1585
+1586
+1587</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr/plot.rb', line 1580</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_polarhistogram'>polarhistogram</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_kv'>kv</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_plt'>plt</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="GR (module)">GR</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="GR/Plot.html" title="GR::Plot (class)">Plot</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="GR/Plot.html#initialize-instance_method" title="GR::Plot#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_kv'>kv</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_plt'>plt</span><span class='period'>.</span><span class='id identifier rubyid_kvs'>kvs</span><span class='lbracket'>[</span><span class='symbol'>:kind</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='symbol'>:polarhist</span>
+  <span class='id identifier rubyid_nbins'>nbins</span> <span class='op'>=</span> <span class='id identifier rubyid_plt'>plt</span><span class='period'>.</span><span class='id identifier rubyid_kvs'>kvs</span><span class='lbracket'>[</span><span class='symbol'>:nbins</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='int'>0</span>
+  <span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span> <span class='op'>=</span> <span class='id identifier rubyid_hist'>hist</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_nbins'>nbins</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_plt'>plt</span><span class='period'>.</span><span class='id identifier rubyid_args'>args</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='lbracket'>[</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_plt'>plt</span><span class='period'>.</span><span class='id identifier rubyid_plot_data'>plot_data</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -15520,6 +17285,55 @@
 </div>
     
       <div class="method_details ">
+  <h3 class="signature " id="savefig-class_method">
+  
+    .<strong>savefig</strong>(filename, kv = {})  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>(Plot) Save the current figure to a file.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1823
+1824
+1825
+1826
+1827
+1828
+1829</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr/plot.rb', line 1823</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_savefig'>savefig</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='comma'>,</span> <span class='id identifier rubyid_kv'>kv</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="" title="GR (module)">GR</a></span></span><span class='period'>.</span><span class='id identifier rubyid_beginprint'><span class='object_link'><a href="#beginprint-class_method" title="GR.beginprint (method)">beginprint</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_plt'>plt</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="GR (module)">GR</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="GR/Plot.html" title="GR::Plot (class)">Plot</a></span></span><span class='period'>.</span><span class='id identifier rubyid_last_plot'><span class='object_link'><a href="GR/Plot.html#last_plot-class_method" title="GR::Plot.last_plot (method)">last_plot</a></span></span>
+  <span class='id identifier rubyid_plt'>plt</span><span class='period'>.</span><span class='id identifier rubyid_kvs'>kvs</span><span class='period'>.</span><span class='id identifier rubyid_merge!'>merge!</span><span class='lparen'>(</span><span class='id identifier rubyid_kv'>kv</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_plt'>plt</span><span class='period'>.</span><span class='id identifier rubyid_plot_data'>plot_data</span><span class='lparen'>(</span><span class='kw'>false</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="" title="GR (module)">GR</a></span></span><span class='period'>.</span><span class='id identifier rubyid_endprint'><span class='object_link'><a href="#endprint-class_method" title="GR.endprint (method)">endprint</a></span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
   <h3 class="signature " id="savestate-class_method">
   
     .<strong>savestate</strong>  &#x21d2; <tt>Object</tt> 
@@ -15540,6 +17354,88 @@
       <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1946</span>
 
 </pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="scatter-class_method">
+  
+    .<strong>scatter</strong>(*args)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>(Plot) Draw one or more scatter plots.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1570
+1571
+1572</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr/plot.rb', line 1570</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_scatter'>scatter</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_create_plot'>create_plot</span><span class='lparen'>(</span><span class='symbol'>:scatter</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="scatter3-class_method">
+  
+    .<strong>scatter3</strong>(*args)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>(Plot) Draw one or more three-dimensional scatter plots.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1724
+1725
+1726</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr/plot.rb', line 1724</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_scatter3'>scatter3</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_create_plot'>create_plot</span><span class='lparen'>(</span><span class='symbol'>:scatter3</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -19791,7 +21687,7 @@
       <div class="method_details ">
   <h3 class="signature " id="shade-class_method">
   
-    .<strong>shade</strong>  &#x21d2; <tt>Object</tt> 
+    .<strong>shade</strong>(*args)  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -19800,13 +21696,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>‘hexbin` is overwritten by `require gr/plot`. The original method is moved to the underscored name. The yard document will show the method name after evacuation.</p>
-</div>
-  </div>
-
+<p>(Plot)</p>
 
 
   </div>
@@ -20216,6 +22106,47 @@
 </div>
     
       <div class="method_details ">
+  <h3 class="signature " id="stairs-class_method">
+  
+    .<strong>stairs</strong>(*args)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>(Plot) Draw one or more step or staircase plots.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1565
+1566
+1567</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr/plot.rb', line 1565</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_stairs'>stairs</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_create_plot'>create_plot</span><span class='lparen'>(</span><span class='symbol'>:stairs</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
   <h3 class="signature " id="startlistener-class_method">
   
     .<strong>startlistener</strong>  &#x21d2; <tt>Integer</tt> 
@@ -20272,9 +22203,168 @@
 </div>
     
       <div class="method_details ">
+  <h3 class="signature " id="stem-class_method">
+  
+    .<strong>stem</strong>(*args)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>(Plot) Draw a stem plot.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1575
+1576
+1577</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr/plot.rb', line 1575</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_stem'>stem</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_create_plot'>create_plot</span><span class='lparen'>(</span><span class='symbol'>:stem</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="step-class_method">
+  
+    .<strong>step</strong>(*args)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>(Plot) Draw one or more step or staircase plots.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1560
+1561
+1562</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr/plot.rb', line 1560</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_step'>step</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_create_plot'>create_plot</span><span class='lparen'>(</span><span class='symbol'>:step</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="subplot-class_method">
+  
+    .<strong>subplot</strong>(nr, nc, p, kv = {})  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Set current subplot index.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1800
+1801
+1802
+1803
+1804
+1805
+1806
+1807
+1808
+1809
+1810
+1811
+1812
+1813
+1814
+1815
+1816
+1817
+1818
+1819
+1820</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr/plot.rb', line 1800</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_subplot'>subplot</span><span class='lparen'>(</span><span class='id identifier rubyid_nr'>nr</span><span class='comma'>,</span> <span class='id identifier rubyid_nc'>nc</span><span class='comma'>,</span> <span class='id identifier rubyid_p'>p</span><span class='comma'>,</span> <span class='id identifier rubyid_kv'>kv</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_xmin'>xmin</span> <span class='op'>=</span> <span class='int'>1</span>
+  <span class='id identifier rubyid_xmax'>xmax</span> <span class='op'>=</span> <span class='int'>0</span>
+  <span class='id identifier rubyid_ymin'>ymin</span> <span class='op'>=</span> <span class='int'>1</span>
+  <span class='id identifier rubyid_ymax'>ymax</span> <span class='op'>=</span> <span class='int'>0</span>
+  <span class='id identifier rubyid_p'>p</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_p'>p</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_p'>p</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Integer</span>
+  <span class='id identifier rubyid_p'>p</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_i'>i</span><span class='op'>|</span>
+    <span class='id identifier rubyid_r'>r</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_nr'>nr</span> <span class='op'>-</span> <span class='lparen'>(</span><span class='id identifier rubyid_i'>i</span> <span class='op'>-</span> <span class='int'>1</span><span class='rparen'>)</span> <span class='op'>/</span> <span class='id identifier rubyid_nc'>nc</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span>
+    <span class='id identifier rubyid_c'>c</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='lparen'>(</span><span class='id identifier rubyid_i'>i</span> <span class='op'>-</span> <span class='int'>1</span><span class='rparen'>)</span> <span class='op'>%</span> <span class='id identifier rubyid_nc'>nc</span> <span class='op'>+</span> <span class='int'>1</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span>
+    <span class='id identifier rubyid_xmin'>xmin</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_xmin'>xmin</span><span class='comma'>,</span> <span class='lparen'>(</span><span class='id identifier rubyid_c'>c</span> <span class='op'>-</span> <span class='int'>1</span><span class='rparen'>)</span> <span class='op'>/</span> <span class='id identifier rubyid_nc'>nc</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_min'>min</span>
+    <span class='id identifier rubyid_xmax'>xmax</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_xmax'>xmax</span><span class='comma'>,</span> <span class='id identifier rubyid_c'>c</span> <span class='op'>/</span> <span class='id identifier rubyid_nc'>nc</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_max'>max</span>
+    <span class='id identifier rubyid_ymin'>ymin</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_ymin'>ymin</span><span class='comma'>,</span> <span class='lparen'>(</span><span class='id identifier rubyid_r'>r</span> <span class='op'>-</span> <span class='int'>1</span><span class='rparen'>)</span> <span class='op'>/</span> <span class='id identifier rubyid_nr'>nr</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_min'>min</span>
+    <span class='id identifier rubyid_ymax'>ymax</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_ymax'>ymax</span><span class='comma'>,</span> <span class='id identifier rubyid_r'>r</span> <span class='op'>/</span> <span class='id identifier rubyid_nr'>nr</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_max'>max</span>
+  <span class='kw'>end</span>
+  <span class='lbrace'>{</span>
+    <span class='label'>subplot:</span> <span class='lbracket'>[</span><span class='id identifier rubyid_xmin'>xmin</span><span class='comma'>,</span> <span class='id identifier rubyid_xmax'>xmax</span><span class='comma'>,</span> <span class='id identifier rubyid_ymin'>ymin</span><span class='comma'>,</span> <span class='id identifier rubyid_ymax'>ymax</span><span class='rbracket'>]</span><span class='comma'>,</span>
+    <span class='comment'># The policy of clearing when p[0]==1 is controversial
+</span>    <span class='label'>clear:</span> <span class='id identifier rubyid_p'>p</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='int'>1</span><span class='comma'>,</span>
+    <span class='label'>update:</span> <span class='id identifier rubyid_p'>p</span><span class='lbracket'>[</span><span class='op'>-</span><span class='int'>1</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id identifier rubyid_nr'>nr</span> <span class='op'>*</span> <span class='id identifier rubyid_nc'>nc</span>
+  <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span> <span class='id identifier rubyid_kv'>kv</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
   <h3 class="signature " id="surface-class_method">
   
-    .<strong>surface</strong>(x, y, z, option)  &#x21d2; <tt>Object</tt> 
+    .<strong>surface</strong>(*args)  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -21051,6 +23141,47 @@
 </div>
     
       <div class="method_details ">
+  <h3 class="signature " id="tricont-class_method">
+  
+    .<strong>tricont</strong>(*args)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>(Plot) Draw a triangular contour plot.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1693
+1694
+1695</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr/plot.rb', line 1693</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_tricont'>tricont</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_create_plot'>create_plot</span><span class='lparen'>(</span><span class='symbol'>:tricont</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_format_xyzc'>format_xyzc</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
   <h3 class="signature " id="tricontour-class_method">
   
     .<strong>tricontour</strong>(x, y, z, levels)  &#x21d2; <tt>Object</tt> 
@@ -21157,6 +23288,47 @@
   <span class='id identifier rubyid_npoints'>npoints</span> <span class='op'>=</span> <span class='id identifier rubyid_equal_length'>equal_length</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_z'>z</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_nlevels'>nlevels</span> <span class='op'>=</span> <span class='id identifier rubyid_levels'>levels</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
   <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_npoints'>npoints</span><span class='comma'>,</span> <span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_z'>z</span><span class='comma'>,</span> <span class='id identifier rubyid_nlevels'>nlevels</span><span class='comma'>,</span> <span class='id identifier rubyid_levels'>levels</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="trisurf-class_method">
+  
+    .<strong>trisurf</strong>(*args)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>(Plot) Draw a triangular surface plot.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1714
+1715
+1716</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr/plot.rb', line 1714</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_trisurf'>trisurf</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_create_plot'>create_plot</span><span class='lparen'>(</span><span class='symbol'>:trisurf</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_format_xyzc'>format_xyzc</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -21631,6 +23803,51 @@
 </div>
     
       <div class="method_details ">
+  <h3 class="signature " id="volume-class_method">
+  
+    .<strong>volume</strong>(v, kv = {})  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>(Plot)</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1735
+1736
+1737
+1738
+1739</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr/plot.rb', line 1735</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_volume'>volume</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='comma'>,</span> <span class='id identifier rubyid_kv'>kv</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_create_plot'>create_plot</span><span class='lparen'>(</span><span class='symbol'>:volume</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span><span class='comma'>,</span> <span class='id identifier rubyid_kv'>kv</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_plt'>plt</span><span class='op'>|</span>
+    <span class='id identifier rubyid_plt'>plt</span><span class='period'>.</span><span class='id identifier rubyid_args'>args</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='lbracket'>[</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rbracket'>]</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
   <h3 class="signature " id="wc3towc-class_method">
   
     .<strong>wc3towc</strong>(x, y, z)  &#x21d2; <tt>Object</tt> 
@@ -21708,12 +23925,53 @@
 </table>
 </div>
     
+      <div class="method_details ">
+  <h3 class="signature " id="wireframe-class_method">
+  
+    .<strong>wireframe</strong>(*args)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>(Plot) Draw a three-dimensional wireframe plot.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1698
+1699
+1700</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr/plot.rb', line 1698</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_wireframe'>wireframe</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_create_plot'>create_plot</span><span class='lparen'>(</span><span class='symbol'>:wireframe</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_format_xyzc'>format_xyzc</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
   </div>
 
 </div>
 
       <div id="footer">
-  Generated on Sun Nov 30 03:45:03 2025 by
+  Generated on Sun Nov 30 04:21:50 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.7).
 </div>
