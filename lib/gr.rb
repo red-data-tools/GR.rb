@@ -2551,12 +2551,12 @@ module GR
     def __axis_to_c_axis(axis)
       c_axis = FFI::Axis.malloc
 
-      c_axis[:min] = axis.min
-      c_axis[:max] = axis.max
-      c_axis[:tick] = axis.tick
-      c_axis[:org] = axis.org
-      c_axis[:position] = axis.position
-      c_axis[:major_count] = axis.major_count
+      c_axis.min_val = axis.min
+      c_axis.max_val = axis.max
+      c_axis.tick = axis.tick
+      c_axis.org = axis.org
+      c_axis.position = axis.position
+      c_axis.major_count = axis.major_count
 
       # ticks
       if axis.ticks && !axis.ticks.empty?
@@ -2564,17 +2564,17 @@ module GR
         mem = FFI::Tick.malloc(count)
         axis.ticks.each_with_index do |t, i|
           tick = FFI::Tick.new(mem.to_ptr + i * FFI::Tick.size)
-          tick[:value] = t.value
-          tick[:is_major] = t.is_major
+          tick.value = t.value
+          tick.is_major = t.is_major
         end
-        c_axis[:num_ticks] = count
-        c_axis[:ticks] = mem.to_ptr
+        c_axis.num_ticks = count
+        c_axis.ticks = mem.to_ptr
       else
-        c_axis[:num_ticks] = 0
-        c_axis[:ticks] = 0
+        c_axis.num_ticks = 0
+        c_axis.ticks = 0
       end
 
-      c_axis[:tick_size] = axis.tick_size
+      c_axis.tick_size = axis.tick_size
 
       # tick labels
       if axis.tick_labels && !axis.tick_labels.empty?
@@ -2582,61 +2582,61 @@ module GR
         mem = FFI::TickLabel.malloc(count)
         axis.tick_labels.each_with_index do |tl, i|
           lbl = FFI::TickLabel.new(mem.to_ptr + i * FFI::TickLabel.size)
-          lbl[:tick] = tl.tick
-          lbl[:label] = Fiddle::Pointer[tl.label.to_s + "\0"]
-          lbl[:width] = tl.width
+          lbl.tick = tl.tick
+          lbl.label = Fiddle::Pointer[tl.label.to_s + "\0"]
+          lbl.width = tl.width
         end
-        c_axis[:num_tick_labels] = count
-        c_axis[:tick_labels] = mem.to_ptr
+        c_axis.num_tick_labels = count
+        c_axis.tick_labels = mem.to_ptr
       else
-        c_axis[:num_tick_labels] = 0
-        c_axis[:tick_labels] = 0
+        c_axis.num_tick_labels = 0
+        c_axis.tick_labels = 0
       end
 
-      c_axis[:label_position] = axis.label_position
-      c_axis[:draw_axis_line] = axis.draw_axis_line
-      c_axis[:label_orientation] = axis.label_orientation
+      c_axis.label_position = axis.label_position
+      c_axis.draw_axis_line = axis.draw_axis_line
+      c_axis.label_orientation = axis.label_orientation
 
       c_axis
     end
 
     # Convert low-level FFI::Axis back into high-level GRAxis
     def __axis_from_c_axis(c_axis)
-      ticks = if c_axis[:num_ticks].positive? && !Fiddle::Pointer[c_axis[:ticks]].null?
-                Array.new(c_axis[:num_ticks]) do |i|
-                  tick = FFI::Tick.new(c_axis[:ticks] + i * FFI::Tick.size)
-                  GRTick.new(value: tick[:value], is_major: tick[:is_major])
+      ticks = if c_axis.num_ticks.positive? && !Fiddle::Pointer[c_axis.ticks].null?
+                Array.new(c_axis.num_ticks) do |i|
+                  tick = FFI::Tick.new(c_axis.ticks + i * FFI::Tick.size)
+                  GRTick.new(value: tick.value, is_major: tick.is_major)
                 end
               else
                 []
               end
 
-      tick_labels = if c_axis[:num_tick_labels].positive? && !Fiddle::Pointer[c_axis[:tick_labels]].null?
-                      Array.new(c_axis[:num_tick_labels]) do |i|
-                        lbl = FFI::TickLabel.new(c_axis[:tick_labels] + i * FFI::TickLabel.size)
-                        ptr = Fiddle::Pointer[lbl[:label]]
+      tick_labels = if c_axis.num_tick_labels.positive? && !Fiddle::Pointer[c_axis.tick_labels].null?
+                      Array.new(c_axis.num_tick_labels) do |i|
+                        lbl = FFI::TickLabel.new(c_axis.tick_labels + i * FFI::TickLabel.size)
+                        ptr = Fiddle::Pointer[lbl.label]
                         next if ptr.null?
 
-                        GRTickLabel.new(tick: lbl[:tick], label: ptr.to_s, width: lbl[:width])
+                        GRTickLabel.new(tick: lbl.tick, label: ptr.to_s, width: lbl.width)
                       end.compact
                     else
                       []
                     end
 
       GRAxis.new(
-        min: c_axis[:min],
-        max: c_axis[:max],
-        tick: c_axis[:tick],
-        org: c_axis[:org],
-        position: c_axis[:position],
-        major_count: c_axis[:major_count],
-        num_ticks: c_axis[:num_ticks],
+        min: c_axis.min_val,
+        max: c_axis.max_val,
+        tick: c_axis.tick,
+        org: c_axis.org,
+        position: c_axis.position,
+        major_count: c_axis.major_count,
+        num_ticks: c_axis.num_ticks,
         ticks: ticks,
-        tick_size: c_axis[:tick_size],
+        tick_size: c_axis.tick_size,
         tick_labels: tick_labels,
-        label_position: c_axis[:label_position],
-        draw_axis_line: c_axis[:draw_axis_line],
-        label_orientation: c_axis[:label_orientation]
+        label_position: c_axis.label_position,
+        draw_axis_line: c_axis.draw_axis_line,
+        label_orientation: c_axis.label_orientation
       )
     end
   end

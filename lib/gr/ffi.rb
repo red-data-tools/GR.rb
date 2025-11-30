@@ -77,8 +77,8 @@ module GR
     ]
 
     Axis = struct [
-      'double min',
-      'double max',
+      'double min_val', # min conflict with Enumerable min
+      'double max_val', # max conflict with Enumerable max
       'double tick',
       'double org',
       'double position',
