@@ -95,6 +95,54 @@ module GR
   # a Fiddley::MemoryPointer in the GRBase class.
   extend GRBase
 
+  # High-level axis/tick objects
+  class GRTick
+    attr_accessor :value, :is_major
+
+    def initialize(value:, is_major:)
+      @value = value
+      @is_major = is_major
+    end
+  end
+
+  class GRTickLabel
+    attr_accessor :tick, :label, :width
+
+    def initialize(tick:, label:, width:)
+      @tick = tick
+      @label = label
+      @width = width
+    end
+  end
+
+  class GRAxis
+    attr_accessor :min, :max, :tick, :org, :position,
+                  :major_count, :num_ticks, :ticks,
+                  :tick_size, :tick_labels, :label_position,
+                  :draw_axis_line, :label_orientation
+
+    def initialize(min: Float::NAN, max: Float::NAN, tick: Float::NAN,
+                   org: Float::NAN, position: Float::NAN,
+                   major_count: 1, num_ticks: 0, ticks: nil,
+                   tick_size: Float::NAN, tick_labels: nil,
+                   label_position: Float::NAN,
+                   draw_axis_line: 1, label_orientation: 0)
+      @min = min
+      @max = max
+      @tick = tick
+      @org = org
+      @position = position
+      @major_count = major_count
+      @num_ticks = num_ticks
+      @ticks = ticks
+      @tick_size = tick_size
+      @tick_labels = tick_labels
+      @label_position = label_position
+      @draw_axis_line = draw_axis_line
+      @label_orientation = label_orientation
+    end
+  end
+
   class << self
     # @!method initgr
 
@@ -1116,50 +1164,31 @@ module GR
 
     alias axes2d axes
 
-    def axis(option, min: Float::NAN, max: Float::NAN, tick: Float::NAN, org: Float::NAN, position: Float::NAN, major_count: 1,
-             tick_size: Float::NAN, label_position: Float::NAN, draw_axis_line: 1, label_orientation: 0)
-      ax = FFI::Axis.malloc
-      ax[:min] = min
-      ax[:max] = max
-      ax[:tick] = tick
-      ax[:org] = org
-      ax[:position] = position
-      ax[:major_count] = major_count
-      ax[:tick_size] = tick_size
-      ax[:label_position] = label_position
-      ax[:draw_axis_line] = draw_axis_line
-      ax[:label_orientation] = label_orientation
-      ax[:ticks] = 0
-      ax[:num_ticks] = 0
-      ax[:tick_labels] = 0
-      ax[:num_tick_labels] = 0
-      super(option, ax)
-      ax
+    def axis(option, **opts)
+      axis = GRAxis.new
+      opts.each do |k, v|
+        setter = "#{k}="
+        axis.public_send(setter, v) if axis.respond_to?(setter)
+      end
+
+      c_axis = __axis_to_c_axis(axis)
+      # accept String, Symbol or single-character option
+      ch = option.is_a?(Symbol) ? option.to_s[0, 1] : option.to_s[0, 1]
+      FFI.gr_axis(ch.ord, c_axis)
+      __axis_from_c_axis(c_axis)
     end
 
-    def drawaxis(option, min: Float::NAN, max: Float::NAN, tick: Float::NAN, org: Float::NAN, position: Float::NAN,
-                 major_count: 1, tick_size: Float::NAN, label_position: Float::NAN, draw_axis_line: 1, label_orientation: 0)
-      ax = FFI::Axis.malloc
-      ax[:min] = min
-      ax[:max] = max
-      ax[:tick] = tick
-      ax[:org] = org
-      ax[:position] = position
-      ax[:major_count] = major_count
-      ax[:tick_size] = tick_size
-      ax[:label_position] = label_position
-      ax[:draw_axis_line] = draw_axis_line
-      ax[:label_orientation] = label_orientation
-      ax[:ticks] = 0
-      ax[:num_ticks] = 0
-      ax[:tick_labels] = 0
-      ax[:num_tick_labels] = 0
-      super(option, ax)
-      ax
+    def drawaxis(option, axis)
+      c_axis = __axis_to_c_axis(axis)
+      # accept String, Symbol or single-character option
+      ch = option.is_a?(Symbol) ? option.to_s[0, 1] : option.to_s[0, 1]
+      FFI.gr_drawaxis(ch.ord, c_axis)
     end
 
-    def drawaxes(x_axis, y_axis, option = 1)
-      super(x_axis, y_axis, option)
+    def drawaxes(x_axis = nil, y_axis = nil, option = 1)
+      c_x = x_axis && __axis_to_c_axis(x_axis)
+      c_y = y_axis && __axis_to_c_axis(y_axis)
+      FFI.gr_drawaxes(c_x || 0, c_y || 0, option)
     end
 
     # Create axes in the current workspace and supply a custom function for
@@ -2510,6 +2539,101 @@ module GR
       string = Fiddle::Pointer.malloc(256)
       super(string, value, format_ref)
       string.to_s
+    end
+
+    private
+
+    # Convert high-level GRAxis into low-level FFI::Axis
+    def __axis_to_c_axis(axis)
+      c_axis = FFI::Axis.malloc
+
+      c_axis[:min] = axis.min
+      c_axis[:max] = axis.max
+      c_axis[:tick] = axis.tick
+      c_axis[:org] = axis.org
+      c_axis[:position] = axis.position
+      c_axis[:major_count] = axis.major_count
+
+      # ticks
+      if axis.ticks && !axis.ticks.empty?
+        count = axis.ticks.size
+        mem = FFI::Tick.malloc(count)
+        axis.ticks.each_with_index do |t, i|
+          tick = FFI::Tick.new(mem.to_ptr + i * FFI::Tick.size)
+          tick[:value] = t.value
+          tick[:is_major] = t.is_major
+        end
+        c_axis[:num_ticks] = count
+        c_axis[:ticks] = mem.to_ptr
+      else
+        c_axis[:num_ticks] = 0
+        c_axis[:ticks] = 0
+      end
+
+      c_axis[:tick_size] = axis.tick_size
+
+      # tick labels
+      if axis.tick_labels && !axis.tick_labels.empty?
+        count = axis.tick_labels.size
+        mem = FFI::TickLabel.malloc(count)
+        axis.tick_labels.each_with_index do |tl, i|
+          lbl = FFI::TickLabel.new(mem.to_ptr + i * FFI::TickLabel.size)
+          lbl[:tick] = tl.tick
+          lbl[:label] = Fiddle::Pointer[tl.label.to_s + "\0"]
+          lbl[:width] = tl.width
+        end
+        c_axis[:num_tick_labels] = count
+        c_axis[:tick_labels] = mem.to_ptr
+      else
+        c_axis[:num_tick_labels] = 0
+        c_axis[:tick_labels] = 0
+      end
+
+      c_axis[:label_position] = axis.label_position
+      c_axis[:draw_axis_line] = axis.draw_axis_line
+      c_axis[:label_orientation] = axis.label_orientation
+
+      c_axis
+    end
+
+    # Convert low-level FFI::Axis back into high-level GRAxis
+    def __axis_from_c_axis(c_axis)
+      ticks = if c_axis[:num_ticks].positive? && !Fiddle::Pointer[c_axis[:ticks]].null?
+                Array.new(c_axis[:num_ticks]) do |i|
+                  tick = FFI::Tick.new(c_axis[:ticks] + i * FFI::Tick.size)
+                  GRTick.new(value: tick[:value], is_major: tick[:is_major])
+                end
+              else
+                []
+              end
+
+      tick_labels = if c_axis[:num_tick_labels].positive? && !Fiddle::Pointer[c_axis[:tick_labels]].null?
+                      Array.new(c_axis[:num_tick_labels]) do |i|
+                        lbl = FFI::TickLabel.new(c_axis[:tick_labels] + i * FFI::TickLabel.size)
+                        ptr = Fiddle::Pointer[lbl[:label]]
+                        next if ptr.null?
+
+                        GRTickLabel.new(tick: lbl[:tick], label: ptr.to_s, width: lbl[:width])
+                      end.compact
+                    else
+                      []
+                    end
+
+      GRAxis.new(
+        min: c_axis[:min],
+        max: c_axis[:max],
+        tick: c_axis[:tick],
+        org: c_axis[:org],
+        position: c_axis[:position],
+        major_count: c_axis[:major_count],
+        num_ticks: c_axis[:num_ticks],
+        ticks: ticks,
+        tick_size: c_axis[:tick_size],
+        tick_labels: tick_labels,
+        label_position: c_axis[:label_position],
+        draw_axis_line: c_axis[:draw_axis_line],
+        label_orientation: c_axis[:label_orientation]
+      )
     end
   end
 
