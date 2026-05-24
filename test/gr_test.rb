@@ -4,6 +4,7 @@ require_relative 'test_helper'
 require_relative '../lib/gr'
 
 require 'digest/md5'
+require 'numo/narray'
 
 class GRTest < Test::Unit::TestCase
   def setup
@@ -81,6 +82,11 @@ class GRTest < Test::Unit::TestCase
       assert_equal 3, GR.inqfillcolorind
     end
 
+    def test_nominalsize
+      assert_nil GR.setnominalsize(0.2)
+      assert_equal 0.2, GR.inqnominalsize
+    end
+
     def test_scale
       assert_equal 0, GR.setscale(8)
       assert_equal 8, GR.inqscale
@@ -103,6 +109,10 @@ class GRTest < Test::Unit::TestCase
 
     def test_textext
       assert_kind_of Array, GR.inqtextext(0, 0, 'Ruby')
+    end
+
+    def test_mathtex3d
+      assert_equal [16, 16, 16, 16], GR.inqmathtex3d(0, 0, 0, 'Ruby', 0).map(&:length)
     end
 
     def test_colormap
@@ -140,6 +150,12 @@ class GRTest < Test::Unit::TestCase
       assert_equal 3, GR.inqclipxform
     end
 
+    def test_clip
+      region, points = GR.inqclip
+      assert_kind_of Integer, region
+      assert_equal 4, points.length
+    end
+
     def test_projectiontype
       assert_nil GR.setprojectiontype(1)
       assert_equal 1, GR.inqprojectiontype
@@ -158,6 +174,16 @@ class GRTest < Test::Unit::TestCase
     def test_scalefactors3d
       assert_nil GR.setscalefactors3d(2.3, 2.4, 2.5)
       assert_equal [2.3, 2.4, 2.5], GR.inqscalefactors3d
+    end
+
+    def test_space3d
+      assert_nil GR.setspace3d(30, 40, 0, 10)
+      assert_equal [1, 30.0, 40.0, 0.0, 10.0], GR.inqspace3d
+    end
+
+    def test_transparency
+      assert_nil GR.settransparency(0.5)
+      assert_equal 0.5, GR.inqtransparency
     end
 
     def test_textencoding
@@ -189,6 +215,13 @@ class GRTest < Test::Unit::TestCase
   def test_reducepoints
     assert_equal [[10.0, 7.0], [2.0, 10.0]],
                  GR.reducepoints([10, 4, 7, 1], [2, 6, 10, 14], 2)
+  end
+
+  def test_hexbin_2pass
+    result = GR.hexbin_2pass([0, 1, 2], [0, 1, 2], 10)
+    assert_kind_of GR::FFI::Hexbin2Pass, result
+    assert_true(result.nc.positive?)
+    assert_true(result.cntmax.positive?)
   end
 
   def test_constant

@@ -56,12 +56,14 @@ module GR
     CpuBasedVolume2Pass = struct [
       'double dmin',
       'double dmax',
+      'int action',
       'cpubasedvolume_2pass_priv_t *priv'
     ]
 
     Hexbin2Pass = struct [
       'int nc',
-      'int nntmax',
+      'int cntmax',
+      'int action',
       'hexbin_2pass_priv_t *priv'
     ]
 

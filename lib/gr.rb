@@ -40,7 +40,7 @@
 #
 # Fiddley is Ruby-FFI compatible API layer for Fiddle.
 #
-# The GR module works without Numo::Narrray.
+# The GR module works without Numo::NArray.
 # GR3 and GR::Plot depends on numo-narray.
 #
 # This is a procedural interface to the GR plotting library,
@@ -66,7 +66,7 @@ module GR
     when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
       [['libGR.dll'], 'gr']
     when /darwin|mac os/
-      ENV['GKSwstype'] ||= 'gksqt'
+      ENV['GKS_WSTYPE'] ||= 'gksqt'
       [['libGR.dylib', 'libGR.so'], 'gr']
     else
       [['libGR.so'], 'gr']
@@ -863,6 +863,10 @@ module GR
       inquiry_int { |pt| super(pt) }
     end
 
+    def inqnominalsize
+      inquiry_double { |pt| super(pt) }
+    end
+
     # Redefine an existing color index representation by specifying an RGB color
     # triplet.
     #
@@ -1003,6 +1007,12 @@ module GR
     # @!method setsegtran
 
     # @!method closeseg
+
+    def samplelocator
+      inquiry %i[double double int] do |*pts|
+        super(*pts)
+      end
+    end
 
     # @!method emergencyclosegks
 
@@ -1513,6 +1523,14 @@ module GR
       super(n, x, y, nbins)
     end
 
+    def hexbin_2pass(x, y, nbins, context = nil)
+      n = equal_length(x, y)
+      context ||= Fiddle::NULL
+      context = context.to_ptr if context.respond_to?(:to_ptr)
+      result = super(n, x, y, nbins, context)
+      result.null? ? nil : FFI::Hexbin2Pass.new(result)
+    end
+
     # Set the currently used colormap.
     #
     # * A list of colormaps can be found at: https://gr-framework.org/colormaps.html
@@ -1549,7 +1567,7 @@ module GR
       if positions.nil?
         positions = Fiddle::NULL
       elsif positions.length != n
-        raise
+        raise ArgumentError, "positions must have length #{n} (got #{positions.length})"
       end
       super(n, r, g, b, positions)
     end
@@ -1821,9 +1839,9 @@ module GR
       data = Fiddle::Pointer.malloc(Fiddle::SIZEOF_INTPTR_T, Fiddle::RUBY_FREE)
       w, h = inquiry [:int, :int] do |width, height|
         # data is a pointer of a pointer
-        super(path, width, height, data.ref)
+        super(path, width, height, data)
       end
-      d = data.to_str(w * h * Fiddle::SIZEOF_INT).unpack('L*') # UInt32
+      d = data.ptr.to_str(w * h * Fiddle::SIZEOF_INT).unpack('L*') # UInt32
       [w, h, d]
     end
 
@@ -1874,12 +1892,16 @@ module GR
     #
     # @!method settransparency
 
+    def inqtransparency
+      inquiry_double { |pt| super(pt) }
+    end
+
     # Change the coordinate transformation according to the given matrix.
     #
     # @param mat [Array, NArray] 2D transformation matrix
     #
     def setcoordxform(mat)
-      raise if mat.size != 6
+      raise ArgumentError, "mat must have 6 elements (got #{mat.size})" if mat.size != 6
 
       super(mat)
     end
@@ -1916,6 +1938,12 @@ module GR
     def inqmathtex(x, y, string)
       inquiry [{ double: 4 }, { double: 4 }] do |tbx, tby|
         super(x, y, string, tbx, tby)
+      end
+    end
+
+    def inqmathtex3d(x, y, z, string, axis)
+      inquiry [{ double: 16 }, { double: 16 }, { double: 16 }, { double: 16 }] do |tbx, tby, tbz, tbw|
+        super(x, y, z, string, axis, tbx, tby, tbz, tbw)
       end
     end
 
@@ -1961,10 +1989,10 @@ module GR
       triangles = Fiddle::Pointer.malloc(Fiddle::SIZEOF_INTPTR_T, Fiddle::RUBY_FREE)
       dim = 3
       n_tri = inquiry_int do |ntri|
-        super(npoints, x, y, ntri, triangles.ref)
+        super(npoints, x, y, ntri, triangles)
       end
       if n_tri > 0
-        tri = triangles.to_str(dim * n_tri * Fiddle::SIZEOF_INT).unpack('l*') # Int32
+        tri = triangles.ptr.to_str(dim * n_tri * Fiddle::SIZEOF_INT).unpack('l*') # Int32
         # Ruby  : 0-based indexing
         # Julia : 1-based indexing
         tri = tri.each_slice(dim).to_a
@@ -2265,6 +2293,12 @@ module GR
       inquiry_int { |pt| super(pt) }
     end
 
+    def inqclip
+      inquiry [:int, { double: 4 }] do |region, points|
+        super(region, points)
+      end
+    end
+
     # Set the projection type with this flag.
     #
     # @param flag [Integer] projection type
@@ -2405,6 +2439,12 @@ module GR
     #   (0 or NaN for the radius of the object's smallest bounding sphere)
     #
     # @!method setspace3d
+
+    def inqspace3d
+      inquiry %i[int double double double double] do |*pts|
+        super(*pts)
+      end
+    end
 
     # @!method text3d
 
