@@ -39,7 +39,7 @@ class GRCommonsGRLibTest < Test::Unit::TestCase
         not_found_error: RuntimeError
       )
 
-      assert_equal lib_path, mod.ffi_lib
+      assert_equal File.realpath(lib_path), File.realpath(mod.ffi_lib)
     end
   ensure
     ENV['GRDIR'] = original_grdir
