@@ -60,25 +60,9 @@ module GR
   # Windows   |  bin/libgr.dll
   # MacOSX    |  lib/libGR.dylib ( <= v0.53.0 .so)
   # Ubuntu    |  lib/libGR.so
-  platform = RbConfig::CONFIG['host_os']
-  lib_names, pkg_name = \
-    case platform
-    when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
-      [['libGR.dll'], 'gr']
-    when /darwin|mac os/
-      ENV['GKS_WSTYPE'] ||= 'gksqt'
-      [['libGR.dylib', 'libGR.so'], 'gr']
-    else
-      [['libGR.so'], 'gr']
-    end
-
   # On Windows + RubyInstaller,
   # the environment variable GKS_FONTPATH will be set.
-  lib_path = GRCommons::GRLib.search(lib_names, pkg_name)
-
-  raise NotFoundError, "#{lib_names} not found" if lib_path.nil?
-
-  self.ffi_lib = lib_path
+  GRCommons::GRLib.load_library(self, pkg_name: 'gr', not_found_error: NotFoundError)
 
   require_relative 'gr/version'
   require_relative 'gr/ffi'

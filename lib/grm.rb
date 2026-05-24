@@ -29,25 +29,9 @@ module GRM
   # Windows   |  bin/libGRM.dll
   # MacOSX    |  lib/libGRM.dylib ( <= v0.53.0 .so)
   # Ubuntu    |  lib/libGRM.so
-  platform = RbConfig::CONFIG['host_os']
-  lib_names, pkg_name = \
-    case platform
-    when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
-      [['libGRM.dll'], 'grm']
-    when /darwin|mac os/
-      ENV['GKS_WSTYPE'] ||= 'gksqt'
-      [['libGRM.dylib', 'libGRM.so'], 'grm']
-    else
-      [['libGRM.so'], 'grm']
-    end
-
   # On Windows + RubyInstaller,
   # the environment variable GKS_FONTPATH will be set.
-  lib_path = GRCommons::GRLib.search(lib_names, pkg_name)
-
-  raise NotFoundError, "#{lib_names} not found" if lib_path.nil?
-
-  self.ffi_lib = lib_path
+  GRCommons::GRLib.load_library(self, pkg_name: 'grm', not_found_error: NotFoundError)
 
   require_relative 'grm/version'
   require_relative 'grm/ffi'

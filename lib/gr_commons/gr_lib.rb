@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 require 'pkg-config'
+require 'rbconfig'
 
 module GRCommons
-  # This module helps GR, GR and GRM to search the shared library.
+  # This module helps GR, GR3 and GRM to search the shared library.
   #
   # The order of priority:
   # 1. RubyInstaller ( for Windows only )
@@ -36,11 +37,35 @@ module GRCommons
         warn "#{lib_names} : Dir GRDIR=#{ENV['GRDIR']} not found." # return nil
       end
 
+      # Return default shared library names for a GR package.
+      def default_lib_names(pkg_name)
+        lib_base = "lib#{pkg_name.upcase}"
+        case RbConfig::CONFIG['host_os']
+        when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
+          ["#{lib_base}.dll"]
+        when /darwin|mac os/
+          ENV['GKS_WSTYPE'] ||= 'gksqt'
+          ["#{lib_base}.dylib", "#{lib_base}.so"]
+        else
+          ["#{lib_base}.so"]
+        end
+      end
+
+      # Search the shared library and assign it to the given module.
+      def load_library(mod, pkg_name:, lib_names: nil, not_found_error: LoadError)
+        lib_names ||= default_lib_names(pkg_name)
+        lib_path = search(lib_names, pkg_name)
+
+        raise not_found_error, "#{lib_names} not found" if lib_path.nil?
+
+        mod.ffi_lib = lib_path
+      end
+
       # Search the shared library.
       # @note This method does not detect the Operating System.
       #
       # @param lib_names [Array] The actual file name of the shared library.
-      # @param pkg_name [String] The package name to be used when searching with pkg-configg
+      # @param pkg_name [String] The package name to be used when searching with pkg-config
       def search(lib_names, pkg_name)
         # FIXME: There may be a better way to do it...
         def lib_names.map_find(&block)
