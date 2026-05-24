@@ -88,7 +88,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>This module helps GR, GR and GRM to search the shared library.</p>
+    <p>This module helps GR, GR3 and GRM to search the shared library.</p>
 <p>The order of priority:</p>
 <ol>
 <li>RubyInstaller ( for Windows only )</li>
@@ -151,6 +151,28 @@ The following packages (should) support pkg-config.</li>
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#default_lib_names-class_method" title="default_lib_names (class method)">.<strong>default_lib_names</strong>(pkg_name)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Return default shared library names for a GR package.</p></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#get_grdir_from_env-class_method" title="get_grdir_from_env (class method)">.<strong>get_grdir_from_env</strong>(lib_names)  &#x21d2; Object </a>
     
 
@@ -166,6 +188,28 @@ The following packages (should) support pkg-config.</li>
 
   
     <span class="summary_desc"><div class='inline'><p>Return the directory path from the GRDIR environment variable.</p></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#load_library-class_method" title="load_library (class method)">.<strong>load_library</strong>(mod, pkg_name:, lib_names: nil, not_found_error: LoadError)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Search the shared library and assign it to the given module.</p></div></span>
   
 </li>
 
@@ -269,7 +313,64 @@ The following packages (should) support pkg-config.</li>
 
     
       <div class="method_details first">
-  <h3 class="signature first" id="get_grdir_from_env-class_method">
+  <h3 class="signature first" id="default_lib_names-class_method">
+  
+    .<strong>default_lib_names</strong>(pkg_name)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Return default shared library names for a GR package.</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr_commons/gr_lib.rb', line 41</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_default_lib_names'>default_lib_names</span><span class='lparen'>(</span><span class='id identifier rubyid_pkg_name'>pkg_name</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_lib_base'>lib_base</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>lib</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_pkg_name'>pkg_name</span><span class='period'>.</span><span class='id identifier rubyid_upcase'>upcase</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>case</span> <span class='const'>RbConfig</span><span class='op'>::</span><span class='const'>CONFIG</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>host_os</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+  <span class='kw'>when</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>mswin|msys|mingw|cygwin|bccwin|wince|emc</span><span class='regexp_end'>/</span></span>
+    <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_lib_base'>lib_base</span><span class='embexpr_end'>}</span><span class='tstring_content'>.dll</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+  <span class='kw'>when</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>darwin|mac os</span><span class='regexp_end'>/</span></span>
+    <span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>GKS_WSTYPE</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>gksqt</span><span class='tstring_end'>&#39;</span></span>
+    <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_lib_base'>lib_base</span><span class='embexpr_end'>}</span><span class='tstring_content'>.dylib</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_lib_base'>lib_base</span><span class='embexpr_end'>}</span><span class='tstring_content'>.so</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+  <span class='kw'>else</span>
+    <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_lib_base'>lib_base</span><span class='embexpr_end'>}</span><span class='tstring_content'>.so</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_grdir_from_env-class_method">
   
     .<strong>get_grdir_from_env</strong>(lib_names)  &#x21d2; <tt>Object</tt> 
   
@@ -292,15 +393,15 @@ The following packages (should) support pkg-config.</li>
       <pre class="lines">
 
 
-32
 33
 34
 35
 36
-37</pre>
+37
+38</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr_commons/gr_lib.rb', line 32</span>
+      <pre class="code"><span class="info file"># File 'lib/gr_commons/gr_lib.rb', line 33</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_grdir_from_env'>get_grdir_from_env</span><span class='lparen'>(</span><span class='id identifier rubyid_lib_names'>lib_names</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>nil</span> <span class='kw'>unless</span> <span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>GRDIR</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
@@ -308,6 +409,68 @@ The following packages (should) support pkg-config.</li>
 
   <span class='id identifier rubyid_warn'>warn</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_lib_names'>lib_names</span><span class='embexpr_end'>}</span><span class='tstring_content'> : Dir GRDIR=</span><span class='embexpr_beg'>#{</span><span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>GRDIR</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'> not found.</span><span class='tstring_end'>&quot;</span></span> <span class='comment'># return nil
 </span><span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="load_library-class_method">
+  
+    .<strong>load_library</strong>(mod, pkg_name:, lib_names: nil, not_found_error: LoadError)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Search the shared library and assign it to the given module.</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>not_found_error</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+55
+56
+57
+58
+59
+60
+61
+62</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr_commons/gr_lib.rb', line 55</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_load_library'>load_library</span><span class='lparen'>(</span><span class='id identifier rubyid_mod'>mod</span><span class='comma'>,</span> <span class='label'>pkg_name:</span><span class='comma'>,</span> <span class='label'>lib_names:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>not_found_error:</span> <span class='const'>LoadError</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_lib_names'>lib_names</span> <span class='op'>||=</span> <span class='id identifier rubyid_default_lib_names'>default_lib_names</span><span class='lparen'>(</span><span class='id identifier rubyid_pkg_name'>pkg_name</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_lib_path'>lib_path</span> <span class='op'>=</span> <span class='id identifier rubyid_search'>search</span><span class='lparen'>(</span><span class='id identifier rubyid_lib_names'>lib_names</span><span class='comma'>,</span> <span class='id identifier rubyid_pkg_name'>pkg_name</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_raise'>raise</span> <span class='id identifier rubyid_not_found_error'>not_found_error</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_lib_names'>lib_names</span><span class='embexpr_end'>}</span><span class='tstring_content'> not found</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_lib_path'>lib_path</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+
+  <span class='id identifier rubyid_mod'>mod</span><span class='period'>.</span><span class='id identifier rubyid_ffi_lib'>ffi_lib</span> <span class='op'>=</span> <span class='id identifier rubyid_lib_path'>lib_path</span>
+<span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -337,14 +500,14 @@ The following packages (should) support pkg-config.</li>
       <pre class="lines">
 
 
-97
-98
-99
-100
-101</pre>
+122
+123
+124
+125
+126</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr_commons/gr_lib.rb', line 97</span>
+      <pre class="code"><span class="info file"># File 'lib/gr_commons/gr_lib.rb', line 122</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_pkg_config_search'>pkg_config_search</span><span class='lparen'>(</span><span class='id identifier rubyid_lib_name'>lib_name</span><span class='comma'>,</span> <span class='id identifier rubyid_pkg_name'>pkg_name</span><span class='rparen'>)</span>
   <span class='const'>PKGConfig</span><span class='period'>.</span><span class='id identifier rubyid_variable'>variable</span><span class='lparen'>(</span><span class='id identifier rubyid_pkg_name'>pkg_name</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>sopath</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -412,17 +575,17 @@ The following packages (should) support pkg-config.</li>
       <pre class="lines">
 
 
-87
-88
-89
-90
-91
-92
-93
-94</pre>
+112
+113
+114
+115
+116
+117
+118
+119</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr_commons/gr_lib.rb', line 87</span>
+      <pre class="code"><span class="info file"># File 'lib/gr_commons/gr_lib.rb', line 112</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_recursive_search'>recursive_search</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_base_dir'>base_dir</span><span class='rparen'>)</span>
   <span class='const'>Dir</span><span class='period'>.</span><span class='id identifier rubyid_chdir'>chdir</span><span class='lparen'>(</span><span class='id identifier rubyid_base_dir'>base_dir</span><span class='rparen'>)</span> <span class='kw'>do</span>
@@ -474,12 +637,12 @@ The following packages (should) support pkg-config.</li>
       <pre class="lines">
 
 
-27
 28
-29</pre>
+29
+30</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr_commons/gr_lib.rb', line 27</span>
+      <pre class="code"><span class="info file"># File 'lib/gr_commons/gr_lib.rb', line 28</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_ruby_installer?'>ruby_installer?</span>
   <span class='const'>Object</span><span class='period'>.</span><span class='id identifier rubyid_const_defined?'>const_defined?</span><span class='lparen'>(</span><span class='symbol'>:RubyInstaller</span><span class='rparen'>)</span>
@@ -538,7 +701,7 @@ The following packages (should) support pkg-config.</li>
       
       
         &mdash;
-        <div class='inline'><p>The package name to be used when searching with pkg-configg</p></div>
+        <div class='inline'><p>The package name to be used when searching with pkg-config</p></div>
       
     </li>
   
@@ -551,31 +714,6 @@ The following packages (should) support pkg-config.</li>
       <pre class="lines">
 
 
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
-67
-68
 69
 70
 71
@@ -587,10 +725,35 @@ The following packages (should) support pkg-config.</li>
 77
 78
 79
-80</pre>
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr_commons/gr_lib.rb', line 44</span>
+      <pre class="code"><span class="info file"># File 'lib/gr_commons/gr_lib.rb', line 69</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_search'>search</span><span class='lparen'>(</span><span class='id identifier rubyid_lib_names'>lib_names</span><span class='comma'>,</span> <span class='id identifier rubyid_pkg_name'>pkg_name</span><span class='rparen'>)</span>
   <span class='comment'># FIXME: There may be a better way to do it...
@@ -639,7 +802,7 @@ The following packages (should) support pkg-config.</li>
 </div>
 
       <div id="footer">
-  Generated on Sun May 24 08:02:35 2026 by
+  Generated on Sun May 24 08:11:48 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.43 (ruby-4.0.5).
 </div>

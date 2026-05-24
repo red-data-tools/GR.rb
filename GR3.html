@@ -2290,7 +2290,7 @@ gr3_getpixmap_(), … without calling gr3_clear() and gr3_drawmesh() again.</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 313</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 297</span>
 
 </pre>
     </td>
@@ -2338,7 +2338,7 @@ gr3_getpixmap_(), … without calling gr3_clear() and gr3_drawmesh() again.</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 186</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 170</span>
 
 </pre>
     </td>
@@ -2386,7 +2386,7 @@ gr3_getpixmap_(), … without calling gr3_clear() and gr3_drawmesh() again.</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 376</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 360</span>
 
 </pre>
     </td>
@@ -2525,14 +2525,14 @@ each triangle)</p></div>
       <pre class="lines">
 
 
-280
-281
-282
-283
-284</pre>
+264
+265
+266
+267
+268</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 280</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 264</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_createindexedmesh'>createindexedmesh</span><span class='lparen'>(</span><span class='id identifier rubyid_num_vertices'>num_vertices</span><span class='comma'>,</span> <span class='id identifier rubyid_vertices'>vertices</span><span class='comma'>,</span> <span class='id identifier rubyid_normals'>normals</span><span class='comma'>,</span> <span class='id identifier rubyid_colors'>colors</span><span class='comma'>,</span> <span class='id identifier rubyid_num_indices'>num_indices</span><span class='comma'>,</span> <span class='id identifier rubyid_indices'>indices</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_inquiry_int'>inquiry_int</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_mesh'>mesh</span><span class='op'>|</span>
@@ -2581,14 +2581,14 @@ each triangle)</p></div>
       <pre class="lines">
 
 
-257
-258
-259
-260
-261</pre>
+241
+242
+243
+244
+245</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 257</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 241</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_createindexedmesh_nocopy'>createindexedmesh_nocopy</span><span class='lparen'>(</span><span class='id identifier rubyid_num_vertices'>num_vertices</span><span class='comma'>,</span> <span class='id identifier rubyid_vertices'>vertices</span><span class='comma'>,</span> <span class='id identifier rubyid_normals'>normals</span><span class='comma'>,</span> <span class='id identifier rubyid_colors'>colors</span><span class='comma'>,</span> <span class='id identifier rubyid_num_indices'>num_indices</span><span class='comma'>,</span> <span class='id identifier rubyid_indices'>indices</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_inquiry_int'>inquiry_int</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_mesh'>mesh</span><span class='op'>|</span>
@@ -2699,16 +2699,16 @@ Returns a mesh.</p>
       <pre class="lines">
 
 
-431
-432
-433
-434
-435
-436
-437</pre>
+415
+416
+417
+418
+419
+420
+421</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 431</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 415</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_createisosurfacemesh'>createisosurfacemesh</span><span class='lparen'>(</span><span class='id identifier rubyid_grid'>grid</span><span class='comma'>,</span> <span class='id identifier rubyid_step'>step</span><span class='comma'>,</span> <span class='id identifier rubyid_offset'>offset</span><span class='comma'>,</span> <span class='id identifier rubyid_isolevel'>isolevel</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_args'>args</span> <span class='op'>=</span> <span class='id identifier rubyid__preprocess_createslicemesh'>_preprocess_createslicemesh</span><span class='lparen'>(</span><span class='id identifier rubyid_grid'>grid</span><span class='comma'>,</span> <span class='id identifier rubyid_step'>step</span><span class='comma'>,</span> <span class='id identifier rubyid_offset'>offset</span><span class='rparen'>)</span>
@@ -2821,14 +2821,14 @@ white (1,1,1) if you want to change the color for each drawn mesh</p></div>
       <pre class="lines">
 
 
-248
-249
-250
-251
-252</pre>
+232
+233
+234
+235
+236</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 248</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 232</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_createmesh'>createmesh</span><span class='lparen'>(</span><span class='id identifier rubyid_n'>n</span><span class='comma'>,</span> <span class='id identifier rubyid_vertices'>vertices</span><span class='comma'>,</span> <span class='id identifier rubyid_normals'>normals</span><span class='comma'>,</span> <span class='id identifier rubyid_colors'>colors</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_inquiry_int'>inquiry_int</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_mesh'>mesh</span><span class='op'>|</span>
@@ -2877,14 +2877,14 @@ white (1,1,1) if you want to change the color for each drawn mesh</p></div>
       <pre class="lines">
 
 
-231
-232
-233
-234
-235</pre>
+215
+216
+217
+218
+219</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 231</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 215</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_createmesh_nocopy'>createmesh_nocopy</span><span class='lparen'>(</span><span class='id identifier rubyid_n'>n</span><span class='comma'>,</span> <span class='id identifier rubyid_vertices'>vertices</span><span class='comma'>,</span> <span class='id identifier rubyid_normals'>normals</span><span class='comma'>,</span> <span class='id identifier rubyid_colors'>colors</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_inquiry_int'>inquiry_int</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_mesh'>mesh</span><span class='op'>|</span>
@@ -3022,20 +3022,20 @@ Returns meshes for the yz-slice, the xz-slice and the xy-slice.</p>
       <pre class="lines">
 
 
-686
-687
-688
-689
-690
-691
-692
-693
-694
-695
-696</pre>
+670
+671
+672
+673
+674
+675
+676
+677
+678
+679
+680</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 686</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 670</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_createslicemeshes'>createslicemeshes</span><span class='lparen'>(</span><span class='id identifier rubyid_grid'>grid</span><span class='comma'>,</span> <span class='id identifier rubyid_x'>x</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_z'>z</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_step'>step</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_offset'>offset</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='lbracket'>[</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_z'>z</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_all?'>all?</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:nil?</span><span class='rparen'>)</span>
@@ -3214,14 +3214,14 @@ a new mesh has to be created.</p>
       <pre class="lines">
 
 
-463
-464
-465
-466
-467</pre>
+447
+448
+449
+450
+451</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 463</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 447</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_createsurfacemesh'>createsurfacemesh</span><span class='lparen'>(</span><span class='id identifier rubyid_nx'>nx</span><span class='comma'>,</span> <span class='id identifier rubyid_ny'>ny</span><span class='comma'>,</span> <span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_z'>z</span><span class='comma'>,</span> <span class='id identifier rubyid_option'>option</span> <span class='op'>=</span> <span class='int'>0</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_inquiry_int'>inquiry_int</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_mesh'>mesh</span><span class='op'>|</span>
@@ -3367,14 +3367,14 @@ triangular tube</p></div>
       <pre class="lines">
 
 
-541
-542
-543
-544
-545</pre>
+525
+526
+527
+528
+529</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 541</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 525</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_createtubemesh'>createtubemesh</span><span class='lparen'>(</span><span class='id identifier rubyid_n'>n</span><span class='comma'>,</span> <span class='id identifier rubyid_points'>points</span><span class='comma'>,</span> <span class='id identifier rubyid_colors'>colors</span><span class='comma'>,</span> <span class='id identifier rubyid_radii'>radii</span><span class='comma'>,</span> <span class='id identifier rubyid_num_steps'>num_steps</span> <span class='op'>=</span> <span class='int'>10</span><span class='comma'>,</span> <span class='id identifier rubyid_num_segments'>num_segments</span> <span class='op'>=</span> <span class='int'>20</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_inquiry_uint'>inquiry_uint</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_mesh'>mesh</span><span class='op'>|</span> <span class='comment'># mesh should be Int?
@@ -3479,17 +3479,17 @@ Returns a mesh for the yz-slice.</p>
       <pre class="lines">
 
 
-707
-708
-709
-710
-711
-712
-713
-714</pre>
+691
+692
+693
+694
+695
+696
+697
+698</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 707</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 691</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_createxslicemesh'>createxslicemesh</span><span class='lparen'>(</span><span class='id identifier rubyid_grid'>grid</span><span class='comma'>,</span> <span class='id identifier rubyid_x'>x</span> <span class='op'>=</span> <span class='float'>0.5</span><span class='comma'>,</span> <span class='id identifier rubyid_step'>step</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_offset'>offset</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_args'>args</span> <span class='op'>=</span> <span class='id identifier rubyid__preprocess_createslicemesh'>_preprocess_createslicemesh</span><span class='lparen'>(</span><span class='id identifier rubyid_grid'>grid</span><span class='comma'>,</span> <span class='id identifier rubyid_step'>step</span><span class='comma'>,</span> <span class='id identifier rubyid_offset'>offset</span><span class='rparen'>)</span>
@@ -3597,17 +3597,17 @@ Returns a mesh for the xz-slice.</p>
       <pre class="lines">
 
 
-726
-727
-728
-729
-730
-731
-732
-733</pre>
+710
+711
+712
+713
+714
+715
+716
+717</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 726</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 710</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_createyslicemesh'>createyslicemesh</span><span class='lparen'>(</span><span class='id identifier rubyid_grid'>grid</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span> <span class='op'>=</span> <span class='float'>0.5</span><span class='comma'>,</span> <span class='id identifier rubyid_step'>step</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_offset'>offset</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_args'>args</span> <span class='op'>=</span> <span class='id identifier rubyid__preprocess_createslicemesh'>_preprocess_createslicemesh</span><span class='lparen'>(</span><span class='id identifier rubyid_grid'>grid</span><span class='comma'>,</span> <span class='id identifier rubyid_step'>step</span><span class='comma'>,</span> <span class='id identifier rubyid_offset'>offset</span><span class='rparen'>)</span>
@@ -3715,17 +3715,17 @@ Returns a mesh for the xy-slice.</p>
       <pre class="lines">
 
 
-745
-746
-747
-748
-749
-750
-751
-752</pre>
+729
+730
+731
+732
+733
+734
+735
+736</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 745</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 729</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_createzslicemesh'>createzslicemesh</span><span class='lparen'>(</span><span class='id identifier rubyid_grid'>grid</span><span class='comma'>,</span> <span class='id identifier rubyid_z'>z</span> <span class='op'>=</span> <span class='float'>0.5</span><span class='comma'>,</span> <span class='id identifier rubyid_step'>step</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_offset'>offset</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_args'>args</span> <span class='op'>=</span> <span class='id identifier rubyid__preprocess_createslicemesh'>_preprocess_createslicemesh</span><span class='lparen'>(</span><span class='id identifier rubyid_grid'>grid</span><span class='comma'>,</span> <span class='id identifier rubyid_step'>step</span><span class='comma'>,</span> <span class='id identifier rubyid_offset'>offset</span><span class='rparen'>)</span>
@@ -3787,7 +3787,7 @@ calling this function.</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 305</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 289</span>
 
 </pre>
     </td>
@@ -3822,7 +3822,7 @@ calling this function.</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 381</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 365</span>
 
 </pre>
     </td>
@@ -3848,7 +3848,7 @@ calling this function.</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 390</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 374</span>
 
 </pre>
     </td>
@@ -3883,7 +3883,7 @@ calling this function.</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 384</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 368</span>
 
 </pre>
     </td>
@@ -3909,7 +3909,7 @@ calling this function.</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 379</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 363</span>
 
 </pre>
     </td>
@@ -3957,7 +3957,7 @@ calling this function.</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 225</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 209</span>
 
 </pre>
     </td>
@@ -4100,7 +4100,7 @@ it will be multiplied with each vertex color</p></div>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 286</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 270</span>
 
 </pre>
     </td>
@@ -4243,7 +4243,7 @@ it will be multiplied with each vertex color</p></div>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 469</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 453</span>
 
 </pre>
     </td>
@@ -4275,6 +4275,22 @@ it will be multiplied with each vertex color</p></div>
       <pre class="lines">
 
 
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
 557
 558
 559
@@ -4309,26 +4325,10 @@ it will be multiplied with each vertex color</p></div>
 588
 589
 590
-591
-592
-593
-594
-595
-596
-597
-598
-599
-600
-601
-602
-603
-604
-605
-606
-607</pre>
+591</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 557</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 541</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_drawmolecule'>drawmolecule</span><span class='lparen'>(</span><span class='id identifier rubyid_positions'>positions</span><span class='comma'>,</span> <span class='id identifier rubyid_colors'>colors</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_radii'>radii</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_spins'>spins</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span>
                  <span class='id identifier rubyid_bond_radius'>bond_radius</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_bond_color'>bond_color</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_bond_delta'>bond_delta</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span>
@@ -4592,20 +4592,20 @@ it will be multiplied with each vertex color</p></div>
       <pre class="lines">
 
 
-835
-836
-837
-838
-839
-840
-841
-842
-843
-844
-845</pre>
+819
+820
+821
+822
+823
+824
+825
+826
+827
+828
+829</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 835</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 819</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_drawslicemeshes'>drawslicemeshes</span><span class='lparen'>(</span><span class='id identifier rubyid_grid'>grid</span><span class='comma'>,</span> <span class='id identifier rubyid_x'>x</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_z'>z</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_step'>step</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span>
                     <span class='id identifier rubyid_offset'>offset</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_position'>position</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='int'>0</span><span class='comma'>,</span> <span class='int'>0</span><span class='comma'>,</span> <span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_direction'>direction</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='int'>0</span><span class='comma'>,</span> <span class='int'>0</span><span class='comma'>,</span> <span class='int'>1</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_up'>up</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='int'>0</span><span class='comma'>,</span> <span class='int'>1</span><span class='comma'>,</span> <span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span>
@@ -4650,7 +4650,7 @@ it will be multiplied with each vertex color</p></div>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 387</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 371</span>
 
 </pre>
     </td>
@@ -4682,16 +4682,16 @@ it will be multiplied with each vertex color</p></div>
       <pre class="lines">
 
 
-548
-549
-550
-551
-552
-553
-554</pre>
+532
+533
+534
+535
+536
+537
+538</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 548</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 532</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_drawspins'>drawspins</span><span class='lparen'>(</span><span class='id identifier rubyid_positions'>positions</span><span class='comma'>,</span> <span class='id identifier rubyid_directions'>directions</span><span class='comma'>,</span> <span class='id identifier rubyid_colors'>colors</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span>
               <span class='id identifier rubyid_cone_radius'>cone_radius</span> <span class='op'>=</span> <span class='float'>0.4</span><span class='comma'>,</span> <span class='id identifier rubyid_cylinder_radius'>cylinder_radius</span> <span class='op'>=</span> <span class='float'>0.2</span><span class='comma'>,</span>
@@ -4750,7 +4750,7 @@ it will be multiplied with each vertex color</p></div>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 487</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 471</span>
 
 </pre>
     </td>
@@ -4890,12 +4890,12 @@ consists of, e.g. 3 would yield a triangular tube</p></div>
       <pre class="lines">
 
 
-522
-523
-524</pre>
+506
+507
+508</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 522</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 506</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_drawtubemesh'>drawtubemesh</span><span class='lparen'>(</span><span class='id identifier rubyid_n'>n</span><span class='comma'>,</span> <span class='id identifier rubyid_points'>points</span><span class='comma'>,</span> <span class='id identifier rubyid_colors'>colors</span><span class='comma'>,</span> <span class='id identifier rubyid_radii'>radii</span><span class='comma'>,</span> <span class='id identifier rubyid_num_steps'>num_steps</span> <span class='op'>=</span> <span class='int'>10</span><span class='comma'>,</span> <span class='id identifier rubyid_num_segments'>num_segments</span> <span class='op'>=</span> <span class='int'>20</span><span class='rparen'>)</span>
   <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_n'>n</span><span class='comma'>,</span> <span class='id identifier rubyid_points'>points</span><span class='comma'>,</span> <span class='id identifier rubyid_colors'>colors</span><span class='comma'>,</span> <span class='id identifier rubyid_radii'>radii</span><span class='comma'>,</span> <span class='id identifier rubyid_num_steps'>num_steps</span><span class='comma'>,</span> <span class='id identifier rubyid_num_segments'>num_segments</span><span class='rparen'>)</span>
@@ -5076,16 +5076,16 @@ it will be multiplied with each vertex color</p></div>
       <pre class="lines">
 
 
-767
-768
-769
-770
-771
-772
-773</pre>
+751
+752
+753
+754
+755
+756
+757</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 767</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 751</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_drawxslicemesh'>drawxslicemesh</span><span class='lparen'>(</span><span class='id identifier rubyid_grid'>grid</span><span class='comma'>,</span> <span class='id identifier rubyid_x'>x</span> <span class='op'>=</span> <span class='float'>0.5</span><span class='comma'>,</span> <span class='id identifier rubyid_step'>step</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_offset'>offset</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span>
                    <span class='id identifier rubyid_position'>position</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='int'>0</span><span class='comma'>,</span> <span class='int'>0</span><span class='comma'>,</span> <span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_direction'>direction</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='int'>0</span><span class='comma'>,</span> <span class='int'>0</span><span class='comma'>,</span> <span class='int'>1</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_up'>up</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='int'>0</span><span class='comma'>,</span> <span class='int'>1</span><span class='comma'>,</span> <span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span>
@@ -5270,16 +5270,16 @@ it will be multiplied with each vertex color</p></div>
       <pre class="lines">
 
 
-788
-789
-790
-791
-792
-793
-794</pre>
+772
+773
+774
+775
+776
+777
+778</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 788</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 772</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_drawyslicemesh'>drawyslicemesh</span><span class='lparen'>(</span><span class='id identifier rubyid_grid'>grid</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span> <span class='op'>=</span> <span class='float'>0.5</span><span class='comma'>,</span> <span class='id identifier rubyid_step'>step</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_offset'>offset</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span>
                    <span class='id identifier rubyid_position'>position</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='int'>0</span><span class='comma'>,</span> <span class='int'>0</span><span class='comma'>,</span> <span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_direction'>direction</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='int'>0</span><span class='comma'>,</span> <span class='int'>0</span><span class='comma'>,</span> <span class='int'>1</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_up'>up</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='int'>0</span><span class='comma'>,</span> <span class='int'>1</span><span class='comma'>,</span> <span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span>
@@ -5464,16 +5464,16 @@ it will be multiplied with each vertex color</p></div>
       <pre class="lines">
 
 
-809
-810
-811
-812
-813
-814
-815</pre>
+793
+794
+795
+796
+797
+798
+799</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 809</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 793</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_drawzslicemesh'>drawzslicemesh</span><span class='lparen'>(</span><span class='id identifier rubyid_grid'>grid</span><span class='comma'>,</span> <span class='id identifier rubyid_z'>z</span> <span class='op'>=</span> <span class='float'>0.5</span><span class='comma'>,</span> <span class='id identifier rubyid_step'>step</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_offset'>offset</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span>
                    <span class='id identifier rubyid_position'>position</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='int'>0</span><span class='comma'>,</span> <span class='int'>0</span><span class='comma'>,</span> <span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_direction'>direction</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='int'>0</span><span class='comma'>,</span> <span class='int'>0</span><span class='comma'>,</span> <span class='int'>1</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_up'>up</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='int'>0</span><span class='comma'>,</span> <span class='int'>1</span><span class='comma'>,</span> <span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span>
@@ -5527,7 +5527,7 @@ it will be multiplied with each vertex color</p></div>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 222</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 206</span>
 
 </pre>
     </td>
@@ -5553,7 +5553,7 @@ it will be multiplied with each vertex color</p></div>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 144</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 128</span>
 
 </pre>
     </td>
@@ -5598,14 +5598,14 @@ it will be multiplied with each vertex color</p></div>
       <pre class="lines">
 
 
-612
-613
-614
-615
-616</pre>
+596
+597
+598
+599
+600</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 612</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 596</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_getalphamode'>getalphamode</span>
   <span class='id identifier rubyid_inquiry_int'>inquiry_int</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_mode'>mode</span><span class='op'>|</span>
@@ -5700,14 +5700,14 @@ it will be multiplied with each vertex color</p></div>
       <pre class="lines">
 
 
-358
-359
-360
-361
-362</pre>
+342
+343
+344
+345
+346</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 358</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 342</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_getcameraprojectionparameters'>getcameraprojectionparameters</span>
   <span class='id identifier rubyid_inquiry'>inquiry</span> <span class='qsymbols_beg'>%i[</span><span class='tstring_content'>float</span><span class='words_sep'> </span><span class='tstring_content'>float</span><span class='words_sep'> </span><span class='tstring_content'>float</span><span class='tstring_end'>]</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_vfov'>vfov</span><span class='comma'>,</span> <span class='id identifier rubyid_znear'>znear</span><span class='comma'>,</span> <span class='id identifier rubyid_zfar'>zfar</span><span class='op'>|</span>
@@ -5756,14 +5756,14 @@ it will be multiplied with each vertex color</p></div>
       <pre class="lines">
 
 
-648
-649
-650
-651
-652</pre>
+632
+633
+634
+635
+636</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 648</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 632</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_getclipping'>getclipping</span>
   <span class='id identifier rubyid_inquiry'>inquiry</span> <span class='qsymbols_beg'>%i[</span><span class='tstring_content'>float</span><span class='words_sep'> </span><span class='tstring_content'>float</span><span class='words_sep'> </span><span class='tstring_content'>float</span><span class='words_sep'> </span><span class='tstring_content'>float</span><span class='words_sep'> </span><span class='tstring_content'>float</span><span class='words_sep'> </span><span class='tstring_content'>float</span><span class='tstring_end'>]</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_xmin'>xmin</span><span class='comma'>,</span> <span class='id identifier rubyid_xmax'>xmax</span><span class='comma'>,</span> <span class='id identifier rubyid_ymin'>ymin</span><span class='comma'>,</span> <span class='id identifier rubyid_ymax'>ymax</span><span class='comma'>,</span> <span class='id identifier rubyid_zmin'>zmin</span><span class='comma'>,</span> <span class='id identifier rubyid_zmax'>zmax</span><span class='op'>|</span>
@@ -5821,7 +5821,7 @@ it will be multiplied with each vertex color</p></div>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 153</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 137</span>
 
 </pre>
     </td>
@@ -5866,12 +5866,12 @@ it will be multiplied with each vertex color</p></div>
       <pre class="lines">
 
 
-182
-183
-184</pre>
+166
+167
+168</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 182</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 166</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_geterrorstring'>geterrorstring</span><span class='lparen'>(</span><span class='op'>*</span><span class='rparen'>)</span>
   <span class='kw'>super</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
@@ -5918,15 +5918,15 @@ it will be multiplied with each vertex color</p></div>
       <pre class="lines">
 
 
-215
-216
-217
-218
-219
-220</pre>
+199
+200
+201
+202
+203
+204</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 215</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 199</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_getimage'>getimage</span><span class='lparen'>(</span><span class='id identifier rubyid_width'>width</span><span class='comma'>,</span> <span class='id identifier rubyid_height'>height</span><span class='comma'>,</span> <span class='id identifier rubyid_use_alpha'>use_alpha</span> <span class='op'>=</span> <span class='kw'>true</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_bpp'>bpp</span> <span class='op'>=</span> <span class='id identifier rubyid_use_alpha'>use_alpha</span> <span class='op'>?</span> <span class='int'>4</span> <span class='op'>:</span> <span class='int'>3</span>
@@ -5976,14 +5976,14 @@ it will be multiplied with each vertex color</p></div>
       <pre class="lines">
 
 
-637
-638
-639
-640
-641</pre>
+621
+622
+623
+624
+625</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 637</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 621</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_getlightparameters'>getlightparameters</span>
   <span class='id identifier rubyid_inquiry'>inquiry</span> <span class='qsymbols_beg'>%i[</span><span class='tstring_content'>float</span><span class='words_sep'> </span><span class='tstring_content'>float</span><span class='words_sep'> </span><span class='tstring_content'>float</span><span class='words_sep'> </span><span class='tstring_content'>float</span><span class='tstring_end'>]</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_ambient'>ambient</span><span class='comma'>,</span> <span class='id identifier rubyid_diffuse'>diffuse</span><span class='comma'>,</span> <span class='id identifier rubyid_specular'>specular</span><span class='comma'>,</span> <span class='id identifier rubyid_specular_power'>specular_power</span><span class='op'>|</span>
@@ -6032,21 +6032,21 @@ it will be multiplied with each vertex color</p></div>
       <pre class="lines">
 
 
-621
-622
-623
-624
-625
-626
-627
-628
-629
-630
-631
-632</pre>
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 621</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 605</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_getlightsources'>getlightsources</span><span class='lparen'>(</span><span class='id identifier rubyid_max_num_lights'>max_num_lights</span> <span class='op'>=</span> <span class='int'>16</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_positions'>positions</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="GRCommons.html" title="GRCommons (module)">GRCommons</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="GRCommons/Fiddley.html" title="GRCommons::Fiddley (module)">Fiddley</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="GRCommons/Fiddley/MemoryPointer.html" title="GRCommons::Fiddley::MemoryPointer (class)">MemoryPointer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="GRCommons/Fiddley/MemoryPointer.html#initialize-instance_method" title="GRCommons::Fiddley::MemoryPointer#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='symbol'>:float</span><span class='comma'>,</span> <span class='id identifier rubyid_max_num_lights'>max_num_lights</span> <span class='op'>*</span> <span class='int'>3</span><span class='rparen'>)</span>
@@ -6108,7 +6108,7 @@ it will be multiplied with each vertex color</p></div>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 411</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 395</span>
 
 </pre>
     </td>
@@ -6158,12 +6158,12 @@ it will be multiplied with each vertex color</p></div>
       <pre class="lines">
 
 
-174
-175
-176</pre>
+158
+159
+160</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 174</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 158</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_getrenderpathstring'>getrenderpathstring</span><span class='lparen'>(</span><span class='op'>*</span><span class='rparen'>)</span>
   <span class='kw'>super</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
@@ -6210,12 +6210,12 @@ it will be multiplied with each vertex color</p></div>
       <pre class="lines">
 
 
-657
-658
-659</pre>
+641
+642
+643</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 657</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 641</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_getsurfaceoption'>getsurfaceoption</span>
   <span class='kw'>super</span>
@@ -6267,14 +6267,14 @@ it will be multiplied with each vertex color</p></div>
       <pre class="lines">
 
 
-402
-403
-404
-405
-406</pre>
+386
+387
+388
+389
+390</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 402</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 386</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_getviewmatrix'>getviewmatrix</span>
   <span class='id identifier rubyid_inquiry'>inquiry</span><span class='lparen'>(</span><span class='label'>float:</span> <span class='int'>16</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_matrix'>matrix</span><span class='op'>|</span>
@@ -6326,7 +6326,7 @@ it will be multiplied with each vertex color</p></div>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 138</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 122</span>
 
 </pre>
     </td>
@@ -6424,16 +6424,16 @@ it will be multiplied with each vertex color</p></div>
       <pre class="lines">
 
 
-665
-666
-667
-668
-669
-670
-671</pre>
+649
+650
+651
+652
+653
+654
+655</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 665</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 649</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_isosurface'>isosurface</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='comma'>,</span> <span class='id identifier rubyid_isovalue'>isovalue</span> <span class='op'>=</span> <span class='float'>0.5</span><span class='comma'>,</span> <span class='id identifier rubyid_color'>color</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_strides'>strides</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_nx'>nx</span><span class='comma'>,</span> <span class='id identifier rubyid_ny'>ny</span><span class='comma'>,</span> <span class='id identifier rubyid_nz'>nz</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span><span class='period'>.</span><span class='id identifier rubyid_shape'>shape</span>
@@ -6484,14 +6484,14 @@ it will be multiplied with each vertex color</p></div>
       <pre class="lines">
 
 
-395
-396
-397
-398
-399</pre>
+379
+380
+381
+382
+383</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 395</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 379</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_selectid'>selectid</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_width'>width</span><span class='comma'>,</span> <span class='id identifier rubyid_height'>height</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_inquiry_int'>inquiry_int</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_selection_id'>selection_id</span><span class='op'>|</span>
@@ -6521,7 +6521,7 @@ it will be multiplied with each vertex color</p></div>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 609</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 593</span>
 
 </pre>
     </td>
@@ -6556,7 +6556,7 @@ it will be multiplied with each vertex color</p></div>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 373</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 357</span>
 
 </pre>
     </td>
@@ -6656,7 +6656,7 @@ It must be greater than 0 and less than 180.</p></div>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 332</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 316</span>
 
 </pre>
     </td>
@@ -6682,7 +6682,7 @@ It must be greater than 0 and less than 180.</p></div>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 645</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 629</span>
 
 </pre>
     </td>
@@ -6708,7 +6708,7 @@ It must be greater than 0 and less than 180.</p></div>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 643</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 627</span>
 
 </pre>
     </td>
@@ -6790,7 +6790,7 @@ the light is always pointing into the same direction as the camera.</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 364</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 348</span>
 
 </pre>
     </td>
@@ -6816,7 +6816,7 @@ the light is always pointing into the same direction as the camera.</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 634</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 618</span>
 
 </pre>
     </td>
@@ -6842,7 +6842,7 @@ the light is always pointing into the same direction as the camera.</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 618</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 602</span>
 
 </pre>
     </td>
@@ -6868,7 +6868,7 @@ the light is always pointing into the same direction as the camera.</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 392</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 376</span>
 
 </pre>
     </td>
@@ -6922,7 +6922,7 @@ GR3_PROJECTION_PARALLEL or GR3_PROJECTION_ORTHOGRAPHIC</p></div>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 415</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 399</span>
 
 </pre>
     </td>
@@ -6988,7 +6988,7 @@ GR3_PROJECTION_PARALLEL or GR3_PROJECTION_ORTHOGRAPHIC</p></div>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 206</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 190</span>
 
 </pre>
     </td>
@@ -7014,7 +7014,7 @@ GR3_PROJECTION_PARALLEL or GR3_PROJECTION_ORTHOGRAPHIC</p></div>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 654</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 638</span>
 
 </pre>
     </td>
@@ -7067,7 +7067,7 @@ GR3_PROJECTION_PARALLEL or GR3_PROJECTION_ORTHOGRAPHIC</p></div>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 408</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 392</span>
 
 </pre>
     </td>
@@ -7160,15 +7160,15 @@ OPTION_COLORED_MESH and OPTION_Z_SHADED_MESH are supported.</p></div>
       <pre class="lines">
 
 
-501
-502
-503
-504
-505
-506</pre>
+485
+486
+487
+488
+489
+490</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 501</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 485</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_surface'>surface</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_z'>z</span><span class='comma'>,</span> <span class='id identifier rubyid_option'>option</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_nx'>nx</span> <span class='op'>=</span> <span class='id identifier rubyid_x'>x</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
@@ -7210,7 +7210,7 @@ loaded, except for context-independent variables, i.e. the logging callback.</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 146</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 130</span>
 
 </pre>
     </td>
@@ -7248,7 +7248,7 @@ default framebuffer.</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 192</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 176</span>
 
 </pre>
     </td>
@@ -7285,7 +7285,7 @@ default framebuffer.</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 199</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 183</span>
 
 </pre>
     </td>
@@ -7308,18 +7308,18 @@ default framebuffer.</p>
       <pre class="lines">
 
 
-847
-848
-849
-850
-851
-852
-853
-854
-855</pre>
+831
+832
+833
+834
+835
+836
+837
+838
+839</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 847</span>
+      <pre class="code"><span class="info file"># File 'lib/gr3.rb', line 831</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_volume'>volume</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='comma'>,</span> <span class='id identifier rubyid_algorithm'>algorithm</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_data'>data</span> <span class='op'>=</span> <span class='const'>Numo</span><span class='op'>::</span><span class='const'>DFloat</span><span class='period'>.</span><span class='id identifier rubyid_cast'>cast</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_data'>data</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Array</span>
@@ -7340,7 +7340,7 @@ default framebuffer.</p>
 </div>
 
       <div id="footer">
-  Generated on Sun May 24 08:02:35 2026 by
+  Generated on Sun May 24 08:11:47 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.43 (ruby-4.0.5).
 </div>
