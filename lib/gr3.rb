@@ -47,10 +47,10 @@
 #   * This is a opinion of kojix2 and may be changed by future maintainers.
 #
 # @note
-#   GR3 uses Numo::Narrray.
+#   GR3 uses Numo::NArray.
 #   * It is difficult to write GR3 modules with only Ruby arrays.
-#   * Numo::Narray has better performance and is easier to read.
-#   * Numo::Narray does not work with JRuby.
+#   * Numo::NArray has better performance and is easier to read.
+#   * Numo::NArray does not work with JRuby.
 #     * https://github.com/ruby-numo/numo-narray/issues/147
 #
 # This is a procedural interface to the GR3 in GR plotting library,
@@ -65,6 +65,7 @@ module GR3
   end
 
   require_relative 'gr_commons/gr_commons'
+  require 'numo/narray'
 
   # Platforms |  path
   # Windows   |  bin/libGR3.dll
@@ -76,7 +77,7 @@ module GR3
     when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
       [['libGR3.dll'], 'gr3']
     when /darwin|mac os/
-      ENV['GKSwstype'] ||= 'gksqt'
+      ENV['GKS_WSTYPE'] ||= 'gksqt'
       [['libGR3.dylib', 'libGR3.so'], 'gr3']
     else
       [['libGR3.so'], 'gr3']
@@ -354,7 +355,11 @@ module GR3
     #
     # @return [Integer]
     #
-    # @!method getcameraprojectionparameters
+    def getcameraprojectionparameters
+      inquiry %i[float float float] do |vfov, znear, zfar|
+        super(vfov, znear, zfar)
+      end
+    end
 
     # This function sets the direction of light. If it is called with (0, 0, 0),
     # the light is always pointing into the same direction as the camera.
@@ -387,10 +392,18 @@ module GR3
     # @!method setobjectid
 
     # @return [Integer]
-    # @!method selectid
+    def selectid(x, y, width, height)
+      inquiry_int do |selection_id|
+        super(x, y, width, height, selection_id)
+      end
+    end
 
     # @param m [Array, NArray] the 4x4 column major view matrix
-    # @!method getviewmatrix
+    def getviewmatrix
+      inquiry(float: 16) do |matrix|
+        super(matrix)
+      end
+    end
 
     # @param m [Array, NArray] the 4x4 column major view matrix
     # @!method setviewmatrix
