@@ -253,12 +253,16 @@ module GR
     try_extern 'void gr_inqmathtex3d(double, double, double, char *, int, double *, double *, double *, double *)'
     try_extern 'void gr_beginselection(int, int)'
     try_extern 'void gr_endselection(void)'
-    try_extern 'void gr_setbboxcallback(int, void (*)(int, double, double, double, double))'
+    try_extern 'void gr_setbboxcallback(int, void (*)(int, double, double, double, double),' \
+               ' void (*)(unsigned int, unsigned int, unsigned int *))'
     try_extern 'void gr_cancelbboxcallback(void)'
+    try_extern 'void gr_beginpartial(int, void (*)(int, unsigned int, unsigned int,' \
+               ' unsigned int, unsigned int, unsigned int *))'
+    try_extern 'void gr_endpartial(int)'
     try_extern 'void gr_moveselection(double, double)'
     try_extern 'void gr_resizeselection(int, double, double)'
     try_extern 'void gr_inqbbox(double *, double *, double *, double *)'
-    try_extern 'void gr_setbackground(void)'
+    try_extern 'void gr_setbackground(double, double, double, double)'
     try_extern 'void gr_clearbackground(void)'
     try_extern 'double gr_precision(void)'
     try_extern 'int gr_text_maxsize(void)'
