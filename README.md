@@ -25,10 +25,18 @@
 
 ## Installation
 
-First, [install GR](#gr-installation). Then install [`gr-plot`](https://github.com/red-data-tools/gr-plot) gem.
+First, [install GR](#gr-installation). If your goal is to draw plots from Ruby,
+install [`gr-plot`](https://github.com/red-data-tools/gr-plot).
 
 ```sh
 gem install gr-plot
+```
+
+For low-level access to the GR, GR3, and GRM native libraries, install the
+`ruby-gr` gem directly.
+
+```sh
+gem install ruby-gr
 ```
 
 [pkg-config](https://github.com/ruby-gnome/pkg-config) will detect the location of the shared library. Otherwise, you need to specify the environment variable.
