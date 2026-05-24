@@ -616,12 +616,12 @@
       <pre class="lines">
 
 
-363
 364
-365</pre>
+365
+366</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr_commons/fiddley.rb', line 363</span>
+      <pre class="code"><span class="info file"># File 'lib/gr_commons/fiddley.rb', line 364</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_bytes'>get_bytes</span><span class='lparen'>(</span><span class='id identifier rubyid_offset'>offset</span><span class='comma'>,</span> <span class='id identifier rubyid_len'>len</span><span class='rparen'>)</span>
   <span class='ivar'>@ptr</span><span class='lbracket'>[</span><span class='id identifier rubyid_offset'>offset</span><span class='comma'>,</span> <span class='id identifier rubyid_len'>len</span><span class='rbracket'>]</span>
@@ -646,12 +646,12 @@
       <pre class="lines">
 
 
-383
 384
-385</pre>
+385
+386</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr_commons/fiddley.rb', line 383</span>
+      <pre class="code"><span class="info file"># File 'lib/gr_commons/fiddley.rb', line 384</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_string'>get_string</span><span class='lparen'>(</span><span class='id identifier rubyid_offset'>offset</span><span class='comma'>,</span> <span class='id identifier rubyid_len'>len</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='ivar'>@ptr</span><span class='lbracket'>[</span><span class='id identifier rubyid_offset'>offset</span><span class='comma'>,</span> <span class='id identifier rubyid_len'>len</span> <span class='op'>||</span> <span class='ivar'>@size</span> <span class='op'>-</span> <span class='id identifier rubyid_offset'>offset</span><span class='rbracket'>]</span>
@@ -678,12 +678,14 @@
 
 355
 356
-357</pre>
+357
+358</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/gr_commons/fiddley.rb', line 355</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_put_bytes'>put_bytes</span><span class='lparen'>(</span><span class='id identifier rubyid_offset'>offset</span><span class='comma'>,</span> <span class='id identifier rubyid_str'>str</span><span class='comma'>,</span> <span class='id identifier rubyid_idx'>idx</span> <span class='op'>=</span> <span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_len'>len</span> <span class='op'>=</span> <span class='id identifier rubyid_str'>str</span><span class='period'>.</span><span class='id identifier rubyid_bytesize'>bytesize</span> <span class='op'>-</span> <span class='id identifier rubyid_idx'>idx</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_len'>len</span> <span class='op'>||=</span> <span class='id identifier rubyid_str'>str</span><span class='period'>.</span><span class='id identifier rubyid_bytesize'>bytesize</span> <span class='op'>-</span> <span class='id identifier rubyid_idx'>idx</span>
   <span class='ivar'>@ptr</span><span class='lbracket'>[</span><span class='id identifier rubyid_offset'>offset</span><span class='comma'>,</span> <span class='id identifier rubyid_len'>len</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_str'>str</span><span class='lbracket'>[</span><span class='id identifier rubyid_idx'>idx</span><span class='comma'>,</span> <span class='id identifier rubyid_len'>len</span><span class='rbracket'>]</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -706,12 +708,12 @@
       <pre class="lines">
 
 
-371
 372
-373</pre>
+373
+374</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr_commons/fiddley.rb', line 371</span>
+      <pre class="code"><span class="info file"># File 'lib/gr_commons/fiddley.rb', line 372</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_put_string'>put_string</span><span class='lparen'>(</span><span class='id identifier rubyid_offset'>offset</span><span class='comma'>,</span> <span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
   <span class='ivar'>@ptr</span><span class='lbracket'>[</span><span class='id identifier rubyid_offset'>offset</span><span class='comma'>,</span> <span class='id identifier rubyid_str'>str</span><span class='period'>.</span><span class='id identifier rubyid_bytesize'>bytesize</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_str'>str</span>
@@ -736,12 +738,12 @@
       <pre class="lines">
 
 
-367
 368
-369</pre>
+369
+370</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr_commons/fiddley.rb', line 367</span>
+      <pre class="code"><span class="info file"># File 'lib/gr_commons/fiddley.rb', line 368</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_read_bytes'>read_bytes</span><span class='lparen'>(</span><span class='id identifier rubyid_len'>len</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_get_bytes'>get_bytes</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_len'>len</span><span class='rparen'>)</span>
@@ -776,12 +778,12 @@ NOTE: Return Fiddle::Pointer. Not MemoryPointer.</p>
       <pre class="lines">
 
 
-393
 394
-395</pre>
+395
+396</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr_commons/fiddley.rb', line 393</span>
+      <pre class="code"><span class="info file"># File 'lib/gr_commons/fiddley.rb', line 394</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_read_pointer'>read_pointer</span>
   <span class='id identifier rubyid_to_ptr'>to_ptr</span><span class='period'>.</span><span class='id identifier rubyid_ptr'>ptr</span>
@@ -806,12 +808,12 @@ NOTE: Return Fiddle::Pointer. Not MemoryPointer.</p>
       <pre class="lines">
 
 
-387
 388
-389</pre>
+389
+390</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr_commons/fiddley.rb', line 387</span>
+      <pre class="code"><span class="info file"># File 'lib/gr_commons/fiddley.rb', line 388</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_read_string'>read_string</span><span class='lparen'>(</span><span class='id identifier rubyid_len'>len</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_get_string'>get_string</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_len'>len</span><span class='rparen'>)</span>
@@ -866,12 +868,12 @@ NOTE: Return Fiddle::Pointer. Not MemoryPointer.</p>
       <pre class="lines">
 
 
-359
 360
-361</pre>
+361
+362</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr_commons/fiddley.rb', line 359</span>
+      <pre class="code"><span class="info file"># File 'lib/gr_commons/fiddley.rb', line 360</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_write_bytes'>write_bytes</span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='comma'>,</span> <span class='id identifier rubyid_idx'>idx</span> <span class='op'>=</span> <span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_len'>len</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_put_bytes'>put_bytes</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_str'>str</span><span class='comma'>,</span> <span class='id identifier rubyid_idx'>idx</span><span class='comma'>,</span> <span class='id identifier rubyid_len'>len</span><span class='rparen'>)</span>
@@ -896,12 +898,12 @@ NOTE: Return Fiddle::Pointer. Not MemoryPointer.</p>
       <pre class="lines">
 
 
-375
 376
-377</pre>
+377
+378</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr_commons/fiddley.rb', line 375</span>
+      <pre class="code"><span class="info file"># File 'lib/gr_commons/fiddley.rb', line 376</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_write_string'>write_string</span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='comma'>,</span> <span class='id identifier rubyid_len'>len</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_put_string'>put_string</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_len'>len</span> <span class='op'>?</span> <span class='id identifier rubyid_str'>str</span><span class='lbracket'>[</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_len'>len</span><span class='rbracket'>]</span> <span class='op'>:</span> <span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
@@ -926,12 +928,12 @@ NOTE: Return Fiddle::Pointer. Not MemoryPointer.</p>
       <pre class="lines">
 
 
-379
 380
-381</pre>
+381
+382</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr_commons/fiddley.rb', line 379</span>
+      <pre class="code"><span class="info file"># File 'lib/gr_commons/fiddley.rb', line 380</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_write_string_length'>write_string_length</span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='comma'>,</span> <span class='id identifier rubyid_len'>len</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_put_string'>put_string</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_str'>str</span><span class='lbracket'>[</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_len'>len</span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -946,7 +948,7 @@ NOTE: Return Fiddle::Pointer. Not MemoryPointer.</p>
 </div>
 
       <div id="footer">
-  Generated on Sun May 24 07:30:51 2026 by
+  Generated on Sun May 24 07:39:57 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.43 (ruby-4.0.5).
 </div>

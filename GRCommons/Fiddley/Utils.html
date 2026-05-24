@@ -330,7 +330,7 @@
   <span class='kw'>when</span> <span class='symbol'>:uint</span>
     <span class='id identifier rubyid_arr'>arr</span><span class='period'>.</span><span class='id identifier rubyid_pack'>pack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>I!*</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='kw'>when</span> <span class='symbol'>:bool</span>
-    <span class='lbracket'>[</span><span class='id identifier rubyid_arr'>arr</span> <span class='op'>?</span> <span class='int'>1</span> <span class='op'>:</span> <span class='int'>0</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_pack'>pack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>i!*</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='const'>Array</span><span class='lparen'>(</span><span class='id identifier rubyid_arr'>arr</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_value'>value</span><span class='op'>|</span> <span class='id identifier rubyid_value'>value</span> <span class='op'>?</span> <span class='int'>1</span> <span class='op'>:</span> <span class='int'>0</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_pack'>pack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>i!*</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='kw'>when</span> <span class='symbol'>:long</span>
     <span class='id identifier rubyid_arr'>arr</span><span class='period'>.</span><span class='id identifier rubyid_pack'>pack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>l!*</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='kw'>when</span> <span class='symbol'>:ulong</span>
@@ -443,7 +443,7 @@
   <span class='kw'>when</span> <span class='symbol'>:uint</span>
     <span class='id identifier rubyid_str'>str</span><span class='period'>.</span><span class='id identifier rubyid_unpack'>unpack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>I!*</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='kw'>when</span> <span class='symbol'>:bool</span>
-    <span class='id identifier rubyid_str'>str</span><span class='period'>.</span><span class='id identifier rubyid_unpack'>unpack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>i!*</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>!=</span> <span class='int'>0</span>
+    <span class='id identifier rubyid_str'>str</span><span class='period'>.</span><span class='id identifier rubyid_unpack'>unpack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>i!*</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_value'>value</span><span class='op'>|</span> <span class='id identifier rubyid_value'>value</span> <span class='op'>!=</span> <span class='int'>0</span> <span class='rbrace'>}</span>
   <span class='kw'>when</span> <span class='symbol'>:long</span>
     <span class='id identifier rubyid_str'>str</span><span class='period'>.</span><span class='id identifier rubyid_unpack'>unpack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>l!*</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='kw'>when</span> <span class='symbol'>:ulong</span>
@@ -655,7 +655,7 @@
 </div>
 
       <div id="footer">
-  Generated on Sun May 24 07:30:50 2026 by
+  Generated on Sun May 24 07:39:57 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.43 (ruby-4.0.5).
 </div>
