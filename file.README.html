@@ -81,8 +81,13 @@
 <a href="examples/shade_ex.rb"><img src="https://i.imgur.com/VJmS3EQ.png" alt="shade" /></a></p>
 <p>:bar_chart: <a href="https://github.com/sciapp/gr">GR framework</a> - powerful visualization library - for Ruby</p>
 <h2 id="Installation">Installation</h2>
-<p>First, <a href="#gr-installation">install GR</a>. Then install <a href="https://github.com/red-data-tools/gr-plot"><code>gr-plot</code></a> gem.</p>
+<p>First, <a href="#gr-installation">install GR</a>. If your goal is to draw plots from Ruby,
+install <a href="https://github.com/red-data-tools/gr-plot"><code>gr-plot</code></a>.</p>
 <pre class="code sh"><code class="sh">gem install gr-plot
+</code></pre>
+<p>For low-level access to the GR, GR3, and GRM native libraries, install the
+<code>ruby-gr</code> gem directly.</p>
+<pre class="code sh"><code class="sh">gem install ruby-gr
 </code></pre>
 <p><a href="https://github.com/ruby-gnome/pkg-config">pkg-config</a> will detect the location of the shared library. Otherwise, you need to specify the environment variable.</p>
 <pre class="code sh"><code class="sh">export GRDIR=&quot;/your/path/to/gr&quot;
@@ -205,7 +210,7 @@ If so, please feel free to contact us.
 <p>We would like to thank Josef Heinen, the creator of <a href="https://github.com/sciapp/gr">GR</a> and <a href="https://github.com/jheinen/GR.jl">GR.jl</a>, Florian Rhiem, the creator of <a href="https://github.com/sciapp/python-gr">python-gr</a>, and all <a href="https://github.com/sciapp/gr">GR</a> developers.</p></div></div>
 
       <div id="footer">
-  Generated on Sun May 24 08:30:00 2026 by
+  Generated on Sun May 24 08:38:24 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.43 (ruby-4.0.5).
 </div>
