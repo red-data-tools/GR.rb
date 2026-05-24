@@ -131,7 +131,7 @@ Extend |  | GRCommons module |  | Extend
 <code>------------------</code></p>
 <p>(You can edit the above AA diagram with <a href="http://asciiflow.com/">http://asciiflow.com/</a>)</p>
 <p>Fiddley is Ruby-FFI compatible API layer for Fiddle.</p>
-<p>The GR module works without Numo::Narrray.
+<p>The GR module works without Numo::NArray.
 GR3 and GR::Plot depends on numo-narray.</p>
 <p>This is a procedural interface to the GR plotting library,
 <a href="https://github.com/sciapp/gr">https://github.com/sciapp/gr</a></p>
@@ -2815,6 +2815,28 @@ GR3 and GR::Plot depends on numo-narray.</p>
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#hexbin_2pass-class_method" title="hexbin_2pass (class method)">.<strong>hexbin_2pass</strong>(x, y, nbins, context = nil)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#histogram-class_method" title="histogram (class method)">.<strong>histogram</strong>(series, kv = {})  &#x21d2; Object </a>
     
 
@@ -3028,6 +3050,28 @@ GR3 and GR::Plot depends on numo-narray.</p>
 
   
     <span class="summary_desc"><div class='inline'><p>Gets the current character height.</p></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#inqclip-class_method" title="inqclip (class method)">.<strong>inqclip</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -3453,6 +3497,50 @@ GR3 and GR::Plot depends on numo-narray.</p>
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#inqmathtex3d-class_method" title="inqmathtex3d (class method)">.<strong>inqmathtex3d</strong>(x, y, z, string, axis)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#inqnominalsize-class_method" title="inqnominalsize (class method)">.<strong>inqnominalsize</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#inqorthographicprojection-class_method" title="inqorthographicprojection (class method)">.<strong>inqorthographicprojection</strong>  &#x21d2; Object </a>
     
 
@@ -3651,6 +3739,28 @@ GR3 and GR::Plot depends on numo-narray.</p>
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#inqspace3d-class_method" title="inqspace3d (class method)">.<strong>inqspace3d</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Set the camera for orthographic or perspective projection.</p></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#inqtext-class_method" title="inqtext (class method)">.<strong>inqtext</strong>(x, y, string)  &#x21d2; Object </a>
     
 
@@ -3798,6 +3908,28 @@ GR3 and GR::Plot depends on numo-narray.</p>
 
   
     <span class="summary_desc"><div class='inline'><p>Return the camera position, up vector and focus point.</p></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#inqtransparency-class_method" title="inqtransparency (class method)">.<strong>inqtransparency</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Set the value of the alpha component associated with GR colors.</p></div></span>
   
 </li>
 
@@ -4576,6 +4708,28 @@ GR3 and GR::Plot depends on numo-narray.</p>
   <span class="summary_signature">
     
       <a href="#restorestate-class_method" title="restorestate (class method)">.<strong>restorestate</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#samplelocator-class_method" title="samplelocator (class method)">.<strong>samplelocator</strong>  &#x21d2; Object </a>
     
 
     
@@ -7313,16 +7467,16 @@ array containing the Z coordinates</p></div>
       <pre class="lines">
 
 
-1590
-1591
-1592
-1593
-1594
-1595
-1596</pre>
+1608
+1609
+1610
+1611
+1612
+1613
+1614</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1590</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1608</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_adjustlimits'>adjustlimits</span><span class='lparen'>(</span><span class='id identifier rubyid_amin'>amin</span><span class='comma'>,</span> <span class='id identifier rubyid_amax'>amax</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_inquiry'>inquiry</span> <span class='qsymbols_beg'>%i[</span><span class='tstring_content'>double</span><span class='words_sep'> </span><span class='tstring_content'>double</span><span class='tstring_end'>]</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_pamin'>pamin</span><span class='comma'>,</span> <span class='id identifier rubyid_pamax'>pamax</span><span class='op'>|</span>
@@ -7351,16 +7505,16 @@ array containing the Z coordinates</p></div>
       <pre class="lines">
 
 
-1598
-1599
-1600
-1601
-1602
-1603
-1604</pre>
+1616
+1617
+1618
+1619
+1620
+1621
+1622</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1598</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1616</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_adjustrange'>adjustrange</span><span class='lparen'>(</span><span class='id identifier rubyid_amin'>amin</span><span class='comma'>,</span> <span class='id identifier rubyid_amax'>amax</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_inquiry'>inquiry</span> <span class='qsymbols_beg'>%i[</span><span class='tstring_content'>double</span><span class='words_sep'> </span><span class='tstring_content'>double</span><span class='tstring_end'>]</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_pamin'>pamin</span><span class='comma'>,</span> <span class='id identifier rubyid_pamax'>pamax</span><span class='op'>|</span>
@@ -7519,10 +7673,10 @@ to outward facing (or vice versa).</p></div>
       <pre class="lines">
 
 
-1165</pre>
+1175</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1165</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1175</span>
 
 <span class='kw'>alias</span> <span class='id identifier rubyid_axes2d'>axes2d</span> <span class='id identifier rubyid_axes'>axes</span></pre>
     </td>
@@ -7718,7 +7872,7 @@ to outward facing (or vice versa).</p></div>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1357</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1367</span>
 
 </pre>
     </td>
@@ -7917,7 +8071,7 @@ the X axis. The callback function should have the following arguments.</p></div>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1198</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1208</span>
 
 </pre>
     </td>
@@ -7962,24 +8116,24 @@ the X axis. The callback function should have the following arguments.</p></div>
       <pre class="lines">
 
 
-1167
-1168
-1169
-1170
-1171
-1172
-1173
-1174
-1175
-1176
 1177
 1178
 1179
 1180
-1181</pre>
+1181
+1182
+1183
+1184
+1185
+1186
+1187
+1188
+1189
+1190
+1191</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1167</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1177</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_axis'>axis</span><span class='lparen'>(</span><span class='id identifier rubyid_option'>option</span><span class='comma'>,</span> <span class='op'>**</span><span class='id identifier rubyid_opts'>opts</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_axis'>axis</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="GR/GRAxis.html" title="GR::GRAxis (class)">GRAxis</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="GR/GRAxis.html#initialize-instance_method" title="GR::GRAxis#initialize (method)">new</a></span></span>
@@ -8134,7 +8288,7 @@ later be imported with the <code>importgraphics</code> function.</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1887</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1909</span>
 
 </pre>
     </td>
@@ -8206,16 +8360,16 @@ The following file types are supported:</p>
       <pre class="lines">
 
 
-1627
-1628
-1629
-1630
-1631
-1632
-1633</pre>
+1645
+1646
+1647
+1648
+1649
+1650
+1651</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1627</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1645</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_beginprint'>beginprint</span><span class='lparen'>(</span><span class='id identifier rubyid_file_path'>file_path</span><span class='rparen'>)</span>
   <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_file_path'>file_path</span><span class='rparen'>)</span>
@@ -8349,7 +8503,7 @@ The available formats are:</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1635</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1653</span>
 
 </pre>
     </td>
@@ -8375,7 +8529,7 @@ The available formats are:</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1922</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1950</span>
 
 </pre>
     </td>
@@ -8472,7 +8626,7 @@ area) and 1 (right side or top of the drawing area).</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2344</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2378</span>
 
 </pre>
     </td>
@@ -8701,12 +8855,20 @@ of the given cell array.</p>
       <pre class="lines">
 
 
-</pre>
+1011
+1012
+1013
+1014
+1015</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1005</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1011</span>
 
-</pre>
+<span class='kw'>def</span> <span class='id identifier rubyid_samplelocator'>samplelocator</span>
+  <span class='id identifier rubyid_inquiry'>inquiry</span> <span class='qsymbols_beg'>%i[</span><span class='tstring_content'>double</span><span class='words_sep'> </span><span class='tstring_content'>double</span><span class='words_sep'> </span><span class='tstring_content'>int</span><span class='tstring_end'>]</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='op'>*</span><span class='id identifier rubyid_pts'>pts</span><span class='op'>|</span>
+    <span class='kw'>super</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_pts'>pts</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -8780,14 +8942,14 @@ of the given cell array.</p>
       <pre class="lines">
 
 
-1569
-1570
-1571
-1572
-1573</pre>
+1587
+1588
+1589
+1590
+1591</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1569</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1587</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inqcolor'>inqcolor</span><span class='lparen'>(</span><span class='id identifier rubyid_color'>color</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_inquiry_int'>inquiry_int</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_rgb'>rgb</span><span class='op'>|</span>
@@ -8858,17 +9020,17 @@ of the given cell array.</p>
       <pre class="lines">
 
 
-1458
-1459
-1460
-1461
-1462
-1463
-1464
-1465</pre>
+1468
+1469
+1470
+1471
+1472
+1473
+1474
+1475</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1458</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1468</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_contour'>contour</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_h'>h</span><span class='comma'>,</span> <span class='id identifier rubyid_z'>z</span><span class='comma'>,</span> <span class='id identifier rubyid_major_h'>major_h</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_nx'>nx</span> <span class='op'>=</span> <span class='id identifier rubyid_x'>x</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
@@ -8907,17 +9069,17 @@ of the given cell array.</p>
       <pre class="lines">
 
 
-1484
-1485
-1486
-1487
-1488
-1489
-1490
-1491</pre>
+1494
+1495
+1496
+1497
+1498
+1499
+1500
+1501</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1484</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1494</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_contourf'>contourf</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_h'>h</span><span class='comma'>,</span> <span class='id identifier rubyid_z'>z</span><span class='comma'>,</span> <span class='id identifier rubyid_major_h'>major_h</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_nx'>nx</span> <span class='op'>=</span> <span class='id identifier rubyid_x'>x</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
@@ -8950,7 +9112,7 @@ of the given cell array.</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 999</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1003</span>
 
 </pre>
     </td>
@@ -8982,14 +9144,14 @@ of the given cell array.</p>
       <pre class="lines">
 
 
-2497
-2498
-2499
-2500
-2501</pre>
+2537
+2538
+2539
+2540
+2541</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2497</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2537</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inqvpsize'>inqvpsize</span>
   <span class='id identifier rubyid_inquiry'>inquiry</span> <span class='qsymbols_beg'>%i[</span><span class='tstring_content'>int</span><span class='words_sep'> </span><span class='tstring_content'>int</span><span class='words_sep'> </span><span class='tstring_content'>double</span><span class='tstring_end'>]</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='op'>*</span><span class='id identifier rubyid_pts'>pts</span><span class='op'>|</span>
@@ -9019,7 +9181,7 @@ of the given cell array.</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 997</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1001</span>
 
 </pre>
     </td>
@@ -9117,28 +9279,28 @@ of the given cell array.</p>
       <pre class="lines">
 
 
-1957
-1958
-1959
-1960
-1961
-1962
-1963
-1964
-1965
-1966
-1967
-1968
-1969
-1970
-1971
-1972
-1973
-1974
-1975</pre>
+1985
+1986
+1987
+1988
+1989
+1990
+1991
+1992
+1993
+1994
+1995
+1996
+1997
+1998
+1999
+2000
+2001
+2002
+2003</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1957</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1985</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_delaunay'>delaunay</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='rparen'>)</span>
   <span class='comment'># Feel free to make a pull request if you catch a mistake
@@ -9147,10 +9309,10 @@ of the given cell array.</p>
   <span class='id identifier rubyid_triangles'>triangles</span> <span class='op'>=</span> <span class='const'>Fiddle</span><span class='op'>::</span><span class='const'>Pointer</span><span class='period'>.</span><span class='id identifier rubyid_malloc'>malloc</span><span class='lparen'>(</span><span class='const'>Fiddle</span><span class='op'>::</span><span class='const'>SIZEOF_INTPTR_T</span><span class='comma'>,</span> <span class='const'>Fiddle</span><span class='op'>::</span><span class='const'>RUBY_FREE</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_dim'>dim</span> <span class='op'>=</span> <span class='int'>3</span>
   <span class='id identifier rubyid_n_tri'>n_tri</span> <span class='op'>=</span> <span class='id identifier rubyid_inquiry_int'>inquiry_int</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_ntri'>ntri</span><span class='op'>|</span>
-    <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_npoints'>npoints</span><span class='comma'>,</span> <span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_ntri'>ntri</span><span class='comma'>,</span> <span class='id identifier rubyid_triangles'>triangles</span><span class='period'>.</span><span class='id identifier rubyid_ref'>ref</span><span class='rparen'>)</span>
+    <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_npoints'>npoints</span><span class='comma'>,</span> <span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_ntri'>ntri</span><span class='comma'>,</span> <span class='id identifier rubyid_triangles'>triangles</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_n_tri'>n_tri</span> <span class='op'>&gt;</span> <span class='int'>0</span>
-    <span class='id identifier rubyid_tri'>tri</span> <span class='op'>=</span> <span class='id identifier rubyid_triangles'>triangles</span><span class='period'>.</span><span class='id identifier rubyid_to_str'>to_str</span><span class='lparen'>(</span><span class='id identifier rubyid_dim'>dim</span> <span class='op'>*</span> <span class='id identifier rubyid_n_tri'>n_tri</span> <span class='op'>*</span> <span class='const'>Fiddle</span><span class='op'>::</span><span class='const'>SIZEOF_INT</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_unpack'>unpack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>l*</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='comment'># Int32
+    <span class='id identifier rubyid_tri'>tri</span> <span class='op'>=</span> <span class='id identifier rubyid_triangles'>triangles</span><span class='period'>.</span><span class='id identifier rubyid_ptr'>ptr</span><span class='period'>.</span><span class='id identifier rubyid_to_str'>to_str</span><span class='lparen'>(</span><span class='id identifier rubyid_dim'>dim</span> <span class='op'>*</span> <span class='id identifier rubyid_n_tri'>n_tri</span> <span class='op'>*</span> <span class='const'>Fiddle</span><span class='op'>::</span><span class='const'>SIZEOF_INT</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_unpack'>unpack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>l*</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='comment'># Int32
 </span>    <span class='comment'># Ruby  : 0-based indexing
 </span>    <span class='comment'># Julia : 1-based indexing
 </span>    <span class='id identifier rubyid_tri'>tri</span> <span class='op'>=</span> <span class='id identifier rubyid_tri'>tri</span><span class='period'>.</span><span class='id identifier rubyid_each_slice'>each_slice</span><span class='lparen'>(</span><span class='id identifier rubyid_dim'>dim</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_a'>to_a</span>
@@ -9182,7 +9344,7 @@ of the given cell array.</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1952</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1980</span>
 
 </pre>
     </td>
@@ -9308,7 +9470,7 @@ of the arc is the center of the given rectangle.</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1720</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1738</span>
 
 </pre>
     </td>
@@ -9406,7 +9568,7 @@ filled heads, double headed arrows) are available and can be set with the
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1804</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1822</span>
 
 </pre>
     </td>
@@ -9429,14 +9591,14 @@ filled heads, double headed arrows) are available and can be set with the
       <pre class="lines">
 
 
-1192
-1193
-1194
-1195
-1196</pre>
+1202
+1203
+1204
+1205
+1206</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1192</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1202</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_drawaxes'>drawaxes</span><span class='lparen'>(</span><span class='id identifier rubyid_x_axis'>x_axis</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_y_axis'>y_axis</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_option'>option</span> <span class='op'>=</span> <span class='int'>1</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_c_x'>c_x</span> <span class='op'>=</span> <span class='id identifier rubyid_x_axis'>x_axis</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid___axis_to_c_axis'>__axis_to_c_axis</span><span class='lparen'>(</span><span class='id identifier rubyid_x_axis'>x_axis</span><span class='rparen'>)</span>
@@ -9485,17 +9647,17 @@ filled heads, double headed arrows) are available and can be set with the
       <pre class="lines">
 
 
-1183
-1184
-1185
-1186
-1187
-1188
-1189
-1190</pre>
+1193
+1194
+1195
+1196
+1197
+1198
+1199
+1200</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1183</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1193</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_drawaxis'>drawaxis</span><span class='lparen'>(</span><span class='id identifier rubyid_option'>option</span><span class='comma'>,</span> <span class='id identifier rubyid_axis'>axis</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_c_axis'>c_axis</span> <span class='op'>=</span> <span class='id identifier rubyid___axis_to_c_axis'>__axis_to_c_axis</span><span class='lparen'>(</span><span class='id identifier rubyid_axis'>axis</span><span class='rparen'>)</span>
@@ -9550,7 +9712,7 @@ filled heads, double headed arrows) are available and can be set with the
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1903</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1925</span>
 
 </pre>
     </td>
@@ -9709,12 +9871,12 @@ The available color models are:</p>
       <pre class="lines">
 
 
-1849
-1850
-1851</pre>
+1867
+1868
+1869</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1849</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1867</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_drawimage'>drawimage</span><span class='lparen'>(</span><span class='id identifier rubyid_xmin'>xmin</span><span class='comma'>,</span> <span class='id identifier rubyid_xmax'>xmax</span><span class='comma'>,</span> <span class='id identifier rubyid_ymin'>ymin</span><span class='comma'>,</span> <span class='id identifier rubyid_ymax'>ymax</span><span class='comma'>,</span> <span class='id identifier rubyid_width'>width</span><span class='comma'>,</span> <span class='id identifier rubyid_height'>height</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='comma'>,</span> <span class='id identifier rubyid_model'>model</span> <span class='op'>=</span> <span class='int'>0</span><span class='rparen'>)</span>
   <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_xmin'>xmin</span><span class='comma'>,</span> <span class='id identifier rubyid_xmax'>xmax</span><span class='comma'>,</span> <span class='id identifier rubyid_ymin'>ymin</span><span class='comma'>,</span> <span class='id identifier rubyid_ymax'>ymax</span><span class='comma'>,</span> <span class='id identifier rubyid_width'>width</span><span class='comma'>,</span> <span class='id identifier rubyid_height'>height</span><span class='comma'>,</span> <span class='id identifier rubyid_uint'>uint</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_model'>model</span><span class='rparen'>)</span>
@@ -9803,13 +9965,13 @@ curves.</p>
       <pre class="lines">
 
 
-1764
-1765
-1766
-1767</pre>
+1782
+1783
+1784
+1785</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1764</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1782</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_drawpath'>drawpath</span><span class='lparen'>(</span><span class='id identifier rubyid_points'>points</span><span class='comma'>,</span> <span class='id identifier rubyid_codes'>codes</span><span class='comma'>,</span> <span class='id identifier rubyid_fill'>fill</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_len'>len</span> <span class='op'>=</span> <span class='id identifier rubyid_codes'>codes</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
@@ -9907,7 +10069,7 @@ curves.</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1702</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1720</span>
 
 </pre>
     </td>
@@ -9933,7 +10095,7 @@ curves.</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1007</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1017</span>
 
 </pre>
     </td>
@@ -9959,7 +10121,7 @@ curves.</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1896</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1918</span>
 
 </pre>
     </td>
@@ -9982,16 +10144,16 @@ curves.</p>
       <pre class="lines">
 
 
-1677
-1678
-1679
-1680
-1681
-1682
-1683</pre>
+1695
+1696
+1697
+1698
+1699
+1700
+1701</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1677</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1695</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_ndctowc'>ndctowc</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_inquiry'>inquiry</span> <span class='qsymbols_beg'>%i[</span><span class='tstring_content'>double</span><span class='words_sep'> </span><span class='tstring_content'>double</span><span class='tstring_end'>]</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_px'>px</span><span class='comma'>,</span> <span class='id identifier rubyid_py'>py</span><span class='op'>|</span>
@@ -10023,7 +10185,7 @@ curves.</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1924</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1952</span>
 
 </pre>
     </td>
@@ -10149,7 +10311,7 @@ of the arc is the center of the given rectangle.</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1735</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1753</span>
 
 </pre>
     </td>
@@ -10319,7 +10481,7 @@ interior style, fill area style index and fill area color index.</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1711</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1729</span>
 
 </pre>
     </td>
@@ -10362,7 +10524,7 @@ This method is not sure if it works properly.</p></div>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2125</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2153</span>
 
 </pre>
     </td>
@@ -10385,14 +10547,14 @@ This method is not sure if it works properly.</p></div>
       <pre class="lines">
 
 
-2542
-2543
-2544
-2545
-2546</pre>
+2582
+2583
+2584
+2585
+2586</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2542</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2582</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_ftoa'>ftoa</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='comma'>,</span> <span class='id identifier rubyid_format_ref'>format_ref</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_string'>string</span> <span class='op'>=</span> <span class='const'>Fiddle</span><span class='op'>::</span><span class='const'>Pointer</span><span class='period'>.</span><span class='id identifier rubyid_malloc'>malloc</span><span class='lparen'>(</span><span class='int'>256</span><span class='rparen'>)</span>
@@ -10524,14 +10686,14 @@ record.</p>
       <pre class="lines">
 
 
-2536
-2537
-2538
-2539
-2540</pre>
+2576
+2577
+2578
+2579
+2580</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2536</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2576</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_getformat'>getformat</span><span class='lparen'>(</span><span class='id identifier rubyid_origin'>origin</span><span class='comma'>,</span> <span class='id identifier rubyid_min'>min</span><span class='comma'>,</span> <span class='id identifier rubyid_max'>max</span><span class='comma'>,</span> <span class='id identifier rubyid_tick_width'>tick_width</span><span class='comma'>,</span> <span class='id identifier rubyid_major'>major</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_ref'>ref</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="GR/FFI.html" title="GR::FFI (module)">FFI</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="GR/FFI.html#FormatReference-constant" title="GR::FFI::FormatReference (constant)">FormatReference</a></span></span><span class='period'>.</span><span class='id identifier rubyid_malloc'>malloc</span>
@@ -10580,12 +10742,12 @@ record.</p>
       <pre class="lines">
 
 
-1899
-1900
-1901</pre>
+1921
+1922
+1923</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1899</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1921</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_getgraphics'>getgraphics</span><span class='lparen'>(</span><span class='op'>*</span><span class='rparen'>)</span>
   <span class='kw'>super</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
@@ -10663,18 +10825,18 @@ record.</p>
       <pre class="lines">
 
 
-2003
-2004
-2005
-2006
-2007
-2008
-2009
-2010
-2011</pre>
+2031
+2032
+2033
+2034
+2035
+2036
+2037
+2038
+2039</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2003</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2031</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_gradient'>gradient</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_z'>z</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_nx'>nx</span> <span class='op'>=</span> <span class='id identifier rubyid_x'>x</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
@@ -10817,7 +10979,7 @@ Values of 0 or 1 imply no grid lines.</p></div>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1247</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1257</span>
 
 </pre>
     </td>
@@ -10998,7 +11160,7 @@ Values of 0 or 1 imply no grid lines.</p></div>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1271</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1281</span>
 
 </pre>
     </td>
@@ -11283,13 +11445,13 @@ output grid</p></div>
       <pre class="lines">
 
 
-1321
-1322
-1323
-1324</pre>
+1331
+1332
+1333
+1334</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1321</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1331</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_herrorbars'>herrorbars</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_e1'>e1</span><span class='comma'>,</span> <span class='id identifier rubyid_e2'>e2</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_n'>n</span> <span class='op'>=</span> <span class='id identifier rubyid_equal_length'>equal_length</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_e1'>e1</span><span class='comma'>,</span> <span class='id identifier rubyid_e2'>e2</span><span class='rparen'>)</span>
@@ -11324,17 +11486,55 @@ output grid</p></div>
       <pre class="lines">
 
 
-1511
-1512
-1513
-1514</pre>
+1521
+1522
+1523
+1524</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1511</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1521</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_hexbin'>hexbin</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_nbins'>nbins</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_n'>n</span> <span class='op'>=</span> <span class='id identifier rubyid_x'>x</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
   <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_n'>n</span><span class='comma'>,</span> <span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_nbins'>nbins</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="hexbin_2pass-class_method">
+  
+    .<strong>hexbin_2pass</strong>(x, y, nbins, context = nil)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1526
+1527
+1528
+1529
+1530
+1531
+1532</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1526</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_hexbin_2pass'>hexbin_2pass</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_nbins'>nbins</span><span class='comma'>,</span> <span class='id identifier rubyid_context'>context</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_n'>n</span> <span class='op'>=</span> <span class='id identifier rubyid_equal_length'>equal_length</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_context'>context</span> <span class='op'>||=</span> <span class='const'>Fiddle</span><span class='op'>::</span><span class='const'>NULL</span>
+  <span class='id identifier rubyid_context'>context</span> <span class='op'>=</span> <span class='id identifier rubyid_context'>context</span><span class='period'>.</span><span class='id identifier rubyid_to_ptr'>to_ptr</span> <span class='kw'>if</span> <span class='id identifier rubyid_context'>context</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:to_ptr</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_n'>n</span><span class='comma'>,</span> <span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_nbins'>nbins</span><span class='comma'>,</span> <span class='id identifier rubyid_context'>context</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_result'>result</span><span class='period'>.</span><span class='id identifier rubyid_null?'>null?</span> <span class='op'>?</span> <span class='kw'>nil</span> <span class='op'>:</span> <span class='const'><span class='object_link'><a href="GR/FFI.html" title="GR::FFI (module)">FFI</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="GR/FFI.html#Hexbin2Pass-constant" title="GR::FFI::Hexbin2Pass (constant)">Hexbin2Pass</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_result'>result</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -11457,14 +11657,14 @@ output grid</p></div>
       <pre class="lines">
 
 
-1578
-1579
-1580
-1581
-1582</pre>
+1596
+1597
+1598
+1599
+1600</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1578</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1596</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_hsvtorgb'>hsvtorgb</span><span class='lparen'>(</span><span class='id identifier rubyid_h'>h</span><span class='comma'>,</span> <span class='id identifier rubyid_s'>s</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_inquiry'>inquiry</span> <span class='qsymbols_beg'>%i[</span><span class='tstring_content'>double</span><span class='words_sep'> </span><span class='tstring_content'>double</span><span class='words_sep'> </span><span class='tstring_content'>double</span><span class='tstring_end'>]</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_r'>r</span><span class='comma'>,</span> <span class='id identifier rubyid_g'>g</span><span class='comma'>,</span> <span class='id identifier rubyid_b'>b</span><span class='op'>|</span>
@@ -11516,7 +11716,7 @@ output grid</p></div>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1853</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1871</span>
 
 </pre>
     </td>
@@ -11610,14 +11810,14 @@ output grid</p></div>
       <pre class="lines">
 
 
-1930
-1931
-1932
-1933
-1934</pre>
+1958
+1959
+1960
+1961
+1962</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1930</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1958</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inqbbox'>inqbbox</span>
   <span class='id identifier rubyid_inquiry'>inquiry</span> <span class='qsymbols_beg'>%i[</span><span class='tstring_content'>double</span><span class='words_sep'> </span><span class='tstring_content'>double</span><span class='words_sep'> </span><span class='tstring_content'>double</span><span class='words_sep'> </span><span class='tstring_content'>double</span><span class='tstring_end'>]</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='op'>*</span><span class='id identifier rubyid_pts'>pts</span><span class='op'>|</span>
@@ -11671,12 +11871,12 @@ output grid</p></div>
       <pre class="lines">
 
 
-2258
-2259
-2260</pre>
+2286
+2287
+2288</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2258</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2286</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inqbordercolorind'>inqbordercolorind</span>
   <span class='id identifier rubyid_inquiry_int'>inquiry_int</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_pt'>pt</span><span class='op'>|</span> <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_pt'>pt</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -11728,12 +11928,12 @@ output grid</p></div>
       <pre class="lines">
 
 
-2248
-2249
-2250</pre>
+2276
+2277
+2278</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2248</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2276</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inqborderwidth'>inqborderwidth</span>
   <span class='id identifier rubyid_inquiry_double'>inquiry_double</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_pt'>pt</span><span class='op'>|</span> <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_pt'>pt</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -11802,6 +12002,40 @@ height of 0.027 (2.7% of the height of the default window).</p>
 </div>
     
       <div class="method_details ">
+  <h3 class="signature " id="inqclip-class_method">
+  
+    .<strong>inqclip</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+2296
+2297
+2298
+2299
+2300</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2296</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_inqclip'>inqclip</span>
+  <span class='id identifier rubyid_inquiry'>inquiry</span> <span class='lbracket'>[</span><span class='symbol'>:int</span><span class='comma'>,</span> <span class='lbrace'>{</span> <span class='label'>double:</span> <span class='int'>4</span> <span class='rbrace'>}</span><span class='rbracket'>]</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_region'>region</span><span class='comma'>,</span> <span class='id identifier rubyid_points'>points</span><span class='op'>|</span>
+    <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_region'>region</span><span class='comma'>,</span> <span class='id identifier rubyid_points'>points</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
   <h3 class="signature " id="inqclipregion-class_method">
   
     .<strong>inqclipregion</strong>  &#x21d2; <tt>Object</tt> 
@@ -11816,12 +12050,12 @@ height of 0.027 (2.7% of the height of the default window).</p>
       <pre class="lines">
 
 
-2524
-2525
-2526</pre>
+2564
+2565
+2566</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2524</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2564</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inqclipregion'>inqclipregion</span>
   <span class='id identifier rubyid_inquiry_int'>inquiry_int</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_pt'>pt</span><span class='op'>|</span> <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_pt'>pt</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -11846,14 +12080,14 @@ height of 0.027 (2.7% of the height of the default window).</p>
       <pre class="lines">
 
 
-2530
-2531
-2532
-2533
-2534</pre>
+2570
+2571
+2572
+2573
+2574</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2530</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2570</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inqclipsector'>inqclipsector</span>
   <span class='id identifier rubyid_inquiry'>inquiry</span> <span class='qsymbols_beg'>%i[</span><span class='tstring_content'>double</span><span class='words_sep'> </span><span class='tstring_content'>double</span><span class='tstring_end'>]</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='op'>*</span><span class='id identifier rubyid_pts'>pts</span><span class='op'>|</span>
@@ -11880,12 +12114,12 @@ height of 0.027 (2.7% of the height of the default window).</p>
       <pre class="lines">
 
 
-2264
-2265
-2266</pre>
+2292
+2293
+2294</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2264</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2292</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inqclipxform'>inqclipxform</span>
   <span class='id identifier rubyid_inquiry_int'>inquiry_int</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_pt'>pt</span><span class='op'>|</span> <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_pt'>pt</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -11910,14 +12144,14 @@ height of 0.027 (2.7% of the height of the default window).</p>
       <pre class="lines">
 
 
-1569
-1570
-1571
-1572
-1573</pre>
+1587
+1588
+1589
+1590
+1591</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1569</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1587</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inqcolor'>inqcolor</span><span class='lparen'>(</span><span class='id identifier rubyid_color'>color</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_inquiry_int'>inquiry_int</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_rgb'>rgb</span><span class='op'>|</span>
@@ -11966,14 +12200,14 @@ height of 0.027 (2.7% of the height of the default window).</p>
       <pre class="lines">
 
 
-1578
-1579
-1580
-1581
-1582</pre>
+1596
+1597
+1598
+1599
+1600</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1578</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1596</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_hsvtorgb'>hsvtorgb</span><span class='lparen'>(</span><span class='id identifier rubyid_h'>h</span><span class='comma'>,</span> <span class='id identifier rubyid_s'>s</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_inquiry'>inquiry</span> <span class='qsymbols_beg'>%i[</span><span class='tstring_content'>double</span><span class='words_sep'> </span><span class='tstring_content'>double</span><span class='words_sep'> </span><span class='tstring_content'>double</span><span class='tstring_end'>]</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_r'>r</span><span class='comma'>,</span> <span class='id identifier rubyid_g'>g</span><span class='comma'>,</span> <span class='id identifier rubyid_b'>b</span><span class='op'>|</span>
@@ -12009,12 +12243,12 @@ height of 0.027 (2.7% of the height of the default window).</p>
       <pre class="lines">
 
 
-1526
-1527
-1528</pre>
+1544
+1545
+1546</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1526</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1544</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inqcolormap'>inqcolormap</span>
   <span class='id identifier rubyid_inquiry_int'>inquiry_int</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_pt'>pt</span><span class='op'>|</span> <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_pt'>pt</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -12065,14 +12299,14 @@ last_color_ind The color index of the last color</p></div>
       <pre class="lines">
 
 
-1561
-1562
-1563
-1564
-1565</pre>
+1579
+1580
+1581
+1582
+1583</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1561</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1579</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inqcolormapinds'>inqcolormapinds</span>
   <span class='id identifier rubyid_inquiry'>inquiry</span> <span class='qsymbols_beg'>%i[</span><span class='tstring_content'>int</span><span class='words_sep'> </span><span class='tstring_content'>int</span><span class='tstring_end'>]</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_first_color_ind'>first_color_ind</span><span class='comma'>,</span> <span class='id identifier rubyid_last_color_ind'>last_color_ind</span><span class='op'>|</span>
@@ -12728,12 +12962,12 @@ width is 1.0, or 1 times the line width generated on the graphics device.</p>
       <pre class="lines">
 
 
-2518
-2519
-2520</pre>
+2558
+2559
+2560</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2518</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2558</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inqmathfont'>inqmathfont</span>
   <span class='id identifier rubyid_inquiry_int'>inquiry_int</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_pt'>pt</span><span class='op'>|</span> <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_pt'>pt</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -12767,19 +13001,83 @@ width is 1.0, or 1 times the line width generated on the graphics device.</p>
       <pre class="lines">
 
 
-1916
-1917
-1918
-1919
-1920</pre>
+1938
+1939
+1940
+1941
+1942</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1916</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1938</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inqmathtex'>inqmathtex</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_string'>string</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_inquiry'>inquiry</span> <span class='lbracket'>[</span><span class='lbrace'>{</span> <span class='label'>double:</span> <span class='int'>4</span> <span class='rbrace'>}</span><span class='comma'>,</span> <span class='lbrace'>{</span> <span class='label'>double:</span> <span class='int'>4</span> <span class='rbrace'>}</span><span class='rbracket'>]</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_tbx'>tbx</span><span class='comma'>,</span> <span class='id identifier rubyid_tby'>tby</span><span class='op'>|</span>
     <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_string'>string</span><span class='comma'>,</span> <span class='id identifier rubyid_tbx'>tbx</span><span class='comma'>,</span> <span class='id identifier rubyid_tby'>tby</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="inqmathtex3d-class_method">
+  
+    .<strong>inqmathtex3d</strong>(x, y, z, string, axis)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1944
+1945
+1946
+1947
+1948</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1944</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_inqmathtex3d'>inqmathtex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_z'>z</span><span class='comma'>,</span> <span class='id identifier rubyid_string'>string</span><span class='comma'>,</span> <span class='id identifier rubyid_axis'>axis</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_inquiry'>inquiry</span> <span class='lbracket'>[</span><span class='lbrace'>{</span> <span class='label'>double:</span> <span class='int'>16</span> <span class='rbrace'>}</span><span class='comma'>,</span> <span class='lbrace'>{</span> <span class='label'>double:</span> <span class='int'>16</span> <span class='rbrace'>}</span><span class='comma'>,</span> <span class='lbrace'>{</span> <span class='label'>double:</span> <span class='int'>16</span> <span class='rbrace'>}</span><span class='comma'>,</span> <span class='lbrace'>{</span> <span class='label'>double:</span> <span class='int'>16</span> <span class='rbrace'>}</span><span class='rbracket'>]</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_tbx'>tbx</span><span class='comma'>,</span> <span class='id identifier rubyid_tby'>tby</span><span class='comma'>,</span> <span class='id identifier rubyid_tbz'>tbz</span><span class='comma'>,</span> <span class='id identifier rubyid_tbw'>tbw</span><span class='op'>|</span>
+    <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_z'>z</span><span class='comma'>,</span> <span class='id identifier rubyid_string'>string</span><span class='comma'>,</span> <span class='id identifier rubyid_axis'>axis</span><span class='comma'>,</span> <span class='id identifier rubyid_tbx'>tbx</span><span class='comma'>,</span> <span class='id identifier rubyid_tby'>tby</span><span class='comma'>,</span> <span class='id identifier rubyid_tbz'>tbz</span><span class='comma'>,</span> <span class='id identifier rubyid_tbw'>tbw</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="inqnominalsize-class_method">
+  
+    .<strong>inqnominalsize</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+866
+867
+868</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 866</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_inqnominalsize'>inqnominalsize</span>
+  <span class='id identifier rubyid_inquiry_double'>inquiry_double</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_pt'>pt</span><span class='op'>|</span> <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_pt'>pt</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -12810,14 +13108,14 @@ width is 1.0, or 1 times the line width generated on the graphics device.</p>
       <pre class="lines">
 
 
-2338
-2339
-2340
-2341
-2342</pre>
+2372
+2373
+2374
+2375
+2376</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2338</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2372</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inqorthographicprojection'>inqorthographicprojection</span>
   <span class='id identifier rubyid_inquiry'>inquiry</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='symbol'>:double</span><span class='rbracket'>]</span> <span class='op'>*</span> <span class='int'>6</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='op'>*</span><span class='id identifier rubyid_pts'>pts</span><span class='op'>|</span>
@@ -12853,14 +13151,14 @@ width is 1.0, or 1 times the line width generated on the graphics device.</p>
       <pre class="lines">
 
 
-2295
-2296
-2297
-2298
-2299</pre>
+2329
+2330
+2331
+2332
+2333</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2295</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2329</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inqperspectiveprojection'>inqperspectiveprojection</span>
   <span class='id identifier rubyid_inquiry'>inquiry</span> <span class='qsymbols_beg'>%i[</span><span class='tstring_content'>double</span><span class='words_sep'> </span><span class='tstring_content'>double</span><span class='words_sep'> </span><span class='tstring_content'>double</span><span class='tstring_end'>]</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='op'>*</span><span class='id identifier rubyid_pts'>pts</span><span class='op'>|</span>
@@ -12896,12 +13194,12 @@ width is 1.0, or 1 times the line width generated on the graphics device.</p>
       <pre class="lines">
 
 
-2279
-2280
-2281</pre>
+2313
+2314
+2315</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2279</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2313</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inqprojectiontype'>inqprojectiontype</span>
   <span class='id identifier rubyid_inquiry_int'>inquiry_int</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_pt'>pt</span><span class='op'>|</span> <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_pt'>pt</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -12951,7 +13249,7 @@ width is 1.0, or 1 times the line width generated on the graphics device.</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1943</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1971</span>
 
 </pre>
     </td>
@@ -12999,14 +13297,14 @@ width is 1.0, or 1 times the line width generated on the graphics device.</p>
       <pre class="lines">
 
 
-2190
-2191
-2192
-2193
-2194</pre>
+2218
+2219
+2220
+2221
+2222</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2190</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2218</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inqresamplemethod'>inqresamplemethod</span>
   <span class='id identifier rubyid_inquiry_uint'>inquiry_uint</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_resample_method'>resample_method</span><span class='op'>|</span>
@@ -13072,12 +13370,12 @@ width is 1.0, or 1 times the line width generated on the graphics device.</p>
       <pre class="lines">
 
 
-1062
-1063
-1064</pre>
+1072
+1073
+1074</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1062</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1072</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inqscale'>inqscale</span>
   <span class='id identifier rubyid_inquiry_int'>inquiry_int</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_pt'>pt</span><span class='op'>|</span> <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_pt'>pt</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -13111,14 +13409,14 @@ width is 1.0, or 1 times the line width generated on the graphics device.</p>
       <pre class="lines">
 
 
-2386
-2387
-2388
-2389
-2390</pre>
+2420
+2421
+2422
+2423
+2424</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2386</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2420</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inqscalefactors3d'>inqscalefactors3d</span>
   <span class='id identifier rubyid_inquiry'>inquiry</span> <span class='qsymbols_beg'>%i[</span><span class='tstring_content'>double</span><span class='words_sep'> </span><span class='tstring_content'>double</span><span class='words_sep'> </span><span class='tstring_content'>double</span><span class='tstring_end'>]</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='op'>*</span><span class='id identifier rubyid_opts'>opts</span><span class='op'>|</span>
@@ -13234,17 +13532,127 @@ Angles of rotation and viewing angle must be specified between 0° and 90°.</p>
       <pre class="lines">
 
 
-1030
-1031
-1032
-1033
-1034</pre>
+1040
+1041
+1042
+1043
+1044</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1030</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1040</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inqspace'>inqspace</span>
   <span class='id identifier rubyid_inquiry'>inquiry</span> <span class='qsymbols_beg'>%i[</span><span class='tstring_content'>double</span><span class='words_sep'> </span><span class='tstring_content'>double</span><span class='words_sep'> </span><span class='tstring_content'>int</span><span class='words_sep'> </span><span class='tstring_content'>int</span><span class='tstring_end'>]</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='op'>*</span><span class='id identifier rubyid_pts'>pts</span><span class='op'>|</span>
+    <span class='kw'>super</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_pts'>pts</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="inqspace3d-class_method">
+  
+    .<strong>inqspace3d</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Set the camera for orthographic or perspective projection.</p>
+<p>The center of the 3d window is used as the focus point and the camera is
+positioned relative to it, using camera distance, rotation and tilt similar
+to <code>setspace</code>. This function can be used if the user prefers spherical
+coordinates to setting the camera position directly, but has reduced
+functionality in comparison to GR.settransformationparameters,
+GR.setperspectiveprojection and GR.setorthographicprojection.</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>phi</span>
+      
+      
+        <span class='type'>(<tt>Numeric</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>azimuthal angle of the spherical coordinates</p></div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>theta</span>
+      
+      
+        <span class='type'>(<tt>Numeric</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>polar angle of the spherical coordinates</p></div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>fov</span>
+      
+      
+        <span class='type'>(<tt>Numeric</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>vertical field of view (0 or NaN for orthographic projection)</p></div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>camera_distance</span>
+      
+      
+        <span class='type'>(<tt>Numeric</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>distance between the camera and the focus point
+(0 or NaN for the radius of the object's smallest bounding sphere)</p></div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+2443
+2444
+2445
+2446
+2447</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2443</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_inqspace3d'>inqspace3d</span>
+  <span class='id identifier rubyid_inquiry'>inquiry</span> <span class='qsymbols_beg'>%i[</span><span class='tstring_content'>int</span><span class='words_sep'> </span><span class='tstring_content'>double</span><span class='words_sep'> </span><span class='tstring_content'>double</span><span class='words_sep'> </span><span class='tstring_content'>double</span><span class='words_sep'> </span><span class='tstring_content'>double</span><span class='tstring_end'>]</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='op'>*</span><span class='id identifier rubyid_pts'>pts</span><span class='op'>|</span>
     <span class='kw'>super</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_pts'>pts</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
@@ -13381,14 +13789,14 @@ character height, character up vector, text path and text alignment.</p>
       <pre class="lines">
 
 
-2411
-2412
-2413
-2414
-2415</pre>
+2451
+2452
+2453
+2454
+2455</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2411</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2451</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inqtext3d'>inqtext3d</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_z'>z</span><span class='comma'>,</span> <span class='id identifier rubyid_string'>string</span><span class='comma'>,</span> <span class='id identifier rubyid_axis'>axis</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_inquiry'>inquiry</span> <span class='lbracket'>[</span><span class='lbrace'>{</span> <span class='label'>double:</span> <span class='int'>16</span> <span class='rbrace'>}</span><span class='comma'>,</span> <span class='lbrace'>{</span> <span class='label'>double:</span> <span class='int'>16</span> <span class='rbrace'>}</span><span class='rbracket'>]</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_tbx'>tbx</span><span class='comma'>,</span> <span class='id identifier rubyid_tby'>tby</span><span class='op'>|</span>
@@ -13471,14 +13879,14 @@ character height, character up vector, text path and text alignment.</p>
       <pre class="lines">
 
 
-2419
-2420
-2421
-2422
-2423</pre>
+2459
+2460
+2461
+2462
+2463</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2419</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2459</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inqtextencoding'>inqtextencoding</span>
   <span class='id identifier rubyid_inquiry_int'>inquiry_int</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_encoding'>encoding</span><span class='op'>|</span>
@@ -13514,14 +13922,14 @@ character height, character up vector, text path and text alignment.</p>
       <pre class="lines">
 
 
-1124
-1125
-1126
-1127
-1128</pre>
+1134
+1135
+1136
+1137
+1138</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1124</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1134</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inqtextext'>inqtextext</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_string'>string</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_inquiry'>inquiry</span> <span class='lbracket'>[</span><span class='lbrace'>{</span> <span class='label'>double:</span> <span class='int'>4</span> <span class='rbrace'>}</span><span class='comma'>,</span> <span class='lbrace'>{</span> <span class='label'>double:</span> <span class='int'>4</span> <span class='rbrace'>}</span><span class='rbracket'>]</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_tbx'>tbx</span><span class='comma'>,</span> <span class='id identifier rubyid_tby'>tby</span><span class='op'>|</span>
@@ -13591,19 +13999,76 @@ character height, character up vector, text path and text alignment.</p>
       <pre class="lines">
 
 
-2318
-2319
-2320
-2321
-2322</pre>
+2352
+2353
+2354
+2355
+2356</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2318</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2352</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inqtransformationparameters'>inqtransformationparameters</span>
   <span class='id identifier rubyid_inquiry'>inquiry</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='symbol'>:double</span><span class='rbracket'>]</span> <span class='op'>*</span> <span class='int'>9</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='op'>*</span><span class='id identifier rubyid_pts'>pts</span><span class='op'>|</span>
     <span class='kw'>super</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_pts'>pts</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="inqtransparency-class_method">
+  
+    .<strong>inqtransparency</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Set the value of the alpha component associated with GR colors.</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>alpha</span>
+      
+      
+        <span class='type'>(<tt>Numeric</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>An alpha value (0.0 - 1.0)</p></div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1895
+1896
+1897</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1895</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_inqtransparency'>inqtransparency</span>
+  <span class='id identifier rubyid_inquiry_double'>inquiry_double</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_pt'>pt</span><span class='op'>|</span> <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_pt'>pt</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -13634,14 +14099,14 @@ character height, character up vector, text path and text alignment.</p>
       <pre class="lines">
 
 
-926
-927
-928
-929
-930</pre>
+930
+931
+932
+933
+934</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 926</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 930</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inqviewport'>inqviewport</span>
   <span class='id identifier rubyid_inquiry'>inquiry</span> <span class='qsymbols_beg'>%i[</span><span class='tstring_content'>double</span><span class='words_sep'> </span><span class='tstring_content'>double</span><span class='words_sep'> </span><span class='tstring_content'>double</span><span class='words_sep'> </span><span class='tstring_content'>double</span><span class='tstring_end'>]</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='op'>*</span><span class='id identifier rubyid_pts'>pts</span><span class='op'>|</span>
@@ -13701,14 +14166,14 @@ the amount of threads which are used.</p>
       <pre class="lines">
 
 
-2488
-2489
-2490
-2491
-2492</pre>
+2528
+2529
+2530
+2531
+2532</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2488</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2528</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inqvolumeflags'>inqvolumeflags</span>
   <span class='id identifier rubyid_inquiry'>inquiry</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='symbol'>:int</span><span class='rbracket'>]</span> <span class='op'>*</span> <span class='int'>5</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='op'>*</span><span class='id identifier rubyid_pts'>pts</span><span class='op'>|</span>
@@ -13744,14 +14209,14 @@ the amount of threads which are used.</p>
       <pre class="lines">
 
 
-2497
-2498
-2499
-2500
-2501</pre>
+2537
+2538
+2539
+2540
+2541</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2497</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2537</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inqvpsize'>inqvpsize</span>
   <span class='id identifier rubyid_inquiry'>inquiry</span> <span class='qsymbols_beg'>%i[</span><span class='tstring_content'>int</span><span class='words_sep'> </span><span class='tstring_content'>int</span><span class='words_sep'> </span><span class='tstring_content'>double</span><span class='tstring_end'>]</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='op'>*</span><span class='id identifier rubyid_pts'>pts</span><span class='op'>|</span>
@@ -13787,14 +14252,14 @@ the amount of threads which are used.</p>
       <pre class="lines">
 
 
-899
-900
-901
-902
-903</pre>
+903
+904
+905
+906
+907</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 899</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 903</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inqwindow'>inqwindow</span>
   <span class='id identifier rubyid_inquiry'>inquiry</span> <span class='qsymbols_beg'>%i[</span><span class='tstring_content'>double</span><span class='words_sep'> </span><span class='tstring_content'>double</span><span class='words_sep'> </span><span class='tstring_content'>double</span><span class='words_sep'> </span><span class='tstring_content'>double</span><span class='tstring_end'>]</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='op'>*</span><span class='id identifier rubyid_pts'>pts</span><span class='op'>|</span>
@@ -13830,14 +14295,14 @@ the amount of threads which are used.</p>
       <pre class="lines">
 
 
-2369
-2370
-2371
-2372
-2373</pre>
+2403
+2404
+2405
+2406
+2407</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2369</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2403</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inqwindow3d'>inqwindow3d</span>
   <span class='id identifier rubyid_inquiry'>inquiry</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='symbol'>:double</span><span class='rbracket'>]</span> <span class='op'>*</span> <span class='int'>6</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='op'>*</span><span class='id identifier rubyid_pts'>pts</span><span class='op'>|</span>
@@ -13986,19 +14451,19 @@ The available methods for interpolation are the following:</p>
       <pre class="lines">
 
 
-2056
-2057
-2058
-2059
-2060
-2061
-2062
-2063
-2064
-2065</pre>
+2084
+2085
+2086
+2087
+2088
+2089
+2090
+2091
+2092
+2093</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2056</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2084</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_interp2'>interp2</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_z'>z</span><span class='comma'>,</span> <span class='id identifier rubyid_xq'>xq</span><span class='comma'>,</span> <span class='id identifier rubyid_yq'>yq</span><span class='comma'>,</span> <span class='id identifier rubyid_method'>method</span><span class='comma'>,</span> <span class='id identifier rubyid_extrapval'>extrapval</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_nx'>nx</span> <span class='op'>=</span> <span class='id identifier rubyid_x'>x</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
@@ -14105,14 +14570,14 @@ the resulting font index and precision 3.</p>
       <pre class="lines">
 
 
-2433
-2434
-2435
-2436
-2437</pre>
+2473
+2474
+2475
+2476
+2477</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2433</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2473</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_loadfont'>loadfont</span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_inquiry_int'>inquiry_int</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_font'>font</span><span class='op'>|</span>
@@ -14198,7 +14663,7 @@ defined to create mathematical symbols and Greek letters using LaTeX syntax.</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1906</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1928</span>
 
 </pre>
     </td>
@@ -14224,7 +14689,7 @@ defined to create mathematical symbols and Greek letters using LaTeX syntax.</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1926</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1954</span>
 
 </pre>
     </td>
@@ -14247,16 +14712,16 @@ defined to create mathematical symbols and Greek letters using LaTeX syntax.</p>
       <pre class="lines">
 
 
-1677
-1678
-1679
-1680
-1681
-1682
-1683</pre>
+1695
+1696
+1697
+1698
+1699
+1700
+1701</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1677</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1695</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_ndctowc'>ndctowc</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_inquiry'>inquiry</span> <span class='qsymbols_beg'>%i[</span><span class='tstring_content'>double</span><span class='words_sep'> </span><span class='tstring_content'>double</span><span class='tstring_end'>]</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_px'>px</span><span class='comma'>,</span> <span class='id identifier rubyid_py'>py</span><span class='op'>|</span>
@@ -14842,14 +15307,14 @@ are specified allowing nonuniform sized cells.</p>
       <pre class="lines">
 
 
-2132
-2133
-2134
-2135
-2136</pre>
+2160
+2161
+2162
+2163
+2164</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2132</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2160</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_panzoom'>panzoom</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_zoom'>zoom</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_inquiry'>inquiry</span> <span class='qsymbols_beg'>%i[</span><span class='tstring_content'>double</span><span class='words_sep'> </span><span class='tstring_content'>double</span><span class='words_sep'> </span><span class='tstring_content'>double</span><span class='words_sep'> </span><span class='tstring_content'>double</span><span class='tstring_end'>]</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_xmin'>xmin</span><span class='comma'>,</span> <span class='id identifier rubyid_xmax'>xmax</span><span class='comma'>,</span> <span class='id identifier rubyid_ymin'>ymin</span><span class='comma'>,</span> <span class='id identifier rubyid_ymax'>ymax</span><span class='op'>|</span>
@@ -14985,13 +15450,13 @@ The following path codes are recognized:</p>
       <pre class="lines">
 
 
-2225
-2226
-2227
-2228</pre>
+2253
+2254
+2255
+2256</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2225</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2253</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_path'>path</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_codes'>codes</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_n'>n</span> <span class='op'>=</span> <span class='id identifier rubyid_equal_length'>equal_length</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='rparen'>)</span>
@@ -15450,14 +15915,14 @@ coordinates</p></div>
       <pre class="lines">
 
 
-2503
-2504
-2505
-2506
-2507</pre>
+2543
+2544
+2545
+2546
+2547</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2503</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2543</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_polygonmesh3d'>polygonmesh3d</span><span class='lparen'>(</span><span class='id identifier rubyid_px'>px</span><span class='comma'>,</span> <span class='id identifier rubyid_py'>py</span><span class='comma'>,</span> <span class='id identifier rubyid_pz'>pz</span><span class='comma'>,</span> <span class='id identifier rubyid_connections'>connections</span><span class='comma'>,</span> <span class='id identifier rubyid_colors'>colors</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_n_points'>n_points</span> <span class='op'>=</span> <span class='id identifier rubyid_equal_length'>equal_length</span><span class='lparen'>(</span><span class='id identifier rubyid_px'>px</span><span class='comma'>,</span> <span class='id identifier rubyid_py'>py</span><span class='comma'>,</span> <span class='id identifier rubyid_pz'>pz</span><span class='rparen'>)</span>
@@ -15696,13 +16161,13 @@ index.</p>
       <pre class="lines">
 
 
-1337
-1338
-1339
-1340</pre>
+1347
+1348
+1349
+1350</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1337</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1347</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_polyline3d'>polyline3d</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_z'>z</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_n'>n</span> <span class='op'>=</span> <span class='id identifier rubyid_equal_length'>equal_length</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_z'>z</span><span class='rparen'>)</span>
@@ -15938,13 +16403,13 @@ scale factor and color index.</p>
       <pre class="lines">
 
 
-1352
-1353
-1354
-1355</pre>
+1362
+1363
+1364
+1365</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1352</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1362</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_polymarker3d'>polymarker3d</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_z'>z</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_n'>n</span> <span class='op'>=</span> <span class='id identifier rubyid_equal_length'>equal_length</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_z'>z</span><span class='rparen'>)</span>
@@ -16083,18 +16548,18 @@ the current colormap</p></div>
       <pre class="lines">
 
 
-2027
-2028
-2029
-2030
-2031
-2032
-2033
-2034
-2035</pre>
+2055
+2056
+2057
+2058
+2059
+2060
+2061
+2062
+2063</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2027</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2055</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_quiver'>quiver</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_u'>u</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span><span class='comma'>,</span> <span class='id identifier rubyid_color'>color</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_nx'>nx</span> <span class='op'>=</span> <span class='id identifier rubyid_x'>x</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
@@ -16147,20 +16612,20 @@ the current colormap</p></div>
       <pre class="lines">
 
 
-1818
-1819
-1820
-1821
-1822
-1823
-1824
-1825
-1826
-1827
-1828</pre>
+1836
+1837
+1838
+1839
+1840
+1841
+1842
+1843
+1844
+1845
+1846</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1818</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1836</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_readimage'>readimage</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='rparen'>)</span>
   <span class='comment'># Feel free to make a pull request if you catch a mistake
@@ -16168,9 +16633,9 @@ the current colormap</p></div>
 </span>  <span class='id identifier rubyid_data'>data</span> <span class='op'>=</span> <span class='const'>Fiddle</span><span class='op'>::</span><span class='const'>Pointer</span><span class='period'>.</span><span class='id identifier rubyid_malloc'>malloc</span><span class='lparen'>(</span><span class='const'>Fiddle</span><span class='op'>::</span><span class='const'>SIZEOF_INTPTR_T</span><span class='comma'>,</span> <span class='const'>Fiddle</span><span class='op'>::</span><span class='const'>RUBY_FREE</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_w'>w</span><span class='comma'>,</span> <span class='id identifier rubyid_h'>h</span> <span class='op'>=</span> <span class='id identifier rubyid_inquiry'>inquiry</span> <span class='lbracket'>[</span><span class='symbol'>:int</span><span class='comma'>,</span> <span class='symbol'>:int</span><span class='rbracket'>]</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_width'>width</span><span class='comma'>,</span> <span class='id identifier rubyid_height'>height</span><span class='op'>|</span>
     <span class='comment'># data is a pointer of a pointer
-</span>    <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='comma'>,</span> <span class='id identifier rubyid_width'>width</span><span class='comma'>,</span> <span class='id identifier rubyid_height'>height</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='period'>.</span><span class='id identifier rubyid_ref'>ref</span><span class='rparen'>)</span>
+</span>    <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='comma'>,</span> <span class='id identifier rubyid_width'>width</span><span class='comma'>,</span> <span class='id identifier rubyid_height'>height</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
-  <span class='id identifier rubyid_d'>d</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span><span class='period'>.</span><span class='id identifier rubyid_to_str'>to_str</span><span class='lparen'>(</span><span class='id identifier rubyid_w'>w</span> <span class='op'>*</span> <span class='id identifier rubyid_h'>h</span> <span class='op'>*</span> <span class='const'>Fiddle</span><span class='op'>::</span><span class='const'>SIZEOF_INT</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_unpack'>unpack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>L*</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='comment'># UInt32
+  <span class='id identifier rubyid_d'>d</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span><span class='period'>.</span><span class='id identifier rubyid_ptr'>ptr</span><span class='period'>.</span><span class='id identifier rubyid_to_str'>to_str</span><span class='lparen'>(</span><span class='id identifier rubyid_w'>w</span> <span class='op'>*</span> <span class='id identifier rubyid_h'>h</span> <span class='op'>*</span> <span class='const'>Fiddle</span><span class='op'>::</span><span class='const'>SIZEOF_INT</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_unpack'>unpack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>L*</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='comment'># UInt32
 </span>  <span class='lbracket'>[</span><span class='id identifier rubyid_w'>w</span><span class='comma'>,</span> <span class='id identifier rubyid_h'>h</span><span class='comma'>,</span> <span class='id identifier rubyid_d'>d</span><span class='rbracket'>]</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -16196,7 +16661,7 @@ the current colormap</p></div>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1001</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1005</span>
 
 </pre>
     </td>
@@ -16274,16 +16739,16 @@ the current colormap</p></div>
       <pre class="lines">
 
 
-1983
-1984
-1985
-1986
-1987
-1988
-1989</pre>
+2011
+2012
+2013
+2014
+2015
+2016
+2017</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1983</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2011</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_reducepoints'>reducepoints</span><span class='lparen'>(</span><span class='id identifier rubyid_xd'>xd</span><span class='comma'>,</span> <span class='id identifier rubyid_yd'>yd</span><span class='comma'>,</span> <span class='id identifier rubyid_n'>n</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_nd'>nd</span> <span class='op'>=</span> <span class='id identifier rubyid_equal_length'>equal_length</span><span class='lparen'>(</span><span class='id identifier rubyid_xd'>xd</span><span class='comma'>,</span> <span class='id identifier rubyid_yd'>yd</span><span class='rparen'>)</span>
@@ -16312,14 +16777,14 @@ the current colormap</p></div>
       <pre class="lines">
 
 
-1930
-1931
-1932
-1933
-1934</pre>
+1958
+1959
+1960
+1961
+1962</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1930</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1958</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inqbbox'>inqbbox</span>
   <span class='id identifier rubyid_inquiry'>inquiry</span> <span class='qsymbols_beg'>%i[</span><span class='tstring_content'>double</span><span class='words_sep'> </span><span class='tstring_content'>double</span><span class='words_sep'> </span><span class='tstring_content'>double</span><span class='words_sep'> </span><span class='tstring_content'>double</span><span class='tstring_end'>]</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='op'>*</span><span class='id identifier rubyid_pts'>pts</span><span class='op'>|</span>
@@ -16349,9 +16814,43 @@ the current colormap</p></div>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1948</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1976</span>
 
 </pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="samplelocator-class_method">
+  
+    .<strong>samplelocator</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1011
+1012
+1013
+1014
+1015</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1011</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_samplelocator'>samplelocator</span>
+  <span class='id identifier rubyid_inquiry'>inquiry</span> <span class='qsymbols_beg'>%i[</span><span class='tstring_content'>double</span><span class='words_sep'> </span><span class='tstring_content'>double</span><span class='words_sep'> </span><span class='tstring_content'>int</span><span class='tstring_end'>]</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='op'>*</span><span class='id identifier rubyid_pts'>pts</span><span class='op'>|</span>
+    <span class='kw'>super</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_pts'>pts</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -16422,7 +16921,7 @@ the current colormap</p></div>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1946</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1974</span>
 
 </pre>
     </td>
@@ -16523,12 +17022,12 @@ the current colormap</p></div>
       <pre class="lines">
 
 
-2264
-2265
-2266</pre>
+2292
+2293
+2294</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2264</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2292</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inqclipxform'>inqclipxform</span>
   <span class='id identifier rubyid_inquiry_int'>inquiry_int</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_pt'>pt</span><span class='op'>|</span> <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_pt'>pt</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -16556,7 +17055,7 @@ the current colormap</p></div>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1950</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1978</span>
 
 </pre>
     </td>
@@ -16620,7 +17119,7 @@ viewport have the range of 0 to 1</li>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 932</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 936</span>
 
 </pre>
     </td>
@@ -16677,7 +17176,7 @@ of the volume</p></div>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2467</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2507</span>
 
 </pre>
     </td>
@@ -16732,7 +17231,7 @@ The default arrow size is 1.</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1795</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1813</span>
 
 </pre>
     </td>
@@ -16807,7 +17306,7 @@ The default arrow style is 1.</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1769</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1787</span>
 
 </pre>
     </td>
@@ -16857,12 +17356,12 @@ The default arrow style is 1.</p>
       <pre class="lines">
 
 
-2258
-2259
-2260</pre>
+2286
+2287
+2288</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2258</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2286</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inqbordercolorind'>inqbordercolorind</span>
   <span class='id identifier rubyid_inquiry_int'>inquiry_int</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_pt'>pt</span><span class='op'>|</span> <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_pt'>pt</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -16914,12 +17413,12 @@ The default arrow style is 1.</p>
       <pre class="lines">
 
 
-2248
-2249
-2250</pre>
+2276
+2277
+2278</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2248</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2276</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inqborderwidth'>inqborderwidth</span>
   <span class='id identifier rubyid_inquiry_double'>inquiry_double</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_pt'>pt</span><span class='op'>|</span> <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_pt'>pt</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -17195,7 +17694,7 @@ or off.</p></div>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 943</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 947</span>
 
 </pre>
     </td>
@@ -17218,12 +17717,12 @@ or off.</p></div>
       <pre class="lines">
 
 
-2524
-2525
-2526</pre>
+2564
+2565
+2566</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2524</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2564</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inqclipregion'>inqclipregion</span>
   <span class='id identifier rubyid_inquiry_int'>inquiry_int</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_pt'>pt</span><span class='op'>|</span> <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_pt'>pt</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -17248,14 +17747,14 @@ or off.</p></div>
       <pre class="lines">
 
 
-2530
-2531
-2532
-2533
-2534</pre>
+2570
+2571
+2572
+2573
+2574</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2530</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2570</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inqclipsector'>inqclipsector</span>
   <span class='id identifier rubyid_inquiry'>inquiry</span> <span class='qsymbols_beg'>%i[</span><span class='tstring_content'>double</span><span class='words_sep'> </span><span class='tstring_content'>double</span><span class='tstring_end'>]</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='op'>*</span><span class='id identifier rubyid_pts'>pts</span><span class='op'>|</span>
@@ -17316,7 +17815,7 @@ Using a negative index will use the reverse of the selected colormap.</li>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1516</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1534</span>
 
 </pre>
     </td>
@@ -17423,25 +17922,25 @@ If positions is nil the given colors are evenly distributed in the colormap.</p>
       <pre class="lines">
 
 
-1547
-1548
-1549
-1550
-1551
-1552
-1553
-1554
-1555</pre>
+1565
+1566
+1567
+1568
+1569
+1570
+1571
+1572
+1573</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1547</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1565</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_setcolormapfromrgb'>setcolormapfromrgb</span><span class='lparen'>(</span><span class='id identifier rubyid_r'>r</span><span class='comma'>,</span> <span class='id identifier rubyid_g'>g</span><span class='comma'>,</span> <span class='id identifier rubyid_b'>b</span><span class='comma'>,</span> <span class='label'>positions:</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_n'>n</span> <span class='op'>=</span> <span class='id identifier rubyid_equal_length'>equal_length</span><span class='lparen'>(</span><span class='id identifier rubyid_r'>r</span><span class='comma'>,</span> <span class='id identifier rubyid_g'>g</span><span class='comma'>,</span> <span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_positions'>positions</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
     <span class='id identifier rubyid_positions'>positions</span> <span class='op'>=</span> <span class='const'>Fiddle</span><span class='op'>::</span><span class='const'>NULL</span>
   <span class='kw'>elsif</span> <span class='id identifier rubyid_positions'>positions</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>!=</span> <span class='id identifier rubyid_n'>n</span>
-    <span class='id identifier rubyid_raise'>raise</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>positions must have length </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_n'>n</span><span class='embexpr_end'>}</span><span class='tstring_content'> (got </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_positions'>positions</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
   <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_n'>n</span><span class='comma'>,</span> <span class='id identifier rubyid_r'>r</span><span class='comma'>,</span> <span class='id identifier rubyid_g'>g</span><span class='comma'>,</span> <span class='id identifier rubyid_b'>b</span><span class='comma'>,</span> <span class='id identifier rubyid_positions'>positions</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
@@ -17538,7 +18037,7 @@ triplet.</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 866</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 870</span>
 
 </pre>
     </td>
@@ -17581,6 +18080,19 @@ triplet.</p>
   
 </ul>
 
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ArgumentError</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -17588,17 +18100,17 @@ triplet.</p>
       <pre class="lines">
 
 
-1881
-1882
-1883
-1884
-1885</pre>
+1903
+1904
+1905
+1906
+1907</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1881</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1903</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_setcoordxform'>setcoordxform</span><span class='lparen'>(</span><span class='id identifier rubyid_mat'>mat</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_raise'>raise</span> <span class='kw'>if</span> <span class='id identifier rubyid_mat'>mat</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>!=</span> <span class='int'>6</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>mat must have 6 elements (got </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_mat'>mat</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_mat'>mat</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>!=</span> <span class='int'>6</span>
 
   <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_mat'>mat</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
@@ -18197,12 +18709,12 @@ graphics device multiplied by the marker size scale factor.</p>
       <pre class="lines">
 
 
-2518
-2519
-2520</pre>
+2558
+2559
+2560</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2518</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2558</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inqmathfont'>inqmathfont</span>
   <span class='id identifier rubyid_inquiry_int'>inquiry_int</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_pt'>pt</span><span class='op'>|</span> <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_pt'>pt</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -18328,7 +18840,7 @@ Switches projection type to orthographic.</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2324</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2358</span>
 
 </pre>
     </td>
@@ -18412,7 +18924,7 @@ input must be between 0 and 180 degrees</p></div>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2283</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2317</span>
 
 </pre>
     </td>
@@ -18481,7 +18993,7 @@ The default values are 1000 for both.</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2446</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2486</span>
 
 </pre>
     </td>
@@ -18540,7 +19052,7 @@ The available options are:</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2268</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2302</span>
 
 </pre>
     </td>
@@ -18566,7 +19078,7 @@ The available options are:</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1941</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1969</span>
 
 </pre>
     </td>
@@ -18783,7 +19295,7 @@ horizontal or vertical upsampling or downsampling:</li>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2138</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2166</span>
 
 </pre>
     </td>
@@ -18866,7 +19378,7 @@ system assumes that the axes limits are greater than zero.</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1036</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1046</span>
 
 </pre>
     </td>
@@ -18948,7 +19460,7 @@ The scaling factors must not be zero. .</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2375</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2409</span>
 
 </pre>
     </td>
@@ -18974,7 +19486,7 @@ The scaling factors must not be zero. .</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1003</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1007</span>
 
 </pre>
     </td>
@@ -19059,7 +19571,7 @@ is offset from the object</p></div>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1856</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1874</span>
 
 </pre>
     </td>
@@ -19171,14 +19683,14 @@ Angles of rotation and viewing angle must be specified between 0° and 90°.</p>
       <pre class="lines">
 
 
-1030
-1031
-1032
-1033
-1034</pre>
+1040
+1041
+1042
+1043
+1044</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1030</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1040</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inqspace'>inqspace</span>
   <span class='id identifier rubyid_inquiry'>inquiry</span> <span class='qsymbols_beg'>%i[</span><span class='tstring_content'>double</span><span class='words_sep'> </span><span class='tstring_content'>double</span><span class='words_sep'> </span><span class='tstring_content'>int</span><span class='words_sep'> </span><span class='tstring_content'>int</span><span class='tstring_end'>]</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='op'>*</span><span class='id identifier rubyid_pts'>pts</span><span class='op'>|</span>
@@ -19281,12 +19793,20 @@ GR.setperspectiveprojection and GR.setorthographicprojection.</p>
       <pre class="lines">
 
 
-</pre>
+2443
+2444
+2445
+2446
+2447</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2392</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2443</span>
 
-</pre>
+<span class='kw'>def</span> <span class='id identifier rubyid_inqspace3d'>inqspace3d</span>
+  <span class='id identifier rubyid_inquiry'>inquiry</span> <span class='qsymbols_beg'>%i[</span><span class='tstring_content'>int</span><span class='words_sep'> </span><span class='tstring_content'>double</span><span class='words_sep'> </span><span class='tstring_content'>double</span><span class='words_sep'> </span><span class='tstring_content'>double</span><span class='words_sep'> </span><span class='tstring_content'>double</span><span class='tstring_end'>]</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='op'>*</span><span class='id identifier rubyid_pts'>pts</span><span class='op'>|</span>
+    <span class='kw'>super</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_pts'>pts</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -19431,14 +19951,14 @@ index.</p>
       <pre class="lines">
 
 
-2419
-2420
-2421
-2422
-2423</pre>
+2459
+2460
+2461
+2462
+2463</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2419</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2459</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inqtextencoding'>inqtextencoding</span>
   <span class='id identifier rubyid_inquiry_int'>inquiry_int</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_encoding'>encoding</span><span class='op'>|</span>
@@ -19669,7 +20189,7 @@ The default value is the number of threads the cpu has.</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2439</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2479</span>
 
 </pre>
     </td>
@@ -19835,7 +20355,7 @@ focus point of the shown volume.</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2301</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2335</span>
 
 </pre>
     </td>
@@ -19885,12 +20405,16 @@ focus point of the shown volume.</p>
       <pre class="lines">
 
 
-</pre>
+1895
+1896
+1897</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1871</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1895</span>
 
-</pre>
+<span class='kw'>def</span> <span class='id identifier rubyid_inqtransparency'>inqtransparency</span>
+  <span class='id identifier rubyid_inquiry_double'>inquiry_double</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_pt'>pt</span><span class='op'>|</span> <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_pt'>pt</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -19993,7 +20517,7 @@ in device coordinates.</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 905</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 909</span>
 
 </pre>
     </td>
@@ -20054,7 +20578,7 @@ The available options are:</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2455</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2495</span>
 
 </pre>
     </td>
@@ -20161,7 +20685,7 @@ world coordinates, as the normalization transformation window.</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 876</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 880</span>
 
 </pre>
     </td>
@@ -20285,7 +20809,7 @@ Only used for perspective and orthographic projection.</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2356</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2390</span>
 
 </pre>
     </td>
@@ -20388,7 +20912,7 @@ viewport.</p></div>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 979</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 983</span>
 
 </pre>
     </td>
@@ -20493,7 +21017,7 @@ window (0 &lt;= <code>ymin</code> &lt; <code>ymax</code> &lt;= 1).</p></div>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 959</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 963</span>
 
 </pre>
     </td>
@@ -20528,7 +21052,7 @@ window (0 &lt;= <code>ymin</code> &lt; <code>ymax</code> &lt;= 1).</p></div>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2074</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2102</span>
 
 </pre>
     </td>
@@ -20635,14 +21159,14 @@ The available transformation types are:</p>
       <pre class="lines">
 
 
-2119
-2120
-2121
-2122
-2123</pre>
+2147
+2148
+2149
+2150
+2151</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2119</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2147</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_shadelines'>shadelines</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='label'>dims:</span> <span class='lbracket'>[</span><span class='int'>1200</span><span class='comma'>,</span> <span class='int'>1200</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>xform:</span> <span class='int'>1</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_n'>n</span> <span class='op'>=</span> <span class='id identifier rubyid_x'>x</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
@@ -20752,14 +21276,14 @@ The available transformation types are:</p>
       <pre class="lines">
 
 
-2096
-2097
-2098
-2099
-2100</pre>
+2124
+2125
+2126
+2127
+2128</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2096</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2124</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_shadepoints'>shadepoints</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='label'>dims:</span> <span class='lbracket'>[</span><span class='int'>1200</span><span class='comma'>,</span> <span class='int'>1200</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>xform:</span> <span class='int'>1</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_n'>n</span> <span class='op'>=</span> <span class='id identifier rubyid_x'>x</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
@@ -20958,14 +21482,14 @@ drawn (<code>m</code> &gt; len(<code>x</code>))</p></div>
       <pre class="lines">
 
 
-2510
-2511
-2512
-2513
-2514</pre>
+2550
+2551
+2552
+2553
+2554</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2510</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2550</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_startlistener'>startlistener</span>
   <span class='id identifier rubyid_inquiry_int'>inquiry_int</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_ret'>ret</span><span class='op'>|</span>
@@ -21248,16 +21772,16 @@ array containing the Z coordinates</p></div>
       <pre class="lines">
 
 
-1429
-1430
-1431
-1432
-1433
-1434
-1435</pre>
+1439
+1440
+1441
+1442
+1443
+1444
+1445</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1429</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1439</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_surface'>surface</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_z'>z</span><span class='comma'>,</span> <span class='id identifier rubyid_option'>option</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_nx'>nx</span> <span class='op'>=</span> <span class='id identifier rubyid_x'>x</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
@@ -21373,14 +21897,14 @@ string</p></div>
       <pre class="lines">
 
 
-2411
-2412
-2413
-2414
-2415</pre>
+2451
+2452
+2453
+2454
+2455</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2411</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2451</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inqtext3d'>inqtext3d</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_z'>z</span><span class='comma'>,</span> <span class='id identifier rubyid_string'>string</span><span class='comma'>,</span> <span class='id identifier rubyid_axis'>axis</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_inquiry'>inquiry</span> <span class='lbracket'>[</span><span class='lbrace'>{</span> <span class='label'>double:</span> <span class='int'>16</span> <span class='rbrace'>}</span><span class='comma'>,</span> <span class='lbrace'>{</span> <span class='label'>double:</span> <span class='int'>16</span> <span class='rbrace'>}</span><span class='rbracket'>]</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_tbx'>tbx</span><span class='comma'>,</span> <span class='id identifier rubyid_tby'>tby</span><span class='op'>|</span>
@@ -21410,7 +21934,7 @@ string</p></div>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1939</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1967</span>
 
 </pre>
     </td>
@@ -21549,7 +22073,7 @@ function.</li>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1066</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1076</span>
 
 </pre>
     </td>
@@ -21710,7 +22234,7 @@ character height, character up vector, text path and text alignment.</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1584</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1602</span>
 
 </pre>
     </td>
@@ -21791,7 +22315,7 @@ character height, character up vector, text path and text alignment.</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1397</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1407</span>
 
 </pre>
     </td>
@@ -21851,18 +22375,18 @@ character height, character up vector, text path and text alignment.</p>
       <pre class="lines">
 
 
-2232
-2233
-2234
-2235
-2236
-2237
-2238
-2239
-2240</pre>
+2260
+2261
+2262
+2263
+2264
+2265
+2266
+2267
+2268</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2232</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2260</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_rgb_color'>to_rgb_color</span><span class='lparen'>(</span><span class='id identifier rubyid_z'>z</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_zmin'>zmin</span><span class='comma'>,</span> <span class='id identifier rubyid_zmax'>zmax</span> <span class='op'>=</span> <span class='id identifier rubyid_z'>z</span><span class='period'>.</span><span class='id identifier rubyid_minmax'>minmax</span>
@@ -22001,14 +22525,14 @@ character height, character up vector, text path and text alignment.</p>
       <pre class="lines">
 
 
-1500
-1501
-1502
-1503
-1504</pre>
+1510
+1511
+1512
+1513
+1514</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1500</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1510</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_tricontour'>tricontour</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_z'>z</span><span class='comma'>,</span> <span class='id identifier rubyid_levels'>levels</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_npoints'>npoints</span> <span class='op'>=</span> <span class='id identifier rubyid_equal_length'>equal_length</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_z'>z</span><span class='rparen'>)</span>
@@ -22129,13 +22653,13 @@ character height, character up vector, text path and text alignment.</p>
       <pre class="lines">
 
 
-1997
-1998
-1999
-2000</pre>
+2025
+2026
+2027
+2028</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1997</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2025</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_trisurface'>trisurface</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_z'>z</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_n'>n</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_z'>z</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:length</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_min'>min</span>
@@ -22164,7 +22688,7 @@ character height, character up vector, text path and text alignment.</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1009</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1019</span>
 
 </pre>
     </td>
@@ -22244,28 +22768,28 @@ character height, character up vector, text path and text alignment.</p>
       <pre class="lines">
 
 
-1957
-1958
-1959
-1960
-1961
-1962
-1963
-1964
-1965
-1966
-1967
-1968
-1969
-1970
-1971
-1972
-1973
-1974
-1975</pre>
+1985
+1986
+1987
+1988
+1989
+1990
+1991
+1992
+1993
+1994
+1995
+1996
+1997
+1998
+1999
+2000
+2001
+2002
+2003</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1957</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1985</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_delaunay'>delaunay</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='rparen'>)</span>
   <span class='comment'># Feel free to make a pull request if you catch a mistake
@@ -22274,10 +22798,10 @@ character height, character up vector, text path and text alignment.</p>
   <span class='id identifier rubyid_triangles'>triangles</span> <span class='op'>=</span> <span class='const'>Fiddle</span><span class='op'>::</span><span class='const'>Pointer</span><span class='period'>.</span><span class='id identifier rubyid_malloc'>malloc</span><span class='lparen'>(</span><span class='const'>Fiddle</span><span class='op'>::</span><span class='const'>SIZEOF_INTPTR_T</span><span class='comma'>,</span> <span class='const'>Fiddle</span><span class='op'>::</span><span class='const'>RUBY_FREE</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_dim'>dim</span> <span class='op'>=</span> <span class='int'>3</span>
   <span class='id identifier rubyid_n_tri'>n_tri</span> <span class='op'>=</span> <span class='id identifier rubyid_inquiry_int'>inquiry_int</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_ntri'>ntri</span><span class='op'>|</span>
-    <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_npoints'>npoints</span><span class='comma'>,</span> <span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_ntri'>ntri</span><span class='comma'>,</span> <span class='id identifier rubyid_triangles'>triangles</span><span class='period'>.</span><span class='id identifier rubyid_ref'>ref</span><span class='rparen'>)</span>
+    <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_npoints'>npoints</span><span class='comma'>,</span> <span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_ntri'>ntri</span><span class='comma'>,</span> <span class='id identifier rubyid_triangles'>triangles</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_n_tri'>n_tri</span> <span class='op'>&gt;</span> <span class='int'>0</span>
-    <span class='id identifier rubyid_tri'>tri</span> <span class='op'>=</span> <span class='id identifier rubyid_triangles'>triangles</span><span class='period'>.</span><span class='id identifier rubyid_to_str'>to_str</span><span class='lparen'>(</span><span class='id identifier rubyid_dim'>dim</span> <span class='op'>*</span> <span class='id identifier rubyid_n_tri'>n_tri</span> <span class='op'>*</span> <span class='const'>Fiddle</span><span class='op'>::</span><span class='const'>SIZEOF_INT</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_unpack'>unpack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>l*</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='comment'># Int32
+    <span class='id identifier rubyid_tri'>tri</span> <span class='op'>=</span> <span class='id identifier rubyid_triangles'>triangles</span><span class='period'>.</span><span class='id identifier rubyid_ptr'>ptr</span><span class='period'>.</span><span class='id identifier rubyid_to_str'>to_str</span><span class='lparen'>(</span><span class='id identifier rubyid_dim'>dim</span> <span class='op'>*</span> <span class='id identifier rubyid_n_tri'>n_tri</span> <span class='op'>*</span> <span class='const'>Fiddle</span><span class='op'>::</span><span class='const'>SIZEOF_INT</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_unpack'>unpack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>l*</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='comment'># Int32
 </span>    <span class='comment'># Ruby  : 0-based indexing
 </span>    <span class='comment'># Julia : 1-based indexing
 </span>    <span class='id identifier rubyid_tri'>tri</span> <span class='op'>=</span> <span class='id identifier rubyid_tri'>tri</span><span class='period'>.</span><span class='id identifier rubyid_each_slice'>each_slice</span><span class='lparen'>(</span><span class='id identifier rubyid_dim'>dim</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_a'>to_a</span>
@@ -22328,16 +22852,16 @@ character height, character up vector, text path and text alignment.</p>
       <pre class="lines">
 
 
-1590
-1591
-1592
-1593
-1594
-1595
-1596</pre>
+1608
+1609
+1610
+1611
+1612
+1613
+1614</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1590</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1608</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_adjustlimits'>adjustlimits</span><span class='lparen'>(</span><span class='id identifier rubyid_amin'>amin</span><span class='comma'>,</span> <span class='id identifier rubyid_amax'>amax</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_inquiry'>inquiry</span> <span class='qsymbols_beg'>%i[</span><span class='tstring_content'>double</span><span class='words_sep'> </span><span class='tstring_content'>double</span><span class='tstring_end'>]</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_pamin'>pamin</span><span class='comma'>,</span> <span class='id identifier rubyid_pamax'>pamax</span><span class='op'>|</span>
@@ -22435,13 +22959,13 @@ character height, character up vector, text path and text alignment.</p>
       <pre class="lines">
 
 
-1309
-1310
-1311
-1312</pre>
+1319
+1320
+1321
+1322</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1309</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1319</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_verrorbars'>verrorbars</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_e1'>e1</span><span class='comma'>,</span> <span class='id identifier rubyid_e2'>e2</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_n'>n</span> <span class='op'>=</span> <span class='id identifier rubyid_equal_length'>equal_length</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_e1'>e1</span><span class='comma'>,</span> <span class='id identifier rubyid_e2'>e2</span><span class='rparen'>)</span>
@@ -22489,12 +23013,12 @@ character height, character up vector, text path and text alignment.</p>
       <pre class="lines">
 
 
-2070
-2071
-2072</pre>
+2098
+2099
+2100</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2070</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 2098</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_version'>version</span>
   <span class='kw'>super</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
@@ -22562,17 +23086,17 @@ character height, character up vector, text path and text alignment.</p>
       <pre class="lines">
 
 
-1693
-1694
-1695
-1696
-1697
-1698
-1699
-1700</pre>
+1711
+1712
+1713
+1714
+1715
+1716
+1717
+1718</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1693</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1711</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_wc3towc'>wc3towc</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_z'>z</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_inquiry'>inquiry</span> <span class='qsymbols_beg'>%i[</span><span class='tstring_content'>double</span><span class='words_sep'> </span><span class='tstring_content'>double</span><span class='words_sep'> </span><span class='tstring_content'>double</span><span class='tstring_end'>]</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_px'>px</span><span class='comma'>,</span> <span class='id identifier rubyid_py'>py</span><span class='comma'>,</span> <span class='id identifier rubyid_pz'>pz</span><span class='op'>|</span>
@@ -22602,16 +23126,16 @@ character height, character up vector, text path and text alignment.</p>
       <pre class="lines">
 
 
-1685
-1686
-1687
-1688
-1689
-1690
-1691</pre>
+1703
+1704
+1705
+1706
+1707
+1708
+1709</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1685</span>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 1703</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_wctondc'>wctondc</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_inquiry'>inquiry</span> <span class='qsymbols_beg'>%i[</span><span class='tstring_content'>double</span><span class='words_sep'> </span><span class='tstring_content'>double</span><span class='tstring_end'>]</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_px'>px</span><span class='comma'>,</span> <span class='id identifier rubyid_py'>py</span><span class='op'>|</span>
@@ -22669,7 +23193,7 @@ character height, character up vector, text path and text alignment.</p>
 </div>
 
       <div id="footer">
-  Generated on Sun May 24 07:41:05 2026 by
+  Generated on Sun May 24 07:55:42 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.43 (ruby-4.0.5).
 </div>
