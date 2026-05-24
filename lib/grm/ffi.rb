@@ -82,7 +82,7 @@ module GRM
     try_extern 'int grm_plot(const grm_args_t *args)'
     try_extern 'int grm_render(void)'
     try_extern 'int grm_process_tree(void)'
-    try_extern 'int grm_export(const char *file_path)'
+    try_extern 'int grm_export(const char *file_path, int export_xml)'
     try_extern 'int grm_switch(unsigned int id)'
     try_extern 'int grm_get_error_code()'
     try_extern 'int grm_load_graphics_tree(FILE *file)'
