@@ -70,6 +70,25 @@ class GRCommonsTest < Test::Unit::TestCase
     end
   end
 
+  def test_convert_bool_array
+    data = [true, false]
+    binary = GRCommons::Fiddley::Utils.array2str(:bool, data)
+    assert_equal(data, GRCommons::Fiddley::Utils.str2array(:bool, binary))
+  end
+
+  def test_memory_pointer_read_float
+    value = 1.25
+    pointer = GRCommons::Fiddley::MemoryPointer.new(:float)
+    pointer.write_float(value)
+    assert_equal(value, pointer.read_float)
+  end
+
+  def test_memory_pointer_write_bytes_default_length
+    pointer = GRCommons::Fiddley::MemoryPointer.new(:char, 4)
+    pointer.write_bytes('abcd')
+    assert_equal('abcd', pointer.read_bytes(4))
+  end
+
   def test_inquiry_int
     a = 3
     b = @utils.send(:inquiry_int) do |pt|

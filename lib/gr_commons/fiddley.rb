@@ -71,7 +71,7 @@ module GRCommons
         when :uint
           str.unpack('I!*')
         when :bool
-          str.unpack('i!*') != 0
+          str.unpack('i!*').map { |value| value != 0 }
         when :long
           str.unpack('l!*')
         when :ulong
@@ -115,7 +115,7 @@ module GRCommons
         when :uint
           arr.pack('I!*')
         when :bool
-          [arr ? 1 : 0].pack('i!*')
+          Array(arr).map { |value| value ? 1 : 0 }.pack('i!*')
         when :long
           arr.pack('l!*')
         when :ulong
@@ -329,7 +329,7 @@ module GRCommons
 
       # added
       define_method('read_float') do
-        __send__('get_double', 0)
+        __send__('get_float', 0)
       end
 
       # added
@@ -353,6 +353,7 @@ module GRCommons
       end
 
       def put_bytes(offset, str, idx = 0, len = str.bytesize - idx)
+        len ||= str.bytesize - idx
         @ptr[offset, len] = str[idx, len]
       end
 
