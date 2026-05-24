@@ -6,13 +6,13 @@
 <title>
   Module: GR3
   
-    &mdash; Documentation by YARD 0.9.37
+    &mdash; Documentation by YARD 0.9.43
   
 </title>
 
-  <link rel="stylesheet" href="css/style.css" type="text/css" />
+  <link rel="stylesheet" href="css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="css/common.css" type="text/css" />
+  <link rel="stylesheet" href="css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "GR3";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -83,8 +85,9 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>lib/gr3.rb<span class="defines">,<br />
-  lib/gr3/ffi.rb,<br /> lib/gr3/gr3base.rb,<br /> lib/gr3/version.rb,<br /> lib/gr_commons/gr_logger.rb</span>
+    <dd>lib/gr3.rb<span class="defines">,<br>
+  lib/gr3/ffi.rb,<br> lib/gr3/gr3base.rb,<br> lib/gr3/version.rb,<br> lib/gr_commons/gr_logger.rb</span>
+
 </dd>
   </dl>
   
@@ -95,79 +98,66 @@
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'>
-<p>Why not GR::GR3?</p>
-<ul><li>
-<p>kojix2 did not want to force gr3 to be loaded when gr is loaded.</p>
-</li><li>
-<p>kojix2 did not want to write ‘GR3 = GR::GR3` or something.</p>
-</li><li>
-<p>This is a opinion of kojix2 and may be changed by future maintainers.</p>
-</li></ul>
-</div>
+    <div class='inline'><p>Why not GR::GR3?</p>
+<ul>
+<li>kojix2 did not want to force gr3 to be loaded when gr is loaded.</li>
+<li>kojix2 did not want to write <code>GR3 = GR::GR3</code> or something.</li>
+<li>This is a opinion of kojix2 and may be changed by future maintainers.</li>
+</ul></div>
   </div>
 
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'>
-<p>GR3 uses Numo::Narrray.</p>
-<ul><li>
-<p>It is difficult to write GR3 modules with only Ruby arrays.</p>
-</li><li>
-<p>Numo::Narray has better performance and is easier to read.</p>
-</li><li>
-<p>Numo::Narray does not work with JRuby.</p>
-<ul><li>
-<p><a href="https://github.com/ruby-numo/numo-narray/issues/147">github.com/ruby-numo/numo-narray/issues/147</a></p>
-</li></ul>
-</li></ul>
-</div>
+    <div class='inline'><p>GR3 uses Numo::Narrray.</p>
+<ul>
+<li>It is difficult to write GR3 modules with only Ruby arrays.</li>
+<li>Numo::Narray has better performance and is easier to read.</li>
+<li>Numo::Narray does not work with JRuby.
+<ul>
+<li><a href="https://github.com/ruby-numo/numo-narray/issues/147">https://github.com/ruby-numo/numo-narray/issues/147</a></li>
+</ul>
+</li>
+</ul></div>
   </div>
 
-
 <p>OverView of GR.rb</p>
-
-<pre class="code ruby"><code class="ruby">+--------------------+  +--------------------+
+<p><code>--------------------</code>  <code>--------------------</code>
 | GR module          |  | GR3 module         |
-| +----------------+ |  | +----------------+ |
+| <code>----------------</code> |  | <code>----------------</code> |
 | | GR::FFI        | |  | | GR3::FFI       | |
 | | +   libGR.so   | |  | | +    libGR3.so | |
-| +----------------+ |  | +----------------+ |
+| <code>----------------</code> |  | <code>----------------</code> |
 |   | define_method  |  |   | define_method  |
-| +----------------+ |  | +----------------+ |
+| <code>----------------</code> |  | <code>----------------</code> |
 | | | GR::GRBase   | |  | | | GR3::GR3Base | |
 | | v  (Pri^ate)   | |  | | v  (Pri^ate)   | |
 | +++--------------+ |  | +++--------------+ |
 |  | Extend          |  |  | Extend          |
-|  v                 |  |  v       +-------+ |
-|      +-----------+ |  |          | Check | |
+|  v                 |  |  v       <code>-------</code> |
+|      <code>-----------</code> |  |          | Check | |
 |      | GR::Plot  | |  |       &lt;--+ Error | |
-|      +-----------+ |  |          +-------+ |
-+--------------------+  +----------+---------+
-          ^                        ^
-          |  +------------------+  |
-   Extend |  | GRCommons module |  | Extend
-          |  | +--------------+ |  |
-          |  | |    Fiddley   | |  |
-          |  | +--------------+ |  |
-          |  | +--------------+ |  |
-          +----+ CommonUtils  +----+
-          |  | +--------------+ |  |
-          |  | +--------------+ |  |
-          +----+    Version   +----+
-          |  | +--------------+ |
-          |  | +--------------+ |
-          +----+JupyterSupport| |
-             | +--------------+ |
-             +------------------+
-</code></pre>
-
-<p>(You can edit the above AA diagram with <a href="http://asciiflow.com">asciiflow.com</a>/)</p>
-
+|      <code>-----------</code> |  |          <code>-------</code> |
+<code>--------------------</code>  +----------+---------+
+^                        ^
+|  <code>------------------</code>  |
+Extend |  | GRCommons module |  | Extend
+|  | <code>--------------</code> |  |
+|  | |    Fiddley   | |  |
+|  | <code>--------------</code> |  |
+|  | <code>--------------</code> |  |
+<code>----</code> CommonUtils  <code>----</code>
+|  | <code>--------------</code> |  |
+|  | <code>--------------</code> |  |
+<code>----</code>    Version   <code>----</code>
+|  | <code>--------------</code> |
+|  | <code>--------------</code> |
++----+JupyterSupport| |
+| <code>--------------</code> |
+<code>------------------</code></p>
+<p>(You can edit the above AA diagram with <a href="http://asciiflow.com/">http://asciiflow.com/</a>)</p>
 <p>Fiddley is Ruby-FFI compatible API layer for Fiddle.</p>
-
-<p>This is a procedural interface to the GR3 in GR plotting library, <a href="https://github.com/sciapp/gr">github.com/sciapp/gr</a></p>
-
+<p>This is a procedural interface to the GR3 in GR plotting library,
+<a href="https://github.com/sciapp/gr">https://github.com/sciapp/gr</a></p>
 
   </div>
 </div>
@@ -198,9 +188,7 @@
         <dt id="IA_END_OF_LIST-constant" class="">IA_END_OF_LIST =
           <div class="docstring">
   <div class="discussion">
-    
-<p>InitAttribute</p>
-
+    <p>InitAttribute</p>
 
   </div>
 </div>
@@ -229,9 +217,7 @@
         <dt id="ERROR_NONE-constant" class="">ERROR_NONE =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Error</p>
-
+    <p>Error</p>
 
   </div>
 </div>
@@ -295,9 +281,7 @@
         <dt id="QUALITY_OPENGL_NO_SSAA-constant" class="">QUALITY_OPENGL_NO_SSAA =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Quality</p>
-
+    <p>Quality</p>
 
   </div>
 </div>
@@ -356,9 +340,7 @@
         <dt id="DRAWABLE_OPENGL-constant" class="">DRAWABLE_OPENGL =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Drawable</p>
-
+    <p>Drawable</p>
 
   </div>
 </div>
@@ -377,9 +359,7 @@
         <dt id="PROJECTION_PERSPECTIVE-constant" class="">PROJECTION_PERSPECTIVE =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Projection</p>
-
+    <p>Projection</p>
 
   </div>
 </div>
@@ -403,9 +383,7 @@
         <dt id="SURFACE_DEFAULT-constant" class="">SURFACE_DEFAULT =
           <div class="docstring">
   <div class="discussion">
-    
-<p>SurfaceOption</p>
-
+    <p>SurfaceOption</p>
 
   </div>
 </div>
@@ -586,9 +564,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute ffi_lib.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute ffi_lib.</p></div></span>
   
 </li>
 
@@ -623,9 +599,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>This function sets the view matrix by getting the position of the camera, the position of the center of focus and the direction which should point up.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>This function sets the view matrix by getting the position of the camera, the position of the center of focus and the direction which should point up.</p></div></span>
   
 </li>
 
@@ -647,9 +621,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>This function clears the draw list.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>This function clears the draw list.</p></div></span>
   
 </li>
 
@@ -693,9 +665,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>This function creates an indexed mesh from vertex information (position, normal and color) and triangle information (indices).</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>This function creates an indexed mesh from vertex information (position, normal and color) and triangle information (indices).</p></div></span>
   
 </li>
 
@@ -717,9 +687,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>This function creates a mesh from vertex position, normal and color data.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>This function creates a mesh from vertex position, normal and color data.</p></div></span>
   
 </li>
 
@@ -741,9 +709,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>This function creates an isosurface from voxel data using the marching cubes algorithm.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>This function creates an isosurface from voxel data using the marching cubes algorithm.</p></div></span>
   
 </li>
 
@@ -765,9 +731,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>This function creates a int from vertex position, normal and color data.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>This function creates a int from vertex position, normal and color data.</p></div></span>
   
 </li>
 
@@ -789,9 +753,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>This function creates a mesh from vertex position, normal and color data.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>This function creates a mesh from vertex position, normal and color data.</p></div></span>
   
 </li>
 
@@ -813,9 +775,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Creates meshes for slices through the given data, using the current GR colormap.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Creates meshes for slices through the given data, using the current GR colormap.</p></div></span>
   
 </li>
 
@@ -837,9 +797,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Create a mesh of a surface plot similar to gr_surface.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Create a mesh of a surface plot similar to gr_surface.</p></div></span>
   
 </li>
 
@@ -861,9 +819,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Create a mesh object in the shape of a tube following a path given by a list of points.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Create a mesh object in the shape of a tube following a path given by a list of points.</p></div></span>
   
 </li>
 
@@ -885,9 +841,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Creates a meshes for a slices through the yz-plane of the given data, using the current GR colormap.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Creates a meshes for a slices through the yz-plane of the given data, using the current GR colormap.</p></div></span>
   
 </li>
 
@@ -909,9 +863,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Creates a meshes for a slices through the xz-plane of the given data, using the current GR colormap.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Creates a meshes for a slices through the xz-plane of the given data, using the current GR colormap.</p></div></span>
   
 </li>
 
@@ -933,9 +885,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Creates a meshes for a slices through the xy-plane of the given data, using the current GR colormap.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Creates a meshes for a slices through the xy-plane of the given data, using the current GR colormap.</p></div></span>
   
 </li>
 
@@ -957,9 +907,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>This function marks a mesh for deletion and removes the user’s reference from the mesh’s reference counter, so a user must not use the mesh after calling this function.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>This function marks a mesh for deletion and removes the user’s reference from the mesh’s reference counter, so a user must not use the mesh after calling this function.</p></div></span>
   
 </li>
 
@@ -981,9 +929,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>This function allows drawing a cylinder without requiring a mesh.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>This function allows drawing a cylinder without requiring a mesh.</p></div></span>
   
 </li>
 
@@ -1027,9 +973,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>This function allows drawing a cylinder without requiring a mesh.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>This function allows drawing a cylinder without requiring a mesh.</p></div></span>
   
 </li>
 
@@ -1095,9 +1039,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>This function adds a mesh to the draw list, so it will be drawn when the user calls getpixmap.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>This function adds a mesh to the draw list, so it will be drawn when the user calls getpixmap.</p></div></span>
   
 </li>
 
@@ -1119,9 +1061,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Draw a mesh with the projection of gr.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Draw a mesh with the projection of gr.</p></div></span>
   
 </li>
 
@@ -1143,9 +1083,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>drawmolecule.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>drawmolecule.</p></div></span>
   
 </li>
 
@@ -1167,9 +1105,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>raw slices through the given data, using the current GR colormap.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>raw slices through the given data, using the current GR colormap.</p></div></span>
   
 </li>
 
@@ -1191,9 +1127,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>This function allows drawing a sphere without requiring a mesh.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>This function allows drawing a sphere without requiring a mesh.</p></div></span>
   
 </li>
 
@@ -1215,9 +1149,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>drawspins.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>drawspins.</p></div></span>
   
 </li>
 
@@ -1239,9 +1171,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Convenience function for drawing a surfacemesh.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Convenience function for drawing a surfacemesh.</p></div></span>
   
 </li>
 
@@ -1263,9 +1193,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Draw a tube following a path given by a list of points.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Draw a tube following a path given by a list of points.</p></div></span>
   
 </li>
 
@@ -1287,9 +1215,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Draw a yz-slice through the given data, using the current GR colormap.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Draw a yz-slice through the given data, using the current GR colormap.</p></div></span>
   
 </li>
 
@@ -1311,9 +1237,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Draw a xz-slice through the given data, using the current GR colormap.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Draw a xz-slice through the given data, using the current GR colormap.</p></div></span>
   
 </li>
 
@@ -1335,9 +1259,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Draw a xy-slice through the given data, using the current GR colormap.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Draw a xy-slice through the given data, using the current GR colormap.</p></div></span>
   
 </li>
 
@@ -1425,9 +1347,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Get the projection parameters.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Get the projection parameters.</p></div></span>
   
 </li>
 
@@ -1471,9 +1391,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>This function returns information on the most recent GR3 error.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>This function returns information on the most recent GR3 error.</p></div></span>
   
 </li>
 
@@ -1495,9 +1413,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>This function returns a string representation of a given error code.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>This function returns a string representation of a given error code.</p></div></span>
   
 </li>
 
@@ -1585,9 +1501,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>The current projection type: GR3_PROJECTION_PERSPECTIVE or GR3_PROJECTION_PARALLEL.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>The current projection type: GR3_PROJECTION_PERSPECTIVE or GR3_PROJECTION_PARALLEL.</p></div></span>
   
 </li>
 
@@ -1609,9 +1523,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>This function allows the user to find out how his commands are rendered.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>This function allows the user to find out how his commands are rendered.</p></div></span>
   
 </li>
 
@@ -1677,9 +1589,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>This method initializes the gr3 context.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>This method initializes the gr3 context.</p></div></span>
   
 </li>
 
@@ -1767,9 +1677,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>This function sets the background color.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>This function sets the background color.</p></div></span>
   
 </li>
 
@@ -1791,9 +1699,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>This function sets the projection parameters.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>This function sets the projection parameters.</p></div></span>
   
 </li>
 
@@ -1859,9 +1765,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>This function sets the direction of light.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>This function sets the direction of light.</p></div></span>
   
 </li>
 
@@ -1971,9 +1875,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Set rendering quality.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Set rendering quality.</p></div></span>
   
 </li>
 
@@ -2039,9 +1941,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Create a surface plot with gr3 and draw it with gks as cellarray.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Create a surface plot with gr3 and draw it with gks as cellarray.</p></div></span>
   
 </li>
 
@@ -2063,9 +1963,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>This function terminates the gr3 context.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>This function terminates the gr3 context.</p></div></span>
   
 </li>
 
@@ -2087,9 +1985,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Use the currently bound framebuffer as the framebuffer used for drawing to OpenGL (using gr3.drawimage).</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Use the currently bound framebuffer as the framebuffer used for drawing to OpenGL (using gr3.drawimage).</p></div></span>
   
 </li>
 
@@ -2111,9 +2007,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Set the framebuffer used for drawing to OpenGL (using gr3.drawimage).</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Set the framebuffer used for drawing to OpenGL (using gr3.drawimage).</p></div></span>
   
 </li>
 
@@ -2141,9 +2035,11 @@
 
       
     </ul>
+    
   
 
 
+  
   
   
   
@@ -2155,6 +2051,9 @@
   <h3 class="inherited">Methods included from <span class='object_link'><a href="GRCommons/GRCommonUtils.html" title="GRCommons::GRCommonUtils (module)">GRCommons::GRCommonUtils</a></span></h3>
   <p class="inherited"><span class='object_link'><a href="GRCommons/GRCommonUtils.html#create_ffi_pointer-class_method" title="GRCommons::GRCommonUtils.create_ffi_pointer (method)">create_ffi_pointer</a></span>, <span class='object_link'><a href="GRCommons/GRCommonUtils.html#double-class_method" title="GRCommons::GRCommonUtils.double (method)">double</a></span>, <span class='object_link'><a href="GRCommons/GRCommonUtils.html#equal_length-class_method" title="GRCommons::GRCommonUtils.equal_length (method)">equal_length</a></span>, <span class='object_link'><a href="GRCommons/GRCommonUtils.html#float-class_method" title="GRCommons::GRCommonUtils.float (method)">float</a></span>, <span class='object_link'><a href="GRCommons/GRCommonUtils.html#inquiry-class_method" title="GRCommons::GRCommonUtils.inquiry (method)">inquiry</a></span>, <span class='object_link'><a href="GRCommons/GRCommonUtils.html#inquiry_double-class_method" title="GRCommons::GRCommonUtils.inquiry_double (method)">inquiry_double</a></span>, <span class='object_link'><a href="GRCommons/GRCommonUtils.html#inquiry_int-class_method" title="GRCommons::GRCommonUtils.inquiry_int (method)">inquiry_int</a></span>, <span class='object_link'><a href="GRCommons/GRCommonUtils.html#inquiry_uint-class_method" title="GRCommons::GRCommonUtils.inquiry_uint (method)">inquiry_uint</a></span>, <span class='object_link'><a href="GRCommons/GRCommonUtils.html#int-class_method" title="GRCommons::GRCommonUtils.int (method)">int</a></span>, <span class='object_link'><a href="GRCommons/GRCommonUtils.html#narray%3F-class_method" title="GRCommons::GRCommonUtils.narray? (method)">narray?</a></span>, <span class='object_link'><a href="GRCommons/GRCommonUtils.html#read_ffi_pointer-class_method" title="GRCommons::GRCommonUtils.read_ffi_pointer (method)">read_ffi_pointer</a></span>, <span class='object_link'><a href="GRCommons/GRCommonUtils.html#uint-class_method" title="GRCommons::GRCommonUtils.uint (method)">uint</a></span>, <span class='object_link'><a href="GRCommons/GRCommonUtils.html#uint16-class_method" title="GRCommons::GRCommonUtils.uint16 (method)">uint16</a></span>, <span class='object_link'><a href="GRCommons/GRCommonUtils.html#uint8-class_method" title="GRCommons::GRCommonUtils.uint8 (method)">uint8</a></span></p>
 
+  
+  
+  
   
   
   
@@ -2194,9 +2093,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the value of attribute ffi_lib.</p>
-
+    <p>Returns the value of attribute ffi_lib.</p>
 
   </div>
 </div>
@@ -2242,9 +2139,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>This function sets the view matrix by getting the position of the camera, the position of the center of focus and the direction which should point up. This function takes effect when the next image is created. Therefore if you want to take pictures of the same data from different perspectives, you can call and gr3_cameralookat(), gr3_getpixmap_(), gr3_cameralookat(), gr3_getpixmap_(), … without calling gr3_clear() and gr3_drawmesh() again.</p>
-
+    <p>This function sets the view matrix by getting the position of the camera,
+the position of the center of focus and the direction which should point up.
+This function takes effect when the next image is created. Therefore if
+you want to take pictures of the same data from different perspectives,
+you can call and gr3_cameralookat(), gr3_getpixmap_(), gr3_cameralookat(),
+gr3_getpixmap_(), … without calling gr3_clear() and gr3_drawmesh() again.</p>
 
   </div>
 </div>
@@ -2262,9 +2162,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The x-coordinate of the camera</p>
-</div>
+        <div class='inline'><p>The x-coordinate of the camera</p></div>
       
     </li>
   
@@ -2278,9 +2176,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The y-coordinate of the camera</p>
-</div>
+        <div class='inline'><p>The y-coordinate of the camera</p></div>
       
     </li>
   
@@ -2294,9 +2190,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The z-coordinate of the camera</p>
-</div>
+        <div class='inline'><p>The z-coordinate of the camera</p></div>
       
     </li>
   
@@ -2310,9 +2204,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The x-coordinate of the center of focus</p>
-</div>
+        <div class='inline'><p>The x-coordinate of the center of focus</p></div>
       
     </li>
   
@@ -2326,9 +2218,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The y-coordinate of the center of focus</p>
-</div>
+        <div class='inline'><p>The y-coordinate of the center of focus</p></div>
       
     </li>
   
@@ -2342,9 +2232,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The z-coordinate of the center of focus</p>
-</div>
+        <div class='inline'><p>The z-coordinate of the center of focus</p></div>
       
     </li>
   
@@ -2358,9 +2246,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The x-component of the up direction</p>
-</div>
+        <div class='inline'><p>The x-component of the up direction</p></div>
       
     </li>
   
@@ -2374,9 +2260,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The y-component of the up direction</p>
-</div>
+        <div class='inline'><p>The y-component of the up direction</p></div>
       
     </li>
   
@@ -2390,9 +2274,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The z-component of the up direction</p>
-</div>
+        <div class='inline'><p>The z-component of the up direction</p></div>
       
     </li>
   
@@ -2427,9 +2309,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>This function clears the draw list.</p>
-
+    <p>This function clears the draw list.</p>
 
   </div>
 </div>
@@ -2525,9 +2405,9 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>This function creates an indexed mesh from vertex information (position, normal and color) and triangle information (indices). Returns a mesh.</p>
-
+    <p>This function creates an indexed mesh from vertex information (position,
+normal and color) and triangle information (indices).
+Returns a mesh.</p>
 
   </div>
 </div>
@@ -2545,9 +2425,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the number of vertices in the mesh</p>
-</div>
+        <div class='inline'><p>the number of vertices in the mesh</p></div>
       
     </li>
   
@@ -2561,9 +2439,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the vertex positions</p>
-</div>
+        <div class='inline'><p>the vertex positions</p></div>
       
     </li>
   
@@ -2577,9 +2453,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the vertex normals</p>
-</div>
+        <div class='inline'><p>the vertex normals</p></div>
       
     </li>
   
@@ -2593,9 +2467,9 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the vertex colors, they should be white (1,1,1) if you want to change the color for each drawn mesh</p>
-</div>
+        <div class='inline'><p>the vertex colors, they should be
+white (1,1,1) if you want to change
+the color for each drawn mesh</p></div>
       
     </li>
   
@@ -2609,9 +2483,8 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the number of indices in the mesh (three times the number of triangles)</p>
-</div>
+        <div class='inline'><p>the number of indices in the mesh
+(three times the number of triangles)</p></div>
       
     </li>
   
@@ -2625,9 +2498,8 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the index array (vertex indices for each triangle)</p>
-</div>
+        <div class='inline'><p>the index array (vertex indices for
+each triangle)</p></div>
       
     </li>
   
@@ -2683,9 +2555,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>This function creates a mesh from vertex position, normal and color data.</p>
-
+    <p>This function creates a mesh from vertex position, normal and color data.</p>
 
   </div>
 </div>
@@ -2741,9 +2611,9 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>This function creates an isosurface from voxel data using the marching cubes algorithm. Returns a mesh.</p>
-
+    <p>This function creates an isosurface from voxel data using the
+marching cubes algorithm.
+Returns a mesh.</p>
 
   </div>
 </div>
@@ -2761,9 +2631,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>3D narray array containing the voxel data</p>
-</div>
+        <div class='inline'><p>3D narray array containing the voxel data</p></div>
       
     </li>
   
@@ -2777,9 +2645,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>voxel sizes in each direction</p>
-</div>
+        <div class='inline'><p>voxel sizes in each direction</p></div>
       
     </li>
   
@@ -2793,9 +2659,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>coordinate origin in each direction</p>
-</div>
+        <div class='inline'><p>coordinate origin in each direction</p></div>
       
     </li>
   
@@ -2809,9 +2673,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>isovalue at which the surface will be created</p>
-</div>
+        <div class='inline'><p>isovalue at which the surface will be created</p></div>
       
     </li>
   
@@ -2871,9 +2733,8 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>This function creates a int from vertex position, normal and color data. Returns a mesh.</p>
-
+    <p>This function creates a int from vertex position, normal and color data.
+Returns a mesh.</p>
 
   </div>
 </div>
@@ -2891,9 +2752,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the number of vertices in the mesh</p>
-</div>
+        <div class='inline'><p>the number of vertices in the mesh</p></div>
       
     </li>
   
@@ -2907,9 +2766,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the vertex positions</p>
-</div>
+        <div class='inline'><p>the vertex positions</p></div>
       
     </li>
   
@@ -2923,9 +2780,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the vertex normals</p>
-</div>
+        <div class='inline'><p>the vertex normals</p></div>
       
     </li>
   
@@ -2939,9 +2794,8 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the vertex colors, they should be white (1,1,1) if you want to change the color for each drawn mesh</p>
-</div>
+        <div class='inline'><p>the vertex colors, they should be
+white (1,1,1) if you want to change the color for each drawn mesh</p></div>
       
     </li>
   
@@ -2997,9 +2851,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>This function creates a mesh from vertex position, normal and color data.</p>
-
+    <p>This function creates a mesh from vertex position, normal and color data.</p>
 
   </div>
 </div>
@@ -3055,9 +2907,11 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Creates meshes for slices through the given data, using the current GR colormap. Use the parameters x, y or z to specify what slices should be drawn and at which positions they should go through the data. If neither x nor y nor z are set, 0.5 will be used for all three. Returns meshes for the yz-slice, the xz-slice and the xy-slice.</p>
-
+    <p>Creates meshes for slices through the given data, using the current GR
+colormap. Use the parameters x, y or z to specify what slices should be
+drawn and at which positions they should go through the data. If neither
+x nor y nor z are set, 0.5 will be used for all three.
+Returns meshes for the yz-slice, the xz-slice and the xy-slice.</p>
 
   </div>
 </div>
@@ -3075,9 +2929,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>3D narray array containing the voxel data</p>
-</div>
+        <div class='inline'><p>3D narray array containing the voxel data</p></div>
       
     </li>
   
@@ -3093,9 +2945,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the position of the slice through the xz-plane (0 to 1)</p>
-</div>
+        <div class='inline'><p>the position of the slice through the xz-plane (0 to 1)</p></div>
       
     </li>
   
@@ -3111,9 +2961,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the position of the slice through the xz-plane (0 to 1)</p>
-</div>
+        <div class='inline'><p>the position of the slice through the xz-plane (0 to 1)</p></div>
       
     </li>
   
@@ -3129,9 +2977,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the position of the slice through the xz-plane (0 to 1)</p>
-</div>
+        <div class='inline'><p>the position of the slice through the xz-plane (0 to 1)</p></div>
       
     </li>
   
@@ -3147,9 +2993,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>voxel sizes in each direction</p>
-</div>
+        <div class='inline'><p>voxel sizes in each direction</p></div>
       
     </li>
   
@@ -3165,9 +3009,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>coordinate origin in each direction</p>
-</div>
+        <div class='inline'><p>coordinate origin in each direction</p></div>
       
     </li>
   
@@ -3222,9 +3064,9 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Create a mesh of a surface plot similar to gr_surface. Uses the current colormap. To apply changes of the colormap a new mesh has to be created.</p>
-
+    <p>Create a mesh of a surface plot similar to gr_surface.
+Uses the current colormap. To apply changes of the colormap
+a new mesh has to be created.</p>
 
   </div>
 </div>
@@ -3242,9 +3084,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>number of points in x-direction</p>
-</div>
+        <div class='inline'><p>number of points in x-direction</p></div>
       
     </li>
   
@@ -3258,9 +3098,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>number of points in y-direction</p>
-</div>
+        <div class='inline'><p>number of points in y-direction</p></div>
       
     </li>
   
@@ -3274,9 +3112,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>an array containing the x-coordinates</p>
-</div>
+        <div class='inline'><p>an array containing the x-coordinates</p></div>
       
     </li>
   
@@ -3290,9 +3126,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>an array containing the y-coordinates</p>
-</div>
+        <div class='inline'><p>an array containing the y-coordinates</p></div>
       
     </li>
   
@@ -3306,9 +3140,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>an array of length nx * ny containing the z-coordinates</p>
-</div>
+        <div class='inline'><p>an array of length nx * ny containing the z-coordinates</p></div>
       
     </li>
   
@@ -3324,40 +3156,39 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>option for the surface mesh; the GR3_SURFACE constants can be combined with bitwise or. See the table below.</p>
-<ul><li>
-<p>0  : GR3_SURFACE_DEFAULT</p>
-<ul><li>
-<p>default behavior</p>
-</li></ul>
-</li><li>
-<p>1  : GR3_SURFACE_NORMALS</p>
-<ul><li>
-<p>interpolate the vertex normals from the gradient</p>
-</li></ul>
-</li><li>
-<p>2  : GR3_SURFACE_FLAT</p>
-<ul><li>
-<p>set all z-coordinates to zero</p>
-</li></ul>
-</li><li>
-<p>4  : GR3_SURFACE_GRTRANSFORM</p>
-<ul><li>
-<p>use gr_inqwindow, gr_inqspace and gr_inqscale to transform the data to NDC coordinates</p>
-</li></ul>
-</li><li>
-<p>8  : GR3_SURFACE_GRCOLOR</p>
-<ul><li>
-<p>color the surface according to the current gr colormap</p>
-</li></ul>
-</li><li>
-<p>16 : GR3_SURFACE_GRZSHADED</p>
-<ul><li>
-<p>like GR3_SURFACE_GRCOLOR, but use the z-value directly as color index</p>
-</li></ul>
-</li></ul>
-</div>
+        <div class='inline'><p>option for the surface mesh; the GR3_SURFACE constants can be combined with bitwise or. See the table below.</p>
+<ul>
+<li>0  : GR3_SURFACE_DEFAULT
+<ul>
+<li>default behavior</li>
+</ul>
+</li>
+<li>1  : GR3_SURFACE_NORMALS
+<ul>
+<li>interpolate the vertex normals from the gradient</li>
+</ul>
+</li>
+<li>2  : GR3_SURFACE_FLAT
+<ul>
+<li>set all z-coordinates to zero</li>
+</ul>
+</li>
+<li>4  : GR3_SURFACE_GRTRANSFORM
+<ul>
+<li>use gr_inqwindow, gr_inqspace and gr_inqscale to transform the data to NDC coordinates</li>
+</ul>
+</li>
+<li>8  : GR3_SURFACE_GRCOLOR
+<ul>
+<li>color the surface according to the current gr colormap</li>
+</ul>
+</li>
+<li>16 : GR3_SURFACE_GRZSHADED
+<ul>
+<li>like GR3_SURFACE_GRCOLOR, but use the z-value directly as color index</li>
+</ul>
+</li>
+</ul></div>
       
     </li>
   
@@ -3413,9 +3244,9 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Create a mesh object in the shape of a tube following a path given by a list of points. The colors and radii arrays specify the color and radius at each point.</p>
-
+    <p>Create a mesh object in the shape of a tube following a path given by a
+list of points. The colors and radii arrays specify the color and radius at
+each point.</p>
 
   </div>
 </div>
@@ -3433,9 +3264,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the number of points given</p>
-</div>
+        <div class='inline'><p>the number of points given</p></div>
       
     </li>
   
@@ -3449,9 +3278,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the points the tube should go through</p>
-</div>
+        <div class='inline'><p>the points the tube should go through</p></div>
       
     </li>
   
@@ -3465,9 +3292,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the color at each point</p>
-</div>
+        <div class='inline'><p>the color at each point</p></div>
       
     </li>
   
@@ -3481,9 +3306,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the desired tube radius at each point</p>
-</div>
+        <div class='inline'><p>the desired tube radius at each point</p></div>
       
     </li>
   
@@ -3499,9 +3322,8 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the number of steps between each point, allowing for a more smooth tube</p>
-</div>
+        <div class='inline'><p>the number of steps between each point,
+allowing for a more smooth tube</p></div>
       
     </li>
   
@@ -3517,9 +3339,9 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the number of segments each ring of the tube consists of, e.g. 3 would yield a triangular tube</p>
-</div>
+        <div class='inline'><p>the number of segments each ring of the
+tube consists of, e.g. 3 would yield a
+triangular tube</p></div>
       
     </li>
   
@@ -3575,9 +3397,10 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Creates a meshes for a slices through the yz-plane of the given data, using the current GR colormap. Use the x parameter to set the position of the yz-slice. Returns a mesh for the yz-slice.</p>
-
+    <p>Creates a meshes for a slices through the yz-plane of the given data,
+using the current GR colormap. Use the x parameter to set the position of
+the yz-slice.
+Returns a mesh for the yz-slice.</p>
 
   </div>
 </div>
@@ -3595,9 +3418,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>3D narray array containing the voxel data</p>
-</div>
+        <div class='inline'><p>3D narray array containing the voxel data</p></div>
       
     </li>
   
@@ -3613,9 +3434,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the position of the slice through the xz-plane (0 to 1)</p>
-</div>
+        <div class='inline'><p>the position of the slice through the xz-plane (0 to 1)</p></div>
       
     </li>
   
@@ -3631,9 +3450,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>voxel sizes in each direction</p>
-</div>
+        <div class='inline'><p>voxel sizes in each direction</p></div>
       
     </li>
   
@@ -3649,9 +3466,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>coordinate origin in each direction</p>
-</div>
+        <div class='inline'><p>coordinate origin in each direction</p></div>
       
     </li>
   
@@ -3700,9 +3515,10 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Creates a meshes for a slices through the xz-plane of the given data, using the current GR colormap. Use the y parameter to set the position of the xz-slice. Returns a mesh for the xz-slice.</p>
-
+    <p>Creates a meshes for a slices through the xz-plane of the given data,
+using the current GR colormap. Use the y parameter to set the position of
+the xz-slice.
+Returns a mesh for the xz-slice.</p>
 
   </div>
 </div>
@@ -3720,9 +3536,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>3D narray array containing the voxel data</p>
-</div>
+        <div class='inline'><p>3D narray array containing the voxel data</p></div>
       
     </li>
   
@@ -3738,9 +3552,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the position of the slice through the xz-plane (0 to 1)</p>
-</div>
+        <div class='inline'><p>the position of the slice through the xz-plane (0 to 1)</p></div>
       
     </li>
   
@@ -3756,9 +3568,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>voxel sizes in each direction</p>
-</div>
+        <div class='inline'><p>voxel sizes in each direction</p></div>
       
     </li>
   
@@ -3774,9 +3584,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>coordinate origin in each direction</p>
-</div>
+        <div class='inline'><p>coordinate origin in each direction</p></div>
       
     </li>
   
@@ -3825,9 +3633,10 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Creates a meshes for a slices through the xy-plane of the given data, using the current GR colormap. Use the z parameter to set the position of the xy-slice. Returns a mesh for the xy-slice.</p>
-
+    <p>Creates a meshes for a slices through the xy-plane of the given data,
+using the current GR colormap. Use the z parameter to set the position of
+the xy-slice.
+Returns a mesh for the xy-slice.</p>
 
   </div>
 </div>
@@ -3845,9 +3654,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>3D narray array containing the voxel data</p>
-</div>
+        <div class='inline'><p>3D narray array containing the voxel data</p></div>
       
     </li>
   
@@ -3863,9 +3670,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the position of the slice through the xz-plane (0 to 1)</p>
-</div>
+        <div class='inline'><p>the position of the slice through the xz-plane (0 to 1)</p></div>
       
     </li>
   
@@ -3881,9 +3686,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>voxel sizes in each direction</p>
-</div>
+        <div class='inline'><p>voxel sizes in each direction</p></div>
       
     </li>
   
@@ -3899,9 +3702,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>coordinate origin in each direction</p>
-</div>
+        <div class='inline'><p>coordinate origin in each direction</p></div>
       
     </li>
   
@@ -3950,9 +3751,9 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>This function marks a mesh for deletion and removes the user’s reference from the mesh’s reference counter, so a user must not use the mesh after calling this function.</p>
-
+    <p>This function marks a mesh for deletion and removes the user’s reference
+from the mesh’s reference counter, so a user must not use the mesh after
+calling this function.</p>
 
   </div>
 </div>
@@ -3970,9 +3771,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The mesh that should be marked for deletion</p>
-</div>
+        <div class='inline'><p>The mesh that should be marked for deletion</p></div>
       
     </li>
   
@@ -4007,9 +3806,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>This function allows drawing a cylinder without requiring a mesh.</p>
-
+    <p>This function allows drawing a cylinder without requiring a mesh.</p>
 
   </div>
 </div>
@@ -4070,9 +3867,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>This function allows drawing a cylinder without requiring a mesh.</p>
-
+    <p>This function allows drawing a cylinder without requiring a mesh.</p>
 
   </div>
 </div>
@@ -4181,11 +3976,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>This function adds a mesh to the draw list, so it will be drawn when the user calls getpixmap. The given data stays owned by the user, a copy will be saved in the draw list and the mesh reference counter will be increased.</p>
-
-<p>This function does not return an error code, because of its asynchronous nature. If gr3_getpixmap_() returns a GR3_ERROR_OPENGL_ERR, this might be caused by this function saving unusable data into the draw list.</p>
-
+    <p>This function adds a mesh to the draw list, so it will be drawn when the
+user calls getpixmap. The given data stays owned by the user, a copy will
+be saved in the draw list and the mesh reference counter will be increased.</p>
+<p>This function does not return an error code, because of its asynchronous
+nature. If gr3_getpixmap_() returns a GR3_ERROR_OPENGL_ERR, this might be
+caused by this function saving unusable data into the draw list.</p>
 
   </div>
 </div>
@@ -4203,9 +3999,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The mesh to be drawn</p>
-</div>
+        <div class='inline'><p>The mesh to be drawn</p></div>
       
     </li>
   
@@ -4219,9 +4013,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The number of meshes to be drawn</p>
-</div>
+        <div class='inline'><p>The number of meshes to be drawn</p></div>
       
     </li>
   
@@ -4235,9 +4027,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The positions where the meshes should be drawn</p>
-</div>
+        <div class='inline'><p>The positions where the meshes should be drawn</p></div>
       
     </li>
   
@@ -4251,9 +4041,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The forward directions the meshes should be facing at</p>
-</div>
+        <div class='inline'><p>The forward directions the meshes should be facing at</p></div>
       
     </li>
   
@@ -4267,9 +4055,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The up directions</p>
-</div>
+        <div class='inline'><p>The up directions</p></div>
       
     </li>
   
@@ -4283,9 +4069,8 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The colors the meshes should be drawn in, it will be multiplied with each vertex color</p>
-</div>
+        <div class='inline'><p>The colors the meshes should be drawn in,
+it will be multiplied with each vertex color</p></div>
       
     </li>
   
@@ -4299,9 +4084,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The scaling factors</p>
-</div>
+        <div class='inline'><p>The scaling factors</p></div>
       
     </li>
   
@@ -4336,9 +4119,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Draw a mesh with the projection of gr. It uses the current projection parameters (rotation, tilt) of gr. This function alters the projection type, the projection parameters, the viewmatrix and the light direction. If necessary, the user has to save them before the call to this function and restore them after the call to gr3_drawimage.</p>
-
+    <p>Draw a mesh with the projection of gr. It uses the current
+projection parameters (rotation, tilt) of gr.
+This function alters the projection type, the projection parameters,
+the viewmatrix and the light direction. If necessary, the user has to
+save them before the call to this function and restore them after
+the call to gr3_drawimage.</p>
 
   </div>
 </div>
@@ -4356,9 +4142,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the mesh to be drawn</p>
-</div>
+        <div class='inline'><p>the mesh to be drawn</p></div>
       
     </li>
   
@@ -4372,9 +4156,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the number of meshes to be drawn</p>
-</div>
+        <div class='inline'><p>the number of meshes to be drawn</p></div>
       
     </li>
   
@@ -4388,9 +4170,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the positions where the meshes should be drawn</p>
-</div>
+        <div class='inline'><p>the positions where the meshes should be drawn</p></div>
       
     </li>
   
@@ -4404,9 +4184,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the forward directions the meshes should be facing at</p>
-</div>
+        <div class='inline'><p>the forward directions the meshes should be facing at</p></div>
       
     </li>
   
@@ -4420,9 +4198,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the up directions</p>
-</div>
+        <div class='inline'><p>the up directions</p></div>
       
     </li>
   
@@ -4436,9 +4212,8 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the colors the meshes should be drawn in, it will be multiplied with each vertex color</p>
-</div>
+        <div class='inline'><p>the colors the meshes should be drawn in,
+it will be multiplied with each vertex color</p></div>
       
     </li>
   
@@ -4452,9 +4227,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the scaling factors</p>
-</div>
+        <div class='inline'><p>the scaling factors</p></div>
       
     </li>
   
@@ -4489,9 +4262,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>drawmolecule</p>
-
+    <p>drawmolecule</p>
 
   </div>
 </div>
@@ -4626,9 +4397,10 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>raw slices through the given data, using the current GR colormap. Use the parameters x, y or z to specify what slices should be drawn and at which positions they should go through the data. If neither x nor y nor z are set, 0.5 will be used for all three.</p>
-
+    <p>raw slices through the given data, using the current GR colormap.
+Use the parameters x, y or z to specify what slices should be drawn and at
+which positions they should go through the data. If neither x nor y nor
+z are set, 0.5 will be used for all three.</p>
 
   </div>
 </div>
@@ -4646,9 +4418,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>3D narray array containing the voxel data</p>
-</div>
+        <div class='inline'><p>3D narray array containing the voxel data</p></div>
       
     </li>
   
@@ -4664,9 +4434,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the position of the slice through the yz-plane (0 to 1)</p>
-</div>
+        <div class='inline'><p>the position of the slice through the yz-plane (0 to 1)</p></div>
       
     </li>
   
@@ -4682,9 +4450,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the position of the slice through the xz-plane (0 to 1)</p>
-</div>
+        <div class='inline'><p>the position of the slice through the xz-plane (0 to 1)</p></div>
       
     </li>
   
@@ -4700,9 +4466,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the position of the slice through the xy-plane (0 to 1)</p>
-</div>
+        <div class='inline'><p>the position of the slice through the xy-plane (0 to 1)</p></div>
       
     </li>
   
@@ -4718,9 +4482,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>voxel sizes in each direction</p>
-</div>
+        <div class='inline'><p>voxel sizes in each direction</p></div>
       
     </li>
   
@@ -4736,9 +4498,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>coordinate origin in each direction</p>
-</div>
+        <div class='inline'><p>coordinate origin in each direction</p></div>
       
     </li>
   
@@ -4754,9 +4514,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the positions where the meshes should be drawn</p>
-</div>
+        <div class='inline'><p>the positions where the meshes should be drawn</p></div>
       
     </li>
   
@@ -4772,9 +4530,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the forward directions the meshes should be facing at</p>
-</div>
+        <div class='inline'><p>the forward directions the meshes should be facing at</p></div>
       
     </li>
   
@@ -4790,9 +4546,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the up directions</p>
-</div>
+        <div class='inline'><p>the up directions</p></div>
       
     </li>
   
@@ -4808,9 +4562,8 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the colors the meshes should be drawn in, it will be multiplied with each vertex color</p>
-</div>
+        <div class='inline'><p>the colors the meshes should be drawn in,
+it will be multiplied with each vertex color</p></div>
       
     </li>
   
@@ -4826,9 +4579,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the scaling factors</p>
-</div>
+        <div class='inline'><p>the scaling factors</p></div>
       
     </li>
   
@@ -4883,9 +4634,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>This function allows drawing a sphere without requiring a mesh.</p>
-
+    <p>This function allows drawing a sphere without requiring a mesh.</p>
 
   </div>
 </div>
@@ -4920,9 +4669,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>drawspins</p>
-
+    <p>drawspins</p>
 
   </div>
 </div>
@@ -4969,9 +4716,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Convenience function for drawing a surfacemesh.</p>
-
+    <p>Convenience function for drawing a surfacemesh.</p>
 
   </div>
 </div>
@@ -4989,9 +4734,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the mesh to be drawn</p>
-</div>
+        <div class='inline'><p>the mesh to be drawn</p></div>
       
     </li>
   
@@ -5026,9 +4769,8 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Draw a tube following a path given by a list of points. The colors and radii arrays specify the color and radius at each point.</p>
-
+    <p>Draw a tube following a path given by a list of points. The colors and
+radii arrays specify the color and radius at each point.</p>
 
   </div>
 </div>
@@ -5046,9 +4788,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the number of points given</p>
-</div>
+        <div class='inline'><p>the number of points given</p></div>
       
     </li>
   
@@ -5062,9 +4802,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the points the tube should go through</p>
-</div>
+        <div class='inline'><p>the points the tube should go through</p></div>
       
     </li>
   
@@ -5078,9 +4816,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the color at each point</p>
-</div>
+        <div class='inline'><p>the color at each point</p></div>
       
     </li>
   
@@ -5094,9 +4830,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the desired tube radius at each point</p>
-</div>
+        <div class='inline'><p>the desired tube radius at each point</p></div>
       
     </li>
   
@@ -5112,9 +4846,8 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the number of steps between each point, allowing for a more smooth tube</p>
-</div>
+        <div class='inline'><p>the number of steps between each point,
+allowing for a more smooth tube</p></div>
       
     </li>
   
@@ -5130,9 +4863,8 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the number of segments each ring of the tube consists of, e.g. 3 would yield a triangular tube</p>
-</div>
+        <div class='inline'><p>the number of segments each ring of the tube
+consists of, e.g. 3 would yield a triangular tube</p></div>
       
     </li>
   
@@ -5184,9 +4916,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Draw a yz-slice through the given data, using the current GR colormap.</p>
-
+    <p>Draw a yz-slice through the given data, using the current GR colormap.</p>
 
   </div>
 </div>
@@ -5204,9 +4934,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>3D narray array containing the voxel data</p>
-</div>
+        <div class='inline'><p>3D narray array containing the voxel data</p></div>
       
     </li>
   
@@ -5222,9 +4950,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the position of the slice through the yz-plane (0 to 1)</p>
-</div>
+        <div class='inline'><p>the position of the slice through the yz-plane (0 to 1)</p></div>
       
     </li>
   
@@ -5240,9 +4966,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>voxel sizes in each direction</p>
-</div>
+        <div class='inline'><p>voxel sizes in each direction</p></div>
       
     </li>
   
@@ -5258,9 +4982,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>coordinate origin in each direction</p>
-</div>
+        <div class='inline'><p>coordinate origin in each direction</p></div>
       
     </li>
   
@@ -5276,9 +4998,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the positions where the meshes should be drawn</p>
-</div>
+        <div class='inline'><p>the positions where the meshes should be drawn</p></div>
       
     </li>
   
@@ -5294,9 +5014,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the forward directions the meshes should be facing at</p>
-</div>
+        <div class='inline'><p>the forward directions the meshes should be facing at</p></div>
       
     </li>
   
@@ -5312,9 +5030,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the up directions</p>
-</div>
+        <div class='inline'><p>the up directions</p></div>
       
     </li>
   
@@ -5330,9 +5046,8 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the colors the meshes should be drawn in, it will be multiplied with each vertex color</p>
-</div>
+        <div class='inline'><p>the colors the meshes should be drawn in,
+it will be multiplied with each vertex color</p></div>
       
     </li>
   
@@ -5348,9 +5063,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the scaling factors</p>
-</div>
+        <div class='inline'><p>the scaling factors</p></div>
       
     </li>
   
@@ -5397,9 +5110,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Draw a xz-slice through the given data, using the current GR colormap.</p>
-
+    <p>Draw a xz-slice through the given data, using the current GR colormap.</p>
 
   </div>
 </div>
@@ -5417,9 +5128,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>3D narray array containing the voxel data</p>
-</div>
+        <div class='inline'><p>3D narray array containing the voxel data</p></div>
       
     </li>
   
@@ -5435,9 +5144,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the position of the slice through the xz-plane (0 to 1)</p>
-</div>
+        <div class='inline'><p>the position of the slice through the xz-plane (0 to 1)</p></div>
       
     </li>
   
@@ -5453,9 +5160,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>voxel sizes in each direction</p>
-</div>
+        <div class='inline'><p>voxel sizes in each direction</p></div>
       
     </li>
   
@@ -5471,9 +5176,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>coordinate origin in each direction</p>
-</div>
+        <div class='inline'><p>coordinate origin in each direction</p></div>
       
     </li>
   
@@ -5489,9 +5192,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the positions where the meshes should be drawn</p>
-</div>
+        <div class='inline'><p>the positions where the meshes should be drawn</p></div>
       
     </li>
   
@@ -5507,9 +5208,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the forward directions the meshes should be facing at</p>
-</div>
+        <div class='inline'><p>the forward directions the meshes should be facing at</p></div>
       
     </li>
   
@@ -5525,9 +5224,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the up directions</p>
-</div>
+        <div class='inline'><p>the up directions</p></div>
       
     </li>
   
@@ -5543,9 +5240,8 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the colors the meshes should be drawn in, it will be multiplied with each vertex color</p>
-</div>
+        <div class='inline'><p>the colors the meshes should be drawn in,
+it will be multiplied with each vertex color</p></div>
       
     </li>
   
@@ -5561,9 +5257,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the scaling factors</p>
-</div>
+        <div class='inline'><p>the scaling factors</p></div>
       
     </li>
   
@@ -5610,9 +5304,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Draw a xy-slice through the given data, using the current GR colormap.</p>
-
+    <p>Draw a xy-slice through the given data, using the current GR colormap.</p>
 
   </div>
 </div>
@@ -5630,9 +5322,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>3D narray array containing the voxel data</p>
-</div>
+        <div class='inline'><p>3D narray array containing the voxel data</p></div>
       
     </li>
   
@@ -5648,9 +5338,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the position of the slice through the xy-plane (0 to 1)</p>
-</div>
+        <div class='inline'><p>the position of the slice through the xy-plane (0 to 1)</p></div>
       
     </li>
   
@@ -5666,9 +5354,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>voxel sizes in each direction</p>
-</div>
+        <div class='inline'><p>voxel sizes in each direction</p></div>
       
     </li>
   
@@ -5684,9 +5370,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>coordinate origin in each direction</p>
-</div>
+        <div class='inline'><p>coordinate origin in each direction</p></div>
       
     </li>
   
@@ -5702,9 +5386,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the positions where the meshes should be drawn</p>
-</div>
+        <div class='inline'><p>the positions where the meshes should be drawn</p></div>
       
     </li>
   
@@ -5720,9 +5402,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the forward directions the meshes should be facing at</p>
-</div>
+        <div class='inline'><p>the forward directions the meshes should be facing at</p></div>
       
     </li>
   
@@ -5738,9 +5418,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the up directions</p>
-</div>
+        <div class='inline'><p>the up directions</p></div>
       
     </li>
   
@@ -5756,9 +5434,8 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the colors the meshes should be drawn in, it will be multiplied with each vertex color</p>
-</div>
+        <div class='inline'><p>the colors the meshes should be drawn in,
+it will be multiplied with each vertex color</p></div>
       
     </li>
   
@@ -5774,9 +5451,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the scaling factors</p>
-</div>
+        <div class='inline'><p>the scaling factors</p></div>
       
     </li>
   
@@ -5953,9 +5628,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Get the projection parameters.</p>
-
+    <p>Get the projection parameters.</p>
 
   </div>
 </div>
@@ -5973,9 +5646,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Vertical field of view in degrees</p>
-</div>
+        <div class='inline'><p>Vertical field of view in degrees</p></div>
       
     </li>
   
@@ -5989,9 +5660,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The distance to the near clipping plane.</p>
-</div>
+        <div class='inline'><p>The distance to the near clipping plane.</p></div>
       
     </li>
   
@@ -6005,9 +5674,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The distance to the far clipping plane.</p>
-</div>
+        <div class='inline'><p>The distance to the far clipping plane.</p></div>
       
     </li>
   
@@ -6114,14 +5781,10 @@
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'>
-<p>This method is defined in the CheckError module.</p>
-</div>
+    <div class='inline'><p>This method is defined in the CheckError module.</p></div>
   </div>
 
-
 <p>This function returns information on the most recent GR3 error.</p>
-
 
   </div>
 </div>
@@ -6169,9 +5832,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>This function returns a string representation of a given error code.</p>
-
+    <p>This function returns a string representation of a given error code.</p>
 
   </div>
 </div>
@@ -6407,9 +6068,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the current projection type: GR3_PROJECTION_PERSPECTIVE or GR3_PROJECTION_PARALLEL.</p>
-
+    <p>Returns the current projection type: GR3_PROJECTION_PERSPECTIVE or GR3_PROJECTION_PARALLEL.</p>
 
   </div>
 </div>
@@ -6426,9 +6085,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the current projection type: GR3_PROJECTION_PERSPECTIVE or GR3_PROJECTION_PARALLEL</p>
-</div>
+        <div class='inline'><p>the current projection type: GR3_PROJECTION_PERSPECTIVE or GR3_PROJECTION_PARALLEL</p></div>
       
     </li>
   
@@ -6462,11 +6119,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>This function allows the user to find out how his commands are rendered.</p>
-
-<p>If gr3 is initialized, a string in the format: ‘“gr3 - ” + window toolkit + “ - ” + framebuffer extension + “ - ” + OpenGL version + “ - ” + OpenGL renderer string`. For example `“gr3 - GLX - GL_ARB_framebuffer_object - 2.1 Mesa 7.10.2 - Software Rasterizer”` might be returned on a Linux system (using GLX) with an available GL_ARB_framebuffer_object implementation. If gr3 is not initialized `“Not initialized”` is returned.</p>
-
+    <p>This function allows the user to find out how his commands are rendered.</p>
+<p>If gr3 is initialized, a string in the format:
+`&quot;gr3 - &quot; + window toolkit + &quot; - &quot; + framebuffer extension + &quot; - &quot;</p>
+<ul>
+<li>OpenGL version + &quot; - &quot; + OpenGL renderer string<code>. For example </code>&quot;gr3 - GLX - GL_ARB_framebuffer_object - 2.1 Mesa 7.10.2 - Software Rasterizer&quot;<code>might be returned on a Linux system (using GLX) with an available GL_ARB_framebuffer_object implementation. If gr3 is not initialized</code>&quot;Not initialized&quot;` is returned.</li>
+</ul>
 
   </div>
 </div>
@@ -6588,9 +6246,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the 4x4 column major view matrix</p>
-</div>
+        <div class='inline'><p>the 4x4 column major view matrix</p></div>
       
     </li>
   
@@ -6625,9 +6281,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>This method initializes the gr3 context.</p>
-
+    <p>This method initializes the gr3 context.</p>
 
   </div>
 </div>
@@ -6693,9 +6347,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>3D narray array containing the voxel data</p>
-</div>
+        <div class='inline'><p>3D narray array containing the voxel data</p></div>
       
     </li>
   
@@ -6711,9 +6363,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>isovalue at which the surface will be created</p>
-</div>
+        <div class='inline'><p>isovalue at which the surface will be created</p></div>
       
     </li>
   
@@ -6729,9 +6379,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the color of the surface</p>
-</div>
+        <div class='inline'><p>the color of the surface</p></div>
       
     </li>
   
@@ -6747,9 +6395,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the strides in each direction</p>
-</div>
+        <div class='inline'><p>the strides in each direction</p></div>
       
     </li>
   
@@ -6870,9 +6516,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>This function sets the background color.</p>
-
+    <p>This function sets the background color.</p>
 
   </div>
 </div>
@@ -6907,11 +6551,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>This function sets the projection parameters. This function takes effect when the next image is created.</p>
-
-<p>The ratio between zFar and zNear influences the precision of the depth buffer, the greater (zFar/zNear), the more likely are errors. So you should try to keep both values as close to each other as possible while making sure everything you want to be visible, is visible.</p>
-
+    <p>This function sets the projection parameters.
+This function takes effect when the next image is created.</p>
+<p>The ratio between zFar and zNear influences the precision of the depth
+buffer, the greater (zFar/zNear), the more likely are errors. So you should
+try to keep both values as close to each other as possible while making
+sure everything you want to be visible, is visible.</p>
 
   </div>
 </div>
@@ -6929,9 +6574,8 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>This parameter is the vertical field of view in degrees. It must be greater than 0 and less than 180.</p>
-</div>
+        <div class='inline'><p>This parameter is the vertical field of view in degrees.
+It must be greater than 0 and less than 180.</p></div>
       
     </li>
   
@@ -6945,9 +6589,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The distance to the near clipping plane.</p>
-</div>
+        <div class='inline'><p>The distance to the near clipping plane.</p></div>
       
     </li>
   
@@ -6961,9 +6603,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The distance to the far clipping plane.</p>
-</div>
+        <div class='inline'><p>The distance to the far clipping plane.</p></div>
       
     </li>
   
@@ -7063,9 +6703,8 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>This function sets the direction of light. If it is called with (0, 0, 0), the light is always pointing into the same direction as the camera.</p>
-
+    <p>This function sets the direction of light. If it is called with (0, 0, 0),
+the light is always pointing into the same direction as the camera.</p>
 
   </div>
 </div>
@@ -7083,9 +6722,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The x-component of the light’s direction</p>
-</div>
+        <div class='inline'><p>The x-component of the light's direction</p></div>
       
     </li>
   
@@ -7099,9 +6736,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The y-component of the light’s direction</p>
-</div>
+        <div class='inline'><p>The y-component of the light's direction</p></div>
       
     </li>
   
@@ -7115,9 +6750,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The z-component of the light’s direction</p>
-</div>
+        <div class='inline'><p>The z-component of the light's direction</p></div>
       
     </li>
   
@@ -7248,9 +6881,8 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the new projection type: GR3_PROJECTION_PERSPECTIVE, GR3_PROJECTION_PARALLEL or GR3_PROJECTION_ORTHOGRAPHIC</p>
-</div>
+        <div class='inline'><p>the new projection type: GR3_PROJECTION_PERSPECTIVE,
+GR3_PROJECTION_PARALLEL or GR3_PROJECTION_ORTHOGRAPHIC</p></div>
       
     </li>
   
@@ -7285,9 +6917,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Set rendering quality</p>
-
+    <p>Set rendering quality</p>
 
   </div>
 </div>
@@ -7305,11 +6935,7 @@
       
       
         &mdash;
-        <div class='inline'><dl class="rdoc-list label-list"><dt></dt>
-<dd>
-<p>The quality to set</p>
-</dd></dl>
-</div>
+        <div class='inline'><p>[] The quality to set</p></div>
       
     </li>
   
@@ -7401,9 +7027,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the 4x4 column major view matrix</p>
-</div>
+        <div class='inline'><p>the 4x4 column major view matrix</p></div>
       
     </li>
   
@@ -7438,9 +7062,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Create a surface plot with gr3 and draw it with gks as cellarray.</p>
-
+    <p>Create a surface plot with gr3 and draw it with gks as cellarray.</p>
 
   </div>
 </div>
@@ -7458,9 +7080,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>an array containing the x-coordinates</p>
-</div>
+        <div class='inline'><p>an array containing the x-coordinates</p></div>
       
     </li>
   
@@ -7474,9 +7094,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>an array containing the y-coordinates</p>
-</div>
+        <div class='inline'><p>an array containing the y-coordinates</p></div>
       
     </li>
   
@@ -7490,9 +7108,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>an array of length nx * ny containing the z-coordinates</p>
-</div>
+        <div class='inline'><p>an array of length nx * ny containing the z-coordinates</p></div>
       
     </li>
   
@@ -7506,9 +7122,8 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>see the option parameter of gr_surface. OPTION_COLORED_MESH and OPTION_Z_SHADED_MESH are supported.</p>
-</div>
+        <div class='inline'><p>see the option parameter of gr_surface.
+OPTION_COLORED_MESH and OPTION_Z_SHADED_MESH are supported.</p></div>
       
     </li>
   
@@ -7553,11 +7168,9 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>This function terminates the gr3 context.</p>
-
-<p>After calling this function, gr3 is in the same state as when it was first loaded, except for context-independent variables, i.e. the logging callback.</p>
-
+    <p>This function terminates the gr3 context.</p>
+<p>After calling this function, gr3 is in the same state as when it was first
+loaded, except for context-independent variables, i.e. the logging callback.</p>
 
   </div>
 </div>
@@ -7592,9 +7205,10 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Use the currently bound framebuffer as the framebuffer used for drawing to OpenGL (using gr3.drawimage). This function is only needed when you do not want to render to 0, the default framebuffer.</p>
-
+    <p>Use the currently bound framebuffer as the framebuffer used for drawing to
+OpenGL (using gr3.drawimage).
+This function is only needed when you do not want to render to 0, the
+default framebuffer.</p>
 
   </div>
 </div>
@@ -7629,11 +7243,9 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Set the framebuffer used for drawing to OpenGL (using gr3.drawimage).</p>
-
-<p>This function is only needed when you do not want to render to 0, the default framebuffer.</p>
-
+    <p>Set the framebuffer used for drawing to OpenGL (using gr3.drawimage).</p>
+<p>This function is only needed when you do not want to render to 0, the
+default framebuffer.</p>
 
   </div>
 </div>
@@ -7704,9 +7316,9 @@
 </div>
 
       <div id="footer">
-  Generated on Sun Nov 30 04:21:50 2025 by
+  Generated on Sun May 24 07:30:50 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.37 (ruby-3.4.7).
+  0.9.43 (ruby-4.0.5).
 </div>
 
     </div>

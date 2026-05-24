@@ -6,13 +6,13 @@
 <title>
   Module: GRCommons::GRLib
   
-    &mdash; Documentation by YARD 0.9.37
+    &mdash; Documentation by YARD 0.9.43
   
 </title>
 
-  <link rel="stylesheet" href="../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "GRCommons::GRLib";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -78,56 +80,53 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>lib/gr_commons/gr_lib.rb</dd>
+    <dd>lib/gr_commons/gr_lib.rb
+</dd>
   </dl>
   
 </div>
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>This module helps GR, GR and GRM to search the shared library.</p>
-
+    <p>This module helps GR, GR and GRM to search the shared library.</p>
 <p>The order of priority:</p>
-<ol><li>
-<p>RubyInstaller ( for Windows only )</p>
-</li><li>
-<p>Environment variable GRDIR</p>
-</li><li>
-<p>pkg-config : <a href="https://github.com/ruby-gnome/pkg-config">github.com/ruby-gnome/pkg-config</a></p>
-</li></ol>
-
-<p>The following packages (should) support pkg-config.</p>
-<ul><li>
-<p>Linux</p>
-<ul><li>
-<p>Red Data Tools <a href="https://github.com/red-data-tools/packages.red-data-tools.org">github.com/red-data-tools/packages.red-data-tools.org</a></p>
-<ul><li>
-<p>libgr-dev</p>
-</li><li>
-<p>libgr3-dev</p>
-</li><li>
-<p>libgrm-dev</p>
-</li></ul>
-</li></ul>
-</li><li>
-<p>Mac</p>
-<ul><li>
-<p>Homebrew <a href="https://github.com/Homebrew/homebrew-core">github.com/Homebrew/homebrew-core</a></p>
-<ul><li>
-<p>libgr</p>
-</li></ul>
-</li></ul>
-</li><li>
-<p>Windows</p>
-<ul><li>
-<p>MinGW <a href="https://github.com/msys2/MINGW-packages">github.com/msys2/MINGW-packages</a></p>
-<ul><li>
-<p>mingw-w64-gr</p>
-</li></ul>
-</li></ul>
-</li></ul>
-
+<ol>
+<li>RubyInstaller ( for Windows only )</li>
+<li>Environment variable GRDIR</li>
+<li>pkg-config : <a href="https://github.com/ruby-gnome/pkg-config">https://github.com/ruby-gnome/pkg-config</a>
+The following packages (should) support pkg-config.</li>
+</ol>
+<ul>
+<li>Linux
+<ul>
+<li>Red Data Tools <a href="https://github.com/red-data-tools/packages.red-data-tools.org">https://github.com/red-data-tools/packages.red-data-tools.org</a>
+<ul>
+<li>libgr-dev</li>
+<li>libgr3-dev</li>
+<li>libgrm-dev</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Mac
+<ul>
+<li>Homebrew <a href="https://github.com/Homebrew/homebrew-core">https://github.com/Homebrew/homebrew-core</a>
+<ul>
+<li>libgr</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Windows
+<ul>
+<li>MinGW <a href="https://github.com/msys2/MINGW-packages">https://github.com/msys2/MINGW-packages</a>
+<ul>
+<li>mingw-w64-gr</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
   </div>
 </div>
@@ -166,9 +165,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Return the directory path from the GRDIR environment variable.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Return the directory path from the GRDIR environment variable.</p></div></span>
   
 </li>
 
@@ -190,9 +187,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Use pkg-config to search for shared libraries.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Use pkg-config to search for shared libraries.</p></div></span>
   
 </li>
 
@@ -214,9 +209,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Recursive file search in directories.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Recursive file search in directories.</p></div></span>
   
 </li>
 
@@ -238,9 +231,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Check if using RubyInstaller or not.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Check if using RubyInstaller or not.</p></div></span>
   
 </li>
 
@@ -262,14 +253,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Search the shared library.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Search the shared library.</p></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 
@@ -289,9 +279,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Return the directory path from the GRDIR environment variable.</p>
-
+    <p>Return the directory path from the GRDIR environment variable.</p>
 
   </div>
 </div>
@@ -336,9 +324,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Use pkg-config to search for shared libraries</p>
-
+    <p>Use pkg-config to search for shared libraries</p>
 
   </div>
 </div>
@@ -381,9 +367,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Recursive file search in directories</p>
-
+    <p>Recursive file search in directories</p>
 
   </div>
 </div>
@@ -401,9 +385,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>File to search for</p>
-</div>
+        <div class='inline'><p>File to search for</p></div>
       
     </li>
   
@@ -417,9 +399,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Directory to search</p>
-</div>
+        <div class='inline'><p>Directory to search</p></div>
       
     </li>
   
@@ -468,9 +448,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Check if using RubyInstaller or not.</p>
-
+    <p>Check if using RubyInstaller or not.</p>
 
   </div>
 </div>
@@ -525,14 +503,10 @@
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'>
-<p>This method does not detect the Operating System.</p>
-</div>
+    <div class='inline'><p>This method does not detect the Operating System.</p></div>
   </div>
 
-
 <p>Search the shared library.</p>
-
 
   </div>
 </div>
@@ -550,9 +524,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The actual file name of the shared library.</p>
-</div>
+        <div class='inline'><p>The actual file name of the shared library.</p></div>
       
     </li>
   
@@ -566,9 +538,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The package name to be used when searching with pkg-configg</p>
-</div>
+        <div class='inline'><p>The package name to be used when searching with pkg-configg</p></div>
       
     </li>
   
@@ -669,9 +639,9 @@
 </div>
 
       <div id="footer">
-  Generated on Sun Nov 30 04:21:50 2025 by
+  Generated on Sun May 24 07:30:50 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.37 (ruby-3.4.7).
+  0.9.43 (ruby-4.0.5).
 </div>
 
     </div>
