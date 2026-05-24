@@ -70,7 +70,7 @@ module GRCommons
         end
 
         # Windows + RubyInstaller
-        if ruby_installer?
+        if ruby_installer? && lib_path
           RubyInstaller::Runtime.add_dll_directory(File.dirname(lib_path))
           # FIXME: Where should I write this code?
           ENV['GKS_FONTPATH'] ||= grdir
