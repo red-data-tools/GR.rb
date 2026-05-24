@@ -2,6 +2,8 @@
 
 require_relative 'test_helper'
 
+require 'fiddle'
+
 class GRMTest < Test::Unit::TestCase
   class << self
     def fiddle_supports_variadic_functions?
@@ -56,6 +58,14 @@ class GRMTest < Test::Unit::TestCase
       end
     end
 
+    def test_bool
+      args = GRM::Args.new(x: true)
+      Fiddle::Pointer.malloc(Fiddle::SIZEOF_INT, Fiddle::RUBY_FREE) do |output|
+        GRM.args_values(args, 'x', 'i', :voidp, output)
+        assert_equal([1], output[0, output.size].unpack('i'))
+      end
+    end
+
     def test_args
       sub_args = GRM::Args.new
       args = GRM::Args.new(x: sub_args)
@@ -105,6 +115,16 @@ class GRMTest < Test::Unit::TestCase
         GRM.args_values(args, 'x', 'D', :voidp, output)
         address = output[0, output.size].unpack1('J')
         assert_equal([2.9, -9.2],
+                     Fiddle::Pointer.read(address, Fiddle::SIZEOF_DOUBLE * 2).unpack('d*'))
+      end
+    end
+
+    def test_array_mixed_numeric
+      args = GRM::Args.new(x: [2, 9.2])
+      Fiddle::Pointer.malloc(Fiddle::SIZEOF_VOIDP, Fiddle::RUBY_FREE) do |output|
+        GRM.args_values(args, 'x', 'D', :voidp, output)
+        address = output[0, output.size].unpack1('J')
+        assert_equal([2.0, 9.2],
                      Fiddle::Pointer.read(address, Fiddle::SIZEOF_DOUBLE * 2).unpack('d*'))
       end
     end

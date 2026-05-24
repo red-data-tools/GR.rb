@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module GRM
-  # This module automatically converts Ruby arrays and Numo::Narray into
+  # This module automatically converts Ruby arrays and Numo::NArray into
   # Fiddley::MemoryPointer.
   module GRMBase
     extend GRCommons::DefineMethods

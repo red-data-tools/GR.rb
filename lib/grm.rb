@@ -35,7 +35,7 @@ module GRM
     when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
       [['libGRM.dll'], 'grm']
     when /darwin|mac os/
-      ENV['GKSwstype'] ||= 'gksqt'
+      ENV['GKS_WSTYPE'] ||= 'gksqt'
       [['libGRM.dylib', 'libGRM.so'], 'grm']
     else
       [['libGRM.so'], 'grm']
@@ -111,7 +111,10 @@ module GRM
         GRM.args_push(@args, key, 'i', :int, value)
       when Float
         GRM.args_push(@args, key, 'd', :double, value)
+      when TrueClass, FalseClass
+        GRM.args_push(@args, key, 'i', :int, value ? 1 : 0)
       when Args
+        @references << value
         GRM.args_push(@args, key, 'a', :voidp, value.address)
         value.to_gr.free = nil
       when Array
@@ -138,30 +141,45 @@ module GRM
         case value[0]
         when String
           addresses = value.collect { |v| Fiddle::Pointer[v].to_i }
+          @references.concat(value)
+          packed = addresses.pack('J*')
+          @references << packed
           GRM.args_push(@args, key, 'nS',
                         :int, value.size,
-                        :voidp, addresses.pack('J*'))
-        when Integer
-          GRM.args_push(@args, key, 'nI',
-                        :int, value.size,
-                        :voidp, value.pack('i*'))
-        when Float
+                        :voidp, packed)
+        when Integer, Float
+          if value.all? { |v| v.is_a?(Integer) }
+            packed = value.pack('i*')
+            @references << packed
+            GRM.args_push(@args, key, 'nI',
+                          :int, value.size,
+                          :voidp, packed)
+            return
+          end
+
+          packed = value.map(&:to_f).pack('d*')
+          @references << packed
           GRM.args_push(@args, key, 'nD',
                         :int, value.size,
-                        :voidp, value.pack('d*'))
+                        :voidp, packed)
         when Args
+          @references.concat(value)
+          packed = value.collect(&:address).pack('J*')
+          @references << packed
           GRM.args_push(@args, key, 'nA',
                         :int, value.size,
-                        :voidp, value.collect(&:address).pack('J*'))
+                        :voidp, packed)
           value.each do |v|
             v.to_gr.free = nil
           end
         else
           vs = value.collect { |v| Args.new(**v) }
           @references.concat(vs)
+          packed = vs.collect(&:address).pack('J*')
+          @references << packed
           GRM.args_push(@args, key, 'nA',
                         :int, value.size,
-                        :voidp, vs.collect(&:address).pack('J*'))
+                        :voidp, packed)
           vs.each do |v|
             v.to_gr.free = nil
           end
@@ -212,6 +230,10 @@ module GRM
     def plot(args = nil)
       args = Args.try_convert(args) || args
       super(args)
+    end
+
+    def export(file_path, export_xml = 0)
+      super(file_path, export_xml)
     end
   end
 end
