@@ -19,7 +19,7 @@ jobs:
           - { os: windows, gr: "0.73.24" }
     runs-on: ${{ matrix.os }}-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
