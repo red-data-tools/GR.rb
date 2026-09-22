@@ -100,17 +100,18 @@ module GR
   end
 
   class GRAxis
-    attr_accessor :min, :max, :tick, :org, :position,
+    attr_accessor :spec, :min, :max, :tick, :org, :position,
                   :major_count, :num_ticks, :ticks,
                   :tick_size, :tick_labels, :label_position,
                   :draw_axis_line, :label_orientation
 
-    def initialize(min: Float::NAN, max: Float::NAN, tick: Float::NAN,
+    def initialize(spec: nil, min: Float::NAN, max: Float::NAN, tick: Float::NAN,
                    org: Float::NAN, position: Float::NAN,
                    major_count: 1, num_ticks: 0, ticks: nil,
                    tick_size: Float::NAN, tick_labels: nil,
                    label_position: Float::NAN,
                    draw_axis_line: 1, label_orientation: 0)
+      @spec = spec
       @min = min
       @max = max
       @tick = tick
@@ -1158,34 +1159,35 @@ module GR
 
     alias axes2d axes
 
-    def axis(option, **opts)
+    def axis(spec, **opts)
+      spec = spec.to_s
+      raise ArgumentError, 'axis spec must not be empty' if spec.empty?
+
       axis = GRAxis.new
       opts.each do |k, v|
         setter = "#{k}="
         axis.public_send(setter, v) if axis.respond_to?(setter)
       end
 
-      c_axis = __axis_to_c_axis(axis)
-
-      str = option.to_s
-      raise ArgumentError, "axis option must be a single character, got #{str.inspect}" unless str.length == 1
-
-      FFI.gr_axis(str.ord, c_axis)
-      __axis_from_c_axis(c_axis)
+      c_axis = __axis_to_c_axis(axis, for_generation: true)
+      begin
+        FFI.gr_axis(spec, c_axis)
+        __axis_from_c_axis(c_axis)
+      ensure
+        FFI.gr_freeaxis(c_axis)
+      end
     end
 
-    def drawaxis(option, axis)
+    def drawaxis(axis)
+      raise ArgumentError, 'axis spec must not be empty' if axis.spec.to_s.empty?
+
       c_axis = __axis_to_c_axis(axis)
-
-      str = option.to_s
-      raise ArgumentError, "axis option must be a single character, got #{str.inspect}" unless str.length == 1
-
-      FFI.gr_drawaxis(str.ord, c_axis)
+      FFI.gr_drawaxis(c_axis)
     end
 
     def drawaxes(x_axis = nil, y_axis = nil, option = 1)
-      c_x = x_axis && __axis_to_c_axis(x_axis)
-      c_y = y_axis && __axis_to_c_axis(y_axis)
+      c_x = x_axis && __axis_to_c_axis(x_axis, default_spec: 'X')
+      c_y = y_axis && __axis_to_c_axis(y_axis, default_spec: 'Y')
       FFI.gr_drawaxes(c_x&.to_ptr, c_y&.to_ptr, option)
     end
 
@@ -2557,6 +2559,17 @@ module GR
       end
     end
 
+    def inqcolorlimits
+      inquiry %i[double double] do |*pts|
+        super(*pts)
+      end
+    end
+
+    def getmetadata(path)
+      metadata = super
+      metadata.to_s unless metadata.null?
+    end
+
     def getformat(origin, min, max, tick_width, major)
       ref = FFI::FormatReference.malloc
       super(ref, origin, min, max, tick_width, major)
@@ -2572,10 +2585,21 @@ module GR
     private
 
     # Convert high-level GRAxis into low-level FFI::Axis
-    def __axis_to_c_axis(axis)
+    def __axis_to_c_axis(axis, for_generation: false, default_spec: nil)
       c_axis = FFI::Axis.malloc
       # Keep references to allocated memory to prevent GC
       memory_refs = []
+
+      spec = axis.spec || default_spec
+      if !for_generation && spec
+        spec_string = "#{spec}\0"
+        spec_ptr = Fiddle::Pointer.malloc(spec_string.bytesize, Fiddle::RUBY_FREE)
+        spec_ptr[0, spec_string.bytesize] = spec_string
+        memory_refs << spec_ptr
+        c_axis.spec = spec_ptr.to_i
+      else
+        c_axis.spec = 0
+      end
 
       c_axis.min_val = axis.min
       c_axis.max_val = axis.max
@@ -2585,7 +2609,7 @@ module GR
       c_axis.major_count = axis.major_count
 
       # ticks
-      if axis.ticks && !axis.ticks.empty?
+      if !for_generation && axis.ticks && !axis.ticks.empty?
         count = axis.ticks.size
         mem = Fiddle::Pointer.malloc(FFI::Tick.size * count, Fiddle::RUBY_FREE)
         memory_refs << mem
@@ -2604,7 +2628,7 @@ module GR
       c_axis.tick_size = axis.tick_size
 
       # tick labels
-      if axis.tick_labels && !axis.tick_labels.empty?
+      if !for_generation && axis.tick_labels && !axis.tick_labels.empty?
         count = axis.tick_labels.size
         mem = Fiddle::Pointer.malloc(FFI::TickLabel.size * count, Fiddle::RUBY_FREE)
         memory_refs << mem
@@ -2612,7 +2636,7 @@ module GR
           lbl = FFI::TickLabel.new(mem + i * FFI::TickLabel.size)
           lbl.tick = tl.tick
           # Allocate persistent memory for label string
-          label_str = tl.label.to_s + "\0"
+          label_str = "#{tl.label}\0"
           label_ptr = Fiddle::Pointer.malloc(label_str.bytesize, Fiddle::RUBY_FREE)
           memory_refs << label_ptr
           label_ptr[0, label_str.bytesize] = label_str
@@ -2638,6 +2662,9 @@ module GR
 
     # Convert low-level FFI::Axis back into high-level GRAxis
     def __axis_from_c_axis(c_axis)
+      spec_ptr = Fiddle::Pointer[c_axis.spec]
+      spec = spec_ptr.to_s unless spec_ptr.null?
+
       ticks = if c_axis.num_ticks.positive? && !Fiddle::Pointer[c_axis.ticks].null?
                 Array.new(c_axis.num_ticks) do |i|
                   tick = FFI::Tick.new(c_axis.ticks + i * FFI::Tick.size)
@@ -2660,6 +2687,7 @@ module GR
                     end
 
       GRAxis.new(
+        spec: spec,
         min: c_axis.min_val,
         max: c_axis.max_val,
         tick: c_axis.tick,

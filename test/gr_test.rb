@@ -190,6 +190,41 @@ class GRTest < Test::Unit::TestCase
       assert_nil GR.settextencoding(300)
       assert_equal 300, GR.inqtextencoding
     end
+
+    def test_colorlimits
+      assert_nil GR.setcolorlimits(-1.5, 2.5)
+      assert_equal [-1.5, 2.5], GR.inqcolorlimits
+    end
+  end
+
+  def test_axis
+    GR.setwindow(0.0, 3600.0, 0.0, 1.0)
+    axis = GR.axis('TIMESTAMP')
+
+    assert_equal 'TIMESTAMP', axis.spec
+    assert_equal 0.0, axis.min
+    assert_equal 3600.0, axis.max
+    assert_false axis.ticks.empty?
+    assert_nothing_raised { GR.drawaxis(axis) }
+  end
+
+  def test_format_reference
+    reference = GR.getformat(0.0, 0.0, 1.0, 0.1, 2)
+
+    assert_kind_of Integer, reference.scientific
+    assert_kind_of Integer, reference.decimal_digits
+    assert_kind_of String, GR.ftoa(0.5, reference)
+  end
+
+  def test_new_gr_0_73_27_ffi_methods
+    assert_equal %w[spec min_val max_val tick org position major_count num_ticks ticks tick_size
+                    num_tick_labels tick_labels label_position draw_axis_line label_orientation],
+                 GR::FFI::Axis.members
+    assert_equal %w[scientific decimal_digits], GR::FFI::FormatReference.members
+    assert_respond_to GR::FFI, :gr_setmetadata
+    assert_respond_to GR::FFI, :gr_getmetadata
+    assert_respond_to GR::FFI, :gr_getmetadatafromstream
+    assert_nil GR.getmetadata("#{__FILE__}.missing")
   end
 
   def test_readimage

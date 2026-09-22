@@ -79,6 +79,7 @@ module GR
     ]
 
     Axis = struct [
+      'char *spec',
       'double min_val', # min conflict with Enumerable min
       'double max_val', # max conflict with Enumerable max
       'double tick',
@@ -96,8 +97,8 @@ module GR
     ]
 
     FormatReference = struct [
-      'char *format',
-      'int length'
+      'int scientific',
+      'int decimal_digits'
     ]
 
     try_extern 'void gr_initgr(void)'
@@ -105,7 +106,7 @@ module GR
     try_extern 'void gr_opengks(void)'
     try_extern 'void gr_closegks(void)'
     try_extern 'void gr_inqdspsize(double *, double *, int *, int *)'
-    try_extern 'void gr_openws(int, char *, int)'
+    try_extern 'void gr_openws(int, const char *, int)'
     try_extern 'void gr_closews(int)'
     try_extern 'void gr_activatews(int)'
     try_extern 'void gr_deactivatews(int)'
@@ -114,10 +115,10 @@ module GR
     try_extern 'void gr_updatews(void)'
     try_extern 'void gr_polyline(int, double *, double *)'
     try_extern 'void gr_polymarker(int, double *, double *)'
-    try_extern 'void gr_text(double, double, char *)'
-    try_extern 'void gr_textx(double, double, char *, int)'
-    try_extern 'void gr_inqtext(double, double, char *, double *, double *)'
-    try_extern 'void gr_inqtextx(double, double, char *, int, double *, double *)'
+    try_extern 'void gr_text(double, double, const char *)'
+    try_extern 'void gr_textx(double, double, const char *, int)'
+    try_extern 'void gr_inqtext(double, double, const char *, double *, double *)'
+    try_extern 'void gr_inqtextx(double, double, const char *, int, double *, double *)'
     try_extern 'void gr_fillarea(int, double *, double *)'
     try_extern 'void gr_cellarray(double, double, double, double,' \
                ' int, int, int, int, int, int, int *)'
@@ -183,15 +184,15 @@ module GR
     try_extern 'void gr_inqspace(double *, double *, int *, int *)'
     try_extern 'int gr_setscale(int)'
     try_extern 'void gr_inqscale(int *)'
-    try_extern 'int gr_textext(double, double, char *)'
-    try_extern 'void gr_inqtextext(double, double, char *, double *, double *)'
+    try_extern 'int gr_textext(double, double, const char *)'
+    try_extern 'void gr_inqtextext(double, double, const char *, double *, double *)'
     try_extern 'void gr_setscientificformat(int)'
     try_extern 'void gr_axes(double, double, double, double, int, int, double)'
     try_extern 'void gr_axeslbl(double, double, double, double, int, int, double,' \
                ' void (*)(double, double, const char *, double),' \
                ' void (*)(double, double, const char *, double))'
-    try_extern 'void gr_axis(char, axis_t *)'
-    try_extern 'void gr_drawaxis(char, axis_t *)'
+    try_extern 'void gr_axis(const char *, axis_t *)'
+    try_extern 'void gr_drawaxis(axis_t *)'
     try_extern 'void gr_drawaxes(axis_t *, axis_t *, int)'
     try_extern 'void gr_freeaxis(axis_t *)'
     try_extern 'void gr_grid(double, double, double, double, int, int)'
@@ -201,8 +202,8 @@ module GR
     try_extern 'void gr_polyline3d(int, double *, double *, double *)'
     try_extern 'void gr_polymarker3d(int, double *, double *, double *)'
     try_extern 'void gr_axes3d(double, double, double, double, double, double, int, int, int, double)'
-    try_extern 'void gr_titles3d(char *, char *, char *)'
-    try_extern 'void gr_settitles3d(char *, char *, char *)'
+    try_extern 'void gr_titles3d(const char *, const char *, const char *)'
+    try_extern 'void gr_settitles3d(const char *, const char *, const char *)'
     try_extern 'void gr_surface(int, int, double *, double *, double *, int)'
     try_extern 'void gr_contour(int, int, int, double *, double *, double *, double *, int)'
     try_extern 'void gr_contourf(int, int, int, double *, double *, double *, double *, int)'
@@ -221,8 +222,8 @@ module GR
     try_extern 'int gr_validaterange(double, double)'
     try_extern 'void gr_adjustlimits(double *, double *)'
     try_extern 'void gr_adjustrange(double *, double *)'
-    try_extern 'void gr_beginprint(char *)'
-    try_extern 'void gr_beginprintext(char *, char *, char *, char *)'
+    try_extern 'void gr_beginprint(const char *)'
+    try_extern 'void gr_beginprintext(const char *, const char *, const char *, const char *)'
     try_extern 'void gr_endprint(void)'
     try_extern 'void gr_ndctowc(double *, double *)'
     try_extern 'void gr_wctondc(double *, double *)'
@@ -235,24 +236,24 @@ module GR
     try_extern 'void gr_setarrowstyle(int)'
     try_extern 'void gr_setarrowsize(double)'
     try_extern 'void gr_drawarrow(double, double, double, double)'
-    try_extern 'int gr_readimage(char *, int *, int *, int **)'
+    try_extern 'int gr_readimage(const char *, int *, int *, int **)'
     try_extern 'void gr_drawimage(double, double, double, double, int, int, int *, int)'
-    try_extern 'int gr_importgraphics(char *)'
+    try_extern 'int gr_importgraphics(const char *)'
     try_extern 'void gr_setshadow(double, double, double)'
     try_extern 'void gr_settransparency(double)'
     try_extern 'void gr_inqtransparency(double *)'
     try_extern 'void gr_setcoordxform(double[3][2])'
-    try_extern 'void gr_begingraphics(char *)'
+    try_extern 'void gr_begingraphics(const char *)'
     try_extern 'void gr_endgraphics(void)'
     try_extern 'char *gr_getgraphics(void)'
-    try_extern 'int gr_drawgraphics(char *)'
+    try_extern 'int gr_drawgraphics(const char *)'
     try_extern 'int gr_startlistener(void)'
     try_extern 'int gr_inqgrplotport(void)'
     try_extern 'int gr_setgrplotport(int)'
-    try_extern 'void gr_mathtex(double, double, char *)'
-    try_extern 'void gr_inqmathtex(double, double, char *, double *, double *)'
-    try_extern 'void gr_mathtex3d(double, double, double, char *, int)'
-    try_extern 'void gr_inqmathtex3d(double, double, double, char *, int, double *, double *, double *, double *)'
+    try_extern 'void gr_mathtex(double, double, const char *)'
+    try_extern 'void gr_inqmathtex(double, double, const char *, double *, double *)'
+    try_extern 'void gr_mathtex3d(double, double, double, const char *, int)'
+    try_extern 'void gr_inqmathtex3d(double, double, double, const char *, int, double *, double *, double *, double *)'
     try_extern 'void gr_beginselection(int, int)'
     try_extern 'void gr_endselection(void)'
     try_extern 'void gr_setbboxcallback(int, void (*)(int, double, double, double, double),' \
@@ -276,7 +277,7 @@ module GR
     try_extern 'void gr_selectcontext(int)'
     try_extern 'void gr_destroycontext(int)'
     try_extern 'void gr_unselectcontext(void)'
-    try_extern 'int gr_uselinespec(char *)'
+    try_extern 'int gr_uselinespec(const char *)'
     try_extern 'void gr_delaunay(int, const double *, const double *, int *, int **)'
     try_extern 'void gr_reducepoints(int, const double *, const double *, int, double *, double *)'
     try_extern 'void gr_trisurface(int, double *, double *, double *)'
@@ -319,11 +320,11 @@ module GR
     try_extern 'void gr_inqscalefactors3d(double *, double *, double *)'
     try_extern 'void gr_setspace3d(double, double, double, double)'
     try_extern 'void gr_inqspace3d(int *, double *, double *, double *, double *)'
-    try_extern 'void gr_text3d(double, double, double, char *, int axis)'
-    try_extern 'void gr_inqtext3d(double, double, double, char *, int axis, double *, double *)'
+    try_extern 'void gr_text3d(double, double, double, const char *, int axis)'
+    try_extern 'void gr_inqtext3d(double, double, double, const char *, int axis, double *, double *)'
     try_extern 'void gr_settextencoding(int)'
     try_extern 'void gr_inqtextencoding(int *)'
-    try_extern 'void gr_loadfont(char *, int *)'
+    try_extern 'void gr_loadfont(const char *, int *)'
     try_extern 'void gr_setcallback(char *(*)(const char *))'
     try_extern 'void gr_setthreadnumber(int)'
     try_extern 'void gr_setpicturesizeforvolume(int, int)'
@@ -353,5 +354,11 @@ module GR
     try_extern 'void gr_settextoffset(double xoff, double yoff)'
     try_extern 'char *gr_ftoa(char *string, double value, format_reference_t *reference)'
     try_extern 'void gr_getformat(format_reference_t *result, double origin, double min, double max, double tick_width, int major)'
+    try_extern 'void gr_setcolorlimits(double, double)'
+    try_extern 'void gr_inqcolorlimits(double *, double *)'
+    try_extern 'void gr_setmetadata(const char *)'
+    try_extern 'char *gr_getmetadata(const char *)'
+    typealias 'FILE', 'void'
+    try_extern 'char *gr_getmetadatafromstream(FILE *fp)'
   end
 end
