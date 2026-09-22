@@ -3,6 +3,7 @@
 require_relative 'test_helper'
 
 require 'fiddle'
+require 'numo/narray'
 
 class GRMTest < Test::Unit::TestCase
   class << self
@@ -155,6 +156,65 @@ class GRMTest < Test::Unit::TestCase
           GRM.args_values(args_addresses[1], 'sub2', 'd', :voidp, sub2_output)
           assert_equal([2.9], sub2_output[0, sub2_output.size].unpack('d'))
         end
+      end
+    end
+
+    def test_try_convert
+      converted = GRM::Args.try_convert(value: 29)
+      assert_kind_of GRM::Args, converted
+      assert_equal 1, GRM.args_contains(converted, 'value')
+      assert_nil GRM::Args.try_convert(29)
+    end
+
+    def test_symbol_key_and_clear
+      args = GRM::Args.new(value: 29)
+      assert_equal 1, GRM.args_contains(args, 'value')
+
+      args.clear
+      assert_equal 0, GRM.args_contains(args, 'value')
+    end
+
+    def test_empty_array_is_rejected
+      error = assert_raise(ArgumentError) { GRM::Args.new(values: []) }
+      assert_equal "Array value for key 'values' cannot be empty", error.message
+    end
+
+    def test_ragged_matrix_is_rejected
+      error = assert_raise(ArgumentError) { GRM::Args.new(values: [[1, 2], [3]]) }
+      assert_equal "All rows in 2D array for key 'values' must have the same length", error.message
+    end
+
+    def test_two_dimensional_array_is_flattened_with_dimensions
+      args = GRM::Args.new(values: [[1, 2, 3], [4, 5, 6]])
+      assert_equal [1, 2, 3, 4, 5, 6], read_integer_array(args, 'values', 6)
+      assert_equal [3, 2], read_integer_array(args, 'values_dims', 2)
+    end
+
+    def test_one_dimensional_narray
+      args = GRM::Args.new(values: Numo::Int32[2, 9])
+      assert_equal [2, 9], read_integer_array(args, 'values', 2)
+    end
+
+    def test_two_dimensional_narray
+      args = GRM::Args.new(values: Numo::Int32[[1, 2], [3, 4]])
+      assert_equal [1, 2, 3, 4], read_integer_array(args, 'values', 4)
+      assert_equal [2, 2], read_integer_array(args, 'values_dims', 2)
+    end
+
+    def test_narray_with_more_than_two_dimensions_is_rejected
+      error = assert_raise(ArgumentError) do
+        GRM::Args.new(values: Numo::Int32.zeros(2, 2, 2))
+      end
+      assert_equal "Numo::NArray with dimension > 2 is not supported for key 'values'", error.message
+    end
+
+    private
+
+    def read_integer_array(args, key, length)
+      Fiddle::Pointer.malloc(Fiddle::SIZEOF_VOIDP, Fiddle::RUBY_FREE) do |output|
+        GRM.args_values(args, key, 'I', :voidp, output)
+        address = output[0, output.size].unpack1('J')
+        Fiddle::Pointer.read(address, Fiddle::SIZEOF_INT * length).unpack('i*')
       end
     end
   end

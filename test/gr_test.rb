@@ -268,4 +268,78 @@ class GRTest < Test::Unit::TestCase
     assert_equal [0, 1_081_558, 16_514_815], GR.to_rgb_color([1, 2, 3])
     assert_equal Numo::Int32[0, 1_081_558, 16_514_815], GR.to_rgb_color(Numo::Int32[1, 2, 3])
   end
+
+  def test_polyline_variants
+    x = [0, 0.5, 1]
+    y = [0, 1, 0]
+    assert_nil GR.polyline(x, y)
+    assert_nil GR.polyline(x, y, 2, 3)
+    assert_nil GR.polyline(x, y, [1, 2, 3], [0.0, 0.5, 1.0])
+    assert_nil GR.polyline(x, y, nil, 3)
+
+    assert_raise(ArgumentError) { GR.polyline(x, y, [1, 2], 3) }
+    assert_raise(ArgumentError) { GR.polyline(x, y, 2, [0.0, 1.0]) }
+  end
+
+  def test_polymarker_variants
+    x = [0, 0.5, 1]
+    y = [0, 1, 0]
+    assert_nil GR.polymarker(x, y)
+    assert_nil GR.polymarker(x, y, 2, 3)
+    assert_nil GR.polymarker(x, y, [1, 2, 3], [0.0, 0.5, 1.0])
+    assert_nil GR.polymarker(x, y, nil, 3)
+
+    assert_raise(ArgumentError) { GR.polymarker(x, y, [1, 2], 3) }
+    assert_raise(ArgumentError) { GR.polymarker(x, y, 2, [0.0, 1.0]) }
+  end
+
+  def test_nonuniform_cell_array_validation
+    assert_nil GR.nonuniformcellarray([0, 0.5, 1], [0, 0.5, 1], 2, 2, [1, 2, 3, 4])
+    assert_nil GR.nonuniformpolarcellarray([0, 180, 360], [0, 0.5, 1], 2, 2, [1, 2, 3, 4])
+
+    assert_raise(ArgumentError) { GR.nonuniformcellarray([0, 1], [0, 1], 2, 2, [1, 2, 3, 4]) }
+    assert_raise(ArgumentError) do
+      GR.nonuniformpolarcellarray([0], [0, 1], 2, 2, [1, 2, 3, 4])
+    end
+  end
+
+  def test_interpolation_wrappers
+    assert_equal [[0.0, 1.0], [0.0, 1.0], [0.0, 1.0, 1.0, 0.0]],
+                 GR.gridit([0, 1, 0, 1, 0.5], [0, 0, 1, 1, 0.5], [0, 1, 1, 0, 0.5], 2, 2)
+    count, triangles = GR.delaunay([0, 1, 0, 1], [0, 0, 1, 1])
+    assert_equal count, triangles.length
+    assert_equal [3, 3], triangles.map(&:length)
+    assert_equal [0, 1, 2, 3], triangles.flatten.uniq.sort
+  end
+
+  def test_colormap_from_rgb
+    assert_nil GR.setcolormapfromrgb([0, 1], [0, 1], [0, 1])
+    assert_nil GR.setcolormapfromrgb([0, 1], [0, 1], [0, 1], positions: [0, 1])
+
+    error = assert_raise(ArgumentError) do
+      GR.setcolormapfromrgb([0, 1], [0, 1], [0, 1], positions: [0])
+    end
+    assert_equal 'positions must have length 2 (got 1)', error.message
+  end
+
+  def test_limit_and_coordinate_helpers
+    assert_equal [0.0, 10.0], GR.adjustlimits(0.12, 9.88)
+    assert_equal [0.0, 10.0], GR.adjustrange(0.12, 9.88)
+  end
+
+  def test_surface_gradient_and_quiver_wrappers
+    x = [0, 1]
+    y = [0, 1]
+    z = [0, 1, 1, 0]
+    assert_equal [[1.0, 1.0, -1.0, -1.0], [1.0, -1.0, 1.0, -1.0]], GR.gradient(x, y, z)
+
+    assert_raise(ArgumentError) { GR.surface(x, y, [0], GR::OPTION_LINES) }
+    assert_raise(ArgumentError) { GR.gradient(x, y, [0]) }
+    assert_raise(ArgumentError) { GR.quiver(x, y, [1], [1], false) }
+  end
+
+  def test_coordinate_transform_validation
+    error = assert_raise(ArgumentError) { GR.setcoordxform([1, 0, 0]) }
+    assert_equal 'mat must have 6 elements (got 3)', error.message
+  end
 end
