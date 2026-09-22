@@ -6,7 +6,7 @@
 <title>
   Class: GR::GRAxis
   
-    &mdash; Documentation by YARD 0.9.44
+    &mdash; Documentation by YARD 0.9.45
   
 </title>
 
@@ -337,6 +337,31 @@
       <li class="public ">
   <span class="summary_signature">
     
+      <a href="#spec-instance_method" title="#spec (instance method)">#<strong>spec</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute spec.</p></div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#tick-instance_method" title="#tick (instance method)">#<strong>tick</strong>  &#x21d2; Object </a>
     
 
@@ -450,7 +475,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(min: Float::NAN, max: Float::NAN, tick: Float::NAN, org: Float::NAN, position: Float::NAN, major_count: 1, num_ticks: 0, ticks: nil, tick_size: Float::NAN, tick_labels: nil, label_position: Float::NAN, draw_axis_line: 1, label_orientation: 0)  &#x21d2; GRAxis </a>
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(spec: nil, min: Float::NAN, max: Float::NAN, tick: Float::NAN, org: Float::NAN, position: Float::NAN, major_count: 1, num_ticks: 0, ticks: nil, tick_size: Float::NAN, tick_labels: nil, label_position: Float::NAN, draw_axis_line: 1, label_orientation: 0)  &#x21d2; GRAxis </a>
     
 
     
@@ -481,7 +506,7 @@
     <div class="method_details first">
   <h3 class="signature first" id="initialize-instance_method">
   
-    #<strong>initialize</strong>(min: Float::NAN, max: Float::NAN, tick: Float::NAN, org: Float::NAN, position: Float::NAN, major_count: 1, num_ticks: 0, ticks: nil, tick_size: Float::NAN, tick_labels: nil, label_position: Float::NAN, draw_axis_line: 1, label_orientation: 0)  &#x21d2; <tt><span class='object_link'><a href="" title="GR::GRAxis (class)">GRAxis</a></span></tt> 
+    #<strong>initialize</strong>(spec: nil, min: Float::NAN, max: Float::NAN, tick: Float::NAN, org: Float::NAN, position: Float::NAN, major_count: 1, num_ticks: 0, ticks: nil, tick_size: Float::NAN, tick_labels: nil, label_position: Float::NAN, draw_axis_line: 1, label_orientation: 0)  &#x21d2; <tt><span class='object_link'><a href="" title="GR::GRAxis (class)">GRAxis</a></span></tt> 
   
 
   
@@ -521,17 +546,19 @@
 124
 125
 126
-127</pre>
+127
+128</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/gr.rb', line 108</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='label'>min:</span> <span class='const'>Float</span><span class='op'>::</span><span class='const'>NAN</span><span class='comma'>,</span> <span class='label'>max:</span> <span class='const'>Float</span><span class='op'>::</span><span class='const'>NAN</span><span class='comma'>,</span> <span class='label'>tick:</span> <span class='const'>Float</span><span class='op'>::</span><span class='const'>NAN</span><span class='comma'>,</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='label'>spec:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>min:</span> <span class='const'>Float</span><span class='op'>::</span><span class='const'>NAN</span><span class='comma'>,</span> <span class='label'>max:</span> <span class='const'>Float</span><span class='op'>::</span><span class='const'>NAN</span><span class='comma'>,</span> <span class='label'>tick:</span> <span class='const'>Float</span><span class='op'>::</span><span class='const'>NAN</span><span class='comma'>,</span>
                <span class='label'>org:</span> <span class='const'>Float</span><span class='op'>::</span><span class='const'>NAN</span><span class='comma'>,</span> <span class='label'>position:</span> <span class='const'>Float</span><span class='op'>::</span><span class='const'>NAN</span><span class='comma'>,</span>
                <span class='label'>major_count:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>num_ticks:</span> <span class='int'>0</span><span class='comma'>,</span> <span class='label'>ticks:</span> <span class='kw'>nil</span><span class='comma'>,</span>
                <span class='label'>tick_size:</span> <span class='const'>Float</span><span class='op'>::</span><span class='const'>NAN</span><span class='comma'>,</span> <span class='label'>tick_labels:</span> <span class='kw'>nil</span><span class='comma'>,</span>
                <span class='label'>label_position:</span> <span class='const'>Float</span><span class='op'>::</span><span class='const'>NAN</span><span class='comma'>,</span>
                <span class='label'>draw_axis_line:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>label_orientation:</span> <span class='int'>0</span><span class='rparen'>)</span>
+  <span class='ivar'>@spec</span> <span class='op'>=</span> <span class='id identifier rubyid_spec'>spec</span>
   <span class='ivar'>@min</span> <span class='op'>=</span> <span class='id identifier rubyid_min'>min</span>
   <span class='ivar'>@max</span> <span class='op'>=</span> <span class='id identifier rubyid_max'>max</span>
   <span class='ivar'>@tick</span> <span class='op'>=</span> <span class='id identifier rubyid_tick'>tick</span>
@@ -926,6 +953,47 @@
 </div>
     
       
+      <span id="spec=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="spec-instance_method">
+  
+    #<strong>spec</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns the value of attribute spec.</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+103
+104
+105</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/gr.rb', line 103</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_spec'>spec</span>
+  <span class='ivar'>@spec</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
       <span id="tick=-instance_method"></span>
       <div class="method_details ">
   <h3 class="signature " id="tick-instance_method">
@@ -1095,9 +1163,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jun 23 00:20:19 2026 by
+  Generated on Tue Sep 22 12:16:01 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.44 (ruby-4.0.5).
+  0.9.45 (ruby-4.0.7).
 </div>
 
     </div>
