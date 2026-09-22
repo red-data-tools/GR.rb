@@ -18,6 +18,7 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = '>= 2.7'
 
+  spec.add_dependency 'base64'
   spec.add_dependency 'fiddle', '>= 1.1.0'
   spec.add_dependency 'numo-narray-alt'
   spec.add_dependency 'pkg-config'
